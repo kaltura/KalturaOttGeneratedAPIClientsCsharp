@@ -39,6 +39,7 @@ namespace Kaltura.Types
 		public const string PARTNER_ID = "partnerId";
 		public const string USER_ID = "userId";
 		public const string LANGUAGE = "language";
+		public const string CURRENCY = "currency";
 		public const string KS = "ks";
 		public const string RESPONSE_PROFILE = "responseProfile";
 		#endregion
@@ -47,6 +48,7 @@ namespace Kaltura.Types
 		private int _PartnerId = Int32.MinValue;
 		private int _UserId = Int32.MinValue;
 		private string _Language = null;
+		private string _Currency = null;
 		private string _Ks = null;
 		private BaseResponseProfile _ResponseProfile;
 		#endregion
@@ -77,6 +79,15 @@ namespace Kaltura.Types
 			{ 
 				_Language = value;
 				OnPropertyChanged("Language");
+			}
+		}
+		public string Currency
+		{
+			get { return _Currency; }
+			set 
+			{ 
+				_Currency = value;
+				OnPropertyChanged("Currency");
 			}
 		}
 		public string Ks
@@ -119,6 +130,9 @@ namespace Kaltura.Types
 					case "language":
 						this._Language = propertyNode.InnerText;
 						continue;
+					case "currency":
+						this._Currency = propertyNode.InnerText;
+						continue;
 					case "ks":
 						this._Ks = propertyNode.InnerText;
 						continue;
@@ -139,6 +153,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("partnerId", this._PartnerId);
 			kparams.AddIfNotNull("userId", this._UserId);
 			kparams.AddIfNotNull("language", this._Language);
+			kparams.AddIfNotNull("currency", this._Currency);
 			kparams.AddIfNotNull("ks", this._Ks);
 			kparams.AddIfNotNull("responseProfile", this._ResponseProfile);
 			return kparams;
@@ -153,6 +168,8 @@ namespace Kaltura.Types
 					return "UserId";
 				case LANGUAGE:
 					return "Language";
+				case CURRENCY:
+					return "Currency";
 				case KS:
 					return "Ks";
 				case RESPONSE_PROFILE:
