@@ -26,74 +26,52 @@
 // @ignore
 // ===================================================================================================
 using System;
-using System.Xml;
-using System.Collections.Generic;
+using Kaltura.Types;
 using Kaltura.Enums;
-using Kaltura.Request;
 
-namespace Kaltura.Types
+namespace Kaltura.Request
 {
-	public class AssetReminderFilter : ReminderFilter
+	public static class RequestBuilderExtensions
 	{
-		#region Constants
-		public new const string ORDER_BY = "orderBy";
-		#endregion
-
-		#region Private Fields
-		private AssetReminderOrderBy _OrderBy = null;
-		#endregion
-
-		#region Properties
-		public new AssetReminderOrderBy OrderBy
+		/// <summary>
+		/// Impersonated partner id
+		/// </summary>
+		public static BaseRequestBuilder<T> WithPartnerId<T>(this BaseRequestBuilder<T> requestBuilder, int value)
 		{
-			get { return _OrderBy; }
-			set 
-			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
-			}
+			requestBuilder.PartnerId = value;
+			return requestBuilder;
 		}
-		#endregion
-
-		#region CTor
-		public AssetReminderFilter()
+		/// <summary>
+		/// Impersonated user id
+		/// </summary>
+		public static BaseRequestBuilder<T> WithUserId<T>(this BaseRequestBuilder<T> requestBuilder, int value)
 		{
+			requestBuilder.UserId = value;
+			return requestBuilder;
 		}
-
-		public AssetReminderFilter(XmlElement node) : base(node)
+		/// <summary>
+		/// Content language
+		/// </summary>
+		public static BaseRequestBuilder<T> WithLanguage<T>(this BaseRequestBuilder<T> requestBuilder, string value)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
-			{
-				switch (propertyNode.Name)
-				{
-					case "orderBy":
-						this._OrderBy = (AssetReminderOrderBy)StringEnum.Parse(typeof(AssetReminderOrderBy), propertyNode.InnerText);
-						continue;
-				}
-			}
+			requestBuilder.Language = value;
+			return requestBuilder;
 		}
-		#endregion
-
-		#region Methods
-		public override Params ToParams(bool includeObjectType = true)
+		/// <summary>
+		/// Content currency
+		/// </summary>
+		public static BaseRequestBuilder<T> WithCurrency<T>(this BaseRequestBuilder<T> requestBuilder, string value)
 		{
-			Params kparams = base.ToParams(includeObjectType);
-			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetReminderFilter");
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
-			return kparams;
+			requestBuilder.Currency = value;
+			return requestBuilder;
 		}
-		protected override string getPropertyName(string apiName)
+		/// <summary>
+		/// Kaltura API session
+		/// </summary>
+		public static BaseRequestBuilder<T> WithKs<T>(this BaseRequestBuilder<T> requestBuilder, string value)
 		{
-			switch(apiName)
-			{
-				case ORDER_BY:
-					return "OrderBy";
-				default:
-					return base.getPropertyName(apiName);
-			}
+			requestBuilder.Ks = value;
+			return requestBuilder;
 		}
-		#endregion
 	}
 }
-
