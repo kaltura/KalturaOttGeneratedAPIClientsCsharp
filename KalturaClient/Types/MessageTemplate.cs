@@ -42,9 +42,6 @@ namespace Kaltura.Types
 		public const string SOUND = "sound";
 		public const string ACTION = "action";
 		public const string URL = "url";
-		public const string MAIL_TEMPLATE = "mailTemplate";
-		public const string MAIL_SUBJECT = "mailSubject";
-		public const string RATIO_ID = "ratioId";
 		#endregion
 
 		#region Private Fields
@@ -54,9 +51,6 @@ namespace Kaltura.Types
 		private string _Sound = null;
 		private string _Action = null;
 		private string _Url = null;
-		private string _MailTemplate = null;
-		private string _MailSubject = null;
-		private string _RatioId = null;
 		#endregion
 
 		#region Properties
@@ -114,33 +108,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Url");
 			}
 		}
-		public string MailTemplate
-		{
-			get { return _MailTemplate; }
-			set 
-			{ 
-				_MailTemplate = value;
-				OnPropertyChanged("MailTemplate");
-			}
-		}
-		public string MailSubject
-		{
-			get { return _MailSubject; }
-			set 
-			{ 
-				_MailSubject = value;
-				OnPropertyChanged("MailSubject");
-			}
-		}
-		public string RatioId
-		{
-			get { return _RatioId; }
-			set 
-			{ 
-				_RatioId = value;
-				OnPropertyChanged("RatioId");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -172,15 +139,6 @@ namespace Kaltura.Types
 					case "url":
 						this._Url = propertyNode.InnerText;
 						continue;
-					case "mailTemplate":
-						this._MailTemplate = propertyNode.InnerText;
-						continue;
-					case "mailSubject":
-						this._MailSubject = propertyNode.InnerText;
-						continue;
-					case "ratioId":
-						this._RatioId = propertyNode.InnerText;
-						continue;
 				}
 			}
 		}
@@ -198,9 +156,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("sound", this._Sound);
 			kparams.AddIfNotNull("action", this._Action);
 			kparams.AddIfNotNull("url", this._Url);
-			kparams.AddIfNotNull("mailTemplate", this._MailTemplate);
-			kparams.AddIfNotNull("mailSubject", this._MailSubject);
-			kparams.AddIfNotNull("ratioId", this._RatioId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -219,12 +174,6 @@ namespace Kaltura.Types
 					return "Action";
 				case URL:
 					return "Url";
-				case MAIL_TEMPLATE:
-					return "MailTemplate";
-				case MAIL_SUBJECT:
-					return "MailSubject";
-				case RATIO_ID:
-					return "RatioId";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -97,10 +97,20 @@ namespace Kaltura.Types
 		public long ScheduledSubscriptionId
 		{
 			get { return _ScheduledSubscriptionId; }
+			set 
+			{ 
+				_ScheduledSubscriptionId = value;
+				OnPropertyChanged("ScheduledSubscriptionId");
+			}
 		}
 		public long UnifiedPaymentId
 		{
 			get { return _UnifiedPaymentId; }
+			set 
+			{ 
+				_UnifiedPaymentId = value;
+				OnPropertyChanged("UnifiedPaymentId");
+			}
 		}
 		public bool? IsSuspended
 		{

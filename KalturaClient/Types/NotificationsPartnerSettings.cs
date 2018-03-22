@@ -51,8 +51,6 @@ namespace Kaltura.Types
 		public const string CHURN_MAIL_SUBJECT = "churnMailSubject";
 		public const string SENDER_EMAIL = "senderEmail";
 		public const string MAIL_SENDER_NAME = "mailSenderName";
-		public const string MAIL_NOTIFICATION_ADAPTER_ID = "mailNotificationAdapterId";
-		public const string SMS_ENABLED = "smsEnabled";
 		#endregion
 
 		#region Private Fields
@@ -71,8 +69,6 @@ namespace Kaltura.Types
 		private string _ChurnMailSubject = null;
 		private string _SenderEmail = null;
 		private string _MailSenderName = null;
-		private long _MailNotificationAdapterId = long.MinValue;
-		private bool? _SmsEnabled = null;
 		#endregion
 
 		#region Properties
@@ -211,24 +207,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MailSenderName");
 			}
 		}
-		public long MailNotificationAdapterId
-		{
-			get { return _MailNotificationAdapterId; }
-			set 
-			{ 
-				_MailNotificationAdapterId = value;
-				OnPropertyChanged("MailNotificationAdapterId");
-			}
-		}
-		public bool? SmsEnabled
-		{
-			get { return _SmsEnabled; }
-			set 
-			{ 
-				_SmsEnabled = value;
-				OnPropertyChanged("SmsEnabled");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -287,12 +265,6 @@ namespace Kaltura.Types
 					case "mailSenderName":
 						this._MailSenderName = propertyNode.InnerText;
 						continue;
-					case "mailNotificationAdapterId":
-						this._MailNotificationAdapterId = ParseLong(propertyNode.InnerText);
-						continue;
-					case "smsEnabled":
-						this._SmsEnabled = ParseBool(propertyNode.InnerText);
-						continue;
 				}
 			}
 		}
@@ -319,8 +291,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("churnMailSubject", this._ChurnMailSubject);
 			kparams.AddIfNotNull("senderEmail", this._SenderEmail);
 			kparams.AddIfNotNull("mailSenderName", this._MailSenderName);
-			kparams.AddIfNotNull("mailNotificationAdapterId", this._MailNotificationAdapterId);
-			kparams.AddIfNotNull("smsEnabled", this._SmsEnabled);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -357,10 +327,6 @@ namespace Kaltura.Types
 					return "SenderEmail";
 				case MAIL_SENDER_NAME:
 					return "MailSenderName";
-				case MAIL_NOTIFICATION_ADAPTER_ID:
-					return "MailNotificationAdapterId";
-				case SMS_ENABLED:
-					return "SmsEnabled";
 				default:
 					return base.getPropertyName(apiName);
 			}

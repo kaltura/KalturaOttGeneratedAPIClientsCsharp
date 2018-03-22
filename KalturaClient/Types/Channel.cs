@@ -36,7 +36,6 @@ namespace Kaltura.Types
 	public class Channel : BaseChannel
 	{
 		#region Constants
-		public const string NAME = "name";
 		public const string DESCRIPTION = "description";
 		public const string IMAGES = "images";
 		public const string ASSET_TYPES = "assetTypes";
@@ -47,7 +46,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private string _Name = null;
 		private string _Description = null;
 		private IList<MediaImage> _Images;
 		private IList<IntegerValue> _AssetTypes;
@@ -58,15 +56,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		public string Name
-		{
-			get { return _Name; }
-			set 
-			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
-			}
-		}
 		public string Description
 		{
 			get { return _Description; }
@@ -143,9 +132,6 @@ namespace Kaltura.Types
 			{
 				switch (propertyNode.Name)
 				{
-					case "name":
-						this._Name = propertyNode.InnerText;
-						continue;
 					case "description":
 						this._Description = propertyNode.InnerText;
 						continue;
@@ -186,7 +172,6 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaChannel");
-			kparams.AddIfNotNull("name", this._Name);
 			kparams.AddIfNotNull("description", this._Description);
 			kparams.AddIfNotNull("images", this._Images);
 			kparams.AddIfNotNull("assetTypes", this._AssetTypes);
@@ -200,8 +185,6 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case NAME:
-					return "Name";
 				case DESCRIPTION:
 					return "Description";
 				case IMAGES:
