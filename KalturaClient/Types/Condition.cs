@@ -36,20 +36,14 @@ namespace Kaltura.Types
 	public class Condition : ObjectBase
 	{
 		#region Constants
-		public const string TYPE = "type";
 		public const string DESCRIPTION = "description";
 		#endregion
 
 		#region Private Fields
-		private RuleConditionType _Type = null;
 		private string _Description = null;
 		#endregion
 
 		#region Properties
-		public RuleConditionType Type
-		{
-			get { return _Type; }
-		}
 		public string Description
 		{
 			get { return _Description; }
@@ -72,9 +66,6 @@ namespace Kaltura.Types
 			{
 				switch (propertyNode.Name)
 				{
-					case "type":
-						this._Type = (RuleConditionType)StringEnum.Parse(typeof(RuleConditionType), propertyNode.InnerText);
-						continue;
 					case "description":
 						this._Description = propertyNode.InnerText;
 						continue;
@@ -89,7 +80,6 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaCondition");
-			kparams.AddIfNotNull("type", this._Type);
 			kparams.AddIfNotNull("description", this._Description);
 			return kparams;
 		}
@@ -97,8 +87,6 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case TYPE:
-					return "Type";
 				case DESCRIPTION:
 					return "Description";
 				default:
