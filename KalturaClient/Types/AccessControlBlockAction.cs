@@ -33,7 +33,7 @@ using Kaltura.Request;
 
 namespace Kaltura.Types
 {
-	public class AccessControlBlockAction : AssetRuleAction
+	public class AccessControlBlockAction : RuleAction
 	{
 		#region Constants
 		#endregion

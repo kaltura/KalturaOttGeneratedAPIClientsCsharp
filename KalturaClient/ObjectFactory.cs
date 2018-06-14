@@ -105,8 +105,6 @@ namespace Kaltura
 					return new ListResponse<OTTUser>(xmlElement);
 				case "KalturaCollectionListResponse":
 					return new ListResponse<Collection>(xmlElement);
-				case "KalturaDiscountDetailsListResponse":
-					return new ListResponse<DiscountDetails>(xmlElement);
 				case "KalturaSubscriptionSetListResponse":
 					return new ListResponse<SubscriptionSet>(xmlElement);
 				case "KalturaProductPriceListResponse":
@@ -121,8 +119,6 @@ namespace Kaltura
 					return new ListResponse<Subscription>(xmlElement);
 				case "KalturaProductsPriceListResponse":
 					return new ListResponse<ProductPrice>(xmlElement);
-				case "KalturaPersonalListListResponse":
-					return new ListResponse<PersonalList>(xmlElement);
 				case "KalturaEngagementListResponse":
 					return new ListResponse<Engagement>(xmlElement);
 				case "KalturaEngagementAdapterListResponse":
@@ -139,8 +135,6 @@ namespace Kaltura
 					return new ListResponse<PersonalFeed>(xmlElement);
 				case "KalturaTopicListResponse":
 					return new ListResponse<Topic>(xmlElement);
-				case "KalturaGenericListResponse":
-					return new ListResponse<T>(xmlElement);
 				case "KalturaIntegerValueListResponse":
 					return new ListResponse<IntegerValue>(xmlElement);
 				case "KalturaReportListResponse":
@@ -169,12 +163,8 @@ namespace Kaltura
 					return new ListResponse<AssetStatistics>(xmlElement);
 				case "KalturaAssetHistoryListResponse":
 					return new ListResponse<AssetHistory>(xmlElement);
-				case "KalturaAssetUserRuleListResponse":
-					return new ListResponse<AssetUserRule>(xmlElement);
 				case "KalturaCurrencyListResponse":
 					return new ListResponse<Currency>(xmlElement);
-				case "KalturaAssetRuleListResponse":
-					return new ListResponse<AssetRule>(xmlElement);
 				case "KalturaLanguageListResponse":
 					return new ListResponse<Language>(xmlElement);
 				case "KalturaMetaListResponse":

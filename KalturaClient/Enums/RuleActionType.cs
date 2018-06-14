@@ -30,9 +30,6 @@ namespace Kaltura.Enums
 	public sealed class RuleActionType : StringEnum
 	{
 		public static readonly RuleActionType BLOCK = new RuleActionType("BLOCK");
-		public static readonly RuleActionType START_DATE_OFFSET = new RuleActionType("START_DATE_OFFSET");
-		public static readonly RuleActionType END_DATE_OFFSET = new RuleActionType("END_DATE_OFFSET");
-		public static readonly RuleActionType USER_BLOCK = new RuleActionType("USER_BLOCK");
 
 		private RuleActionType(string name) : base(name) { }
 	}

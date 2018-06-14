@@ -37,26 +37,20 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string TYPE = "type";
-		public const string DESCRIPTION = "description";
 		#endregion
 
 		#region Private Fields
 		private RuleActionType _Type = null;
-		private string _Description = null;
 		#endregion
 
 		#region Properties
 		public RuleActionType Type
 		{
 			get { return _Type; }
-		}
-		public string Description
-		{
-			get { return _Description; }
 			set 
 			{ 
-				_Description = value;
-				OnPropertyChanged("Description");
+				_Type = value;
+				OnPropertyChanged("Type");
 			}
 		}
 		#endregion
@@ -75,9 +69,6 @@ namespace Kaltura.Types
 					case "type":
 						this._Type = (RuleActionType)StringEnum.Parse(typeof(RuleActionType), propertyNode.InnerText);
 						continue;
-					case "description":
-						this._Description = propertyNode.InnerText;
-						continue;
 				}
 			}
 		}
@@ -90,7 +81,6 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaRuleAction");
 			kparams.AddIfNotNull("type", this._Type);
-			kparams.AddIfNotNull("description", this._Description);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -99,8 +89,6 @@ namespace Kaltura.Types
 			{
 				case TYPE:
 					return "Type";
-				case DESCRIPTION:
-					return "Description";
 				default:
 					return base.getPropertyName(apiName);
 			}
