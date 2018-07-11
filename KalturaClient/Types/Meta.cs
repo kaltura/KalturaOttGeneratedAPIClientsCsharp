@@ -36,40 +36,28 @@ namespace Kaltura.Types
 	public class Meta : ObjectBase
 	{
 		#region Constants
-		public const string ID = "id";
 		public const string NAME = "name";
-		public const string MULTILINGUAL_NAME = "multilingualName";
-		public const string SYSTEM_NAME = "systemName";
-		public const string DATA_TYPE = "dataType";
-		public const string MULTIPLE_VALUE = "multipleValue";
-		public const string IS_PROTECTED = "isProtected";
-		public const string HELP_TEXT = "helpText";
+		public const string FIELD_NAME = "fieldName";
+		public const string TYPE = "type";
+		public const string ASSET_TYPE = "assetType";
 		public const string FEATURES = "features";
+		public const string ID = "id";
 		public const string PARENT_ID = "parentId";
-		public const string CREATE_DATE = "createDate";
-		public const string UPDATE_DATE = "updateDate";
+		public const string PARTNER_ID = "partnerId";
 		#endregion
 
 		#region Private Fields
-		private string _Id = null;
 		private string _Name = null;
-		private IList<TranslationToken> _MultilingualName;
-		private string _SystemName = null;
-		private MetaDataType _DataType = null;
-		private bool? _MultipleValue = null;
-		private bool? _IsProtected = null;
-		private string _HelpText = null;
+		private MetaFieldName _FieldName = null;
+		private MetaType _Type = null;
+		private AssetType _AssetType = null;
 		private string _Features = null;
+		private string _Id = null;
 		private string _ParentId = null;
-		private long _CreateDate = long.MinValue;
-		private long _UpdateDate = long.MinValue;
+		private int _PartnerId = Int32.MinValue;
 		#endregion
 
 		#region Properties
-		public string Id
-		{
-			get { return _Id; }
-		}
 		public string Name
 		{
 			get { return _Name; }
@@ -79,58 +67,31 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
-		public IList<TranslationToken> MultilingualName
+		public MetaFieldName FieldName
 		{
-			get { return _MultilingualName; }
+			get { return _FieldName; }
 			set 
 			{ 
-				_MultilingualName = value;
-				OnPropertyChanged("MultilingualName");
+				_FieldName = value;
+				OnPropertyChanged("FieldName");
 			}
 		}
-		public string SystemName
+		public MetaType Type
 		{
-			get { return _SystemName; }
+			get { return _Type; }
 			set 
 			{ 
-				_SystemName = value;
-				OnPropertyChanged("SystemName");
+				_Type = value;
+				OnPropertyChanged("Type");
 			}
 		}
-		public MetaDataType DataType
+		public AssetType AssetType
 		{
-			get { return _DataType; }
+			get { return _AssetType; }
 			set 
 			{ 
-				_DataType = value;
-				OnPropertyChanged("DataType");
-			}
-		}
-		public bool? MultipleValue
-		{
-			get { return _MultipleValue; }
-			set 
-			{ 
-				_MultipleValue = value;
-				OnPropertyChanged("MultipleValue");
-			}
-		}
-		public bool? IsProtected
-		{
-			get { return _IsProtected; }
-			set 
-			{ 
-				_IsProtected = value;
-				OnPropertyChanged("IsProtected");
-			}
-		}
-		public string HelpText
-		{
-			get { return _HelpText; }
-			set 
-			{ 
-				_HelpText = value;
-				OnPropertyChanged("HelpText");
+				_AssetType = value;
+				OnPropertyChanged("AssetType");
 			}
 		}
 		public string Features
@@ -142,6 +103,15 @@ namespace Kaltura.Types
 				OnPropertyChanged("Features");
 			}
 		}
+		public string Id
+		{
+			get { return _Id; }
+			set 
+			{ 
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
+		}
 		public string ParentId
 		{
 			get { return _ParentId; }
@@ -151,13 +121,14 @@ namespace Kaltura.Types
 				OnPropertyChanged("ParentId");
 			}
 		}
-		public long CreateDate
+		public int PartnerId
 		{
-			get { return _CreateDate; }
-		}
-		public long UpdateDate
-		{
-			get { return _UpdateDate; }
+			get { return _PartnerId; }
+			set 
+			{ 
+				_PartnerId = value;
+				OnPropertyChanged("PartnerId");
+			}
 		}
 		#endregion
 
@@ -172,45 +143,29 @@ namespace Kaltura.Types
 			{
 				switch (propertyNode.Name)
 				{
-					case "id":
-						this._Id = propertyNode.InnerText;
-						continue;
 					case "name":
 						this._Name = propertyNode.InnerText;
 						continue;
-					case "multilingualName":
-						this._MultilingualName = new List<TranslationToken>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
-						}
+					case "fieldName":
+						this._FieldName = (MetaFieldName)StringEnum.Parse(typeof(MetaFieldName), propertyNode.InnerText);
 						continue;
-					case "systemName":
-						this._SystemName = propertyNode.InnerText;
+					case "type":
+						this._Type = (MetaType)StringEnum.Parse(typeof(MetaType), propertyNode.InnerText);
 						continue;
-					case "dataType":
-						this._DataType = (MetaDataType)StringEnum.Parse(typeof(MetaDataType), propertyNode.InnerText);
-						continue;
-					case "multipleValue":
-						this._MultipleValue = ParseBool(propertyNode.InnerText);
-						continue;
-					case "isProtected":
-						this._IsProtected = ParseBool(propertyNode.InnerText);
-						continue;
-					case "helpText":
-						this._HelpText = propertyNode.InnerText;
+					case "assetType":
+						this._AssetType = (AssetType)StringEnum.Parse(typeof(AssetType), propertyNode.InnerText);
 						continue;
 					case "features":
 						this._Features = propertyNode.InnerText;
 						continue;
+					case "id":
+						this._Id = propertyNode.InnerText;
+						continue;
 					case "parentId":
 						this._ParentId = propertyNode.InnerText;
 						continue;
-					case "createDate":
-						this._CreateDate = ParseLong(propertyNode.InnerText);
-						continue;
-					case "updateDate":
-						this._UpdateDate = ParseLong(propertyNode.InnerText);
+					case "partnerId":
+						this._PartnerId = ParseInt(propertyNode.InnerText);
 						continue;
 				}
 			}
@@ -223,48 +178,36 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaMeta");
-			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("multilingualName", this._MultilingualName);
-			kparams.AddIfNotNull("systemName", this._SystemName);
-			kparams.AddIfNotNull("dataType", this._DataType);
-			kparams.AddIfNotNull("multipleValue", this._MultipleValue);
-			kparams.AddIfNotNull("isProtected", this._IsProtected);
-			kparams.AddIfNotNull("helpText", this._HelpText);
+			kparams.AddIfNotNull("fieldName", this._FieldName);
+			kparams.AddIfNotNull("type", this._Type);
+			kparams.AddIfNotNull("assetType", this._AssetType);
 			kparams.AddIfNotNull("features", this._Features);
+			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("parentId", this._ParentId);
-			kparams.AddIfNotNull("createDate", this._CreateDate);
-			kparams.AddIfNotNull("updateDate", this._UpdateDate);
+			kparams.AddIfNotNull("partnerId", this._PartnerId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
 				case NAME:
 					return "Name";
-				case MULTILINGUAL_NAME:
-					return "MultilingualName";
-				case SYSTEM_NAME:
-					return "SystemName";
-				case DATA_TYPE:
-					return "DataType";
-				case MULTIPLE_VALUE:
-					return "MultipleValue";
-				case IS_PROTECTED:
-					return "IsProtected";
-				case HELP_TEXT:
-					return "HelpText";
+				case FIELD_NAME:
+					return "FieldName";
+				case TYPE:
+					return "Type";
+				case ASSET_TYPE:
+					return "AssetType";
 				case FEATURES:
 					return "Features";
+				case ID:
+					return "Id";
 				case PARENT_ID:
 					return "ParentId";
-				case CREATE_DATE:
-					return "CreateDate";
-				case UPDATE_DATE:
-					return "UpdateDate";
+				case PARTNER_ID:
+					return "PartnerId";
 				default:
 					return base.getPropertyName(apiName);
 			}
