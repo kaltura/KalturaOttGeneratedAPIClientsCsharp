@@ -52,7 +52,6 @@ namespace Kaltura.Types
 		public const string ENABLE_CATCH_UP = "enableCatchUp";
 		public const string ENABLE_START_OVER = "enableStartOver";
 		public const string ENABLE_TRICK_PLAY = "enableTrickPlay";
-		public const string EXTERNAL_ID = "externalId";
 		#endregion
 
 		#region Private Fields
@@ -72,7 +71,6 @@ namespace Kaltura.Types
 		private bool? _EnableCatchUp = null;
 		private bool? _EnableStartOver = null;
 		private bool? _EnableTrickPlay = null;
-		private string _ExternalId = null;
 		#endregion
 
 		#region Properties
@@ -92,11 +90,6 @@ namespace Kaltura.Types
 		public string Name
 		{
 			get { return _Name; }
-			set 
-			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
-			}
 		}
 		public IList<TranslationToken> MultilingualName
 		{
@@ -110,11 +103,6 @@ namespace Kaltura.Types
 		public string Description
 		{
 			get { return _Description; }
-			set 
-			{ 
-				_Description = value;
-				OnPropertyChanged("Description");
-			}
 		}
 		public IList<TranslationToken> MultilingualDescription
 		{
@@ -215,15 +203,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableTrickPlay");
 			}
 		}
-		public string ExternalId
-		{
-			get { return _ExternalId; }
-			set 
-			{ 
-				_ExternalId = value;
-				OnPropertyChanged("ExternalId");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -317,9 +296,6 @@ namespace Kaltura.Types
 					case "enableTrickPlay":
 						this._EnableTrickPlay = ParseBool(propertyNode.InnerText);
 						continue;
-					case "externalId":
-						this._ExternalId = propertyNode.InnerText;
-						continue;
 				}
 			}
 		}
@@ -347,7 +323,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("enableCatchUp", this._EnableCatchUp);
 			kparams.AddIfNotNull("enableStartOver", this._EnableStartOver);
 			kparams.AddIfNotNull("enableTrickPlay", this._EnableTrickPlay);
-			kparams.AddIfNotNull("externalId", this._ExternalId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -386,8 +361,6 @@ namespace Kaltura.Types
 					return "EnableStartOver";
 				case ENABLE_TRICK_PLAY:
 					return "EnableTrickPlay";
-				case EXTERNAL_ID:
-					return "ExternalId";
 				default:
 					return base.getPropertyName(apiName);
 			}

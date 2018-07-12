@@ -40,11 +40,7 @@ namespace Kaltura.Types
 		public const string CATCH_UP_BUFFER = "catchUpBuffer";
 		public const string TRICK_PLAY_BUFFER = "trickPlayBuffer";
 		public const string ENABLE_RECORDING_PLAYBACK_NON_ENTITLED_CHANNEL = "enableRecordingPlaybackNonEntitledChannel";
-		public const string TYPE_DESCRIPTION = "typeDescription";
 		public const string ENTRY_ID = "entryId";
-		public const string DEVICE_RULE = "deviceRule";
-		public const string GEO_BLOCK_RULE = "geoBlockRule";
-		public const string WATCH_PERMISSION_RULE = "watchPermissionRule";
 		#endregion
 
 		#region Private Fields
@@ -52,11 +48,7 @@ namespace Kaltura.Types
 		private long _CatchUpBuffer = long.MinValue;
 		private long _TrickPlayBuffer = long.MinValue;
 		private bool? _EnableRecordingPlaybackNonEntitledChannel = null;
-		private string _TypeDescription = null;
 		private string _EntryId = null;
-		private string _DeviceRule = null;
-		private string _GeoBlockRule = null;
-		private string _WatchPermissionRule = null;
 		#endregion
 
 		#region Properties
@@ -91,15 +83,6 @@ namespace Kaltura.Types
 		{
 			get { return _EnableRecordingPlaybackNonEntitledChannel; }
 		}
-		public string TypeDescription
-		{
-			get { return _TypeDescription; }
-			set 
-			{ 
-				_TypeDescription = value;
-				OnPropertyChanged("TypeDescription");
-			}
-		}
 		public string EntryId
 		{
 			get { return _EntryId; }
@@ -107,33 +90,6 @@ namespace Kaltura.Types
 			{ 
 				_EntryId = value;
 				OnPropertyChanged("EntryId");
-			}
-		}
-		public string DeviceRule
-		{
-			get { return _DeviceRule; }
-			set 
-			{ 
-				_DeviceRule = value;
-				OnPropertyChanged("DeviceRule");
-			}
-		}
-		public string GeoBlockRule
-		{
-			get { return _GeoBlockRule; }
-			set 
-			{ 
-				_GeoBlockRule = value;
-				OnPropertyChanged("GeoBlockRule");
-			}
-		}
-		public string WatchPermissionRule
-		{
-			get { return _WatchPermissionRule; }
-			set 
-			{ 
-				_WatchPermissionRule = value;
-				OnPropertyChanged("WatchPermissionRule");
 			}
 		}
 		#endregion
@@ -161,20 +117,8 @@ namespace Kaltura.Types
 					case "enableRecordingPlaybackNonEntitledChannel":
 						this._EnableRecordingPlaybackNonEntitledChannel = ParseBool(propertyNode.InnerText);
 						continue;
-					case "typeDescription":
-						this._TypeDescription = propertyNode.InnerText;
-						continue;
 					case "entryId":
 						this._EntryId = propertyNode.InnerText;
-						continue;
-					case "deviceRule":
-						this._DeviceRule = propertyNode.InnerText;
-						continue;
-					case "geoBlockRule":
-						this._GeoBlockRule = propertyNode.InnerText;
-						continue;
-					case "watchPermissionRule":
-						this._WatchPermissionRule = propertyNode.InnerText;
 						continue;
 				}
 			}
@@ -191,11 +135,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("catchUpBuffer", this._CatchUpBuffer);
 			kparams.AddIfNotNull("trickPlayBuffer", this._TrickPlayBuffer);
 			kparams.AddIfNotNull("enableRecordingPlaybackNonEntitledChannel", this._EnableRecordingPlaybackNonEntitledChannel);
-			kparams.AddIfNotNull("typeDescription", this._TypeDescription);
 			kparams.AddIfNotNull("entryId", this._EntryId);
-			kparams.AddIfNotNull("deviceRule", this._DeviceRule);
-			kparams.AddIfNotNull("geoBlockRule", this._GeoBlockRule);
-			kparams.AddIfNotNull("watchPermissionRule", this._WatchPermissionRule);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -210,16 +150,8 @@ namespace Kaltura.Types
 					return "TrickPlayBuffer";
 				case ENABLE_RECORDING_PLAYBACK_NON_ENTITLED_CHANNEL:
 					return "EnableRecordingPlaybackNonEntitledChannel";
-				case TYPE_DESCRIPTION:
-					return "TypeDescription";
 				case ENTRY_ID:
 					return "EntryId";
-				case DEVICE_RULE:
-					return "DeviceRule";
-				case GEO_BLOCK_RULE:
-					return "GeoBlockRule";
-				case WATCH_PERMISSION_RULE:
-					return "WatchPermissionRule";
 				default:
 					return base.getPropertyName(apiName);
 			}
