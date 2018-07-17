@@ -173,6 +173,8 @@ namespace Kaltura
 					return new ListResponse<AssetHistory>(xmlElement);
 				case "KalturaPartnerConfigurationListResponse":
 					return new ListResponse<PartnerConfiguration>(xmlElement);
+				case "KalturaMediaConcurrencyRuleListResponse":
+					return new ListResponse<MediaConcurrencyRule>(xmlElement);
 				case "KalturaAssetUserRuleListResponse":
 					return new ListResponse<AssetUserRule>(xmlElement);
 				case "KalturaCurrencyListResponse":
