@@ -118,6 +118,11 @@ namespace Kaltura.Types
 		public string Name
 		{
 			get { return _Name; }
+			set 
+			{ 
+				_Name = value;
+				OnPropertyChanged("Name");
+			}
 		}
 		public IList<TranslationToken> MultilingualName
 		{
@@ -131,6 +136,11 @@ namespace Kaltura.Types
 		public string Description
 		{
 			get { return _Description; }
+			set 
+			{ 
+				_Description = value;
+				OnPropertyChanged("Description");
+			}
 		}
 		public IList<TranslationToken> MultilingualDescription
 		{

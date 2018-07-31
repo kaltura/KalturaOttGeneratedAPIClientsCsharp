@@ -33,7 +33,6 @@ namespace Kaltura.Enums
 		public static readonly PlaybackContextType CATCHUP = new PlaybackContextType("CATCHUP");
 		public static readonly PlaybackContextType START_OVER = new PlaybackContextType("START_OVER");
 		public static readonly PlaybackContextType PLAYBACK = new PlaybackContextType("PLAYBACK");
-		public static readonly PlaybackContextType DOWNLOAD = new PlaybackContextType("DOWNLOAD");
 
 		private PlaybackContextType(string name) : base(name) { }
 	}

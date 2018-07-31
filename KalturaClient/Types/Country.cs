@@ -44,7 +44,6 @@ namespace Kaltura.Types
 		public const string CURRENCY = "currency";
 		public const string CURRENCY_SIGN = "currencySign";
 		public const string VAT_PERCENT = "vatPercent";
-		public const string TIME_ZONE_ID = "timeZoneId";
 		#endregion
 
 		#region Private Fields
@@ -56,7 +55,6 @@ namespace Kaltura.Types
 		private string _Currency = null;
 		private string _CurrencySign = null;
 		private float _VatPercent = Single.MinValue;
-		private string _TimeZoneId = null;
 		#endregion
 
 		#region Properties
@@ -127,15 +125,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("VatPercent");
 			}
 		}
-		public string TimeZoneId
-		{
-			get { return _TimeZoneId; }
-			set 
-			{ 
-				_TimeZoneId = value;
-				OnPropertyChanged("TimeZoneId");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -173,9 +162,6 @@ namespace Kaltura.Types
 					case "vatPercent":
 						this._VatPercent = ParseFloat(propertyNode.InnerText);
 						continue;
-					case "timeZoneId":
-						this._TimeZoneId = propertyNode.InnerText;
-						continue;
 				}
 			}
 		}
@@ -195,7 +181,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("currency", this._Currency);
 			kparams.AddIfNotNull("currencySign", this._CurrencySign);
 			kparams.AddIfNotNull("vatPercent", this._VatPercent);
-			kparams.AddIfNotNull("timeZoneId", this._TimeZoneId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -218,8 +203,6 @@ namespace Kaltura.Types
 					return "CurrencySign";
 				case VAT_PERCENT:
 					return "VatPercent";
-				case TIME_ZONE_ID:
-					return "TimeZoneId";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -41,8 +41,6 @@ namespace Kaltura.Types
 		public const string POSITION_OWNER = "positionOwner";
 		public const string FINISHED_WATCHING = "finishedWatching";
 		public const string PLAYER_DATA = "playerData";
-		public const string PROGRAM_ID = "programId";
-		public const string IS_REPORTING_MODE = "isReportingMode";
 		#endregion
 
 		#region Private Fields
@@ -51,8 +49,6 @@ namespace Kaltura.Types
 		private PositionOwner _PositionOwner = null;
 		private bool? _FinishedWatching = null;
 		private BookmarkPlayerData _PlayerData;
-		private long _ProgramId = long.MinValue;
-		private bool? _IsReportingMode = null;
 		#endregion
 
 		#region Properties
@@ -86,24 +82,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PlayerData");
 			}
 		}
-		public long ProgramId
-		{
-			get { return _ProgramId; }
-			set 
-			{ 
-				_ProgramId = value;
-				OnPropertyChanged("ProgramId");
-			}
-		}
-		public bool? IsReportingMode
-		{
-			get { return _IsReportingMode; }
-			set 
-			{ 
-				_IsReportingMode = value;
-				OnPropertyChanged("IsReportingMode");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -132,12 +110,6 @@ namespace Kaltura.Types
 					case "playerData":
 						this._PlayerData = ObjectFactory.Create<BookmarkPlayerData>(propertyNode);
 						continue;
-					case "programId":
-						this._ProgramId = ParseLong(propertyNode.InnerText);
-						continue;
-					case "isReportingMode":
-						this._IsReportingMode = ParseBool(propertyNode.InnerText);
-						continue;
 				}
 			}
 		}
@@ -154,8 +126,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("positionOwner", this._PositionOwner);
 			kparams.AddIfNotNull("finishedWatching", this._FinishedWatching);
 			kparams.AddIfNotNull("playerData", this._PlayerData);
-			kparams.AddIfNotNull("programId", this._ProgramId);
-			kparams.AddIfNotNull("isReportingMode", this._IsReportingMode);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -172,10 +142,6 @@ namespace Kaltura.Types
 					return "FinishedWatching";
 				case PLAYER_DATA:
 					return "PlayerData";
-				case PROGRAM_ID:
-					return "ProgramId";
-				case IS_REPORTING_MODE:
-					return "IsReportingMode";
 				default:
 					return base.getPropertyName(apiName);
 			}

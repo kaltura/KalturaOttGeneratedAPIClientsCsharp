@@ -40,7 +40,6 @@ namespace Kaltura.Types
 		public const string STREAMER_TYPE = "streamerType";
 		public const string ASSET_FILE_IDS = "assetFileIds";
 		public const string CONTEXT = "context";
-		public const string URL_TYPE = "urlType";
 		#endregion
 
 		#region Private Fields
@@ -48,7 +47,6 @@ namespace Kaltura.Types
 		private string _StreamerType = null;
 		private string _AssetFileIds = null;
 		private PlaybackContextType _Context = null;
-		private UrlType _UrlType = null;
 		#endregion
 
 		#region Properties
@@ -88,15 +86,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Context");
 			}
 		}
-		public UrlType UrlType
-		{
-			get { return _UrlType; }
-			set 
-			{ 
-				_UrlType = value;
-				OnPropertyChanged("UrlType");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -122,9 +111,6 @@ namespace Kaltura.Types
 					case "context":
 						this._Context = (PlaybackContextType)StringEnum.Parse(typeof(PlaybackContextType), propertyNode.InnerText);
 						continue;
-					case "urlType":
-						this._UrlType = (UrlType)StringEnum.Parse(typeof(UrlType), propertyNode.InnerText);
-						continue;
 				}
 			}
 		}
@@ -140,7 +126,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("streamerType", this._StreamerType);
 			kparams.AddIfNotNull("assetFileIds", this._AssetFileIds);
 			kparams.AddIfNotNull("context", this._Context);
-			kparams.AddIfNotNull("urlType", this._UrlType);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -155,8 +140,6 @@ namespace Kaltura.Types
 					return "AssetFileIds";
 				case CONTEXT:
 					return "Context";
-				case URL_TYPE:
-					return "UrlType";
 				default:
 					return base.getPropertyName(apiName);
 			}

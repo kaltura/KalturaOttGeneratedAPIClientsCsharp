@@ -49,6 +49,11 @@ namespace Kaltura.Types
 		public string Id
 		{
 			get { return _Id; }
+			set 
+			{ 
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
 		}
 		public UserInterestTopic Topic
 		{

@@ -49,6 +49,11 @@ namespace Kaltura.Types
 		public string Value
 		{
 			get { return _Value; }
+			set 
+			{ 
+				_Value = value;
+				OnPropertyChanged("Value");
+			}
 		}
 		public IList<TranslationToken> MultilingualValue
 		{

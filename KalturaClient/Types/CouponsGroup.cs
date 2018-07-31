@@ -38,25 +38,23 @@ namespace Kaltura.Types
 		#region Constants
 		public const string ID = "id";
 		public const string NAME = "name";
+		public const string DESCRIPTIONS = "descriptions";
 		public const string START_DATE = "startDate";
 		public const string END_DATE = "endDate";
 		public const string MAX_USES_NUMBER = "maxUsesNumber";
 		public const string MAX_USES_NUMBER_ON_RENEWABLE_SUB = "maxUsesNumberOnRenewableSub";
 		public const string COUPON_GROUP_TYPE = "couponGroupType";
-		public const string MAX_HOUSEHOLD_USES = "maxHouseholdUses";
-		public const string DISCOUNT_ID = "discountId";
 		#endregion
 
 		#region Private Fields
 		private string _Id = null;
 		private string _Name = null;
+		private IList<TranslationToken> _Descriptions;
 		private long _StartDate = long.MinValue;
 		private long _EndDate = long.MinValue;
 		private int _MaxUsesNumber = Int32.MinValue;
 		private int _MaxUsesNumberOnRenewableSub = Int32.MinValue;
 		private CouponGroupType _CouponGroupType = null;
-		private int _MaxHouseholdUses = Int32.MinValue;
-		private long _DiscountId = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -71,6 +69,15 @@ namespace Kaltura.Types
 			{ 
 				_Name = value;
 				OnPropertyChanged("Name");
+			}
+		}
+		public IList<TranslationToken> Descriptions
+		{
+			get { return _Descriptions; }
+			set 
+			{ 
+				_Descriptions = value;
+				OnPropertyChanged("Descriptions");
 			}
 		}
 		public long StartDate
@@ -118,24 +125,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponGroupType");
 			}
 		}
-		public int MaxHouseholdUses
-		{
-			get { return _MaxHouseholdUses; }
-			set 
-			{ 
-				_MaxHouseholdUses = value;
-				OnPropertyChanged("MaxHouseholdUses");
-			}
-		}
-		public long DiscountId
-		{
-			get { return _DiscountId; }
-			set 
-			{ 
-				_DiscountId = value;
-				OnPropertyChanged("DiscountId");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -155,6 +144,13 @@ namespace Kaltura.Types
 					case "name":
 						this._Name = propertyNode.InnerText;
 						continue;
+					case "descriptions":
+						this._Descriptions = new List<TranslationToken>();
+						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
+						{
+							this._Descriptions.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
+						}
+						continue;
 					case "startDate":
 						this._StartDate = ParseLong(propertyNode.InnerText);
 						continue;
@@ -170,12 +166,6 @@ namespace Kaltura.Types
 					case "couponGroupType":
 						this._CouponGroupType = (CouponGroupType)StringEnum.Parse(typeof(CouponGroupType), propertyNode.InnerText);
 						continue;
-					case "maxHouseholdUses":
-						this._MaxHouseholdUses = ParseInt(propertyNode.InnerText);
-						continue;
-					case "discountId":
-						this._DiscountId = ParseLong(propertyNode.InnerText);
-						continue;
 				}
 			}
 		}
@@ -189,13 +179,12 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaCouponsGroup");
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("name", this._Name);
+			kparams.AddIfNotNull("descriptions", this._Descriptions);
 			kparams.AddIfNotNull("startDate", this._StartDate);
 			kparams.AddIfNotNull("endDate", this._EndDate);
 			kparams.AddIfNotNull("maxUsesNumber", this._MaxUsesNumber);
 			kparams.AddIfNotNull("maxUsesNumberOnRenewableSub", this._MaxUsesNumberOnRenewableSub);
 			kparams.AddIfNotNull("couponGroupType", this._CouponGroupType);
-			kparams.AddIfNotNull("maxHouseholdUses", this._MaxHouseholdUses);
-			kparams.AddIfNotNull("discountId", this._DiscountId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -206,6 +195,8 @@ namespace Kaltura.Types
 					return "Id";
 				case NAME:
 					return "Name";
+				case DESCRIPTIONS:
+					return "Descriptions";
 				case START_DATE:
 					return "StartDate";
 				case END_DATE:
@@ -216,10 +207,6 @@ namespace Kaltura.Types
 					return "MaxUsesNumberOnRenewableSub";
 				case COUPON_GROUP_TYPE:
 					return "CouponGroupType";
-				case MAX_HOUSEHOLD_USES:
-					return "MaxHouseholdUses";
-				case DISCOUNT_ID:
-					return "DiscountId";
 				default:
 					return base.getPropertyName(apiName);
 			}

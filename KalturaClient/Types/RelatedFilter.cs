@@ -36,21 +36,19 @@ namespace Kaltura.Types
 	public class RelatedFilter : BaseSearchAssetFilter
 	{
 		#region Constants
-		public new const string KSQL = "kSql";
+		public const string KSQL = "kSql";
 		public const string ID_EQUAL = "idEqual";
 		public const string TYPE_IN = "typeIn";
-		public const string EXCLUDE_WATCHED = "excludeWatched";
 		#endregion
 
 		#region Private Fields
 		private string _KSql = null;
 		private int _IdEqual = Int32.MinValue;
 		private string _TypeIn = null;
-		private bool? _ExcludeWatched = null;
 		#endregion
 
 		#region Properties
-		public new string KSql
+		public string KSql
 		{
 			get { return _KSql; }
 			set 
@@ -77,15 +75,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("TypeIn");
 			}
 		}
-		public bool? ExcludeWatched
-		{
-			get { return _ExcludeWatched; }
-			set 
-			{ 
-				_ExcludeWatched = value;
-				OnPropertyChanged("ExcludeWatched");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -108,9 +97,6 @@ namespace Kaltura.Types
 					case "typeIn":
 						this._TypeIn = propertyNode.InnerText;
 						continue;
-					case "excludeWatched":
-						this._ExcludeWatched = ParseBool(propertyNode.InnerText);
-						continue;
 				}
 			}
 		}
@@ -125,7 +111,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("kSql", this._KSql);
 			kparams.AddIfNotNull("idEqual", this._IdEqual);
 			kparams.AddIfNotNull("typeIn", this._TypeIn);
-			kparams.AddIfNotNull("excludeWatched", this._ExcludeWatched);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -138,8 +123,6 @@ namespace Kaltura.Types
 					return "IdEqual";
 				case TYPE_IN:
 					return "TypeIn";
-				case EXCLUDE_WATCHED:
-					return "ExcludeWatched";
 				default:
 					return base.getPropertyName(apiName);
 			}

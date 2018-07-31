@@ -36,56 +36,67 @@ namespace Kaltura.Types
 	public class MetaFilter : Filter
 	{
 		#region Constants
-		public const string ID_IN = "idIn";
-		public const string ASSET_STRUCT_ID_EQUAL = "assetStructIdEqual";
-		public const string DATA_TYPE_EQUAL = "dataTypeEqual";
-		public const string MULTIPLE_VALUE_EQUAL = "multipleValueEqual";
+		public const string FIELD_NAME_EQUAL = "fieldNameEqual";
+		public const string FIELD_NAME_NOT_EQUAL = "fieldNameNotEqual";
+		public const string TYPE_EQUAL = "typeEqual";
+		public const string ASSET_TYPE_EQUAL = "assetTypeEqual";
+		public const string FEATURES_IN = "featuresIn";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private string _IdIn = null;
-		private long _AssetStructIdEqual = long.MinValue;
-		private MetaDataType _DataTypeEqual = null;
-		private bool? _MultipleValueEqual = null;
+		private MetaFieldName _FieldNameEqual = null;
+		private MetaFieldName _FieldNameNotEqual = null;
+		private MetaType _TypeEqual = null;
+		private AssetType _AssetTypeEqual = null;
+		private string _FeaturesIn = null;
 		private MetaOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
-		public string IdIn
+		public MetaFieldName FieldNameEqual
 		{
-			get { return _IdIn; }
+			get { return _FieldNameEqual; }
 			set 
 			{ 
-				_IdIn = value;
-				OnPropertyChanged("IdIn");
+				_FieldNameEqual = value;
+				OnPropertyChanged("FieldNameEqual");
 			}
 		}
-		public long AssetStructIdEqual
+		public MetaFieldName FieldNameNotEqual
 		{
-			get { return _AssetStructIdEqual; }
+			get { return _FieldNameNotEqual; }
 			set 
 			{ 
-				_AssetStructIdEqual = value;
-				OnPropertyChanged("AssetStructIdEqual");
+				_FieldNameNotEqual = value;
+				OnPropertyChanged("FieldNameNotEqual");
 			}
 		}
-		public MetaDataType DataTypeEqual
+		public MetaType TypeEqual
 		{
-			get { return _DataTypeEqual; }
+			get { return _TypeEqual; }
 			set 
 			{ 
-				_DataTypeEqual = value;
-				OnPropertyChanged("DataTypeEqual");
+				_TypeEqual = value;
+				OnPropertyChanged("TypeEqual");
 			}
 		}
-		public bool? MultipleValueEqual
+		public AssetType AssetTypeEqual
 		{
-			get { return _MultipleValueEqual; }
+			get { return _AssetTypeEqual; }
 			set 
 			{ 
-				_MultipleValueEqual = value;
-				OnPropertyChanged("MultipleValueEqual");
+				_AssetTypeEqual = value;
+				OnPropertyChanged("AssetTypeEqual");
+			}
+		}
+		public string FeaturesIn
+		{
+			get { return _FeaturesIn; }
+			set 
+			{ 
+				_FeaturesIn = value;
+				OnPropertyChanged("FeaturesIn");
 			}
 		}
 		public new MetaOrderBy OrderBy
@@ -110,17 +121,20 @@ namespace Kaltura.Types
 			{
 				switch (propertyNode.Name)
 				{
-					case "idIn":
-						this._IdIn = propertyNode.InnerText;
+					case "fieldNameEqual":
+						this._FieldNameEqual = (MetaFieldName)StringEnum.Parse(typeof(MetaFieldName), propertyNode.InnerText);
 						continue;
-					case "assetStructIdEqual":
-						this._AssetStructIdEqual = ParseLong(propertyNode.InnerText);
+					case "fieldNameNotEqual":
+						this._FieldNameNotEqual = (MetaFieldName)StringEnum.Parse(typeof(MetaFieldName), propertyNode.InnerText);
 						continue;
-					case "dataTypeEqual":
-						this._DataTypeEqual = (MetaDataType)StringEnum.Parse(typeof(MetaDataType), propertyNode.InnerText);
+					case "typeEqual":
+						this._TypeEqual = (MetaType)StringEnum.Parse(typeof(MetaType), propertyNode.InnerText);
 						continue;
-					case "multipleValueEqual":
-						this._MultipleValueEqual = ParseBool(propertyNode.InnerText);
+					case "assetTypeEqual":
+						this._AssetTypeEqual = (AssetType)StringEnum.Parse(typeof(AssetType), propertyNode.InnerText);
+						continue;
+					case "featuresIn":
+						this._FeaturesIn = propertyNode.InnerText;
 						continue;
 					case "orderBy":
 						this._OrderBy = (MetaOrderBy)StringEnum.Parse(typeof(MetaOrderBy), propertyNode.InnerText);
@@ -136,10 +150,11 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaMetaFilter");
-			kparams.AddIfNotNull("idIn", this._IdIn);
-			kparams.AddIfNotNull("assetStructIdEqual", this._AssetStructIdEqual);
-			kparams.AddIfNotNull("dataTypeEqual", this._DataTypeEqual);
-			kparams.AddIfNotNull("multipleValueEqual", this._MultipleValueEqual);
+			kparams.AddIfNotNull("fieldNameEqual", this._FieldNameEqual);
+			kparams.AddIfNotNull("fieldNameNotEqual", this._FieldNameNotEqual);
+			kparams.AddIfNotNull("typeEqual", this._TypeEqual);
+			kparams.AddIfNotNull("assetTypeEqual", this._AssetTypeEqual);
+			kparams.AddIfNotNull("featuresIn", this._FeaturesIn);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -147,14 +162,16 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case ID_IN:
-					return "IdIn";
-				case ASSET_STRUCT_ID_EQUAL:
-					return "AssetStructIdEqual";
-				case DATA_TYPE_EQUAL:
-					return "DataTypeEqual";
-				case MULTIPLE_VALUE_EQUAL:
-					return "MultipleValueEqual";
+				case FIELD_NAME_EQUAL:
+					return "FieldNameEqual";
+				case FIELD_NAME_NOT_EQUAL:
+					return "FieldNameNotEqual";
+				case TYPE_EQUAL:
+					return "TypeEqual";
+				case ASSET_TYPE_EQUAL:
+					return "AssetTypeEqual";
+				case FEATURES_IN:
+					return "FeaturesIn";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

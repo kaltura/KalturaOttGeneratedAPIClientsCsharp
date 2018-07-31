@@ -38,15 +38,11 @@ namespace Kaltura.Types
 		#region Constants
 		public const string COUPONS_GROUP = "couponsGroup";
 		public const string STATUS = "status";
-		public const string TOTAL_USES = "totalUses";
-		public const string LEFT_USES = "leftUses";
 		#endregion
 
 		#region Private Fields
 		private CouponsGroup _CouponsGroup;
 		private CouponStatus _Status = null;
-		private int _TotalUses = Int32.MinValue;
-		private int _LeftUses = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -57,14 +53,6 @@ namespace Kaltura.Types
 		public CouponStatus Status
 		{
 			get { return _Status; }
-		}
-		public int TotalUses
-		{
-			get { return _TotalUses; }
-		}
-		public int LeftUses
-		{
-			get { return _LeftUses; }
 		}
 		#endregion
 
@@ -85,12 +73,6 @@ namespace Kaltura.Types
 					case "status":
 						this._Status = (CouponStatus)StringEnum.Parse(typeof(CouponStatus), propertyNode.InnerText);
 						continue;
-					case "totalUses":
-						this._TotalUses = ParseInt(propertyNode.InnerText);
-						continue;
-					case "leftUses":
-						this._LeftUses = ParseInt(propertyNode.InnerText);
-						continue;
 				}
 			}
 		}
@@ -104,8 +86,6 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaCoupon");
 			kparams.AddIfNotNull("couponsGroup", this._CouponsGroup);
 			kparams.AddIfNotNull("status", this._Status);
-			kparams.AddIfNotNull("totalUses", this._TotalUses);
-			kparams.AddIfNotNull("leftUses", this._LeftUses);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -116,10 +96,6 @@ namespace Kaltura.Types
 					return "CouponsGroup";
 				case STATUS:
 					return "Status";
-				case TOTAL_USES:
-					return "TotalUses";
-				case LEFT_USES:
-					return "LeftUses";
 				default:
 					return base.getPropertyName(apiName);
 			}

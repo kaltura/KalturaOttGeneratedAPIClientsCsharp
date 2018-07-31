@@ -78,11 +78,6 @@ namespace Kaltura.Types
 		public RecordingType Type
 		{
 			get { return _Type; }
-			set 
-			{ 
-				_Type = value;
-				OnPropertyChanged("Type");
-			}
 		}
 		public long ViewableUntilDate
 		{
@@ -91,11 +86,6 @@ namespace Kaltura.Types
 		public bool? IsProtected
 		{
 			get { return _IsProtected; }
-			set 
-			{ 
-				_IsProtected = value;
-				OnPropertyChanged("IsProtected");
-			}
 		}
 		public long CreateDate
 		{

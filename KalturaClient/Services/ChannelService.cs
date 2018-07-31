@@ -166,66 +166,14 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class ChannelListRequestBuilder : RequestBuilder<ListResponse<Channel>>
-	{
-		#region Constants
-		public const string FILTER = "filter";
-		public const string PAGER = "pager";
-		#endregion
-
-		public ChannelsFilter Filter
-		{
-			set;
-			get;
-		}
-		public FilterPager Pager
-		{
-			set;
-			get;
-		}
-
-		public ChannelListRequestBuilder()
-			: base("channel", "list")
-		{
-		}
-
-		public ChannelListRequestBuilder(ChannelsFilter filter, FilterPager pager)
-			: this()
-		{
-			this.Filter = filter;
-			this.Pager = pager;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("filter"))
-				kparams.AddIfNotNull("filter", Filter);
-			if (!isMapped("pager"))
-				kparams.AddIfNotNull("pager", Pager);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(XmlElement result)
-		{
-			return ObjectFactory.Create<ListResponse<Channel>>(result);
-		}
-	}
-
 	public class ChannelUpdateRequestBuilder : RequestBuilder<Channel>
 	{
 		#region Constants
-		public const string ID = "id";
+		public const string CHANNEL_ID = "channelId";
 		public const string CHANNEL = "channel";
 		#endregion
 
-		public int Id
+		public int ChannelId
 		{
 			set;
 			get;
@@ -241,18 +189,18 @@ namespace Kaltura.Services
 		{
 		}
 
-		public ChannelUpdateRequestBuilder(int id, Channel channel)
+		public ChannelUpdateRequestBuilder(int channelId, Channel channel)
 			: this()
 		{
-			this.Id = id;
+			this.ChannelId = channelId;
 			this.Channel = channel;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("channelId"))
+				kparams.AddIfNotNull("channelId", ChannelId);
 			if (!isMapped("channel"))
 				kparams.AddIfNotNull("channel", Channel);
 			return kparams;
@@ -292,14 +240,9 @@ namespace Kaltura.Services
 			return new ChannelGetRequestBuilder(id);
 		}
 
-		public static ChannelListRequestBuilder List(ChannelsFilter filter = null, FilterPager pager = null)
+		public static ChannelUpdateRequestBuilder Update(int channelId, Channel channel)
 		{
-			return new ChannelListRequestBuilder(filter, pager);
-		}
-
-		public static ChannelUpdateRequestBuilder Update(int id, Channel channel)
-		{
-			return new ChannelUpdateRequestBuilder(id, channel);
+			return new ChannelUpdateRequestBuilder(channelId, channel);
 		}
 	}
 }
