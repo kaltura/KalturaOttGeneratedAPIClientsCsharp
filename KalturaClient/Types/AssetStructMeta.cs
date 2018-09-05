@@ -43,7 +43,6 @@ namespace Kaltura.Types
 		public const string DEFAULT_INGEST_VALUE = "defaultIngestValue";
 		public const string CREATE_DATE = "createDate";
 		public const string UPDATE_DATE = "updateDate";
-		public const string IS_INHERITED = "isInherited";
 		#endregion
 
 		#region Private Fields
@@ -54,7 +53,6 @@ namespace Kaltura.Types
 		private string _DefaultIngestValue = null;
 		private long _CreateDate = long.MinValue;
 		private long _UpdateDate = long.MinValue;
-		private bool? _IsInherited = null;
 		#endregion
 
 		#region Properties
@@ -101,15 +99,6 @@ namespace Kaltura.Types
 		{
 			get { return _UpdateDate; }
 		}
-		public bool? IsInherited
-		{
-			get { return _IsInherited; }
-			set 
-			{ 
-				_IsInherited = value;
-				OnPropertyChanged("IsInherited");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -144,9 +133,6 @@ namespace Kaltura.Types
 					case "updateDate":
 						this._UpdateDate = ParseLong(propertyNode.InnerText);
 						continue;
-					case "isInherited":
-						this._IsInherited = ParseBool(propertyNode.InnerText);
-						continue;
 				}
 			}
 		}
@@ -165,7 +151,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("defaultIngestValue", this._DefaultIngestValue);
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
-			kparams.AddIfNotNull("isInherited", this._IsInherited);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -186,8 +171,6 @@ namespace Kaltura.Types
 					return "CreateDate";
 				case UPDATE_DATE:
 					return "UpdateDate";
-				case IS_INHERITED:
-					return "IsInherited";
 				default:
 					return base.getPropertyName(apiName);
 			}
