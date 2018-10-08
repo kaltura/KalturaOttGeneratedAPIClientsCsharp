@@ -36,36 +36,25 @@ namespace Kaltura.Types
 	public class ScoredMonetizationCondition : BaseSegmentCondition
 	{
 		#region Constants
-		public const string MIN_SCORE = "minScore";
-		public const string MAX_SCORE = "maxScore";
+		public const string SCORE = "score";
 		public const string DAYS = "days";
 		public const string ACTIONS = "actions";
 		#endregion
 
 		#region Private Fields
-		private int _MinScore = Int32.MinValue;
-		private int _MaxScore = Int32.MinValue;
+		private int _Score = Int32.MinValue;
 		private int _Days = Int32.MinValue;
 		private IList<MonetizationCondition> _Actions;
 		#endregion
 
 		#region Properties
-		public int MinScore
+		public int Score
 		{
-			get { return _MinScore; }
+			get { return _Score; }
 			set 
 			{ 
-				_MinScore = value;
-				OnPropertyChanged("MinScore");
-			}
-		}
-		public int MaxScore
-		{
-			get { return _MaxScore; }
-			set 
-			{ 
-				_MaxScore = value;
-				OnPropertyChanged("MaxScore");
+				_Score = value;
+				OnPropertyChanged("Score");
 			}
 		}
 		public int Days
@@ -99,11 +88,8 @@ namespace Kaltura.Types
 			{
 				switch (propertyNode.Name)
 				{
-					case "minScore":
-						this._MinScore = ParseInt(propertyNode.InnerText);
-						continue;
-					case "maxScore":
-						this._MaxScore = ParseInt(propertyNode.InnerText);
+					case "score":
+						this._Score = ParseInt(propertyNode.InnerText);
 						continue;
 					case "days":
 						this._Days = ParseInt(propertyNode.InnerText);
@@ -126,8 +112,7 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaScoredMonetizationCondition");
-			kparams.AddIfNotNull("minScore", this._MinScore);
-			kparams.AddIfNotNull("maxScore", this._MaxScore);
+			kparams.AddIfNotNull("score", this._Score);
 			kparams.AddIfNotNull("days", this._Days);
 			kparams.AddIfNotNull("actions", this._Actions);
 			return kparams;
@@ -136,10 +121,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case MIN_SCORE:
-					return "MinScore";
-				case MAX_SCORE:
-					return "MaxScore";
+				case SCORE:
+					return "Score";
 				case DAYS:
 					return "Days";
 				case ACTIONS:
