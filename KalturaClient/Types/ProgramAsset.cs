@@ -128,6 +128,15 @@ namespace Kaltura.Types
 				}
 			}
 		}
+
+		public ProgramAsset(IDictionary<string,object> data) : base(data)
+		{
+			    this._EpgChannelId = data.TryGetValueSafe<long>("epgChannelId");
+			    this._EpgId = data.TryGetValueSafe<string>("epgId");
+			    this._RelatedMediaId = data.TryGetValueSafe<long>("relatedMediaId");
+			    this._Crid = data.TryGetValueSafe<string>("crid");
+			    this._LinearAssetId = data.TryGetValueSafe<long>("linearAssetId");
+		}
 		#endregion
 
 		#region Methods

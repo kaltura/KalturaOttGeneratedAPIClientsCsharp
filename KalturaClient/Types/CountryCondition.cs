@@ -86,6 +86,12 @@ namespace Kaltura.Types
 				}
 			}
 		}
+
+		public CountryCondition(IDictionary<string,object> data) : base(data)
+		{
+			    this._Not = data.TryGetValueSafe<bool>("not");
+			    this._Countries = data.TryGetValueSafe<string>("countries");
+		}
 		#endregion
 
 		#region Methods

@@ -76,6 +76,10 @@ namespace Kaltura.Services
 		{
 			return ObjectFactory.Create<AssetCount>(result);
 		}
+		public override object DeserializeObject(object result)
+		{
+			return ObjectFactory.Create<AssetCount>((IDictionary<string,object>)result);
+		}
 	}
 
 	public class AssetGetRequestBuilder : RequestBuilder<Asset>
@@ -127,6 +131,10 @@ namespace Kaltura.Services
 		public override object Deserialize(XmlElement result)
 		{
 			return ObjectFactory.Create<Asset>(result);
+		}
+		public override object DeserializeObject(object result)
+		{
+			return ObjectFactory.Create<Asset>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -189,6 +197,10 @@ namespace Kaltura.Services
 		{
 			return ObjectFactory.Create<AdsContext>(result);
 		}
+		public override object DeserializeObject(object result)
+		{
+			return ObjectFactory.Create<AdsContext>((IDictionary<string,object>)result);
+		}
 	}
 
 	public class AssetGetPlaybackContextRequestBuilder : RequestBuilder<PlaybackContext>
@@ -250,6 +262,10 @@ namespace Kaltura.Services
 		{
 			return ObjectFactory.Create<PlaybackContext>(result);
 		}
+		public override object DeserializeObject(object result)
+		{
+			return ObjectFactory.Create<PlaybackContext>((IDictionary<string,object>)result);
+		}
 	}
 
 	public class AssetListRequestBuilder : RequestBuilder<ListResponse<Asset>>
@@ -301,6 +317,10 @@ namespace Kaltura.Services
 		public override object Deserialize(XmlElement result)
 		{
 			return ObjectFactory.Create<ListResponse<Asset>>(result);
+		}
+		public override object DeserializeObject(object result)
+		{
+			return ObjectFactory.Create<ListResponse<Asset>>((IDictionary<string,object>)result);
 		}
 	}
 

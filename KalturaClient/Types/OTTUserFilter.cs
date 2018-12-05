@@ -114,6 +114,14 @@ namespace Kaltura.Types
 				}
 			}
 		}
+
+		public OTTUserFilter(IDictionary<string,object> data) : base(data)
+		{
+			    this._UsernameEqual = data.TryGetValueSafe<string>("usernameEqual");
+			    this._ExternalIdEqual = data.TryGetValueSafe<string>("externalIdEqual");
+			    this._IdIn = data.TryGetValueSafe<string>("idIn");
+			    this._OrderBy = (OTTUserOrderBy)StringEnum.Parse(typeof(OTTUserOrderBy), data.TryGetValueSafe<string>("orderBy"));
+		}
 		#endregion
 
 		#region Methods

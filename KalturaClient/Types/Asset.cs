@@ -323,6 +323,55 @@ namespace Kaltura.Types
 				}
 			}
 		}
+
+		public Asset(IDictionary<string,object> data) : base(data)
+		{
+			    this._Id = data.TryGetValueSafe<long>("id");
+			    this._Type = data.TryGetValueSafe<int>("type");
+			    this._Name = data.TryGetValueSafe<string>("name");
+			    this._MultilingualName = new List<TranslationToken>();
+			    foreach(var dataDictionary in data.TryGetValueSafe<IEnumerable<object>>("multilingualName", new List<object>()))
+			    {
+			        if (dataDictionary == null) { continue; }
+			        this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>((IDictionary<string,object>)dataDictionary));
+			    }
+			    this._Description = data.TryGetValueSafe<string>("description");
+			    this._MultilingualDescription = new List<TranslationToken>();
+			    foreach(var dataDictionary in data.TryGetValueSafe<IEnumerable<object>>("multilingualDescription", new List<object>()))
+			    {
+			        if (dataDictionary == null) { continue; }
+			        this._MultilingualDescription.Add(ObjectFactory.Create<TranslationToken>((IDictionary<string,object>)dataDictionary));
+			    }
+			    this._Images = new List<MediaImage>();
+			    foreach(var dataDictionary in data.TryGetValueSafe<IEnumerable<object>>("images", new List<object>()))
+			    {
+			        if (dataDictionary == null) { continue; }
+			        this._Images.Add(ObjectFactory.Create<MediaImage>((IDictionary<string,object>)dataDictionary));
+			    }
+			    this._MediaFiles = new List<MediaFile>();
+			    foreach(var dataDictionary in data.TryGetValueSafe<IEnumerable<object>>("mediaFiles", new List<object>()))
+			    {
+			        if (dataDictionary == null) { continue; }
+			        this._MediaFiles.Add(ObjectFactory.Create<MediaFile>((IDictionary<string,object>)dataDictionary));
+			    }
+			    this._Metas = new Dictionary<string, Value>();
+			    foreach(var keyValuePair in data.TryGetValueSafe("metas", new Dictionary<string, object>()))
+			    {
+			        this._Metas[keyValuePair.Key] = ObjectFactory.Create<Value>((IDictionary<string,object>)keyValuePair.Value);
+				}
+			    this._Tags = new Dictionary<string, MultilingualStringValueArray>();
+			    foreach(var keyValuePair in data.TryGetValueSafe("tags", new Dictionary<string, object>()))
+			    {
+			        this._Tags[keyValuePair.Key] = ObjectFactory.Create<MultilingualStringValueArray>((IDictionary<string,object>)keyValuePair.Value);
+				}
+			    this._StartDate = data.TryGetValueSafe<long>("startDate");
+			    this._EndDate = data.TryGetValueSafe<long>("endDate");
+			    this._EnableCdvr = data.TryGetValueSafe<bool>("enableCdvr");
+			    this._EnableCatchUp = data.TryGetValueSafe<bool>("enableCatchUp");
+			    this._EnableStartOver = data.TryGetValueSafe<bool>("enableStartOver");
+			    this._EnableTrickPlay = data.TryGetValueSafe<bool>("enableTrickPlay");
+			    this._ExternalId = data.TryGetValueSafe<string>("externalId");
+		}
 		#endregion
 
 		#region Methods

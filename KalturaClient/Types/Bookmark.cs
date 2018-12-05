@@ -113,6 +113,15 @@ namespace Kaltura.Types
 				}
 			}
 		}
+
+		public Bookmark(IDictionary<string,object> data) : base(data)
+		{
+			    this._UserId = data.TryGetValueSafe<string>("userId");
+			    this._Position = data.TryGetValueSafe<int>("position");
+			    this._PositionOwner = (PositionOwner)StringEnum.Parse(typeof(PositionOwner), data.TryGetValueSafe<string>("positionOwner"));
+			    this._FinishedWatching = data.TryGetValueSafe<bool>("finishedWatching");
+			    this._PlayerData = ObjectFactory.Create<BookmarkPlayerData>(data.TryGetValueSafe<IDictionary<string,object>>("playerData"));
+		}
 		#endregion
 
 		#region Methods

@@ -170,6 +170,18 @@ namespace Kaltura.Types
 				}
 			}
 		}
+
+		public Meta(IDictionary<string,object> data) : base(data)
+		{
+			    this._Name = data.TryGetValueSafe<string>("name");
+			    this._FieldName = (MetaFieldName)StringEnum.Parse(typeof(MetaFieldName), data.TryGetValueSafe<string>("fieldName"));
+			    this._Type = (MetaType)StringEnum.Parse(typeof(MetaType), data.TryGetValueSafe<string>("type"));
+			    this._AssetType = (AssetType)StringEnum.Parse(typeof(AssetType), data.TryGetValueSafe<string>("assetType"));
+			    this._Features = data.TryGetValueSafe<string>("features");
+			    this._Id = data.TryGetValueSafe<string>("id");
+			    this._ParentId = data.TryGetValueSafe<string>("parentId");
+			    this._PartnerId = data.TryGetValueSafe<int>("partnerId");
+		}
 		#endregion
 
 		#region Methods

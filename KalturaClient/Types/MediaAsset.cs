@@ -179,6 +179,19 @@ namespace Kaltura.Types
 				}
 			}
 		}
+
+		public MediaAsset(IDictionary<string,object> data) : base(data)
+		{
+			    this._ExternalIds = data.TryGetValueSafe<string>("externalIds");
+			    this._CatchUpBuffer = data.TryGetValueSafe<long>("catchUpBuffer");
+			    this._TrickPlayBuffer = data.TryGetValueSafe<long>("trickPlayBuffer");
+			    this._EnableRecordingPlaybackNonEntitledChannel = data.TryGetValueSafe<bool>("enableRecordingPlaybackNonEntitledChannel");
+			    this._TypeDescription = data.TryGetValueSafe<string>("typeDescription");
+			    this._EntryId = data.TryGetValueSafe<string>("entryId");
+			    this._DeviceRule = data.TryGetValueSafe<string>("deviceRule");
+			    this._GeoBlockRule = data.TryGetValueSafe<string>("geoBlockRule");
+			    this._WatchPermissionRule = data.TryGetValueSafe<string>("watchPermissionRule");
+		}
 		#endregion
 
 		#region Methods

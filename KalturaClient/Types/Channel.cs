@@ -178,6 +178,28 @@ namespace Kaltura.Types
 				}
 			}
 		}
+
+		public Channel(IDictionary<string,object> data) : base(data)
+		{
+			    this._Name = data.TryGetValueSafe<string>("name");
+			    this._Description = data.TryGetValueSafe<string>("description");
+			    this._Images = new List<MediaImage>();
+			    foreach(var dataDictionary in data.TryGetValueSafe<IEnumerable<object>>("images", new List<object>()))
+			    {
+			        if (dataDictionary == null) { continue; }
+			        this._Images.Add(ObjectFactory.Create<MediaImage>((IDictionary<string,object>)dataDictionary));
+			    }
+			    this._AssetTypes = new List<IntegerValue>();
+			    foreach(var dataDictionary in data.TryGetValueSafe<IEnumerable<object>>("assetTypes", new List<object>()))
+			    {
+			        if (dataDictionary == null) { continue; }
+			        this._AssetTypes.Add(ObjectFactory.Create<IntegerValue>((IDictionary<string,object>)dataDictionary));
+			    }
+			    this._FilterExpression = data.TryGetValueSafe<string>("filterExpression");
+			    this._IsActive = data.TryGetValueSafe<bool>("isActive");
+			    this._Order = (AssetOrderBy)StringEnum.Parse(typeof(AssetOrderBy), data.TryGetValueSafe<string>("order"));
+			    this._GroupBy = ObjectFactory.Create<AssetGroupBy>(data.TryGetValueSafe<IDictionary<string,object>>("groupBy"));
+		}
 		#endregion
 
 		#region Methods

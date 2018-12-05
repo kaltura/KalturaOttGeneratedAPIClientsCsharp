@@ -249,6 +249,24 @@ namespace Kaltura.Types
 				}
 			}
 		}
+
+		public MediaFile(IDictionary<string,object> data) : base(data)
+		{
+			    this._AssetId = data.TryGetValueSafe<int>("assetId");
+			    this._Id = data.TryGetValueSafe<int>("id");
+			    this._Type = data.TryGetValueSafe<string>("type");
+			    this._Duration = data.TryGetValueSafe<long>("duration");
+			    this._ExternalId = data.TryGetValueSafe<string>("externalId");
+			    this._BillingType = data.TryGetValueSafe<string>("billingType");
+			    this._Quality = data.TryGetValueSafe<string>("quality");
+			    this._HandlingType = data.TryGetValueSafe<string>("handlingType");
+			    this._CdnName = data.TryGetValueSafe<string>("cdnName");
+			    this._CdnCode = data.TryGetValueSafe<string>("cdnCode");
+			    this._AltCdnCode = data.TryGetValueSafe<string>("altCdnCode");
+			    this._PpvModules = ObjectFactory.Create<StringValueArray>(data.TryGetValueSafe<IDictionary<string,object>>("ppvModules"));
+			    this._ProductCode = data.TryGetValueSafe<string>("productCode");
+			    this._FileSize = data.TryGetValueSafe<long>("fileSize");
+		}
 		#endregion
 
 		#region Methods

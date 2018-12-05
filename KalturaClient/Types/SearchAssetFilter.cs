@@ -100,6 +100,13 @@ namespace Kaltura.Types
 				}
 			}
 		}
+
+		public SearchAssetFilter(IDictionary<string,object> data) : base(data)
+		{
+			    this._KSql = data.TryGetValueSafe<string>("kSql");
+			    this._TypeIn = data.TryGetValueSafe<string>("typeIn");
+			    this._IdIn = data.TryGetValueSafe<string>("idIn");
+		}
 		#endregion
 
 		#region Methods

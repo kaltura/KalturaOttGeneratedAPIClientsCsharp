@@ -142,6 +142,16 @@ namespace Kaltura.Types
 				}
 			}
 		}
+
+		public MetaFilter(IDictionary<string,object> data) : base(data)
+		{
+			    this._FieldNameEqual = (MetaFieldName)StringEnum.Parse(typeof(MetaFieldName), data.TryGetValueSafe<string>("fieldNameEqual"));
+			    this._FieldNameNotEqual = (MetaFieldName)StringEnum.Parse(typeof(MetaFieldName), data.TryGetValueSafe<string>("fieldNameNotEqual"));
+			    this._TypeEqual = (MetaType)StringEnum.Parse(typeof(MetaType), data.TryGetValueSafe<string>("typeEqual"));
+			    this._AssetTypeEqual = (AssetType)StringEnum.Parse(typeof(AssetType), data.TryGetValueSafe<string>("assetTypeEqual"));
+			    this._FeaturesIn = data.TryGetValueSafe<string>("featuresIn");
+			    this._OrderBy = (MetaOrderBy)StringEnum.Parse(typeof(MetaOrderBy), data.TryGetValueSafe<string>("orderBy"));
+		}
 		#endregion
 
 		#region Methods

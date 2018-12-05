@@ -114,6 +114,14 @@ namespace Kaltura.Types
 				}
 			}
 		}
+
+		public RelatedFilter(IDictionary<string,object> data) : base(data)
+		{
+			    this._KSql = data.TryGetValueSafe<string>("kSql");
+			    this._IdEqual = data.TryGetValueSafe<int>("idEqual");
+			    this._TypeIn = data.TryGetValueSafe<string>("typeIn");
+			    this._ExcludeWatched = data.TryGetValueSafe<bool>("excludeWatched");
+		}
 		#endregion
 
 		#region Methods

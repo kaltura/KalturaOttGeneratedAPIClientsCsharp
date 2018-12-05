@@ -100,6 +100,13 @@ namespace Kaltura.Types
 				}
 			}
 		}
+
+		public RecordingFilter(IDictionary<string,object> data) : base(data)
+		{
+			    this._StatusIn = data.TryGetValueSafe<string>("statusIn");
+			    this._FilterExpression = data.TryGetValueSafe<string>("filterExpression");
+			    this._OrderBy = (RecordingOrderBy)StringEnum.Parse(typeof(RecordingOrderBy), data.TryGetValueSafe<string>("orderBy"));
+		}
 		#endregion
 
 		#region Methods
