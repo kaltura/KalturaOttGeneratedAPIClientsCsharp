@@ -30,24 +30,39 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
 	public class RelatedFilter : BaseSearchAssetFilter
 	{
 		#region Constants
+		public new const string KSQL = "kSql";
 		public const string ID_EQUAL = "idEqual";
 		public const string TYPE_IN = "typeIn";
 		public const string EXCLUDE_WATCHED = "excludeWatched";
 		#endregion
 
 		#region Private Fields
+		private string _KSql = null;
 		private int _IdEqual = Int32.MinValue;
 		private string _TypeIn = null;
 		private bool? _ExcludeWatched = null;
 		#endregion
 
 		#region Properties
+		[JsonProperty]
+		public new string KSql
+		{
+			get { return _KSql; }
+			set 
+			{ 
+				_KSql = value;
+				OnPropertyChanged("KSql");
+			}
+		}
+		[JsonProperty]
 		public int IdEqual
 		{
 			get { return _IdEqual; }
@@ -57,6 +72,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdEqual");
 			}
 		}
+		[JsonProperty]
 		public string TypeIn
 		{
 			get { return _TypeIn; }
@@ -66,6 +82,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("TypeIn");
 			}
 		}
+		[JsonProperty]
 		public bool? ExcludeWatched
 		{
 			get { return _ExcludeWatched; }
@@ -82,30 +99,24 @@ namespace Kaltura.Types
 		{
 		}
 
-		public RelatedFilter(XmlElement node) : base(node)
+		public RelatedFilter(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["kSql"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "idEqual":
-						this._IdEqual = ParseInt(propertyNode.InnerText);
-						continue;
-					case "typeIn":
-						this._TypeIn = propertyNode.InnerText;
-						continue;
-					case "excludeWatched":
-						this._ExcludeWatched = ParseBool(propertyNode.InnerText);
-						continue;
-				}
+				this._KSql = node["kSql"].Value<string>();
 			}
-		}
-
-		public RelatedFilter(IDictionary<string,object> data) : base(data)
-		{
-			    this._IdEqual = data.TryGetValueSafe<int>("idEqual");
-			    this._TypeIn = data.TryGetValueSafe<string>("typeIn");
-			    this._ExcludeWatched = data.TryGetValueSafe<bool>("excludeWatched");
+			if(node["idEqual"] != null)
+			{
+				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
+			}
+			if(node["typeIn"] != null)
+			{
+				this._TypeIn = node["typeIn"].Value<string>();
+			}
+			if(node["excludeWatched"] != null)
+			{
+				this._ExcludeWatched = ParseBool(node["excludeWatched"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -115,6 +126,7 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaRelatedFilter");
+			kparams.AddIfNotNull("kSql", this._KSql);
 			kparams.AddIfNotNull("idEqual", this._IdEqual);
 			kparams.AddIfNotNull("typeIn", this._TypeIn);
 			kparams.AddIfNotNull("excludeWatched", this._ExcludeWatched);
@@ -124,6 +136,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
+				case KSQL:
+					return "KSql";
 				case ID_EQUAL:
 					return "IdEqual";
 				case TYPE_IN:

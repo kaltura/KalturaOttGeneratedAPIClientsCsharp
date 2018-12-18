@@ -33,11 +33,6 @@ namespace Kaltura.Enums
 		public static readonly RuleConditionType COUNTRY = new RuleConditionType("COUNTRY");
 		public static readonly RuleConditionType CONCURRENCY = new RuleConditionType("CONCURRENCY");
 		public static readonly RuleConditionType IP_RANGE = new RuleConditionType("IP_RANGE");
-		public static readonly RuleConditionType BUSINESS_MODULE = new RuleConditionType("BUSINESS_MODULE");
-		public static readonly RuleConditionType SEGMENTS = new RuleConditionType("SEGMENTS");
-		public static readonly RuleConditionType DATE = new RuleConditionType("DATE");
-		public static readonly RuleConditionType OR = new RuleConditionType("OR");
-		public static readonly RuleConditionType HEADER = new RuleConditionType("HEADER");
 
 		private RuleConditionType(string name) : base(name) { }
 	}

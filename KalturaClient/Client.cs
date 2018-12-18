@@ -35,8 +35,8 @@ namespace Kaltura
 	{
 		public Client(Configuration config) : base(config)
 		{
-				ApiVersion = "5.1.50.41996";
-				ClientTag = "dotnet:18-12-17";
+				ApiVersion = "5.0.1.40001";
+				ClientTag = "dotnet:18-12-18";
 		}
 	
 		#region Properties
@@ -83,28 +83,6 @@ namespace Kaltura
  		public string getApiVersion()
  		{
  			return ApiVersion;
- 		}
-			
- 		public bool AbortOnError
- 		{
- 			get
- 			{
- 				return clientConfiguration.AbortOnError;
- 			}
- 			set
- 			{
- 				clientConfiguration.AbortOnError = value;
- 			}
- 		}
-			
- 		public void setAbortOnError(bool value)
- 		{
- 			AbortOnError = value;
- 		}
-			
- 		public bool getAbortOnError()
- 		{
- 			return AbortOnError;
  		}
 			
  		public int PartnerId
@@ -237,50 +215,6 @@ namespace Kaltura
  		public string getSessionId()
  		{
  			return SessionId;
- 		}
-			
- 		public bool AbortAllOnError
- 		{
- 			get
- 			{
- 				return requestConfiguration.AbortAllOnError;
- 			}
- 			set
- 			{
- 				requestConfiguration.AbortAllOnError = value;
- 			}
- 		}
-			
- 		public void setAbortAllOnError(bool value)
- 		{
- 			AbortAllOnError = value;
- 		}
-			
- 		public bool getAbortAllOnError()
- 		{
- 			return AbortAllOnError;
- 		}
-			
- 		public SkipCondition SkipCondition
- 		{
- 			get
- 			{
- 				return requestConfiguration.SkipCondition;
- 			}
- 			set
- 			{
- 				requestConfiguration.SkipCondition = value;
- 			}
- 		}
-			
- 		public void setSkipCondition(SkipCondition value)
- 		{
- 			SkipCondition = value;
- 		}
-			
- 		public SkipCondition getSkipCondition()
- 		{
- 			return SkipCondition;
  		}
 		#endregion
 	}

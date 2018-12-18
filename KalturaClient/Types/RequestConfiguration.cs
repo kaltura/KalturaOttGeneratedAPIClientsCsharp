@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -42,8 +44,6 @@ namespace Kaltura.Types
 		public const string CURRENCY = "currency";
 		public const string KS = "ks";
 		public const string RESPONSE_PROFILE = "responseProfile";
-		public const string ABORT_ALL_ON_ERROR = "abortAllOnError";
-		public const string SKIP_CONDITION = "skipCondition";
 		#endregion
 
 		#region Private Fields
@@ -53,11 +53,10 @@ namespace Kaltura.Types
 		private string _Currency = null;
 		private string _Ks = null;
 		private BaseResponseProfile _ResponseProfile;
-		private bool? _AbortAllOnError = null;
-		private SkipCondition _SkipCondition;
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public int PartnerId
 		{
 			get { return _PartnerId; }
@@ -67,6 +66,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("PartnerId");
 			}
 		}
+		[JsonProperty]
 		public int UserId
 		{
 			get { return _UserId; }
@@ -76,6 +76,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserId");
 			}
 		}
+		[JsonProperty]
 		public string Language
 		{
 			get { return _Language; }
@@ -85,6 +86,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Language");
 			}
 		}
+		[JsonProperty]
 		public string Currency
 		{
 			get { return _Currency; }
@@ -94,6 +96,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Currency");
 			}
 		}
+		[JsonProperty]
 		public string Ks
 		{
 			get { return _Ks; }
@@ -103,6 +106,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Ks");
 			}
 		}
+		[JsonProperty]
 		public BaseResponseProfile ResponseProfile
 		{
 			get { return _ResponseProfile; }
@@ -112,24 +116,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ResponseProfile");
 			}
 		}
-		public bool? AbortAllOnError
-		{
-			get { return _AbortAllOnError; }
-			set 
-			{ 
-				_AbortAllOnError = value;
-				OnPropertyChanged("AbortAllOnError");
-			}
-		}
-		public SkipCondition SkipCondition
-		{
-			get { return _SkipCondition; }
-			set 
-			{ 
-				_SkipCondition = value;
-				OnPropertyChanged("SkipCondition");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -137,50 +123,32 @@ namespace Kaltura.Types
 		{
 		}
 
-		public RequestConfiguration(XmlElement node) : base(node)
+		public RequestConfiguration(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["partnerId"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "partnerId":
-						this._PartnerId = ParseInt(propertyNode.InnerText);
-						continue;
-					case "userId":
-						this._UserId = ParseInt(propertyNode.InnerText);
-						continue;
-					case "language":
-						this._Language = propertyNode.InnerText;
-						continue;
-					case "currency":
-						this._Currency = propertyNode.InnerText;
-						continue;
-					case "ks":
-						this._Ks = propertyNode.InnerText;
-						continue;
-					case "responseProfile":
-						this._ResponseProfile = ObjectFactory.Create<BaseResponseProfile>(propertyNode);
-						continue;
-					case "abortAllOnError":
-						this._AbortAllOnError = ParseBool(propertyNode.InnerText);
-						continue;
-					case "skipCondition":
-						this._SkipCondition = ObjectFactory.Create<SkipCondition>(propertyNode);
-						continue;
-				}
+				this._PartnerId = ParseInt(node["partnerId"].Value<string>());
 			}
-		}
-
-		public RequestConfiguration(IDictionary<string,object> data) : base(data)
-		{
-			    this._PartnerId = data.TryGetValueSafe<int>("partnerId");
-			    this._UserId = data.TryGetValueSafe<int>("userId");
-			    this._Language = data.TryGetValueSafe<string>("language");
-			    this._Currency = data.TryGetValueSafe<string>("currency");
-			    this._Ks = data.TryGetValueSafe<string>("ks");
-			    this._ResponseProfile = ObjectFactory.Create<BaseResponseProfile>(data.TryGetValueSafe<IDictionary<string,object>>("responseProfile"));
-			    this._AbortAllOnError = data.TryGetValueSafe<bool>("abortAllOnError");
-			    this._SkipCondition = ObjectFactory.Create<SkipCondition>(data.TryGetValueSafe<IDictionary<string,object>>("skipCondition"));
+			if(node["userId"] != null)
+			{
+				this._UserId = ParseInt(node["userId"].Value<string>());
+			}
+			if(node["language"] != null)
+			{
+				this._Language = node["language"].Value<string>();
+			}
+			if(node["currency"] != null)
+			{
+				this._Currency = node["currency"].Value<string>();
+			}
+			if(node["ks"] != null)
+			{
+				this._Ks = node["ks"].Value<string>();
+			}
+			if(node["responseProfile"] != null)
+			{
+				this._ResponseProfile = ObjectFactory.Create<BaseResponseProfile>(node["responseProfile"]);
+			}
 		}
 		#endregion
 
@@ -196,8 +164,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("currency", this._Currency);
 			kparams.AddIfNotNull("ks", this._Ks);
 			kparams.AddIfNotNull("responseProfile", this._ResponseProfile);
-			kparams.AddIfNotNull("abortAllOnError", this._AbortAllOnError);
-			kparams.AddIfNotNull("skipCondition", this._SkipCondition);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -216,10 +182,6 @@ namespace Kaltura.Types
 					return "Ks";
 				case RESPONSE_PROFILE:
 					return "ResponseProfile";
-				case ABORT_ALL_ON_ERROR:
-					return "AbortAllOnError";
-				case SKIP_CONDITION:
-					return "SkipCondition";
 				default:
 					return base.getPropertyName(apiName);
 			}

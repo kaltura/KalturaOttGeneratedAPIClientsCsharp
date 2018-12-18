@@ -32,6 +32,7 @@ using System.IO;
 using Kaltura.Request;
 using Kaltura.Types;
 using Kaltura.Enums;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
@@ -90,13 +91,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<OTTUser>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<OTTUser>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -137,16 +134,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
-			if (result.InnerText.Equals("1") || result.InnerText.ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-		public override object DeserializeObject(object result)
-		{
-			var resultStr = (string)result;
-			if (resultStr.Equals("1") || resultStr.ToLower().Equals("true"))
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
 				return true;
 			return false;
 		}
@@ -198,13 +188,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<LoginSession>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<LoginSession>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -231,16 +217,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
-			if (result.InnerText.Equals("1") || result.InnerText.ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-		public override object DeserializeObject(object result)
-		{
-			var resultStr = (string)result;
-			if (resultStr.Equals("1") || resultStr.ToLower().Equals("true"))
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
 				return true;
 			return false;
 		}
@@ -269,13 +248,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<OTTUser>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<OTTUser>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -302,13 +277,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<StringValue>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<StringValue>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -349,13 +320,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<ListResponse<OTTUser>>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<ListResponse<OTTUser>>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -432,13 +399,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<LoginResponse>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<LoginResponse>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -506,13 +469,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<LoginResponse>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<LoginResponse>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -539,16 +498,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
-			if (result.InnerText.Equals("1") || result.InnerText.ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-		public override object DeserializeObject(object result)
-		{
-			var resultStr = (string)result;
-			if (resultStr.Equals("1") || resultStr.ToLower().Equals("true"))
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
 				return true;
 			return false;
 		}
@@ -609,13 +561,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<OTTUser>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<OTTUser>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -665,16 +613,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
-			if (result.InnerText.Equals("1") || result.InnerText.ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-		public override object DeserializeObject(object result)
-		{
-			var resultStr = (string)result;
-			if (resultStr.Equals("1") || resultStr.ToLower().Equals("true"))
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
 				return true;
 			return false;
 		}
@@ -685,7 +626,6 @@ namespace Kaltura.Services
 		#region Constants
 		public new const string PARTNER_ID = "partnerId";
 		public const string USERNAME = "username";
-		public const string TEMPLATE_NAME = "templateName";
 		#endregion
 
 		public new int PartnerId
@@ -698,23 +638,17 @@ namespace Kaltura.Services
 			set;
 			get;
 		}
-		public string TemplateName
-		{
-			set;
-			get;
-		}
 
 		public OttUserResetPasswordRequestBuilder()
 			: base("ottuser", "resetPassword")
 		{
 		}
 
-		public OttUserResetPasswordRequestBuilder(int partnerId, string username, string templateName)
+		public OttUserResetPasswordRequestBuilder(int partnerId, string username)
 			: this()
 		{
 			this.PartnerId = partnerId;
 			this.Username = username;
-			this.TemplateName = templateName;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -724,8 +658,6 @@ namespace Kaltura.Services
 				kparams.AddIfNotNull("partnerId", PartnerId);
 			if (!isMapped("username"))
 				kparams.AddIfNotNull("username", Username);
-			if (!isMapped("templateName"))
-				kparams.AddIfNotNull("templateName", TemplateName);
 			return kparams;
 		}
 
@@ -735,16 +667,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
-			if (result.InnerText.Equals("1") || result.InnerText.ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-		public override object DeserializeObject(object result)
-		{
-			var resultStr = (string)result;
-			if (resultStr.Equals("1") || resultStr.ToLower().Equals("true"))
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
 				return true;
 			return false;
 		}
@@ -805,13 +730,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<OTTUser>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<OTTUser>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -861,13 +782,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<OTTUser>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<OTTUser>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -917,13 +834,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<OTTUserDynamicData>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<OTTUserDynamicData>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -982,22 +895,15 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
-			if (result.InnerText.Equals("1") || result.InnerText.ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-		public override object DeserializeObject(object result)
-		{
-			var resultStr = (string)result;
-			if (resultStr.Equals("1") || resultStr.ToLower().Equals("true"))
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
 				return true;
 			return false;
 		}
 	}
 
-	public class OttUserUpdatePasswordRequestBuilder : RequestBuilder<object>
+	public class OttUserUpdatePasswordRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
 		public new const string USER_ID = "userId";
@@ -1043,11 +949,7 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
-		{
-			return null;
-		}
-		public override object DeserializeObject(object result)
+		public override object Deserialize(JToken result)
 		{
 			return null;
 		}
@@ -1120,9 +1022,9 @@ namespace Kaltura.Services
 			return new OttUserResendActivationTokenRequestBuilder(partnerId, username);
 		}
 
-		public static OttUserResetPasswordRequestBuilder ResetPassword(int partnerId, string username, string templateName = null)
+		public static OttUserResetPasswordRequestBuilder ResetPassword(int partnerId, string username)
 		{
-			return new OttUserResetPasswordRequestBuilder(partnerId, username, templateName);
+			return new OttUserResetPasswordRequestBuilder(partnerId, username);
 		}
 
 		public static OttUserSetInitialPasswordRequestBuilder SetInitialPassword(int partnerId, string token, string password)

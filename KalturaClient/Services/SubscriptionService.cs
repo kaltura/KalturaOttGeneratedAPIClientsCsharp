@@ -32,6 +32,7 @@ using System.IO;
 using Kaltura.Request;
 using Kaltura.Types;
 using Kaltura.Enums;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
@@ -39,15 +40,9 @@ namespace Kaltura.Services
 	{
 		#region Constants
 		public const string FILTER = "filter";
-		public const string PAGER = "pager";
 		#endregion
 
 		public SubscriptionFilter Filter
-		{
-			set;
-			get;
-		}
-		public FilterPager Pager
 		{
 			set;
 			get;
@@ -58,11 +53,10 @@ namespace Kaltura.Services
 		{
 		}
 
-		public SubscriptionListRequestBuilder(SubscriptionFilter filter, FilterPager pager)
+		public SubscriptionListRequestBuilder(SubscriptionFilter filter)
 			: this()
 		{
 			this.Filter = filter;
-			this.Pager = pager;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -70,8 +64,6 @@ namespace Kaltura.Services
 			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("filter"))
 				kparams.AddIfNotNull("filter", Filter);
-			if (!isMapped("pager"))
-				kparams.AddIfNotNull("pager", Pager);
 			return kparams;
 		}
 
@@ -81,13 +73,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<ListResponse<Subscription>>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<ListResponse<Subscription>>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -137,13 +125,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<Coupon>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<Coupon>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -154,9 +138,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static SubscriptionListRequestBuilder List(SubscriptionFilter filter = null, FilterPager pager = null)
+		public static SubscriptionListRequestBuilder List(SubscriptionFilter filter)
 		{
-			return new SubscriptionListRequestBuilder(filter, pager);
+			return new SubscriptionListRequestBuilder(filter);
 		}
 
 		public static SubscriptionValidateCouponRequestBuilder ValidateCoupon(int id, string code)

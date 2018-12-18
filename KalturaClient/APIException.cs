@@ -290,8 +290,8 @@ namespace Kaltura
 		public static string PaymentMethodNotSetForHousehold = "6048";
 		public static string PaymentMethodNotExist = "6049";
 		public static string PaymentMethodIdRequired = "6050";
-		public static string PaymentGatewaySuspended = "6051";
-		public static string ErrorSavingPaymentGatewayHouseholdPaymentMethod = "6052";
+		public static string PaymentMethodExternalIdRequired = "6051";
+		public static string PaymentGatewayExternalVerification = "6052";
 		public static string PaymentMethodAlreadySetToHouseholdPaymentGateway = "6054";
 		public static string PaymentMethodNameRequired = "6055";
 		public static string PaymentGatewayNotSupportPaymentMethod = "6056";
@@ -361,8 +361,6 @@ namespace Kaltura
 		public static string ActionNotSpecified = "500033";
 		public static string InvalidActionParameter = "500054";
 		public static string InvalidActionParameters = "500013";
-		public static string RequestAborted = "500079";
-		public static string RequestSkipped = "500080";
 		public static string InvalidArgument = "50026";
 		public static string ArgumentMustBeNumeric = "500031";
 		public static string ArgumentCannotBeEmpty = "50027";
@@ -382,7 +380,6 @@ namespace Kaltura
 		public static string ArgumentsConflictEachOther = "500061";
 		public static string ArgumentsDuplicate = "500066";
 		public static string InvalidArgumentValue = "500067";
-		public static string OneOfArgumentsCannotBeEmpty = "500081";
 		public static string MediaIdsMustBeNumeric = "500029";
 		public static string EpgInternalIdsMustBeNumeric = "500030";
 		public static string ListTypeCannotBeEmptyOrAll = "500032";
@@ -390,7 +387,6 @@ namespace Kaltura
 		public static string DuplicateFile = "500050";
 		public static string UnableToCreateHouseholdForRole = "500062";
 		public static string HttpMethodNotSupported = "500065";
-		public static string PropertyIsOpcSupported = "500082";
 		public static string HouseholdForbidden = "500028";
 		public static string SwitchingUsersIsNotAllowedForPartner = "50024";
 		public static string NotActiveAppToken = "50023";
@@ -408,8 +404,6 @@ namespace Kaltura
 		public static string MultirequestIndexNotZeroBased = "500042";
 		public static string MultirequestInvalidIndex = "500043";
 		public static string MultirequestGenericMethod = "500064";
-		public static string MultirequestInvalidOperatorForConditionType = "500078";
-		public static string MultirequestInvalidConditionValue = "500077";
 		#endregion
 
 		#region Private Fields

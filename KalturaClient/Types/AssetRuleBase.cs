@@ -30,18 +30,56 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetRuleBase : Rule
+	public class AssetRuleBase : ObjectBase
 	{
 		#region Constants
+		public const string ID = "id";
+		public const string NAME = "name";
+		public const string DESCRIPTION = "description";
 		#endregion
 
 		#region Private Fields
+		private long _Id = long.MinValue;
+		private string _Name = null;
+		private string _Description = null;
 		#endregion
 
 		#region Properties
+		[JsonProperty]
+		public long Id
+		{
+			get { return _Id; }
+			private set 
+			{ 
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
+		}
+		[JsonProperty]
+		public string Name
+		{
+			get { return _Name; }
+			set 
+			{ 
+				_Name = value;
+				OnPropertyChanged("Name");
+			}
+		}
+		[JsonProperty]
+		public string Description
+		{
+			get { return _Description; }
+			set 
+			{ 
+				_Description = value;
+				OnPropertyChanged("Description");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -49,12 +87,20 @@ namespace Kaltura.Types
 		{
 		}
 
-		public AssetRuleBase(XmlElement node) : base(node)
+		public AssetRuleBase(JToken node) : base(node)
 		{
-		}
-
-		public AssetRuleBase(IDictionary<string,object> data) : base(data)
-		{
+			if(node["id"] != null)
+			{
+				this._Id = ParseLong(node["id"].Value<string>());
+			}
+			if(node["name"] != null)
+			{
+				this._Name = node["name"].Value<string>();
+			}
+			if(node["description"] != null)
+			{
+				this._Description = node["description"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -64,12 +110,21 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaAssetRuleBase");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("name", this._Name);
+			kparams.AddIfNotNull("description", this._Description);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
+				case ID:
+					return "Id";
+				case NAME:
+					return "Name";
+				case DESCRIPTION:
+					return "Description";
 				default:
 					return base.getPropertyName(apiName);
 			}

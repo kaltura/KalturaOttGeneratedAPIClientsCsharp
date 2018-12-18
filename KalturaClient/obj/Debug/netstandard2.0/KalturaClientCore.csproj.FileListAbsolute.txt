@@ -1,0 +1,9 @@
+D:\Sources\clients-generator\5_0_1\csharp\KalturaClient\bin\Debug\netstandard2.0\KalturaClient.Net.Core.deps.json
+D:\Sources\clients-generator\5_0_1\csharp\KalturaClient\bin\Debug\netstandard2.0\KalturaClient.Net.Core.dll
+D:\Sources\clients-generator\5_0_1\csharp\KalturaClient\bin\Debug\netstandard2.0\KalturaClient.Net.Core.pdb
+D:\Sources\clients-generator\5_0_1\csharp\KalturaClient\obj\Debug\netstandard2.0\KalturaClientCore.csprojAssemblyReference.cache
+D:\Sources\clients-generator\5_0_1\csharp\KalturaClient\obj\Debug\netstandard2.0\KalturaClientCore.csproj.CoreCompileInputs.cache
+D:\Sources\clients-generator\5_0_1\csharp\KalturaClient\obj\Debug\netstandard2.0\KalturaClientCore.AssemblyInfoInputs.cache
+D:\Sources\clients-generator\5_0_1\csharp\KalturaClient\obj\Debug\netstandard2.0\KalturaClientCore.AssemblyInfo.cs
+D:\Sources\clients-generator\5_0_1\csharp\KalturaClient\obj\Debug\netstandard2.0\KalturaClient.Net.Core.dll
+D:\Sources\clients-generator\5_0_1\csharp\KalturaClient\obj\Debug\netstandard2.0\KalturaClient.Net.Core.pdb

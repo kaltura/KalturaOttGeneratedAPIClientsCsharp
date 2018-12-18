@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -39,7 +41,6 @@ namespace Kaltura.Types
 		public const string USERNAME_EQUAL = "usernameEqual";
 		public const string EXTERNAL_ID_EQUAL = "externalIdEqual";
 		public const string ID_IN = "idIn";
-		public const string ROLE_IDS_IN = "roleIdsIn";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -47,11 +48,11 @@ namespace Kaltura.Types
 		private string _UsernameEqual = null;
 		private string _ExternalIdEqual = null;
 		private string _IdIn = null;
-		private string _RoleIdsIn = null;
 		private OTTUserOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public string UsernameEqual
 		{
 			get { return _UsernameEqual; }
@@ -61,6 +62,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("UsernameEqual");
 			}
 		}
+		[JsonProperty]
 		public string ExternalIdEqual
 		{
 			get { return _ExternalIdEqual; }
@@ -70,6 +72,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalIdEqual");
 			}
 		}
+		[JsonProperty]
 		public string IdIn
 		{
 			get { return _IdIn; }
@@ -79,15 +82,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
-		public string RoleIdsIn
-		{
-			get { return _RoleIdsIn; }
-			set 
-			{ 
-				_RoleIdsIn = value;
-				OnPropertyChanged("RoleIdsIn");
-			}
-		}
+		[JsonProperty]
 		public new OTTUserOrderBy OrderBy
 		{
 			get { return _OrderBy; }
@@ -104,38 +99,24 @@ namespace Kaltura.Types
 		{
 		}
 
-		public OTTUserFilter(XmlElement node) : base(node)
+		public OTTUserFilter(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["usernameEqual"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "usernameEqual":
-						this._UsernameEqual = propertyNode.InnerText;
-						continue;
-					case "externalIdEqual":
-						this._ExternalIdEqual = propertyNode.InnerText;
-						continue;
-					case "idIn":
-						this._IdIn = propertyNode.InnerText;
-						continue;
-					case "roleIdsIn":
-						this._RoleIdsIn = propertyNode.InnerText;
-						continue;
-					case "orderBy":
-						this._OrderBy = (OTTUserOrderBy)StringEnum.Parse(typeof(OTTUserOrderBy), propertyNode.InnerText);
-						continue;
-				}
+				this._UsernameEqual = node["usernameEqual"].Value<string>();
 			}
-		}
-
-		public OTTUserFilter(IDictionary<string,object> data) : base(data)
-		{
-			    this._UsernameEqual = data.TryGetValueSafe<string>("usernameEqual");
-			    this._ExternalIdEqual = data.TryGetValueSafe<string>("externalIdEqual");
-			    this._IdIn = data.TryGetValueSafe<string>("idIn");
-			    this._RoleIdsIn = data.TryGetValueSafe<string>("roleIdsIn");
-			    this._OrderBy = (OTTUserOrderBy)StringEnum.Parse(typeof(OTTUserOrderBy), data.TryGetValueSafe<string>("orderBy"));
+			if(node["externalIdEqual"] != null)
+			{
+				this._ExternalIdEqual = node["externalIdEqual"].Value<string>();
+			}
+			if(node["idIn"] != null)
+			{
+				this._IdIn = node["idIn"].Value<string>();
+			}
+			if(node["orderBy"] != null)
+			{
+				this._OrderBy = (OTTUserOrderBy)StringEnum.Parse(typeof(OTTUserOrderBy), node["orderBy"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -148,7 +129,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("usernameEqual", this._UsernameEqual);
 			kparams.AddIfNotNull("externalIdEqual", this._ExternalIdEqual);
 			kparams.AddIfNotNull("idIn", this._IdIn);
-			kparams.AddIfNotNull("roleIdsIn", this._RoleIdsIn);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -162,8 +142,6 @@ namespace Kaltura.Types
 					return "ExternalIdEqual";
 				case ID_IN:
 					return "IdIn";
-				case ROLE_IDS_IN:
-					return "RoleIdsIn";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

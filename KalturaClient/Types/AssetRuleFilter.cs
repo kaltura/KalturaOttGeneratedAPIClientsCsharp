@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -38,18 +40,17 @@ namespace Kaltura.Types
 		#region Constants
 		public const string CONDITIONS_CONTAIN_TYPE = "conditionsContainType";
 		public const string ASSET_APPLIED = "assetApplied";
-		public const string ACTIONS_CONTAIN_TYPE = "actionsContainType";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
 		private RuleConditionType _ConditionsContainType = null;
 		private SlimAsset _AssetApplied;
-		private RuleActionType _ActionsContainType = null;
 		private AssetRuleOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public RuleConditionType ConditionsContainType
 		{
 			get { return _ConditionsContainType; }
@@ -59,6 +60,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("ConditionsContainType");
 			}
 		}
+		[JsonProperty]
 		public SlimAsset AssetApplied
 		{
 			get { return _AssetApplied; }
@@ -68,15 +70,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetApplied");
 			}
 		}
-		public RuleActionType ActionsContainType
-		{
-			get { return _ActionsContainType; }
-			set 
-			{ 
-				_ActionsContainType = value;
-				OnPropertyChanged("ActionsContainType");
-			}
-		}
+		[JsonProperty]
 		public new AssetRuleOrderBy OrderBy
 		{
 			get { return _OrderBy; }
@@ -93,34 +87,20 @@ namespace Kaltura.Types
 		{
 		}
 
-		public AssetRuleFilter(XmlElement node) : base(node)
+		public AssetRuleFilter(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["conditionsContainType"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "conditionsContainType":
-						this._ConditionsContainType = (RuleConditionType)StringEnum.Parse(typeof(RuleConditionType), propertyNode.InnerText);
-						continue;
-					case "assetApplied":
-						this._AssetApplied = ObjectFactory.Create<SlimAsset>(propertyNode);
-						continue;
-					case "actionsContainType":
-						this._ActionsContainType = (RuleActionType)StringEnum.Parse(typeof(RuleActionType), propertyNode.InnerText);
-						continue;
-					case "orderBy":
-						this._OrderBy = (AssetRuleOrderBy)StringEnum.Parse(typeof(AssetRuleOrderBy), propertyNode.InnerText);
-						continue;
-				}
+				this._ConditionsContainType = (RuleConditionType)StringEnum.Parse(typeof(RuleConditionType), node["conditionsContainType"].Value<string>());
 			}
-		}
-
-		public AssetRuleFilter(IDictionary<string,object> data) : base(data)
-		{
-			    this._ConditionsContainType = (RuleConditionType)StringEnum.Parse(typeof(RuleConditionType), data.TryGetValueSafe<string>("conditionsContainType"));
-			    this._AssetApplied = ObjectFactory.Create<SlimAsset>(data.TryGetValueSafe<IDictionary<string,object>>("assetApplied"));
-			    this._ActionsContainType = (RuleActionType)StringEnum.Parse(typeof(RuleActionType), data.TryGetValueSafe<string>("actionsContainType"));
-			    this._OrderBy = (AssetRuleOrderBy)StringEnum.Parse(typeof(AssetRuleOrderBy), data.TryGetValueSafe<string>("orderBy"));
+			if(node["assetApplied"] != null)
+			{
+				this._AssetApplied = ObjectFactory.Create<SlimAsset>(node["assetApplied"]);
+			}
+			if(node["orderBy"] != null)
+			{
+				this._OrderBy = (AssetRuleOrderBy)StringEnum.Parse(typeof(AssetRuleOrderBy), node["orderBy"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -132,7 +112,6 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaAssetRuleFilter");
 			kparams.AddIfNotNull("conditionsContainType", this._ConditionsContainType);
 			kparams.AddIfNotNull("assetApplied", this._AssetApplied);
-			kparams.AddIfNotNull("actionsContainType", this._ActionsContainType);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -144,8 +123,6 @@ namespace Kaltura.Types
 					return "ConditionsContainType";
 				case ASSET_APPLIED:
 					return "AssetApplied";
-				case ACTIONS_CONTAIN_TYPE:
-					return "ActionsContainType";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

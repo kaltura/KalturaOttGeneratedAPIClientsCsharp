@@ -30,20 +30,35 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
 	public class SearchAssetFilter : BaseSearchAssetFilter
 	{
 		#region Constants
+		public new const string KSQL = "kSql";
 		public const string TYPE_IN = "typeIn";
 		#endregion
 
 		#region Private Fields
+		private string _KSql = null;
 		private string _TypeIn = null;
 		#endregion
 
 		#region Properties
+		[JsonProperty]
+		public new string KSql
+		{
+			get { return _KSql; }
+			set 
+			{ 
+				_KSql = value;
+				OnPropertyChanged("KSql");
+			}
+		}
+		[JsonProperty]
 		public string TypeIn
 		{
 			get { return _TypeIn; }
@@ -60,22 +75,16 @@ namespace Kaltura.Types
 		{
 		}
 
-		public SearchAssetFilter(XmlElement node) : base(node)
+		public SearchAssetFilter(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["kSql"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "typeIn":
-						this._TypeIn = propertyNode.InnerText;
-						continue;
-				}
+				this._KSql = node["kSql"].Value<string>();
 			}
-		}
-
-		public SearchAssetFilter(IDictionary<string,object> data) : base(data)
-		{
-			    this._TypeIn = data.TryGetValueSafe<string>("typeIn");
+			if(node["typeIn"] != null)
+			{
+				this._TypeIn = node["typeIn"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -85,6 +94,7 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaSearchAssetFilter");
+			kparams.AddIfNotNull("kSql", this._KSql);
 			kparams.AddIfNotNull("typeIn", this._TypeIn);
 			return kparams;
 		}
@@ -92,6 +102,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
+				case KSQL:
+					return "KSql";
 				case TYPE_IN:
 					return "TypeIn";
 				default:

@@ -30,20 +30,35 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class CountryCondition : NotCondition
+	public class CountryCondition : Condition
 	{
 		#region Constants
+		public const string NOT = "not";
 		public const string COUNTRIES = "countries";
 		#endregion
 
 		#region Private Fields
+		private bool? _Not = null;
 		private string _Countries = null;
 		#endregion
 
 		#region Properties
+		[JsonProperty]
+		public bool? Not
+		{
+			get { return _Not; }
+			set 
+			{ 
+				_Not = value;
+				OnPropertyChanged("Not");
+			}
+		}
+		[JsonProperty]
 		public string Countries
 		{
 			get { return _Countries; }
@@ -60,22 +75,16 @@ namespace Kaltura.Types
 		{
 		}
 
-		public CountryCondition(XmlElement node) : base(node)
+		public CountryCondition(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["not"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "countries":
-						this._Countries = propertyNode.InnerText;
-						continue;
-				}
+				this._Not = ParseBool(node["not"].Value<string>());
 			}
-		}
-
-		public CountryCondition(IDictionary<string,object> data) : base(data)
-		{
-			    this._Countries = data.TryGetValueSafe<string>("countries");
+			if(node["countries"] != null)
+			{
+				this._Countries = node["countries"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -85,6 +94,7 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaCountryCondition");
+			kparams.AddIfNotNull("not", this._Not);
 			kparams.AddIfNotNull("countries", this._Countries);
 			return kparams;
 		}
@@ -92,6 +102,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
+				case NOT:
+					return "Not";
 				case COUNTRIES:
 					return "Countries";
 				default:

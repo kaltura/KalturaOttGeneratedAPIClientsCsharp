@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -47,7 +49,6 @@ namespace Kaltura.Types
 		public const string ORDER_BY = "orderBy";
 		public const string CREATE_DATE = "createDate";
 		public const string UPDATE_DATE = "updateDate";
-		public const string SUPPORT_SEGMENT_BASED_ORDERING = "supportSegmentBasedOrdering";
 		#endregion
 
 		#region Private Fields
@@ -62,14 +63,20 @@ namespace Kaltura.Types
 		private ChannelOrder _OrderBy;
 		private long _CreateDate = long.MinValue;
 		private long _UpdateDate = long.MinValue;
-		private bool? _SupportSegmentBasedOrdering = null;
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public string Name
 		{
 			get { return _Name; }
+			private set 
+			{ 
+				_Name = value;
+				OnPropertyChanged("Name");
+			}
 		}
+		[JsonProperty]
 		public IList<TranslationToken> MultilingualName
 		{
 			get { return _MultilingualName; }
@@ -79,6 +86,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualName");
 			}
 		}
+		[JsonProperty]
 		public string OldName
 		{
 			get { return _OldName; }
@@ -88,6 +96,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("OldName");
 			}
 		}
+		[JsonProperty]
 		public string SystemName
 		{
 			get { return _SystemName; }
@@ -97,10 +106,17 @@ namespace Kaltura.Types
 				OnPropertyChanged("SystemName");
 			}
 		}
+		[JsonProperty]
 		public string Description
 		{
 			get { return _Description; }
+			private set 
+			{ 
+				_Description = value;
+				OnPropertyChanged("Description");
+			}
 		}
+		[JsonProperty]
 		public IList<TranslationToken> MultilingualDescription
 		{
 			get { return _MultilingualDescription; }
@@ -110,6 +126,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualDescription");
 			}
 		}
+		[JsonProperty]
 		public string OldDescription
 		{
 			get { return _OldDescription; }
@@ -119,6 +136,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("OldDescription");
 			}
 		}
+		[JsonProperty]
 		public bool? IsActive
 		{
 			get { return _IsActive; }
@@ -128,6 +146,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsActive");
 			}
 		}
+		[JsonProperty]
 		public ChannelOrder OrderBy
 		{
 			get { return _OrderBy; }
@@ -137,21 +156,24 @@ namespace Kaltura.Types
 				OnPropertyChanged("OrderBy");
 			}
 		}
+		[JsonProperty]
 		public long CreateDate
 		{
 			get { return _CreateDate; }
+			private set 
+			{ 
+				_CreateDate = value;
+				OnPropertyChanged("CreateDate");
+			}
 		}
+		[JsonProperty]
 		public long UpdateDate
 		{
 			get { return _UpdateDate; }
-		}
-		public bool? SupportSegmentBasedOrdering
-		{
-			get { return _SupportSegmentBasedOrdering; }
-			set 
+			private set 
 			{ 
-				_SupportSegmentBasedOrdering = value;
-				OnPropertyChanged("SupportSegmentBasedOrdering");
+				_UpdateDate = value;
+				OnPropertyChanged("UpdateDate");
 			}
 		}
 		#endregion
@@ -161,84 +183,60 @@ namespace Kaltura.Types
 		{
 		}
 
-		public Channel(XmlElement node) : base(node)
+		public Channel(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["name"] != null)
 			{
-				switch (propertyNode.Name)
+				this._Name = node["name"].Value<string>();
+			}
+			if(node["multilingualName"] != null)
+			{
+				this._MultilingualName = new List<TranslationToken>();
+				foreach(var arrayNode in node["multilingualName"].Children())
 				{
-					case "name":
-						this._Name = propertyNode.InnerText;
-						continue;
-					case "multilingualName":
-						this._MultilingualName = new List<TranslationToken>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
-						}
-						continue;
-					case "oldName":
-						this._OldName = propertyNode.InnerText;
-						continue;
-					case "systemName":
-						this._SystemName = propertyNode.InnerText;
-						continue;
-					case "description":
-						this._Description = propertyNode.InnerText;
-						continue;
-					case "multilingualDescription":
-						this._MultilingualDescription = new List<TranslationToken>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._MultilingualDescription.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
-						}
-						continue;
-					case "oldDescription":
-						this._OldDescription = propertyNode.InnerText;
-						continue;
-					case "isActive":
-						this._IsActive = ParseBool(propertyNode.InnerText);
-						continue;
-					case "orderBy":
-						this._OrderBy = ObjectFactory.Create<ChannelOrder>(propertyNode);
-						continue;
-					case "createDate":
-						this._CreateDate = ParseLong(propertyNode.InnerText);
-						continue;
-					case "updateDate":
-						this._UpdateDate = ParseLong(propertyNode.InnerText);
-						continue;
-					case "supportSegmentBasedOrdering":
-						this._SupportSegmentBasedOrdering = ParseBool(propertyNode.InnerText);
-						continue;
+					this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
 				}
 			}
-		}
-
-		public Channel(IDictionary<string,object> data) : base(data)
-		{
-			    this._Name = data.TryGetValueSafe<string>("name");
-			    this._MultilingualName = new List<TranslationToken>();
-			    foreach(var dataDictionary in data.TryGetValueSafe<IEnumerable<object>>("multilingualName", new List<object>()))
-			    {
-			        if (dataDictionary == null) { continue; }
-			        this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>((IDictionary<string,object>)dataDictionary));
-			    }
-			    this._OldName = data.TryGetValueSafe<string>("oldName");
-			    this._SystemName = data.TryGetValueSafe<string>("systemName");
-			    this._Description = data.TryGetValueSafe<string>("description");
-			    this._MultilingualDescription = new List<TranslationToken>();
-			    foreach(var dataDictionary in data.TryGetValueSafe<IEnumerable<object>>("multilingualDescription", new List<object>()))
-			    {
-			        if (dataDictionary == null) { continue; }
-			        this._MultilingualDescription.Add(ObjectFactory.Create<TranslationToken>((IDictionary<string,object>)dataDictionary));
-			    }
-			    this._OldDescription = data.TryGetValueSafe<string>("oldDescription");
-			    this._IsActive = data.TryGetValueSafe<bool>("isActive");
-			    this._OrderBy = ObjectFactory.Create<ChannelOrder>(data.TryGetValueSafe<IDictionary<string,object>>("orderBy"));
-			    this._CreateDate = data.TryGetValueSafe<long>("createDate");
-			    this._UpdateDate = data.TryGetValueSafe<long>("updateDate");
-			    this._SupportSegmentBasedOrdering = data.TryGetValueSafe<bool>("supportSegmentBasedOrdering");
+			if(node["oldName"] != null)
+			{
+				this._OldName = node["oldName"].Value<string>();
+			}
+			if(node["systemName"] != null)
+			{
+				this._SystemName = node["systemName"].Value<string>();
+			}
+			if(node["description"] != null)
+			{
+				this._Description = node["description"].Value<string>();
+			}
+			if(node["multilingualDescription"] != null)
+			{
+				this._MultilingualDescription = new List<TranslationToken>();
+				foreach(var arrayNode in node["multilingualDescription"].Children())
+				{
+					this._MultilingualDescription.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
+				}
+			}
+			if(node["oldDescription"] != null)
+			{
+				this._OldDescription = node["oldDescription"].Value<string>();
+			}
+			if(node["isActive"] != null)
+			{
+				this._IsActive = ParseBool(node["isActive"].Value<string>());
+			}
+			if(node["orderBy"] != null)
+			{
+				this._OrderBy = ObjectFactory.Create<ChannelOrder>(node["orderBy"]);
+			}
+			if(node["createDate"] != null)
+			{
+				this._CreateDate = ParseLong(node["createDate"].Value<string>());
+			}
+			if(node["updateDate"] != null)
+			{
+				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -259,7 +257,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
-			kparams.AddIfNotNull("supportSegmentBasedOrdering", this._SupportSegmentBasedOrdering);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -288,8 +285,6 @@ namespace Kaltura.Types
 					return "CreateDate";
 				case UPDATE_DATE:
 					return "UpdateDate";
-				case SUPPORT_SEGMENT_BASED_ORDERING:
-					return "SupportSegmentBasedOrdering";
 				default:
 					return base.getPropertyName(apiName);
 			}

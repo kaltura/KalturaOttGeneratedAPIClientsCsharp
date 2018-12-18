@@ -32,6 +32,7 @@ using System.IO;
 using Kaltura.Request;
 using Kaltura.Types;
 using Kaltura.Enums;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
@@ -39,15 +40,9 @@ namespace Kaltura.Services
 	{
 		#region Constants
 		public const string FILTER = "filter";
-		public const string PAGER = "pager";
 		#endregion
 
 		public CollectionFilter Filter
-		{
-			set;
-			get;
-		}
-		public FilterPager Pager
 		{
 			set;
 			get;
@@ -58,11 +53,10 @@ namespace Kaltura.Services
 		{
 		}
 
-		public CollectionListRequestBuilder(CollectionFilter filter, FilterPager pager)
+		public CollectionListRequestBuilder(CollectionFilter filter)
 			: this()
 		{
 			this.Filter = filter;
-			this.Pager = pager;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -70,8 +64,6 @@ namespace Kaltura.Services
 			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("filter"))
 				kparams.AddIfNotNull("filter", Filter);
-			if (!isMapped("pager"))
-				kparams.AddIfNotNull("pager", Pager);
 			return kparams;
 		}
 
@@ -81,13 +73,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<ListResponse<Collection>>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<ListResponse<Collection>>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -98,9 +86,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static CollectionListRequestBuilder List(CollectionFilter filter = null, FilterPager pager = null)
+		public static CollectionListRequestBuilder List(CollectionFilter filter)
 		{
-			return new CollectionListRequestBuilder(filter, pager);
+			return new CollectionListRequestBuilder(filter);
 		}
 	}
 }

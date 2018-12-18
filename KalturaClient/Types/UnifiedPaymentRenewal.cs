@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -40,7 +42,6 @@ namespace Kaltura.Types
 		public const string DATE = "date";
 		public const string UNIFIED_PAYMENT_ID = "unifiedPaymentId";
 		public const string ENTITLEMENTS = "entitlements";
-		public const string USER_ID = "userId";
 		#endregion
 
 		#region Private Fields
@@ -48,10 +49,10 @@ namespace Kaltura.Types
 		private long _Date = long.MinValue;
 		private long _UnifiedPaymentId = long.MinValue;
 		private IList<EntitlementRenewalBase> _Entitlements;
-		private long _UserId = long.MinValue;
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public Price Price
 		{
 			get { return _Price; }
@@ -61,6 +62,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Price");
 			}
 		}
+		[JsonProperty]
 		public long Date
 		{
 			get { return _Date; }
@@ -70,6 +72,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Date");
 			}
 		}
+		[JsonProperty]
 		public long UnifiedPaymentId
 		{
 			get { return _UnifiedPaymentId; }
@@ -79,6 +82,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("UnifiedPaymentId");
 			}
 		}
+		[JsonProperty]
 		public IList<EntitlementRenewalBase> Entitlements
 		{
 			get { return _Entitlements; }
@@ -88,15 +92,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Entitlements");
 			}
 		}
-		public long UserId
-		{
-			get { return _UserId; }
-			set 
-			{ 
-				_UserId = value;
-				OnPropertyChanged("UserId");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -104,47 +99,28 @@ namespace Kaltura.Types
 		{
 		}
 
-		public UnifiedPaymentRenewal(XmlElement node) : base(node)
+		public UnifiedPaymentRenewal(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["price"] != null)
 			{
-				switch (propertyNode.Name)
+				this._Price = ObjectFactory.Create<Price>(node["price"]);
+			}
+			if(node["date"] != null)
+			{
+				this._Date = ParseLong(node["date"].Value<string>());
+			}
+			if(node["unifiedPaymentId"] != null)
+			{
+				this._UnifiedPaymentId = ParseLong(node["unifiedPaymentId"].Value<string>());
+			}
+			if(node["entitlements"] != null)
+			{
+				this._Entitlements = new List<EntitlementRenewalBase>();
+				foreach(var arrayNode in node["entitlements"].Children())
 				{
-					case "price":
-						this._Price = ObjectFactory.Create<Price>(propertyNode);
-						continue;
-					case "date":
-						this._Date = ParseLong(propertyNode.InnerText);
-						continue;
-					case "unifiedPaymentId":
-						this._UnifiedPaymentId = ParseLong(propertyNode.InnerText);
-						continue;
-					case "entitlements":
-						this._Entitlements = new List<EntitlementRenewalBase>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._Entitlements.Add(ObjectFactory.Create<EntitlementRenewalBase>(arrayNode));
-						}
-						continue;
-					case "userId":
-						this._UserId = ParseLong(propertyNode.InnerText);
-						continue;
+					this._Entitlements.Add(ObjectFactory.Create<EntitlementRenewalBase>(arrayNode));
 				}
 			}
-		}
-
-		public UnifiedPaymentRenewal(IDictionary<string,object> data) : base(data)
-		{
-			    this._Price = ObjectFactory.Create<Price>(data.TryGetValueSafe<IDictionary<string,object>>("price"));
-			    this._Date = data.TryGetValueSafe<long>("date");
-			    this._UnifiedPaymentId = data.TryGetValueSafe<long>("unifiedPaymentId");
-			    this._Entitlements = new List<EntitlementRenewalBase>();
-			    foreach(var dataDictionary in data.TryGetValueSafe<IEnumerable<object>>("entitlements", new List<object>()))
-			    {
-			        if (dataDictionary == null) { continue; }
-			        this._Entitlements.Add(ObjectFactory.Create<EntitlementRenewalBase>((IDictionary<string,object>)dataDictionary));
-			    }
-			    this._UserId = data.TryGetValueSafe<long>("userId");
 		}
 		#endregion
 
@@ -158,7 +134,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("date", this._Date);
 			kparams.AddIfNotNull("unifiedPaymentId", this._UnifiedPaymentId);
 			kparams.AddIfNotNull("entitlements", this._Entitlements);
-			kparams.AddIfNotNull("userId", this._UserId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -173,8 +148,6 @@ namespace Kaltura.Types
 					return "UnifiedPaymentId";
 				case ENTITLEMENTS:
 					return "Entitlements";
-				case USER_ID:
-					return "UserId";
 				default:
 					return base.getPropertyName(apiName);
 			}

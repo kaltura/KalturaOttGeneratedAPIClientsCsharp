@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -41,10 +43,6 @@ namespace Kaltura.Types
 		public const string RELATED_MEDIA_ID = "relatedMediaId";
 		public const string CRID = "crid";
 		public const string LINEAR_ASSET_ID = "linearAssetId";
-		public const string ENABLE_CDVR = "enableCdvr";
-		public const string ENABLE_CATCH_UP = "enableCatchUp";
-		public const string ENABLE_START_OVER = "enableStartOver";
-		public const string ENABLE_TRICK_PLAY = "enableTrickPlay";
 		#endregion
 
 		#region Private Fields
@@ -53,21 +51,30 @@ namespace Kaltura.Types
 		private long _RelatedMediaId = long.MinValue;
 		private string _Crid = null;
 		private long _LinearAssetId = long.MinValue;
-		private bool? _EnableCdvr = null;
-		private bool? _EnableCatchUp = null;
-		private bool? _EnableStartOver = null;
-		private bool? _EnableTrickPlay = null;
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public long EpgChannelId
 		{
 			get { return _EpgChannelId; }
+			set 
+			{ 
+				_EpgChannelId = value;
+				OnPropertyChanged("EpgChannelId");
+			}
 		}
+		[JsonProperty]
 		public string EpgId
 		{
 			get { return _EpgId; }
+			set 
+			{ 
+				_EpgId = value;
+				OnPropertyChanged("EpgId");
+			}
 		}
+		[JsonProperty]
 		public long RelatedMediaId
 		{
 			get { return _RelatedMediaId; }
@@ -77,6 +84,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("RelatedMediaId");
 			}
 		}
+		[JsonProperty]
 		public string Crid
 		{
 			get { return _Crid; }
@@ -86,6 +94,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Crid");
 			}
 		}
+		[JsonProperty]
 		public long LinearAssetId
 		{
 			get { return _LinearAssetId; }
@@ -95,42 +104,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("LinearAssetId");
 			}
 		}
-		public bool? EnableCdvr
-		{
-			get { return _EnableCdvr; }
-			set 
-			{ 
-				_EnableCdvr = value;
-				OnPropertyChanged("EnableCdvr");
-			}
-		}
-		public bool? EnableCatchUp
-		{
-			get { return _EnableCatchUp; }
-			set 
-			{ 
-				_EnableCatchUp = value;
-				OnPropertyChanged("EnableCatchUp");
-			}
-		}
-		public bool? EnableStartOver
-		{
-			get { return _EnableStartOver; }
-			set 
-			{ 
-				_EnableStartOver = value;
-				OnPropertyChanged("EnableStartOver");
-			}
-		}
-		public bool? EnableTrickPlay
-		{
-			get { return _EnableTrickPlay; }
-			set 
-			{ 
-				_EnableTrickPlay = value;
-				OnPropertyChanged("EnableTrickPlay");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -138,54 +111,28 @@ namespace Kaltura.Types
 		{
 		}
 
-		public ProgramAsset(XmlElement node) : base(node)
+		public ProgramAsset(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["epgChannelId"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "epgChannelId":
-						this._EpgChannelId = ParseLong(propertyNode.InnerText);
-						continue;
-					case "epgId":
-						this._EpgId = propertyNode.InnerText;
-						continue;
-					case "relatedMediaId":
-						this._RelatedMediaId = ParseLong(propertyNode.InnerText);
-						continue;
-					case "crid":
-						this._Crid = propertyNode.InnerText;
-						continue;
-					case "linearAssetId":
-						this._LinearAssetId = ParseLong(propertyNode.InnerText);
-						continue;
-					case "enableCdvr":
-						this._EnableCdvr = ParseBool(propertyNode.InnerText);
-						continue;
-					case "enableCatchUp":
-						this._EnableCatchUp = ParseBool(propertyNode.InnerText);
-						continue;
-					case "enableStartOver":
-						this._EnableStartOver = ParseBool(propertyNode.InnerText);
-						continue;
-					case "enableTrickPlay":
-						this._EnableTrickPlay = ParseBool(propertyNode.InnerText);
-						continue;
-				}
+				this._EpgChannelId = ParseLong(node["epgChannelId"].Value<string>());
 			}
-		}
-
-		public ProgramAsset(IDictionary<string,object> data) : base(data)
-		{
-			    this._EpgChannelId = data.TryGetValueSafe<long>("epgChannelId");
-			    this._EpgId = data.TryGetValueSafe<string>("epgId");
-			    this._RelatedMediaId = data.TryGetValueSafe<long>("relatedMediaId");
-			    this._Crid = data.TryGetValueSafe<string>("crid");
-			    this._LinearAssetId = data.TryGetValueSafe<long>("linearAssetId");
-			    this._EnableCdvr = data.TryGetValueSafe<bool>("enableCdvr");
-			    this._EnableCatchUp = data.TryGetValueSafe<bool>("enableCatchUp");
-			    this._EnableStartOver = data.TryGetValueSafe<bool>("enableStartOver");
-			    this._EnableTrickPlay = data.TryGetValueSafe<bool>("enableTrickPlay");
+			if(node["epgId"] != null)
+			{
+				this._EpgId = node["epgId"].Value<string>();
+			}
+			if(node["relatedMediaId"] != null)
+			{
+				this._RelatedMediaId = ParseLong(node["relatedMediaId"].Value<string>());
+			}
+			if(node["crid"] != null)
+			{
+				this._Crid = node["crid"].Value<string>();
+			}
+			if(node["linearAssetId"] != null)
+			{
+				this._LinearAssetId = ParseLong(node["linearAssetId"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -200,10 +147,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("relatedMediaId", this._RelatedMediaId);
 			kparams.AddIfNotNull("crid", this._Crid);
 			kparams.AddIfNotNull("linearAssetId", this._LinearAssetId);
-			kparams.AddIfNotNull("enableCdvr", this._EnableCdvr);
-			kparams.AddIfNotNull("enableCatchUp", this._EnableCatchUp);
-			kparams.AddIfNotNull("enableStartOver", this._EnableStartOver);
-			kparams.AddIfNotNull("enableTrickPlay", this._EnableTrickPlay);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -220,14 +163,6 @@ namespace Kaltura.Types
 					return "Crid";
 				case LINEAR_ASSET_ID:
 					return "LinearAssetId";
-				case ENABLE_CDVR:
-					return "EnableCdvr";
-				case ENABLE_CATCH_UP:
-					return "EnableCatchUp";
-				case ENABLE_START_OVER:
-					return "EnableStartOver";
-				case ENABLE_TRICK_PLAY:
-					return "EnableTrickPlay";
 				default:
 					return base.getPropertyName(apiName);
 			}

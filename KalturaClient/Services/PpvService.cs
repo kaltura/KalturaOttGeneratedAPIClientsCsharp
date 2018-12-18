@@ -32,6 +32,7 @@ using System.IO;
 using Kaltura.Request;
 using Kaltura.Types;
 using Kaltura.Enums;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
@@ -72,60 +73,9 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<Ppv>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<Ppv>((IDictionary<string,object>)result);
-		}
-	}
-
-	public class PpvListRequestBuilder : RequestBuilder<ListResponse<Ppv>>
-	{
-		#region Constants
-		public const string FILTER = "filter";
-		#endregion
-
-		public PpvFilter Filter
-		{
-			set;
-			get;
-		}
-
-		public PpvListRequestBuilder()
-			: base("ppv", "list")
-		{
-		}
-
-		public PpvListRequestBuilder(PpvFilter filter)
-			: this()
-		{
-			this.Filter = filter;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("filter"))
-				kparams.AddIfNotNull("filter", Filter);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(XmlElement result)
-		{
-			return ObjectFactory.Create<ListResponse<Ppv>>(result);
-		}
-		public override object DeserializeObject(object result)
-		{
-			return ObjectFactory.Create<ListResponse<Ppv>>((IDictionary<string,object>)result);
 		}
 	}
 
@@ -139,11 +89,6 @@ namespace Kaltura.Services
 		public static PpvGetRequestBuilder Get(long id)
 		{
 			return new PpvGetRequestBuilder(id);
-		}
-
-		public static PpvListRequestBuilder List(PpvFilter filter = null)
-		{
-			return new PpvListRequestBuilder(filter);
 		}
 	}
 }
