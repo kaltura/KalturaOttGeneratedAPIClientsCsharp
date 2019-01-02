@@ -30,8 +30,6 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -40,15 +38,16 @@ namespace Kaltura.Types
 		#region Constants
 		public const string CLIENT_TAG = "clientTag";
 		public const string API_VERSION = "apiVersion";
+		public const string ABORT_ON_ERROR = "abortOnError";
 		#endregion
 
 		#region Private Fields
 		private string _ClientTag = null;
 		private string _ApiVersion = null;
+		private string _AbortOnError = null;
 		#endregion
 
 		#region Properties
-		[JsonProperty]
 		public string ClientTag
 		{
 			get { return _ClientTag; }
@@ -58,7 +57,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ClientTag");
 			}
 		}
-		[JsonProperty]
 		public string ApiVersion
 		{
 			get { return _ApiVersion; }
@@ -68,6 +66,15 @@ namespace Kaltura.Types
 				OnPropertyChanged("ApiVersion");
 			}
 		}
+		public string AbortOnError
+		{
+			get { return _AbortOnError; }
+			set 
+			{ 
+				_AbortOnError = value;
+				OnPropertyChanged("AbortOnError");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -75,16 +82,30 @@ namespace Kaltura.Types
 		{
 		}
 
-		public ClientConfiguration(JToken node) : base(node)
+		public ClientConfiguration(XmlElement node) : base(node)
 		{
-			if(node["clientTag"] != null)
+			foreach (XmlElement propertyNode in node.ChildNodes)
 			{
-				this._ClientTag = node["clientTag"].Value<string>();
+				switch (propertyNode.Name)
+				{
+					case "clientTag":
+						this._ClientTag = propertyNode.InnerText;
+						continue;
+					case "apiVersion":
+						this._ApiVersion = propertyNode.InnerText;
+						continue;
+					case "abortOnError":
+						this._AbortOnError = propertyNode.InnerText;
+						continue;
+				}
 			}
-			if(node["apiVersion"] != null)
-			{
-				this._ApiVersion = node["apiVersion"].Value<string>();
-			}
+		}
+
+		public ClientConfiguration(IDictionary<string,object> data) : base(data)
+		{
+			    this._ClientTag = data.TryGetValueSafe<string>("clientTag");
+			    this._ApiVersion = data.TryGetValueSafe<string>("apiVersion");
+			    this._AbortOnError = data.TryGetValueSafe<string>("abortOnError");
 		}
 		#endregion
 
@@ -96,6 +117,7 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaClientConfiguration");
 			kparams.AddIfNotNull("clientTag", this._ClientTag);
 			kparams.AddIfNotNull("apiVersion", this._ApiVersion);
+			kparams.AddIfNotNull("abortOnError", this._AbortOnError);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -106,6 +128,8 @@ namespace Kaltura.Types
 					return "ClientTag";
 				case API_VERSION:
 					return "ApiVersion";
+				case ABORT_ON_ERROR:
+					return "AbortOnError";
 				default:
 					return base.getPropertyName(apiName);
 			}
