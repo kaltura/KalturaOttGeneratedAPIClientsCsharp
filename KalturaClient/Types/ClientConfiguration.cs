@@ -44,7 +44,7 @@ namespace Kaltura.Types
 		#region Private Fields
 		private string _ClientTag = null;
 		private string _ApiVersion = null;
-		private string _AbortOnError = null;
+		private bool? _AbortOnError = null;
 		#endregion
 
 		#region Properties
@@ -66,7 +66,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("ApiVersion");
 			}
 		}
-		public string AbortOnError
+		public bool? AbortOnError
 		{
 			get { return _AbortOnError; }
 			set 
@@ -95,7 +95,7 @@ namespace Kaltura.Types
 						this._ApiVersion = propertyNode.InnerText;
 						continue;
 					case "abortOnError":
-						this._AbortOnError = propertyNode.InnerText;
+						this._AbortOnError = ParseBool(propertyNode.InnerText);
 						continue;
 				}
 			}
@@ -105,7 +105,7 @@ namespace Kaltura.Types
 		{
 			    this._ClientTag = data.TryGetValueSafe<string>("clientTag");
 			    this._ApiVersion = data.TryGetValueSafe<string>("apiVersion");
-			    this._AbortOnError = data.TryGetValueSafe<string>("abortOnError");
+			    this._AbortOnError = data.TryGetValueSafe<bool>("abortOnError");
 		}
 		#endregion
 
