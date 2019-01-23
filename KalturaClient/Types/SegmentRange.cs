@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -60,10 +62,17 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public long Id
 		{
 			get { return _Id; }
+			private set 
+			{ 
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
 		}
+		[JsonProperty]
 		public string SystematicName
 		{
 			get { return _SystematicName; }
@@ -73,10 +82,17 @@ namespace Kaltura.Types
 				OnPropertyChanged("SystematicName");
 			}
 		}
+		[JsonProperty]
 		public string Name
 		{
 			get { return _Name; }
+			private set 
+			{ 
+				_Name = value;
+				OnPropertyChanged("Name");
+			}
 		}
+		[JsonProperty]
 		public IList<TranslationToken> MultilingualName
 		{
 			get { return _MultilingualName; }
@@ -86,6 +102,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualName");
 			}
 		}
+		[JsonProperty]
 		public float Gte
 		{
 			get { return _Gte; }
@@ -95,6 +112,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Gte");
 			}
 		}
+		[JsonProperty]
 		public float Gt
 		{
 			get { return _Gt; }
@@ -104,6 +122,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Gt");
 			}
 		}
+		[JsonProperty]
 		public float Lte
 		{
 			get { return _Lte; }
@@ -113,6 +132,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Lte");
 			}
 		}
+		[JsonProperty]
 		public float Lt
 		{
 			get { return _Lt; }
@@ -122,6 +142,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Lt");
 			}
 		}
+		[JsonProperty]
 		public float Equals
 		{
 			get { return _Equals; }
@@ -138,44 +159,47 @@ namespace Kaltura.Types
 		{
 		}
 
-		public SegmentRange(XmlElement node) : base(node)
+		public SegmentRange(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["id"] != null)
 			{
-				switch (propertyNode.Name)
+				this._Id = ParseLong(node["id"].Value<string>());
+			}
+			if(node["systematicName"] != null)
+			{
+				this._SystematicName = node["systematicName"].Value<string>();
+			}
+			if(node["name"] != null)
+			{
+				this._Name = node["name"].Value<string>();
+			}
+			if(node["multilingualName"] != null)
+			{
+				this._MultilingualName = new List<TranslationToken>();
+				foreach(var arrayNode in node["multilingualName"].Children())
 				{
-					case "id":
-						this._Id = ParseLong(propertyNode.InnerText);
-						continue;
-					case "systematicName":
-						this._SystematicName = propertyNode.InnerText;
-						continue;
-					case "name":
-						this._Name = propertyNode.InnerText;
-						continue;
-					case "multilingualName":
-						this._MultilingualName = new List<TranslationToken>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
-						}
-						continue;
-					case "gte":
-						this._Gte = ParseFloat(propertyNode.InnerText);
-						continue;
-					case "gt":
-						this._Gt = ParseFloat(propertyNode.InnerText);
-						continue;
-					case "lte":
-						this._Lte = ParseFloat(propertyNode.InnerText);
-						continue;
-					case "lt":
-						this._Lt = ParseFloat(propertyNode.InnerText);
-						continue;
-					case "equals":
-						this._Equals = ParseFloat(propertyNode.InnerText);
-						continue;
+					this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
 				}
+			}
+			if(node["gte"] != null)
+			{
+				this._Gte = ParseFloat(node["gte"].Value<string>());
+			}
+			if(node["gt"] != null)
+			{
+				this._Gt = ParseFloat(node["gt"].Value<string>());
+			}
+			if(node["lte"] != null)
+			{
+				this._Lte = ParseFloat(node["lte"].Value<string>());
+			}
+			if(node["lt"] != null)
+			{
+				this._Lt = ParseFloat(node["lt"].Value<string>());
+			}
+			if(node["equals"] != null)
+			{
+				this._Equals = ParseFloat(node["equals"].Value<string>());
 			}
 		}
 		#endregion

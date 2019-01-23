@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -54,6 +56,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public int PartnerId
 		{
 			get { return _PartnerId; }
@@ -63,6 +66,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("PartnerId");
 			}
 		}
+		[JsonProperty]
 		public int UserId
 		{
 			get { return _UserId; }
@@ -72,6 +76,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserId");
 			}
 		}
+		[JsonProperty]
 		public string Language
 		{
 			get { return _Language; }
@@ -81,6 +86,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Language");
 			}
 		}
+		[JsonProperty]
 		public string Currency
 		{
 			get { return _Currency; }
@@ -90,6 +96,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Currency");
 			}
 		}
+		[JsonProperty]
 		public string Ks
 		{
 			get { return _Ks; }
@@ -99,6 +106,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Ks");
 			}
 		}
+		[JsonProperty]
 		public BaseResponseProfile ResponseProfile
 		{
 			get { return _ResponseProfile; }
@@ -115,31 +123,31 @@ namespace Kaltura.Types
 		{
 		}
 
-		public RequestConfiguration(XmlElement node) : base(node)
+		public RequestConfiguration(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["partnerId"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "partnerId":
-						this._PartnerId = ParseInt(propertyNode.InnerText);
-						continue;
-					case "userId":
-						this._UserId = ParseInt(propertyNode.InnerText);
-						continue;
-					case "language":
-						this._Language = propertyNode.InnerText;
-						continue;
-					case "currency":
-						this._Currency = propertyNode.InnerText;
-						continue;
-					case "ks":
-						this._Ks = propertyNode.InnerText;
-						continue;
-					case "responseProfile":
-						this._ResponseProfile = ObjectFactory.Create<BaseResponseProfile>(propertyNode);
-						continue;
-				}
+				this._PartnerId = ParseInt(node["partnerId"].Value<string>());
+			}
+			if(node["userId"] != null)
+			{
+				this._UserId = ParseInt(node["userId"].Value<string>());
+			}
+			if(node["language"] != null)
+			{
+				this._Language = node["language"].Value<string>();
+			}
+			if(node["currency"] != null)
+			{
+				this._Currency = node["currency"].Value<string>();
+			}
+			if(node["ks"] != null)
+			{
+				this._Ks = node["ks"].Value<string>();
+			}
+			if(node["responseProfile"] != null)
+			{
+				this._ResponseProfile = ObjectFactory.Create<BaseResponseProfile>(node["responseProfile"]);
 			}
 		}
 		#endregion
