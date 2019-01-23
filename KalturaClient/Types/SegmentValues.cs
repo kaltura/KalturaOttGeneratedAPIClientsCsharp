@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -48,6 +50,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public SegmentSource Source
 		{
 			get { return _Source; }
@@ -57,6 +60,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Source");
 			}
 		}
+		[JsonProperty]
 		public int Threshold
 		{
 			get { return _Threshold; }
@@ -66,6 +70,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Threshold");
 			}
 		}
+		[JsonProperty]
 		public IList<SegmentValue> Values
 		{
 			get { return _Values; }
@@ -82,25 +87,22 @@ namespace Kaltura.Types
 		{
 		}
 
-		public SegmentValues(XmlElement node) : base(node)
+		public SegmentValues(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["source"] != null)
 			{
-				switch (propertyNode.Name)
+				this._Source = ObjectFactory.Create<SegmentSource>(node["source"]);
+			}
+			if(node["threshold"] != null)
+			{
+				this._Threshold = ParseInt(node["threshold"].Value<string>());
+			}
+			if(node["values"] != null)
+			{
+				this._Values = new List<SegmentValue>();
+				foreach(var arrayNode in node["values"].Children())
 				{
-					case "source":
-						this._Source = ObjectFactory.Create<SegmentSource>(propertyNode);
-						continue;
-					case "threshold":
-						this._Threshold = ParseInt(propertyNode.InnerText);
-						continue;
-					case "values":
-						this._Values = new List<SegmentValue>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._Values.Add(ObjectFactory.Create<SegmentValue>(arrayNode));
-						}
-						continue;
+					this._Values.Add(ObjectFactory.Create<SegmentValue>(arrayNode));
 				}
 			}
 		}

@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -82,6 +84,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public int AssetId
 		{
 			get { return _AssetId; }
@@ -91,14 +94,27 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetId");
 			}
 		}
+		[JsonProperty]
 		public int Id
 		{
 			get { return _Id; }
+			private set 
+			{ 
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
 		}
+		[JsonProperty]
 		public string Type
 		{
 			get { return _Type; }
+			private set 
+			{ 
+				_Type = value;
+				OnPropertyChanged("Type");
+			}
 		}
+		[JsonProperty]
 		public int TypeId
 		{
 			get { return _TypeId; }
@@ -108,6 +124,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("TypeId");
 			}
 		}
+		[JsonProperty]
 		public long Duration
 		{
 			get { return _Duration; }
@@ -117,6 +134,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Duration");
 			}
 		}
+		[JsonProperty]
 		public string ExternalId
 		{
 			get { return _ExternalId; }
@@ -126,6 +144,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
+		[JsonProperty]
 		public string AltExternalId
 		{
 			get { return _AltExternalId; }
@@ -135,6 +154,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("AltExternalId");
 			}
 		}
+		[JsonProperty]
 		public long FileSize
 		{
 			get { return _FileSize; }
@@ -144,6 +164,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("FileSize");
 			}
 		}
+		[JsonProperty]
 		public string AdditionalData
 		{
 			get { return _AdditionalData; }
@@ -153,6 +174,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("AdditionalData");
 			}
 		}
+		[JsonProperty]
 		public string AltStreamingCode
 		{
 			get { return _AltStreamingCode; }
@@ -162,6 +184,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("AltStreamingCode");
 			}
 		}
+		[JsonProperty]
 		public long AlternativeCdnAdapaterProfileId
 		{
 			get { return _AlternativeCdnAdapaterProfileId; }
@@ -171,6 +194,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("AlternativeCdnAdapaterProfileId");
 			}
 		}
+		[JsonProperty]
 		public long EndDate
 		{
 			get { return _EndDate; }
@@ -180,6 +204,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
+		[JsonProperty]
 		public long StartDate
 		{
 			get { return _StartDate; }
@@ -189,6 +214,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
+		[JsonProperty]
 		public string ExternalStoreId
 		{
 			get { return _ExternalStoreId; }
@@ -198,6 +224,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalStoreId");
 			}
 		}
+		[JsonProperty]
 		public bool? IsDefaultLanguage
 		{
 			get { return _IsDefaultLanguage; }
@@ -207,6 +234,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsDefaultLanguage");
 			}
 		}
+		[JsonProperty]
 		public string Language
 		{
 			get { return _Language; }
@@ -216,6 +244,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Language");
 			}
 		}
+		[JsonProperty]
 		public int OrderNum
 		{
 			get { return _OrderNum; }
@@ -225,6 +254,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("OrderNum");
 			}
 		}
+		[JsonProperty]
 		public string OutputProtecationLevel
 		{
 			get { return _OutputProtecationLevel; }
@@ -234,6 +264,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("OutputProtecationLevel");
 			}
 		}
+		[JsonProperty]
 		public long CdnAdapaterProfileId
 		{
 			get { return _CdnAdapaterProfileId; }
@@ -243,6 +274,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("CdnAdapaterProfileId");
 			}
 		}
+		[JsonProperty]
 		public bool? Status
 		{
 			get { return _Status; }
@@ -259,73 +291,87 @@ namespace Kaltura.Types
 		{
 		}
 
-		public MediaFile(XmlElement node) : base(node)
+		public MediaFile(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["assetId"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "assetId":
-						this._AssetId = ParseInt(propertyNode.InnerText);
-						continue;
-					case "id":
-						this._Id = ParseInt(propertyNode.InnerText);
-						continue;
-					case "type":
-						this._Type = propertyNode.InnerText;
-						continue;
-					case "typeId":
-						this._TypeId = ParseInt(propertyNode.InnerText);
-						continue;
-					case "duration":
-						this._Duration = ParseLong(propertyNode.InnerText);
-						continue;
-					case "externalId":
-						this._ExternalId = propertyNode.InnerText;
-						continue;
-					case "altExternalId":
-						this._AltExternalId = propertyNode.InnerText;
-						continue;
-					case "fileSize":
-						this._FileSize = ParseLong(propertyNode.InnerText);
-						continue;
-					case "additionalData":
-						this._AdditionalData = propertyNode.InnerText;
-						continue;
-					case "altStreamingCode":
-						this._AltStreamingCode = propertyNode.InnerText;
-						continue;
-					case "alternativeCdnAdapaterProfileId":
-						this._AlternativeCdnAdapaterProfileId = ParseLong(propertyNode.InnerText);
-						continue;
-					case "endDate":
-						this._EndDate = ParseLong(propertyNode.InnerText);
-						continue;
-					case "startDate":
-						this._StartDate = ParseLong(propertyNode.InnerText);
-						continue;
-					case "externalStoreId":
-						this._ExternalStoreId = propertyNode.InnerText;
-						continue;
-					case "isDefaultLanguage":
-						this._IsDefaultLanguage = ParseBool(propertyNode.InnerText);
-						continue;
-					case "language":
-						this._Language = propertyNode.InnerText;
-						continue;
-					case "orderNum":
-						this._OrderNum = ParseInt(propertyNode.InnerText);
-						continue;
-					case "outputProtecationLevel":
-						this._OutputProtecationLevel = propertyNode.InnerText;
-						continue;
-					case "cdnAdapaterProfileId":
-						this._CdnAdapaterProfileId = ParseLong(propertyNode.InnerText);
-						continue;
-					case "status":
-						this._Status = ParseBool(propertyNode.InnerText);
-						continue;
-				}
+				this._AssetId = ParseInt(node["assetId"].Value<string>());
+			}
+			if(node["id"] != null)
+			{
+				this._Id = ParseInt(node["id"].Value<string>());
+			}
+			if(node["type"] != null)
+			{
+				this._Type = node["type"].Value<string>();
+			}
+			if(node["typeId"] != null)
+			{
+				this._TypeId = ParseInt(node["typeId"].Value<string>());
+			}
+			if(node["duration"] != null)
+			{
+				this._Duration = ParseLong(node["duration"].Value<string>());
+			}
+			if(node["externalId"] != null)
+			{
+				this._ExternalId = node["externalId"].Value<string>();
+			}
+			if(node["altExternalId"] != null)
+			{
+				this._AltExternalId = node["altExternalId"].Value<string>();
+			}
+			if(node["fileSize"] != null)
+			{
+				this._FileSize = ParseLong(node["fileSize"].Value<string>());
+			}
+			if(node["additionalData"] != null)
+			{
+				this._AdditionalData = node["additionalData"].Value<string>();
+			}
+			if(node["altStreamingCode"] != null)
+			{
+				this._AltStreamingCode = node["altStreamingCode"].Value<string>();
+			}
+			if(node["alternativeCdnAdapaterProfileId"] != null)
+			{
+				this._AlternativeCdnAdapaterProfileId = ParseLong(node["alternativeCdnAdapaterProfileId"].Value<string>());
+			}
+			if(node["endDate"] != null)
+			{
+				this._EndDate = ParseLong(node["endDate"].Value<string>());
+			}
+			if(node["startDate"] != null)
+			{
+				this._StartDate = ParseLong(node["startDate"].Value<string>());
+			}
+			if(node["externalStoreId"] != null)
+			{
+				this._ExternalStoreId = node["externalStoreId"].Value<string>();
+			}
+			if(node["isDefaultLanguage"] != null)
+			{
+				this._IsDefaultLanguage = ParseBool(node["isDefaultLanguage"].Value<string>());
+			}
+			if(node["language"] != null)
+			{
+				this._Language = node["language"].Value<string>();
+			}
+			if(node["orderNum"] != null)
+			{
+				this._OrderNum = ParseInt(node["orderNum"].Value<string>());
+			}
+			if(node["outputProtecationLevel"] != null)
+			{
+				this._OutputProtecationLevel = node["outputProtecationLevel"].Value<string>();
+			}
+			if(node["cdnAdapaterProfileId"] != null)
+			{
+				this._CdnAdapaterProfileId = ParseLong(node["cdnAdapaterProfileId"].Value<string>());
+			}
+			if(node["status"] != null)
+			{
+				this._Status = ParseBool(node["status"].Value<string>());
 			}
 		}
 		#endregion

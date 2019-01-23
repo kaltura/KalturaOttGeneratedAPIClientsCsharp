@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -46,6 +48,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public string KSql
 		{
 			get { return _KSql; }
@@ -55,6 +58,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("KSql");
 			}
 		}
+		[JsonProperty]
 		public IList<AssetGroupBy> GroupBy
 		{
 			get { return _GroupBy; }
@@ -71,22 +75,18 @@ namespace Kaltura.Types
 		{
 		}
 
-		public BaseSearchAssetFilter(XmlElement node) : base(node)
+		public BaseSearchAssetFilter(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["kSql"] != null)
 			{
-				switch (propertyNode.Name)
+				this._KSql = node["kSql"].Value<string>();
+			}
+			if(node["groupBy"] != null)
+			{
+				this._GroupBy = new List<AssetGroupBy>();
+				foreach(var arrayNode in node["groupBy"].Children())
 				{
-					case "kSql":
-						this._KSql = propertyNode.InnerText;
-						continue;
-					case "groupBy":
-						this._GroupBy = new List<AssetGroupBy>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._GroupBy.Add(ObjectFactory.Create<AssetGroupBy>(arrayNode));
-						}
-						continue;
+					this._GroupBy.Add(ObjectFactory.Create<AssetGroupBy>(arrayNode));
 				}
 			}
 		}

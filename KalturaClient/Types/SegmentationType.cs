@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -56,6 +58,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public long Id
 		{
 			get { return _Id; }
@@ -65,10 +68,17 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		[JsonProperty]
 		public string Name
 		{
 			get { return _Name; }
+			private set 
+			{ 
+				_Name = value;
+				OnPropertyChanged("Name");
+			}
 		}
+		[JsonProperty]
 		public IList<TranslationToken> MultilingualName
 		{
 			get { return _MultilingualName; }
@@ -78,10 +88,17 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualName");
 			}
 		}
+		[JsonProperty]
 		public string Description
 		{
 			get { return _Description; }
+			private set 
+			{ 
+				_Description = value;
+				OnPropertyChanged("Description");
+			}
 		}
+		[JsonProperty]
 		public IList<TranslationToken> MultilingualDescription
 		{
 			get { return _MultilingualDescription; }
@@ -91,6 +108,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualDescription");
 			}
 		}
+		[JsonProperty]
 		public IList<BaseSegmentCondition> Conditions
 		{
 			get { return _Conditions; }
@@ -100,6 +118,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Conditions");
 			}
 		}
+		[JsonProperty]
 		public BaseSegmentValue Value
 		{
 			get { return _Value; }
@@ -116,46 +135,47 @@ namespace Kaltura.Types
 		{
 		}
 
-		public SegmentationType(XmlElement node) : base(node)
+		public SegmentationType(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["id"] != null)
 			{
-				switch (propertyNode.Name)
+				this._Id = ParseLong(node["id"].Value<string>());
+			}
+			if(node["name"] != null)
+			{
+				this._Name = node["name"].Value<string>();
+			}
+			if(node["multilingualName"] != null)
+			{
+				this._MultilingualName = new List<TranslationToken>();
+				foreach(var arrayNode in node["multilingualName"].Children())
 				{
-					case "id":
-						this._Id = ParseLong(propertyNode.InnerText);
-						continue;
-					case "name":
-						this._Name = propertyNode.InnerText;
-						continue;
-					case "multilingualName":
-						this._MultilingualName = new List<TranslationToken>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
-						}
-						continue;
-					case "description":
-						this._Description = propertyNode.InnerText;
-						continue;
-					case "multilingualDescription":
-						this._MultilingualDescription = new List<TranslationToken>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._MultilingualDescription.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
-						}
-						continue;
-					case "conditions":
-						this._Conditions = new List<BaseSegmentCondition>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._Conditions.Add(ObjectFactory.Create<BaseSegmentCondition>(arrayNode));
-						}
-						continue;
-					case "value":
-						this._Value = ObjectFactory.Create<BaseSegmentValue>(propertyNode);
-						continue;
+					this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
 				}
+			}
+			if(node["description"] != null)
+			{
+				this._Description = node["description"].Value<string>();
+			}
+			if(node["multilingualDescription"] != null)
+			{
+				this._MultilingualDescription = new List<TranslationToken>();
+				foreach(var arrayNode in node["multilingualDescription"].Children())
+				{
+					this._MultilingualDescription.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
+				}
+			}
+			if(node["conditions"] != null)
+			{
+				this._Conditions = new List<BaseSegmentCondition>();
+				foreach(var arrayNode in node["conditions"].Children())
+				{
+					this._Conditions.Add(ObjectFactory.Create<BaseSegmentCondition>(arrayNode));
+				}
+			}
+			if(node["value"] != null)
+			{
+				this._Value = ObjectFactory.Create<BaseSegmentValue>(node["value"]);
 			}
 		}
 		#endregion

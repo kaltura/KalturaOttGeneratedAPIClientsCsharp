@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -48,6 +50,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public MonetizationType Type
 		{
 			get { return _Type; }
@@ -57,6 +60,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
+		[JsonProperty]
 		public int MinimumPrice
 		{
 			get { return _MinimumPrice; }
@@ -66,6 +70,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("MinimumPrice");
 			}
 		}
+		[JsonProperty]
 		public int Multiplier
 		{
 			get { return _Multiplier; }
@@ -82,22 +87,19 @@ namespace Kaltura.Types
 		{
 		}
 
-		public MonetizationCondition(XmlElement node) : base(node)
+		public MonetizationCondition(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["type"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "type":
-						this._Type = (MonetizationType)StringEnum.Parse(typeof(MonetizationType), propertyNode.InnerText);
-						continue;
-					case "minimumPrice":
-						this._MinimumPrice = ParseInt(propertyNode.InnerText);
-						continue;
-					case "multiplier":
-						this._Multiplier = ParseInt(propertyNode.InnerText);
-						continue;
-				}
+				this._Type = (MonetizationType)StringEnum.Parse(typeof(MonetizationType), node["type"].Value<string>());
+			}
+			if(node["minimumPrice"] != null)
+			{
+				this._MinimumPrice = ParseInt(node["minimumPrice"].Value<string>());
+			}
+			if(node["multiplier"] != null)
+			{
+				this._Multiplier = ParseInt(node["multiplier"].Value<string>());
 			}
 		}
 		#endregion

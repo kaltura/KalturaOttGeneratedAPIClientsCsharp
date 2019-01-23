@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -46,6 +48,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public int Score
 		{
 			get { return _Score; }
@@ -55,6 +58,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Score");
 			}
 		}
+		[JsonProperty]
 		public IList<ContentActionCondition> Actions
 		{
 			get { return _Actions; }
@@ -71,22 +75,18 @@ namespace Kaltura.Types
 		{
 		}
 
-		public ContentScoreCondition(XmlElement node) : base(node)
+		public ContentScoreCondition(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["score"] != null)
 			{
-				switch (propertyNode.Name)
+				this._Score = ParseInt(node["score"].Value<string>());
+			}
+			if(node["actions"] != null)
+			{
+				this._Actions = new List<ContentActionCondition>();
+				foreach(var arrayNode in node["actions"].Children())
 				{
-					case "score":
-						this._Score = ParseInt(propertyNode.InnerText);
-						continue;
-					case "actions":
-						this._Actions = new List<ContentActionCondition>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._Actions.Add(ObjectFactory.Create<ContentActionCondition>(arrayNode));
-						}
-						continue;
+					this._Actions.Add(ObjectFactory.Create<ContentActionCondition>(arrayNode));
 				}
 			}
 		}

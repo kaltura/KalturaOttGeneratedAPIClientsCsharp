@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -32,6 +32,7 @@ using System.IO;
 using Kaltura.Request;
 using Kaltura.Types;
 using Kaltura.Enums;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
@@ -72,13 +73,13 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<AssetUserRule>(result);
 		}
 	}
 
-	public class AssetUserRuleAttachUserRequestBuilder : RequestBuilder<object>
+	public class AssetUserRuleAttachUserRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
 		public const string RULE_ID = "ruleId";
@@ -115,13 +116,13 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return null;
 		}
 	}
 
-	public class AssetUserRuleDeleteRequestBuilder : RequestBuilder<object>
+	public class AssetUserRuleDeleteRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
 		public const string ID = "id";
@@ -158,13 +159,13 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return null;
 		}
 	}
 
-	public class AssetUserRuleDetachUserRequestBuilder : RequestBuilder<object>
+	public class AssetUserRuleDetachUserRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
 		public const string RULE_ID = "ruleId";
@@ -201,7 +202,7 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return null;
 		}
@@ -244,7 +245,7 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<ListResponse<AssetUserRule>>(result);
 		}
@@ -296,7 +297,7 @@ namespace Kaltura.Services
 			return kfiles;
 		}
 
-		public override object Deserialize(XmlElement result)
+		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<AssetUserRule>(result);
 		}

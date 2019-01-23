@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -46,6 +48,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public bool? Not
 		{
 			get { return _Not; }
@@ -55,6 +58,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Not");
 			}
 		}
+		[JsonProperty]
 		public string Countries
 		{
 			get { return _Countries; }
@@ -71,19 +75,15 @@ namespace Kaltura.Types
 		{
 		}
 
-		public CountryCondition(XmlElement node) : base(node)
+		public CountryCondition(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["not"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "not":
-						this._Not = ParseBool(propertyNode.InnerText);
-						continue;
-					case "countries":
-						this._Countries = propertyNode.InnerText;
-						continue;
-				}
+				this._Not = ParseBool(node["not"].Value<string>());
+			}
+			if(node["countries"] != null)
+			{
+				this._Countries = node["countries"].Value<string>();
 			}
 		}
 		#endregion

@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -60,6 +62,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public long EpgChannelId
 		{
 			get { return _EpgChannelId; }
@@ -69,6 +72,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("EpgChannelId");
 			}
 		}
+		[JsonProperty]
 		public string EpgId
 		{
 			get { return _EpgId; }
@@ -78,6 +82,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("EpgId");
 			}
 		}
+		[JsonProperty]
 		public long RelatedMediaId
 		{
 			get { return _RelatedMediaId; }
@@ -87,6 +92,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("RelatedMediaId");
 			}
 		}
+		[JsonProperty]
 		public string Crid
 		{
 			get { return _Crid; }
@@ -96,6 +102,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Crid");
 			}
 		}
+		[JsonProperty]
 		public long LinearAssetId
 		{
 			get { return _LinearAssetId; }
@@ -105,21 +112,45 @@ namespace Kaltura.Types
 				OnPropertyChanged("LinearAssetId");
 			}
 		}
+		[JsonProperty]
 		public bool? EnableCdvr
 		{
 			get { return _EnableCdvr; }
+			private set 
+			{ 
+				_EnableCdvr = value;
+				OnPropertyChanged("EnableCdvr");
+			}
 		}
+		[JsonProperty]
 		public bool? EnableCatchUp
 		{
 			get { return _EnableCatchUp; }
+			private set 
+			{ 
+				_EnableCatchUp = value;
+				OnPropertyChanged("EnableCatchUp");
+			}
 		}
+		[JsonProperty]
 		public bool? EnableStartOver
 		{
 			get { return _EnableStartOver; }
+			private set 
+			{ 
+				_EnableStartOver = value;
+				OnPropertyChanged("EnableStartOver");
+			}
 		}
+		[JsonProperty]
 		public bool? EnableTrickPlay
 		{
 			get { return _EnableTrickPlay; }
+			private set 
+			{ 
+				_EnableTrickPlay = value;
+				OnPropertyChanged("EnableTrickPlay");
+			}
 		}
 		#endregion
 
@@ -128,40 +159,43 @@ namespace Kaltura.Types
 		{
 		}
 
-		public ProgramAsset(XmlElement node) : base(node)
+		public ProgramAsset(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["epgChannelId"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "epgChannelId":
-						this._EpgChannelId = ParseLong(propertyNode.InnerText);
-						continue;
-					case "epgId":
-						this._EpgId = propertyNode.InnerText;
-						continue;
-					case "relatedMediaId":
-						this._RelatedMediaId = ParseLong(propertyNode.InnerText);
-						continue;
-					case "crid":
-						this._Crid = propertyNode.InnerText;
-						continue;
-					case "linearAssetId":
-						this._LinearAssetId = ParseLong(propertyNode.InnerText);
-						continue;
-					case "enableCdvr":
-						this._EnableCdvr = ParseBool(propertyNode.InnerText);
-						continue;
-					case "enableCatchUp":
-						this._EnableCatchUp = ParseBool(propertyNode.InnerText);
-						continue;
-					case "enableStartOver":
-						this._EnableStartOver = ParseBool(propertyNode.InnerText);
-						continue;
-					case "enableTrickPlay":
-						this._EnableTrickPlay = ParseBool(propertyNode.InnerText);
-						continue;
-				}
+				this._EpgChannelId = ParseLong(node["epgChannelId"].Value<string>());
+			}
+			if(node["epgId"] != null)
+			{
+				this._EpgId = node["epgId"].Value<string>();
+			}
+			if(node["relatedMediaId"] != null)
+			{
+				this._RelatedMediaId = ParseLong(node["relatedMediaId"].Value<string>());
+			}
+			if(node["crid"] != null)
+			{
+				this._Crid = node["crid"].Value<string>();
+			}
+			if(node["linearAssetId"] != null)
+			{
+				this._LinearAssetId = ParseLong(node["linearAssetId"].Value<string>());
+			}
+			if(node["enableCdvr"] != null)
+			{
+				this._EnableCdvr = ParseBool(node["enableCdvr"].Value<string>());
+			}
+			if(node["enableCatchUp"] != null)
+			{
+				this._EnableCatchUp = ParseBool(node["enableCatchUp"].Value<string>());
+			}
+			if(node["enableStartOver"] != null)
+			{
+				this._EnableStartOver = ParseBool(node["enableStartOver"].Value<string>());
+			}
+			if(node["enableTrickPlay"] != null)
+			{
+				this._EnableTrickPlay = ParseBool(node["enableTrickPlay"].Value<string>());
 			}
 		}
 		#endregion

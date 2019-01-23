@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -50,6 +52,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public Price Price
 		{
 			get { return _Price; }
@@ -59,6 +62,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Price");
 			}
 		}
+		[JsonProperty]
 		public long Date
 		{
 			get { return _Date; }
@@ -68,6 +72,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Date");
 			}
 		}
+		[JsonProperty]
 		public long UnifiedPaymentId
 		{
 			get { return _UnifiedPaymentId; }
@@ -77,6 +82,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("UnifiedPaymentId");
 			}
 		}
+		[JsonProperty]
 		public IList<EntitlementRenewalBase> Entitlements
 		{
 			get { return _Entitlements; }
@@ -93,28 +99,26 @@ namespace Kaltura.Types
 		{
 		}
 
-		public UnifiedPaymentRenewal(XmlElement node) : base(node)
+		public UnifiedPaymentRenewal(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["price"] != null)
 			{
-				switch (propertyNode.Name)
+				this._Price = ObjectFactory.Create<Price>(node["price"]);
+			}
+			if(node["date"] != null)
+			{
+				this._Date = ParseLong(node["date"].Value<string>());
+			}
+			if(node["unifiedPaymentId"] != null)
+			{
+				this._UnifiedPaymentId = ParseLong(node["unifiedPaymentId"].Value<string>());
+			}
+			if(node["entitlements"] != null)
+			{
+				this._Entitlements = new List<EntitlementRenewalBase>();
+				foreach(var arrayNode in node["entitlements"].Children())
 				{
-					case "price":
-						this._Price = ObjectFactory.Create<Price>(propertyNode);
-						continue;
-					case "date":
-						this._Date = ParseLong(propertyNode.InnerText);
-						continue;
-					case "unifiedPaymentId":
-						this._UnifiedPaymentId = ParseLong(propertyNode.InnerText);
-						continue;
-					case "entitlements":
-						this._Entitlements = new List<EntitlementRenewalBase>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._Entitlements.Add(ObjectFactory.Create<EntitlementRenewalBase>(arrayNode));
-						}
-						continue;
+					this._Entitlements.Add(ObjectFactory.Create<EntitlementRenewalBase>(arrayNode));
 				}
 			}
 		}
