@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -48,6 +50,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public string StatusIn
 		{
 			get { return _StatusIn; }
@@ -57,6 +60,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("StatusIn");
 			}
 		}
+		[JsonProperty]
 		public string FilterExpression
 		{
 			get { return _FilterExpression; }
@@ -66,6 +70,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("FilterExpression");
 			}
 		}
+		[JsonProperty]
 		public new RecordingOrderBy OrderBy
 		{
 			get { return _OrderBy; }
@@ -82,22 +87,19 @@ namespace Kaltura.Types
 		{
 		}
 
-		public RecordingFilter(XmlElement node) : base(node)
+		public RecordingFilter(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["statusIn"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "statusIn":
-						this._StatusIn = propertyNode.InnerText;
-						continue;
-					case "filterExpression":
-						this._FilterExpression = propertyNode.InnerText;
-						continue;
-					case "orderBy":
-						this._OrderBy = (RecordingOrderBy)StringEnum.Parse(typeof(RecordingOrderBy), propertyNode.InnerText);
-						continue;
-				}
+				this._StatusIn = node["statusIn"].Value<string>();
+			}
+			if(node["filterExpression"] != null)
+			{
+				this._FilterExpression = node["filterExpression"].Value<string>();
+			}
+			if(node["orderBy"] != null)
+			{
+				this._OrderBy = (RecordingOrderBy)StringEnum.Parse(typeof(RecordingOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion

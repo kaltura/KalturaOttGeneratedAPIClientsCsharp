@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -66,10 +68,17 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public long Id
 		{
 			get { return _Id; }
+			private set 
+			{ 
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
 		}
+		[JsonProperty]
 		public string Name
 		{
 			get { return _Name; }
@@ -79,6 +88,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		[JsonProperty]
 		public string Description
 		{
 			get { return _Description; }
@@ -88,6 +98,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Description");
 			}
 		}
+		[JsonProperty]
 		public int Order
 		{
 			get { return _Order; }
@@ -97,6 +108,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Order");
 			}
 		}
+		[JsonProperty]
 		public int MediaTag
 		{
 			get { return _MediaTag; }
@@ -106,6 +118,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaTag");
 			}
 		}
+		[JsonProperty]
 		public int EpgTag
 		{
 			get { return _EpgTag; }
@@ -115,6 +128,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("EpgTag");
 			}
 		}
+		[JsonProperty]
 		public bool? BlockAnonymousAccess
 		{
 			get { return _BlockAnonymousAccess; }
@@ -124,6 +138,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("BlockAnonymousAccess");
 			}
 		}
+		[JsonProperty]
 		public ParentalRuleType RuleType
 		{
 			get { return _RuleType; }
@@ -133,6 +148,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("RuleType");
 			}
 		}
+		[JsonProperty]
 		public IList<StringValue> MediaTagValues
 		{
 			get { return _MediaTagValues; }
@@ -142,6 +158,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaTagValues");
 			}
 		}
+		[JsonProperty]
 		public IList<StringValue> EpgTagValues
 		{
 			get { return _EpgTagValues; }
@@ -151,6 +168,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("EpgTagValues");
 			}
 		}
+		[JsonProperty]
 		public bool? IsDefault
 		{
 			get { return _IsDefault; }
@@ -160,6 +178,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsDefault");
 			}
 		}
+		[JsonProperty]
 		public RuleLevel Origin
 		{
 			get { return _Origin; }
@@ -176,57 +195,63 @@ namespace Kaltura.Types
 		{
 		}
 
-		public ParentalRule(XmlElement node) : base(node)
+		public ParentalRule(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["id"] != null)
 			{
-				switch (propertyNode.Name)
+				this._Id = ParseLong(node["id"].Value<string>());
+			}
+			if(node["name"] != null)
+			{
+				this._Name = node["name"].Value<string>();
+			}
+			if(node["description"] != null)
+			{
+				this._Description = node["description"].Value<string>();
+			}
+			if(node["order"] != null)
+			{
+				this._Order = ParseInt(node["order"].Value<string>());
+			}
+			if(node["mediaTag"] != null)
+			{
+				this._MediaTag = ParseInt(node["mediaTag"].Value<string>());
+			}
+			if(node["epgTag"] != null)
+			{
+				this._EpgTag = ParseInt(node["epgTag"].Value<string>());
+			}
+			if(node["blockAnonymousAccess"] != null)
+			{
+				this._BlockAnonymousAccess = ParseBool(node["blockAnonymousAccess"].Value<string>());
+			}
+			if(node["ruleType"] != null)
+			{
+				this._RuleType = (ParentalRuleType)StringEnum.Parse(typeof(ParentalRuleType), node["ruleType"].Value<string>());
+			}
+			if(node["mediaTagValues"] != null)
+			{
+				this._MediaTagValues = new List<StringValue>();
+				foreach(var arrayNode in node["mediaTagValues"].Children())
 				{
-					case "id":
-						this._Id = ParseLong(propertyNode.InnerText);
-						continue;
-					case "name":
-						this._Name = propertyNode.InnerText;
-						continue;
-					case "description":
-						this._Description = propertyNode.InnerText;
-						continue;
-					case "order":
-						this._Order = ParseInt(propertyNode.InnerText);
-						continue;
-					case "mediaTag":
-						this._MediaTag = ParseInt(propertyNode.InnerText);
-						continue;
-					case "epgTag":
-						this._EpgTag = ParseInt(propertyNode.InnerText);
-						continue;
-					case "blockAnonymousAccess":
-						this._BlockAnonymousAccess = ParseBool(propertyNode.InnerText);
-						continue;
-					case "ruleType":
-						this._RuleType = (ParentalRuleType)StringEnum.Parse(typeof(ParentalRuleType), propertyNode.InnerText);
-						continue;
-					case "mediaTagValues":
-						this._MediaTagValues = new List<StringValue>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._MediaTagValues.Add(ObjectFactory.Create<StringValue>(arrayNode));
-						}
-						continue;
-					case "epgTagValues":
-						this._EpgTagValues = new List<StringValue>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._EpgTagValues.Add(ObjectFactory.Create<StringValue>(arrayNode));
-						}
-						continue;
-					case "isDefault":
-						this._IsDefault = ParseBool(propertyNode.InnerText);
-						continue;
-					case "origin":
-						this._Origin = (RuleLevel)StringEnum.Parse(typeof(RuleLevel), propertyNode.InnerText);
-						continue;
+					this._MediaTagValues.Add(ObjectFactory.Create<StringValue>(arrayNode));
 				}
+			}
+			if(node["epgTagValues"] != null)
+			{
+				this._EpgTagValues = new List<StringValue>();
+				foreach(var arrayNode in node["epgTagValues"].Children())
+				{
+					this._EpgTagValues.Add(ObjectFactory.Create<StringValue>(arrayNode));
+				}
+			}
+			if(node["isDefault"] != null)
+			{
+				this._IsDefault = ParseBool(node["isDefault"].Value<string>());
+			}
+			if(node["origin"] != null)
+			{
+				this._Origin = (RuleLevel)StringEnum.Parse(typeof(RuleLevel), node["origin"].Value<string>());
 			}
 		}
 		#endregion

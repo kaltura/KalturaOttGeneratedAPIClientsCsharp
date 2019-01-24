@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -58,10 +60,17 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public string Id
 		{
 			get { return _Id; }
+			private set 
+			{ 
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
 		}
+		[JsonProperty]
 		public string Name
 		{
 			get { return _Name; }
@@ -71,6 +80,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		[JsonProperty]
 		public IList<TranslationToken> Descriptions
 		{
 			get { return _Descriptions; }
@@ -80,6 +90,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Descriptions");
 			}
 		}
+		[JsonProperty]
 		public long StartDate
 		{
 			get { return _StartDate; }
@@ -89,6 +100,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
+		[JsonProperty]
 		public long EndDate
 		{
 			get { return _EndDate; }
@@ -98,6 +110,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
+		[JsonProperty]
 		public int MaxUsesNumber
 		{
 			get { return _MaxUsesNumber; }
@@ -107,6 +120,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxUsesNumber");
 			}
 		}
+		[JsonProperty]
 		public int MaxUsesNumberOnRenewableSub
 		{
 			get { return _MaxUsesNumberOnRenewableSub; }
@@ -116,6 +130,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxUsesNumberOnRenewableSub");
 			}
 		}
+		[JsonProperty]
 		public CouponGroupType CouponGroupType
 		{
 			get { return _CouponGroupType; }
@@ -132,41 +147,43 @@ namespace Kaltura.Types
 		{
 		}
 
-		public CouponsGroup(XmlElement node) : base(node)
+		public CouponsGroup(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["id"] != null)
 			{
-				switch (propertyNode.Name)
+				this._Id = node["id"].Value<string>();
+			}
+			if(node["name"] != null)
+			{
+				this._Name = node["name"].Value<string>();
+			}
+			if(node["descriptions"] != null)
+			{
+				this._Descriptions = new List<TranslationToken>();
+				foreach(var arrayNode in node["descriptions"].Children())
 				{
-					case "id":
-						this._Id = propertyNode.InnerText;
-						continue;
-					case "name":
-						this._Name = propertyNode.InnerText;
-						continue;
-					case "descriptions":
-						this._Descriptions = new List<TranslationToken>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._Descriptions.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
-						}
-						continue;
-					case "startDate":
-						this._StartDate = ParseLong(propertyNode.InnerText);
-						continue;
-					case "endDate":
-						this._EndDate = ParseLong(propertyNode.InnerText);
-						continue;
-					case "maxUsesNumber":
-						this._MaxUsesNumber = ParseInt(propertyNode.InnerText);
-						continue;
-					case "maxUsesNumberOnRenewableSub":
-						this._MaxUsesNumberOnRenewableSub = ParseInt(propertyNode.InnerText);
-						continue;
-					case "couponGroupType":
-						this._CouponGroupType = (CouponGroupType)StringEnum.Parse(typeof(CouponGroupType), propertyNode.InnerText);
-						continue;
+					this._Descriptions.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
 				}
+			}
+			if(node["startDate"] != null)
+			{
+				this._StartDate = ParseLong(node["startDate"].Value<string>());
+			}
+			if(node["endDate"] != null)
+			{
+				this._EndDate = ParseLong(node["endDate"].Value<string>());
+			}
+			if(node["maxUsesNumber"] != null)
+			{
+				this._MaxUsesNumber = ParseInt(node["maxUsesNumber"].Value<string>());
+			}
+			if(node["maxUsesNumberOnRenewableSub"] != null)
+			{
+				this._MaxUsesNumberOnRenewableSub = ParseInt(node["maxUsesNumberOnRenewableSub"].Value<string>());
+			}
+			if(node["couponGroupType"] != null)
+			{
+				this._CouponGroupType = (CouponGroupType)StringEnum.Parse(typeof(CouponGroupType), node["couponGroupType"].Value<string>());
 			}
 		}
 		#endregion

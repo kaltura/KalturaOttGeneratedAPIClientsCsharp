@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -56,6 +58,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public string Description
 		{
 			get { return _Description; }
@@ -65,6 +68,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Description");
 			}
 		}
+		[JsonProperty]
 		public IList<MediaImage> Images
 		{
 			get { return _Images; }
@@ -74,6 +78,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Images");
 			}
 		}
+		[JsonProperty]
 		public IList<IntegerValue> AssetTypes
 		{
 			get { return _AssetTypes; }
@@ -83,6 +88,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetTypes");
 			}
 		}
+		[JsonProperty]
 		public string FilterExpression
 		{
 			get { return _FilterExpression; }
@@ -92,6 +98,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("FilterExpression");
 			}
 		}
+		[JsonProperty]
 		public bool? IsActive
 		{
 			get { return _IsActive; }
@@ -101,6 +108,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsActive");
 			}
 		}
+		[JsonProperty]
 		public AssetOrderBy Order
 		{
 			get { return _Order; }
@@ -110,6 +118,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Order");
 			}
 		}
+		[JsonProperty]
 		public AssetGroupBy GroupBy
 		{
 			get { return _GroupBy; }
@@ -126,42 +135,43 @@ namespace Kaltura.Types
 		{
 		}
 
-		public Channel(XmlElement node) : base(node)
+		public Channel(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["description"] != null)
 			{
-				switch (propertyNode.Name)
+				this._Description = node["description"].Value<string>();
+			}
+			if(node["images"] != null)
+			{
+				this._Images = new List<MediaImage>();
+				foreach(var arrayNode in node["images"].Children())
 				{
-					case "description":
-						this._Description = propertyNode.InnerText;
-						continue;
-					case "images":
-						this._Images = new List<MediaImage>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._Images.Add(ObjectFactory.Create<MediaImage>(arrayNode));
-						}
-						continue;
-					case "assetTypes":
-						this._AssetTypes = new List<IntegerValue>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._AssetTypes.Add(ObjectFactory.Create<IntegerValue>(arrayNode));
-						}
-						continue;
-					case "filterExpression":
-						this._FilterExpression = propertyNode.InnerText;
-						continue;
-					case "isActive":
-						this._IsActive = ParseBool(propertyNode.InnerText);
-						continue;
-					case "order":
-						this._Order = (AssetOrderBy)StringEnum.Parse(typeof(AssetOrderBy), propertyNode.InnerText);
-						continue;
-					case "groupBy":
-						this._GroupBy = ObjectFactory.Create<AssetGroupBy>(propertyNode);
-						continue;
+					this._Images.Add(ObjectFactory.Create<MediaImage>(arrayNode));
 				}
+			}
+			if(node["assetTypes"] != null)
+			{
+				this._AssetTypes = new List<IntegerValue>();
+				foreach(var arrayNode in node["assetTypes"].Children())
+				{
+					this._AssetTypes.Add(ObjectFactory.Create<IntegerValue>(arrayNode));
+				}
+			}
+			if(node["filterExpression"] != null)
+			{
+				this._FilterExpression = node["filterExpression"].Value<string>();
+			}
+			if(node["isActive"] != null)
+			{
+				this._IsActive = ParseBool(node["isActive"].Value<string>());
+			}
+			if(node["order"] != null)
+			{
+				this._Order = (AssetOrderBy)StringEnum.Parse(typeof(AssetOrderBy), node["order"].Value<string>());
+			}
+			if(node["groupBy"] != null)
+			{
+				this._GroupBy = ObjectFactory.Create<AssetGroupBy>(node["groupBy"]);
 			}
 		}
 		#endregion

@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -46,6 +48,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public int IdEqual
 		{
 			get { return _IdEqual; }
@@ -55,6 +58,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdEqual");
 			}
 		}
+		[JsonProperty]
 		public string KSql
 		{
 			get { return _KSql; }
@@ -71,19 +75,15 @@ namespace Kaltura.Types
 		{
 		}
 
-		public ChannelFilter(XmlElement node) : base(node)
+		public ChannelFilter(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["idEqual"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "idEqual":
-						this._IdEqual = ParseInt(propertyNode.InnerText);
-						continue;
-					case "kSql":
-						this._KSql = propertyNode.InnerText;
-						continue;
-				}
+				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
+			}
+			if(node["kSql"] != null)
+			{
+				this._KSql = node["kSql"].Value<string>();
 			}
 		}
 		#endregion

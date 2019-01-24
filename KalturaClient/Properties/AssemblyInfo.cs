@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kaltura")]
 [assembly: AssemblyProduct("Kaltura.OttClient")]
-[assembly: AssemblyCopyright("Copyright (C) 2006-2018  Kaltura Inc.")]
+[assembly: AssemblyCopyright("Copyright (C) 2006-2019  Kaltura Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,5 +33,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.7.81.23826")]
-[assembly: AssemblyFileVersion("4.7.81.23826")]
+[assembly: AssemblyVersion("4.7.84.18306")]
+[assembly: AssemblyFileVersion("4.7.84.18306")]

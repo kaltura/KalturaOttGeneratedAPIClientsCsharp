@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -56,6 +58,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public int AssetId
 		{
 			get { return _AssetId; }
@@ -65,10 +68,17 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetId");
 			}
 		}
+		[JsonProperty]
 		public int Id
 		{
 			get { return _Id; }
+			private set 
+			{ 
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
 		}
+		[JsonProperty]
 		public string Type
 		{
 			get { return _Type; }
@@ -78,6 +88,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
+		[JsonProperty]
 		public string Url
 		{
 			get { return _Url; }
@@ -87,6 +98,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Url");
 			}
 		}
+		[JsonProperty]
 		public long Duration
 		{
 			get { return _Duration; }
@@ -96,6 +108,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Duration");
 			}
 		}
+		[JsonProperty]
 		public string ExternalId
 		{
 			get { return _ExternalId; }
@@ -105,6 +118,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
+		[JsonProperty]
 		public long FileSize
 		{
 			get { return _FileSize; }
@@ -121,34 +135,35 @@ namespace Kaltura.Types
 		{
 		}
 
-		public MediaFile(XmlElement node) : base(node)
+		public MediaFile(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["assetId"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "assetId":
-						this._AssetId = ParseInt(propertyNode.InnerText);
-						continue;
-					case "id":
-						this._Id = ParseInt(propertyNode.InnerText);
-						continue;
-					case "type":
-						this._Type = propertyNode.InnerText;
-						continue;
-					case "url":
-						this._Url = propertyNode.InnerText;
-						continue;
-					case "duration":
-						this._Duration = ParseLong(propertyNode.InnerText);
-						continue;
-					case "externalId":
-						this._ExternalId = propertyNode.InnerText;
-						continue;
-					case "fileSize":
-						this._FileSize = ParseLong(propertyNode.InnerText);
-						continue;
-				}
+				this._AssetId = ParseInt(node["assetId"].Value<string>());
+			}
+			if(node["id"] != null)
+			{
+				this._Id = ParseInt(node["id"].Value<string>());
+			}
+			if(node["type"] != null)
+			{
+				this._Type = node["type"].Value<string>();
+			}
+			if(node["url"] != null)
+			{
+				this._Url = node["url"].Value<string>();
+			}
+			if(node["duration"] != null)
+			{
+				this._Duration = ParseLong(node["duration"].Value<string>());
+			}
+			if(node["externalId"] != null)
+			{
+				this._ExternalId = node["externalId"].Value<string>();
+			}
+			if(node["fileSize"] != null)
+			{
+				this._FileSize = ParseLong(node["fileSize"].Value<string>());
 			}
 		}
 		#endregion

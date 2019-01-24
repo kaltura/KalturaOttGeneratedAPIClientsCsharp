@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -46,6 +48,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public bool? PushNotificationEnabled
 		{
 			get { return _PushNotificationEnabled; }
@@ -55,6 +58,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("PushNotificationEnabled");
 			}
 		}
+		[JsonProperty]
 		public bool? PushFollowEnabled
 		{
 			get { return _PushFollowEnabled; }
@@ -71,19 +75,15 @@ namespace Kaltura.Types
 		{
 		}
 
-		public NotificationsSettings(XmlElement node) : base(node)
+		public NotificationsSettings(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["pushNotificationEnabled"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "pushNotificationEnabled":
-						this._PushNotificationEnabled = ParseBool(propertyNode.InnerText);
-						continue;
-					case "pushFollowEnabled":
-						this._PushFollowEnabled = ParseBool(propertyNode.InnerText);
-						continue;
-				}
+				this._PushNotificationEnabled = ParseBool(node["pushNotificationEnabled"].Value<string>());
+			}
+			if(node["pushFollowEnabled"] != null)
+			{
+				this._PushFollowEnabled = ParseBool(node["pushFollowEnabled"].Value<string>());
 			}
 		}
 		#endregion

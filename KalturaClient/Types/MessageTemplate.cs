@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -54,6 +56,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public string Message
 		{
 			get { return _Message; }
@@ -63,6 +66,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Message");
 			}
 		}
+		[JsonProperty]
 		public string DateFormat
 		{
 			get { return _DateFormat; }
@@ -72,6 +76,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("DateFormat");
 			}
 		}
+		[JsonProperty]
 		public MessageTemplateType MessageType
 		{
 			get { return _MessageType; }
@@ -81,6 +86,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("MessageType");
 			}
 		}
+		[JsonProperty]
 		public string Sound
 		{
 			get { return _Sound; }
@@ -90,6 +96,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Sound");
 			}
 		}
+		[JsonProperty]
 		public string Action
 		{
 			get { return _Action; }
@@ -99,6 +106,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Action");
 			}
 		}
+		[JsonProperty]
 		public string Url
 		{
 			get { return _Url; }
@@ -115,31 +123,31 @@ namespace Kaltura.Types
 		{
 		}
 
-		public MessageTemplate(XmlElement node) : base(node)
+		public MessageTemplate(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["message"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "message":
-						this._Message = propertyNode.InnerText;
-						continue;
-					case "dateFormat":
-						this._DateFormat = propertyNode.InnerText;
-						continue;
-					case "messageType":
-						this._MessageType = (MessageTemplateType)StringEnum.Parse(typeof(MessageTemplateType), propertyNode.InnerText);
-						continue;
-					case "sound":
-						this._Sound = propertyNode.InnerText;
-						continue;
-					case "action":
-						this._Action = propertyNode.InnerText;
-						continue;
-					case "url":
-						this._Url = propertyNode.InnerText;
-						continue;
-				}
+				this._Message = node["message"].Value<string>();
+			}
+			if(node["dateFormat"] != null)
+			{
+				this._DateFormat = node["dateFormat"].Value<string>();
+			}
+			if(node["messageType"] != null)
+			{
+				this._MessageType = (MessageTemplateType)StringEnum.Parse(typeof(MessageTemplateType), node["messageType"].Value<string>());
+			}
+			if(node["sound"] != null)
+			{
+				this._Sound = node["sound"].Value<string>();
+			}
+			if(node["action"] != null)
+			{
+				this._Action = node["action"].Value<string>();
+			}
+			if(node["url"] != null)
+			{
+				this._Url = node["url"].Value<string>();
 			}
 		}
 		#endregion

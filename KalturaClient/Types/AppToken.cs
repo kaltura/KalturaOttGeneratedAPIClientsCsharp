@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -58,10 +60,17 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public string Id
 		{
 			get { return _Id; }
+			private set 
+			{ 
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
 		}
+		[JsonProperty]
 		public int Expiry
 		{
 			get { return _Expiry; }
@@ -71,10 +80,17 @@ namespace Kaltura.Types
 				OnPropertyChanged("Expiry");
 			}
 		}
+		[JsonProperty]
 		public int PartnerId
 		{
 			get { return _PartnerId; }
+			private set 
+			{ 
+				_PartnerId = value;
+				OnPropertyChanged("PartnerId");
+			}
 		}
+		[JsonProperty]
 		public int SessionDuration
 		{
 			get { return _SessionDuration; }
@@ -84,6 +100,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("SessionDuration");
 			}
 		}
+		[JsonProperty]
 		public AppTokenHashType HashType
 		{
 			get { return _HashType; }
@@ -93,6 +110,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("HashType");
 			}
 		}
+		[JsonProperty]
 		public string SessionPrivileges
 		{
 			get { return _SessionPrivileges; }
@@ -102,10 +120,17 @@ namespace Kaltura.Types
 				OnPropertyChanged("SessionPrivileges");
 			}
 		}
+		[JsonProperty]
 		public string Token
 		{
 			get { return _Token; }
+			private set 
+			{ 
+				_Token = value;
+				OnPropertyChanged("Token");
+			}
 		}
+		[JsonProperty]
 		public string SessionUserId
 		{
 			get { return _SessionUserId; }
@@ -122,37 +147,39 @@ namespace Kaltura.Types
 		{
 		}
 
-		public AppToken(XmlElement node) : base(node)
+		public AppToken(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["id"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "id":
-						this._Id = propertyNode.InnerText;
-						continue;
-					case "expiry":
-						this._Expiry = ParseInt(propertyNode.InnerText);
-						continue;
-					case "partnerId":
-						this._PartnerId = ParseInt(propertyNode.InnerText);
-						continue;
-					case "sessionDuration":
-						this._SessionDuration = ParseInt(propertyNode.InnerText);
-						continue;
-					case "hashType":
-						this._HashType = (AppTokenHashType)StringEnum.Parse(typeof(AppTokenHashType), propertyNode.InnerText);
-						continue;
-					case "sessionPrivileges":
-						this._SessionPrivileges = propertyNode.InnerText;
-						continue;
-					case "token":
-						this._Token = propertyNode.InnerText;
-						continue;
-					case "sessionUserId":
-						this._SessionUserId = propertyNode.InnerText;
-						continue;
-				}
+				this._Id = node["id"].Value<string>();
+			}
+			if(node["expiry"] != null)
+			{
+				this._Expiry = ParseInt(node["expiry"].Value<string>());
+			}
+			if(node["partnerId"] != null)
+			{
+				this._PartnerId = ParseInt(node["partnerId"].Value<string>());
+			}
+			if(node["sessionDuration"] != null)
+			{
+				this._SessionDuration = ParseInt(node["sessionDuration"].Value<string>());
+			}
+			if(node["hashType"] != null)
+			{
+				this._HashType = (AppTokenHashType)StringEnum.Parse(typeof(AppTokenHashType), node["hashType"].Value<string>());
+			}
+			if(node["sessionPrivileges"] != null)
+			{
+				this._SessionPrivileges = node["sessionPrivileges"].Value<string>();
+			}
+			if(node["token"] != null)
+			{
+				this._Token = node["token"].Value<string>();
+			}
+			if(node["sessionUserId"] != null)
+			{
+				this._SessionUserId = node["sessionUserId"].Value<string>();
 			}
 		}
 		#endregion

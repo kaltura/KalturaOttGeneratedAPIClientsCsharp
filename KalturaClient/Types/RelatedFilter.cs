@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -48,6 +50,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public string KSql
 		{
 			get { return _KSql; }
@@ -57,6 +60,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("KSql");
 			}
 		}
+		[JsonProperty]
 		public int IdEqual
 		{
 			get { return _IdEqual; }
@@ -66,6 +70,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdEqual");
 			}
 		}
+		[JsonProperty]
 		public string TypeIn
 		{
 			get { return _TypeIn; }
@@ -82,22 +87,19 @@ namespace Kaltura.Types
 		{
 		}
 
-		public RelatedFilter(XmlElement node) : base(node)
+		public RelatedFilter(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["kSql"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "kSql":
-						this._KSql = propertyNode.InnerText;
-						continue;
-					case "idEqual":
-						this._IdEqual = ParseInt(propertyNode.InnerText);
-						continue;
-					case "typeIn":
-						this._TypeIn = propertyNode.InnerText;
-						continue;
-				}
+				this._KSql = node["kSql"].Value<string>();
+			}
+			if(node["idEqual"] != null)
+			{
+				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
+			}
+			if(node["typeIn"] != null)
+			{
+				this._TypeIn = node["typeIn"].Value<string>();
 			}
 		}
 		#endregion
