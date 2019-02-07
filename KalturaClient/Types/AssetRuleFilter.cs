@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -48,6 +50,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public RuleConditionType ConditionsContainType
 		{
 			get { return _ConditionsContainType; }
@@ -57,6 +60,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("ConditionsContainType");
 			}
 		}
+		[JsonProperty]
 		public SlimAsset AssetApplied
 		{
 			get { return _AssetApplied; }
@@ -66,6 +70,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetApplied");
 			}
 		}
+		[JsonProperty]
 		public new AssetRuleOrderBy OrderBy
 		{
 			get { return _OrderBy; }
@@ -82,22 +87,19 @@ namespace Kaltura.Types
 		{
 		}
 
-		public AssetRuleFilter(XmlElement node) : base(node)
+		public AssetRuleFilter(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["conditionsContainType"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "conditionsContainType":
-						this._ConditionsContainType = (RuleConditionType)StringEnum.Parse(typeof(RuleConditionType), propertyNode.InnerText);
-						continue;
-					case "assetApplied":
-						this._AssetApplied = ObjectFactory.Create<SlimAsset>(propertyNode);
-						continue;
-					case "orderBy":
-						this._OrderBy = (AssetRuleOrderBy)StringEnum.Parse(typeof(AssetRuleOrderBy), propertyNode.InnerText);
-						continue;
-				}
+				this._ConditionsContainType = (RuleConditionType)StringEnum.Parse(typeof(RuleConditionType), node["conditionsContainType"].Value<string>());
+			}
+			if(node["assetApplied"] != null)
+			{
+				this._AssetApplied = ObjectFactory.Create<SlimAsset>(node["assetApplied"]);
+			}
+			if(node["orderBy"] != null)
+			{
+				this._OrderBy = (AssetRuleOrderBy)StringEnum.Parse(typeof(AssetRuleOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion

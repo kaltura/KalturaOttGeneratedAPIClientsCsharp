@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -50,6 +52,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public string UsernameEqual
 		{
 			get { return _UsernameEqual; }
@@ -59,6 +62,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("UsernameEqual");
 			}
 		}
+		[JsonProperty]
 		public string ExternalIdEqual
 		{
 			get { return _ExternalIdEqual; }
@@ -68,6 +72,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalIdEqual");
 			}
 		}
+		[JsonProperty]
 		public string IdIn
 		{
 			get { return _IdIn; }
@@ -77,6 +82,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
+		[JsonProperty]
 		public new OTTUserOrderBy OrderBy
 		{
 			get { return _OrderBy; }
@@ -93,25 +99,23 @@ namespace Kaltura.Types
 		{
 		}
 
-		public OTTUserFilter(XmlElement node) : base(node)
+		public OTTUserFilter(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["usernameEqual"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "usernameEqual":
-						this._UsernameEqual = propertyNode.InnerText;
-						continue;
-					case "externalIdEqual":
-						this._ExternalIdEqual = propertyNode.InnerText;
-						continue;
-					case "idIn":
-						this._IdIn = propertyNode.InnerText;
-						continue;
-					case "orderBy":
-						this._OrderBy = (OTTUserOrderBy)StringEnum.Parse(typeof(OTTUserOrderBy), propertyNode.InnerText);
-						continue;
-				}
+				this._UsernameEqual = node["usernameEqual"].Value<string>();
+			}
+			if(node["externalIdEqual"] != null)
+			{
+				this._ExternalIdEqual = node["externalIdEqual"].Value<string>();
+			}
+			if(node["idIn"] != null)
+			{
+				this._IdIn = node["idIn"].Value<string>();
+			}
+			if(node["orderBy"] != null)
+			{
+				this._OrderBy = (OTTUserOrderBy)StringEnum.Parse(typeof(OTTUserOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion

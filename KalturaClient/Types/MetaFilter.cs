@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -54,6 +56,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public MetaFieldName FieldNameEqual
 		{
 			get { return _FieldNameEqual; }
@@ -63,6 +66,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("FieldNameEqual");
 			}
 		}
+		[JsonProperty]
 		public MetaFieldName FieldNameNotEqual
 		{
 			get { return _FieldNameNotEqual; }
@@ -72,6 +76,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("FieldNameNotEqual");
 			}
 		}
+		[JsonProperty]
 		public MetaType TypeEqual
 		{
 			get { return _TypeEqual; }
@@ -81,6 +86,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("TypeEqual");
 			}
 		}
+		[JsonProperty]
 		public AssetType AssetTypeEqual
 		{
 			get { return _AssetTypeEqual; }
@@ -90,6 +96,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetTypeEqual");
 			}
 		}
+		[JsonProperty]
 		public string FeaturesIn
 		{
 			get { return _FeaturesIn; }
@@ -99,6 +106,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("FeaturesIn");
 			}
 		}
+		[JsonProperty]
 		public new MetaOrderBy OrderBy
 		{
 			get { return _OrderBy; }
@@ -115,31 +123,31 @@ namespace Kaltura.Types
 		{
 		}
 
-		public MetaFilter(XmlElement node) : base(node)
+		public MetaFilter(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["fieldNameEqual"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "fieldNameEqual":
-						this._FieldNameEqual = (MetaFieldName)StringEnum.Parse(typeof(MetaFieldName), propertyNode.InnerText);
-						continue;
-					case "fieldNameNotEqual":
-						this._FieldNameNotEqual = (MetaFieldName)StringEnum.Parse(typeof(MetaFieldName), propertyNode.InnerText);
-						continue;
-					case "typeEqual":
-						this._TypeEqual = (MetaType)StringEnum.Parse(typeof(MetaType), propertyNode.InnerText);
-						continue;
-					case "assetTypeEqual":
-						this._AssetTypeEqual = (AssetType)StringEnum.Parse(typeof(AssetType), propertyNode.InnerText);
-						continue;
-					case "featuresIn":
-						this._FeaturesIn = propertyNode.InnerText;
-						continue;
-					case "orderBy":
-						this._OrderBy = (MetaOrderBy)StringEnum.Parse(typeof(MetaOrderBy), propertyNode.InnerText);
-						continue;
-				}
+				this._FieldNameEqual = (MetaFieldName)StringEnum.Parse(typeof(MetaFieldName), node["fieldNameEqual"].Value<string>());
+			}
+			if(node["fieldNameNotEqual"] != null)
+			{
+				this._FieldNameNotEqual = (MetaFieldName)StringEnum.Parse(typeof(MetaFieldName), node["fieldNameNotEqual"].Value<string>());
+			}
+			if(node["typeEqual"] != null)
+			{
+				this._TypeEqual = (MetaType)StringEnum.Parse(typeof(MetaType), node["typeEqual"].Value<string>());
+			}
+			if(node["assetTypeEqual"] != null)
+			{
+				this._AssetTypeEqual = (AssetType)StringEnum.Parse(typeof(AssetType), node["assetTypeEqual"].Value<string>());
+			}
+			if(node["featuresIn"] != null)
+			{
+				this._FeaturesIn = node["featuresIn"].Value<string>();
+			}
+			if(node["orderBy"] != null)
+			{
+				this._OrderBy = (MetaOrderBy)StringEnum.Parse(typeof(MetaOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion

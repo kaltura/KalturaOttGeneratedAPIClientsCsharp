@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -76,10 +78,17 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public long Id
 		{
 			get { return _Id; }
+			private set 
+			{ 
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
 		}
+		[JsonProperty]
 		public int Type
 		{
 			get { return _Type; }
@@ -89,6 +98,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
+		[JsonProperty]
 		public string Name
 		{
 			get { return _Name; }
@@ -98,6 +108,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		[JsonProperty]
 		public IList<TranslationToken> MultilingualName
 		{
 			get { return _MultilingualName; }
@@ -107,6 +118,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualName");
 			}
 		}
+		[JsonProperty]
 		public string Description
 		{
 			get { return _Description; }
@@ -116,6 +128,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Description");
 			}
 		}
+		[JsonProperty]
 		public IList<TranslationToken> MultilingualDescription
 		{
 			get { return _MultilingualDescription; }
@@ -125,6 +138,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualDescription");
 			}
 		}
+		[JsonProperty]
 		public IList<MediaImage> Images
 		{
 			get { return _Images; }
@@ -134,6 +148,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Images");
 			}
 		}
+		[JsonProperty]
 		public IList<MediaFile> MediaFiles
 		{
 			get { return _MediaFiles; }
@@ -143,6 +158,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaFiles");
 			}
 		}
+		[JsonProperty]
 		public IDictionary<string, Value> Metas
 		{
 			get { return _Metas; }
@@ -152,6 +168,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Metas");
 			}
 		}
+		[JsonProperty]
 		public IDictionary<string, MultilingualStringValueArray> Tags
 		{
 			get { return _Tags; }
@@ -161,6 +178,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Tags");
 			}
 		}
+		[JsonProperty]
 		public long StartDate
 		{
 			get { return _StartDate; }
@@ -170,6 +188,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
+		[JsonProperty]
 		public long EndDate
 		{
 			get { return _EndDate; }
@@ -179,6 +198,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
+		[JsonProperty]
 		public bool? EnableCdvr
 		{
 			get { return _EnableCdvr; }
@@ -188,6 +208,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableCdvr");
 			}
 		}
+		[JsonProperty]
 		public bool? EnableCatchUp
 		{
 			get { return _EnableCatchUp; }
@@ -197,6 +218,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableCatchUp");
 			}
 		}
+		[JsonProperty]
 		public bool? EnableStartOver
 		{
 			get { return _EnableStartOver; }
@@ -206,6 +228,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableStartOver");
 			}
 		}
+		[JsonProperty]
 		public bool? EnableTrickPlay
 		{
 			get { return _EnableTrickPlay; }
@@ -215,6 +238,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableTrickPlay");
 			}
 		}
+		[JsonProperty]
 		public string ExternalId
 		{
 			get { return _ExternalId; }
@@ -231,96 +255,107 @@ namespace Kaltura.Types
 		{
 		}
 
-		public Asset(XmlElement node) : base(node)
+		public Asset(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["id"] != null)
 			{
-				switch (propertyNode.Name)
+				this._Id = ParseLong(node["id"].Value<string>());
+			}
+			if(node["type"] != null)
+			{
+				this._Type = ParseInt(node["type"].Value<string>());
+			}
+			if(node["name"] != null)
+			{
+				this._Name = node["name"].Value<string>();
+			}
+			if(node["multilingualName"] != null)
+			{
+				this._MultilingualName = new List<TranslationToken>();
+				foreach(var arrayNode in node["multilingualName"].Children())
 				{
-					case "id":
-						this._Id = ParseLong(propertyNode.InnerText);
-						continue;
-					case "type":
-						this._Type = ParseInt(propertyNode.InnerText);
-						continue;
-					case "name":
-						this._Name = propertyNode.InnerText;
-						continue;
-					case "multilingualName":
-						this._MultilingualName = new List<TranslationToken>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
-						}
-						continue;
-					case "description":
-						this._Description = propertyNode.InnerText;
-						continue;
-					case "multilingualDescription":
-						this._MultilingualDescription = new List<TranslationToken>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._MultilingualDescription.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
-						}
-						continue;
-					case "images":
-						this._Images = new List<MediaImage>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._Images.Add(ObjectFactory.Create<MediaImage>(arrayNode));
-						}
-						continue;
-					case "mediaFiles":
-						this._MediaFiles = new List<MediaFile>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._MediaFiles.Add(ObjectFactory.Create<MediaFile>(arrayNode));
-						}
-						continue;
-					case "metas":
-						{
-							string key;
-							this._Metas = new Dictionary<string, Value>();
-							foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-							{
-								key = arrayNode["itemKey"].InnerText;;
-								this._Metas[key] = ObjectFactory.Create<Value>(arrayNode);
-							}
-						}
-						continue;
-					case "tags":
-						{
-							string key;
-							this._Tags = new Dictionary<string, MultilingualStringValueArray>();
-							foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-							{
-								key = arrayNode["itemKey"].InnerText;;
-								this._Tags[key] = ObjectFactory.Create<MultilingualStringValueArray>(arrayNode);
-							}
-						}
-						continue;
-					case "startDate":
-						this._StartDate = ParseLong(propertyNode.InnerText);
-						continue;
-					case "endDate":
-						this._EndDate = ParseLong(propertyNode.InnerText);
-						continue;
-					case "enableCdvr":
-						this._EnableCdvr = ParseBool(propertyNode.InnerText);
-						continue;
-					case "enableCatchUp":
-						this._EnableCatchUp = ParseBool(propertyNode.InnerText);
-						continue;
-					case "enableStartOver":
-						this._EnableStartOver = ParseBool(propertyNode.InnerText);
-						continue;
-					case "enableTrickPlay":
-						this._EnableTrickPlay = ParseBool(propertyNode.InnerText);
-						continue;
-					case "externalId":
-						this._ExternalId = propertyNode.InnerText;
-						continue;
+					this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
 				}
+			}
+			if(node["description"] != null)
+			{
+				this._Description = node["description"].Value<string>();
+			}
+			if(node["multilingualDescription"] != null)
+			{
+				this._MultilingualDescription = new List<TranslationToken>();
+				foreach(var arrayNode in node["multilingualDescription"].Children())
+				{
+					this._MultilingualDescription.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
+				}
+			}
+			if(node["images"] != null)
+			{
+				this._Images = new List<MediaImage>();
+				foreach(var arrayNode in node["images"].Children())
+				{
+					this._Images.Add(ObjectFactory.Create<MediaImage>(arrayNode));
+				}
+			}
+			if(node["mediaFiles"] != null)
+			{
+				this._MediaFiles = new List<MediaFile>();
+				foreach(var arrayNode in node["mediaFiles"].Children())
+				{
+					this._MediaFiles.Add(ObjectFactory.Create<MediaFile>(arrayNode));
+				}
+			}
+			if(node["metas"] != null)
+			{
+				{
+					string key;
+					this._Metas = new Dictionary<string, Value>();
+					foreach(var arrayNode in node["metas"].Children<JProperty>())
+					{
+						key = arrayNode.Name;
+						this._Metas[key] = ObjectFactory.Create<Value>(arrayNode.Value);
+					}
+				}
+			}
+			if(node["tags"] != null)
+			{
+				{
+					string key;
+					this._Tags = new Dictionary<string, MultilingualStringValueArray>();
+					foreach(var arrayNode in node["tags"].Children<JProperty>())
+					{
+						key = arrayNode.Name;
+						this._Tags[key] = ObjectFactory.Create<MultilingualStringValueArray>(arrayNode.Value);
+					}
+				}
+			}
+			if(node["startDate"] != null)
+			{
+				this._StartDate = ParseLong(node["startDate"].Value<string>());
+			}
+			if(node["endDate"] != null)
+			{
+				this._EndDate = ParseLong(node["endDate"].Value<string>());
+			}
+			if(node["enableCdvr"] != null)
+			{
+				this._EnableCdvr = ParseBool(node["enableCdvr"].Value<string>());
+			}
+			if(node["enableCatchUp"] != null)
+			{
+				this._EnableCatchUp = ParseBool(node["enableCatchUp"].Value<string>());
+			}
+			if(node["enableStartOver"] != null)
+			{
+				this._EnableStartOver = ParseBool(node["enableStartOver"].Value<string>());
+			}
+			if(node["enableTrickPlay"] != null)
+			{
+				this._EnableTrickPlay = ParseBool(node["enableTrickPlay"].Value<string>());
+			}
+			if(node["externalId"] != null)
+			{
+				this._ExternalId = node["externalId"].Value<string>();
 			}
 		}
 		#endregion

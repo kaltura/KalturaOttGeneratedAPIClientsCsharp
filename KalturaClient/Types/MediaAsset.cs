@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -60,6 +62,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public string ExternalIds
 		{
 			get { return _ExternalIds; }
@@ -69,6 +72,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalIds");
 			}
 		}
+		[JsonProperty]
 		public long CatchUpBuffer
 		{
 			get { return _CatchUpBuffer; }
@@ -78,6 +82,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("CatchUpBuffer");
 			}
 		}
+		[JsonProperty]
 		public long TrickPlayBuffer
 		{
 			get { return _TrickPlayBuffer; }
@@ -87,10 +92,17 @@ namespace Kaltura.Types
 				OnPropertyChanged("TrickPlayBuffer");
 			}
 		}
+		[JsonProperty]
 		public bool? EnableRecordingPlaybackNonEntitledChannel
 		{
 			get { return _EnableRecordingPlaybackNonEntitledChannel; }
+			private set 
+			{ 
+				_EnableRecordingPlaybackNonEntitledChannel = value;
+				OnPropertyChanged("EnableRecordingPlaybackNonEntitledChannel");
+			}
 		}
+		[JsonProperty]
 		public string TypeDescription
 		{
 			get { return _TypeDescription; }
@@ -100,6 +112,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("TypeDescription");
 			}
 		}
+		[JsonProperty]
 		public string EntryId
 		{
 			get { return _EntryId; }
@@ -109,6 +122,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("EntryId");
 			}
 		}
+		[JsonProperty]
 		public string DeviceRule
 		{
 			get { return _DeviceRule; }
@@ -118,6 +132,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceRule");
 			}
 		}
+		[JsonProperty]
 		public string GeoBlockRule
 		{
 			get { return _GeoBlockRule; }
@@ -127,6 +142,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("GeoBlockRule");
 			}
 		}
+		[JsonProperty]
 		public string WatchPermissionRule
 		{
 			get { return _WatchPermissionRule; }
@@ -143,40 +159,43 @@ namespace Kaltura.Types
 		{
 		}
 
-		public MediaAsset(XmlElement node) : base(node)
+		public MediaAsset(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["externalIds"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "externalIds":
-						this._ExternalIds = propertyNode.InnerText;
-						continue;
-					case "catchUpBuffer":
-						this._CatchUpBuffer = ParseLong(propertyNode.InnerText);
-						continue;
-					case "trickPlayBuffer":
-						this._TrickPlayBuffer = ParseLong(propertyNode.InnerText);
-						continue;
-					case "enableRecordingPlaybackNonEntitledChannel":
-						this._EnableRecordingPlaybackNonEntitledChannel = ParseBool(propertyNode.InnerText);
-						continue;
-					case "typeDescription":
-						this._TypeDescription = propertyNode.InnerText;
-						continue;
-					case "entryId":
-						this._EntryId = propertyNode.InnerText;
-						continue;
-					case "deviceRule":
-						this._DeviceRule = propertyNode.InnerText;
-						continue;
-					case "geoBlockRule":
-						this._GeoBlockRule = propertyNode.InnerText;
-						continue;
-					case "watchPermissionRule":
-						this._WatchPermissionRule = propertyNode.InnerText;
-						continue;
-				}
+				this._ExternalIds = node["externalIds"].Value<string>();
+			}
+			if(node["catchUpBuffer"] != null)
+			{
+				this._CatchUpBuffer = ParseLong(node["catchUpBuffer"].Value<string>());
+			}
+			if(node["trickPlayBuffer"] != null)
+			{
+				this._TrickPlayBuffer = ParseLong(node["trickPlayBuffer"].Value<string>());
+			}
+			if(node["enableRecordingPlaybackNonEntitledChannel"] != null)
+			{
+				this._EnableRecordingPlaybackNonEntitledChannel = ParseBool(node["enableRecordingPlaybackNonEntitledChannel"].Value<string>());
+			}
+			if(node["typeDescription"] != null)
+			{
+				this._TypeDescription = node["typeDescription"].Value<string>();
+			}
+			if(node["entryId"] != null)
+			{
+				this._EntryId = node["entryId"].Value<string>();
+			}
+			if(node["deviceRule"] != null)
+			{
+				this._DeviceRule = node["deviceRule"].Value<string>();
+			}
+			if(node["geoBlockRule"] != null)
+			{
+				this._GeoBlockRule = node["geoBlockRule"].Value<string>();
+			}
+			if(node["watchPermissionRule"] != null)
+			{
+				this._WatchPermissionRule = node["watchPermissionRule"].Value<string>();
 			}
 		}
 		#endregion

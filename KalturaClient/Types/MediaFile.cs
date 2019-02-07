@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -70,6 +72,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public int AssetId
 		{
 			get { return _AssetId; }
@@ -79,10 +82,17 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetId");
 			}
 		}
+		[JsonProperty]
 		public int Id
 		{
 			get { return _Id; }
+			private set 
+			{ 
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
 		}
+		[JsonProperty]
 		public string Type
 		{
 			get { return _Type; }
@@ -92,6 +102,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
+		[JsonProperty]
 		public long Duration
 		{
 			get { return _Duration; }
@@ -101,6 +112,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Duration");
 			}
 		}
+		[JsonProperty]
 		public string ExternalId
 		{
 			get { return _ExternalId; }
@@ -110,6 +122,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
+		[JsonProperty]
 		public string BillingType
 		{
 			get { return _BillingType; }
@@ -119,6 +132,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("BillingType");
 			}
 		}
+		[JsonProperty]
 		public string Quality
 		{
 			get { return _Quality; }
@@ -128,6 +142,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Quality");
 			}
 		}
+		[JsonProperty]
 		public string HandlingType
 		{
 			get { return _HandlingType; }
@@ -137,6 +152,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("HandlingType");
 			}
 		}
+		[JsonProperty]
 		public string CdnName
 		{
 			get { return _CdnName; }
@@ -146,6 +162,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("CdnName");
 			}
 		}
+		[JsonProperty]
 		public string CdnCode
 		{
 			get { return _CdnCode; }
@@ -155,6 +172,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("CdnCode");
 			}
 		}
+		[JsonProperty]
 		public string AltCdnCode
 		{
 			get { return _AltCdnCode; }
@@ -164,6 +182,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("AltCdnCode");
 			}
 		}
+		[JsonProperty]
 		public StringValueArray PpvModules
 		{
 			get { return _PpvModules; }
@@ -173,6 +192,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("PpvModules");
 			}
 		}
+		[JsonProperty]
 		public string ProductCode
 		{
 			get { return _ProductCode; }
@@ -182,6 +202,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProductCode");
 			}
 		}
+		[JsonProperty]
 		public long FileSize
 		{
 			get { return _FileSize; }
@@ -198,55 +219,63 @@ namespace Kaltura.Types
 		{
 		}
 
-		public MediaFile(XmlElement node) : base(node)
+		public MediaFile(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["assetId"] != null)
 			{
-				switch (propertyNode.Name)
-				{
-					case "assetId":
-						this._AssetId = ParseInt(propertyNode.InnerText);
-						continue;
-					case "id":
-						this._Id = ParseInt(propertyNode.InnerText);
-						continue;
-					case "type":
-						this._Type = propertyNode.InnerText;
-						continue;
-					case "duration":
-						this._Duration = ParseLong(propertyNode.InnerText);
-						continue;
-					case "externalId":
-						this._ExternalId = propertyNode.InnerText;
-						continue;
-					case "billingType":
-						this._BillingType = propertyNode.InnerText;
-						continue;
-					case "quality":
-						this._Quality = propertyNode.InnerText;
-						continue;
-					case "handlingType":
-						this._HandlingType = propertyNode.InnerText;
-						continue;
-					case "cdnName":
-						this._CdnName = propertyNode.InnerText;
-						continue;
-					case "cdnCode":
-						this._CdnCode = propertyNode.InnerText;
-						continue;
-					case "altCdnCode":
-						this._AltCdnCode = propertyNode.InnerText;
-						continue;
-					case "ppvModules":
-						this._PpvModules = ObjectFactory.Create<StringValueArray>(propertyNode);
-						continue;
-					case "productCode":
-						this._ProductCode = propertyNode.InnerText;
-						continue;
-					case "fileSize":
-						this._FileSize = ParseLong(propertyNode.InnerText);
-						continue;
-				}
+				this._AssetId = ParseInt(node["assetId"].Value<string>());
+			}
+			if(node["id"] != null)
+			{
+				this._Id = ParseInt(node["id"].Value<string>());
+			}
+			if(node["type"] != null)
+			{
+				this._Type = node["type"].Value<string>();
+			}
+			if(node["duration"] != null)
+			{
+				this._Duration = ParseLong(node["duration"].Value<string>());
+			}
+			if(node["externalId"] != null)
+			{
+				this._ExternalId = node["externalId"].Value<string>();
+			}
+			if(node["billingType"] != null)
+			{
+				this._BillingType = node["billingType"].Value<string>();
+			}
+			if(node["quality"] != null)
+			{
+				this._Quality = node["quality"].Value<string>();
+			}
+			if(node["handlingType"] != null)
+			{
+				this._HandlingType = node["handlingType"].Value<string>();
+			}
+			if(node["cdnName"] != null)
+			{
+				this._CdnName = node["cdnName"].Value<string>();
+			}
+			if(node["cdnCode"] != null)
+			{
+				this._CdnCode = node["cdnCode"].Value<string>();
+			}
+			if(node["altCdnCode"] != null)
+			{
+				this._AltCdnCode = node["altCdnCode"].Value<string>();
+			}
+			if(node["ppvModules"] != null)
+			{
+				this._PpvModules = ObjectFactory.Create<StringValueArray>(node["ppvModules"]);
+			}
+			if(node["productCode"] != null)
+			{
+				this._ProductCode = node["productCode"].Value<string>();
+			}
+			if(node["fileSize"] != null)
+			{
+				this._FileSize = ParseLong(node["fileSize"].Value<string>());
 			}
 		}
 		#endregion

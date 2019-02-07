@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -46,6 +48,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public string Value
 		{
 			get { return _Value; }
@@ -55,6 +58,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Value");
 			}
 		}
+		[JsonProperty]
 		public IList<TranslationToken> MultilingualValue
 		{
 			get { return _MultilingualValue; }
@@ -71,22 +75,18 @@ namespace Kaltura.Types
 		{
 		}
 
-		public MultilingualStringValue(XmlElement node) : base(node)
+		public MultilingualStringValue(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["value"] != null)
 			{
-				switch (propertyNode.Name)
+				this._Value = node["value"].Value<string>();
+			}
+			if(node["multilingualValue"] != null)
+			{
+				this._MultilingualValue = new List<TranslationToken>();
+				foreach(var arrayNode in node["multilingualValue"].Children())
 				{
-					case "value":
-						this._Value = propertyNode.InnerText;
-						continue;
-					case "multilingualValue":
-						this._MultilingualValue = new List<TranslationToken>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._MultilingualValue.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
-						}
-						continue;
+					this._MultilingualValue.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
 				}
 			}
 		}

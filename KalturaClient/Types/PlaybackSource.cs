@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2018  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ using System.Xml;
 using System.Collections.Generic;
 using Kaltura.Enums;
 using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
@@ -48,6 +50,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		[JsonProperty]
 		public string Format
 		{
 			get { return _Format; }
@@ -57,6 +60,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Format");
 			}
 		}
+		[JsonProperty]
 		public string Protocols
 		{
 			get { return _Protocols; }
@@ -66,6 +70,7 @@ namespace Kaltura.Types
 				OnPropertyChanged("Protocols");
 			}
 		}
+		[JsonProperty]
 		public IList<DrmPlaybackPluginData> Drm
 		{
 			get { return _Drm; }
@@ -82,25 +87,22 @@ namespace Kaltura.Types
 		{
 		}
 
-		public PlaybackSource(XmlElement node) : base(node)
+		public PlaybackSource(JToken node) : base(node)
 		{
-			foreach (XmlElement propertyNode in node.ChildNodes)
+			if(node["format"] != null)
 			{
-				switch (propertyNode.Name)
+				this._Format = node["format"].Value<string>();
+			}
+			if(node["protocols"] != null)
+			{
+				this._Protocols = node["protocols"].Value<string>();
+			}
+			if(node["drm"] != null)
+			{
+				this._Drm = new List<DrmPlaybackPluginData>();
+				foreach(var arrayNode in node["drm"].Children())
 				{
-					case "format":
-						this._Format = propertyNode.InnerText;
-						continue;
-					case "protocols":
-						this._Protocols = propertyNode.InnerText;
-						continue;
-					case "drm":
-						this._Drm = new List<DrmPlaybackPluginData>();
-						foreach(XmlElement arrayNode in propertyNode.ChildNodes)
-						{
-							this._Drm.Add(ObjectFactory.Create<DrmPlaybackPluginData>(arrayNode));
-						}
-						continue;
+					this._Drm.Add(ObjectFactory.Create<DrmPlaybackPluginData>(arrayNode));
 				}
 			}
 		}
