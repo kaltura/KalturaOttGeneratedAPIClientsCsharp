@@ -231,31 +231,17 @@ namespace Kaltura.Services
 	public class HouseholdDeviceGetRequestBuilder : RequestBuilder<HouseholdDevice>
 	{
 		#region Constants
-		public const string UDID = "udid";
 		#endregion
 
-		public string Udid
-		{
-			set;
-			get;
-		}
 
 		public HouseholdDeviceGetRequestBuilder()
 			: base("householddevice", "get")
 		{
 		}
 
-		public HouseholdDeviceGetRequestBuilder(string udid)
-			: this()
-		{
-			this.Udid = udid;
-		}
-
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("udid"))
-				kparams.AddIfNotNull("udid", Udid);
 			return kparams;
 		}
 
@@ -508,9 +494,9 @@ namespace Kaltura.Services
 			return new HouseholdDeviceGeneratePinRequestBuilder(udid, brandId);
 		}
 
-		public static HouseholdDeviceGetRequestBuilder Get(string udid = null)
+		public static HouseholdDeviceGetRequestBuilder Get()
 		{
-			return new HouseholdDeviceGetRequestBuilder(udid);
+			return new HouseholdDeviceGetRequestBuilder();
 		}
 
 		public static HouseholdDeviceListRequestBuilder List(HouseholdDeviceFilter filter = null)
