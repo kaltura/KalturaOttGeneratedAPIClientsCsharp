@@ -42,7 +42,8 @@ namespace Kaltura.Types
 		public const string INDEX = "index";
 		public const string BULK_UPLOAD_ID = "bulkUploadId";
 		public const string STATUS = "status";
-		public const string ERROR = "error";
+		public const string ERROR_CODE = "errorCode";
+		public const string ERROR_MESSAGE = "errorMessage";
 		public const string WARNINGS = "warnings";
 		#endregion
 
@@ -51,7 +52,8 @@ namespace Kaltura.Types
 		private int _Index = Int32.MinValue;
 		private long _BulkUploadId = long.MinValue;
 		private BulkUploadResultStatus _Status = null;
-		private Message _Error;
+		private int _ErrorCode = Int32.MinValue;
+		private string _ErrorMessage = null;
 		private IList<Message> _Warnings;
 		#endregion
 
@@ -97,13 +99,23 @@ namespace Kaltura.Types
 			}
 		}
 		[JsonProperty]
-		public Message Error
+		public int ErrorCode
 		{
-			get { return _Error; }
+			get { return _ErrorCode; }
 			private set 
 			{ 
-				_Error = value;
-				OnPropertyChanged("Error");
+				_ErrorCode = value;
+				OnPropertyChanged("ErrorCode");
+			}
+		}
+		[JsonProperty]
+		public string ErrorMessage
+		{
+			get { return _ErrorMessage; }
+			private set 
+			{ 
+				_ErrorMessage = value;
+				OnPropertyChanged("ErrorMessage");
 			}
 		}
 		[JsonProperty]
@@ -141,9 +153,13 @@ namespace Kaltura.Types
 			{
 				this._Status = (BulkUploadResultStatus)StringEnum.Parse(typeof(BulkUploadResultStatus), node["status"].Value<string>());
 			}
-			if(node["error"] != null)
+			if(node["errorCode"] != null)
 			{
-				this._Error = ObjectFactory.Create<Message>(node["error"]);
+				this._ErrorCode = ParseInt(node["errorCode"].Value<string>());
+			}
+			if(node["errorMessage"] != null)
+			{
+				this._ErrorMessage = node["errorMessage"].Value<string>();
 			}
 			if(node["warnings"] != null)
 			{
@@ -166,7 +182,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("index", this._Index);
 			kparams.AddIfNotNull("bulkUploadId", this._BulkUploadId);
 			kparams.AddIfNotNull("status", this._Status);
-			kparams.AddIfNotNull("error", this._Error);
+			kparams.AddIfNotNull("errorCode", this._ErrorCode);
+			kparams.AddIfNotNull("errorMessage", this._ErrorMessage);
 			kparams.AddIfNotNull("warnings", this._Warnings);
 			return kparams;
 		}
@@ -182,8 +199,10 @@ namespace Kaltura.Types
 					return "BulkUploadId";
 				case STATUS:
 					return "Status";
-				case ERROR:
-					return "Error";
+				case ERROR_CODE:
+					return "ErrorCode";
+				case ERROR_MESSAGE:
+					return "ErrorMessage";
 				case WARNINGS:
 					return "Warnings";
 				default:
