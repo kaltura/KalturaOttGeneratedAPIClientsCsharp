@@ -223,6 +223,9 @@ namespace Kaltura
 		public static string ChannelMetaOrderByIsInvalid = "4061";
 		public static string AccountIsNotOpcSupported = "4074";
 		public static string CanNotDeleteParentAssetStruct = "4072";
+		public static string InvalidBulkUploadStructure = "4086";
+		public static string BulkUploadDoesNotExist = "4082";
+		public static string BulkUploadResultIsMissing = "4083";
 		public static string NoPinDefined = "5001";
 		public static string PinMismatch = "5002";
 		public static string RuleNotExists = "5003";
@@ -254,6 +257,14 @@ namespace Kaltura
 		public static string UserAlreadyAttachedToAssetUserRule = "5032";
 		public static string AssetUserRulesOperationsDisable = "5033";
 		public static string RoleDoesNotExists = "5038";
+		public static string FileDoesNotExists = "5040";
+		public static string FileAlreadyExists = "5041";
+		public static string ErrorSavingFile = "5042";
+		public static string FileIdNotInCorrectLength = "5043";
+		public static string IllegalExcelFile = "5045";
+		public static string EnqueueFailed = "5044";
+		public static string ExcelMandatoryValueIsMissing = "5046";
+		public static string InvalidArgumentValue = "5047";
 		public static string IncorrectPrice = "6000";
 		public static string UnKnownPPVModule = "6001";
 		public static string ExpiredCard = "6002";
@@ -355,6 +366,9 @@ namespace Kaltura
 		public static string MissingExternalIdentifier = "11001";
 		public static string UnknownIngestType = "11002";
 		public static string EPGSProgramDatesError = "11003";
+		public static string IngestProfileNotExists = "5048";
+		public static string IngestProfileIdRequired = "5060";
+		public static string NoIngestProfileToInsert = "5049";
 		public static string BadRequest = "500003";
 		public static string InvalidVersion = "500057";
 		public static string ServiceForbidden = "500004";
@@ -395,6 +409,7 @@ namespace Kaltura
 		public static string InvalidArgumentValue = "500067";
 		public static string OneOfArgumentsCannotBeEmpty = "500081";
 		public static string TypeNotSupported = "500083";
+		public static string FormatNotSupported = "500084";
 		public static string MediaIdsMustBeNumeric = "500029";
 		public static string EpgInternalIdsMustBeNumeric = "500030";
 		public static string ListTypeCannotBeEmptyOrAll = "500032";
