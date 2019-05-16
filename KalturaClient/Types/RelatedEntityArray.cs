@@ -35,79 +35,43 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetRule : AssetRuleBase
+	public class RelatedEntityArray : ObjectBase
 	{
 		#region Constants
-		public const string CONDITIONS = "conditions";
-		public const string ACTIONS = "actions";
-		public const string STATUS = "status";
+		public const string OBJECTS = "objects";
 		#endregion
 
 		#region Private Fields
-		private IList<Condition> _Conditions;
-		private IList<AssetRuleAction> _Actions;
-		private AssetRuleStatus _Status = null;
+		private IList<RelatedEntity> _Objects;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public IList<Condition> Conditions
+		public IList<RelatedEntity> Objects
 		{
-			get { return _Conditions; }
+			get { return _Objects; }
 			set 
 			{ 
-				_Conditions = value;
-				OnPropertyChanged("Conditions");
-			}
-		}
-		[JsonProperty]
-		public IList<AssetRuleAction> Actions
-		{
-			get { return _Actions; }
-			set 
-			{ 
-				_Actions = value;
-				OnPropertyChanged("Actions");
-			}
-		}
-		[JsonProperty]
-		public AssetRuleStatus Status
-		{
-			get { return _Status; }
-			private set 
-			{ 
-				_Status = value;
-				OnPropertyChanged("Status");
+				_Objects = value;
+				OnPropertyChanged("Objects");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AssetRule()
+		public RelatedEntityArray()
 		{
 		}
 
-		public AssetRule(JToken node) : base(node)
+		public RelatedEntityArray(JToken node) : base(node)
 		{
-			if(node["conditions"] != null)
+			if(node["objects"] != null)
 			{
-				this._Conditions = new List<Condition>();
-				foreach(var arrayNode in node["conditions"].Children())
+				this._Objects = new List<RelatedEntity>();
+				foreach(var arrayNode in node["objects"].Children())
 				{
-					this._Conditions.Add(ObjectFactory.Create<Condition>(arrayNode));
+					this._Objects.Add(ObjectFactory.Create<RelatedEntity>(arrayNode));
 				}
-			}
-			if(node["actions"] != null)
-			{
-				this._Actions = new List<AssetRuleAction>();
-				foreach(var arrayNode in node["actions"].Children())
-				{
-					this._Actions.Add(ObjectFactory.Create<AssetRuleAction>(arrayNode));
-				}
-			}
-			if(node["status"] != null)
-			{
-				this._Status = (AssetRuleStatus)StringEnum.Parse(typeof(AssetRuleStatus), node["status"].Value<string>());
 			}
 		}
 		#endregion
@@ -117,22 +81,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetRule");
-			kparams.AddIfNotNull("conditions", this._Conditions);
-			kparams.AddIfNotNull("actions", this._Actions);
-			kparams.AddIfNotNull("status", this._Status);
+				kparams.AddReplace("objectType", "KalturaRelatedEntityArray");
+			kparams.AddIfNotNull("objects", this._Objects);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case CONDITIONS:
-					return "Conditions";
-				case ACTIONS:
-					return "Actions";
-				case STATUS:
-					return "Status";
+				case OBJECTS:
+					return "Objects";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -27,15 +27,11 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class MetaDataType : StringEnum
+	public sealed class AssetRuleStatus : StringEnum
 	{
-		public static readonly MetaDataType STRING = new MetaDataType("STRING");
-		public static readonly MetaDataType MULTILINGUAL_STRING = new MetaDataType("MULTILINGUAL_STRING");
-		public static readonly MetaDataType NUMBER = new MetaDataType("NUMBER");
-		public static readonly MetaDataType BOOLEAN = new MetaDataType("BOOLEAN");
-		public static readonly MetaDataType DATE = new MetaDataType("DATE");
-		public static readonly MetaDataType RELEATED_ENTITY = new MetaDataType("RELEATED_ENTITY");
+		public static readonly AssetRuleStatus READY = new AssetRuleStatus("READY");
+		public static readonly AssetRuleStatus IN_PROGRESS = new AssetRuleStatus("IN_PROGRESS");
 
-		private MetaDataType(string name) : base(name) { }
+		private AssetRuleStatus(string name) : base(name) { }
 	}
 }

@@ -226,6 +226,8 @@ namespace Kaltura
 		public static string InvalidBulkUploadStructure = "4086";
 		public static string BulkUploadDoesNotExist = "4082";
 		public static string BulkUploadResultIsMissing = "4083";
+		public static string RelatedEntitiesExceedLimitation = "4087";
+		public static string AccountEpgIngestVersionDoesNotSupportBulk = "4088";
 		public static string NoPinDefined = "5001";
 		public static string PinMismatch = "5002";
 		public static string RuleNotExists = "5003";
@@ -264,6 +266,7 @@ namespace Kaltura
 		public static string IllegalExcelFile = "5045";
 		public static string EnqueueFailed = "5044";
 		public static string ExcelMandatoryValueIsMissing = "5046";
+		public static string AssetRuleStatusNotWritable = "5061";
 		public static string IncorrectPrice = "6000";
 		public static string UnKnownPPVModule = "6001";
 		public static string ExpiredCard = "6002";

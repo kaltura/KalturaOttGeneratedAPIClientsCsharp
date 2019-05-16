@@ -35,79 +35,55 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetRule : AssetRuleBase
+	public class RelatedEntity : ObjectBase
 	{
 		#region Constants
-		public const string CONDITIONS = "conditions";
-		public const string ACTIONS = "actions";
-		public const string STATUS = "status";
+		public const string ID = "id";
+		public const string TYPE = "type";
 		#endregion
 
 		#region Private Fields
-		private IList<Condition> _Conditions;
-		private IList<AssetRuleAction> _Actions;
-		private AssetRuleStatus _Status = null;
+		private string _Id = null;
+		private RelatedEntityType _Type = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public IList<Condition> Conditions
+		public string Id
 		{
-			get { return _Conditions; }
+			get { return _Id; }
 			set 
 			{ 
-				_Conditions = value;
-				OnPropertyChanged("Conditions");
+				_Id = value;
+				OnPropertyChanged("Id");
 			}
 		}
 		[JsonProperty]
-		public IList<AssetRuleAction> Actions
+		public RelatedEntityType Type
 		{
-			get { return _Actions; }
+			get { return _Type; }
 			set 
 			{ 
-				_Actions = value;
-				OnPropertyChanged("Actions");
-			}
-		}
-		[JsonProperty]
-		public AssetRuleStatus Status
-		{
-			get { return _Status; }
-			private set 
-			{ 
-				_Status = value;
-				OnPropertyChanged("Status");
+				_Type = value;
+				OnPropertyChanged("Type");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AssetRule()
+		public RelatedEntity()
 		{
 		}
 
-		public AssetRule(JToken node) : base(node)
+		public RelatedEntity(JToken node) : base(node)
 		{
-			if(node["conditions"] != null)
+			if(node["id"] != null)
 			{
-				this._Conditions = new List<Condition>();
-				foreach(var arrayNode in node["conditions"].Children())
-				{
-					this._Conditions.Add(ObjectFactory.Create<Condition>(arrayNode));
-				}
+				this._Id = node["id"].Value<string>();
 			}
-			if(node["actions"] != null)
+			if(node["type"] != null)
 			{
-				this._Actions = new List<AssetRuleAction>();
-				foreach(var arrayNode in node["actions"].Children())
-				{
-					this._Actions.Add(ObjectFactory.Create<AssetRuleAction>(arrayNode));
-				}
-			}
-			if(node["status"] != null)
-			{
-				this._Status = (AssetRuleStatus)StringEnum.Parse(typeof(AssetRuleStatus), node["status"].Value<string>());
+				this._Type = (RelatedEntityType)StringEnum.Parse(typeof(RelatedEntityType), node["type"].Value<string>());
 			}
 		}
 		#endregion
@@ -117,22 +93,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetRule");
-			kparams.AddIfNotNull("conditions", this._Conditions);
-			kparams.AddIfNotNull("actions", this._Actions);
-			kparams.AddIfNotNull("status", this._Status);
+				kparams.AddReplace("objectType", "KalturaRelatedEntity");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("type", this._Type);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case CONDITIONS:
-					return "Conditions";
-				case ACTIONS:
-					return "Actions";
-				case STATUS:
-					return "Status";
+				case ID:
+					return "Id";
+				case TYPE:
+					return "Type";
 				default:
 					return base.getPropertyName(apiName);
 			}
