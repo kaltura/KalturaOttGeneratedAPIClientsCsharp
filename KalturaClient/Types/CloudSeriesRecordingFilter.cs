@@ -35,39 +35,39 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ApplyDiscountModuleAction : BusinessModuleRuleAction
+	public class CloudSeriesRecordingFilter : SeriesRecordingFilter
 	{
 		#region Constants
-		public const string DISCOUNT_MODULE_ID = "discountModuleId";
+		public const string ADAPTER_DATA = "adapterData";
 		#endregion
 
 		#region Private Fields
-		private long _DiscountModuleId = long.MinValue;
+		private string _AdapterData = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public long DiscountModuleId
+		public string AdapterData
 		{
-			get { return _DiscountModuleId; }
+			get { return _AdapterData; }
 			set 
 			{ 
-				_DiscountModuleId = value;
-				OnPropertyChanged("DiscountModuleId");
+				_AdapterData = value;
+				OnPropertyChanged("AdapterData");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ApplyDiscountModuleAction()
+		public CloudSeriesRecordingFilter()
 		{
 		}
 
-		public ApplyDiscountModuleAction(JToken node) : base(node)
+		public CloudSeriesRecordingFilter(JToken node) : base(node)
 		{
-			if(node["discountModuleId"] != null)
+			if(node["adapterData"] != null)
 			{
-				this._DiscountModuleId = ParseLong(node["discountModuleId"].Value<string>());
+				this._AdapterData = node["adapterData"].Value<string>();
 			}
 		}
 		#endregion
@@ -77,16 +77,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaApplyDiscountModuleAction");
-			kparams.AddIfNotNull("discountModuleId", this._DiscountModuleId);
+				kparams.AddReplace("objectType", "KalturaCloudSeriesRecordingFilter");
+			kparams.AddIfNotNull("adapterData", this._AdapterData);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case DISCOUNT_MODULE_ID:
-					return "DiscountModuleId";
+				case ADAPTER_DATA:
+					return "AdapterData";
 				default:
 					return base.getPropertyName(apiName);
 			}

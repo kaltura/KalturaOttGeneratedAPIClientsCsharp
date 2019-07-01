@@ -25,23 +25,54 @@
 //
 // @ignore
 // ===================================================================================================
-namespace Kaltura.Enums
-{
-	public sealed class RuleConditionType : StringEnum
-	{
-		public static readonly RuleConditionType ASSET = new RuleConditionType("ASSET");
-		public static readonly RuleConditionType COUNTRY = new RuleConditionType("COUNTRY");
-		public static readonly RuleConditionType CONCURRENCY = new RuleConditionType("CONCURRENCY");
-		public static readonly RuleConditionType IP_RANGE = new RuleConditionType("IP_RANGE");
-		public static readonly RuleConditionType BUSINESS_MODULE = new RuleConditionType("BUSINESS_MODULE");
-		public static readonly RuleConditionType SEGMENTS = new RuleConditionType("SEGMENTS");
-		public static readonly RuleConditionType DATE = new RuleConditionType("DATE");
-		public static readonly RuleConditionType OR = new RuleConditionType("OR");
-		public static readonly RuleConditionType HEADER = new RuleConditionType("HEADER");
-		public static readonly RuleConditionType USER_SUBSCRIPTION = new RuleConditionType("USER_SUBSCRIPTION");
-		public static readonly RuleConditionType ASSET_SUBSCRIPTION = new RuleConditionType("ASSET_SUBSCRIPTION");
-		public static readonly RuleConditionType USER_ROLE = new RuleConditionType("USER_ROLE");
+using System;
+using System.Xml;
+using System.Collections.Generic;
+using Kaltura.Enums;
+using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-		private RuleConditionType(string name) : base(name) { }
+namespace Kaltura.Types
+{
+	public class BusinessModuleRuleAction : RuleAction
+	{
+		#region Constants
+		#endregion
+
+		#region Private Fields
+		#endregion
+
+		#region Properties
+		#endregion
+
+		#region CTor
+		public BusinessModuleRuleAction()
+		{
+		}
+
+		public BusinessModuleRuleAction(JToken node) : base(node)
+		{
+		}
+		#endregion
+
+		#region Methods
+		public override Params ToParams(bool includeObjectType = true)
+		{
+			Params kparams = base.ToParams(includeObjectType);
+			if (includeObjectType)
+				kparams.AddReplace("objectType", "KalturaBusinessModuleRuleAction");
+			return kparams;
+		}
+		protected override string getPropertyName(string apiName)
+		{
+			switch(apiName)
+			{
+				default:
+					return base.getPropertyName(apiName);
+			}
+		}
+		#endregion
 	}
 }
+

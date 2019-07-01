@@ -27,21 +27,12 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class RuleConditionType : StringEnum
+	public sealed class AssetIndexStatus : StringEnum
 	{
-		public static readonly RuleConditionType ASSET = new RuleConditionType("ASSET");
-		public static readonly RuleConditionType COUNTRY = new RuleConditionType("COUNTRY");
-		public static readonly RuleConditionType CONCURRENCY = new RuleConditionType("CONCURRENCY");
-		public static readonly RuleConditionType IP_RANGE = new RuleConditionType("IP_RANGE");
-		public static readonly RuleConditionType BUSINESS_MODULE = new RuleConditionType("BUSINESS_MODULE");
-		public static readonly RuleConditionType SEGMENTS = new RuleConditionType("SEGMENTS");
-		public static readonly RuleConditionType DATE = new RuleConditionType("DATE");
-		public static readonly RuleConditionType OR = new RuleConditionType("OR");
-		public static readonly RuleConditionType HEADER = new RuleConditionType("HEADER");
-		public static readonly RuleConditionType USER_SUBSCRIPTION = new RuleConditionType("USER_SUBSCRIPTION");
-		public static readonly RuleConditionType ASSET_SUBSCRIPTION = new RuleConditionType("ASSET_SUBSCRIPTION");
-		public static readonly RuleConditionType USER_ROLE = new RuleConditionType("USER_ROLE");
+		public static readonly AssetIndexStatus OK = new AssetIndexStatus("Ok");
+		public static readonly AssetIndexStatus DELETED = new AssetIndexStatus("Deleted");
+		public static readonly AssetIndexStatus NOTUPDATED = new AssetIndexStatus("NotUpdated");
 
-		private RuleConditionType(string name) : base(name) { }
+		private AssetIndexStatus(string name) : base(name) { }
 	}
 }
