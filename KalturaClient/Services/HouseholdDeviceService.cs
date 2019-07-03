@@ -42,11 +42,7 @@ namespace Kaltura.Services
 		public const string DEVICE = "device";
 		#endregion
 
-		public HouseholdDevice Device
-		{
-			set;
-			get;
-		}
+		public HouseholdDevice Device { get; set; }
 
 		public HouseholdDeviceAddRequestBuilder()
 			: base("householddevice", "add")
@@ -86,16 +82,8 @@ namespace Kaltura.Services
 		public const string PIN = "pin";
 		#endregion
 
-		public string DeviceName
-		{
-			set;
-			get;
-		}
-		public string Pin
-		{
-			set;
-			get;
-		}
+		public string DeviceName { get; set; }
+		public string Pin { get; set; }
 
 		public HouseholdDeviceAddByPinRequestBuilder()
 			: base("householddevice", "addByPin")
@@ -137,11 +125,7 @@ namespace Kaltura.Services
 		public const string UDID = "udid";
 		#endregion
 
-		public string Udid
-		{
-			set;
-			get;
-		}
+		public string Udid { get; set; }
 
 		public HouseholdDeviceDeleteRequestBuilder()
 			: base("householddevice", "delete")
@@ -183,16 +167,8 @@ namespace Kaltura.Services
 		public const string BRAND_ID = "brandId";
 		#endregion
 
-		public string Udid
-		{
-			set;
-			get;
-		}
-		public int BrandId
-		{
-			set;
-			get;
-		}
+		public string Udid { get; set; }
+		public int BrandId { get; set; }
 
 		public HouseholdDeviceGeneratePinRequestBuilder()
 			: base("householddevice", "generatePin")
@@ -263,11 +239,7 @@ namespace Kaltura.Services
 		public const string FILTER = "filter";
 		#endregion
 
-		public HouseholdDeviceFilter Filter
-		{
-			set;
-			get;
-		}
+		public HouseholdDeviceFilter Filter { get; set; }
 
 		public HouseholdDeviceListRequestBuilder()
 			: base("householddevice", "list")
@@ -308,21 +280,9 @@ namespace Kaltura.Services
 		public const string UDID = "udid";
 		#endregion
 
-		public new int PartnerId
-		{
-			set;
-			get;
-		}
-		public string Pin
-		{
-			set;
-			get;
-		}
-		public string Udid
-		{
-			set;
-			get;
-		}
+		public new int PartnerId { get; set; }
+		public string Pin { get; set; }
+		public string Udid { get; set; }
 
 		public HouseholdDeviceLoginWithPinRequestBuilder()
 			: base("householddevice", "loginWithPin")
@@ -368,16 +328,8 @@ namespace Kaltura.Services
 		public const string DEVICE = "device";
 		#endregion
 
-		public string Udid
-		{
-			set;
-			get;
-		}
-		public HouseholdDevice Device
-		{
-			set;
-			get;
-		}
+		public string Udid { get; set; }
+		public HouseholdDevice Device { get; set; }
 
 		public HouseholdDeviceUpdateRequestBuilder()
 			: base("householddevice", "update")
@@ -420,16 +372,8 @@ namespace Kaltura.Services
 		public const string STATUS = "status";
 		#endregion
 
-		public string Udid
-		{
-			set;
-			get;
-		}
-		public DeviceStatus Status
-		{
-			set;
-			get;
-		}
+		public string Udid { get; set; }
+		public DeviceStatus Status { get; set; }
 
 		public HouseholdDeviceUpdateStatusRequestBuilder()
 			: base("householddevice", "updateStatus")

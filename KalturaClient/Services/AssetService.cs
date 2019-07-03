@@ -42,11 +42,7 @@ namespace Kaltura.Services
 		public const string ASSET = "asset";
 		#endregion
 
-		public Asset Asset
-		{
-			set;
-			get;
-		}
+		public Asset Asset { get; set; }
 
 		public AssetAddRequestBuilder()
 			: base("asset", "add")
@@ -85,11 +81,7 @@ namespace Kaltura.Services
 		public const string FILTER = "filter";
 		#endregion
 
-		public SearchAssetFilter Filter
-		{
-			set;
-			get;
-		}
+		public SearchAssetFilter Filter { get; set; }
 
 		public AssetCountRequestBuilder()
 			: base("asset", "count")
@@ -129,16 +121,8 @@ namespace Kaltura.Services
 		public const string ASSET_REFERENCE_TYPE = "assetReferenceType";
 		#endregion
 
-		public long Id
-		{
-			set;
-			get;
-		}
-		public AssetReferenceType AssetReferenceType
-		{
-			set;
-			get;
-		}
+		public long Id { get; set; }
+		public AssetReferenceType AssetReferenceType { get; set; }
 
 		public AssetDeleteRequestBuilder()
 			: base("asset", "delete")
@@ -183,16 +167,8 @@ namespace Kaltura.Services
 		public const string ASSET_REFERENCE_TYPE = "assetReferenceType";
 		#endregion
 
-		public string Id
-		{
-			set;
-			get;
-		}
-		public AssetReferenceType AssetReferenceType
-		{
-			set;
-			get;
-		}
+		public string Id { get; set; }
+		public AssetReferenceType AssetReferenceType { get; set; }
 
 		public AssetGetRequestBuilder()
 			: base("asset", "get")
@@ -236,21 +212,9 @@ namespace Kaltura.Services
 		public const string CONTEXT_DATA_PARAMS = "contextDataParams";
 		#endregion
 
-		public string AssetId
-		{
-			set;
-			get;
-		}
-		public AssetType AssetType
-		{
-			set;
-			get;
-		}
-		public PlaybackContextOptions ContextDataParams
-		{
-			set;
-			get;
-		}
+		public string AssetId { get; set; }
+		public AssetType AssetType { get; set; }
+		public PlaybackContextOptions ContextDataParams { get; set; }
 
 		public AssetGetAdsContextRequestBuilder()
 			: base("asset", "getAdsContext")
@@ -297,21 +261,9 @@ namespace Kaltura.Services
 		public const string CONTEXT_DATA_PARAMS = "contextDataParams";
 		#endregion
 
-		public string AssetId
-		{
-			set;
-			get;
-		}
-		public AssetType AssetType
-		{
-			set;
-			get;
-		}
-		public PlaybackContextOptions ContextDataParams
-		{
-			set;
-			get;
-		}
+		public string AssetId { get; set; }
+		public AssetType AssetType { get; set; }
+		public PlaybackContextOptions ContextDataParams { get; set; }
 
 		public AssetGetPlaybackContextRequestBuilder()
 			: base("asset", "getPlaybackContext")
@@ -357,16 +309,8 @@ namespace Kaltura.Services
 		public const string PAGER = "pager";
 		#endregion
 
-		public AssetFilter Filter
-		{
-			set;
-			get;
-		}
-		public FilterPager Pager
-		{
-			set;
-			get;
-		}
+		public AssetFilter Filter { get; set; }
+		public FilterPager Pager { get; set; }
 
 		public AssetListRequestBuilder()
 			: base("asset", "list")
@@ -410,21 +354,9 @@ namespace Kaltura.Services
 		public const string ID_IN = "idIn";
 		#endregion
 
-		public long Id
-		{
-			set;
-			get;
-		}
-		public AssetReferenceType AssetReferenceType
-		{
-			set;
-			get;
-		}
-		public string IdIn
-		{
-			set;
-			get;
-		}
+		public long Id { get; set; }
+		public AssetReferenceType AssetReferenceType { get; set; }
+		public string IdIn { get; set; }
 
 		public AssetRemoveMetasAndTagsRequestBuilder()
 			: base("asset", "removeMetasAndTags")
@@ -472,16 +404,8 @@ namespace Kaltura.Services
 		public const string ASSET = "asset";
 		#endregion
 
-		public long Id
-		{
-			set;
-			get;
-		}
-		public Asset Asset
-		{
-			set;
-			get;
-		}
+		public long Id { get; set; }
+		public Asset Asset { get; set; }
 
 		public AssetUpdateRequestBuilder()
 			: base("asset", "update")

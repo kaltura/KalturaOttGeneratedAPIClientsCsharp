@@ -84,7 +84,7 @@ namespace Kaltura.Request
 		/// <summary>
 		/// Abort all following requests if current request has an error
 		/// </summary>
-		public static BaseRequestBuilder<T> WithAbortAllOnError<T>(this BaseRequestBuilder<T> requestBuilder, bool value)
+		public static BaseRequestBuilder<T> WithAbortAllOnError<T>(this BaseRequestBuilder<T> requestBuilder, bool? value)
 		{
 			requestBuilder.AbortAllOnError = value;
 			return requestBuilder;

@@ -35,8 +35,8 @@ namespace Kaltura
 	{
 		public Client(Configuration config) : base(config)
 		{
-				ApiVersion = "5.1.2.17630";
-				ClientTag = "dotnet:19-02-17";
+				ApiVersion = "5.1.2.24479";
+				ClientTag = "dotnet:19-07-03";
 		}
 	
 		#region Properties
@@ -85,7 +85,7 @@ namespace Kaltura
  			return ApiVersion;
  		}
 			
- 		public bool AbortOnError
+ 		public bool? AbortOnError
  		{
  			get
  			{
@@ -97,12 +97,12 @@ namespace Kaltura
  			}
  		}
 			
- 		public void setAbortOnError(bool value)
+ 		public void setAbortOnError(bool? value)
  		{
  			AbortOnError = value;
  		}
 			
- 		public bool getAbortOnError()
+ 		public bool? getAbortOnError()
  		{
  			return AbortOnError;
  		}
@@ -239,7 +239,7 @@ namespace Kaltura
  			return SessionId;
  		}
 			
- 		public bool AbortAllOnError
+ 		public bool? AbortAllOnError
  		{
  			get
  			{
@@ -251,12 +251,12 @@ namespace Kaltura
  			}
  		}
 			
- 		public void setAbortAllOnError(bool value)
+ 		public void setAbortAllOnError(bool? value)
  		{
  			AbortAllOnError = value;
  		}
 			
- 		public bool getAbortAllOnError()
+ 		public bool? getAbortAllOnError()
  		{
  			return AbortAllOnError;
  		}
