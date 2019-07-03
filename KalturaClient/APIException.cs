@@ -144,6 +144,7 @@ namespace Kaltura
 		public static string RecordingPlaybackNotAllowedForNotEntitledEpgChannel = "3051";
 		public static string SeasonNumberNotMatch = "3052";
 		public static string SubscriptionCancellationIsBlocked = "3074";
+		public static string SubscriptionDoesNotExist = "3081";
 		public static string MediaConcurrencyLimitation = "4000";
 		public static string ConcurrencyLimitation = "4001";
 		public static string BadSearchRequest = "4002";
@@ -226,6 +227,8 @@ namespace Kaltura
 		public static string InvalidBulkUploadStructure = "4086";
 		public static string BulkUploadDoesNotExist = "4082";
 		public static string BulkUploadResultIsMissing = "4083";
+		public static string RelatedEntitiesExceedLimitation = "4087";
+		public static string AccountEpgIngestVersionDoesNotSupportBulk = "4088";
 		public static string NoPinDefined = "5001";
 		public static string PinMismatch = "5002";
 		public static string RuleNotExists = "5003";
@@ -264,7 +267,7 @@ namespace Kaltura
 		public static string IllegalExcelFile = "5045";
 		public static string EnqueueFailed = "5044";
 		public static string ExcelMandatoryValueIsMissing = "5046";
-		public static string InvalidArgumentValue = "5047";
+		public static string AssetRuleStatusNotWritable = "5061";
 		public static string IncorrectPrice = "6000";
 		public static string UnKnownPPVModule = "6001";
 		public static string ExpiredCard = "6002";
@@ -311,8 +314,8 @@ namespace Kaltura
 		public static string PaymentMethodNotSetForHousehold = "6048";
 		public static string PaymentMethodNotExist = "6049";
 		public static string PaymentMethodIdRequired = "6050";
-		public static string PaymentMethodExternalIdRequired = "6051";
-		public static string PaymentGatewayExternalVerification = "6052";
+		public static string PaymentGatewaySuspended = "6051";
+		public static string ErrorSavingPaymentGatewayHouseholdPaymentMethod = "6052";
 		public static string PaymentMethodAlreadySetToHouseholdPaymentGateway = "6054";
 		public static string PaymentMethodNameRequired = "6055";
 		public static string PaymentGatewayNotSupportPaymentMethod = "6056";
@@ -340,6 +343,10 @@ namespace Kaltura
 		public static string InvalidMessageTTL = "8018";
 		public static string MessageIdentifierRequired = "8019";
 		public static string UserInboxMessagesNotExist = "8020";
+		public static string TopicNotificationNotFound = "8042";
+		public static string TopicNotificationMessageNotFound = "8043";
+		public static string WrongTopicNotification = "8044";
+		public static string WrongTopicNotificationTrigger = "8045";
 		public static string InvalidPriceCode = "9000";
 		public static string InvalidValue = "9001";
 		public static string InvalidDiscountCode = "9002";
@@ -369,6 +376,7 @@ namespace Kaltura
 		public static string IngestProfileNotExists = "5048";
 		public static string IngestProfileIdRequired = "5060";
 		public static string NoIngestProfileToInsert = "5049";
+		public static string EPGLanguageNotFound = "11004";
 		public static string BadRequest = "500003";
 		public static string InvalidVersion = "500057";
 		public static string ServiceForbidden = "500004";

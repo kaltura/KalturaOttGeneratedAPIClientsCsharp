@@ -35,87 +35,55 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Rule : ObjectBase
+	public class TopicNotificationMessageFilter : Filter
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string NAME = "name";
-		public const string DESCRIPTION = "description";
-		public const string LABEL = "label";
+		public const string TOPIC_NOTIFICATION_ID_EQUAL = "topicNotificationIdEqual";
+		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
-		private string _Description = null;
-		private string _Label = null;
+		private long _TopicNotificationIdEqual = long.MinValue;
+		private TopicNotificationMessageOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public long Id
+		public long TopicNotificationIdEqual
 		{
-			get { return _Id; }
-			private set 
+			get { return _TopicNotificationIdEqual; }
+			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
+				_TopicNotificationIdEqual = value;
+				OnPropertyChanged("TopicNotificationIdEqual");
 			}
 		}
 		[JsonProperty]
-		public string Name
+		public new TopicNotificationMessageOrderBy OrderBy
 		{
-			get { return _Name; }
+			get { return _OrderBy; }
 			set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
-			}
-		}
-		[JsonProperty]
-		public string Description
-		{
-			get { return _Description; }
-			set 
-			{ 
-				_Description = value;
-				OnPropertyChanged("Description");
-			}
-		}
-		[JsonProperty]
-		public string Label
-		{
-			get { return _Label; }
-			set 
-			{ 
-				_Label = value;
-				OnPropertyChanged("Label");
+				_OrderBy = value;
+				OnPropertyChanged("OrderBy");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Rule()
+		public TopicNotificationMessageFilter()
 		{
 		}
 
-		public Rule(JToken node) : base(node)
+		public TopicNotificationMessageFilter(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["topicNotificationIdEqual"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._TopicNotificationIdEqual = ParseLong(node["topicNotificationIdEqual"].Value<string>());
 			}
-			if(node["name"] != null)
+			if(node["orderBy"] != null)
 			{
-				this._Name = node["name"].Value<string>();
-			}
-			if(node["description"] != null)
-			{
-				this._Description = node["description"].Value<string>();
-			}
-			if(node["label"] != null)
-			{
-				this._Label = node["label"].Value<string>();
+				this._OrderBy = (TopicNotificationMessageOrderBy)StringEnum.Parse(typeof(TopicNotificationMessageOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -125,25 +93,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRule");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("description", this._Description);
-			kparams.AddIfNotNull("label", this._Label);
+				kparams.AddReplace("objectType", "KalturaTopicNotificationMessageFilter");
+			kparams.AddIfNotNull("topicNotificationIdEqual", this._TopicNotificationIdEqual);
+			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case NAME:
-					return "Name";
-				case DESCRIPTION:
-					return "Description";
-				case LABEL:
-					return "Label";
+				case TOPIC_NOTIFICATION_ID_EQUAL:
+					return "TopicNotificationIdEqual";
+				case ORDER_BY:
+					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}

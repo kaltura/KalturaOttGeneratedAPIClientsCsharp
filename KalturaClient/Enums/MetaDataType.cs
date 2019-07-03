@@ -34,6 +34,7 @@ namespace Kaltura.Enums
 		public static readonly MetaDataType NUMBER = new MetaDataType("NUMBER");
 		public static readonly MetaDataType BOOLEAN = new MetaDataType("BOOLEAN");
 		public static readonly MetaDataType DATE = new MetaDataType("DATE");
+		public static readonly MetaDataType RELEATED_ENTITY = new MetaDataType("RELEATED_ENTITY");
 
 		private MetaDataType(string name) : base(name) { }
 	}

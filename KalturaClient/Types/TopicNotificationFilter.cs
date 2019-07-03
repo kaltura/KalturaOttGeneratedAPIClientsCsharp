@@ -35,87 +35,55 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Rule : ObjectBase
+	public class TopicNotificationFilter : Filter
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string NAME = "name";
-		public const string DESCRIPTION = "description";
-		public const string LABEL = "label";
+		public const string SUBSCRIBE_REFERENCE = "subscribeReference";
+		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
-		private string _Description = null;
-		private string _Label = null;
+		private SubscribeReference _SubscribeReference;
+		private TopicNotificationOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public long Id
+		public SubscribeReference SubscribeReference
 		{
-			get { return _Id; }
-			private set 
+			get { return _SubscribeReference; }
+			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
+				_SubscribeReference = value;
+				OnPropertyChanged("SubscribeReference");
 			}
 		}
 		[JsonProperty]
-		public string Name
+		public new TopicNotificationOrderBy OrderBy
 		{
-			get { return _Name; }
+			get { return _OrderBy; }
 			set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
-			}
-		}
-		[JsonProperty]
-		public string Description
-		{
-			get { return _Description; }
-			set 
-			{ 
-				_Description = value;
-				OnPropertyChanged("Description");
-			}
-		}
-		[JsonProperty]
-		public string Label
-		{
-			get { return _Label; }
-			set 
-			{ 
-				_Label = value;
-				OnPropertyChanged("Label");
+				_OrderBy = value;
+				OnPropertyChanged("OrderBy");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Rule()
+		public TopicNotificationFilter()
 		{
 		}
 
-		public Rule(JToken node) : base(node)
+		public TopicNotificationFilter(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["subscribeReference"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._SubscribeReference = ObjectFactory.Create<SubscribeReference>(node["subscribeReference"]);
 			}
-			if(node["name"] != null)
+			if(node["orderBy"] != null)
 			{
-				this._Name = node["name"].Value<string>();
-			}
-			if(node["description"] != null)
-			{
-				this._Description = node["description"].Value<string>();
-			}
-			if(node["label"] != null)
-			{
-				this._Label = node["label"].Value<string>();
+				this._OrderBy = (TopicNotificationOrderBy)StringEnum.Parse(typeof(TopicNotificationOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -125,25 +93,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRule");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("description", this._Description);
-			kparams.AddIfNotNull("label", this._Label);
+				kparams.AddReplace("objectType", "KalturaTopicNotificationFilter");
+			kparams.AddIfNotNull("subscribeReference", this._SubscribeReference);
+			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case NAME:
-					return "Name";
-				case DESCRIPTION:
-					return "Description";
-				case LABEL:
-					return "Label";
+				case SUBSCRIBE_REFERENCE:
+					return "SubscribeReference";
+				case ORDER_BY:
+					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}

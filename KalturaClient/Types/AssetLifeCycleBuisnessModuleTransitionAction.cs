@@ -35,87 +35,55 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Rule : ObjectBase
+	public class AssetLifeCycleBuisnessModuleTransitionAction : AssetLifeCycleTransitionAction
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string NAME = "name";
-		public const string DESCRIPTION = "description";
-		public const string LABEL = "label";
+		public const string FILE_TYPE_IDS = "fileTypeIds";
+		public const string PPV_IDS = "ppvIds";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
-		private string _Description = null;
-		private string _Label = null;
+		private string _FileTypeIds = null;
+		private string _PpvIds = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public long Id
+		public string FileTypeIds
 		{
-			get { return _Id; }
-			private set 
+			get { return _FileTypeIds; }
+			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
+				_FileTypeIds = value;
+				OnPropertyChanged("FileTypeIds");
 			}
 		}
 		[JsonProperty]
-		public string Name
+		public string PpvIds
 		{
-			get { return _Name; }
+			get { return _PpvIds; }
 			set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
-			}
-		}
-		[JsonProperty]
-		public string Description
-		{
-			get { return _Description; }
-			set 
-			{ 
-				_Description = value;
-				OnPropertyChanged("Description");
-			}
-		}
-		[JsonProperty]
-		public string Label
-		{
-			get { return _Label; }
-			set 
-			{ 
-				_Label = value;
-				OnPropertyChanged("Label");
+				_PpvIds = value;
+				OnPropertyChanged("PpvIds");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Rule()
+		public AssetLifeCycleBuisnessModuleTransitionAction()
 		{
 		}
 
-		public Rule(JToken node) : base(node)
+		public AssetLifeCycleBuisnessModuleTransitionAction(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["fileTypeIds"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._FileTypeIds = node["fileTypeIds"].Value<string>();
 			}
-			if(node["name"] != null)
+			if(node["ppvIds"] != null)
 			{
-				this._Name = node["name"].Value<string>();
-			}
-			if(node["description"] != null)
-			{
-				this._Description = node["description"].Value<string>();
-			}
-			if(node["label"] != null)
-			{
-				this._Label = node["label"].Value<string>();
+				this._PpvIds = node["ppvIds"].Value<string>();
 			}
 		}
 		#endregion
@@ -125,25 +93,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRule");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("description", this._Description);
-			kparams.AddIfNotNull("label", this._Label);
+				kparams.AddReplace("objectType", "KalturaAssetLifeCycleBuisnessModuleTransitionAction");
+			kparams.AddIfNotNull("fileTypeIds", this._FileTypeIds);
+			kparams.AddIfNotNull("ppvIds", this._PpvIds);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case NAME:
-					return "Name";
-				case DESCRIPTION:
-					return "Description";
-				case LABEL:
-					return "Label";
+				case FILE_TYPE_IDS:
+					return "FileTypeIds";
+				case PPV_IDS:
+					return "PpvIds";
 				default:
 					return base.getPropertyName(apiName);
 			}

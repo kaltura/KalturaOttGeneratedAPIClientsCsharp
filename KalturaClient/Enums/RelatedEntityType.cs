@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,47 +25,15 @@
 //
 // @ignore
 // ===================================================================================================
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
-using System.Net;
-using System.Web;
-using System.IO;
-using System.Security.Cryptography;
-using System.Xml;
-using System.Xml.XPath;
-using System.Runtime.Serialization;
-using System.Threading;
-using Kaltura.Types;
-using Kaltura.Enums;
-
-namespace Kaltura
+namespace Kaltura.Enums
 {
-    public class ClientBase : ClientUtils
-    {
-        internal static int REQUEST_COUNTER = 0;
+	public sealed class RelatedEntityType : StringEnum
+	{
+		public static readonly RelatedEntityType CHANNEL = new RelatedEntityType("CHANNEL");
+		public static readonly RelatedEntityType EXTERNAL_CHANNEL = new RelatedEntityType("EXTERNAL_CHANNEL");
+		public static readonly RelatedEntityType MEDIA = new RelatedEntityType("MEDIA");
+		public static readonly RelatedEntityType PROGRAM = new RelatedEntityType("PROGRAM");
 
-        protected ClientConfiguration clientConfiguration = new ClientConfiguration();
-        protected RequestConfiguration requestConfiguration = new RequestConfiguration();
-        
-        public int? ResponseLogLength { get; set; }
-
-        public Configuration Configuration{ get; set; }
-
-        public ClientConfiguration ClientConfiguration
-        {
-            get { return clientConfiguration; }
-        }
-
-        public RequestConfiguration RequestConfiguration
-        {
-            get { return requestConfiguration; }
-        }
-
-        public ClientBase(Configuration config)
-        {
-            Configuration = config;
-        }
-    }
+		private RelatedEntityType(string name) : base(name) { }
+	}
 }

@@ -35,87 +35,39 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Rule : ObjectBase
+	public class BulkUploadIngestJobData : BulkUploadJobData
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string NAME = "name";
-		public const string DESCRIPTION = "description";
-		public const string LABEL = "label";
+		public const string INGEST_PROFILE_ID = "ingestProfileId";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
-		private string _Description = null;
-		private string _Label = null;
+		private int _IngestProfileId = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public long Id
+		public int IngestProfileId
 		{
-			get { return _Id; }
-			private set 
-			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
-			}
-		}
-		[JsonProperty]
-		public string Name
-		{
-			get { return _Name; }
+			get { return _IngestProfileId; }
 			set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
-			}
-		}
-		[JsonProperty]
-		public string Description
-		{
-			get { return _Description; }
-			set 
-			{ 
-				_Description = value;
-				OnPropertyChanged("Description");
-			}
-		}
-		[JsonProperty]
-		public string Label
-		{
-			get { return _Label; }
-			set 
-			{ 
-				_Label = value;
-				OnPropertyChanged("Label");
+				_IngestProfileId = value;
+				OnPropertyChanged("IngestProfileId");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Rule()
+		public BulkUploadIngestJobData()
 		{
 		}
 
-		public Rule(JToken node) : base(node)
+		public BulkUploadIngestJobData(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["ingestProfileId"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
-			}
-			if(node["name"] != null)
-			{
-				this._Name = node["name"].Value<string>();
-			}
-			if(node["description"] != null)
-			{
-				this._Description = node["description"].Value<string>();
-			}
-			if(node["label"] != null)
-			{
-				this._Label = node["label"].Value<string>();
+				this._IngestProfileId = ParseInt(node["ingestProfileId"].Value<string>());
 			}
 		}
 		#endregion
@@ -125,25 +77,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRule");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("description", this._Description);
-			kparams.AddIfNotNull("label", this._Label);
+				kparams.AddReplace("objectType", "KalturaBulkUploadIngestJobData");
+			kparams.AddIfNotNull("ingestProfileId", this._IngestProfileId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case NAME:
-					return "Name";
-				case DESCRIPTION:
-					return "Description";
-				case LABEL:
-					return "Label";
+				case INGEST_PROFILE_ID:
+					return "IngestProfileId";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -35,87 +35,55 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Rule : ObjectBase
+	public class MailDispatcher : Dispatcher
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string NAME = "name";
-		public const string DESCRIPTION = "description";
-		public const string LABEL = "label";
+		public const string BODY_TEMPLATE = "bodyTemplate";
+		public const string SUBJECT_TEMPLATE = "subjectTemplate";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
-		private string _Description = null;
-		private string _Label = null;
+		private string _BodyTemplate = null;
+		private string _SubjectTemplate = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public long Id
+		public string BodyTemplate
 		{
-			get { return _Id; }
-			private set 
+			get { return _BodyTemplate; }
+			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
+				_BodyTemplate = value;
+				OnPropertyChanged("BodyTemplate");
 			}
 		}
 		[JsonProperty]
-		public string Name
+		public string SubjectTemplate
 		{
-			get { return _Name; }
+			get { return _SubjectTemplate; }
 			set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
-			}
-		}
-		[JsonProperty]
-		public string Description
-		{
-			get { return _Description; }
-			set 
-			{ 
-				_Description = value;
-				OnPropertyChanged("Description");
-			}
-		}
-		[JsonProperty]
-		public string Label
-		{
-			get { return _Label; }
-			set 
-			{ 
-				_Label = value;
-				OnPropertyChanged("Label");
+				_SubjectTemplate = value;
+				OnPropertyChanged("SubjectTemplate");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Rule()
+		public MailDispatcher()
 		{
 		}
 
-		public Rule(JToken node) : base(node)
+		public MailDispatcher(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["bodyTemplate"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._BodyTemplate = node["bodyTemplate"].Value<string>();
 			}
-			if(node["name"] != null)
+			if(node["subjectTemplate"] != null)
 			{
-				this._Name = node["name"].Value<string>();
-			}
-			if(node["description"] != null)
-			{
-				this._Description = node["description"].Value<string>();
-			}
-			if(node["label"] != null)
-			{
-				this._Label = node["label"].Value<string>();
+				this._SubjectTemplate = node["subjectTemplate"].Value<string>();
 			}
 		}
 		#endregion
@@ -125,25 +93,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRule");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("description", this._Description);
-			kparams.AddIfNotNull("label", this._Label);
+				kparams.AddReplace("objectType", "KalturaMailDispatcher");
+			kparams.AddIfNotNull("bodyTemplate", this._BodyTemplate);
+			kparams.AddIfNotNull("subjectTemplate", this._SubjectTemplate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case NAME:
-					return "Name";
-				case DESCRIPTION:
-					return "Description";
-				case LABEL:
-					return "Label";
+				case BODY_TEMPLATE:
+					return "BodyTemplate";
+				case SUBJECT_TEMPLATE:
+					return "SubjectTemplate";
 				default:
 					return base.getPropertyName(apiName);
 			}

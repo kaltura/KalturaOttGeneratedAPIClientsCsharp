@@ -35,25 +35,23 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Rule : ObjectBase
+	public class BulkUploadLiveAssetResult : BulkUploadResult
 	{
 		#region Constants
 		public const string ID = "id";
-		public const string NAME = "name";
-		public const string DESCRIPTION = "description";
-		public const string LABEL = "label";
+		public const string EXTERNAL_EPG_INGEST_ID = "externalEpgIngestId";
+		public const string PROGRAMS = "programs";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
-		private string _Description = null;
-		private string _Label = null;
+		private int _Id = Int32.MinValue;
+		private string _ExternalEpgIngestId = null;
+		private IList<BulkUploadProgramAssetResult> _Programs;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public long Id
+		public int Id
 		{
 			get { return _Id; }
 			private set 
@@ -63,59 +61,49 @@ namespace Kaltura.Types
 			}
 		}
 		[JsonProperty]
-		public string Name
+		public string ExternalEpgIngestId
 		{
-			get { return _Name; }
-			set 
+			get { return _ExternalEpgIngestId; }
+			private set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
+				_ExternalEpgIngestId = value;
+				OnPropertyChanged("ExternalEpgIngestId");
 			}
 		}
 		[JsonProperty]
-		public string Description
+		public IList<BulkUploadProgramAssetResult> Programs
 		{
-			get { return _Description; }
-			set 
+			get { return _Programs; }
+			private set 
 			{ 
-				_Description = value;
-				OnPropertyChanged("Description");
-			}
-		}
-		[JsonProperty]
-		public string Label
-		{
-			get { return _Label; }
-			set 
-			{ 
-				_Label = value;
-				OnPropertyChanged("Label");
+				_Programs = value;
+				OnPropertyChanged("Programs");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Rule()
+		public BulkUploadLiveAssetResult()
 		{
 		}
 
-		public Rule(JToken node) : base(node)
+		public BulkUploadLiveAssetResult(JToken node) : base(node)
 		{
 			if(node["id"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._Id = ParseInt(node["id"].Value<string>());
 			}
-			if(node["name"] != null)
+			if(node["externalEpgIngestId"] != null)
 			{
-				this._Name = node["name"].Value<string>();
+				this._ExternalEpgIngestId = node["externalEpgIngestId"].Value<string>();
 			}
-			if(node["description"] != null)
+			if(node["programs"] != null)
 			{
-				this._Description = node["description"].Value<string>();
-			}
-			if(node["label"] != null)
-			{
-				this._Label = node["label"].Value<string>();
+				this._Programs = new List<BulkUploadProgramAssetResult>();
+				foreach(var arrayNode in node["programs"].Children())
+				{
+					this._Programs.Add(ObjectFactory.Create<BulkUploadProgramAssetResult>(arrayNode));
+				}
 			}
 		}
 		#endregion
@@ -125,11 +113,10 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRule");
+				kparams.AddReplace("objectType", "KalturaBulkUploadLiveAssetResult");
 			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("description", this._Description);
-			kparams.AddIfNotNull("label", this._Label);
+			kparams.AddIfNotNull("externalEpgIngestId", this._ExternalEpgIngestId);
+			kparams.AddIfNotNull("programs", this._Programs);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -138,12 +125,10 @@ namespace Kaltura.Types
 			{
 				case ID:
 					return "Id";
-				case NAME:
-					return "Name";
-				case DESCRIPTION:
-					return "Description";
-				case LABEL:
-					return "Label";
+				case EXTERNAL_EPG_INGEST_ID:
+					return "ExternalEpgIngestId";
+				case PROGRAMS:
+					return "Programs";
 				default:
 					return base.getPropertyName(apiName);
 			}

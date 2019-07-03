@@ -35,20 +35,24 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Rule : ObjectBase
+	public class TopicNotificationMessage : ObjectBase
 	{
 		#region Constants
 		public const string ID = "id";
-		public const string NAME = "name";
-		public const string DESCRIPTION = "description";
-		public const string LABEL = "label";
+		public const string MESSAGE = "message";
+		public const string IMAGE_URL = "imageUrl";
+		public const string TOPIC_NOTIFICATION_ID = "topicNotificationId";
+		public const string TRIGGER = "trigger";
+		public const string DISPATCHERS = "dispatchers";
 		#endregion
 
 		#region Private Fields
 		private long _Id = long.MinValue;
-		private string _Name = null;
-		private string _Description = null;
-		private string _Label = null;
+		private string _Message = null;
+		private string _ImageUrl = null;
+		private long _TopicNotificationId = long.MinValue;
+		private Trigger _Trigger;
+		private IList<Dispatcher> _Dispatchers;
 		#endregion
 
 		#region Properties
@@ -63,59 +67,91 @@ namespace Kaltura.Types
 			}
 		}
 		[JsonProperty]
-		public string Name
+		public string Message
 		{
-			get { return _Name; }
+			get { return _Message; }
 			set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
+				_Message = value;
+				OnPropertyChanged("Message");
 			}
 		}
 		[JsonProperty]
-		public string Description
+		public string ImageUrl
 		{
-			get { return _Description; }
+			get { return _ImageUrl; }
 			set 
 			{ 
-				_Description = value;
-				OnPropertyChanged("Description");
+				_ImageUrl = value;
+				OnPropertyChanged("ImageUrl");
 			}
 		}
 		[JsonProperty]
-		public string Label
+		public long TopicNotificationId
 		{
-			get { return _Label; }
+			get { return _TopicNotificationId; }
 			set 
 			{ 
-				_Label = value;
-				OnPropertyChanged("Label");
+				_TopicNotificationId = value;
+				OnPropertyChanged("TopicNotificationId");
+			}
+		}
+		[JsonProperty]
+		public Trigger Trigger
+		{
+			get { return _Trigger; }
+			set 
+			{ 
+				_Trigger = value;
+				OnPropertyChanged("Trigger");
+			}
+		}
+		[JsonProperty]
+		public IList<Dispatcher> Dispatchers
+		{
+			get { return _Dispatchers; }
+			set 
+			{ 
+				_Dispatchers = value;
+				OnPropertyChanged("Dispatchers");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Rule()
+		public TopicNotificationMessage()
 		{
 		}
 
-		public Rule(JToken node) : base(node)
+		public TopicNotificationMessage(JToken node) : base(node)
 		{
 			if(node["id"] != null)
 			{
 				this._Id = ParseLong(node["id"].Value<string>());
 			}
-			if(node["name"] != null)
+			if(node["message"] != null)
 			{
-				this._Name = node["name"].Value<string>();
+				this._Message = node["message"].Value<string>();
 			}
-			if(node["description"] != null)
+			if(node["imageUrl"] != null)
 			{
-				this._Description = node["description"].Value<string>();
+				this._ImageUrl = node["imageUrl"].Value<string>();
 			}
-			if(node["label"] != null)
+			if(node["topicNotificationId"] != null)
 			{
-				this._Label = node["label"].Value<string>();
+				this._TopicNotificationId = ParseLong(node["topicNotificationId"].Value<string>());
+			}
+			if(node["trigger"] != null)
+			{
+				this._Trigger = ObjectFactory.Create<Trigger>(node["trigger"]);
+			}
+			if(node["dispatchers"] != null)
+			{
+				this._Dispatchers = new List<Dispatcher>();
+				foreach(var arrayNode in node["dispatchers"].Children())
+				{
+					this._Dispatchers.Add(ObjectFactory.Create<Dispatcher>(arrayNode));
+				}
 			}
 		}
 		#endregion
@@ -125,11 +161,13 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRule");
+				kparams.AddReplace("objectType", "KalturaTopicNotificationMessage");
 			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("description", this._Description);
-			kparams.AddIfNotNull("label", this._Label);
+			kparams.AddIfNotNull("message", this._Message);
+			kparams.AddIfNotNull("imageUrl", this._ImageUrl);
+			kparams.AddIfNotNull("topicNotificationId", this._TopicNotificationId);
+			kparams.AddIfNotNull("trigger", this._Trigger);
+			kparams.AddIfNotNull("dispatchers", this._Dispatchers);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -138,12 +176,16 @@ namespace Kaltura.Types
 			{
 				case ID:
 					return "Id";
-				case NAME:
-					return "Name";
-				case DESCRIPTION:
-					return "Description";
-				case LABEL:
-					return "Label";
+				case MESSAGE:
+					return "Message";
+				case IMAGE_URL:
+					return "ImageUrl";
+				case TOPIC_NOTIFICATION_ID:
+					return "TopicNotificationId";
+				case TRIGGER:
+					return "Trigger";
+				case DISPATCHERS:
+					return "Dispatchers";
 				default:
 					return base.getPropertyName(apiName);
 			}

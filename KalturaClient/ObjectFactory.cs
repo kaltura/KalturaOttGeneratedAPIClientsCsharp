@@ -148,6 +148,10 @@ namespace Kaltura
 					return new ListResponse<ProductPrice>(jToken);
 				case "KalturaPartnerConfigurationListResponse":
 					return new ListResponse<PartnerConfiguration>(jToken);
+				case "KalturaTopicNotificationListResponse":
+					return new ListResponse<TopicNotification>(jToken);
+				case "KalturaTopicNotificationMessageListResponse":
+					return new ListResponse<TopicNotificationMessage>(jToken);
 				case "KalturaGenericListResponse":
 					return new ListResponse<T>(jToken);
 				case "KalturaIntegerValueListResponse":
@@ -204,6 +208,8 @@ namespace Kaltura
 					return new ListResponse<MediaFile>(jToken);
 				case "KalturaAssetHistoryListResponse":
 					return new ListResponse<AssetHistory>(jToken);
+				case "KalturaIngestProfileListResponse":
+					return new ListResponse<IngestProfile>(jToken);
 				case "KalturaTvmRuleListResponse":
 					return new ListResponse<TvmRule>(jToken);
 				case "KalturaPlaybackProfileListResponse":

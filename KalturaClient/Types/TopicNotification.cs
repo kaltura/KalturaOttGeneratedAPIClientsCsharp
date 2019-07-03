@@ -35,20 +35,20 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Rule : ObjectBase
+	public class TopicNotification : ObjectBase
 	{
 		#region Constants
 		public const string ID = "id";
 		public const string NAME = "name";
 		public const string DESCRIPTION = "description";
-		public const string LABEL = "label";
+		public const string SUBSCRIBE_REFERENCE = "subscribeReference";
 		#endregion
 
 		#region Private Fields
 		private long _Id = long.MinValue;
 		private string _Name = null;
 		private string _Description = null;
-		private string _Label = null;
+		private SubscribeReference _SubscribeReference;
 		#endregion
 
 		#region Properties
@@ -83,23 +83,23 @@ namespace Kaltura.Types
 			}
 		}
 		[JsonProperty]
-		public string Label
+		public SubscribeReference SubscribeReference
 		{
-			get { return _Label; }
+			get { return _SubscribeReference; }
 			set 
 			{ 
-				_Label = value;
-				OnPropertyChanged("Label");
+				_SubscribeReference = value;
+				OnPropertyChanged("SubscribeReference");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Rule()
+		public TopicNotification()
 		{
 		}
 
-		public Rule(JToken node) : base(node)
+		public TopicNotification(JToken node) : base(node)
 		{
 			if(node["id"] != null)
 			{
@@ -113,9 +113,9 @@ namespace Kaltura.Types
 			{
 				this._Description = node["description"].Value<string>();
 			}
-			if(node["label"] != null)
+			if(node["subscribeReference"] != null)
 			{
-				this._Label = node["label"].Value<string>();
+				this._SubscribeReference = ObjectFactory.Create<SubscribeReference>(node["subscribeReference"]);
 			}
 		}
 		#endregion
@@ -125,11 +125,11 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRule");
+				kparams.AddReplace("objectType", "KalturaTopicNotification");
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("name", this._Name);
 			kparams.AddIfNotNull("description", this._Description);
-			kparams.AddIfNotNull("label", this._Label);
+			kparams.AddIfNotNull("subscribeReference", this._SubscribeReference);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -142,8 +142,8 @@ namespace Kaltura.Types
 					return "Name";
 				case DESCRIPTION:
 					return "Description";
-				case LABEL:
-					return "Label";
+				case SUBSCRIBE_REFERENCE:
+					return "SubscribeReference";
 				default:
 					return base.getPropertyName(apiName);
 			}

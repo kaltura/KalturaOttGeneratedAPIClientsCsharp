@@ -35,87 +35,43 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Rule : ObjectBase
+	public class RelatedEntityArray : ObjectBase
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string NAME = "name";
-		public const string DESCRIPTION = "description";
-		public const string LABEL = "label";
+		public const string OBJECTS = "objects";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
-		private string _Description = null;
-		private string _Label = null;
+		private IList<RelatedEntity> _Objects;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public long Id
+		public IList<RelatedEntity> Objects
 		{
-			get { return _Id; }
-			private set 
-			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
-			}
-		}
-		[JsonProperty]
-		public string Name
-		{
-			get { return _Name; }
+			get { return _Objects; }
 			set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
-			}
-		}
-		[JsonProperty]
-		public string Description
-		{
-			get { return _Description; }
-			set 
-			{ 
-				_Description = value;
-				OnPropertyChanged("Description");
-			}
-		}
-		[JsonProperty]
-		public string Label
-		{
-			get { return _Label; }
-			set 
-			{ 
-				_Label = value;
-				OnPropertyChanged("Label");
+				_Objects = value;
+				OnPropertyChanged("Objects");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Rule()
+		public RelatedEntityArray()
 		{
 		}
 
-		public Rule(JToken node) : base(node)
+		public RelatedEntityArray(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["objects"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
-			}
-			if(node["name"] != null)
-			{
-				this._Name = node["name"].Value<string>();
-			}
-			if(node["description"] != null)
-			{
-				this._Description = node["description"].Value<string>();
-			}
-			if(node["label"] != null)
-			{
-				this._Label = node["label"].Value<string>();
+				this._Objects = new List<RelatedEntity>();
+				foreach(var arrayNode in node["objects"].Children())
+				{
+					this._Objects.Add(ObjectFactory.Create<RelatedEntity>(arrayNode));
+				}
 			}
 		}
 		#endregion
@@ -125,25 +81,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRule");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("description", this._Description);
-			kparams.AddIfNotNull("label", this._Label);
+				kparams.AddReplace("objectType", "KalturaRelatedEntityArray");
+			kparams.AddIfNotNull("objects", this._Objects);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case NAME:
-					return "Name";
-				case DESCRIPTION:
-					return "Description";
-				case LABEL:
-					return "Label";
+				case OBJECTS:
+					return "Objects";
 				default:
 					return base.getPropertyName(apiName);
 			}
