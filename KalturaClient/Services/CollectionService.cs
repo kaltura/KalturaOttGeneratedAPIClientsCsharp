@@ -42,11 +42,7 @@ namespace Kaltura.Services
 		public const string FILTER = "filter";
 		#endregion
 
-		public CollectionFilter Filter
-		{
-			set;
-			get;
-		}
+		public CollectionFilter Filter { get; set; }
 
 		public CollectionListRequestBuilder()
 			: base("collection", "list")

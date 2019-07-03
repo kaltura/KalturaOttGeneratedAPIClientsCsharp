@@ -42,11 +42,7 @@ namespace Kaltura.Services
 		public const string FILTER = "filter";
 		#endregion
 
-		public SubscriptionFilter Filter
-		{
-			set;
-			get;
-		}
+		public SubscriptionFilter Filter { get; set; }
 
 		public SubscriptionListRequestBuilder()
 			: base("subscription", "list")
@@ -86,16 +82,8 @@ namespace Kaltura.Services
 		public const string CODE = "code";
 		#endregion
 
-		public int Id
-		{
-			set;
-			get;
-		}
-		public string Code
-		{
-			set;
-			get;
-		}
+		public int Id { get; set; }
+		public string Code { get; set; }
 
 		public SubscriptionValidateCouponRequestBuilder()
 			: base("subscription", "validateCoupon")

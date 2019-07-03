@@ -43,16 +43,8 @@ namespace Kaltura.Services
 		public const string CONTEXT_TYPE = "contextType";
 		#endregion
 
-		public string Id
-		{
-			set;
-			get;
-		}
-		public ContextType ContextType
-		{
-			set;
-			get;
-		}
+		public string Id { get; set; }
+		public ContextType ContextType { get; set; }
 
 		public AssetFileGetContextRequestBuilder()
 			: base("assetfile", "getContext")
@@ -99,36 +91,12 @@ namespace Kaltura.Services
 		public new const string KS = "ks";
 		#endregion
 
-		public new int PartnerId
-		{
-			set;
-			get;
-		}
-		public string AssetId
-		{
-			set;
-			get;
-		}
-		public AssetType AssetType
-		{
-			set;
-			get;
-		}
-		public long AssetFileId
-		{
-			set;
-			get;
-		}
-		public PlaybackContextType ContextType
-		{
-			set;
-			get;
-		}
-		public new string Ks
-		{
-			set;
-			get;
-		}
+		public new int PartnerId { get; set; }
+		public string AssetId { get; set; }
+		public AssetType AssetType { get; set; }
+		public long AssetFileId { get; set; }
+		public PlaybackContextType ContextType { get; set; }
+		public new string Ks { get; set; }
 
 		public AssetFilePlayManifestRequestBuilder()
 			: base("assetfile", "playManifest")
