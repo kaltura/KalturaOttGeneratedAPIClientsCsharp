@@ -39,7 +39,6 @@ namespace Kaltura.Enums
 		public static readonly RuleActionType APPLY_PLAYBACK_ADAPTER = new RuleActionType("APPLY_PLAYBACK_ADAPTER");
 		public static readonly RuleActionType FILTER = new RuleActionType("FILTER");
 		public static readonly RuleActionType ASSET_LIFE_CYCLE_TRANSITION = new RuleActionType("ASSET_LIFE_CYCLE_TRANSITION");
-		public static readonly RuleActionType APPLY_FREE_PLAYBACK = new RuleActionType("APPLY_FREE_PLAYBACK");
 
 		private RuleActionType(string name) : base(name) { }
 	}
