@@ -35,39 +35,39 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class GroupPermission : Permission
+	public class CloudRecordingFilter : ExternalRecordingFilter
 	{
 		#region Constants
-		public const string GROUP = "group";
+		public const string ADAPTER_DATA = "adapterData";
 		#endregion
 
 		#region Private Fields
-		private string _Group = null;
+		private string _AdapterData = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public string Group
+		public string AdapterData
 		{
-			get { return _Group; }
-			private set 
+			get { return _AdapterData; }
+			set 
 			{ 
-				_Group = value;
-				OnPropertyChanged("Group");
+				_AdapterData = value;
+				OnPropertyChanged("AdapterData");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public GroupPermission()
+		public CloudRecordingFilter()
 		{
 		}
 
-		public GroupPermission(JToken node) : base(node)
+		public CloudRecordingFilter(JToken node) : base(node)
 		{
-			if(node["group"] != null)
+			if(node["adapterData"] != null)
 			{
-				this._Group = node["group"].Value<string>();
+				this._AdapterData = node["adapterData"].Value<string>();
 			}
 		}
 		#endregion
@@ -77,16 +77,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaGroupPermission");
-			kparams.AddIfNotNull("group", this._Group);
+				kparams.AddReplace("objectType", "KalturaCloudRecordingFilter");
+			kparams.AddIfNotNull("adapterData", this._AdapterData);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case GROUP:
-					return "Group";
+				case ADAPTER_DATA:
+					return "AdapterData";
 				default:
 					return base.getPropertyName(apiName);
 			}
