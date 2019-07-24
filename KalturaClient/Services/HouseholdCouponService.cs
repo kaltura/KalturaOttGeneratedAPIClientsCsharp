@@ -36,59 +36,20 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class CouponGetRequestBuilder : RequestBuilder<Coupon>
-	{
-		#region Constants
-		public const string CODE = "code";
-		#endregion
-
-		public string Code { get; set; }
-
-		public CouponGetRequestBuilder()
-			: base("coupon", "get")
-		{
-		}
-
-		public CouponGetRequestBuilder(string code)
-			: this()
-		{
-			this.Code = code;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("code"))
-				kparams.AddIfNotNull("code", Code);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<Coupon>(result);
-		}
-	}
-
-	public class CouponListRequestBuilder : RequestBuilder<ListResponse<Coupon>>
+	public class HouseholdCouponListRequestBuilder : RequestBuilder<ListResponse<HouseholdCoupon>>
 	{
 		#region Constants
 		public const string FILTER = "filter";
 		#endregion
 
-		public CouponFilter Filter { get; set; }
+		public HouseholdCouponFilter Filter { get; set; }
 
-		public CouponListRequestBuilder()
-			: base("coupon", "list")
+		public HouseholdCouponListRequestBuilder()
+			: base("householdcoupon", "list")
 		{
 		}
 
-		public CouponListRequestBuilder(CouponFilter filter)
+		public HouseholdCouponListRequestBuilder(HouseholdCouponFilter filter)
 			: this()
 		{
 			this.Filter = filter;
@@ -110,25 +71,108 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<ListResponse<Coupon>>(result);
+			return ObjectFactory.Create<ListResponse<HouseholdCoupon>>(result);
+		}
+	}
+
+	public class HouseholdCouponAddRequestBuilder : RequestBuilder<HouseholdCoupon>
+	{
+		#region Constants
+		public const string OBJECT_TO_ADD = "objectToAdd";
+		#endregion
+
+		public HouseholdCoupon ObjectToAdd { get; set; }
+
+		public HouseholdCouponAddRequestBuilder()
+			: base("householdcoupon", "add")
+		{
+		}
+
+		public HouseholdCouponAddRequestBuilder(HouseholdCoupon objectToAdd)
+			: this()
+		{
+			this.ObjectToAdd = objectToAdd;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("objectToAdd"))
+				kparams.AddIfNotNull("objectToAdd", ObjectToAdd);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<HouseholdCoupon>(result);
+		}
+	}
+
+	public class HouseholdCouponDeleteRequestBuilder : RequestBuilder<VoidResponse>
+	{
+		#region Constants
+		public const string ID = "id";
+		#endregion
+
+		public string Id { get; set; }
+
+		public HouseholdCouponDeleteRequestBuilder()
+			: base("householdcoupon", "delete")
+		{
+		}
+
+		public HouseholdCouponDeleteRequestBuilder(string id)
+			: this()
+		{
+			this.Id = id;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return null;
 		}
 	}
 
 
-	public class CouponService
+	public class HouseholdCouponService
 	{
-		private CouponService()
+		private HouseholdCouponService()
 		{
 		}
 
-		public static CouponGetRequestBuilder Get(string code)
+		public static HouseholdCouponListRequestBuilder List(HouseholdCouponFilter filter = null)
 		{
-			return new CouponGetRequestBuilder(code);
+			return new HouseholdCouponListRequestBuilder(filter);
 		}
 
-		public static CouponListRequestBuilder List(CouponFilter filter)
+		public static HouseholdCouponAddRequestBuilder Add(HouseholdCoupon objectToAdd)
 		{
-			return new CouponListRequestBuilder(filter);
+			return new HouseholdCouponAddRequestBuilder(objectToAdd);
+		}
+
+		public static HouseholdCouponDeleteRequestBuilder Delete(string id)
+		{
+			return new HouseholdCouponDeleteRequestBuilder(id);
 		}
 	}
 }
