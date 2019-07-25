@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class HouseoldCouponCodeFilter : RelatedObjectFilter
+	public class HouseholdCouponCodeFilter : RelatedObjectFilter
 	{
 		#region Constants
 		#endregion
@@ -47,11 +47,11 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public HouseoldCouponCodeFilter()
+		public HouseholdCouponCodeFilter()
 		{
 		}
 
-		public HouseoldCouponCodeFilter(JToken node) : base(node)
+		public HouseholdCouponCodeFilter(JToken node) : base(node)
 		{
 		}
 		#endregion
@@ -61,7 +61,7 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaHouseoldCouponCodeFilter");
+				kparams.AddReplace("objectType", "KalturaHouseholdCouponCodeFilter");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
