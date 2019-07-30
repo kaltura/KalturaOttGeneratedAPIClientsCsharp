@@ -316,7 +316,7 @@ namespace Kaltura
 		public static string PaymentMethodNotSetForHousehold = "6048";
 		public static string PaymentMethodNotExist = "6049";
 		public static string PaymentMethodIdRequired = "6050";
-		public static string PaymentMethodExternalIdRequired = "6051";
+		public static string PaymentGatewaySuspended = "6051";
 		public static string ErrorSavingPaymentGatewayHouseholdPaymentMethod = "6052";
 		public static string PaymentMethodAlreadySetToHouseholdPaymentGateway = "6054";
 		public static string PaymentMethodNameRequired = "6055";
@@ -368,10 +368,6 @@ namespace Kaltura
 		public static string ModuleNotExists = "9016";
 		public static string PricePlanDoesNotExist = "9017";
 		public static string PriceDetailsDoesNotExist = "9018";
-		public static string CouponCodeIsMissing = "9023";
-		public static string CouponCodeAlreadyLoaded = "9024";
-		public static string CouponCodeNotInHousehold = "9025";
-		public static string ExceededHouseholdCouponLimit = "9026";
 		public static string AdapterNotExists = "10000";
 		public static string AdapterIdentifierRequired = "10001";
 		public static string AdapterIsRequired = "10002";

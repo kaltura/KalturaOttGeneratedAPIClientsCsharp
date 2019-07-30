@@ -158,7 +158,7 @@ namespace Kaltura.Types
 		public int RegionId
 		{
 			get { return _RegionId; }
-			set 
+			private set 
 			{ 
 				_RegionId = value;
 				OnPropertyChanged("RegionId");
