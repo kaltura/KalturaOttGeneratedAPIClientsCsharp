@@ -35,48 +35,24 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class CloudSeriesRecordingFilter : SeriesRecordingFilter
+	public class CrudFilter : Filter
 	{
 		#region Constants
-		public const string ADAPTER_DATA = "adapterData";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, StringValue> _AdapterData;
 		#endregion
 
 		#region Properties
-		[JsonProperty]
-		public IDictionary<string, StringValue> AdapterData
-		{
-			get { return _AdapterData; }
-			set 
-			{ 
-				_AdapterData = value;
-				OnPropertyChanged("AdapterData");
-			}
-		}
 		#endregion
 
 		#region CTor
-		public CloudSeriesRecordingFilter()
+		public CrudFilter()
 		{
 		}
 
-		public CloudSeriesRecordingFilter(JToken node) : base(node)
+		public CrudFilter(JToken node) : base(node)
 		{
-			if(node["adapterData"] != null)
-			{
-				{
-					string key;
-					this._AdapterData = new Dictionary<string, StringValue>();
-					foreach(var arrayNode in node["adapterData"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AdapterData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
-					}
-				}
-			}
 		}
 		#endregion
 
@@ -85,16 +61,13 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaCloudSeriesRecordingFilter");
-			kparams.AddIfNotNull("adapterData", this._AdapterData);
+				kparams.AddReplace("objectType", "KalturaCrudFilter");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ADAPTER_DATA:
-					return "AdapterData";
 				default:
 					return base.getPropertyName(apiName);
 			}

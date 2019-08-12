@@ -35,47 +35,39 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class CloudSeriesRecordingFilter : SeriesRecordingFilter
+	public class CouponFilter : Filter
 	{
 		#region Constants
-		public const string ADAPTER_DATA = "adapterData";
+		public const string COUPON_CODES_IN = "couponCodesIn";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, StringValue> _AdapterData;
+		private string _CouponCodesIn = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public IDictionary<string, StringValue> AdapterData
+		public string CouponCodesIn
 		{
-			get { return _AdapterData; }
+			get { return _CouponCodesIn; }
 			set 
 			{ 
-				_AdapterData = value;
-				OnPropertyChanged("AdapterData");
+				_CouponCodesIn = value;
+				OnPropertyChanged("CouponCodesIn");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public CloudSeriesRecordingFilter()
+		public CouponFilter()
 		{
 		}
 
-		public CloudSeriesRecordingFilter(JToken node) : base(node)
+		public CouponFilter(JToken node) : base(node)
 		{
-			if(node["adapterData"] != null)
+			if(node["couponCodesIn"] != null)
 			{
-				{
-					string key;
-					this._AdapterData = new Dictionary<string, StringValue>();
-					foreach(var arrayNode in node["adapterData"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AdapterData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
-					}
-				}
+				this._CouponCodesIn = node["couponCodesIn"].Value<string>();
 			}
 		}
 		#endregion
@@ -85,16 +77,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaCloudSeriesRecordingFilter");
-			kparams.AddIfNotNull("adapterData", this._AdapterData);
+				kparams.AddReplace("objectType", "KalturaCouponFilter");
+			kparams.AddIfNotNull("couponCodesIn", this._CouponCodesIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ADAPTER_DATA:
-					return "AdapterData";
+				case COUPON_CODES_IN:
+					return "CouponCodesIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

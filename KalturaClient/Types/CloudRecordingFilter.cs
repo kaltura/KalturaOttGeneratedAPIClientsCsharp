@@ -42,12 +42,12 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private string _AdapterData = null;
+		private IDictionary<string, StringValue> _AdapterData;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public string AdapterData
+		public IDictionary<string, StringValue> AdapterData
 		{
 			get { return _AdapterData; }
 			set 
@@ -67,7 +67,15 @@ namespace Kaltura.Types
 		{
 			if(node["adapterData"] != null)
 			{
-				this._AdapterData = node["adapterData"].Value<string>();
+				{
+					string key;
+					this._AdapterData = new Dictionary<string, StringValue>();
+					foreach(var arrayNode in node["adapterData"].Children<JProperty>())
+					{
+						key = arrayNode.Name;
+						this._AdapterData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
+					}
+				}
 			}
 		}
 		#endregion

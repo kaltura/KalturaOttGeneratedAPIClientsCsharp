@@ -35,47 +35,71 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class CloudSeriesRecordingFilter : SeriesRecordingFilter
+	public class HouseholdCouponFilter : CrudFilter
 	{
 		#region Constants
-		public const string ADAPTER_DATA = "adapterData";
+		public const string BUSINESS_MODULE_TYPE_EQUAL = "businessModuleTypeEqual";
+		public const string BUSINESS_MODULE_ID_EQUAL = "businessModuleIdEqual";
+		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, StringValue> _AdapterData;
+		private TransactionType _BusinessModuleTypeEqual = null;
+		private long _BusinessModuleIdEqual = long.MinValue;
+		private HouseholdCouponOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public IDictionary<string, StringValue> AdapterData
+		public TransactionType BusinessModuleTypeEqual
 		{
-			get { return _AdapterData; }
+			get { return _BusinessModuleTypeEqual; }
 			set 
 			{ 
-				_AdapterData = value;
-				OnPropertyChanged("AdapterData");
+				_BusinessModuleTypeEqual = value;
+				OnPropertyChanged("BusinessModuleTypeEqual");
+			}
+		}
+		[JsonProperty]
+		public long BusinessModuleIdEqual
+		{
+			get { return _BusinessModuleIdEqual; }
+			set 
+			{ 
+				_BusinessModuleIdEqual = value;
+				OnPropertyChanged("BusinessModuleIdEqual");
+			}
+		}
+		[JsonProperty]
+		public new HouseholdCouponOrderBy OrderBy
+		{
+			get { return _OrderBy; }
+			set 
+			{ 
+				_OrderBy = value;
+				OnPropertyChanged("OrderBy");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public CloudSeriesRecordingFilter()
+		public HouseholdCouponFilter()
 		{
 		}
 
-		public CloudSeriesRecordingFilter(JToken node) : base(node)
+		public HouseholdCouponFilter(JToken node) : base(node)
 		{
-			if(node["adapterData"] != null)
+			if(node["businessModuleTypeEqual"] != null)
 			{
-				{
-					string key;
-					this._AdapterData = new Dictionary<string, StringValue>();
-					foreach(var arrayNode in node["adapterData"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AdapterData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
-					}
-				}
+				this._BusinessModuleTypeEqual = (TransactionType)StringEnum.Parse(typeof(TransactionType), node["businessModuleTypeEqual"].Value<string>());
+			}
+			if(node["businessModuleIdEqual"] != null)
+			{
+				this._BusinessModuleIdEqual = ParseLong(node["businessModuleIdEqual"].Value<string>());
+			}
+			if(node["orderBy"] != null)
+			{
+				this._OrderBy = (HouseholdCouponOrderBy)StringEnum.Parse(typeof(HouseholdCouponOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -85,16 +109,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaCloudSeriesRecordingFilter");
-			kparams.AddIfNotNull("adapterData", this._AdapterData);
+				kparams.AddReplace("objectType", "KalturaHouseholdCouponFilter");
+			kparams.AddIfNotNull("businessModuleTypeEqual", this._BusinessModuleTypeEqual);
+			kparams.AddIfNotNull("businessModuleIdEqual", this._BusinessModuleIdEqual);
+			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ADAPTER_DATA:
-					return "AdapterData";
+				case BUSINESS_MODULE_TYPE_EQUAL:
+					return "BusinessModuleTypeEqual";
+				case BUSINESS_MODULE_ID_EQUAL:
+					return "BusinessModuleIdEqual";
+				case ORDER_BY:
+					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}

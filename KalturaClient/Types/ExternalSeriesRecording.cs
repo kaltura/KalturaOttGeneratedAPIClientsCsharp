@@ -35,45 +35,45 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class CloudSeriesRecordingFilter : SeriesRecordingFilter
+	public class ExternalSeriesRecording : SeriesRecording
 	{
 		#region Constants
-		public const string ADAPTER_DATA = "adapterData";
+		public const string META_DATA = "metaData";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, StringValue> _AdapterData;
+		private IDictionary<string, StringValue> _MetaData;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public IDictionary<string, StringValue> AdapterData
+		public IDictionary<string, StringValue> MetaData
 		{
-			get { return _AdapterData; }
+			get { return _MetaData; }
 			set 
 			{ 
-				_AdapterData = value;
-				OnPropertyChanged("AdapterData");
+				_MetaData = value;
+				OnPropertyChanged("MetaData");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public CloudSeriesRecordingFilter()
+		public ExternalSeriesRecording()
 		{
 		}
 
-		public CloudSeriesRecordingFilter(JToken node) : base(node)
+		public ExternalSeriesRecording(JToken node) : base(node)
 		{
-			if(node["adapterData"] != null)
+			if(node["metaData"] != null)
 			{
 				{
 					string key;
-					this._AdapterData = new Dictionary<string, StringValue>();
-					foreach(var arrayNode in node["adapterData"].Children<JProperty>())
+					this._MetaData = new Dictionary<string, StringValue>();
+					foreach(var arrayNode in node["metaData"].Children<JProperty>())
 					{
 						key = arrayNode.Name;
-						this._AdapterData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
+						this._MetaData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
 					}
 				}
 			}
@@ -85,16 +85,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaCloudSeriesRecordingFilter");
-			kparams.AddIfNotNull("adapterData", this._AdapterData);
+				kparams.AddReplace("objectType", "KalturaExternalSeriesRecording");
+			kparams.AddIfNotNull("metaData", this._MetaData);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ADAPTER_DATA:
-					return "AdapterData";
+				case META_DATA:
+					return "MetaData";
 				default:
 					return base.getPropertyName(apiName);
 			}

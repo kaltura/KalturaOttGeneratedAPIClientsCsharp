@@ -36,30 +36,20 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class CouponGetRequestBuilder : RequestBuilder<Coupon>
+	public class PartnerExternalLoginRequestBuilder : RequestBuilder<LoginSession>
 	{
 		#region Constants
-		public const string CODE = "code";
 		#endregion
 
-		public string Code { get; set; }
 
-		public CouponGetRequestBuilder()
-			: base("coupon", "get")
+		public PartnerExternalLoginRequestBuilder()
+			: base("partner", "externalLogin")
 		{
-		}
-
-		public CouponGetRequestBuilder(string code)
-			: this()
-		{
-			this.Code = code;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("code"))
-				kparams.AddIfNotNull("code", Code);
 			return kparams;
 		}
 
@@ -71,64 +61,20 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<Coupon>(result);
-		}
-	}
-
-	public class CouponListRequestBuilder : RequestBuilder<ListResponse<Coupon>>
-	{
-		#region Constants
-		public const string FILTER = "filter";
-		#endregion
-
-		public CouponFilter Filter { get; set; }
-
-		public CouponListRequestBuilder()
-			: base("coupon", "list")
-		{
-		}
-
-		public CouponListRequestBuilder(CouponFilter filter)
-			: this()
-		{
-			this.Filter = filter;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("filter"))
-				kparams.AddIfNotNull("filter", Filter);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<ListResponse<Coupon>>(result);
+			return ObjectFactory.Create<LoginSession>(result);
 		}
 	}
 
 
-	public class CouponService
+	public class PartnerService
 	{
-		private CouponService()
+		private PartnerService()
 		{
 		}
 
-		public static CouponGetRequestBuilder Get(string code)
+		public static PartnerExternalLoginRequestBuilder ExternalLogin()
 		{
-			return new CouponGetRequestBuilder(code);
-		}
-
-		public static CouponListRequestBuilder List(CouponFilter filter)
-		{
-			return new CouponListRequestBuilder(filter);
+			return new PartnerExternalLoginRequestBuilder();
 		}
 	}
 }

@@ -35,47 +35,39 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class CloudSeriesRecordingFilter : SeriesRecordingFilter
+	public class HouseholdCoupon : CrudObject
 	{
 		#region Constants
-		public const string ADAPTER_DATA = "adapterData";
+		public const string CODE = "code";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, StringValue> _AdapterData;
+		private string _Code = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public IDictionary<string, StringValue> AdapterData
+		public string Code
 		{
-			get { return _AdapterData; }
+			get { return _Code; }
 			set 
 			{ 
-				_AdapterData = value;
-				OnPropertyChanged("AdapterData");
+				_Code = value;
+				OnPropertyChanged("Code");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public CloudSeriesRecordingFilter()
+		public HouseholdCoupon()
 		{
 		}
 
-		public CloudSeriesRecordingFilter(JToken node) : base(node)
+		public HouseholdCoupon(JToken node) : base(node)
 		{
-			if(node["adapterData"] != null)
+			if(node["code"] != null)
 			{
-				{
-					string key;
-					this._AdapterData = new Dictionary<string, StringValue>();
-					foreach(var arrayNode in node["adapterData"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AdapterData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
-					}
-				}
+				this._Code = node["code"].Value<string>();
 			}
 		}
 		#endregion
@@ -85,16 +77,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaCloudSeriesRecordingFilter");
-			kparams.AddIfNotNull("adapterData", this._AdapterData);
+				kparams.AddReplace("objectType", "KalturaHouseholdCoupon");
+			kparams.AddIfNotNull("code", this._Code);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ADAPTER_DATA:
-					return "AdapterData";
+				case CODE:
+					return "Code";
 				default:
 					return base.getPropertyName(apiName);
 			}
