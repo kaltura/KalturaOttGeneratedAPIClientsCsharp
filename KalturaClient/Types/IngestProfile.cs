@@ -47,7 +47,6 @@ namespace Kaltura.Types
 		public const string TRANSFORMATION_ADAPTER_SHARED_SECRET = "transformationAdapterSharedSecret";
 		public const string DEFAULT_AUTO_FILL_POLICY = "defaultAutoFillPolicy";
 		public const string DEFAULT_OVERLAP_POLICY = "defaultOverlapPolicy";
-		public const string OVERLAP_CHANNELS = "overlapChannels";
 		#endregion
 
 		#region Private Fields
@@ -60,7 +59,6 @@ namespace Kaltura.Types
 		private string _TransformationAdapterSharedSecret = null;
 		private IngestProfileAutofillPolicy _DefaultAutoFillPolicy = null;
 		private IngestProfileOverlapPolicy _DefaultOverlapPolicy = null;
-		private string _OverlapChannels = null;
 		#endregion
 
 		#region Properties
@@ -154,16 +152,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("DefaultOverlapPolicy");
 			}
 		}
-		[JsonProperty]
-		public string OverlapChannels
-		{
-			get { return _OverlapChannels; }
-			set 
-			{ 
-				_OverlapChannels = value;
-				OnPropertyChanged("OverlapChannels");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -217,10 +205,6 @@ namespace Kaltura.Types
 			{
 				this._DefaultOverlapPolicy = (IngestProfileOverlapPolicy)StringEnum.Parse(typeof(IngestProfileOverlapPolicy), node["defaultOverlapPolicy"].Value<string>());
 			}
-			if(node["overlapChannels"] != null)
-			{
-				this._OverlapChannels = node["overlapChannels"].Value<string>();
-			}
 		}
 		#endregion
 
@@ -239,7 +223,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("transformationAdapterSharedSecret", this._TransformationAdapterSharedSecret);
 			kparams.AddIfNotNull("defaultAutoFillPolicy", this._DefaultAutoFillPolicy);
 			kparams.AddIfNotNull("defaultOverlapPolicy", this._DefaultOverlapPolicy);
-			kparams.AddIfNotNull("overlapChannels", this._OverlapChannels);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -264,8 +247,6 @@ namespace Kaltura.Types
 					return "DefaultAutoFillPolicy";
 				case DEFAULT_OVERLAP_POLICY:
 					return "DefaultOverlapPolicy";
-				case OVERLAP_CHANNELS:
-					return "OverlapChannels";
 				default:
 					return base.getPropertyName(apiName);
 			}
