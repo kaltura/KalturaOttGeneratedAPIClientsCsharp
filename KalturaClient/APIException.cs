@@ -67,6 +67,7 @@ namespace Kaltura
 		public static string HomeNetworkLimitation = "1032";
 		public static string HomeNetworkDoesNotExist = "1033";
 		public static string HomeNetworkFrequency = "1034";
+		public static string RegionDoesNotExist = "1037";
 		public static string UserDoesNotExist = "2000";
 		public static string UserSuspended = "2001";
 		public static string PinNotExists = "2003";
