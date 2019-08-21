@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -26,46 +26,53 @@
 // @ignore
 // ===================================================================================================
 using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
-using System.Net;
-using System.Web;
-using System.IO;
-using System.Security.Cryptography;
 using System.Xml;
-using System.Xml.XPath;
-using System.Runtime.Serialization;
-using System.Threading;
-using Kaltura.Types;
+using System.Collections.Generic;
 using Kaltura.Enums;
+using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace Kaltura
+namespace Kaltura.Types
 {
-    public class ClientBase : ClientUtils
-    {
-        internal static int REQUEST_COUNTER = 0;
+	public class ApplyFreePlaybackAction : BusinessModuleRuleAction
+	{
+		#region Constants
+		#endregion
 
-        protected ClientConfiguration clientConfiguration = new ClientConfiguration();
-        protected RequestConfiguration requestConfiguration = new RequestConfiguration();
-        
-        public int? ResponseLogLength { get; set; }
+		#region Private Fields
+		#endregion
 
-        public Configuration Configuration{ get; set; }
+		#region Properties
+		#endregion
 
-        public ClientConfiguration ClientConfiguration
-        {
-            get { return clientConfiguration; }
-        }
+		#region CTor
+		public ApplyFreePlaybackAction()
+		{
+		}
 
-        public RequestConfiguration RequestConfiguration
-        {
-            get { return requestConfiguration; }
-        }
+		public ApplyFreePlaybackAction(JToken node) : base(node)
+		{
+		}
+		#endregion
 
-        public ClientBase(Configuration config)
-        {
-            Configuration = config;
-        }
-    }
+		#region Methods
+		public override Params ToParams(bool includeObjectType = true)
+		{
+			Params kparams = base.ToParams(includeObjectType);
+			if (includeObjectType)
+				kparams.AddReplace("objectType", "KalturaApplyFreePlaybackAction");
+			return kparams;
+		}
+		protected override string getPropertyName(string apiName)
+		{
+			switch(apiName)
+			{
+				default:
+					return base.getPropertyName(apiName);
+			}
+		}
+		#endregion
+	}
 }
+

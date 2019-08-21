@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2019  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -26,46 +26,72 @@
 // @ignore
 // ===================================================================================================
 using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
-using System.Net;
-using System.Web;
-using System.IO;
-using System.Security.Cryptography;
 using System.Xml;
-using System.Xml.XPath;
-using System.Runtime.Serialization;
-using System.Threading;
-using Kaltura.Types;
+using System.Collections.Generic;
 using Kaltura.Enums;
+using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace Kaltura
+namespace Kaltura.Types
 {
-    public class ClientBase : ClientUtils
-    {
-        internal static int REQUEST_COUNTER = 0;
+	public class UserRoleCondition : Condition
+	{
+		#region Constants
+		public const string ID_IN = "idIn";
+		#endregion
 
-        protected ClientConfiguration clientConfiguration = new ClientConfiguration();
-        protected RequestConfiguration requestConfiguration = new RequestConfiguration();
-        
-        public int? ResponseLogLength { get; set; }
+		#region Private Fields
+		private string _IdIn = null;
+		#endregion
 
-        public Configuration Configuration{ get; set; }
+		#region Properties
+		[JsonProperty]
+		public string IdIn
+		{
+			get { return _IdIn; }
+			set 
+			{ 
+				_IdIn = value;
+				OnPropertyChanged("IdIn");
+			}
+		}
+		#endregion
 
-        public ClientConfiguration ClientConfiguration
-        {
-            get { return clientConfiguration; }
-        }
+		#region CTor
+		public UserRoleCondition()
+		{
+		}
 
-        public RequestConfiguration RequestConfiguration
-        {
-            get { return requestConfiguration; }
-        }
+		public UserRoleCondition(JToken node) : base(node)
+		{
+			if(node["idIn"] != null)
+			{
+				this._IdIn = node["idIn"].Value<string>();
+			}
+		}
+		#endregion
 
-        public ClientBase(Configuration config)
-        {
-            Configuration = config;
-        }
-    }
+		#region Methods
+		public override Params ToParams(bool includeObjectType = true)
+		{
+			Params kparams = base.ToParams(includeObjectType);
+			if (includeObjectType)
+				kparams.AddReplace("objectType", "KalturaUserRoleCondition");
+			kparams.AddIfNotNull("idIn", this._IdIn);
+			return kparams;
+		}
+		protected override string getPropertyName(string apiName)
+		{
+			switch(apiName)
+			{
+				case ID_IN:
+					return "IdIn";
+				default:
+					return base.getPropertyName(apiName);
+			}
+		}
+		#endregion
+	}
 }
+

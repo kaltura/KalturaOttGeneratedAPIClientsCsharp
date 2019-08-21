@@ -35,39 +35,39 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class GroupPermission : Permission
+	public class CouponFilter : Filter
 	{
 		#region Constants
-		public const string GROUP = "group";
+		public const string COUPON_CODES_IN = "couponCodesIn";
 		#endregion
 
 		#region Private Fields
-		private string _Group = null;
+		private string _CouponCodesIn = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public string Group
+		public string CouponCodesIn
 		{
-			get { return _Group; }
-			private set 
+			get { return _CouponCodesIn; }
+			set 
 			{ 
-				_Group = value;
-				OnPropertyChanged("Group");
+				_CouponCodesIn = value;
+				OnPropertyChanged("CouponCodesIn");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public GroupPermission()
+		public CouponFilter()
 		{
 		}
 
-		public GroupPermission(JToken node) : base(node)
+		public CouponFilter(JToken node) : base(node)
 		{
-			if(node["group"] != null)
+			if(node["couponCodesIn"] != null)
 			{
-				this._Group = node["group"].Value<string>();
+				this._CouponCodesIn = node["couponCodesIn"].Value<string>();
 			}
 		}
 		#endregion
@@ -77,16 +77,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaGroupPermission");
-			kparams.AddIfNotNull("group", this._Group);
+				kparams.AddReplace("objectType", "KalturaCouponFilter");
+			kparams.AddIfNotNull("couponCodesIn", this._CouponCodesIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case GROUP:
-					return "Group";
+				case COUPON_CODES_IN:
+					return "CouponCodesIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

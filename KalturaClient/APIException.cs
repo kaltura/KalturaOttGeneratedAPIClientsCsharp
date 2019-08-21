@@ -268,6 +268,8 @@ namespace Kaltura
 		public static string EnqueueFailed = "5044";
 		public static string ExcelMandatoryValueIsMissing = "5046";
 		public static string AssetRuleStatusNotWritable = "5061";
+		public static string PermissionNotFound = "5062";
+		public static string PermissionNameAlreadyInUse = "5063";
 		public static string IncorrectPrice = "6000";
 		public static string UnKnownPPVModule = "6001";
 		public static string ExpiredCard = "6002";
@@ -314,7 +316,7 @@ namespace Kaltura
 		public static string PaymentMethodNotSetForHousehold = "6048";
 		public static string PaymentMethodNotExist = "6049";
 		public static string PaymentMethodIdRequired = "6050";
-		public static string PaymentGatewaySuspended = "6051";
+		public static string PaymentMethodExternalIdRequired = "6051";
 		public static string ErrorSavingPaymentGatewayHouseholdPaymentMethod = "6052";
 		public static string PaymentMethodAlreadySetToHouseholdPaymentGateway = "6054";
 		public static string PaymentMethodNameRequired = "6055";
@@ -343,6 +345,7 @@ namespace Kaltura
 		public static string InvalidMessageTTL = "8018";
 		public static string MessageIdentifierRequired = "8019";
 		public static string UserInboxMessagesNotExist = "8020";
+		public static string FailCreateTopicNotification = "8041";
 		public static string TopicNotificationNotFound = "8042";
 		public static string TopicNotificationMessageNotFound = "8043";
 		public static string WrongTopicNotification = "8044";
@@ -365,6 +368,10 @@ namespace Kaltura
 		public static string ModuleNotExists = "9016";
 		public static string PricePlanDoesNotExist = "9017";
 		public static string PriceDetailsDoesNotExist = "9018";
+		public static string CouponCodeIsMissing = "9023";
+		public static string CouponCodeAlreadyLoaded = "9024";
+		public static string CouponCodeNotInHousehold = "9025";
+		public static string ExceededHouseholdCouponLimit = "9026";
 		public static string AdapterNotExists = "10000";
 		public static string AdapterIdentifierRequired = "10001";
 		public static string AdapterIsRequired = "10002";
@@ -432,6 +439,7 @@ namespace Kaltura
 		public static string InvalidAppTokenHash = "50022";
 		public static string ExpiredAppToken = "50021";
 		public static string NotAllowed = "7013";
+		public static string GroupMissMatch = "500085";
 		public static string Error = "1";
 		public static string MissingConfiguration = "500006";
 		public static string NotFound = "500007";

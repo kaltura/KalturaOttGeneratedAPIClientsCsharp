@@ -35,39 +35,47 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class GroupPermission : Permission
+	public class ExternalSeriesRecording : SeriesRecording
 	{
 		#region Constants
-		public const string GROUP = "group";
+		public const string META_DATA = "metaData";
 		#endregion
 
 		#region Private Fields
-		private string _Group = null;
+		private IDictionary<string, StringValue> _MetaData;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public string Group
+		public IDictionary<string, StringValue> MetaData
 		{
-			get { return _Group; }
-			private set 
+			get { return _MetaData; }
+			set 
 			{ 
-				_Group = value;
-				OnPropertyChanged("Group");
+				_MetaData = value;
+				OnPropertyChanged("MetaData");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public GroupPermission()
+		public ExternalSeriesRecording()
 		{
 		}
 
-		public GroupPermission(JToken node) : base(node)
+		public ExternalSeriesRecording(JToken node) : base(node)
 		{
-			if(node["group"] != null)
+			if(node["metaData"] != null)
 			{
-				this._Group = node["group"].Value<string>();
+				{
+					string key;
+					this._MetaData = new Dictionary<string, StringValue>();
+					foreach(var arrayNode in node["metaData"].Children<JProperty>())
+					{
+						key = arrayNode.Name;
+						this._MetaData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
+					}
+				}
 			}
 		}
 		#endregion
@@ -77,16 +85,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaGroupPermission");
-			kparams.AddIfNotNull("group", this._Group);
+				kparams.AddReplace("objectType", "KalturaExternalSeriesRecording");
+			kparams.AddIfNotNull("metaData", this._MetaData);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case GROUP:
-					return "Group";
+				case META_DATA:
+					return "MetaData";
 				default:
 					return base.getPropertyName(apiName);
 			}
