@@ -40,14 +40,14 @@ namespace Kaltura.Types
 		#region Constants
 		public const string ID_EQUAL = "idEqual";
 		public const string OBJECT_ID_EQUAL = "objectIdEqual";
-		public const string OBJECT_TYPE_EQUAL = "objectTypeEqual";
+		public const string EVENT_OBJECT_TYPE_EQUAL = "eventObjectTypeEqual";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
 		private string _IdEqual = null;
 		private long _ObjectIdEqual = long.MinValue;
-		private string _ObjectTypeEqual = null;
+		private string _EventObjectTypeEqual = null;
 		private EventNotificationOrderBy _OrderBy = null;
 		#endregion
 
@@ -73,13 +73,13 @@ namespace Kaltura.Types
 			}
 		}
 		[JsonProperty]
-		public string ObjectTypeEqual
+		public string EventObjectTypeEqual
 		{
-			get { return _ObjectTypeEqual; }
+			get { return _EventObjectTypeEqual; }
 			set 
 			{ 
-				_ObjectTypeEqual = value;
-				OnPropertyChanged("ObjectTypeEqual");
+				_EventObjectTypeEqual = value;
+				OnPropertyChanged("EventObjectTypeEqual");
 			}
 		}
 		[JsonProperty]
@@ -109,9 +109,9 @@ namespace Kaltura.Types
 			{
 				this._ObjectIdEqual = ParseLong(node["objectIdEqual"].Value<string>());
 			}
-			if(node["objectTypeEqual"] != null)
+			if(node["eventObjectTypeEqual"] != null)
 			{
-				this._ObjectTypeEqual = node["objectTypeEqual"].Value<string>();
+				this._EventObjectTypeEqual = node["eventObjectTypeEqual"].Value<string>();
 			}
 			if(node["orderBy"] != null)
 			{
@@ -128,7 +128,7 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaEventNotificationFilter");
 			kparams.AddIfNotNull("idEqual", this._IdEqual);
 			kparams.AddIfNotNull("objectIdEqual", this._ObjectIdEqual);
-			kparams.AddIfNotNull("objectTypeEqual", this._ObjectTypeEqual);
+			kparams.AddIfNotNull("eventObjectTypeEqual", this._EventObjectTypeEqual);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -140,8 +140,8 @@ namespace Kaltura.Types
 					return "IdEqual";
 				case OBJECT_ID_EQUAL:
 					return "ObjectIdEqual";
-				case OBJECT_TYPE_EQUAL:
-					return "ObjectTypeEqual";
+				case EVENT_OBJECT_TYPE_EQUAL:
+					return "EventObjectTypeEqual";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
