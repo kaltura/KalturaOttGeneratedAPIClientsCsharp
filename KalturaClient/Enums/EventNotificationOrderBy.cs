@@ -27,14 +27,10 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class LinearChannelType : StringEnum
+	public sealed class EventNotificationOrderBy : StringEnum
 	{
-		public static readonly LinearChannelType UNKNOWN = new LinearChannelType("UNKNOWN");
-		public static readonly LinearChannelType DTT = new LinearChannelType("DTT");
-		public static readonly LinearChannelType OTT = new LinearChannelType("OTT");
-		public static readonly LinearChannelType DTT_AND_OTT = new LinearChannelType("DTT_AND_OTT");
-		public static readonly LinearChannelType VRM_EXPORT = new LinearChannelType("VRM_EXPORT");
+		public static readonly EventNotificationOrderBy NONE = new EventNotificationOrderBy("NONE");
 
-		private LinearChannelType(string name) : base(name) { }
+		private EventNotificationOrderBy(string name) : base(name) { }
 	}
 }

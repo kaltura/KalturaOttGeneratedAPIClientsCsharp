@@ -262,6 +262,8 @@ namespace Kaltura
 					return new ListResponse<UserRole>(jToken);
 				case "KalturaCouponListResponse":
 					return new ListResponse<Coupon>(jToken);
+				case "KalturaEventNotificationListResponse":
+					return new ListResponse<EventNotification>(jToken);
 				case "KalturaHouseholdCouponListResponse":
 					return new ListResponse<HouseholdCoupon>(jToken);
 			}
