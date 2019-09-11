@@ -35,32 +35,34 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Region : ObjectBase
+	public class PasswordPolicy : CrudObject
 	{
 		#region Constants
 		public const string ID = "id";
 		public const string NAME = "name";
-		public const string EXTERNAL_ID = "externalId";
-		public const string IS_DEFAULT = "isDefault";
-		public const string LINEAR_CHANNELS = "linearChannels";
-		public const string PARENT_ID = "parentId";
+		public const string USER_ROLE_IDS = "userRoleIds";
+		public const string HISTORY_COUNT = "historyCount";
+		public const string EXPIRATION = "expiration";
+		public const string COMPLEXITIES = "complexities";
+		public const string LOCKOUT_FAILURES_COUNT = "lockoutFailuresCount";
 		#endregion
 
 		#region Private Fields
-		private int _Id = Int32.MinValue;
+		private long _Id = long.MinValue;
 		private string _Name = null;
-		private string _ExternalId = null;
-		private bool? _IsDefault = null;
-		private IList<RegionalChannel> _LinearChannels;
-		private long _ParentId = long.MinValue;
+		private string _UserRoleIds = null;
+		private int _HistoryCount = Int32.MinValue;
+		private int _Expiration = Int32.MinValue;
+		private IList<Regex> _Complexities;
+		private int _LockoutFailuresCount = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public int Id
+		public long Id
 		{
 			get { return _Id; }
-			set 
+			private set 
 			{ 
 				_Id = value;
 				OnPropertyChanged("Id");
@@ -77,81 +79,95 @@ namespace Kaltura.Types
 			}
 		}
 		[JsonProperty]
-		public string ExternalId
+		public string UserRoleIds
 		{
-			get { return _ExternalId; }
+			get { return _UserRoleIds; }
 			set 
 			{ 
-				_ExternalId = value;
-				OnPropertyChanged("ExternalId");
+				_UserRoleIds = value;
+				OnPropertyChanged("UserRoleIds");
 			}
 		}
 		[JsonProperty]
-		public bool? IsDefault
+		public int HistoryCount
 		{
-			get { return _IsDefault; }
-			private set 
+			get { return _HistoryCount; }
+			set 
 			{ 
-				_IsDefault = value;
-				OnPropertyChanged("IsDefault");
+				_HistoryCount = value;
+				OnPropertyChanged("HistoryCount");
 			}
 		}
 		[JsonProperty]
-		public IList<RegionalChannel> LinearChannels
+		public int Expiration
 		{
-			get { return _LinearChannels; }
+			get { return _Expiration; }
 			set 
 			{ 
-				_LinearChannels = value;
-				OnPropertyChanged("LinearChannels");
+				_Expiration = value;
+				OnPropertyChanged("Expiration");
 			}
 		}
 		[JsonProperty]
-		public long ParentId
+		public IList<Regex> Complexities
 		{
-			get { return _ParentId; }
+			get { return _Complexities; }
 			set 
 			{ 
-				_ParentId = value;
-				OnPropertyChanged("ParentId");
+				_Complexities = value;
+				OnPropertyChanged("Complexities");
+			}
+		}
+		[JsonProperty]
+		public int LockoutFailuresCount
+		{
+			get { return _LockoutFailuresCount; }
+			set 
+			{ 
+				_LockoutFailuresCount = value;
+				OnPropertyChanged("LockoutFailuresCount");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Region()
+		public PasswordPolicy()
 		{
 		}
 
-		public Region(JToken node) : base(node)
+		public PasswordPolicy(JToken node) : base(node)
 		{
 			if(node["id"] != null)
 			{
-				this._Id = ParseInt(node["id"].Value<string>());
+				this._Id = ParseLong(node["id"].Value<string>());
 			}
 			if(node["name"] != null)
 			{
 				this._Name = node["name"].Value<string>();
 			}
-			if(node["externalId"] != null)
+			if(node["userRoleIds"] != null)
 			{
-				this._ExternalId = node["externalId"].Value<string>();
+				this._UserRoleIds = node["userRoleIds"].Value<string>();
 			}
-			if(node["isDefault"] != null)
+			if(node["historyCount"] != null)
 			{
-				this._IsDefault = ParseBool(node["isDefault"].Value<string>());
+				this._HistoryCount = ParseInt(node["historyCount"].Value<string>());
 			}
-			if(node["linearChannels"] != null)
+			if(node["expiration"] != null)
 			{
-				this._LinearChannels = new List<RegionalChannel>();
-				foreach(var arrayNode in node["linearChannels"].Children())
+				this._Expiration = ParseInt(node["expiration"].Value<string>());
+			}
+			if(node["complexities"] != null)
+			{
+				this._Complexities = new List<Regex>();
+				foreach(var arrayNode in node["complexities"].Children())
 				{
-					this._LinearChannels.Add(ObjectFactory.Create<RegionalChannel>(arrayNode));
+					this._Complexities.Add(ObjectFactory.Create<Regex>(arrayNode));
 				}
 			}
-			if(node["parentId"] != null)
+			if(node["lockoutFailuresCount"] != null)
 			{
-				this._ParentId = ParseLong(node["parentId"].Value<string>());
+				this._LockoutFailuresCount = ParseInt(node["lockoutFailuresCount"].Value<string>());
 			}
 		}
 		#endregion
@@ -161,13 +177,14 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRegion");
+				kparams.AddReplace("objectType", "KalturaPasswordPolicy");
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("externalId", this._ExternalId);
-			kparams.AddIfNotNull("isDefault", this._IsDefault);
-			kparams.AddIfNotNull("linearChannels", this._LinearChannels);
-			kparams.AddIfNotNull("parentId", this._ParentId);
+			kparams.AddIfNotNull("userRoleIds", this._UserRoleIds);
+			kparams.AddIfNotNull("historyCount", this._HistoryCount);
+			kparams.AddIfNotNull("expiration", this._Expiration);
+			kparams.AddIfNotNull("complexities", this._Complexities);
+			kparams.AddIfNotNull("lockoutFailuresCount", this._LockoutFailuresCount);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -178,14 +195,16 @@ namespace Kaltura.Types
 					return "Id";
 				case NAME:
 					return "Name";
-				case EXTERNAL_ID:
-					return "ExternalId";
-				case IS_DEFAULT:
-					return "IsDefault";
-				case LINEAR_CHANNELS:
-					return "LinearChannels";
-				case PARENT_ID:
-					return "ParentId";
+				case USER_ROLE_IDS:
+					return "UserRoleIds";
+				case HISTORY_COUNT:
+					return "HistoryCount";
+				case EXPIRATION:
+					return "Expiration";
+				case COMPLEXITIES:
+					return "Complexities";
+				case LOCKOUT_FAILURES_COUNT:
+					return "LockoutFailuresCount";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -36,30 +36,30 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class RegionAddRequestBuilder : RequestBuilder<Region>
+	public class PasswordPolicyAddRequestBuilder : RequestBuilder<PasswordPolicy>
 	{
 		#region Constants
-		public const string REGION = "region";
+		public const string OBJECT_TO_ADD = "objectToAdd";
 		#endregion
 
-		public Region Region { get; set; }
+		public PasswordPolicy ObjectToAdd { get; set; }
 
-		public RegionAddRequestBuilder()
-			: base("region", "add")
+		public PasswordPolicyAddRequestBuilder()
+			: base("passwordpolicy", "add")
 		{
 		}
 
-		public RegionAddRequestBuilder(Region region)
+		public PasswordPolicyAddRequestBuilder(PasswordPolicy objectToAdd)
 			: this()
 		{
-			this.Region = region;
+			this.ObjectToAdd = objectToAdd;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("region"))
-				kparams.AddIfNotNull("region", Region);
+			if (!isMapped("objectToAdd"))
+				kparams.AddIfNotNull("objectToAdd", ObjectToAdd);
 			return kparams;
 		}
 
@@ -71,24 +71,68 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<Region>(result);
+			return ObjectFactory.Create<PasswordPolicy>(result);
 		}
 	}
 
-	public class RegionDeleteRequestBuilder : RequestBuilder<VoidResponse>
+	public class PasswordPolicyUpdateRequestBuilder : RequestBuilder<PasswordPolicy>
+	{
+		#region Constants
+		public const string ID = "id";
+		public const string OBJECT_TO_UPDATE = "objectToUpdate";
+		#endregion
+
+		public long Id { get; set; }
+		public PasswordPolicy ObjectToUpdate { get; set; }
+
+		public PasswordPolicyUpdateRequestBuilder()
+			: base("passwordpolicy", "update")
+		{
+		}
+
+		public PasswordPolicyUpdateRequestBuilder(long id, PasswordPolicy objectToUpdate)
+			: this()
+		{
+			this.Id = id;
+			this.ObjectToUpdate = objectToUpdate;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("objectToUpdate"))
+				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<PasswordPolicy>(result);
+		}
+	}
+
+	public class PasswordPolicyDeleteRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
 		public const string ID = "id";
 		#endregion
 
-		public int Id { get; set; }
+		public long Id { get; set; }
 
-		public RegionDeleteRequestBuilder()
-			: base("region", "delete")
+		public PasswordPolicyDeleteRequestBuilder()
+			: base("passwordpolicy", "delete")
 		{
 		}
 
-		public RegionDeleteRequestBuilder(int id)
+		public PasswordPolicyDeleteRequestBuilder(long id)
 			: this()
 		{
 			this.Id = id;
@@ -114,20 +158,20 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class RegionListRequestBuilder : RequestBuilder<ListResponse<Region>>
+	public class PasswordPolicyListRequestBuilder : RequestBuilder<ListResponse<PasswordPolicy>>
 	{
 		#region Constants
 		public const string FILTER = "filter";
 		#endregion
 
-		public RegionFilter Filter { get; set; }
+		public PasswordPolicyFilter Filter { get; set; }
 
-		public RegionListRequestBuilder()
-			: base("region", "list")
+		public PasswordPolicyListRequestBuilder()
+			: base("passwordpolicy", "list")
 		{
 		}
 
-		public RegionListRequestBuilder(RegionFilter filter)
+		public PasswordPolicyListRequestBuilder(PasswordPolicyFilter filter)
 			: this()
 		{
 			this.Filter = filter;
@@ -149,79 +193,35 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<ListResponse<Region>>(result);
-		}
-	}
-
-	public class RegionUpdateRequestBuilder : RequestBuilder<Region>
-	{
-		#region Constants
-		public const string ID = "id";
-		public const string REGION = "region";
-		#endregion
-
-		public int Id { get; set; }
-		public Region Region { get; set; }
-
-		public RegionUpdateRequestBuilder()
-			: base("region", "update")
-		{
-		}
-
-		public RegionUpdateRequestBuilder(int id, Region region)
-			: this()
-		{
-			this.Id = id;
-			this.Region = region;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("region"))
-				kparams.AddIfNotNull("region", Region);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<Region>(result);
+			return ObjectFactory.Create<ListResponse<PasswordPolicy>>(result);
 		}
 	}
 
 
-	public class RegionService
+	public class PasswordPolicyService
 	{
-		private RegionService()
+		private PasswordPolicyService()
 		{
 		}
 
-		public static RegionAddRequestBuilder Add(Region region)
+		public static PasswordPolicyAddRequestBuilder Add(PasswordPolicy objectToAdd)
 		{
-			return new RegionAddRequestBuilder(region);
+			return new PasswordPolicyAddRequestBuilder(objectToAdd);
 		}
 
-		public static RegionDeleteRequestBuilder Delete(int id)
+		public static PasswordPolicyUpdateRequestBuilder Update(long id, PasswordPolicy objectToUpdate)
 		{
-			return new RegionDeleteRequestBuilder(id);
+			return new PasswordPolicyUpdateRequestBuilder(id, objectToUpdate);
 		}
 
-		public static RegionListRequestBuilder List(RegionFilter filter)
+		public static PasswordPolicyDeleteRequestBuilder Delete(long id)
 		{
-			return new RegionListRequestBuilder(filter);
+			return new PasswordPolicyDeleteRequestBuilder(id);
 		}
 
-		public static RegionUpdateRequestBuilder Update(int id, Region region)
+		public static PasswordPolicyListRequestBuilder List(PasswordPolicyFilter filter)
 		{
-			return new RegionUpdateRequestBuilder(id, region);
+			return new PasswordPolicyListRequestBuilder(filter);
 		}
 	}
 }
