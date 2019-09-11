@@ -48,8 +48,6 @@ namespace Kaltura.Types
 		public const string MAIL_SETTINGS = "mailSettings";
 		public const string DATE_FORMAT = "dateFormat";
 		public const string HOUSEHOLD_LIMITATION_MODULE = "householdLimitationModule";
-		public const string ENABLE_REGION_FILTERING = "enableRegionFiltering";
-		public const string DEFAULT_REGION = "defaultRegion";
 		#endregion
 
 		#region Private Fields
@@ -63,8 +61,6 @@ namespace Kaltura.Types
 		private string _MailSettings = null;
 		private string _DateFormat = null;
 		private int _HouseholdLimitationModule = Int32.MinValue;
-		private bool? _EnableRegionFiltering = null;
-		private int _DefaultRegion = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -168,26 +164,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("HouseholdLimitationModule");
 			}
 		}
-		[JsonProperty]
-		public bool? EnableRegionFiltering
-		{
-			get { return _EnableRegionFiltering; }
-			set 
-			{ 
-				_EnableRegionFiltering = value;
-				OnPropertyChanged("EnableRegionFiltering");
-			}
-		}
-		[JsonProperty]
-		public int DefaultRegion
-		{
-			get { return _DefaultRegion; }
-			set 
-			{ 
-				_DefaultRegion = value;
-				OnPropertyChanged("DefaultRegion");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -237,14 +213,6 @@ namespace Kaltura.Types
 			{
 				this._HouseholdLimitationModule = ParseInt(node["householdLimitationModule"].Value<string>());
 			}
-			if(node["enableRegionFiltering"] != null)
-			{
-				this._EnableRegionFiltering = ParseBool(node["enableRegionFiltering"].Value<string>());
-			}
-			if(node["defaultRegion"] != null)
-			{
-				this._DefaultRegion = ParseInt(node["defaultRegion"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -264,8 +232,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("mailSettings", this._MailSettings);
 			kparams.AddIfNotNull("dateFormat", this._DateFormat);
 			kparams.AddIfNotNull("householdLimitationModule", this._HouseholdLimitationModule);
-			kparams.AddIfNotNull("enableRegionFiltering", this._EnableRegionFiltering);
-			kparams.AddIfNotNull("defaultRegion", this._DefaultRegion);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -292,10 +258,6 @@ namespace Kaltura.Types
 					return "DateFormat";
 				case HOUSEHOLD_LIMITATION_MODULE:
 					return "HouseholdLimitationModule";
-				case ENABLE_REGION_FILTERING:
-					return "EnableRegionFiltering";
-				case DEFAULT_REGION:
-					return "DefaultRegion";
 				default:
 					return base.getPropertyName(apiName);
 			}

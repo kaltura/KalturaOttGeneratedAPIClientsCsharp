@@ -274,9 +274,6 @@ namespace Kaltura
 		public static string PermissionNameAlreadyInUse = "5063";
 		public static string EventNotificationIdIsMissing = "5064";
 		public static string EventNotificationIdNotFound = "5065";
-		public static string RegionNotFound = "5066";
-		public static string DefaultRegionCannotBeDeleted = "5068";
-		public static string RegionInUseCannotBeDeleted = "5069";
 		public static string IncorrectPrice = "6000";
 		public static string UnKnownPPVModule = "6001";
 		public static string ExpiredCard = "6002";
