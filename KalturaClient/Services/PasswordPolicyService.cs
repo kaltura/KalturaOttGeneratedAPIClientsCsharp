@@ -219,7 +219,7 @@ namespace Kaltura.Services
 			return new PasswordPolicyDeleteRequestBuilder(id);
 		}
 
-		public static PasswordPolicyListRequestBuilder List(PasswordPolicyFilter filter)
+		public static PasswordPolicyListRequestBuilder List(PasswordPolicyFilter filter = null)
 		{
 			return new PasswordPolicyListRequestBuilder(filter);
 		}

@@ -170,7 +170,7 @@ namespace Kaltura.Services
 			return new HouseholdCouponDeleteRequestBuilder(id);
 		}
 
-		public static HouseholdCouponListRequestBuilder List(HouseholdCouponFilter filter = )
+		public static HouseholdCouponListRequestBuilder List(HouseholdCouponFilter filter = null)
 		{
 			return new HouseholdCouponListRequestBuilder(filter);
 		}
