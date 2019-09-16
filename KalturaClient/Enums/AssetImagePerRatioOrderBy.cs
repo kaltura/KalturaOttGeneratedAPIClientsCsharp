@@ -27,10 +27,10 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class AssetFirstImagePerRatioOrderBy : StringEnum
+	public sealed class AssetImagePerRatioOrderBy : StringEnum
 	{
-		public static readonly AssetFirstImagePerRatioOrderBy NONE = new AssetFirstImagePerRatioOrderBy("NONE");
+		public static readonly AssetImagePerRatioOrderBy NONE = new AssetImagePerRatioOrderBy("NONE");
 
-		private AssetFirstImagePerRatioOrderBy(string name) : base(name) { }
+		private AssetImagePerRatioOrderBy(string name) : base(name) { }
 	}
 }

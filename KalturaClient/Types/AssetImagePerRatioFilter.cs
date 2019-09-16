@@ -35,19 +35,19 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetFirstImagePerRatioFilter : RelatedObjectFilter
+	public class AssetImagePerRatioFilter : RelatedObjectFilter
 	{
 		#region Constants
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private AssetFirstImagePerRatioOrderBy _OrderBy = null;
+		private AssetImagePerRatioOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public new AssetFirstImagePerRatioOrderBy OrderBy
+		public new AssetImagePerRatioOrderBy OrderBy
 		{
 			get { return _OrderBy; }
 			set 
@@ -59,15 +59,15 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public AssetFirstImagePerRatioFilter()
+		public AssetImagePerRatioFilter()
 		{
 		}
 
-		public AssetFirstImagePerRatioFilter(JToken node) : base(node)
+		public AssetImagePerRatioFilter(JToken node) : base(node)
 		{
 			if(node["orderBy"] != null)
 			{
-				this._OrderBy = (AssetFirstImagePerRatioOrderBy)StringEnum.Parse(typeof(AssetFirstImagePerRatioOrderBy), node["orderBy"].Value<string>());
+				this._OrderBy = (AssetImagePerRatioOrderBy)StringEnum.Parse(typeof(AssetImagePerRatioOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -77,7 +77,7 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetFirstImagePerRatioFilter");
+				kparams.AddReplace("objectType", "KalturaAssetImagePerRatioFilter");
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
