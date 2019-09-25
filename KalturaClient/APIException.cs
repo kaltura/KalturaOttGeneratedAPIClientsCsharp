@@ -275,6 +275,7 @@ namespace Kaltura
 		public static string EventNotificationIdIsMissing = "5064";
 		public static string EventNotificationIdNotFound = "5065";
 		public static string RegionNotFound = "5066";
+		public static string RegionCannotBeParent = "5067";
 		public static string DefaultRegionCannotBeDeleted = "5068";
 		public static string CannotDeleteRegionInUse = "5069";
 		public static string IncorrectPrice = "6000";
