@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Regex : ObjectBase
+	public class RegexExpression : ObjectBase
 	{
 		#region Constants
 		public const string EXPRESSION = "expression";
@@ -71,11 +71,11 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public Regex()
+		public RegexExpression()
 		{
 		}
 
-		public Regex(JToken node) : base(node)
+		public RegexExpression(JToken node) : base(node)
 		{
 			if(node["expression"] != null)
 			{
@@ -93,7 +93,7 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRegex");
+				kparams.AddReplace("objectType", "KalturaRegexExpression");
 			kparams.AddIfNotNull("expression", this._Expression);
 			kparams.AddIfNotNull("description", this._Description);
 			return kparams;
