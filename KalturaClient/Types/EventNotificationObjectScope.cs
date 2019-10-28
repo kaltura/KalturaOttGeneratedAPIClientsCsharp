@@ -35,56 +35,24 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Regex : ObjectBase
+	public class EventNotificationObjectScope : EventNotificationScope
 	{
 		#region Constants
-		public const string EXPRESSION = "expression";
-		public const string DESCRIPTION = "description";
 		#endregion
 
 		#region Private Fields
-		private string _Expression = null;
-		private string _Description = null;
 		#endregion
 
 		#region Properties
-		[JsonProperty]
-		public string Expression
-		{
-			get { return _Expression; }
-			set 
-			{ 
-				_Expression = value;
-				OnPropertyChanged("Expression");
-			}
-		}
-		[JsonProperty]
-		public string Description
-		{
-			get { return _Description; }
-			set 
-			{ 
-				_Description = value;
-				OnPropertyChanged("Description");
-			}
-		}
 		#endregion
 
 		#region CTor
-		public Regex()
+		public EventNotificationObjectScope()
 		{
 		}
 
-		public Regex(JToken node) : base(node)
+		public EventNotificationObjectScope(JToken node) : base(node)
 		{
-			if(node["expression"] != null)
-			{
-				this._Expression = node["expression"].Value<string>();
-			}
-			if(node["description"] != null)
-			{
-				this._Description = node["description"].Value<string>();
-			}
 		}
 		#endregion
 
@@ -93,19 +61,13 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRegex");
-			kparams.AddIfNotNull("expression", this._Expression);
-			kparams.AddIfNotNull("description", this._Description);
+				kparams.AddReplace("objectType", "KalturaEventNotificationObjectScope");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case EXPRESSION:
-					return "Expression";
-				case DESCRIPTION:
-					return "Description";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -35,55 +35,55 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class HouseholdCoupon : CrudObject
+	public class RegexExpression : ObjectBase
 	{
 		#region Constants
-		public const string CODE = "code";
-		public const string LAST_USAGE_DATE = "lastUsageDate";
+		public const string EXPRESSION = "expression";
+		public const string DESCRIPTION = "description";
 		#endregion
 
 		#region Private Fields
-		private string _Code = null;
-		private long _LastUsageDate = long.MinValue;
+		private string _Expression = null;
+		private string _Description = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public string Code
+		public string Expression
 		{
-			get { return _Code; }
+			get { return _Expression; }
 			set 
 			{ 
-				_Code = value;
-				OnPropertyChanged("Code");
+				_Expression = value;
+				OnPropertyChanged("Expression");
 			}
 		}
 		[JsonProperty]
-		public long LastUsageDate
+		public string Description
 		{
-			get { return _LastUsageDate; }
+			get { return _Description; }
 			set 
 			{ 
-				_LastUsageDate = value;
-				OnPropertyChanged("LastUsageDate");
+				_Description = value;
+				OnPropertyChanged("Description");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public HouseholdCoupon()
+		public RegexExpression()
 		{
 		}
 
-		public HouseholdCoupon(JToken node) : base(node)
+		public RegexExpression(JToken node) : base(node)
 		{
-			if(node["code"] != null)
+			if(node["expression"] != null)
 			{
-				this._Code = node["code"].Value<string>();
+				this._Expression = node["expression"].Value<string>();
 			}
-			if(node["lastUsageDate"] != null)
+			if(node["description"] != null)
 			{
-				this._LastUsageDate = ParseLong(node["lastUsageDate"].Value<string>());
+				this._Description = node["description"].Value<string>();
 			}
 		}
 		#endregion
@@ -93,19 +93,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaHouseholdCoupon");
-			kparams.AddIfNotNull("code", this._Code);
-			kparams.AddIfNotNull("lastUsageDate", this._LastUsageDate);
+				kparams.AddReplace("objectType", "KalturaRegexExpression");
+			kparams.AddIfNotNull("expression", this._Expression);
+			kparams.AddIfNotNull("description", this._Description);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case CODE:
-					return "Code";
-				case LAST_USAGE_DATE:
-					return "LastUsageDate";
+				case EXPRESSION:
+					return "Expression";
+				case DESCRIPTION:
+					return "Description";
 				default:
 					return base.getPropertyName(apiName);
 			}

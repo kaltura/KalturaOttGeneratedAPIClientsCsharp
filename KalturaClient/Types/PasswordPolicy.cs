@@ -53,7 +53,7 @@ namespace Kaltura.Types
 		private string _UserRoleIds = null;
 		private int _HistoryCount = Int32.MinValue;
 		private int _Expiration = Int32.MinValue;
-		private IList<Regex> _Complexities;
+		private IList<RegexExpression> _Complexities;
 		private int _LockoutFailuresCount = Int32.MinValue;
 		#endregion
 
@@ -109,7 +109,7 @@ namespace Kaltura.Types
 			}
 		}
 		[JsonProperty]
-		public IList<Regex> Complexities
+		public IList<RegexExpression> Complexities
 		{
 			get { return _Complexities; }
 			set 
@@ -159,10 +159,10 @@ namespace Kaltura.Types
 			}
 			if(node["complexities"] != null)
 			{
-				this._Complexities = new List<Regex>();
+				this._Complexities = new List<RegexExpression>();
 				foreach(var arrayNode in node["complexities"].Children())
 				{
-					this._Complexities.Add(ObjectFactory.Create<Regex>(arrayNode));
+					this._Complexities.Add(ObjectFactory.Create<RegexExpression>(arrayNode));
 				}
 			}
 			if(node["lockoutFailuresCount"] != null)
