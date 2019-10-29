@@ -40,12 +40,16 @@ namespace Kaltura.Types
 		#region Constants
 		public const string BUSINESS_MODULE_TYPE_EQUAL = "businessModuleTypeEqual";
 		public const string BUSINESS_MODULE_ID_EQUAL = "businessModuleIdEqual";
+		public const string COUPON_CODE = "couponCode";
+		public const string STATUS = "status";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
 		private TransactionType _BusinessModuleTypeEqual = null;
 		private long _BusinessModuleIdEqual = long.MinValue;
+		private string _CouponCode = null;
+		private CouponStatus _Status = null;
 		private HouseholdCouponOrderBy _OrderBy = null;
 		#endregion
 
@@ -68,6 +72,26 @@ namespace Kaltura.Types
 			{ 
 				_BusinessModuleIdEqual = value;
 				OnPropertyChanged("BusinessModuleIdEqual");
+			}
+		}
+		[JsonProperty]
+		public string CouponCode
+		{
+			get { return _CouponCode; }
+			set 
+			{ 
+				_CouponCode = value;
+				OnPropertyChanged("CouponCode");
+			}
+		}
+		[JsonProperty]
+		public CouponStatus Status
+		{
+			get { return _Status; }
+			set 
+			{ 
+				_Status = value;
+				OnPropertyChanged("Status");
 			}
 		}
 		[JsonProperty]
@@ -97,6 +121,14 @@ namespace Kaltura.Types
 			{
 				this._BusinessModuleIdEqual = ParseLong(node["businessModuleIdEqual"].Value<string>());
 			}
+			if(node["couponCode"] != null)
+			{
+				this._CouponCode = node["couponCode"].Value<string>();
+			}
+			if(node["status"] != null)
+			{
+				this._Status = (CouponStatus)StringEnum.Parse(typeof(CouponStatus), node["status"].Value<string>());
+			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (HouseholdCouponOrderBy)StringEnum.Parse(typeof(HouseholdCouponOrderBy), node["orderBy"].Value<string>());
@@ -112,6 +144,8 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaHouseholdCouponFilter");
 			kparams.AddIfNotNull("businessModuleTypeEqual", this._BusinessModuleTypeEqual);
 			kparams.AddIfNotNull("businessModuleIdEqual", this._BusinessModuleIdEqual);
+			kparams.AddIfNotNull("couponCode", this._CouponCode);
+			kparams.AddIfNotNull("status", this._Status);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -123,6 +157,10 @@ namespace Kaltura.Types
 					return "BusinessModuleTypeEqual";
 				case BUSINESS_MODULE_ID_EQUAL:
 					return "BusinessModuleIdEqual";
+				case COUPON_CODE:
+					return "CouponCode";
+				case STATUS:
+					return "Status";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

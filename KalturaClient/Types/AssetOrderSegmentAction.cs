@@ -35,55 +35,59 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class HouseholdCoupon : CrudObject
+	public class AssetOrderSegmentAction : BaseSegmentAction
 	{
 		#region Constants
-		public const string CODE = "code";
-		public const string LAST_USAGE_DATE = "lastUsageDate";
+		public const string NAME = "name";
+		public const string VALUES = "values";
 		#endregion
 
 		#region Private Fields
-		private string _Code = null;
-		private long _LastUsageDate = long.MinValue;
+		private string _Name = null;
+		private IList<StringValue> _Values;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public string Code
+		public string Name
 		{
-			get { return _Code; }
+			get { return _Name; }
 			set 
 			{ 
-				_Code = value;
-				OnPropertyChanged("Code");
+				_Name = value;
+				OnPropertyChanged("Name");
 			}
 		}
 		[JsonProperty]
-		public long LastUsageDate
+		public IList<StringValue> Values
 		{
-			get { return _LastUsageDate; }
+			get { return _Values; }
 			set 
 			{ 
-				_LastUsageDate = value;
-				OnPropertyChanged("LastUsageDate");
+				_Values = value;
+				OnPropertyChanged("Values");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public HouseholdCoupon()
+		public AssetOrderSegmentAction()
 		{
 		}
 
-		public HouseholdCoupon(JToken node) : base(node)
+		public AssetOrderSegmentAction(JToken node) : base(node)
 		{
-			if(node["code"] != null)
+			if(node["name"] != null)
 			{
-				this._Code = node["code"].Value<string>();
+				this._Name = node["name"].Value<string>();
 			}
-			if(node["lastUsageDate"] != null)
+			if(node["values"] != null)
 			{
-				this._LastUsageDate = ParseLong(node["lastUsageDate"].Value<string>());
+				this._Values = new List<StringValue>();
+				foreach(var arrayNode in node["values"].Children())
+				{
+					this._Values.Add(ObjectFactory.Create<StringValue>(arrayNode));
+				}
 			}
 		}
 		#endregion
@@ -93,19 +97,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaHouseholdCoupon");
-			kparams.AddIfNotNull("code", this._Code);
-			kparams.AddIfNotNull("lastUsageDate", this._LastUsageDate);
+				kparams.AddReplace("objectType", "KalturaAssetOrderSegmentAction");
+			kparams.AddIfNotNull("name", this._Name);
+			kparams.AddIfNotNull("values", this._Values);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case CODE:
-					return "Code";
-				case LAST_USAGE_DATE:
-					return "LastUsageDate";
+				case NAME:
+					return "Name";
+				case VALUES:
+					return "Values";
 				default:
 					return base.getPropertyName(apiName);
 			}

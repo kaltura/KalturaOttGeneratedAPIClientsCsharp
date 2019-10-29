@@ -35,56 +35,24 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class HouseholdCoupon : CrudObject
+	public class BaseSegmentAction : ObjectBase
 	{
 		#region Constants
-		public const string CODE = "code";
-		public const string LAST_USAGE_DATE = "lastUsageDate";
 		#endregion
 
 		#region Private Fields
-		private string _Code = null;
-		private long _LastUsageDate = long.MinValue;
 		#endregion
 
 		#region Properties
-		[JsonProperty]
-		public string Code
-		{
-			get { return _Code; }
-			set 
-			{ 
-				_Code = value;
-				OnPropertyChanged("Code");
-			}
-		}
-		[JsonProperty]
-		public long LastUsageDate
-		{
-			get { return _LastUsageDate; }
-			set 
-			{ 
-				_LastUsageDate = value;
-				OnPropertyChanged("LastUsageDate");
-			}
-		}
 		#endregion
 
 		#region CTor
-		public HouseholdCoupon()
+		public BaseSegmentAction()
 		{
 		}
 
-		public HouseholdCoupon(JToken node) : base(node)
+		public BaseSegmentAction(JToken node) : base(node)
 		{
-			if(node["code"] != null)
-			{
-				this._Code = node["code"].Value<string>();
-			}
-			if(node["lastUsageDate"] != null)
-			{
-				this._LastUsageDate = ParseLong(node["lastUsageDate"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -93,19 +61,13 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaHouseholdCoupon");
-			kparams.AddIfNotNull("code", this._Code);
-			kparams.AddIfNotNull("lastUsageDate", this._LastUsageDate);
+				kparams.AddReplace("objectType", "KalturaBaseSegmentAction");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case CODE:
-					return "Code";
-				case LAST_USAGE_DATE:
-					return "LastUsageDate";
 				default:
 					return base.getPropertyName(apiName);
 			}
