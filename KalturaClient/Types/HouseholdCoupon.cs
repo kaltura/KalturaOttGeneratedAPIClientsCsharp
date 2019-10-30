@@ -39,12 +39,10 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string CODE = "code";
-		public const string LAST_USAGE_DATE = "lastUsageDate";
 		#endregion
 
 		#region Private Fields
 		private string _Code = null;
-		private long _LastUsageDate = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -56,16 +54,6 @@ namespace Kaltura.Types
 			{ 
 				_Code = value;
 				OnPropertyChanged("Code");
-			}
-		}
-		[JsonProperty]
-		public long LastUsageDate
-		{
-			get { return _LastUsageDate; }
-			set 
-			{ 
-				_LastUsageDate = value;
-				OnPropertyChanged("LastUsageDate");
 			}
 		}
 		#endregion
@@ -81,10 +69,6 @@ namespace Kaltura.Types
 			{
 				this._Code = node["code"].Value<string>();
 			}
-			if(node["lastUsageDate"] != null)
-			{
-				this._LastUsageDate = ParseLong(node["lastUsageDate"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -95,7 +79,6 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaHouseholdCoupon");
 			kparams.AddIfNotNull("code", this._Code);
-			kparams.AddIfNotNull("lastUsageDate", this._LastUsageDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -104,8 +87,6 @@ namespace Kaltura.Types
 			{
 				case CODE:
 					return "Code";
-				case LAST_USAGE_DATE:
-					return "LastUsageDate";
 				default:
 					return base.getPropertyName(apiName);
 			}
