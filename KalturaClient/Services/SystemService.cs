@@ -36,6 +36,52 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
+	public class SystemClearLocalServerCacheRequestBuilder : RequestBuilder<bool>
+	{
+		#region Constants
+		public const string ACTION = "action";
+		public const string KEY = "key";
+		#endregion
+
+		public string Action { get; set; }
+		public string Key { get; set; }
+
+		public SystemClearLocalServerCacheRequestBuilder()
+			: base("system", "clearLocalServerCache")
+		{
+		}
+
+		public SystemClearLocalServerCacheRequestBuilder(string action, string key)
+			: this()
+		{
+			this.Action = action;
+			this.Key = key;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("action"))
+				kparams.AddIfNotNull("action", Action);
+			if (!isMapped("key"))
+				kparams.AddIfNotNull("key", Key);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
+				return true;
+			return false;
+		}
+	}
+
 	public class SystemGetLogLevelRequestBuilder : RequestBuilder<string>
 	{
 		#region Constants
@@ -123,6 +169,47 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class SystemIncrementLayeredCacheGroupConfigVersionRequestBuilder : RequestBuilder<bool>
+	{
+		#region Constants
+		public const string GROUP_ID = "groupId";
+		#endregion
+
+		public int GroupId { get; set; }
+
+		public SystemIncrementLayeredCacheGroupConfigVersionRequestBuilder()
+			: base("system", "incrementLayeredCacheGroupConfigVersion")
+		{
+		}
+
+		public SystemIncrementLayeredCacheGroupConfigVersionRequestBuilder(int groupId)
+			: this()
+		{
+			this.GroupId = groupId;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("groupId"))
+				kparams.AddIfNotNull("groupId", GroupId);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
+				return true;
+			return false;
+		}
+	}
+
 	public class SystemPingRequestBuilder : RequestBuilder<bool>
 	{
 		#region Constants
@@ -202,6 +289,11 @@ namespace Kaltura.Services
 		{
 		}
 
+		public static SystemClearLocalServerCacheRequestBuilder ClearLocalServerCache(string action = null, string key = null)
+		{
+			return new SystemClearLocalServerCacheRequestBuilder(action, key);
+		}
+
 		public static SystemGetLogLevelRequestBuilder GetLogLevel()
 		{
 			return new SystemGetLogLevelRequestBuilder();
@@ -215,6 +307,11 @@ namespace Kaltura.Services
 		public static SystemGetVersionRequestBuilder GetVersion()
 		{
 			return new SystemGetVersionRequestBuilder();
+		}
+
+		public static SystemIncrementLayeredCacheGroupConfigVersionRequestBuilder IncrementLayeredCacheGroupConfigVersion(int groupId = 0)
+		{
+			return new SystemIncrementLayeredCacheGroupConfigVersionRequestBuilder(groupId);
 		}
 
 		public static SystemPingRequestBuilder Ping()
