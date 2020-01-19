@@ -120,14 +120,14 @@ namespace Kaltura.Services
 		public const string FILTER = "filter";
 		#endregion
 
-		public RegionFilter Filter { get; set; }
+		public BaseRegionFilter Filter { get; set; }
 
 		public RegionListRequestBuilder()
 			: base("region", "list")
 		{
 		}
 
-		public RegionListRequestBuilder(RegionFilter filter)
+		public RegionListRequestBuilder(BaseRegionFilter filter)
 			: this()
 		{
 			this.Filter = filter;
@@ -214,7 +214,7 @@ namespace Kaltura.Services
 			return new RegionDeleteRequestBuilder(id);
 		}
 
-		public static RegionListRequestBuilder List(RegionFilter filter)
+		public static RegionListRequestBuilder List(BaseRegionFilter filter)
 		{
 			return new RegionListRequestBuilder(filter);
 		}
