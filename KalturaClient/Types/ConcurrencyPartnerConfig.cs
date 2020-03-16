@@ -40,11 +40,13 @@ namespace Kaltura.Types
 		#region Constants
 		public const string DEVICE_FAMILY_IDS = "deviceFamilyIds";
 		public const string EVICTION_POLICY = "evictionPolicy";
+		public const string DEVICE_PLAY_DATA_EXPIRATION_TTL = "devicePlayDataExpirationTTL";
 		#endregion
 
 		#region Private Fields
 		private string _DeviceFamilyIds = null;
 		private EvictionPolicyType _EvictionPolicy = null;
+		private long _DevicePlayDataExpirationTTL = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -68,6 +70,16 @@ namespace Kaltura.Types
 				OnPropertyChanged("EvictionPolicy");
 			}
 		}
+		[JsonProperty]
+		public long DevicePlayDataExpirationTTL
+		{
+			get { return _DevicePlayDataExpirationTTL; }
+			set 
+			{ 
+				_DevicePlayDataExpirationTTL = value;
+				OnPropertyChanged("DevicePlayDataExpirationTTL");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -85,6 +97,10 @@ namespace Kaltura.Types
 			{
 				this._EvictionPolicy = (EvictionPolicyType)StringEnum.Parse(typeof(EvictionPolicyType), node["evictionPolicy"].Value<string>());
 			}
+			if(node["devicePlayDataExpirationTTL"] != null)
+			{
+				this._DevicePlayDataExpirationTTL = ParseLong(node["devicePlayDataExpirationTTL"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -96,6 +112,7 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaConcurrencyPartnerConfig");
 			kparams.AddIfNotNull("deviceFamilyIds", this._DeviceFamilyIds);
 			kparams.AddIfNotNull("evictionPolicy", this._EvictionPolicy);
+			kparams.AddIfNotNull("devicePlayDataExpirationTTL", this._DevicePlayDataExpirationTTL);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -106,6 +123,8 @@ namespace Kaltura.Types
 					return "DeviceFamilyIds";
 				case EVICTION_POLICY:
 					return "EvictionPolicy";
+				case DEVICE_PLAY_DATA_EXPIRATION_TTL:
+					return "DevicePlayDataExpirationTTL";
 				default:
 					return base.getPropertyName(apiName);
 			}
