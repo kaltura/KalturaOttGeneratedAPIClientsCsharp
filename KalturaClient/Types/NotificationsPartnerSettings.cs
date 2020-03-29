@@ -55,6 +55,8 @@ namespace Kaltura.Types
 		public const string MAIL_SENDER_NAME = "mailSenderName";
 		public const string MAIL_NOTIFICATION_ADAPTER_ID = "mailNotificationAdapterId";
 		public const string SMS_ENABLED = "smsEnabled";
+		public const string IOT_ENABLED = "iotEnabled";
+		public const string IOT_ADAPTER_URL = "iotAdapterUrl";
 		#endregion
 
 		#region Private Fields
@@ -75,6 +77,8 @@ namespace Kaltura.Types
 		private string _MailSenderName = null;
 		private long _MailNotificationAdapterId = long.MinValue;
 		private bool? _SmsEnabled = null;
+		private bool? _IotEnabled = null;
+		private string _IotAdapterUrl = null;
 		#endregion
 
 		#region Properties
@@ -248,6 +252,26 @@ namespace Kaltura.Types
 				OnPropertyChanged("SmsEnabled");
 			}
 		}
+		[JsonProperty]
+		public bool? IotEnabled
+		{
+			get { return _IotEnabled; }
+			set 
+			{ 
+				_IotEnabled = value;
+				OnPropertyChanged("IotEnabled");
+			}
+		}
+		[JsonProperty]
+		public string IotAdapterUrl
+		{
+			get { return _IotAdapterUrl; }
+			set 
+			{ 
+				_IotAdapterUrl = value;
+				OnPropertyChanged("IotAdapterUrl");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -325,6 +349,14 @@ namespace Kaltura.Types
 			{
 				this._SmsEnabled = ParseBool(node["smsEnabled"].Value<string>());
 			}
+			if(node["iotEnabled"] != null)
+			{
+				this._IotEnabled = ParseBool(node["iotEnabled"].Value<string>());
+			}
+			if(node["iotAdapterUrl"] != null)
+			{
+				this._IotAdapterUrl = node["iotAdapterUrl"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -351,6 +383,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("mailSenderName", this._MailSenderName);
 			kparams.AddIfNotNull("mailNotificationAdapterId", this._MailNotificationAdapterId);
 			kparams.AddIfNotNull("smsEnabled", this._SmsEnabled);
+			kparams.AddIfNotNull("iotEnabled", this._IotEnabled);
+			kparams.AddIfNotNull("iotAdapterUrl", this._IotAdapterUrl);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -391,6 +425,10 @@ namespace Kaltura.Types
 					return "MailNotificationAdapterId";
 				case SMS_ENABLED:
 					return "SmsEnabled";
+				case IOT_ENABLED:
+					return "IotEnabled";
+				case IOT_ADAPTER_URL:
+					return "IotAdapterUrl";
 				default:
 					return base.getPropertyName(apiName);
 			}
