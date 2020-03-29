@@ -45,7 +45,6 @@ namespace Kaltura.Types
 		public const string BROKER_PORT = "brokerPort";
 		public const string ACCESS_KEY_ID = "accessKeyId";
 		public const string SECRET_ACCESS_KEY = "secretAccessKey";
-		public const string TTL = "tTL";
 		public const string IOT_POLICY_NAME = "iotPolicyName";
 		public const string USER_POOL_ID = "userPoolId";
 		public const string CLIENT_ID = "clientId";
@@ -62,7 +61,6 @@ namespace Kaltura.Types
 		private int _BrokerPort = Int32.MinValue;
 		private string _AccessKeyId = null;
 		private string _SecretAccessKey = null;
-		private string _TTL = null;
 		private string _IotPolicyName = null;
 		private string _UserPoolId = null;
 		private string _ClientId = null;
@@ -140,16 +138,6 @@ namespace Kaltura.Types
 			{ 
 				_SecretAccessKey = value;
 				OnPropertyChanged("SecretAccessKey");
-			}
-		}
-		[JsonProperty]
-		public string TTL
-		{
-			get { return _TTL; }
-			set 
-			{ 
-				_TTL = value;
-				OnPropertyChanged("TTL");
 			}
 		}
 		[JsonProperty]
@@ -249,10 +237,6 @@ namespace Kaltura.Types
 			{
 				this._SecretAccessKey = node["secretAccessKey"].Value<string>();
 			}
-			if(node["tTL"] != null)
-			{
-				this._TTL = node["tTL"].Value<string>();
-			}
 			if(node["iotPolicyName"] != null)
 			{
 				this._IotPolicyName = node["iotPolicyName"].Value<string>();
@@ -293,7 +277,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("brokerPort", this._BrokerPort);
 			kparams.AddIfNotNull("accessKeyId", this._AccessKeyId);
 			kparams.AddIfNotNull("secretAccessKey", this._SecretAccessKey);
-			kparams.AddIfNotNull("tTL", this._TTL);
 			kparams.AddIfNotNull("iotPolicyName", this._IotPolicyName);
 			kparams.AddIfNotNull("userPoolId", this._UserPoolId);
 			kparams.AddIfNotNull("clientId", this._ClientId);
@@ -320,8 +303,6 @@ namespace Kaltura.Types
 					return "AccessKeyId";
 				case SECRET_ACCESS_KEY:
 					return "SecretAccessKey";
-				case TTL:
-					return "TTL";
 				case IOT_POLICY_NAME:
 					return "IotPolicyName";
 				case USER_POOL_ID:
