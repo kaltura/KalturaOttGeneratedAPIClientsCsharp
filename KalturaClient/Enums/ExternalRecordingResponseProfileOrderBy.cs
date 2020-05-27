@@ -27,16 +27,10 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class CategoryItemOrderBy : StringEnum
+	public sealed class ExternalRecordingResponseProfileOrderBy : StringEnum
 	{
-		public static readonly CategoryItemOrderBy NAME_ASC = new CategoryItemOrderBy("NAME_ASC");
-		public static readonly CategoryItemOrderBy NAME_DESC = new CategoryItemOrderBy("NAME_DESC");
-		public static readonly CategoryItemOrderBy CREATE_DATE_ASC = new CategoryItemOrderBy("CREATE_DATE_ASC");
-		public static readonly CategoryItemOrderBy CREATE_DATE_DESC = new CategoryItemOrderBy("CREATE_DATE_DESC");
-		public static readonly CategoryItemOrderBy NONE = new CategoryItemOrderBy("NONE");
-		public static readonly CategoryItemOrderBy UPDATE_DATE_ASC = new CategoryItemOrderBy("UPDATE_DATE_ASC");
-		public static readonly CategoryItemOrderBy UPDATE_DATE_DESC = new CategoryItemOrderBy("UPDATE_DATE_DESC");
+		public static readonly ExternalRecordingResponseProfileOrderBy NONE = new ExternalRecordingResponseProfileOrderBy("NONE");
 
-		private CategoryItemOrderBy(string name) : base(name) { }
+		private ExternalRecordingResponseProfileOrderBy(string name) : base(name) { }
 	}
 }
