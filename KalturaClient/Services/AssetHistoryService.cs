@@ -75,6 +75,45 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class AssetHistoryGetNextEpisodeRequestBuilder : RequestBuilder<AssetHistory>
+	{
+		#region Constants
+		public const string SERIES_ID = "seriesId";
+		#endregion
+
+		public string SeriesId { get; set; }
+
+		public AssetHistoryGetNextEpisodeRequestBuilder()
+			: base("assethistory", "getNextEpisode")
+		{
+		}
+
+		public AssetHistoryGetNextEpisodeRequestBuilder(string seriesId)
+			: this()
+		{
+			this.SeriesId = seriesId;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("seriesId"))
+				kparams.AddIfNotNull("seriesId", SeriesId);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<AssetHistory>(result);
+		}
+	}
+
 	public class AssetHistoryListRequestBuilder : RequestBuilder<ListResponse<AssetHistory>>
 	{
 		#region Constants
@@ -129,6 +168,11 @@ namespace Kaltura.Services
 		public static AssetHistoryCleanRequestBuilder Clean(AssetHistoryFilter filter = null)
 		{
 			return new AssetHistoryCleanRequestBuilder(filter);
+		}
+
+		public static AssetHistoryGetNextEpisodeRequestBuilder GetNextEpisode(string seriesId)
+		{
+			return new AssetHistoryGetNextEpisodeRequestBuilder(seriesId);
 		}
 
 		public static AssetHistoryListRequestBuilder List(AssetHistoryFilter filter = null, FilterPager pager = null)
