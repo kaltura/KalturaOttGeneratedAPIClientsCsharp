@@ -35,18 +35,16 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ChannelFilter : AssetFilter
+	public class ChannelFilter : BaseSearchAssetFilter
 	{
 		#region Constants
 		public const string ID_EQUAL = "idEqual";
-		public const string KSQL = "kSql";
 		public const string EXCLUDE_WATCHED = "excludeWatched";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
 		private int _IdEqual = Int32.MinValue;
-		private string _KSql = null;
 		private bool? _ExcludeWatched = null;
 		private ChannelOrderBy _OrderBy = null;
 		#endregion
@@ -60,16 +58,6 @@ namespace Kaltura.Types
 			{ 
 				_IdEqual = value;
 				OnPropertyChanged("IdEqual");
-			}
-		}
-		[JsonProperty]
-		public string KSql
-		{
-			get { return _KSql; }
-			set 
-			{ 
-				_KSql = value;
-				OnPropertyChanged("KSql");
 			}
 		}
 		[JsonProperty]
@@ -105,10 +93,6 @@ namespace Kaltura.Types
 			{
 				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
 			}
-			if(node["kSql"] != null)
-			{
-				this._KSql = node["kSql"].Value<string>();
-			}
 			if(node["excludeWatched"] != null)
 			{
 				this._ExcludeWatched = ParseBool(node["excludeWatched"].Value<string>());
@@ -127,7 +111,6 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaChannelFilter");
 			kparams.AddIfNotNull("idEqual", this._IdEqual);
-			kparams.AddIfNotNull("kSql", this._KSql);
 			kparams.AddIfNotNull("excludeWatched", this._ExcludeWatched);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
@@ -138,8 +121,6 @@ namespace Kaltura.Types
 			{
 				case ID_EQUAL:
 					return "IdEqual";
-				case KSQL:
-					return "KSql";
 				case EXCLUDE_WATCHED:
 					return "ExcludeWatched";
 				case ORDER_BY:
