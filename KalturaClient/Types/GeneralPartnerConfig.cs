@@ -51,7 +51,6 @@ namespace Kaltura.Types
 		public const string ENABLE_REGION_FILTERING = "enableRegionFiltering";
 		public const string DEFAULT_REGION = "defaultRegion";
 		public const string ROLLING_DEVICE_DATA = "rollingDeviceData";
-		public const string FINISHED_PERCENT_THRESHOLD = "finishedPercentThreshold";
 		#endregion
 
 		#region Private Fields
@@ -68,7 +67,6 @@ namespace Kaltura.Types
 		private bool? _EnableRegionFiltering = null;
 		private int _DefaultRegion = Int32.MinValue;
 		private RollingDeviceRemovalData _RollingDeviceData;
-		private int _FinishedPercentThreshold = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -202,16 +200,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RollingDeviceData");
 			}
 		}
-		[JsonProperty]
-		public int FinishedPercentThreshold
-		{
-			get { return _FinishedPercentThreshold; }
-			set 
-			{ 
-				_FinishedPercentThreshold = value;
-				OnPropertyChanged("FinishedPercentThreshold");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -273,10 +261,6 @@ namespace Kaltura.Types
 			{
 				this._RollingDeviceData = ObjectFactory.Create<RollingDeviceRemovalData>(node["rollingDeviceData"]);
 			}
-			if(node["finishedPercentThreshold"] != null)
-			{
-				this._FinishedPercentThreshold = ParseInt(node["finishedPercentThreshold"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -299,7 +283,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("enableRegionFiltering", this._EnableRegionFiltering);
 			kparams.AddIfNotNull("defaultRegion", this._DefaultRegion);
 			kparams.AddIfNotNull("rollingDeviceData", this._RollingDeviceData);
-			kparams.AddIfNotNull("finishedPercentThreshold", this._FinishedPercentThreshold);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -332,8 +315,6 @@ namespace Kaltura.Types
 					return "DefaultRegion";
 				case ROLLING_DEVICE_DATA:
 					return "RollingDeviceData";
-				case FINISHED_PERCENT_THRESHOLD:
-					return "FinishedPercentThreshold";
 				default:
 					return base.getPropertyName(apiName);
 			}
