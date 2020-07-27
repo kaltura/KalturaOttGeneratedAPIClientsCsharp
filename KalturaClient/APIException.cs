@@ -474,6 +474,8 @@ namespace Kaltura
 		public static string MultirequestGenericMethod = "500064";
 		public static string MultirequestInvalidOperatorForConditionType = "500078";
 		public static string MultirequestInvalidConditionValue = "500077";
+		public static string PropertyDoesNotExist = "500087";
+		public static string InvalidResponseProfileProperty = "500088";
 		#endregion
 
 		#region Private Fields
