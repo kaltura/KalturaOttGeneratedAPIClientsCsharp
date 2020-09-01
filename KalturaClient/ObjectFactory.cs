@@ -274,6 +274,8 @@ namespace Kaltura
 					return new ListResponse<PasswordPolicy>(jToken);
 				case "KalturaPermissionItemListResponse":
 					return new ListResponse<PermissionItem>(jToken);
+				case "KalturaSmsAdapterProfileListResponse":
+					return new ListResponse<SmsAdapterProfile>(jToken);
 			}
 		
 			return null;

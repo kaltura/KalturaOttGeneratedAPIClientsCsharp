@@ -35,39 +35,39 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class OnDemandResponseProfile : DetachedResponseProfile
+	public class SmsAdapterProfileFilter : CrudFilter
 	{
 		#region Constants
-		public const string RETRIEVED_PROPERTIES = "retrievedProperties";
+		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private string _RetrievedProperties = null;
+		private SmsAdapterProfileOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public string RetrievedProperties
+		public new SmsAdapterProfileOrderBy OrderBy
 		{
-			get { return _RetrievedProperties; }
+			get { return _OrderBy; }
 			set 
 			{ 
-				_RetrievedProperties = value;
-				OnPropertyChanged("RetrievedProperties");
+				_OrderBy = value;
+				OnPropertyChanged("OrderBy");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public OnDemandResponseProfile()
+		public SmsAdapterProfileFilter()
 		{
 		}
 
-		public OnDemandResponseProfile(JToken node) : base(node)
+		public SmsAdapterProfileFilter(JToken node) : base(node)
 		{
-			if(node["retrievedProperties"] != null)
+			if(node["orderBy"] != null)
 			{
-				this._RetrievedProperties = node["retrievedProperties"].Value<string>();
+				this._OrderBy = (SmsAdapterProfileOrderBy)StringEnum.Parse(typeof(SmsAdapterProfileOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -77,16 +77,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaOnDemandResponseProfile");
-			kparams.AddIfNotNull("retrievedProperties", this._RetrievedProperties);
+				kparams.AddReplace("objectType", "KalturaSmsAdapterProfileFilter");
+			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case RETRIEVED_PROPERTIES:
-					return "RetrievedProperties";
+				case ORDER_BY:
+					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}
