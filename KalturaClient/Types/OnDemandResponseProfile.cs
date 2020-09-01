@@ -35,39 +35,39 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseChannel : OTTObjectSupportNullable
+	public class OnDemandResponseProfile : DetachedResponseProfile
 	{
 		#region Constants
-		public const string ID = "id";
+		public const string RETRIEVED_PROPERTIES = "retrievedProperties";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
+		private string _RetrievedProperties = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public long Id
+		public string RetrievedProperties
 		{
-			get { return _Id; }
-			private set 
+			get { return _RetrievedProperties; }
+			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
+				_RetrievedProperties = value;
+				OnPropertyChanged("RetrievedProperties");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseChannel()
+		public OnDemandResponseProfile()
 		{
 		}
 
-		public BaseChannel(JToken node) : base(node)
+		public OnDemandResponseProfile(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["retrievedProperties"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._RetrievedProperties = node["retrievedProperties"].Value<string>();
 			}
 		}
 		#endregion
@@ -77,16 +77,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseChannel");
-			kparams.AddIfNotNull("id", this._Id);
+				kparams.AddReplace("objectType", "KalturaOnDemandResponseProfile");
+			kparams.AddIfNotNull("retrievedProperties", this._RetrievedProperties);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
+				case RETRIEVED_PROPERTIES:
+					return "RetrievedProperties";
 				default:
 					return base.getPropertyName(apiName);
 			}
