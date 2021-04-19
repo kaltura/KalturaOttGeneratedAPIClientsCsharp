@@ -25,14 +25,73 @@
 //
 // @ignore
 // ===================================================================================================
-namespace Kaltura.Enums
-{
-	public sealed class SuspensionProfileInheritanceType : StringEnum
-	{
-		public static readonly SuspensionProfileInheritanceType ALWAYS = new SuspensionProfileInheritanceType("ALWAYS");
-		public static readonly SuspensionProfileInheritanceType NEVER = new SuspensionProfileInheritanceType("NEVER");
-		public static readonly SuspensionProfileInheritanceType DEFAULT = new SuspensionProfileInheritanceType("DEFAULT");
+using System;
+using System.Xml;
+using System.Collections.Generic;
+using Kaltura.Enums;
+using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-		private SuspensionProfileInheritanceType(string name) : base(name) { }
+namespace Kaltura.Types
+{
+	public class PartnerFilter : Filter
+	{
+		#region Constants
+		public const string ID_IN = "idIn";
+		#endregion
+
+		#region Private Fields
+		private string _IdIn = null;
+		#endregion
+
+		#region Properties
+		[JsonProperty]
+		public string IdIn
+		{
+			get { return _IdIn; }
+			set 
+			{ 
+				_IdIn = value;
+				OnPropertyChanged("IdIn");
+			}
+		}
+		#endregion
+
+		#region CTor
+		public PartnerFilter()
+		{
+		}
+
+		public PartnerFilter(JToken node) : base(node)
+		{
+			if(node["idIn"] != null)
+			{
+				this._IdIn = node["idIn"].Value<string>();
+			}
+		}
+		#endregion
+
+		#region Methods
+		public override Params ToParams(bool includeObjectType = true)
+		{
+			Params kparams = base.ToParams(includeObjectType);
+			if (includeObjectType)
+				kparams.AddReplace("objectType", "KalturaPartnerFilter");
+			kparams.AddIfNotNull("idIn", this._IdIn);
+			return kparams;
+		}
+		protected override string getPropertyName(string apiName)
+		{
+			switch(apiName)
+			{
+				case ID_IN:
+					return "IdIn";
+				default:
+					return base.getPropertyName(apiName);
+			}
+		}
+		#endregion
 	}
 }
+
