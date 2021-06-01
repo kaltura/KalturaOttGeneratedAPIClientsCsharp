@@ -52,7 +52,7 @@ namespace Kaltura.Types
 		public long Id
 		{
 			get { return _Id; }
-			private set 
+			set 
 			{ 
 				_Id = value;
 				OnPropertyChanged("Id");
@@ -62,7 +62,7 @@ namespace Kaltura.Types
 		public string Name
 		{
 			get { return _Name; }
-			set 
+			private set 
 			{ 
 				_Name = value;
 				OnPropertyChanged("Name");
