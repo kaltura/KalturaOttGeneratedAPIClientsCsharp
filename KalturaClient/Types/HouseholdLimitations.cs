@@ -80,7 +80,7 @@ namespace Kaltura.Types
 		public string Name
 		{
 			get { return _Name; }
-			private set 
+			set 
 			{ 
 				_Name = value;
 				OnPropertyChanged("Name");
@@ -90,7 +90,7 @@ namespace Kaltura.Types
 		public int ConcurrentLimit
 		{
 			get { return _ConcurrentLimit; }
-			private set 
+			set 
 			{ 
 				_ConcurrentLimit = value;
 				OnPropertyChanged("ConcurrentLimit");
@@ -100,7 +100,7 @@ namespace Kaltura.Types
 		public int DeviceLimit
 		{
 			get { return _DeviceLimit; }
-			private set 
+			set 
 			{ 
 				_DeviceLimit = value;
 				OnPropertyChanged("DeviceLimit");
@@ -110,7 +110,7 @@ namespace Kaltura.Types
 		public int DeviceFrequency
 		{
 			get { return _DeviceFrequency; }
-			private set 
+			set 
 			{ 
 				_DeviceFrequency = value;
 				OnPropertyChanged("DeviceFrequency");
@@ -130,7 +130,7 @@ namespace Kaltura.Types
 		public int UserFrequency
 		{
 			get { return _UserFrequency; }
-			private set 
+			set 
 			{ 
 				_UserFrequency = value;
 				OnPropertyChanged("UserFrequency");
@@ -160,7 +160,7 @@ namespace Kaltura.Types
 		public int UsersLimit
 		{
 			get { return _UsersLimit; }
-			private set 
+			set 
 			{ 
 				_UsersLimit = value;
 				OnPropertyChanged("UsersLimit");
@@ -170,7 +170,7 @@ namespace Kaltura.Types
 		public IList<HouseholdDeviceFamilyLimitations> DeviceFamiliesLimitations
 		{
 			get { return _DeviceFamiliesLimitations; }
-			private set 
+			set 
 			{ 
 				_DeviceFamiliesLimitations = value;
 				OnPropertyChanged("DeviceFamiliesLimitations");
