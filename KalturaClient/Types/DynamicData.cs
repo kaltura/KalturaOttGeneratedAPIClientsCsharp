@@ -35,55 +35,55 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class DeviceFamilyBase : ObjectBase
+	public class DynamicData : ObjectBase
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string NAME = "name";
+		public const string KEY = "key";
+		public const string VALUE = "value";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
+		private string _Key = null;
+		private Value _Value;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public long Id
+		public string Key
 		{
-			get { return _Id; }
+			get { return _Key; }
 			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
+				_Key = value;
+				OnPropertyChanged("Key");
 			}
 		}
 		[JsonProperty]
-		public string Name
+		public Value Value
 		{
-			get { return _Name; }
-			private set 
+			get { return _Value; }
+			set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
+				_Value = value;
+				OnPropertyChanged("Value");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public DeviceFamilyBase()
+		public DynamicData()
 		{
 		}
 
-		public DeviceFamilyBase(JToken node) : base(node)
+		public DynamicData(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["key"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._Key = node["key"].Value<string>();
 			}
-			if(node["name"] != null)
+			if(node["value"] != null)
 			{
-				this._Name = node["name"].Value<string>();
+				this._Value = ObjectFactory.Create<Value>(node["value"]);
 			}
 		}
 		#endregion
@@ -93,19 +93,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaDeviceFamilyBase");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
+				kparams.AddReplace("objectType", "KalturaDynamicData");
+			kparams.AddIfNotNull("key", this._Key);
+			kparams.AddIfNotNull("value", this._Value);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case NAME:
-					return "Name";
+				case KEY:
+					return "Key";
+				case VALUE:
+					return "Value";
 				default:
 					return base.getPropertyName(apiName);
 			}
