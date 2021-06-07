@@ -35,43 +35,55 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class PaymentGatewayConfiguration : ObjectBase
+	public class DynamicData : ObjectBase
 	{
 		#region Constants
-		public const string PAYMENT_GATEWAY_CONFIGURATION = "paymentGatewayConfiguration";
+		public const string KEY = "key";
+		public const string VALUE = "value";
 		#endregion
 
 		#region Private Fields
-		private IList<KeyValue> _PaymentGatewayConfiguration;
+		private string _Key = null;
+		private Value _Value;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public IList<KeyValue> PaymentGatewayConfigurationValue
+		public string Key
 		{
-			get { return _PaymentGatewayConfiguration; }
+			get { return _Key; }
 			set 
 			{ 
-				_PaymentGatewayConfiguration = value;
-				OnPropertyChanged("PaymentGatewayConfiguration");
+				_Key = value;
+				OnPropertyChanged("Key");
+			}
+		}
+		[JsonProperty]
+		public Value Value
+		{
+			get { return _Value; }
+			set 
+			{ 
+				_Value = value;
+				OnPropertyChanged("Value");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public PaymentGatewayConfiguration()
+		public DynamicData()
 		{
 		}
 
-		public PaymentGatewayConfiguration(JToken node) : base(node)
+		public DynamicData(JToken node) : base(node)
 		{
-			if(node["paymentGatewayConfiguration"] != null)
+			if(node["key"] != null)
 			{
-				this._PaymentGatewayConfiguration = new List<KeyValue>();
-				foreach(var arrayNode in node["paymentGatewayConfiguration"].Children())
-				{
-					this._PaymentGatewayConfiguration.Add(ObjectFactory.Create<KeyValue>(arrayNode));
-				}
+				this._Key = node["key"].Value<string>();
+			}
+			if(node["value"] != null)
+			{
+				this._Value = ObjectFactory.Create<Value>(node["value"]);
 			}
 		}
 		#endregion
@@ -81,16 +93,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPaymentGatewayConfiguration");
-			kparams.AddIfNotNull("paymentGatewayConfiguration", this._PaymentGatewayConfiguration);
+				kparams.AddReplace("objectType", "KalturaDynamicData");
+			kparams.AddIfNotNull("key", this._Key);
+			kparams.AddIfNotNull("value", this._Value);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case PAYMENT_GATEWAY_CONFIGURATION:
-					return "PaymentGatewayConfiguration";
+				case KEY:
+					return "Key";
+				case VALUE:
+					return "Value";
 				default:
 					return base.getPropertyName(apiName);
 			}

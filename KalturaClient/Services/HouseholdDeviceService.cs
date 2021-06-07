@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -143,6 +143,52 @@ namespace Kaltura.Services
 			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("udid"))
 				kparams.AddIfNotNull("udid", Udid);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
+				return true;
+			return false;
+		}
+	}
+
+	public class HouseholdDeviceDeleteDynamicDataRequestBuilder : RequestBuilder<bool>
+	{
+		#region Constants
+		public const string UDID = "udid";
+		public const string KEY = "key";
+		#endregion
+
+		public string Udid { get; set; }
+		public string Key { get; set; }
+
+		public HouseholdDeviceDeleteDynamicDataRequestBuilder()
+			: base("householddevice", "deleteDynamicData")
+		{
+		}
+
+		public HouseholdDeviceDeleteDynamicDataRequestBuilder(string udid, string key)
+			: this()
+		{
+			this.Udid = udid;
+			this.Key = key;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("udid"))
+				kparams.AddIfNotNull("udid", Udid);
+			if (!isMapped("key"))
+				kparams.AddIfNotNull("key", Key);
 			return kparams;
 		}
 
@@ -421,6 +467,55 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class HouseholdDeviceUpsertDynamicDataRequestBuilder : RequestBuilder<DynamicData>
+	{
+		#region Constants
+		public const string UDID = "udid";
+		public const string KEY = "key";
+		public const string VALUE = "value";
+		#endregion
+
+		public string Udid { get; set; }
+		public string Key { get; set; }
+		public StringValue Value { get; set; }
+
+		public HouseholdDeviceUpsertDynamicDataRequestBuilder()
+			: base("householddevice", "upsertDynamicData")
+		{
+		}
+
+		public HouseholdDeviceUpsertDynamicDataRequestBuilder(string udid, string key, StringValue value)
+			: this()
+		{
+			this.Udid = udid;
+			this.Key = key;
+			this.Value = value;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("udid"))
+				kparams.AddIfNotNull("udid", Udid);
+			if (!isMapped("key"))
+				kparams.AddIfNotNull("key", Key);
+			if (!isMapped("value"))
+				kparams.AddIfNotNull("value", Value);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<DynamicData>(result);
+		}
+	}
+
 
 	public class HouseholdDeviceService
 	{
@@ -441,6 +536,11 @@ namespace Kaltura.Services
 		public static HouseholdDeviceDeleteRequestBuilder Delete(string udid)
 		{
 			return new HouseholdDeviceDeleteRequestBuilder(udid);
+		}
+
+		public static HouseholdDeviceDeleteDynamicDataRequestBuilder DeleteDynamicData(string udid, string key)
+		{
+			return new HouseholdDeviceDeleteDynamicDataRequestBuilder(udid, key);
 		}
 
 		public static HouseholdDeviceGeneratePinRequestBuilder GeneratePin(string udid, int brandId)
@@ -471,6 +571,11 @@ namespace Kaltura.Services
 		public static HouseholdDeviceUpdateStatusRequestBuilder UpdateStatus(string udid, DeviceStatus status)
 		{
 			return new HouseholdDeviceUpdateStatusRequestBuilder(udid, status);
+		}
+
+		public static HouseholdDeviceUpsertDynamicDataRequestBuilder UpsertDynamicData(string udid, string key, StringValue value)
+		{
+			return new HouseholdDeviceUpsertDynamicDataRequestBuilder(udid, key, value);
 		}
 	}
 }

@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -36,6 +36,86 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
+	public class PpvAddRequestBuilder : RequestBuilder<Ppv>
+	{
+		#region Constants
+		public const string PPV = "ppv";
+		#endregion
+
+		public Ppv Ppv { get; set; }
+
+		public PpvAddRequestBuilder()
+			: base("ppv", "add")
+		{
+		}
+
+		public PpvAddRequestBuilder(Ppv ppv)
+			: this()
+		{
+			this.Ppv = ppv;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("ppv"))
+				kparams.AddIfNotNull("ppv", Ppv);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<Ppv>(result);
+		}
+	}
+
+	public class PpvDeleteRequestBuilder : RequestBuilder<bool>
+	{
+		#region Constants
+		public const string ID = "id";
+		#endregion
+
+		public long Id { get; set; }
+
+		public PpvDeleteRequestBuilder()
+			: base("ppv", "delete")
+		{
+		}
+
+		public PpvDeleteRequestBuilder(long id)
+			: this()
+		{
+			this.Id = id;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
+				return true;
+			return false;
+		}
+	}
+
 	public class PpvGetRequestBuilder : RequestBuilder<Ppv>
 	{
 		#region Constants
@@ -119,6 +199,16 @@ namespace Kaltura.Services
 	{
 		private PpvService()
 		{
+		}
+
+		public static PpvAddRequestBuilder Add(Ppv ppv)
+		{
+			return new PpvAddRequestBuilder(ppv);
+		}
+
+		public static PpvDeleteRequestBuilder Delete(long id)
+		{
+			return new PpvDeleteRequestBuilder(id);
 		}
 
 		public static PpvGetRequestBuilder Get(long id)
