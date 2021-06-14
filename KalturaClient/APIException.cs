@@ -513,7 +513,6 @@ namespace Kaltura
 		public static string ParentalRuleDoesNotExist = "5036";
 		public static string CanNotDeleteDefaultParentalRule = "5037";
 		public static string InvalidLanguage = "5039";
-		public static string InvalidArgumentValue = "5047";
 		public static string PartnerConfigurationDoesNotExist = "5070";
 		public static string PaymentGatewayExternalVerification = "6052";
 		public static string NoUserSocialSettingsFound = "7002";
