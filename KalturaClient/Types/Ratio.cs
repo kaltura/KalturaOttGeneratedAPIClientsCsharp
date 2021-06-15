@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use HeightAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Height
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Height");
 			}
 		}
+		/// <summary>
+		/// Use WidthAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Width
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Width");
 			}
 		}
+		/// <summary>
+		/// Use PrecisionPrecentageAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int PrecisionPrecentage
 		{

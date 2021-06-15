@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string IdIn
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
+		/// <summary>
+		/// Use ImageObjectIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ImageObjectIdEqual
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ImageObjectIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use ImageObjectTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ImageObjectType ImageObjectTypeEqual
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ImageObjectTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use IsDefaultEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsDefaultEqual
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsDefaultEqual");
 			}
 		}
+		/// <summary>
+		/// Use ImageObjectIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ImageObjectIdIn
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ImageObjectIdIn");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new ImageOrderBy OrderBy
 		{

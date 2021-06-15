@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ActionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ContentAction Action
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Action");
 			}
 		}
+		/// <summary>
+		/// Use LengthAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Length
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Length");
 			}
 		}
+		/// <summary>
+		/// Use LengthTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ContentActionConditionLengthType LengthType
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LengthType");
 			}
 		}
+		/// <summary>
+		/// Use MultiplierAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Multiplier
 		{

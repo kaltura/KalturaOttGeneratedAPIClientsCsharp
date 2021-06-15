@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ConfigurationGroupIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ConfigurationGroupIdEqual
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ConfigurationGroupIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new ConfigurationGroupDeviceOrderBy OrderBy
 		{

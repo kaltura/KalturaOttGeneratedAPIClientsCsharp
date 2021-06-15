@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use PriceAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public Price Price
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Price");
 			}
 		}
+		/// <summary>
+		/// Use MultiCurrencyPriceAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<Price> MultiCurrencyPrice
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultiCurrencyPrice");
 			}
 		}
+		/// <summary>
+		/// Use DescriptionsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<TranslationToken> Descriptions
 		{

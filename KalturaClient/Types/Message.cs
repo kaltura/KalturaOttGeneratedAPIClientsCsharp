@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use CodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Code
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Code");
 			}
 		}
+		/// <summary>
+		/// Use MessageAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MessageValue
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Message");
 			}
 		}
+		/// <summary>
+		/// Use ArgsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> Args
 		{

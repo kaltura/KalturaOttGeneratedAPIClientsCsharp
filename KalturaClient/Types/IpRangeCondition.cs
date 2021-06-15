@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use FromIPAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string FromIP
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FromIP");
 			}
 		}
+		/// <summary>
+		/// Use ToIPAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ToIP
 		{

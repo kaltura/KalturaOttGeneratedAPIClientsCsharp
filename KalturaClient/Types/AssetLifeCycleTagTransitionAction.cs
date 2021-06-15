@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use TagIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string TagIds
 		{

@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use DescriptionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Description
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Description");
 			}
 		}
+		/// <summary>
+		/// Use SubscribeReferenceAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SubscribeReference SubscribeReference
 		{

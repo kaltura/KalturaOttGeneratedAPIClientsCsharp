@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use OffsetAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Offset
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Offset");
 			}
 		}
+		/// <summary>
+		/// Use TimeZoneAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? TimeZone
 		{

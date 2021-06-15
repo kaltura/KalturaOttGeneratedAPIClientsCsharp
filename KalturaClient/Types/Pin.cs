@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PinAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PinValue
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Pin");
 			}
 		}
+		/// <summary>
+		/// Use OriginAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public RuleLevel Origin
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Origin");
 			}
 		}
+		/// <summary>
+		/// Use TypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public PinType Type
 		{

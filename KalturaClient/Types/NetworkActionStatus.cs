@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use StatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SocialStatus Status
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
+		/// <summary>
+		/// Use NetworkAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SocialNetwork Network
 		{

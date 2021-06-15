@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use DefaultTreeIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long DefaultTreeId
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DefaultTreeId");
 			}
 		}
+		/// <summary>
+		/// Use DeviceFamilyToCategoryTreeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, LongValue> DeviceFamilyToCategoryTree
 		{

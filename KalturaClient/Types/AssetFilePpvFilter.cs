@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AssetIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long AssetIdEqual
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use AssetFileIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long AssetFileIdEqual
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetFileIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new AssetFilePpvOrderBy OrderBy
 		{

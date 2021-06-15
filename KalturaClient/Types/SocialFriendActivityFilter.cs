@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AssetIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long AssetIdEqual
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use AssetTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public AssetType AssetTypeEqual
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use ActionTypeInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ActionTypeIn
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ActionTypeIn");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new SocialFriendActivityOrderBy OrderBy
 		{

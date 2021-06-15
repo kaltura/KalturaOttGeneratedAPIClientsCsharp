@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use DefaultAdapterIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int DefaultAdapterId
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DefaultAdapterId");
 			}
 		}
+		/// <summary>
+		/// Use DefaultRecordingAdapterIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int DefaultRecordingAdapterId
 		{

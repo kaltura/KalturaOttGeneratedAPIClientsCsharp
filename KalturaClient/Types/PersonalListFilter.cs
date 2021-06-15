@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PartnerListTypeInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PartnerListTypeIn
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PartnerListTypeIn");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new PersonalListOrderBy OrderBy
 		{

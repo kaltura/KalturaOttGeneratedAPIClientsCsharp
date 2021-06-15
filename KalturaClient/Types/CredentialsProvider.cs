@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use CognitoIdentityAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public CognitoIdentity CognitoIdentity
 		{

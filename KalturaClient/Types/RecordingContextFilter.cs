@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AssetIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AssetIdIn
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetIdIn");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new RecordingContextOrderBy OrderBy
 		{

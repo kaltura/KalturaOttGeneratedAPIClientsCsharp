@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use DynamicOrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public DynamicOrderBy DynamicOrderBy
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DynamicOrderBy");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new AssetOrderBy OrderBy
 		{

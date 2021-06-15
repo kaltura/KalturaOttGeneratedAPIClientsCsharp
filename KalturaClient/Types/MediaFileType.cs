@@ -68,6 +68,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -78,6 +81,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -88,6 +94,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use DescriptionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Description
 		{
@@ -98,6 +107,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Description");
 			}
 		}
+		/// <summary>
+		/// Use StatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? Status
 		{
@@ -108,6 +120,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
+		/// <summary>
+		/// Use CreateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -118,6 +133,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
+		/// <summary>
+		/// Use UpdateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{
@@ -128,6 +146,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
+		/// <summary>
+		/// Use IsTrailerAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsTrailer
 		{
@@ -138,6 +159,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsTrailer");
 			}
 		}
+		/// <summary>
+		/// Use StreamerTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public MediaFileStreamerType StreamerType
 		{
@@ -148,6 +172,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StreamerType");
 			}
 		}
+		/// <summary>
+		/// Use DrmProfileIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int DrmProfileId
 		{
@@ -158,6 +185,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DrmProfileId");
 			}
 		}
+		/// <summary>
+		/// Use QualityAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public MediaFileTypeQuality Quality
 		{
@@ -168,6 +198,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Quality");
 			}
 		}
+		/// <summary>
+		/// Use VideoCodecsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string VideoCodecs
 		{
@@ -178,6 +211,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("VideoCodecs");
 			}
 		}
+		/// <summary>
+		/// Use AudioCodecsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AudioCodecs
 		{

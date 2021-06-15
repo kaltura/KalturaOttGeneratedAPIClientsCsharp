@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use UserIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UserId
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserId");
 			}
 		}
+		/// <summary>
+		/// Use AssetIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long AssetId
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetId");
 			}
 		}
+		/// <summary>
+		/// Use TypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Type
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
+		/// <summary>
+		/// Use ExternalIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalId
 		{

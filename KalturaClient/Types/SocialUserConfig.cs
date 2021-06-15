@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ActionPermissionItemsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<ActionPermissionItem> ActionPermissionItems
 		{

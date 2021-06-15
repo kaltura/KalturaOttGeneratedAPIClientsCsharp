@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MediaAdapterIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long MediaAdapterId
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaAdapterId");
 			}
 		}
+		/// <summary>
+		/// Use EpgAdapterIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EpgAdapterId
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EpgAdapterId");
 			}
 		}
+		/// <summary>
+		/// Use RecordingAdapterIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long RecordingAdapterId
 		{

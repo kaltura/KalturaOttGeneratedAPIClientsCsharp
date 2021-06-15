@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AdapterDataAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> AdapterData
 		{

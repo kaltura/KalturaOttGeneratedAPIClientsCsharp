@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AssetAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SlimAsset Asset
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Asset");
 			}
 		}
+		/// <summary>
+		/// Use UserIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string UserId
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserId");
 			}
 		}
+		/// <summary>
+		/// Use UdidAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Udid
 		{

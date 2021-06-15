@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use TemplateListLabelAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string TemplateListLabel
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TemplateListLabel");
 			}
 		}
+		/// <summary>
+		/// Use TemplatesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<ResetPasswordPartnerConfigTemplate> Templates
 		{

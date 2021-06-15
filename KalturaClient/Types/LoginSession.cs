@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use KsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Ks
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Ks");
 			}
 		}
+		/// <summary>
+		/// Use ExpiryAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Expiry
 		{

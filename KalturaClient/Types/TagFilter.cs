@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use TagEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string TagEqual
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TagEqual");
 			}
 		}
+		/// <summary>
+		/// Use TagStartsWithAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string TagStartsWith
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TagStartsWith");
 			}
 		}
+		/// <summary>
+		/// Use TypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int TypeEqual
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use LanguageEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string LanguageEqual
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LanguageEqual");
 			}
 		}
+		/// <summary>
+		/// Use IdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string IdIn
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new TagOrderBy OrderBy
 		{

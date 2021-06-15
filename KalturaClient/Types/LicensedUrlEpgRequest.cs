@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use StreamTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public StreamType StreamType
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StreamType");
 			}
 		}
+		/// <summary>
+		/// Use StartDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{

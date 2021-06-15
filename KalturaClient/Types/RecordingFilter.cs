@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use StatusInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string StatusIn
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StatusIn");
 			}
 		}
+		/// <summary>
+		/// Use ExternalRecordingIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalRecordingIdIn
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalRecordingIdIn");
 			}
 		}
+		/// <summary>
+		/// Use KSqlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string KSql
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("KSql");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new RecordingOrderBy OrderBy
 		{

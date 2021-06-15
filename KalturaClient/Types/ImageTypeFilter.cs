@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string IdIn
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
+		/// <summary>
+		/// Use RatioIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string RatioIdIn
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RatioIdIn");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new ImageTypeOrderBy OrderBy
 		{

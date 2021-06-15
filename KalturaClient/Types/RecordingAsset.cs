@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use RecordingIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string RecordingId
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RecordingId");
 			}
 		}
+		/// <summary>
+		/// Use RecordingTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public RecordingType RecordingType
 		{
