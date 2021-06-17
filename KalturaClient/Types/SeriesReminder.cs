@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use SeriesIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SeriesId
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SeriesId");
 			}
 		}
+		/// <summary>
+		/// Use SeasonNumberAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long SeasonNumber
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SeasonNumber");
 			}
 		}
+		/// <summary>
+		/// Use EpgChannelIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EpgChannelId
 		{

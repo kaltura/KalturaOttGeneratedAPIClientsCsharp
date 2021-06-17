@@ -52,7 +52,6 @@ namespace Kaltura.Types
 		public const string DEFAULT_REGION = "defaultRegion";
 		public const string ROLLING_DEVICE_DATA = "rollingDeviceData";
 		public const string FINISHED_PERCENT_THRESHOLD = "finishedPercentThreshold";
-		public const string SUSPENSION_PROFILE_INHERITANCE_TYPE = "suspensionProfileInheritanceType";
 		#endregion
 
 		#region Private Fields
@@ -70,10 +69,12 @@ namespace Kaltura.Types
 		private int _DefaultRegion = Int32.MinValue;
 		private RollingDeviceRemovalData _RollingDeviceData;
 		private int _FinishedPercentThreshold = Int32.MinValue;
-		private SuspensionProfileInheritanceType _SuspensionProfileInheritanceType = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PartnerNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PartnerName
 		{
@@ -84,6 +85,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PartnerName");
 			}
 		}
+		/// <summary>
+		/// Use MainLanguageAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MainLanguage
 		{
@@ -94,6 +98,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MainLanguage");
 			}
 		}
+		/// <summary>
+		/// Use SecondaryLanguagesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SecondaryLanguages
 		{
@@ -104,6 +111,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SecondaryLanguages");
 			}
 		}
+		/// <summary>
+		/// Use DeleteMediaPolicyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public DeleteMediaPolicy DeleteMediaPolicy
 		{
@@ -114,6 +124,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeleteMediaPolicy");
 			}
 		}
+		/// <summary>
+		/// Use MainCurrencyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MainCurrency
 		{
@@ -124,6 +137,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MainCurrency");
 			}
 		}
+		/// <summary>
+		/// Use SecondaryCurrenciesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SecondaryCurrencies
 		{
@@ -134,6 +150,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SecondaryCurrencies");
 			}
 		}
+		/// <summary>
+		/// Use DowngradePolicyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public DowngradePolicy DowngradePolicy
 		{
@@ -144,6 +163,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DowngradePolicy");
 			}
 		}
+		/// <summary>
+		/// Use MailSettingsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MailSettings
 		{
@@ -154,6 +176,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MailSettings");
 			}
 		}
+		/// <summary>
+		/// Use DateFormatAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string DateFormat
 		{
@@ -164,6 +189,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DateFormat");
 			}
 		}
+		/// <summary>
+		/// Use HouseholdLimitationModuleAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int HouseholdLimitationModule
 		{
@@ -174,6 +202,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("HouseholdLimitationModule");
 			}
 		}
+		/// <summary>
+		/// Use EnableRegionFilteringAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? EnableRegionFiltering
 		{
@@ -184,6 +215,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableRegionFiltering");
 			}
 		}
+		/// <summary>
+		/// Use DefaultRegionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int DefaultRegion
 		{
@@ -194,6 +228,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DefaultRegion");
 			}
 		}
+		/// <summary>
+		/// Use RollingDeviceDataAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public RollingDeviceRemovalData RollingDeviceData
 		{
@@ -204,6 +241,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RollingDeviceData");
 			}
 		}
+		/// <summary>
+		/// Use FinishedPercentThresholdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int FinishedPercentThreshold
 		{
@@ -212,16 +252,6 @@ namespace Kaltura.Types
 			{ 
 				_FinishedPercentThreshold = value;
 				OnPropertyChanged("FinishedPercentThreshold");
-			}
-		}
-		[JsonProperty]
-		public SuspensionProfileInheritanceType SuspensionProfileInheritanceType
-		{
-			get { return _SuspensionProfileInheritanceType; }
-			set 
-			{ 
-				_SuspensionProfileInheritanceType = value;
-				OnPropertyChanged("SuspensionProfileInheritanceType");
 			}
 		}
 		#endregion
@@ -289,10 +319,6 @@ namespace Kaltura.Types
 			{
 				this._FinishedPercentThreshold = ParseInt(node["finishedPercentThreshold"].Value<string>());
 			}
-			if(node["suspensionProfileInheritanceType"] != null)
-			{
-				this._SuspensionProfileInheritanceType = (SuspensionProfileInheritanceType)StringEnum.Parse(typeof(SuspensionProfileInheritanceType), node["suspensionProfileInheritanceType"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -316,7 +342,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("defaultRegion", this._DefaultRegion);
 			kparams.AddIfNotNull("rollingDeviceData", this._RollingDeviceData);
 			kparams.AddIfNotNull("finishedPercentThreshold", this._FinishedPercentThreshold);
-			kparams.AddIfNotNull("suspensionProfileInheritanceType", this._SuspensionProfileInheritanceType);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -351,8 +376,6 @@ namespace Kaltura.Types
 					return "RollingDeviceData";
 				case FINISHED_PERCENT_THRESHOLD:
 					return "FinishedPercentThreshold";
-				case SUSPENSION_PROFILE_INHERITANCE_TYPE:
-					return "SuspensionProfileInheritanceType";
 				default:
 					return base.getPropertyName(apiName);
 			}

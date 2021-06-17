@@ -62,6 +62,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PartnerIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int PartnerId
 		{
@@ -72,6 +75,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PartnerId");
 			}
 		}
+		/// <summary>
+		/// Use UserIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int UserId
 		{
@@ -82,6 +88,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserId");
 			}
 		}
+		/// <summary>
+		/// Use LanguageAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Language
 		{
@@ -92,6 +101,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Language");
 			}
 		}
+		/// <summary>
+		/// Use CurrencyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Currency
 		{
@@ -102,6 +114,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Currency");
 			}
 		}
+		/// <summary>
+		/// Use KsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Ks
 		{
@@ -112,6 +127,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Ks");
 			}
 		}
+		/// <summary>
+		/// Use ResponseProfileAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public BaseResponseProfile ResponseProfile
 		{
@@ -122,6 +140,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ResponseProfile");
 			}
 		}
+		/// <summary>
+		/// Use AbortOnErrorAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? AbortOnError
 		{
@@ -132,6 +153,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AbortOnError");
 			}
 		}
+		/// <summary>
+		/// Use AbortAllOnErrorAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? AbortAllOnError
 		{
@@ -142,6 +166,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AbortAllOnError");
 			}
 		}
+		/// <summary>
+		/// Use SkipConditionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SkipCondition SkipCondition
 		{

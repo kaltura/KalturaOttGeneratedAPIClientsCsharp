@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AdapterTransactionStatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public TransactionAdapterStatus AdapterTransactionStatus
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AdapterTransactionStatus");
 			}
 		}
+		/// <summary>
+		/// Use ExternalIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalId
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
+		/// <summary>
+		/// Use ExternalStatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalStatus
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalStatus");
 			}
 		}
+		/// <summary>
+		/// Use ExternalMessageAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalMessage
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalMessage");
 			}
 		}
+		/// <summary>
+		/// Use FailReasonAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int FailReason
 		{

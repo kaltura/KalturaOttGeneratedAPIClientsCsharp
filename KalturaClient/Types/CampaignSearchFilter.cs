@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use StartDateGreaterThanOrEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long StartDateGreaterThanOrEqual
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDateGreaterThanOrEqual");
 			}
 		}
+		/// <summary>
+		/// Use EndDateLessThanOrEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EndDateLessThanOrEqual
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDateLessThanOrEqual");
 			}
 		}
+		/// <summary>
+		/// Use StateEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ObjectState StateEqual
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StateEqual");
 			}
 		}
+		/// <summary>
+		/// Use HasPromotionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? HasPromotion
 		{

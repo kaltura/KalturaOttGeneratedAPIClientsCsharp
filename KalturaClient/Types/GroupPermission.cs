@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use GroupAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Group
 		{

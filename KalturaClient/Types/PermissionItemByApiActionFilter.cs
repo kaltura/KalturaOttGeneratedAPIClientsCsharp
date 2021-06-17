@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ServiceEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ServiceEqual
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ServiceEqual");
 			}
 		}
+		/// <summary>
+		/// Use ActionEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ActionEqual
 		{

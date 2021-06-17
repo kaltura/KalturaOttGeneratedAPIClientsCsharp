@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use SubscriptionIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SubscriptionIdIn
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SubscriptionIdIn");
 			}
 		}
+		/// <summary>
+		/// Use FileIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string FileIdIn
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FileIdIn");
 			}
 		}
+		/// <summary>
+		/// Use CollectionIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string CollectionIdIn
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CollectionIdIn");
 			}
 		}
+		/// <summary>
+		/// Use IsLowestAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsLowest
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsLowest");
 			}
 		}
+		/// <summary>
+		/// Use CouponCodeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string CouponCodeEqual
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponCodeEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new ProductPriceOrderBy OrderBy
 		{

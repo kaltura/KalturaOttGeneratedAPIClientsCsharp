@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ServiceAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ApiService Service
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Service");
 			}
 		}
+		/// <summary>
+		/// Use ActionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ApiAction Action
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Action");
 			}
 		}
+		/// <summary>
+		/// Use TriggerConditionsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<Condition> TriggerConditions
 		{

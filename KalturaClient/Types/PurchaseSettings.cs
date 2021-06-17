@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PermissionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public PurchaseSettingsType Permission
 		{

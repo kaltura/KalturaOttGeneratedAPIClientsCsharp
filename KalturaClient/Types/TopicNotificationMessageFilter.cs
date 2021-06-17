@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use TopicNotificationIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long TopicNotificationIdEqual
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TopicNotificationIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new TopicNotificationMessageOrderBy OrderBy
 		{

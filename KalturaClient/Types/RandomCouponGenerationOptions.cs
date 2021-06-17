@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use NumberOfCouponsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int NumberOfCoupons
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("NumberOfCoupons");
 			}
 		}
+		/// <summary>
+		/// Use UseLettersAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? UseLetters
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UseLetters");
 			}
 		}
+		/// <summary>
+		/// Use UseNumbersAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? UseNumbers
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UseNumbers");
 			}
 		}
+		/// <summary>
+		/// Use UseSpecialCharactersAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? UseSpecialCharacters
 		{

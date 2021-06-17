@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use EntityReferenceEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public EntityReferenceBy EntityReferenceEqual
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EntityReferenceEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new ParentalRuleOrderBy OrderBy
 		{

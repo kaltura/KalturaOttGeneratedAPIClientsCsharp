@@ -41,17 +41,18 @@ namespace Kaltura.Types
 		public const string KSQL = "kSql";
 		public const string GROUP_BY = "groupBy";
 		public const string GROUP_ORDER_BY = "groupOrderBy";
-		public const string GROUPING_OPTION_EQUAL = "groupingOptionEqual";
 		#endregion
 
 		#region Private Fields
 		private string _KSql = null;
 		private IList<AssetGroupBy> _GroupBy;
 		private GroupByOrder _GroupOrderBy = null;
-		private GroupingOption _GroupingOptionEqual = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use KSqlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string KSql
 		{
@@ -62,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("KSql");
 			}
 		}
+		/// <summary>
+		/// Use GroupByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<AssetGroupBy> GroupBy
 		{
@@ -72,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("GroupBy");
 			}
 		}
+		/// <summary>
+		/// Use GroupOrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public GroupByOrder GroupOrderBy
 		{
@@ -80,16 +87,6 @@ namespace Kaltura.Types
 			{ 
 				_GroupOrderBy = value;
 				OnPropertyChanged("GroupOrderBy");
-			}
-		}
-		[JsonProperty]
-		public GroupingOption GroupingOptionEqual
-		{
-			get { return _GroupingOptionEqual; }
-			set 
-			{ 
-				_GroupingOptionEqual = value;
-				OnPropertyChanged("GroupingOptionEqual");
 			}
 		}
 		#endregion
@@ -117,10 +114,6 @@ namespace Kaltura.Types
 			{
 				this._GroupOrderBy = (GroupByOrder)StringEnum.Parse(typeof(GroupByOrder), node["groupOrderBy"].Value<string>());
 			}
-			if(node["groupingOptionEqual"] != null)
-			{
-				this._GroupingOptionEqual = (GroupingOption)StringEnum.Parse(typeof(GroupingOption), node["groupingOptionEqual"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -133,7 +126,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("kSql", this._KSql);
 			kparams.AddIfNotNull("groupBy", this._GroupBy);
 			kparams.AddIfNotNull("groupOrderBy", this._GroupOrderBy);
-			kparams.AddIfNotNull("groupingOptionEqual", this._GroupingOptionEqual);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -146,8 +138,6 @@ namespace Kaltura.Types
 					return "GroupBy";
 				case GROUP_ORDER_BY:
 					return "GroupOrderBy";
-				case GROUPING_OPTION_EQUAL:
-					return "GroupingOptionEqual";
 				default:
 					return base.getPropertyName(apiName);
 			}

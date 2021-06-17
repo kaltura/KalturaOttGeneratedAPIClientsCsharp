@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use TransactionTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public TransactionType TransactionType
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TransactionType");
 			}
 		}
+		/// <summary>
+		/// Use ThresholdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Threshold
 		{
