@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AnnouncementIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long AnnouncementId
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AnnouncementId");
 			}
 		}
+		/// <summary>
+		/// Use StatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Status
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
+		/// <summary>
+		/// Use TitleAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Title
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Title");
 			}
 		}
+		/// <summary>
+		/// Use TimestampAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Timestamp
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Timestamp");
 			}
 		}
+		/// <summary>
+		/// Use FollowPhraseAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string FollowPhrase
 		{

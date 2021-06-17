@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use ExternalIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalId
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
+		/// <summary>
+		/// Use IsDefaultAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsDefault
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsDefault");
 			}
 		}
+		/// <summary>
+		/// Use LinearChannelsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<RegionalChannel> LinearChannels
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LinearChannels");
 			}
 		}
+		/// <summary>
+		/// Use ParentIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ParentId
 		{

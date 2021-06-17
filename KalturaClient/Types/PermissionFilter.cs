@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use CurrentUserPermissionsContainsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? CurrentUserPermissionsContains
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CurrentUserPermissionsContains");
 			}
 		}
+		/// <summary>
+		/// Use RoleIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long RoleIdIn
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RoleIdIn");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new PermissionOrderBy OrderBy
 		{

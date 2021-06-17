@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use HouseholdIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int HouseholdIdEqual
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("HouseholdIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new HouseholdUserOrderBy OrderBy
 		{

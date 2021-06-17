@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ExternalIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalId
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
+		/// <summary>
+		/// Use MetaDataAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> MetaData
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MetaData");
 			}
 		}
+		/// <summary>
+		/// Use ExpiryDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ExpiryDate
 		{

@@ -64,6 +64,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -74,6 +77,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use FileNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string FileName
 		{
@@ -84,6 +90,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FileName");
 			}
 		}
+		/// <summary>
+		/// Use StatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public BulkUploadJobStatus Status
 		{
@@ -94,6 +103,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
+		/// <summary>
+		/// Use ActionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public BulkUploadJobAction Action
 		{
@@ -104,6 +116,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Action");
 			}
 		}
+		/// <summary>
+		/// Use NumOfObjectsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int NumOfObjects
 		{
@@ -114,6 +129,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("NumOfObjects");
 			}
 		}
+		/// <summary>
+		/// Use CreateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -124,6 +142,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
+		/// <summary>
+		/// Use UpdateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{
@@ -134,6 +155,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
+		/// <summary>
+		/// Use UploadedByUserIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UploadedByUserId
 		{
@@ -144,6 +168,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UploadedByUserId");
 			}
 		}
+		/// <summary>
+		/// Use ResultsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<BulkUploadResult> Results
 		{
@@ -154,6 +181,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Results");
 			}
 		}
+		/// <summary>
+		/// Use ErrorsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<Message> Errors
 		{

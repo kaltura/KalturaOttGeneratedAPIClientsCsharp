@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use UrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Url
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Url");
 			}
 		}
+		/// <summary>
+		/// Use LanguageAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Language
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Language");
 			}
 		}
+		/// <summary>
+		/// Use LabelAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Label
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Label");
 			}
 		}
+		/// <summary>
+		/// Use FormatAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Format
 		{

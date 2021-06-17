@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ConditionsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<AssetCondition> Conditions
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Conditions");
 			}
 		}
+		/// <summary>
+		/// Use ActionsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<AssetUserRuleAction> Actions
 		{

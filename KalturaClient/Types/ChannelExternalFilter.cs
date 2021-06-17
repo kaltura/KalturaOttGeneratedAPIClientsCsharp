@@ -45,11 +45,14 @@ namespace Kaltura.Types
 
 		#region Private Fields
 		private int _IdEqual = Int32.MinValue;
-		private float _UtcOffsetEqual = Single.MinValue;
+		private double _UtcOffsetEqual = Double.MinValue;
 		private string _FreeText = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int IdEqual
 		{
@@ -60,8 +63,25 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdEqual");
 			}
 		}
+		/// <summary>
+		/// Use UtcOffsetEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
+		[Obsolete("Use UtcOffsetEqualAsDouble property instead")]
 		public float UtcOffsetEqual
+		{
+			get { return (float)_UtcOffsetEqual; }
+			set 
+			{ 
+				_UtcOffsetEqual = value;
+				OnPropertyChanged("UtcOffsetEqual");
+			}
+		}
+		///<summary>
+		///Use this property UtcOffsetEqualAsDouble instead of the float UtcOffsetEqual property version
+		///</summary>
+		[JsonProperty]
+		public double UtcOffsetEqualAsDouble
 		{
 			get { return _UtcOffsetEqual; }
 			set 
@@ -70,6 +90,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UtcOffsetEqual");
 			}
 		}
+		/// <summary>
+		/// Use FreeTextAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string FreeText
 		{
@@ -95,7 +118,7 @@ namespace Kaltura.Types
 			}
 			if(node["utcOffsetEqual"] != null)
 			{
-				this._UtcOffsetEqual = ParseFloat(node["utcOffsetEqual"].Value<string>());
+				this._UtcOffsetEqual = ParseDouble(node["utcOffsetEqual"].Value<string>());
 			}
 			if(node["freeText"] != null)
 			{

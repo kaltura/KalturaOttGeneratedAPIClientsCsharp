@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AggregationTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public AggregationType AggregationType
 		{

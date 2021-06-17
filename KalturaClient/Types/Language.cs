@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use SystemNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SystemName
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SystemName");
 			}
 		}
+		/// <summary>
+		/// Use CodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Code
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Code");
 			}
 		}
+		/// <summary>
+		/// Use DirectionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Direction
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Direction");
 			}
 		}
+		/// <summary>
+		/// Use IsDefaultAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsDefault
 		{

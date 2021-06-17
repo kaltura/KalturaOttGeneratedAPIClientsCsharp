@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int IdEqual
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdEqual");
 			}
 		}
+		/// <summary>
+		/// Use ExcludeWatchedAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? ExcludeWatched
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExcludeWatched");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new ChannelOrderBy OrderBy
 		{

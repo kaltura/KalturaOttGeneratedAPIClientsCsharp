@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use EncryptionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public DataEncryption Encryption
 		{

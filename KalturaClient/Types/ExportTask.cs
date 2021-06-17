@@ -62,6 +62,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -72,6 +75,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use AliasAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Alias
 		{
@@ -82,6 +88,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Alias");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -92,6 +101,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use DataTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ExportDataType DataType
 		{
@@ -102,6 +114,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DataType");
 			}
 		}
+		/// <summary>
+		/// Use FilterAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Filter
 		{
@@ -112,6 +127,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Filter");
 			}
 		}
+		/// <summary>
+		/// Use ExportTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ExportType ExportType
 		{
@@ -122,6 +140,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExportType");
 			}
 		}
+		/// <summary>
+		/// Use FrequencyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Frequency
 		{
@@ -132,6 +153,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Frequency");
 			}
 		}
+		/// <summary>
+		/// Use NotificationUrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string NotificationUrl
 		{
@@ -142,6 +166,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("NotificationUrl");
 			}
 		}
+		/// <summary>
+		/// Use IsActiveAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsActive
 		{

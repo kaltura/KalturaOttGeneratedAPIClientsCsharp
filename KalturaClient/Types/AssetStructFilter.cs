@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string IdIn
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
+		/// <summary>
+		/// Use MetaIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long MetaIdEqual
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MetaIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use IsProtectedEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsProtectedEqual
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsProtectedEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new AssetStructOrderBy OrderBy
 		{

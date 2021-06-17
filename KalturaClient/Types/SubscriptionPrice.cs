@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use EndDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{

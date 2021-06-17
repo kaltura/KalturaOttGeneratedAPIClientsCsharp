@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string IdIn
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
+		/// <summary>
+		/// Use CurrentUserRoleIdsContainsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? CurrentUserRoleIdsContains
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CurrentUserRoleIdsContains");
 			}
 		}
+		/// <summary>
+		/// Use TypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public UserRoleType TypeEqual
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use ProfileEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public UserRoleProfile ProfileEqual
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProfileEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new UserRoleOrderBy OrderBy
 		{

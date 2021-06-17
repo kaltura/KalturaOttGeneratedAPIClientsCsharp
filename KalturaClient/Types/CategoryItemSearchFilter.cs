@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use KSqlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string KSql
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("KSql");
 			}
 		}
+		/// <summary>
+		/// Use RootOnlyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? RootOnly
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RootOnly");
 			}
 		}
+		/// <summary>
+		/// Use TypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string TypeEqual
 		{

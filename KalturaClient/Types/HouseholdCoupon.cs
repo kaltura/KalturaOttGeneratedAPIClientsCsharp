@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use CodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Code
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Code");
 			}
 		}
+		/// <summary>
+		/// Use LastUsageDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long LastUsageDate
 		{

@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ExpressionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Expression
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Expression");
 			}
 		}
+		/// <summary>
+		/// Use DescriptionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Description
 		{

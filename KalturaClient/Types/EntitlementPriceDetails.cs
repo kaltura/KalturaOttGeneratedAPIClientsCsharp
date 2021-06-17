@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use FullPriceAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public Price FullPrice
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FullPrice");
 			}
 		}
+		/// <summary>
+		/// Use DiscountDetailsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<EntitlementDiscountDetails> DiscountDetails
 		{

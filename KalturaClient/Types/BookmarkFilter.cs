@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AssetIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AssetIdIn
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetIdIn");
 			}
 		}
+		/// <summary>
+		/// Use AssetTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public AssetType AssetTypeEqual
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new BookmarkOrderBy OrderBy
 		{

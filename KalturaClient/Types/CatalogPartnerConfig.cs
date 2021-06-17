@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use SingleMultilingualModeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? SingleMultilingualMode
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SingleMultilingualMode");
 			}
 		}
+		/// <summary>
+		/// Use CategoryManagementAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public CategoryManagement CategoryManagement
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CategoryManagement");
 			}
 		}
+		/// <summary>
+		/// Use EpgMultilingualFallbackSupportAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? EpgMultilingualFallbackSupport
 		{

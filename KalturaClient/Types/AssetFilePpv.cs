@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AssetFileIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long AssetFileId
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetFileId");
 			}
 		}
+		/// <summary>
+		/// Use PpvModuleIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long PpvModuleId
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PpvModuleId");
 			}
 		}
+		/// <summary>
+		/// Use StartDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
+		/// <summary>
+		/// Use EndDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{

@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use UserRoleIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string UserRoleIdIn
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserRoleIdIn");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new PasswordPolicyOrderBy OrderBy
 		{

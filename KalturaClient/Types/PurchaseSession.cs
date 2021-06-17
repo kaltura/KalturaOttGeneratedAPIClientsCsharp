@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PreviewModuleIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int PreviewModuleId
 		{

@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MinValueAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MinValue
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MinValue");
 			}
 		}
+		/// <summary>
+		/// Use MaxValueAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MaxValue
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxValue");
 			}
 		}
+		/// <summary>
+		/// Use DaysAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Days
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Days");
 			}
 		}
+		/// <summary>
+		/// Use TypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public MonetizationType Type
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
+		/// <summary>
+		/// Use OperatorAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public MathemticalOperatorType Operator
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Operator");
 			}
 		}
+		/// <summary>
+		/// Use BusinessModuleIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string BusinessModuleIdIn
 		{
