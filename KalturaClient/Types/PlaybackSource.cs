@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use FormatAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Format
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Format");
 			}
 		}
+		/// <summary>
+		/// Use ProtocolsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Protocols
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Protocols");
 			}
 		}
+		/// <summary>
+		/// Use DrmAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<DrmPlaybackPluginData> Drm
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Drm");
 			}
 		}
+		/// <summary>
+		/// Use IsTokenizedAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsTokenized
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsTokenized");
 			}
 		}
+		/// <summary>
+		/// Use BusinessModuleIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int BusinessModuleId
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("BusinessModuleId");
 			}
 		}
+		/// <summary>
+		/// Use BusinessModuleTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public TransactionType BusinessModuleType
 		{

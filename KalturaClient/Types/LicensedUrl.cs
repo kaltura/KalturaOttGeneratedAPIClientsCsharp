@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MainUrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MainUrl
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MainUrl");
 			}
 		}
+		/// <summary>
+		/// Use AltUrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AltUrl
 		{

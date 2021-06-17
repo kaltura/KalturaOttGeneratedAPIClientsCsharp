@@ -42,12 +42,29 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private float _Value = Single.MinValue;
+		private double _Value = Double.MinValue;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ValueAsDouble property instead
+		/// </summary>
 		[JsonProperty]
+		[Obsolete("Use ValueAsDouble property instead")]
 		public float Value
+		{
+			get { return (float)_Value; }
+			set 
+			{ 
+				_Value = value;
+				OnPropertyChanged("Value");
+			}
+		}
+		///<summary>
+		///Use this property ValueAsDouble instead of the float Value property version
+		///</summary>
+		[JsonProperty]
+		public double ValueAsDouble
 		{
 			get { return _Value; }
 			set 
@@ -67,7 +84,7 @@ namespace Kaltura.Types
 		{
 			if(node["value"] != null)
 			{
-				this._Value = ParseFloat(node["value"].Value<string>());
+				this._Value = ParseDouble(node["value"].Value<string>());
 			}
 		}
 		#endregion

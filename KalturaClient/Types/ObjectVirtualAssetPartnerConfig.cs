@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ObjectVirtualAssetsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<ObjectVirtualAssetInfo> ObjectVirtualAssets
 		{

@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use CouponCodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string CouponCode
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponCode");
 			}
 		}
+		/// <summary>
+		/// Use EndlessCouponAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? EndlessCoupon
 		{

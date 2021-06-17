@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use CommentsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<SocialNetworkComment> Comments
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Comments");
 			}
 		}
+		/// <summary>
+		/// Use LinkAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Link
 		{

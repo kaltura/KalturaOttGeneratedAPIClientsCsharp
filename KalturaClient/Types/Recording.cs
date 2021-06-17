@@ -60,6 +60,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -70,6 +73,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use StatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public RecordingStatus Status
 		{
@@ -80,6 +86,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
+		/// <summary>
+		/// Use AssetIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long AssetId
 		{
@@ -90,6 +99,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetId");
 			}
 		}
+		/// <summary>
+		/// Use TypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public RecordingType Type
 		{
@@ -100,6 +112,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
+		/// <summary>
+		/// Use ViewableUntilDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ViewableUntilDate
 		{
@@ -110,6 +125,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ViewableUntilDate");
 			}
 		}
+		/// <summary>
+		/// Use IsProtectedAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsProtected
 		{
@@ -120,6 +138,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsProtected");
 			}
 		}
+		/// <summary>
+		/// Use CreateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -130,6 +151,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
+		/// <summary>
+		/// Use UpdateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{

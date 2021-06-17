@@ -60,6 +60,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use RatioAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Ratio
 		{
@@ -70,6 +73,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Ratio");
 			}
 		}
+		/// <summary>
+		/// Use WidthAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Width
 		{
@@ -80,6 +86,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Width");
 			}
 		}
+		/// <summary>
+		/// Use HeightAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Height
 		{
@@ -90,6 +99,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Height");
 			}
 		}
+		/// <summary>
+		/// Use UrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Url
 		{
@@ -100,6 +112,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Url");
 			}
 		}
+		/// <summary>
+		/// Use VersionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Version
 		{
@@ -110,6 +125,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Version");
 			}
 		}
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -120,6 +138,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use IsDefaultAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsDefault
 		{
@@ -130,6 +151,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsDefault");
 			}
 		}
+		/// <summary>
+		/// Use ImageTypeIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ImageTypeId
 		{

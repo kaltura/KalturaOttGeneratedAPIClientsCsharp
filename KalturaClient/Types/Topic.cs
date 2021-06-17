@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use SubscribersAmountAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SubscribersAmount
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SubscribersAmount");
 			}
 		}
+		/// <summary>
+		/// Use AutomaticIssueNotificationAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public TopicAutomaticIssueNotification AutomaticIssueNotification
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AutomaticIssueNotification");
 			}
 		}
+		/// <summary>
+		/// Use LastMessageSentDateSecAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long LastMessageSentDateSec
 		{

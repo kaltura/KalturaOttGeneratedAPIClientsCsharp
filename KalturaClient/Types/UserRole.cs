@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use PermissionNamesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PermissionNames
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PermissionNames");
 			}
 		}
+		/// <summary>
+		/// Use ExcludedPermissionNamesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExcludedPermissionNames
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExcludedPermissionNames");
 			}
 		}
+		/// <summary>
+		/// Use TypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public UserRoleType Type
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
+		/// <summary>
+		/// Use ProfileAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public UserRoleProfile Profile
 		{

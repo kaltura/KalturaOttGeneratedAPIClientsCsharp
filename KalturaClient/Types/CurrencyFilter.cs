@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use CodeInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string CodeIn
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CodeIn");
 			}
 		}
+		/// <summary>
+		/// Use ExcludePartnerAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? ExcludePartner
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExcludePartner");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new CurrencyOrderBy OrderBy
 		{

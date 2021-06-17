@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AssetIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long AssetIdEqual
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use AssetTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public AssetType AssetTypeEqual
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use SocialPlatformEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SocialPlatform SocialPlatformEqual
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SocialPlatformEqual");
 			}
 		}
+		/// <summary>
+		/// Use CreateDateGreaterThanAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long CreateDateGreaterThan
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDateGreaterThan");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new SocialCommentOrderBy OrderBy
 		{

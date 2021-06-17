@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use FriendlyNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string FriendlyName
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FriendlyName");
 			}
 		}
+		/// <summary>
+		/// Use DependsOnPermissionNamesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string DependsOnPermissionNames
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DependsOnPermissionNames");
 			}
 		}
+		/// <summary>
+		/// Use TypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public PermissionType Type
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
+		/// <summary>
+		/// Use PermissionItemsIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PermissionItemsIds
 		{

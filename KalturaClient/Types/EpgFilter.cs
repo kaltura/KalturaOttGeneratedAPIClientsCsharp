@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use DateEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long DateEqual
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DateEqual");
 			}
 		}
+		/// <summary>
+		/// Use LiveAssetIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long LiveAssetIdEqual
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LiveAssetIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new EpgOrderBy OrderBy
 		{

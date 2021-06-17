@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IotDefaultAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IotDefault IotDefault
 		{

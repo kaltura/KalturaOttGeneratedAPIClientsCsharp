@@ -62,6 +62,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -72,6 +75,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -82,6 +88,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use StartDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -92,6 +101,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
+		/// <summary>
+		/// Use EndDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -102,6 +114,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
+		/// <summary>
+		/// Use MaxUsesNumberAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MaxUsesNumber
 		{
@@ -112,6 +127,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxUsesNumber");
 			}
 		}
+		/// <summary>
+		/// Use MaxUsesNumberOnRenewableSubAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MaxUsesNumberOnRenewableSub
 		{
@@ -122,6 +140,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxUsesNumberOnRenewableSub");
 			}
 		}
+		/// <summary>
+		/// Use CouponGroupTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public CouponGroupType CouponGroupType
 		{
@@ -132,6 +153,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponGroupType");
 			}
 		}
+		/// <summary>
+		/// Use MaxHouseholdUsesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MaxHouseholdUses
 		{
@@ -142,6 +166,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxHouseholdUses");
 			}
 		}
+		/// <summary>
+		/// Use DiscountIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long DiscountId
 		{

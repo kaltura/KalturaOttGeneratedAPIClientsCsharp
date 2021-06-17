@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use DefaultAdaptersAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public DefaultPlaybackAdapters DefaultAdapters
 		{

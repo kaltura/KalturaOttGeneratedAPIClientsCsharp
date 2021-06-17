@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AnnouncementTopicAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AnnouncementTopic
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AnnouncementTopic");
 			}
 		}
+		/// <summary>
+		/// Use CredentialsProviderAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public CredentialsProvider CredentialsProvider
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CredentialsProvider");
 			}
 		}
+		/// <summary>
+		/// Use CognitoUserPoolAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public CognitoUserPool CognitoUserPool
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CognitoUserPool");
 			}
 		}
+		/// <summary>
+		/// Use JsonAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Json
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Json");
 			}
 		}
+		/// <summary>
+		/// Use TopicsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Topics
 		{

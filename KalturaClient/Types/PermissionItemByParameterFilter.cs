@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ParameterEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ParameterEqual
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ParameterEqual");
 			}
 		}
+		/// <summary>
+		/// Use ObjectEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ObjectEqual
 		{

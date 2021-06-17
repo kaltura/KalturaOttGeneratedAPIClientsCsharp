@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use RollingDeviceRemovalPolicyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public RollingDevicePolicy RollingDeviceRemovalPolicy
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RollingDeviceRemovalPolicy");
 			}
 		}
+		/// <summary>
+		/// Use RollingDeviceRemovalFamilyIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string RollingDeviceRemovalFamilyIds
 		{

@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use TypeInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string TypeIn
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TypeIn");
 			}
 		}
+		/// <summary>
+		/// Use AssetIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AssetIdIn
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetIdIn");
 			}
 		}
+		/// <summary>
+		/// Use StatusEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public WatchStatus StatusEqual
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StatusEqual");
 			}
 		}
+		/// <summary>
+		/// Use DaysLessThanOrEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int DaysLessThanOrEqual
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DaysLessThanOrEqual");
 			}
 		}
+		/// <summary>
+		/// Use KSqlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string KSql
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("KSql");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new AssetHistoryOrderBy OrderBy
 		{

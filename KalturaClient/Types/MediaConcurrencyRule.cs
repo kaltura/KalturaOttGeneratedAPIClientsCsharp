@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use ConcurrencyLimitationTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ConcurrencyLimitationType ConcurrencyLimitationType
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ConcurrencyLimitationType");
 			}
 		}
+		/// <summary>
+		/// Use LimitationAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Limitation
 		{

@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use BusinessModuleTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public TransactionType BusinessModuleTypeEqual
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("BusinessModuleTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use BusinessModuleIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long BusinessModuleIdEqual
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("BusinessModuleIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use CouponCodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string CouponCode
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponCode");
 			}
 		}
+		/// <summary>
+		/// Use StatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public CouponStatus Status
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new HouseholdCouponOrderBy OrderBy
 		{

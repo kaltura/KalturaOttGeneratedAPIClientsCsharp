@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use TimestampAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Timestamp
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Timestamp");
 			}
 		}
+		/// <summary>
+		/// Use UdidAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Udid
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Udid");
 			}
 		}
+		/// <summary>
+		/// Use AssetIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AssetId
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetId");
 			}
 		}
+		/// <summary>
+		/// Use ViolationRuleAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ViolationRule
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ViolationRule");
 			}
 		}
+		/// <summary>
+		/// Use HouseholdIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string HouseholdId
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("HouseholdId");
 			}
 		}
+		/// <summary>
+		/// Use UserIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string UserId
 		{

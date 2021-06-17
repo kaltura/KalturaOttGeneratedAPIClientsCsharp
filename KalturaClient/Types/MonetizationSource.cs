@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use TypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public MonetizationType Type
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
+		/// <summary>
+		/// Use OperatorAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public MathemticalOperatorType Operator
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Operator");
 			}
 		}
+		/// <summary>
+		/// Use DaysAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Days
 		{

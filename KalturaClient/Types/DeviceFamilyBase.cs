@@ -48,21 +48,27 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
 			get { return _Id; }
-			set 
+			private set 
 			{ 
 				_Id = value;
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
 			get { return _Name; }
-			private set 
+			set 
 			{ 
 				_Name = value;
 				OnPropertyChanged("Name");

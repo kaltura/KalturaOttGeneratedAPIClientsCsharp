@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use RuleTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public TvmRuleType RuleTypeEqual
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RuleTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use NameEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string NameEqual
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("NameEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new TvmRuleOrderBy OrderBy
 		{

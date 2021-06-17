@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use FrequencyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Frequency
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Frequency");
 			}
 		}
+		/// <summary>
+		/// Use DeviceLimitAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int DeviceLimit
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceLimit");
 			}
 		}
+		/// <summary>
+		/// Use ConcurrentLimitAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ConcurrentLimit
 		{

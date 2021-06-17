@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AdapterUrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AdapterUrl
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AdapterUrl");
 			}
 		}
+		/// <summary>
+		/// Use IotProfileAwsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IotProfileAws IotProfileAws
 		{

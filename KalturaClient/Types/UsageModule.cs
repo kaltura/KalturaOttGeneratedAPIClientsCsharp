@@ -62,6 +62,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -72,6 +75,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -82,6 +88,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use MaxViewsNumberAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MaxViewsNumber
 		{
@@ -92,6 +101,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxViewsNumber");
 			}
 		}
+		/// <summary>
+		/// Use ViewLifeCycleAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ViewLifeCycle
 		{
@@ -102,6 +114,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ViewLifeCycle");
 			}
 		}
+		/// <summary>
+		/// Use FullLifeCycleAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int FullLifeCycle
 		{
@@ -112,6 +127,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FullLifeCycle");
 			}
 		}
+		/// <summary>
+		/// Use CouponIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int CouponId
 		{
@@ -122,6 +140,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponId");
 			}
 		}
+		/// <summary>
+		/// Use WaiverPeriodAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int WaiverPeriod
 		{
@@ -132,6 +153,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("WaiverPeriod");
 			}
 		}
+		/// <summary>
+		/// Use IsWaiverEnabledAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsWaiverEnabled
 		{
@@ -142,6 +166,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsWaiverEnabled");
 			}
 		}
+		/// <summary>
+		/// Use IsOfflinePlaybackAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsOfflinePlayback
 		{
