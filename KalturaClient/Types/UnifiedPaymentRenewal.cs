@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PriceAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public Price Price
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Price");
 			}
 		}
+		/// <summary>
+		/// Use DateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Date
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Date");
 			}
 		}
+		/// <summary>
+		/// Use UnifiedPaymentIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UnifiedPaymentId
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UnifiedPaymentId");
 			}
 		}
+		/// <summary>
+		/// Use EntitlementsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<EntitlementRenewalBase> Entitlements
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Entitlements");
 			}
 		}
+		/// <summary>
+		/// Use UserIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UserId
 		{

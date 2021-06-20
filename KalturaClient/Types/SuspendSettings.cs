@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use RevokeEntitlementsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? RevokeEntitlements
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RevokeEntitlements");
 			}
 		}
+		/// <summary>
+		/// Use StopRenewAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? StopRenew
 		{

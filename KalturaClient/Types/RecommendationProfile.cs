@@ -58,6 +58,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -68,6 +71,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -78,6 +84,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use IsActiveAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsActive
 		{
@@ -88,6 +97,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsActive");
 			}
 		}
+		/// <summary>
+		/// Use AdapterUrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AdapterUrl
 		{
@@ -98,6 +110,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AdapterUrl");
 			}
 		}
+		/// <summary>
+		/// Use RecommendationEngineSettingsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> RecommendationEngineSettings
 		{
@@ -108,6 +123,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RecommendationEngineSettings");
 			}
 		}
+		/// <summary>
+		/// Use ExternalIdentifierAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalIdentifier
 		{
@@ -118,6 +136,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalIdentifier");
 			}
 		}
+		/// <summary>
+		/// Use SharedSecretAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SharedSecret
 		{

@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IsRenewableAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsRenewable
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsRenewable");
 			}
 		}
+		/// <summary>
+		/// Use RenewalsNumberAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int RenewalsNumber
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RenewalsNumber");
 			}
 		}
+		/// <summary>
+		/// Use DiscountIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long DiscountId
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DiscountId");
 			}
 		}
+		/// <summary>
+		/// Use PriceDetailsIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long PriceDetailsId
 		{

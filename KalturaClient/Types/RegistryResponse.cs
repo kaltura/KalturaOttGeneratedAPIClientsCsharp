@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AnnouncementIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long AnnouncementId
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AnnouncementId");
 			}
 		}
+		/// <summary>
+		/// Use KeyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Key
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Key");
 			}
 		}
+		/// <summary>
+		/// Use UrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Url
 		{

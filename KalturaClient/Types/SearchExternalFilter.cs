@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use QueryAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Query
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Query");
 			}
 		}
+		/// <summary>
+		/// Use UtcOffsetEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int UtcOffsetEqual
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UtcOffsetEqual");
 			}
 		}
+		/// <summary>
+		/// Use TypeInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string TypeIn
 		{

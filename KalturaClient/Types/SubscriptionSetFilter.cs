@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string IdIn
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
+		/// <summary>
+		/// Use SubscriptionIdContainsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SubscriptionIdContains
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SubscriptionIdContains");
 			}
 		}
+		/// <summary>
+		/// Use TypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SubscriptionSetType TypeEqual
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new SubscriptionSetOrderBy OrderBy
 		{

@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use HouseholdIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int HouseholdIdEqual
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("HouseholdIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use DeviceFamilyIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string DeviceFamilyIdIn
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceFamilyIdIn");
 			}
 		}
+		/// <summary>
+		/// Use ExternalIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalIdEqual
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new HouseholdDeviceOrderBy OrderBy
 		{

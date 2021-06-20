@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use RecordingTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ScheduledRecordingAssetType RecordingTypeEqual
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RecordingTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use ChannelsInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ChannelsIn
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ChannelsIn");
 			}
 		}
+		/// <summary>
+		/// Use StartDateGreaterThanOrNullAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long StartDateGreaterThanOrNull
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDateGreaterThanOrNull");
 			}
 		}
+		/// <summary>
+		/// Use EndDateLessThanOrNullAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EndDateLessThanOrNull
 		{

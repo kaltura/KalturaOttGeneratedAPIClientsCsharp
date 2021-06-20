@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use UsernameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Username
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Username");
 			}
 		}
+		/// <summary>
+		/// Use FirstNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string FirstName
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FirstName");
 			}
 		}
+		/// <summary>
+		/// Use LastNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string LastName
 		{

@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IsActiveAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsActive
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsActive");
 			}
 		}
+		/// <summary>
+		/// Use AdapterUrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AdapterUrl
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AdapterUrl");
 			}
 		}
+		/// <summary>
+		/// Use ProviderUrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ProviderUrl
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProviderUrl");
 			}
 		}
+		/// <summary>
+		/// Use EngagementAdapterSettingsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> EngagementAdapterSettings
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EngagementAdapterSettings");
 			}
 		}
+		/// <summary>
+		/// Use SharedSecretAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SharedSecret
 		{

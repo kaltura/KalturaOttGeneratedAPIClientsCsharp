@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use InappProviderAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string InappProvider
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("InappProvider");
 			}
 		}
+		/// <summary>
+		/// Use CodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Code
 		{

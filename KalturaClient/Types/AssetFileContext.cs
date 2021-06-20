@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ViewLifeCycleAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ViewLifeCycle
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ViewLifeCycle");
 			}
 		}
+		/// <summary>
+		/// Use FullLifeCycleAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string FullLifeCycle
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FullLifeCycle");
 			}
 		}
+		/// <summary>
+		/// Use IsOfflinePlayBackAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsOfflinePlayBack
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsOfflinePlayBack");
 			}
 		}
+		/// <summary>
+		/// Use IsLivePlayBackAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsLivePlayBack
 		{

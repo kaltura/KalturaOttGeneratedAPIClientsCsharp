@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use RegionIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int RegionId
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RegionId");
 			}
 		}
+		/// <summary>
+		/// Use ChannelNumberAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ChannelNumber
 		{

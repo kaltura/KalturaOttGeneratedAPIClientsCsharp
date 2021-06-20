@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use NetworkAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SocialNetwork Network
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Network");
 			}
 		}
+		/// <summary>
+		/// Use ActionPrivacyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SocialActionPrivacy ActionPrivacy
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ActionPrivacy");
 			}
 		}
+		/// <summary>
+		/// Use PrivacyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SocialPrivacy Privacy
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Privacy");
 			}
 		}
+		/// <summary>
+		/// Use ActionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Action
 		{

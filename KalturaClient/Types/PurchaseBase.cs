@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ProductIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ProductId
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProductId");
 			}
 		}
+		/// <summary>
+		/// Use ContentIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ContentId
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ContentId");
 			}
 		}
+		/// <summary>
+		/// Use ProductTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public TransactionType ProductType
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProductType");
 			}
 		}
+		/// <summary>
+		/// Use AdapterDataAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AdapterData
 		{

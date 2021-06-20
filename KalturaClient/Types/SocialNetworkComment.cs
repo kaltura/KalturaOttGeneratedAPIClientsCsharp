@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use LikeCounterAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string LikeCounter
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LikeCounter");
 			}
 		}
+		/// <summary>
+		/// Use AuthorImageUrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AuthorImageUrl
 		{

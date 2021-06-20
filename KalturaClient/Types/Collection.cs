@@ -72,6 +72,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -82,6 +85,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use ChannelsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<BaseChannel> Channels
 		{
@@ -92,6 +98,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Channels");
 			}
 		}
+		/// <summary>
+		/// Use StartDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -102,6 +111,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
+		/// <summary>
+		/// Use EndDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -112,6 +124,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
+		/// <summary>
+		/// Use DiscountModuleAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public DiscountModule DiscountModule
 		{
@@ -122,6 +137,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DiscountModule");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -132,6 +150,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use MultilingualNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<TranslationToken> MultilingualName
 		{
@@ -142,6 +163,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualName");
 			}
 		}
+		/// <summary>
+		/// Use DescriptionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Description
 		{
@@ -152,6 +176,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Description");
 			}
 		}
+		/// <summary>
+		/// Use MultilingualDescriptionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<TranslationToken> MultilingualDescription
 		{
@@ -162,6 +189,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualDescription");
 			}
 		}
+		/// <summary>
+		/// Use UsageModuleAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public UsageModule UsageModule
 		{
@@ -172,6 +202,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UsageModule");
 			}
 		}
+		/// <summary>
+		/// Use CouponsGroupsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<CouponsGroup> CouponsGroups
 		{
@@ -182,6 +215,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponsGroups");
 			}
 		}
+		/// <summary>
+		/// Use ExternalIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalId
 		{
@@ -192,6 +228,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
+		/// <summary>
+		/// Use ProductCodesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<ProductCode> ProductCodes
 		{
@@ -202,6 +241,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProductCodes");
 			}
 		}
+		/// <summary>
+		/// Use PriceDetailsIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long PriceDetailsId
 		{

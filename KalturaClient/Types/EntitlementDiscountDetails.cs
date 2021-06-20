@@ -44,14 +44,31 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private float _Amount = Single.MinValue;
+		private double _Amount = Double.MinValue;
 		private long _StartDate = long.MinValue;
 		private long _EndDate = long.MinValue;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AmountAsDouble property instead
+		/// </summary>
 		[JsonProperty]
+		[Obsolete("Use AmountAsDouble property instead")]
 		public float Amount
+		{
+			get { return (float)_Amount; }
+			private set 
+			{ 
+				_Amount = value;
+				OnPropertyChanged("Amount");
+			}
+		}
+		///<summary>
+		///Use this property AmountAsDouble instead of the float Amount property version
+		///</summary>
+		[JsonProperty]
+		public double AmountAsDouble
 		{
 			get { return _Amount; }
 			private set 
@@ -60,6 +77,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Amount");
 			}
 		}
+		/// <summary>
+		/// Use StartDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -70,6 +90,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
+		/// <summary>
+		/// Use EndDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -91,7 +114,7 @@ namespace Kaltura.Types
 		{
 			if(node["amount"] != null)
 			{
-				this._Amount = ParseFloat(node["amount"].Value<string>());
+				this._Amount = ParseDouble(node["amount"].Value<string>());
 			}
 			if(node["startDate"] != null)
 			{

@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use DeviceFamilyIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string DeviceFamilyIds
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceFamilyIds");
 			}
 		}
+		/// <summary>
+		/// Use EvictionPolicyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public EvictionPolicyType EvictionPolicy
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EvictionPolicy");
 			}
 		}
+		/// <summary>
+		/// Use ConcurrencyThresholdInSecondsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ConcurrencyThresholdInSeconds
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ConcurrencyThresholdInSeconds");
 			}
 		}
+		/// <summary>
+		/// Use RevokeOnDeviceDeleteAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? RevokeOnDeviceDelete
 		{

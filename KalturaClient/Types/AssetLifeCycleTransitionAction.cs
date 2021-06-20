@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AssetLifeCycleRuleActionTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public AssetLifeCycleRuleActionType AssetLifeCycleRuleActionType
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetLifeCycleRuleActionType");
 			}
 		}
+		/// <summary>
+		/// Use AssetLifeCycleRuleTransitionTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public AssetLifeCycleRuleTransitionType AssetLifeCycleRuleTransitionType
 		{

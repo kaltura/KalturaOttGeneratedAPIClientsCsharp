@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use SourceAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SegmentSource Source
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Source");
 			}
 		}
+		/// <summary>
+		/// Use RangesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<SegmentRange> Ranges
 		{

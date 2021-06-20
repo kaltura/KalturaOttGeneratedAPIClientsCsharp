@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use DurationAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public Duration Duration
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Duration");
 			}
 		}
+		/// <summary>
+		/// Use PaymentGatewayIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int PaymentGatewayId
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PaymentGatewayId");
 			}
 		}
+		/// <summary>
+		/// Use IgnorePartialBillingAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IgnorePartialBilling
 		{

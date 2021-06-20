@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IngestProfileIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int IngestProfileId
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IngestProfileId");
 			}
 		}
+		/// <summary>
+		/// Use DisableEpgNotificationAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? DisableEpgNotification
 		{
