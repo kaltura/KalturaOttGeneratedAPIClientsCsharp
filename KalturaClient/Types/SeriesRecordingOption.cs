@@ -35,42 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseChannel : OTTObjectSupportNullable
+	public class SeriesRecordingOption : ObjectBase
 	{
 		#region Constants
-		public const string ID = "id";
+		public const string MIN_SEASON_NUMBER = "minSeasonNumber";
+		public const string MIN_EPISODE_NUMBER = "minEpisodeNumber";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
+		private int _MinSeasonNumber = Int32.MinValue;
+		private int _MinEpisodeNumber = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdAsDouble property instead
+		/// Use MinSeasonNumberAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long Id
+		public int MinSeasonNumber
 		{
-			get { return _Id; }
+			get { return _MinSeasonNumber; }
 			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
+				_MinSeasonNumber = value;
+				OnPropertyChanged("MinSeasonNumber");
+			}
+		}
+		/// <summary>
+		/// Use MinEpisodeNumberAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int MinEpisodeNumber
+		{
+			get { return _MinEpisodeNumber; }
+			set 
+			{ 
+				_MinEpisodeNumber = value;
+				OnPropertyChanged("MinEpisodeNumber");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseChannel()
+		public SeriesRecordingOption()
 		{
 		}
 
-		public BaseChannel(JToken node) : base(node)
+		public SeriesRecordingOption(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["minSeasonNumber"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._MinSeasonNumber = ParseInt(node["minSeasonNumber"].Value<string>());
+			}
+			if(node["minEpisodeNumber"] != null)
+			{
+				this._MinEpisodeNumber = ParseInt(node["minEpisodeNumber"].Value<string>());
 			}
 		}
 		#endregion
@@ -80,16 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseChannel");
-			kparams.AddIfNotNull("id", this._Id);
+				kparams.AddReplace("objectType", "KalturaSeriesRecordingOption");
+			kparams.AddIfNotNull("minSeasonNumber", this._MinSeasonNumber);
+			kparams.AddIfNotNull("minEpisodeNumber", this._MinEpisodeNumber);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
+				case MIN_SEASON_NUMBER:
+					return "MinSeasonNumber";
+				case MIN_EPISODE_NUMBER:
+					return "MinEpisodeNumber";
 				default:
 					return base.getPropertyName(apiName);
 			}

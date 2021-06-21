@@ -35,42 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseChannel : OTTObjectSupportNullable
+	public class DynamicData : ObjectBase
 	{
 		#region Constants
-		public const string ID = "id";
+		public const string KEY = "key";
+		public const string VALUE = "value";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
+		private string _Key = null;
+		private Value _Value;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdAsDouble property instead
+		/// Use KeyAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long Id
+		public string Key
 		{
-			get { return _Id; }
+			get { return _Key; }
 			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
+				_Key = value;
+				OnPropertyChanged("Key");
+			}
+		}
+		/// <summary>
+		/// Use ValueAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public Value Value
+		{
+			get { return _Value; }
+			set 
+			{ 
+				_Value = value;
+				OnPropertyChanged("Value");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseChannel()
+		public DynamicData()
 		{
 		}
 
-		public BaseChannel(JToken node) : base(node)
+		public DynamicData(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["key"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._Key = node["key"].Value<string>();
+			}
+			if(node["value"] != null)
+			{
+				this._Value = ObjectFactory.Create<Value>(node["value"]);
 			}
 		}
 		#endregion
@@ -80,16 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseChannel");
-			kparams.AddIfNotNull("id", this._Id);
+				kparams.AddReplace("objectType", "KalturaDynamicData");
+			kparams.AddIfNotNull("key", this._Key);
+			kparams.AddIfNotNull("value", this._Value);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
+				case KEY:
+					return "Key";
+				case VALUE:
+					return "Value";
 				default:
 					return base.getPropertyName(apiName);
 			}

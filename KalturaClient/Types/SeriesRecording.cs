@@ -60,7 +60,7 @@ namespace Kaltura.Types
 		private long _CreateDate = long.MinValue;
 		private long _UpdateDate = long.MinValue;
 		private IList<IntegerValue> _ExcludedSeasons;
-		private SeriesRecordingOption _SeriesRecordingOption = null;
+		private SeriesRecordingOption _SeriesRecordingOption;
 		#endregion
 
 		#region Properties
@@ -188,7 +188,7 @@ namespace Kaltura.Types
 		public SeriesRecordingOption SeriesRecordingOption
 		{
 			get { return _SeriesRecordingOption; }
-			private set 
+			set 
 			{ 
 				_SeriesRecordingOption = value;
 				OnPropertyChanged("SeriesRecordingOption");
@@ -245,7 +245,7 @@ namespace Kaltura.Types
 			}
 			if(node["seriesRecordingOption"] != null)
 			{
-				this._SeriesRecordingOption = (SeriesRecordingOption)StringEnum.Parse(typeof(SeriesRecordingOption), node["seriesRecordingOption"].Value<string>());
+				this._SeriesRecordingOption = ObjectFactory.Create<SeriesRecordingOption>(node["seriesRecordingOption"]);
 			}
 		}
 		#endregion

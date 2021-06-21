@@ -324,6 +324,45 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class SeriesRecordingRebookCanceledByEpgIdRequestBuilder : RequestBuilder<SeriesRecording>
+	{
+		#region Constants
+		public const string EPG_ID = "epgId";
+		#endregion
+
+		public long EpgId { get; set; }
+
+		public SeriesRecordingRebookCanceledByEpgIdRequestBuilder()
+			: base("seriesrecording", "rebookCanceledByEpgId")
+		{
+		}
+
+		public SeriesRecordingRebookCanceledByEpgIdRequestBuilder(long epgId)
+			: this()
+		{
+			this.EpgId = epgId;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("epgId"))
+				kparams.AddIfNotNull("epgId", EpgId);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<SeriesRecording>(result);
+		}
+	}
+
 
 	public class SeriesRecordingService
 	{
@@ -364,6 +403,11 @@ namespace Kaltura.Services
 		public static SeriesRecordingListRequestBuilder List(SeriesRecordingFilter filter = null)
 		{
 			return new SeriesRecordingListRequestBuilder(filter);
+		}
+
+		public static SeriesRecordingRebookCanceledByEpgIdRequestBuilder RebookCanceledByEpgId(long epgId)
+		{
+			return new SeriesRecordingRebookCanceledByEpgIdRequestBuilder(epgId);
 		}
 	}
 }

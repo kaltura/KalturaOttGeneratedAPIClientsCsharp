@@ -36,30 +36,30 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class DrmProfileAddRequestBuilder : RequestBuilder<DrmProfile>
+	public class PreviewModuleAddRequestBuilder : RequestBuilder<PreviewModule>
 	{
 		#region Constants
-		public const string DRM_PROFILE = "drmProfile";
+		public const string PREVIEW_MODULE = "previewModule";
 		#endregion
 
-		public DrmProfile DrmProfile { get; set; }
+		public PreviewModule PreviewModule { get; set; }
 
-		public DrmProfileAddRequestBuilder()
-			: base("drmprofile", "add")
+		public PreviewModuleAddRequestBuilder()
+			: base("previewmodule", "add")
 		{
 		}
 
-		public DrmProfileAddRequestBuilder(DrmProfile drmProfile)
+		public PreviewModuleAddRequestBuilder(PreviewModule previewModule)
 			: this()
 		{
-			this.DrmProfile = drmProfile;
+			this.PreviewModule = previewModule;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("drmProfile"))
-				kparams.AddIfNotNull("drmProfile", DrmProfile);
+			if (!isMapped("previewModule"))
+				kparams.AddIfNotNull("previewModule", PreviewModule);
 			return kparams;
 		}
 
@@ -71,11 +71,11 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<DrmProfile>(result);
+			return ObjectFactory.Create<PreviewModule>(result);
 		}
 	}
 
-	public class DrmProfileDeleteRequestBuilder : RequestBuilder<bool>
+	public class PreviewModuleDeleteRequestBuilder : RequestBuilder<bool>
 	{
 		#region Constants
 		public const string ID = "id";
@@ -83,12 +83,12 @@ namespace Kaltura.Services
 
 		public long Id { get; set; }
 
-		public DrmProfileDeleteRequestBuilder()
-			: base("drmprofile", "delete")
+		public PreviewModuleDeleteRequestBuilder()
+			: base("previewmodule", "delete")
 		{
 		}
 
-		public DrmProfileDeleteRequestBuilder(long id)
+		public PreviewModuleDeleteRequestBuilder(long id)
 			: this()
 		{
 			this.Id = id;
@@ -116,14 +116,14 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class DrmProfileListRequestBuilder : RequestBuilder<ListResponse<DrmProfile>>
+	public class PreviewModuleListRequestBuilder : RequestBuilder<ListResponse<PreviewModule>>
 	{
 		#region Constants
 		#endregion
 
 
-		public DrmProfileListRequestBuilder()
-			: base("drmprofile", "list")
+		public PreviewModuleListRequestBuilder()
+			: base("previewmodule", "list")
 		{
 		}
 
@@ -141,30 +141,30 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<ListResponse<DrmProfile>>(result);
+			return ObjectFactory.Create<ListResponse<PreviewModule>>(result);
 		}
 	}
 
 
-	public class DrmProfileService
+	public class PreviewModuleService
 	{
-		private DrmProfileService()
+		private PreviewModuleService()
 		{
 		}
 
-		public static DrmProfileAddRequestBuilder Add(DrmProfile drmProfile)
+		public static PreviewModuleAddRequestBuilder Add(PreviewModule previewModule)
 		{
-			return new DrmProfileAddRequestBuilder(drmProfile);
+			return new PreviewModuleAddRequestBuilder(previewModule);
 		}
 
-		public static DrmProfileDeleteRequestBuilder Delete(long id)
+		public static PreviewModuleDeleteRequestBuilder Delete(long id)
 		{
-			return new DrmProfileDeleteRequestBuilder(id);
+			return new PreviewModuleDeleteRequestBuilder(id);
 		}
 
-		public static DrmProfileListRequestBuilder List()
+		public static PreviewModuleListRequestBuilder List()
 		{
-			return new DrmProfileListRequestBuilder();
+			return new PreviewModuleListRequestBuilder();
 		}
 	}
 }

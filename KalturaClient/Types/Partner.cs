@@ -35,20 +35,20 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class DiscountModule : ObjectBase
+	public class Partner : ObjectBase
 	{
 		#region Constants
 		public const string ID = "id";
-		public const string PERCENT = "percent";
-		public const string START_DATE = "startDate";
-		public const string END_DATE = "endDate";
+		public const string NAME = "name";
+		public const string CREATE_DATE = "createDate";
+		public const string UPDATE_DATE = "updateDate";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private double _Percent = Double.MinValue;
-		private long _StartDate = long.MinValue;
-		private long _EndDate = long.MinValue;
+		private int _Id = Int32.MinValue;
+		private string _Name = null;
+		private long _CreateDate = long.MinValue;
+		private long _UpdateDate = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -56,7 +56,7 @@ namespace Kaltura.Types
 		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long Id
+		public int Id
 		{
 			get { return _Id; }
 			set 
@@ -66,82 +66,68 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use PercentAsDouble property instead
+		/// Use NameAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use PercentAsDouble property instead")]
-		public float Percent
+		public string Name
 		{
-			get { return (float)_Percent; }
+			get { return _Name; }
 			set 
 			{ 
-				_Percent = value;
-				OnPropertyChanged("Percent");
-			}
-		}
-		///<summary>
-		///Use this property PercentAsDouble instead of the float Percent property version
-		///</summary>
-		[JsonProperty]
-		public double PercentAsDouble
-		{
-			get { return _Percent; }
-			set 
-			{ 
-				_Percent = value;
-				OnPropertyChanged("Percent");
+				_Name = value;
+				OnPropertyChanged("Name");
 			}
 		}
 		/// <summary>
-		/// Use StartDateAsDouble property instead
+		/// Use CreateDateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long StartDate
+		public long CreateDate
 		{
-			get { return _StartDate; }
+			get { return _CreateDate; }
 			set 
 			{ 
-				_StartDate = value;
-				OnPropertyChanged("StartDate");
+				_CreateDate = value;
+				OnPropertyChanged("CreateDate");
 			}
 		}
 		/// <summary>
-		/// Use EndDateAsDouble property instead
+		/// Use UpdateDateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long EndDate
+		public long UpdateDate
 		{
-			get { return _EndDate; }
+			get { return _UpdateDate; }
 			set 
 			{ 
-				_EndDate = value;
-				OnPropertyChanged("EndDate");
+				_UpdateDate = value;
+				OnPropertyChanged("UpdateDate");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public DiscountModule()
+		public Partner()
 		{
 		}
 
-		public DiscountModule(JToken node) : base(node)
+		public Partner(JToken node) : base(node)
 		{
 			if(node["id"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._Id = ParseInt(node["id"].Value<string>());
 			}
-			if(node["percent"] != null)
+			if(node["name"] != null)
 			{
-				this._Percent = ParseDouble(node["percent"].Value<string>());
+				this._Name = node["name"].Value<string>();
 			}
-			if(node["startDate"] != null)
+			if(node["createDate"] != null)
 			{
-				this._StartDate = ParseLong(node["startDate"].Value<string>());
+				this._CreateDate = ParseLong(node["createDate"].Value<string>());
 			}
-			if(node["endDate"] != null)
+			if(node["updateDate"] != null)
 			{
-				this._EndDate = ParseLong(node["endDate"].Value<string>());
+				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
 			}
 		}
 		#endregion
@@ -151,11 +137,11 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaDiscountModule");
+				kparams.AddReplace("objectType", "KalturaPartner");
 			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("percent", this._Percent);
-			kparams.AddIfNotNull("startDate", this._StartDate);
-			kparams.AddIfNotNull("endDate", this._EndDate);
+			kparams.AddIfNotNull("name", this._Name);
+			kparams.AddIfNotNull("createDate", this._CreateDate);
+			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -164,12 +150,12 @@ namespace Kaltura.Types
 			{
 				case ID:
 					return "Id";
-				case PERCENT:
-					return "Percent";
-				case START_DATE:
-					return "StartDate";
-				case END_DATE:
-					return "EndDate";
+				case NAME:
+					return "Name";
+				case CREATE_DATE:
+					return "CreateDate";
+				case UPDATE_DATE:
+					return "UpdateDate";
 				default:
 					return base.getPropertyName(apiName);
 			}
