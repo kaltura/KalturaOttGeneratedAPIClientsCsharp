@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use SubscribeReferenceAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SubscribeReference SubscribeReference
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SubscribeReference");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new TopicNotificationOrderBy OrderBy
 		{

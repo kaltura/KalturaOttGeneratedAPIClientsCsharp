@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use EventObjectAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public EventObject EventObject
 		{

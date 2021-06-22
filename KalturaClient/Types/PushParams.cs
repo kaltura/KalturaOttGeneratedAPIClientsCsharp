@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use TokenAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Token
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Token");
 			}
 		}
+		/// <summary>
+		/// Use ExternalTokenAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalToken
 		{

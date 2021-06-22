@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MediaProtocolAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MediaProtocol
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaProtocol");
 			}
 		}
+		/// <summary>
+		/// Use StreamerTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string StreamerType
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StreamerType");
 			}
 		}
+		/// <summary>
+		/// Use AssetFileIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AssetFileIds
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetFileIds");
 			}
 		}
+		/// <summary>
+		/// Use AdapterDataAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> AdapterData
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AdapterData");
 			}
 		}
+		/// <summary>
+		/// Use ContextAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public PlaybackContextType Context
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Context");
 			}
 		}
+		/// <summary>
+		/// Use UrlTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public UrlType UrlType
 		{

@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ResetPasswordAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ResetPasswordPartnerConfig ResetPassword
 		{

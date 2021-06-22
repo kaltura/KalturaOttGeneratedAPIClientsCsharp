@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ConditionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SkipOptions Condition
 		{

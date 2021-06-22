@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ConditionsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<Condition> Conditions
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Conditions");
 			}
 		}
+		/// <summary>
+		/// Use ActionsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<BusinessModuleRuleAction> Actions
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Actions");
 			}
 		}
+		/// <summary>
+		/// Use CreateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
+		/// <summary>
+		/// Use UpdateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{

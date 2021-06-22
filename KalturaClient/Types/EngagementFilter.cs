@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use TypeInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string TypeIn
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TypeIn");
 			}
 		}
+		/// <summary>
+		/// Use SendTimeGreaterThanOrEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long SendTimeGreaterThanOrEqual
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SendTimeGreaterThanOrEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new EngagementOrderBy OrderBy
 		{

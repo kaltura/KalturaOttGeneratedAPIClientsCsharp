@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use StartDateInSecondsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long StartDateInSeconds
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDateInSeconds");
 			}
 		}
+		/// <summary>
+		/// Use EndDateInSecondsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EndDateInSeconds
 		{

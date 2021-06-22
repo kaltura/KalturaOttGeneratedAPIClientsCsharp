@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ContentIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ContentId
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ContentId");
 			}
 		}
+		/// <summary>
+		/// Use BaseUrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string BaseUrl
 		{

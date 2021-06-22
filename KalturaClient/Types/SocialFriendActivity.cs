@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use UserFullNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string UserFullName
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserFullName");
 			}
 		}
+		/// <summary>
+		/// Use UserPictureUrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string UserPictureUrl
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserPictureUrl");
 			}
 		}
+		/// <summary>
+		/// Use SocialActionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SocialAction SocialAction
 		{

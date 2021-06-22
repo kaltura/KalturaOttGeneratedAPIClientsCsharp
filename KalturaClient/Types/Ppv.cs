@@ -66,6 +66,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -76,6 +79,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -86,6 +92,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use PriceAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public PriceDetails Price
 		{
@@ -96,6 +105,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Price");
 			}
 		}
+		/// <summary>
+		/// Use FileTypesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<IntegerValue> FileTypes
 		{
@@ -106,6 +118,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FileTypes");
 			}
 		}
+		/// <summary>
+		/// Use DiscountModuleAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public DiscountModule DiscountModule
 		{
@@ -116,6 +131,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DiscountModule");
 			}
 		}
+		/// <summary>
+		/// Use CouponsGroupAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public CouponsGroup CouponsGroup
 		{
@@ -126,6 +144,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponsGroup");
 			}
 		}
+		/// <summary>
+		/// Use DescriptionsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<TranslationToken> Descriptions
 		{
@@ -136,6 +157,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Descriptions");
 			}
 		}
+		/// <summary>
+		/// Use ProductCodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ProductCode
 		{
@@ -146,6 +170,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProductCode");
 			}
 		}
+		/// <summary>
+		/// Use IsSubscriptionOnlyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsSubscriptionOnly
 		{
@@ -156,6 +183,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsSubscriptionOnly");
 			}
 		}
+		/// <summary>
+		/// Use FirstDeviceLimitationAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? FirstDeviceLimitation
 		{
@@ -166,6 +196,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FirstDeviceLimitation");
 			}
 		}
+		/// <summary>
+		/// Use UsageModuleAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public UsageModule UsageModule
 		{

@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AppIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AppId
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AppId");
 			}
 		}
+		/// <summary>
+		/// Use PermissionsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Permissions
 		{

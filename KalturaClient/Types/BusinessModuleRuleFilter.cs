@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use BusinessModuleTypeAppliedAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public TransactionType BusinessModuleTypeApplied
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("BusinessModuleTypeApplied");
 			}
 		}
+		/// <summary>
+		/// Use BusinessModuleIdAppliedAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long BusinessModuleIdApplied
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("BusinessModuleIdApplied");
 			}
 		}
+		/// <summary>
+		/// Use SegmentIdsAppliedAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SegmentIdsApplied
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SegmentIdsApplied");
 			}
 		}
+		/// <summary>
+		/// Use ActionsContainTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public RuleActionType ActionsContainType
 		{

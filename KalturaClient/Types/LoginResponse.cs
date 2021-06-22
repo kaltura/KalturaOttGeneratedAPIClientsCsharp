@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use UserAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public OTTUser User
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("User");
 			}
 		}
+		/// <summary>
+		/// Use LoginSessionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public LoginSession LoginSession
 		{

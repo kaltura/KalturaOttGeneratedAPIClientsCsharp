@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use SeriesIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SeriesIdIn
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SeriesIdIn");
 			}
 		}
+		/// <summary>
+		/// Use EpgChannelIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EpgChannelIdEqual
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EpgChannelIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new SeriesReminderOrderBy OrderBy
 		{

@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MediaFileIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MediaFileId
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaFileId");
 			}
 		}
+		/// <summary>
+		/// Use MediaIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MediaId
 		{

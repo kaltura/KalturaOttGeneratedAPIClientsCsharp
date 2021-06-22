@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PlaybackProfileEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int PlaybackProfileEqual
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PlaybackProfileEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new PlaybackProfileOrderBy OrderBy
 		{

@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use ActionTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SocialActionType ActionType
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ActionType");
 			}
 		}
+		/// <summary>
+		/// Use TimeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Time
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Time");
 			}
 		}
+		/// <summary>
+		/// Use AssetIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long AssetId
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetId");
 			}
 		}
+		/// <summary>
+		/// Use AssetTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public AssetType AssetType
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetType");
 			}
 		}
+		/// <summary>
+		/// Use UrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Url
 		{

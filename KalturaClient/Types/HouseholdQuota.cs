@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use HouseholdIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long HouseholdId
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("HouseholdId");
 			}
 		}
+		/// <summary>
+		/// Use TotalQuotaAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int TotalQuota
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TotalQuota");
 			}
 		}
+		/// <summary>
+		/// Use AvailableQuotaAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int AvailableQuota
 		{

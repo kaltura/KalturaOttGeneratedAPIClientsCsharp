@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ActionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public BookmarkActionType Action
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Action");
 			}
 		}
+		/// <summary>
+		/// Use AverageBitrateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int AverageBitrate
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AverageBitrate");
 			}
 		}
+		/// <summary>
+		/// Use TotalBitrateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int TotalBitrate
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TotalBitrate");
 			}
 		}
+		/// <summary>
+		/// Use CurrentBitrateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int CurrentBitrate
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CurrentBitrate");
 			}
 		}
+		/// <summary>
+		/// Use FileIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long FileId
 		{

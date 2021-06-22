@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use BodyTemplateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string BodyTemplate
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("BodyTemplate");
 			}
 		}
+		/// <summary>
+		/// Use SubjectTemplateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SubjectTemplate
 		{

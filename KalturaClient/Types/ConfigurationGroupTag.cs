@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ConfigurationGroupIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ConfigurationGroupId
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ConfigurationGroupId");
 			}
 		}
+		/// <summary>
+		/// Use PartnerIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int PartnerId
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PartnerId");
 			}
 		}
+		/// <summary>
+		/// Use TagAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Tag
 		{

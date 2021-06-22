@@ -66,6 +66,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -76,6 +79,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -86,6 +92,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use TreeIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long TreeId
 		{
@@ -96,6 +105,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TreeId");
 			}
 		}
+		/// <summary>
+		/// Use StateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public CategoryVersionState State
 		{
@@ -106,6 +118,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("State");
 			}
 		}
+		/// <summary>
+		/// Use BaseVersionIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long BaseVersionId
 		{
@@ -116,6 +131,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("BaseVersionId");
 			}
 		}
+		/// <summary>
+		/// Use CategoryRootIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long CategoryRootId
 		{
@@ -126,6 +144,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CategoryRootId");
 			}
 		}
+		/// <summary>
+		/// Use DefaultDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long DefaultDate
 		{
@@ -136,6 +157,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DefaultDate");
 			}
 		}
+		/// <summary>
+		/// Use UpdaterIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UpdaterId
 		{
@@ -146,6 +170,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdaterId");
 			}
 		}
+		/// <summary>
+		/// Use CommentAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Comment
 		{
@@ -156,6 +183,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Comment");
 			}
 		}
+		/// <summary>
+		/// Use CreateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -166,6 +196,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
+		/// <summary>
+		/// Use UpdateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{

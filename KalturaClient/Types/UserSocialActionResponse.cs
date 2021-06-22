@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use SocialActionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SocialAction SocialAction
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SocialAction");
 			}
 		}
+		/// <summary>
+		/// Use FailStatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<NetworkActionStatus> FailStatus
 		{

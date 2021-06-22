@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use KSqlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string KSql
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("KSql");
 			}
 		}
+		/// <summary>
+		/// Use GroupByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<AssetGroupBy> GroupBy
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("GroupBy");
 			}
 		}
+		/// <summary>
+		/// Use GroupOrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public GroupByOrder GroupOrderBy
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("GroupOrderBy");
 			}
 		}
+		/// <summary>
+		/// Use GroupingOptionEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public GroupingOption GroupingOptionEqual
 		{

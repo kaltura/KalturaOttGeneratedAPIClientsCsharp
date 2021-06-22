@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use OnlyOrButAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? OnlyOrBut
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("OnlyOrBut");
 			}
 		}
+		/// <summary>
+		/// Use CountryIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string CountryIds
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CountryIds");
 			}
 		}
+		/// <summary>
+		/// Use ProxyRuleIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ProxyRuleId
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProxyRuleId");
 			}
 		}
+		/// <summary>
+		/// Use ProxyRuleNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ProxyRuleName
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProxyRuleName");
 			}
 		}
+		/// <summary>
+		/// Use ProxyLevelIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ProxyLevelId
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProxyLevelId");
 			}
 		}
+		/// <summary>
+		/// Use ProxyLevelNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ProxyLevelName
 		{

@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ReceiptIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ReceiptId
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ReceiptId");
 			}
 		}
+		/// <summary>
+		/// Use PaymentGatewayNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PaymentGatewayName
 		{

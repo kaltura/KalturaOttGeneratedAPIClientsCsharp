@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PropertyPathAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PropertyPath
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PropertyPath");
 			}
 		}
+		/// <summary>
+		/// Use OperatorAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SkipOperators Operator
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Operator");
 			}
 		}
+		/// <summary>
+		/// Use ValueAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Value
 		{

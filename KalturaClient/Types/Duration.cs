@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use UnitAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public DurationUnit Unit
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Unit");
 			}
 		}
+		/// <summary>
+		/// Use ValueAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Value
 		{

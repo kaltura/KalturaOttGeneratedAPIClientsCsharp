@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use ParentCategoryIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ParentCategoryId
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ParentCategoryId");
 			}
 		}
+		/// <summary>
+		/// Use ChildCategoriesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<OTTCategory> ChildCategories
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ChildCategories");
 			}
 		}
+		/// <summary>
+		/// Use ChannelsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<Channel> Channels
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Channels");
 			}
 		}
+		/// <summary>
+		/// Use ImagesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<MediaImage> Images
 		{

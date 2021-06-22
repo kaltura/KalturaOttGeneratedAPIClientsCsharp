@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MediaTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MediaTypeEqual
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use MediaIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MediaIdIn
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaIdIn");
 			}
 		}
+		/// <summary>
+		/// Use UdidEqualCurrentAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? UdidEqualCurrent
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UdidEqualCurrent");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new FavoriteOrderBy OrderBy
 		{

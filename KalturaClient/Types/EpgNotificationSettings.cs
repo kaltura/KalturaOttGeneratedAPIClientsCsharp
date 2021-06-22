@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use EnabledAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? Enabled
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Enabled");
 			}
 		}
+		/// <summary>
+		/// Use DeviceFamilyIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string DeviceFamilyIds
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceFamilyIds");
 			}
 		}
+		/// <summary>
+		/// Use LiveAssetIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string LiveAssetIds
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LiveAssetIds");
 			}
 		}
+		/// <summary>
+		/// Use BackwardTimeRangeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int BackwardTimeRange
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("BackwardTimeRange");
 			}
 		}
+		/// <summary>
+		/// Use ForwardTimeRangeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ForwardTimeRange
 		{

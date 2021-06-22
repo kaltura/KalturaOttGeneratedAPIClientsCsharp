@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string IdEqual
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdEqual");
 			}
 		}
+		/// <summary>
+		/// Use ObjectIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ObjectIdEqual
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ObjectIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use EventObjectTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string EventObjectTypeEqual
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EventObjectTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new EventNotificationOrderBy OrderBy
 		{

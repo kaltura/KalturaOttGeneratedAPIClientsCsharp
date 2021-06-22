@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PaymentGatewayIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int PaymentGatewayIdEqual
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PaymentGatewayIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new PaymentMethodProfileOrderBy OrderBy
 		{
