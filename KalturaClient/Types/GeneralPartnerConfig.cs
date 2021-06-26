@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -74,6 +74,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PartnerNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PartnerName
 		{
@@ -84,6 +87,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PartnerName");
 			}
 		}
+		/// <summary>
+		/// Use MainLanguageAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MainLanguage
 		{
@@ -94,6 +100,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MainLanguage");
 			}
 		}
+		/// <summary>
+		/// Use SecondaryLanguagesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SecondaryLanguages
 		{
@@ -104,6 +113,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SecondaryLanguages");
 			}
 		}
+		/// <summary>
+		/// Use DeleteMediaPolicyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public DeleteMediaPolicy DeleteMediaPolicy
 		{
@@ -114,6 +126,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeleteMediaPolicy");
 			}
 		}
+		/// <summary>
+		/// Use MainCurrencyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MainCurrency
 		{
@@ -124,6 +139,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MainCurrency");
 			}
 		}
+		/// <summary>
+		/// Use SecondaryCurrenciesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SecondaryCurrencies
 		{
@@ -134,6 +152,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SecondaryCurrencies");
 			}
 		}
+		/// <summary>
+		/// Use DowngradePolicyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public DowngradePolicy DowngradePolicy
 		{
@@ -144,6 +165,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DowngradePolicy");
 			}
 		}
+		/// <summary>
+		/// Use MailSettingsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MailSettings
 		{
@@ -154,6 +178,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MailSettings");
 			}
 		}
+		/// <summary>
+		/// Use DateFormatAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string DateFormat
 		{
@@ -164,6 +191,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DateFormat");
 			}
 		}
+		/// <summary>
+		/// Use HouseholdLimitationModuleAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int HouseholdLimitationModule
 		{
@@ -174,6 +204,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("HouseholdLimitationModule");
 			}
 		}
+		/// <summary>
+		/// Use EnableRegionFilteringAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? EnableRegionFiltering
 		{
@@ -184,6 +217,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableRegionFiltering");
 			}
 		}
+		/// <summary>
+		/// Use DefaultRegionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int DefaultRegion
 		{
@@ -194,6 +230,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DefaultRegion");
 			}
 		}
+		/// <summary>
+		/// Use RollingDeviceDataAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public RollingDeviceRemovalData RollingDeviceData
 		{
@@ -204,6 +243,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RollingDeviceData");
 			}
 		}
+		/// <summary>
+		/// Use FinishedPercentThresholdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int FinishedPercentThreshold
 		{
@@ -214,6 +256,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FinishedPercentThreshold");
 			}
 		}
+		/// <summary>
+		/// Use SuspensionProfileInheritanceTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SuspensionProfileInheritanceType SuspensionProfileInheritanceType
 		{

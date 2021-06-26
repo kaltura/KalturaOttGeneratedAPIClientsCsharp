@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -58,6 +58,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -68,6 +71,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use AdapterUrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AdapterUrl
 		{
@@ -78,6 +84,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AdapterUrl");
 			}
 		}
+		/// <summary>
+		/// Use SharedSecretAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SharedSecret
 		{
@@ -88,6 +97,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SharedSecret");
 			}
 		}
+		/// <summary>
+		/// Use IsActiveAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int IsActive
 		{
@@ -98,6 +110,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsActive");
 			}
 		}
+		/// <summary>
+		/// Use SettingsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> Settings
 		{
@@ -108,6 +123,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Settings");
 			}
 		}
+		/// <summary>
+		/// Use ExternalIdentifierAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalIdentifier
 		{
@@ -118,6 +136,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalIdentifier");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
