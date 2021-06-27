@@ -80,37 +80,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class PartnerCreateIndexesRequestBuilder : RequestBuilder<bool>
-	{
-		#region Constants
-		#endregion
-
-
-		public PartnerCreateIndexesRequestBuilder()
-			: base("partner", "createIndexes")
-		{
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-	}
-
 	public class PartnerDeleteRequestBuilder : RequestBuilder<bool>
 	{
 		#region Constants
@@ -230,11 +199,6 @@ namespace Kaltura.Services
 		public static PartnerAddRequestBuilder Add(Partner partner, PartnerSetup partnerSetup)
 		{
 			return new PartnerAddRequestBuilder(partner, partnerSetup);
-		}
-
-		public static PartnerCreateIndexesRequestBuilder CreateIndexes()
-		{
-			return new PartnerCreateIndexesRequestBuilder();
 		}
 
 		public static PartnerDeleteRequestBuilder Delete(int id)

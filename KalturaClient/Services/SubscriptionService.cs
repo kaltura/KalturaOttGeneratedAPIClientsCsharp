@@ -36,6 +36,86 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
+	public class SubscriptionAddRequestBuilder : RequestBuilder<SubscriptionInternal>
+	{
+		#region Constants
+		public const string SUBSCRIPTION = "subscription";
+		#endregion
+
+		public SubscriptionInternal Subscription { get; set; }
+
+		public SubscriptionAddRequestBuilder()
+			: base("subscription", "add")
+		{
+		}
+
+		public SubscriptionAddRequestBuilder(SubscriptionInternal subscription)
+			: this()
+		{
+			this.Subscription = subscription;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("subscription"))
+				kparams.AddIfNotNull("subscription", Subscription);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<SubscriptionInternal>(result);
+		}
+	}
+
+	public class SubscriptionDeleteRequestBuilder : RequestBuilder<bool>
+	{
+		#region Constants
+		public const string ID = "id";
+		#endregion
+
+		public long Id { get; set; }
+
+		public SubscriptionDeleteRequestBuilder()
+			: base("subscription", "delete")
+		{
+		}
+
+		public SubscriptionDeleteRequestBuilder(long id)
+			: this()
+		{
+			this.Id = id;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
+				return true;
+			return false;
+		}
+	}
+
 	public class SubscriptionListRequestBuilder : RequestBuilder<ListResponse<Subscription>>
 	{
 		#region Constants
@@ -129,6 +209,16 @@ namespace Kaltura.Services
 	{
 		private SubscriptionService()
 		{
+		}
+
+		public static SubscriptionAddRequestBuilder Add(SubscriptionInternal subscription)
+		{
+			return new SubscriptionAddRequestBuilder(subscription);
+		}
+
+		public static SubscriptionDeleteRequestBuilder Delete(long id)
+		{
+			return new SubscriptionDeleteRequestBuilder(id);
 		}
 
 		public static SubscriptionListRequestBuilder List(SubscriptionFilter filter = null, FilterPager pager = null)
