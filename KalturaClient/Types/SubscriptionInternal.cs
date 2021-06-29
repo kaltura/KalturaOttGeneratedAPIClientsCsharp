@@ -53,10 +53,6 @@ namespace Kaltura.Types
 		public const string HOUSEHOLD_LIMITATIONS_ID = "householdLimitationsId";
 		public const string GRACE_PERIOD_MINUTES = "gracePeriodMinutes";
 		public const string PREMIUM_SERVICES = "premiumServices";
-		public const string MAX_VIEWS_NUMBER = "maxViewsNumber";
-		public const string VIEW_LIFE_CYCLE = "viewLifeCycle";
-		public const string WAIVER_PERIOD = "waiverPeriod";
-		public const string IS_WAIVER_ENABLED = "isWaiverEnabled";
 		public const string COUPONS_GROUPS = "couponsGroups";
 		public const string PRODUCT_CODES = "productCodes";
 		public const string DEPENDENCY_TYPE = "dependencyType";
@@ -65,6 +61,7 @@ namespace Kaltura.Types
 		public const string PRE_SALE_DATE = "preSaleDate";
 		public const string ADS_POLICY = "adsPolicy";
 		public const string ADS_PARAM = "adsParam";
+		public const string IS_ACTIVE = "isActive";
 		#endregion
 
 		#region Private Fields
@@ -83,10 +80,6 @@ namespace Kaltura.Types
 		private int _HouseholdLimitationsId = Int32.MinValue;
 		private int _GracePeriodMinutes = Int32.MinValue;
 		private IList<PremiumService> _PremiumServices;
-		private int _MaxViewsNumber = Int32.MinValue;
-		private int _ViewLifeCycle = Int32.MinValue;
-		private int _WaiverPeriod = Int32.MinValue;
-		private bool? _IsWaiverEnabled = null;
 		private IList<SubscriptionCouponGroup> _CouponsGroups;
 		private IList<ProductCode> _ProductCodes;
 		private SubscriptionDependencyType _DependencyType = null;
@@ -95,6 +88,7 @@ namespace Kaltura.Types
 		private long _PreSaleDate = long.MinValue;
 		private AdsPolicy _AdsPolicy = null;
 		private string _AdsParam = null;
+		private bool? _IsActive = null;
 		#endregion
 
 		#region Properties
@@ -294,58 +288,6 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use MaxViewsNumberAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int MaxViewsNumber
-		{
-			get { return _MaxViewsNumber; }
-			set 
-			{ 
-				_MaxViewsNumber = value;
-				OnPropertyChanged("MaxViewsNumber");
-			}
-		}
-		/// <summary>
-		/// Use ViewLifeCycleAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int ViewLifeCycle
-		{
-			get { return _ViewLifeCycle; }
-			set 
-			{ 
-				_ViewLifeCycle = value;
-				OnPropertyChanged("ViewLifeCycle");
-			}
-		}
-		/// <summary>
-		/// Use WaiverPeriodAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int WaiverPeriod
-		{
-			get { return _WaiverPeriod; }
-			set 
-			{ 
-				_WaiverPeriod = value;
-				OnPropertyChanged("WaiverPeriod");
-			}
-		}
-		/// <summary>
-		/// Use IsWaiverEnabledAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public bool? IsWaiverEnabled
-		{
-			get { return _IsWaiverEnabled; }
-			set 
-			{ 
-				_IsWaiverEnabled = value;
-				OnPropertyChanged("IsWaiverEnabled");
-			}
-		}
-		/// <summary>
 		/// Use CouponsGroupsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -449,6 +391,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("AdsParam");
 			}
 		}
+		/// <summary>
+		/// Use IsActiveAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IsActive
+		{
+			get { return _IsActive; }
+			set 
+			{ 
+				_IsActive = value;
+				OnPropertyChanged("IsActive");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -530,22 +485,6 @@ namespace Kaltura.Types
 					this._PremiumServices.Add(ObjectFactory.Create<PremiumService>(arrayNode));
 				}
 			}
-			if(node["maxViewsNumber"] != null)
-			{
-				this._MaxViewsNumber = ParseInt(node["maxViewsNumber"].Value<string>());
-			}
-			if(node["viewLifeCycle"] != null)
-			{
-				this._ViewLifeCycle = ParseInt(node["viewLifeCycle"].Value<string>());
-			}
-			if(node["waiverPeriod"] != null)
-			{
-				this._WaiverPeriod = ParseInt(node["waiverPeriod"].Value<string>());
-			}
-			if(node["isWaiverEnabled"] != null)
-			{
-				this._IsWaiverEnabled = ParseBool(node["isWaiverEnabled"].Value<string>());
-			}
 			if(node["couponsGroups"] != null)
 			{
 				this._CouponsGroups = new List<SubscriptionCouponGroup>();
@@ -586,6 +525,10 @@ namespace Kaltura.Types
 			{
 				this._AdsParam = node["adsParam"].Value<string>();
 			}
+			if(node["isActive"] != null)
+			{
+				this._IsActive = ParseBool(node["isActive"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -610,10 +553,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("householdLimitationsId", this._HouseholdLimitationsId);
 			kparams.AddIfNotNull("gracePeriodMinutes", this._GracePeriodMinutes);
 			kparams.AddIfNotNull("premiumServices", this._PremiumServices);
-			kparams.AddIfNotNull("maxViewsNumber", this._MaxViewsNumber);
-			kparams.AddIfNotNull("viewLifeCycle", this._ViewLifeCycle);
-			kparams.AddIfNotNull("waiverPeriod", this._WaiverPeriod);
-			kparams.AddIfNotNull("isWaiverEnabled", this._IsWaiverEnabled);
 			kparams.AddIfNotNull("couponsGroups", this._CouponsGroups);
 			kparams.AddIfNotNull("productCodes", this._ProductCodes);
 			kparams.AddIfNotNull("dependencyType", this._DependencyType);
@@ -622,6 +561,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("preSaleDate", this._PreSaleDate);
 			kparams.AddIfNotNull("adsPolicy", this._AdsPolicy);
 			kparams.AddIfNotNull("adsParam", this._AdsParam);
+			kparams.AddIfNotNull("isActive", this._IsActive);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -658,14 +598,6 @@ namespace Kaltura.Types
 					return "GracePeriodMinutes";
 				case PREMIUM_SERVICES:
 					return "PremiumServices";
-				case MAX_VIEWS_NUMBER:
-					return "MaxViewsNumber";
-				case VIEW_LIFE_CYCLE:
-					return "ViewLifeCycle";
-				case WAIVER_PERIOD:
-					return "WaiverPeriod";
-				case IS_WAIVER_ENABLED:
-					return "IsWaiverEnabled";
 				case COUPONS_GROUPS:
 					return "CouponsGroups";
 				case PRODUCT_CODES:
@@ -682,6 +614,8 @@ namespace Kaltura.Types
 					return "AdsPolicy";
 				case ADS_PARAM:
 					return "AdsParam";
+				case IS_ACTIVE:
+					return "IsActive";
 				default:
 					return base.getPropertyName(apiName);
 			}
