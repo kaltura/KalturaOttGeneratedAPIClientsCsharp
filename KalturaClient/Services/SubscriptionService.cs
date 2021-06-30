@@ -36,7 +36,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class SubscriptionAddRequestBuilder : RequestBuilder<SubscriptionInternal>
+	public class SubscriptionAddInternalRequestBuilder : RequestBuilder<SubscriptionInternal>
 	{
 		#region Constants
 		public const string SUBSCRIPTION = "subscription";
@@ -44,12 +44,12 @@ namespace Kaltura.Services
 
 		public SubscriptionInternal Subscription { get; set; }
 
-		public SubscriptionAddRequestBuilder()
-			: base("subscription", "add")
+		public SubscriptionAddInternalRequestBuilder()
+			: base("subscription", "addInternal")
 		{
 		}
 
-		public SubscriptionAddRequestBuilder(SubscriptionInternal subscription)
+		public SubscriptionAddInternalRequestBuilder(SubscriptionInternal subscription)
 			: this()
 		{
 			this.Subscription = subscription;
@@ -211,9 +211,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static SubscriptionAddRequestBuilder Add(SubscriptionInternal subscription)
+		public static SubscriptionAddInternalRequestBuilder AddInternal(SubscriptionInternal subscription)
 		{
-			return new SubscriptionAddRequestBuilder(subscription);
+			return new SubscriptionAddInternalRequestBuilder(subscription);
 		}
 
 		public static SubscriptionDeleteRequestBuilder Delete(long id)
