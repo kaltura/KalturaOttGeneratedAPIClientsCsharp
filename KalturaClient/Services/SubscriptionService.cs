@@ -36,20 +36,20 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class SubscriptionAddInternalRequestBuilder : RequestBuilder<SubscriptionInternal>
+	public class SubscriptionAddRequestBuilder : RequestBuilder<Subscription>
 	{
 		#region Constants
 		public const string SUBSCRIPTION = "subscription";
 		#endregion
 
-		public SubscriptionInternal Subscription { get; set; }
+		public Subscription Subscription { get; set; }
 
-		public SubscriptionAddInternalRequestBuilder()
-			: base("subscription", "addInternal")
+		public SubscriptionAddRequestBuilder()
+			: base("subscription", "add")
 		{
 		}
 
-		public SubscriptionAddInternalRequestBuilder(SubscriptionInternal subscription)
+		public SubscriptionAddRequestBuilder(Subscription subscription)
 			: this()
 		{
 			this.Subscription = subscription;
@@ -71,7 +71,7 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<SubscriptionInternal>(result);
+			return ObjectFactory.Create<Subscription>(result);
 		}
 	}
 
@@ -211,9 +211,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static SubscriptionAddInternalRequestBuilder AddInternal(SubscriptionInternal subscription)
+		public static SubscriptionAddRequestBuilder Add(Subscription subscription)
 		{
-			return new SubscriptionAddInternalRequestBuilder(subscription);
+			return new SubscriptionAddRequestBuilder(subscription);
 		}
 
 		public static SubscriptionDeleteRequestBuilder Delete(long id)
