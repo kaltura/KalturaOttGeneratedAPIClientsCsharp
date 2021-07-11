@@ -47,7 +47,6 @@ namespace Kaltura.Types
 		public const string UPDATE_DATE = "updateDate";
 		public const string IS_INHERITED = "isInherited";
 		public const string IS_LOCATION_TAG = "isLocationTag";
-		public const string SUPPRESSED_ORDER = "suppressedOrder";
 		#endregion
 
 		#region Private Fields
@@ -60,7 +59,6 @@ namespace Kaltura.Types
 		private long _UpdateDate = long.MinValue;
 		private bool? _IsInherited = null;
 		private bool? _IsLocationTag = null;
-		private int _SuppressedOrder = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -181,19 +179,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsLocationTag");
 			}
 		}
-		/// <summary>
-		/// Use SuppressedOrderAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int SuppressedOrder
-		{
-			get { return _SuppressedOrder; }
-			set 
-			{ 
-				_SuppressedOrder = value;
-				OnPropertyChanged("SuppressedOrder");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -239,10 +224,6 @@ namespace Kaltura.Types
 			{
 				this._IsLocationTag = ParseBool(node["isLocationTag"].Value<string>());
 			}
-			if(node["suppressedOrder"] != null)
-			{
-				this._SuppressedOrder = ParseInt(node["suppressedOrder"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -261,7 +242,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			kparams.AddIfNotNull("isInherited", this._IsInherited);
 			kparams.AddIfNotNull("isLocationTag", this._IsLocationTag);
-			kparams.AddIfNotNull("suppressedOrder", this._SuppressedOrder);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -286,8 +266,6 @@ namespace Kaltura.Types
 					return "IsInherited";
 				case IS_LOCATION_TAG:
 					return "IsLocationTag";
-				case SUPPRESSED_ORDER:
-					return "SuppressedOrder";
 				default:
 					return base.getPropertyName(apiName);
 			}

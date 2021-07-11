@@ -30,9 +30,6 @@ namespace Kaltura.Enums
 	public sealed class GroupByField : StringEnum
 	{
 		public static readonly GroupByField MEDIA_TYPE_ID = new GroupByField("media_type_id");
-		public static readonly GroupByField SUPPRESSED = new GroupByField("suppressed");
-		public static readonly GroupByField CRID = new GroupByField("crid");
-		public static readonly GroupByField LINEAR_MEDIA_ID = new GroupByField("linear_media_id");
 
 		private GroupByField(string name) : base(name) { }
 	}

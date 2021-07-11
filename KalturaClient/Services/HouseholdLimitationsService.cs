@@ -36,86 +36,6 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class HouseholdLimitationsAddRequestBuilder : RequestBuilder<HouseholdLimitations>
-	{
-		#region Constants
-		public const string HOUSEHOLD_LIMITATIONS = "householdLimitations";
-		#endregion
-
-		public HouseholdLimitations HouseholdLimitations { get; set; }
-
-		public HouseholdLimitationsAddRequestBuilder()
-			: base("householdlimitations", "add")
-		{
-		}
-
-		public HouseholdLimitationsAddRequestBuilder(HouseholdLimitations householdLimitations)
-			: this()
-		{
-			this.HouseholdLimitations = householdLimitations;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("householdLimitations"))
-				kparams.AddIfNotNull("householdLimitations", HouseholdLimitations);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<HouseholdLimitations>(result);
-		}
-	}
-
-	public class HouseholdLimitationsDeleteRequestBuilder : RequestBuilder<bool>
-	{
-		#region Constants
-		public const string HOUSEHOLD_LIMITATIONS_ID = "householdLimitationsId";
-		#endregion
-
-		public int HouseholdLimitationsId { get; set; }
-
-		public HouseholdLimitationsDeleteRequestBuilder()
-			: base("householdlimitations", "delete")
-		{
-		}
-
-		public HouseholdLimitationsDeleteRequestBuilder(int householdLimitationsId)
-			: this()
-		{
-			this.HouseholdLimitationsId = householdLimitationsId;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("householdLimitationsId"))
-				kparams.AddIfNotNull("householdLimitationsId", HouseholdLimitationsId);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-	}
-
 	public class HouseholdLimitationsGetRequestBuilder : RequestBuilder<HouseholdLimitations>
 	{
 		#region Constants
@@ -189,16 +109,6 @@ namespace Kaltura.Services
 	{
 		private HouseholdLimitationsService()
 		{
-		}
-
-		public static HouseholdLimitationsAddRequestBuilder Add(HouseholdLimitations householdLimitations)
-		{
-			return new HouseholdLimitationsAddRequestBuilder(householdLimitations);
-		}
-
-		public static HouseholdLimitationsDeleteRequestBuilder Delete(int householdLimitationsId)
-		{
-			return new HouseholdLimitationsDeleteRequestBuilder(householdLimitationsId);
 		}
 
 		public static HouseholdLimitationsGetRequestBuilder Get(int id)
