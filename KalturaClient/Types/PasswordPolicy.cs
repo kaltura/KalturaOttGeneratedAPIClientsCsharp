@@ -58,6 +58,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -68,6 +71,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -78,6 +84,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use UserRoleIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string UserRoleIds
 		{
@@ -88,6 +97,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserRoleIds");
 			}
 		}
+		/// <summary>
+		/// Use HistoryCountAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int HistoryCount
 		{
@@ -98,6 +110,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("HistoryCount");
 			}
 		}
+		/// <summary>
+		/// Use ExpirationAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Expiration
 		{
@@ -108,6 +123,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Expiration");
 			}
 		}
+		/// <summary>
+		/// Use ComplexitiesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<RegexExpression> Complexities
 		{
@@ -118,6 +136,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Complexities");
 			}
 		}
+		/// <summary>
+		/// Use LockoutFailuresCountAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int LockoutFailuresCount
 		{

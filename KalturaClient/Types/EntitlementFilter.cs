@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ProductTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public TransactionType ProductTypeEqual
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProductTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use EntityReferenceEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public EntityReferenceBy EntityReferenceEqual
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EntityReferenceEqual");
 			}
 		}
+		/// <summary>
+		/// Use IsExpiredEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsExpiredEqual
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsExpiredEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new EntitlementOrderBy OrderBy
 		{

@@ -60,6 +60,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -70,6 +73,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use ObjectIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ObjectId
 		{
@@ -80,6 +86,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ObjectId");
 			}
 		}
+		/// <summary>
+		/// Use EventObjectTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string EventObjectType
 		{
@@ -90,6 +99,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EventObjectType");
 			}
 		}
+		/// <summary>
+		/// Use MessageAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Message
 		{
@@ -100,6 +112,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Message");
 			}
 		}
+		/// <summary>
+		/// Use StatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public EventNotificationStatus Status
 		{
@@ -110,6 +125,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
+		/// <summary>
+		/// Use ActionTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ActionType
 		{
@@ -120,6 +138,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ActionType");
 			}
 		}
+		/// <summary>
+		/// Use CreateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -130,6 +151,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
+		/// <summary>
+		/// Use UpdateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{

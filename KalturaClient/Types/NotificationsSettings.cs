@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PushNotificationEnabledAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? PushNotificationEnabled
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PushNotificationEnabled");
 			}
 		}
+		/// <summary>
+		/// Use PushFollowEnabledAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? PushFollowEnabled
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PushFollowEnabled");
 			}
 		}
+		/// <summary>
+		/// Use MailEnabledAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? MailEnabled
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MailEnabled");
 			}
 		}
+		/// <summary>
+		/// Use SmsEnabledAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? SmsEnabled
 		{

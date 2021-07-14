@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ServiceAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Service
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Service");
 			}
 		}
+		/// <summary>
+		/// Use ActionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Action
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Action");
 			}
 		}
+		/// <summary>
+		/// Use ParameterAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Parameter
 		{

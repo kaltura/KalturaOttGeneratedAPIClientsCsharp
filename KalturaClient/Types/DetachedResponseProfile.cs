@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use FilterAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public RelatedObjectFilter Filter
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Filter");
 			}
 		}
+		/// <summary>
+		/// Use RelatedProfilesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<DetachedResponseProfile> RelatedProfiles
 		{

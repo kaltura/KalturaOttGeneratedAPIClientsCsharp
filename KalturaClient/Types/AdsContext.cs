@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use SourcesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<AdsSource> Sources
 		{

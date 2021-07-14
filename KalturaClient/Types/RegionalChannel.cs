@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use LinearChannelIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int LinearChannelId
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LinearChannelId");
 			}
 		}
+		/// <summary>
+		/// Use ChannelNumberAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ChannelNumber
 		{

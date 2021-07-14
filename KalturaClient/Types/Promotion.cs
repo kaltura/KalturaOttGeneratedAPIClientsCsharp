@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use DiscountModuleIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long DiscountModuleId
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DiscountModuleId");
 			}
 		}
+		/// <summary>
+		/// Use ConditionsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<Condition> Conditions
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Conditions");
 			}
 		}
+		/// <summary>
+		/// Use NumberOfRecurringAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int NumberOfRecurring
 		{

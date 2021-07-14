@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use UsernameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public Encryption Username
 		{

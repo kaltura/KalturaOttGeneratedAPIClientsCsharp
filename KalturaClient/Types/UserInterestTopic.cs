@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MetaIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MetaId
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MetaId");
 			}
 		}
+		/// <summary>
+		/// Use ValueAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Value
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Value");
 			}
 		}
+		/// <summary>
+		/// Use ParentTopicAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public UserInterestTopic ParentTopic
 		{

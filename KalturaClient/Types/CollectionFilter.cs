@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use CollectionIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string CollectionIdIn
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CollectionIdIn");
 			}
 		}
+		/// <summary>
+		/// Use MediaFileIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MediaFileIdEqual
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaFileIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use CouponGroupIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int CouponGroupIdEqual
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponGroupIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new CollectionOrderBy OrderBy
 		{

@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use SchemeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public DrmSchemeName Scheme
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Scheme");
 			}
 		}
+		/// <summary>
+		/// Use LicenseURLAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string LicenseURL
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LicenseURL");
 			}
 		}
+		/// <summary>
+		/// Use DynamicDataAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> DynamicData
 		{

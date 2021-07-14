@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ProgramIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ProgramId
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProgramId");
 			}
 		}
+		/// <summary>
+		/// Use ProgramExternalIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ProgramExternalId
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProgramExternalId");
 			}
 		}
+		/// <summary>
+		/// Use LiveAssetIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int LiveAssetId
 		{

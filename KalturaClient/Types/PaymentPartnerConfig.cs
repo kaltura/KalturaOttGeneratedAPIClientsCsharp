@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use UnifiedBillingCyclesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<UnifiedBillingCycle> UnifiedBillingCycles
 		{

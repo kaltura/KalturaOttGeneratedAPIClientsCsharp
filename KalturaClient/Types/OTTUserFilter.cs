@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use UsernameEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string UsernameEqual
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UsernameEqual");
 			}
 		}
+		/// <summary>
+		/// Use ExternalIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalIdEqual
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use IdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string IdIn
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
+		/// <summary>
+		/// Use RoleIdsInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string RoleIdsIn
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RoleIdsIn");
 			}
 		}
+		/// <summary>
+		/// Use EmailEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string EmailEqual
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EmailEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new OTTUserOrderBy OrderBy
 		{

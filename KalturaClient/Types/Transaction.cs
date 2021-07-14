@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use PaymentGatewayReferenceIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PaymentGatewayReferenceId
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PaymentGatewayReferenceId");
 			}
 		}
+		/// <summary>
+		/// Use PaymentGatewayResponseIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PaymentGatewayResponseId
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PaymentGatewayResponseId");
 			}
 		}
+		/// <summary>
+		/// Use StateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string State
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("State");
 			}
 		}
+		/// <summary>
+		/// Use FailReasonCodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int FailReasonCode
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FailReasonCode");
 			}
 		}
+		/// <summary>
+		/// Use CreatedAtAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int CreatedAt
 		{

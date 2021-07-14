@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AssetIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AssetIdIn
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetIdIn");
 			}
 		}
+		/// <summary>
+		/// Use AssetTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public AssetType AssetTypeEqual
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use StartDateGreaterThanOrEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long StartDateGreaterThanOrEqual
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDateGreaterThanOrEqual");
 			}
 		}
+		/// <summary>
+		/// Use EndDateGreaterThanOrEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EndDateGreaterThanOrEqual
 		{

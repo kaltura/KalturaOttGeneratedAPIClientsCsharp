@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use BusinessModuleTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public TransactionType BusinessModuleType
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("BusinessModuleType");
 			}
 		}
+		/// <summary>
+		/// Use BusinessModuleIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long BusinessModuleId
 		{

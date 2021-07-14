@@ -62,6 +62,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use EpgChannelIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EpgChannelId
 		{
@@ -72,6 +75,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EpgChannelId");
 			}
 		}
+		/// <summary>
+		/// Use EpgIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string EpgId
 		{
@@ -82,6 +88,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EpgId");
 			}
 		}
+		/// <summary>
+		/// Use RelatedMediaIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long RelatedMediaId
 		{
@@ -92,6 +101,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RelatedMediaId");
 			}
 		}
+		/// <summary>
+		/// Use CridAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Crid
 		{
@@ -102,6 +114,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Crid");
 			}
 		}
+		/// <summary>
+		/// Use LinearAssetIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long LinearAssetId
 		{
@@ -112,6 +127,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LinearAssetId");
 			}
 		}
+		/// <summary>
+		/// Use EnableCdvrAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? EnableCdvr
 		{
@@ -122,6 +140,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableCdvr");
 			}
 		}
+		/// <summary>
+		/// Use EnableCatchUpAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? EnableCatchUp
 		{
@@ -132,6 +153,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableCatchUp");
 			}
 		}
+		/// <summary>
+		/// Use EnableStartOverAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? EnableStartOver
 		{
@@ -142,6 +166,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableStartOver");
 			}
 		}
+		/// <summary>
+		/// Use EnableTrickPlayAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? EnableTrickPlay
 		{

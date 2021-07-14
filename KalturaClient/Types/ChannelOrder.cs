@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use DynamicOrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public DynamicOrderBy DynamicOrderBy
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DynamicOrderBy");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ChannelOrderBy OrderBy
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("OrderBy");
 			}
 		}
+		/// <summary>
+		/// Use PeriodAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Period
 		{

@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PartnerConfigurationTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public PartnerConfigurationType PartnerConfigurationTypeEqual
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PartnerConfigurationTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new PartnerConfigurationOrderBy OrderBy
 		{

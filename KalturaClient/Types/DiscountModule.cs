@@ -44,14 +44,31 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private float _Percent = Single.MinValue;
+		private double _Percent = Double.MinValue;
 		private long _StartDate = long.MinValue;
 		private long _EndDate = long.MinValue;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PercentAsDouble property instead
+		/// </summary>
 		[JsonProperty]
+		[Obsolete("Use PercentAsDouble property instead")]
 		public float Percent
+		{
+			get { return (float)_Percent; }
+			set 
+			{ 
+				_Percent = value;
+				OnPropertyChanged("Percent");
+			}
+		}
+		///<summary>
+		///Use this property PercentAsDouble instead of the float Percent property version
+		///</summary>
+		[JsonProperty]
+		public double PercentAsDouble
 		{
 			get { return _Percent; }
 			set 
@@ -60,6 +77,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Percent");
 			}
 		}
+		/// <summary>
+		/// Use StartDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -70,6 +90,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
+		/// <summary>
+		/// Use EndDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -91,7 +114,7 @@ namespace Kaltura.Types
 		{
 			if(node["percent"] != null)
 			{
-				this._Percent = ParseFloat(node["percent"].Value<string>());
+				this._Percent = ParseDouble(node["percent"].Value<string>());
 			}
 			if(node["startDate"] != null)
 			{

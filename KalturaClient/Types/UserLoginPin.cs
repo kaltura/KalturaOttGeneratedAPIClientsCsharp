@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PinCodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PinCode
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PinCode");
 			}
 		}
+		/// <summary>
+		/// Use ExpirationTimeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ExpirationTime
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExpirationTime");
 			}
 		}
+		/// <summary>
+		/// Use UserIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string UserId
 		{

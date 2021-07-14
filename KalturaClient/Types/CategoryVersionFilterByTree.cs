@@ -48,6 +48,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use TreeIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long TreeIdEqual
 		{
@@ -58,6 +61,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TreeIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use StateEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public CategoryVersionState StateEqual
 		{

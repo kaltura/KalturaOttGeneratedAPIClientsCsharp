@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AttachedUserIdEqualCurrentAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? AttachedUserIdEqualCurrent
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AttachedUserIdEqualCurrent");
 			}
 		}
+		/// <summary>
+		/// Use ActionsContainTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public RuleActionType ActionsContainType
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ActionsContainType");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new AssetUserRuleOrderBy OrderBy
 		{
