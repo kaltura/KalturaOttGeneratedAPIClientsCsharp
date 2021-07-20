@@ -39,10 +39,12 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string BOOKMARK_EVENT_THRESHOLDS = "bookmarkEventThresholds";
+		public const string KEEP_SUBSCRIPTION_ADD_ONS = "keepSubscriptionAddOns";
 		#endregion
 
 		#region Private Fields
 		private IList<BookmarkEventThreshold> _BookmarkEventThresholds;
+		private bool? _KeepSubscriptionAddOns = null;
 		#endregion
 
 		#region Properties
@@ -54,6 +56,16 @@ namespace Kaltura.Types
 			{ 
 				_BookmarkEventThresholds = value;
 				OnPropertyChanged("BookmarkEventThresholds");
+			}
+		}
+		[JsonProperty]
+		public bool? KeepSubscriptionAddOns
+		{
+			get { return _KeepSubscriptionAddOns; }
+			set 
+			{ 
+				_KeepSubscriptionAddOns = value;
+				OnPropertyChanged("KeepSubscriptionAddOns");
 			}
 		}
 		#endregion
@@ -73,6 +85,10 @@ namespace Kaltura.Types
 					this._BookmarkEventThresholds.Add(ObjectFactory.Create<BookmarkEventThreshold>(arrayNode));
 				}
 			}
+			if(node["keepSubscriptionAddOns"] != null)
+			{
+				this._KeepSubscriptionAddOns = ParseBool(node["keepSubscriptionAddOns"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -83,6 +99,7 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaCommercePartnerConfig");
 			kparams.AddIfNotNull("bookmarkEventThresholds", this._BookmarkEventThresholds);
+			kparams.AddIfNotNull("keepSubscriptionAddOns", this._KeepSubscriptionAddOns);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -91,6 +108,8 @@ namespace Kaltura.Types
 			{
 				case BOOKMARK_EVENT_THRESHOLDS:
 					return "BookmarkEventThresholds";
+				case KEEP_SUBSCRIPTION_ADD_ONS:
+					return "KeepSubscriptionAddOns";
 				default:
 					return base.getPropertyName(apiName);
 			}

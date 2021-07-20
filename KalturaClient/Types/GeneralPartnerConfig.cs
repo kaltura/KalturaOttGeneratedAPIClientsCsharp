@@ -53,6 +53,7 @@ namespace Kaltura.Types
 		public const string ROLLING_DEVICE_DATA = "rollingDeviceData";
 		public const string FINISHED_PERCENT_THRESHOLD = "finishedPercentThreshold";
 		public const string SUSPENSION_PROFILE_INHERITANCE_TYPE = "suspensionProfileInheritanceType";
+		public const string ALLOW_DEVICE_MOBILITY = "allowDeviceMobility";
 		#endregion
 
 		#region Private Fields
@@ -71,6 +72,7 @@ namespace Kaltura.Types
 		private RollingDeviceRemovalData _RollingDeviceData;
 		private int _FinishedPercentThreshold = Int32.MinValue;
 		private SuspensionProfileInheritanceType _SuspensionProfileInheritanceType = null;
+		private bool? _AllowDeviceMobility = null;
 		#endregion
 
 		#region Properties
@@ -224,6 +226,16 @@ namespace Kaltura.Types
 				OnPropertyChanged("SuspensionProfileInheritanceType");
 			}
 		}
+		[JsonProperty]
+		public bool? AllowDeviceMobility
+		{
+			get { return _AllowDeviceMobility; }
+			set 
+			{ 
+				_AllowDeviceMobility = value;
+				OnPropertyChanged("AllowDeviceMobility");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -293,6 +305,10 @@ namespace Kaltura.Types
 			{
 				this._SuspensionProfileInheritanceType = (SuspensionProfileInheritanceType)StringEnum.Parse(typeof(SuspensionProfileInheritanceType), node["suspensionProfileInheritanceType"].Value<string>());
 			}
+			if(node["allowDeviceMobility"] != null)
+			{
+				this._AllowDeviceMobility = ParseBool(node["allowDeviceMobility"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -317,6 +333,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("rollingDeviceData", this._RollingDeviceData);
 			kparams.AddIfNotNull("finishedPercentThreshold", this._FinishedPercentThreshold);
 			kparams.AddIfNotNull("suspensionProfileInheritanceType", this._SuspensionProfileInheritanceType);
+			kparams.AddIfNotNull("allowDeviceMobility", this._AllowDeviceMobility);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -353,6 +370,8 @@ namespace Kaltura.Types
 					return "FinishedPercentThreshold";
 				case SUSPENSION_PROFILE_INHERITANCE_TYPE:
 					return "SuspensionProfileInheritanceType";
+				case ALLOW_DEVICE_MOBILITY:
+					return "AllowDeviceMobility";
 				default:
 					return base.getPropertyName(apiName);
 			}
