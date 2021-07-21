@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -58,9 +58,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use KsExpirationSecondsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long KsExpirationSeconds
 		{
@@ -71,9 +68,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("KsExpirationSeconds");
 			}
 		}
-		/// <summary>
-		/// Use AppTokenSessionMaxDurationSecondsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int AppTokenSessionMaxDurationSeconds
 		{
@@ -84,9 +78,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AppTokenSessionMaxDurationSeconds");
 			}
 		}
-		/// <summary>
-		/// Use AnonymousKSExpirationSecondsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long AnonymousKSExpirationSeconds
 		{
@@ -97,9 +88,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AnonymousKSExpirationSeconds");
 			}
 		}
-		/// <summary>
-		/// Use RefreshExpirationForPinLoginSecondsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long RefreshExpirationForPinLoginSeconds
 		{
@@ -110,9 +98,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RefreshExpirationForPinLoginSeconds");
 			}
 		}
-		/// <summary>
-		/// Use AppTokenMaxExpirySecondsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int AppTokenMaxExpirySeconds
 		{
@@ -123,9 +108,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AppTokenMaxExpirySeconds");
 			}
 		}
-		/// <summary>
-		/// Use UploadTokenExpirySecondsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int UploadTokenExpirySeconds
 		{
@@ -136,9 +118,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UploadTokenExpirySeconds");
 			}
 		}
-		/// <summary>
-		/// Use ApptokenUserValidationDisabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? ApptokenUserValidationDisabled
 		{
