@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -68,9 +68,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -81,9 +78,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use CreateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -94,9 +88,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
-		/// <summary>
-		/// Use UpdateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{
@@ -107,9 +98,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
-		/// <summary>
-		/// Use StartDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -120,9 +108,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
-		/// <summary>
-		/// Use EndDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -133,9 +118,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -146,9 +128,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
-		/// <summary>
-		/// Use SystemNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string SystemName
 		{
@@ -159,9 +138,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SystemName");
 			}
 		}
-		/// <summary>
-		/// Use DescriptionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Description
 		{
@@ -172,9 +148,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Description");
 			}
 		}
-		/// <summary>
-		/// Use StateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public ObjectState State
 		{
@@ -185,9 +158,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("State");
 			}
 		}
-		/// <summary>
-		/// Use PromotionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public Promotion Promotion
 		{
@@ -198,9 +168,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Promotion");
 			}
 		}
-		/// <summary>
-		/// Use MessageAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Message
 		{
@@ -211,9 +178,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Message");
 			}
 		}
-		/// <summary>
-		/// Use CollectionIdInAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string CollectionIdIn
 		{
