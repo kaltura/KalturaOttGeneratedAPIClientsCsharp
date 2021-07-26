@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -68,9 +68,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use UdidAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Udid
 		{
@@ -81,9 +78,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Udid");
 			}
 		}
-		/// <summary>
-		/// Use AccessKeyAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string AccessKey
 		{
@@ -94,9 +88,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AccessKey");
 			}
 		}
-		/// <summary>
-		/// Use AccessSecretKeyAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string AccessSecretKey
 		{
@@ -107,9 +98,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AccessSecretKey");
 			}
 		}
-		/// <summary>
-		/// Use UsernameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Username
 		{
@@ -120,9 +108,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Username");
 			}
 		}
-		/// <summary>
-		/// Use UserPasswordAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string UserPassword
 		{
@@ -133,9 +118,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserPassword");
 			}
 		}
-		/// <summary>
-		/// Use IdentityIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string IdentityId
 		{
@@ -146,9 +128,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdentityId");
 			}
 		}
-		/// <summary>
-		/// Use ThingArnAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ThingArn
 		{
@@ -159,9 +138,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ThingArn");
 			}
 		}
-		/// <summary>
-		/// Use ThingIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ThingId
 		{
@@ -172,9 +148,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ThingId");
 			}
 		}
-		/// <summary>
-		/// Use PrincipalAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Principal
 		{
@@ -185,9 +158,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Principal");
 			}
 		}
-		/// <summary>
-		/// Use EndPointAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string EndPoint
 		{
@@ -198,9 +168,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndPoint");
 			}
 		}
-		/// <summary>
-		/// Use ExtendedEndPointAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExtendedEndPoint
 		{
@@ -211,9 +178,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExtendedEndPoint");
 			}
 		}
-		/// <summary>
-		/// Use IdentityPoolIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string IdentityPoolId
 		{
