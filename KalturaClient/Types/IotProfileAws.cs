@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -60,9 +60,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IotEndPointAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string IotEndPoint
 		{
@@ -73,9 +70,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IotEndPoint");
 			}
 		}
-		/// <summary>
-		/// Use AccessKeyIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string AccessKeyId
 		{
@@ -86,9 +80,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AccessKeyId");
 			}
 		}
-		/// <summary>
-		/// Use SecretAccessKeyAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string SecretAccessKey
 		{
@@ -99,9 +90,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SecretAccessKey");
 			}
 		}
-		/// <summary>
-		/// Use UserPoolIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string UserPoolId
 		{
@@ -112,9 +100,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserPoolId");
 			}
 		}
-		/// <summary>
-		/// Use ClientIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ClientId
 		{
@@ -125,9 +110,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ClientId");
 			}
 		}
-		/// <summary>
-		/// Use IdentityPoolIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string IdentityPoolId
 		{
@@ -138,9 +120,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdentityPoolId");
 			}
 		}
-		/// <summary>
-		/// Use RegionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Region
 		{
@@ -151,9 +130,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Region");
 			}
 		}
-		/// <summary>
-		/// Use UpdateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{

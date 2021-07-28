@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -64,9 +64,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use AssetStructIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long AssetStructId
 		{
@@ -77,9 +74,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetStructId");
 			}
 		}
-		/// <summary>
-		/// Use MetaIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long MetaId
 		{
@@ -90,9 +84,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MetaId");
 			}
 		}
-		/// <summary>
-		/// Use IngestReferencePathAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string IngestReferencePath
 		{
@@ -103,9 +94,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IngestReferencePath");
 			}
 		}
-		/// <summary>
-		/// Use ProtectFromIngestAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? ProtectFromIngest
 		{
@@ -116,9 +104,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProtectFromIngest");
 			}
 		}
-		/// <summary>
-		/// Use DefaultIngestValueAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string DefaultIngestValue
 		{
@@ -129,9 +114,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("DefaultIngestValue");
 			}
 		}
-		/// <summary>
-		/// Use CreateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -142,9 +124,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
-		/// <summary>
-		/// Use UpdateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{
@@ -155,9 +134,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
-		/// <summary>
-		/// Use IsInheritedAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsInherited
 		{
@@ -168,9 +144,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsInherited");
 			}
 		}
-		/// <summary>
-		/// Use IsLocationTagAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsLocationTag
 		{
@@ -181,9 +154,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsLocationTag");
 			}
 		}
-		/// <summary>
-		/// Use SuppressedOrderAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int SuppressedOrder
 		{

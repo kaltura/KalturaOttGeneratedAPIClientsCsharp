@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -62,9 +62,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -75,61 +72,42 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
-			get { return _Name; }
 			set 
 			{ 
 				_Name = value;
 				OnPropertyChanged("Name");
 			}
 		}
-		/// <summary>
-		/// Use MaxViewsNumberAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int MaxViewsNumber
 		{
-			get { return _MaxViewsNumber; }
 			set 
 			{ 
 				_MaxViewsNumber = value;
 				OnPropertyChanged("MaxViewsNumber");
 			}
 		}
-		/// <summary>
-		/// Use ViewLifeCycleAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int ViewLifeCycle
 		{
-			get { return _ViewLifeCycle; }
 			set 
 			{ 
 				_ViewLifeCycle = value;
 				OnPropertyChanged("ViewLifeCycle");
 			}
 		}
-		/// <summary>
-		/// Use FullLifeCycleAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int FullLifeCycle
 		{
-			get { return _FullLifeCycle; }
 			set 
 			{ 
 				_FullLifeCycle = value;
 				OnPropertyChanged("FullLifeCycle");
 			}
 		}
-		/// <summary>
-		/// Use CouponIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int CouponId
 		{
@@ -140,9 +118,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponId");
 			}
 		}
-		/// <summary>
-		/// Use WaiverPeriodAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int WaiverPeriod
 		{
@@ -153,9 +128,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("WaiverPeriod");
 			}
 		}
-		/// <summary>
-		/// Use IsWaiverEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsWaiverEnabled
 		{
@@ -166,9 +138,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsWaiverEnabled");
 			}
 		}
-		/// <summary>
-		/// Use IsOfflinePlaybackAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsOfflinePlayback
 		{
