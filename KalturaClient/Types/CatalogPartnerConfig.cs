@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -41,18 +41,17 @@ namespace Kaltura.Types
 		public const string SINGLE_MULTILINGUAL_MODE = "singleMultilingualMode";
 		public const string CATEGORY_MANAGEMENT = "categoryManagement";
 		public const string EPG_MULTILINGUAL_FALLBACK_SUPPORT = "epgMultilingualFallbackSupport";
+		public const string UPLOAD_EXPORT_DATALAKE = "uploadExportDatalake";
 		#endregion
 
 		#region Private Fields
 		private bool? _SingleMultilingualMode = null;
 		private CategoryManagement _CategoryManagement;
 		private bool? _EpgMultilingualFallbackSupport = null;
+		private bool? _UploadExportDatalake = null;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use SingleMultilingualModeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? SingleMultilingualMode
 		{
@@ -63,9 +62,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SingleMultilingualMode");
 			}
 		}
-		/// <summary>
-		/// Use CategoryManagementAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public CategoryManagement CategoryManagement
 		{
@@ -76,9 +72,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CategoryManagement");
 			}
 		}
-		/// <summary>
-		/// Use EpgMultilingualFallbackSupportAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? EpgMultilingualFallbackSupport
 		{
@@ -87,6 +80,16 @@ namespace Kaltura.Types
 			{ 
 				_EpgMultilingualFallbackSupport = value;
 				OnPropertyChanged("EpgMultilingualFallbackSupport");
+			}
+		}
+		[JsonProperty]
+		public bool? UploadExportDatalake
+		{
+			get { return _UploadExportDatalake; }
+			set 
+			{ 
+				_UploadExportDatalake = value;
+				OnPropertyChanged("UploadExportDatalake");
 			}
 		}
 		#endregion
@@ -110,6 +113,10 @@ namespace Kaltura.Types
 			{
 				this._EpgMultilingualFallbackSupport = ParseBool(node["epgMultilingualFallbackSupport"].Value<string>());
 			}
+			if(node["uploadExportDatalake"] != null)
+			{
+				this._UploadExportDatalake = ParseBool(node["uploadExportDatalake"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -122,6 +129,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("singleMultilingualMode", this._SingleMultilingualMode);
 			kparams.AddIfNotNull("categoryManagement", this._CategoryManagement);
 			kparams.AddIfNotNull("epgMultilingualFallbackSupport", this._EpgMultilingualFallbackSupport);
+			kparams.AddIfNotNull("uploadExportDatalake", this._UploadExportDatalake);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -134,6 +142,8 @@ namespace Kaltura.Types
 					return "CategoryManagement";
 				case EPG_MULTILINGUAL_FALLBACK_SUPPORT:
 					return "EpgMultilingualFallbackSupport";
+				case UPLOAD_EXPORT_DATALAKE:
+					return "UploadExportDatalake";
 				default:
 					return base.getPropertyName(apiName);
 			}

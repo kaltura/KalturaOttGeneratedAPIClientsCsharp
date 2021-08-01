@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -58,9 +58,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use KsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Ks
 		{
@@ -71,9 +68,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Ks");
 			}
 		}
-		/// <summary>
-		/// Use PartnerIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int PartnerId
 		{
@@ -84,9 +78,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PartnerId");
 			}
 		}
-		/// <summary>
-		/// Use UserIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string UserId
 		{
@@ -97,9 +88,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserId");
 			}
 		}
-		/// <summary>
-		/// Use ExpiryAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int Expiry
 		{
@@ -110,9 +98,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Expiry");
 			}
 		}
-		/// <summary>
-		/// Use PrivilegesAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Privileges
 		{
@@ -123,9 +108,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Privileges");
 			}
 		}
-		/// <summary>
-		/// Use UdidAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Udid
 		{
@@ -136,9 +118,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Udid");
 			}
 		}
-		/// <summary>
-		/// Use CreateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int CreateDate
 		{

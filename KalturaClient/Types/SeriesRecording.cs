@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -47,6 +47,7 @@ namespace Kaltura.Types
 		public const string CREATE_DATE = "createDate";
 		public const string UPDATE_DATE = "updateDate";
 		public const string EXCLUDED_SEASONS = "excludedSeasons";
+		public const string SERIES_RECORDING_OPTION = "seriesRecordingOption";
 		#endregion
 
 		#region Private Fields
@@ -59,12 +60,10 @@ namespace Kaltura.Types
 		private long _CreateDate = long.MinValue;
 		private long _UpdateDate = long.MinValue;
 		private IList<IntegerValue> _ExcludedSeasons;
+		private SeriesRecordingOption _SeriesRecordingOption;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -75,9 +74,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use EpgIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long EpgId
 		{
@@ -88,9 +84,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EpgId");
 			}
 		}
-		/// <summary>
-		/// Use ChannelIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long ChannelId
 		{
@@ -101,9 +94,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ChannelId");
 			}
 		}
-		/// <summary>
-		/// Use SeriesIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string SeriesId
 		{
@@ -114,9 +104,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SeriesId");
 			}
 		}
-		/// <summary>
-		/// Use SeasonNumberAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int SeasonNumber
 		{
@@ -127,9 +114,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SeasonNumber");
 			}
 		}
-		/// <summary>
-		/// Use TypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public RecordingType Type
 		{
@@ -140,9 +124,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
-		/// <summary>
-		/// Use CreateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -153,9 +134,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
-		/// <summary>
-		/// Use UpdateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{
@@ -166,9 +144,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
-		/// <summary>
-		/// Use ExcludedSeasonsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<IntegerValue> ExcludedSeasons
 		{
@@ -177,6 +152,16 @@ namespace Kaltura.Types
 			{ 
 				_ExcludedSeasons = value;
 				OnPropertyChanged("ExcludedSeasons");
+			}
+		}
+		[JsonProperty]
+		public SeriesRecordingOption SeriesRecordingOption
+		{
+			get { return _SeriesRecordingOption; }
+			set 
+			{ 
+				_SeriesRecordingOption = value;
+				OnPropertyChanged("SeriesRecordingOption");
 			}
 		}
 		#endregion
@@ -228,6 +213,10 @@ namespace Kaltura.Types
 					this._ExcludedSeasons.Add(ObjectFactory.Create<IntegerValue>(arrayNode));
 				}
 			}
+			if(node["seriesRecordingOption"] != null)
+			{
+				this._SeriesRecordingOption = ObjectFactory.Create<SeriesRecordingOption>(node["seriesRecordingOption"]);
+			}
 		}
 		#endregion
 
@@ -246,6 +235,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			kparams.AddIfNotNull("excludedSeasons", this._ExcludedSeasons);
+			kparams.AddIfNotNull("seriesRecordingOption", this._SeriesRecordingOption);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -270,6 +260,8 @@ namespace Kaltura.Types
 					return "UpdateDate";
 				case EXCLUDED_SEASONS:
 					return "ExcludedSeasons";
+				case SERIES_RECORDING_OPTION:
+					return "SeriesRecordingOption";
 				default:
 					return base.getPropertyName(apiName);
 			}
