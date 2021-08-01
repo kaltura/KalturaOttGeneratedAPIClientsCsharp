@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -88,9 +88,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use CatchUpEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? CatchUpEnabled
 		{
@@ -101,9 +98,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CatchUpEnabled");
 			}
 		}
-		/// <summary>
-		/// Use CdvrEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? CdvrEnabled
 		{
@@ -114,9 +108,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CdvrEnabled");
 			}
 		}
-		/// <summary>
-		/// Use StartOverEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? StartOverEnabled
 		{
@@ -127,9 +118,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartOverEnabled");
 			}
 		}
-		/// <summary>
-		/// Use TrickPlayEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? TrickPlayEnabled
 		{
@@ -140,9 +128,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("TrickPlayEnabled");
 			}
 		}
-		/// <summary>
-		/// Use RecordingScheduleWindowEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? RecordingScheduleWindowEnabled
 		{
@@ -153,9 +138,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RecordingScheduleWindowEnabled");
 			}
 		}
-		/// <summary>
-		/// Use ProtectionEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? ProtectionEnabled
 		{
@@ -166,9 +148,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProtectionEnabled");
 			}
 		}
-		/// <summary>
-		/// Use CatchUpBufferLengthAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long CatchUpBufferLength
 		{
@@ -179,9 +158,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CatchUpBufferLength");
 			}
 		}
-		/// <summary>
-		/// Use TrickPlayBufferLengthAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long TrickPlayBufferLength
 		{
@@ -192,9 +168,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("TrickPlayBufferLength");
 			}
 		}
-		/// <summary>
-		/// Use RecordingScheduleWindowAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long RecordingScheduleWindow
 		{
@@ -205,9 +178,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RecordingScheduleWindow");
 			}
 		}
-		/// <summary>
-		/// Use PaddingBeforeProgramStartsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long PaddingBeforeProgramStarts
 		{
@@ -218,9 +188,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PaddingBeforeProgramStarts");
 			}
 		}
-		/// <summary>
-		/// Use PaddingAfterProgramEndsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long PaddingAfterProgramEnds
 		{
@@ -231,9 +198,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PaddingAfterProgramEnds");
 			}
 		}
-		/// <summary>
-		/// Use ProtectionPeriodAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int ProtectionPeriod
 		{
@@ -244,9 +208,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProtectionPeriod");
 			}
 		}
-		/// <summary>
-		/// Use ProtectionQuotaPercentageAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int ProtectionQuotaPercentage
 		{
@@ -257,9 +218,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProtectionQuotaPercentage");
 			}
 		}
-		/// <summary>
-		/// Use RecordingLifetimePeriodAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int RecordingLifetimePeriod
 		{
@@ -270,9 +228,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RecordingLifetimePeriod");
 			}
 		}
-		/// <summary>
-		/// Use CleanupNoticePeriodAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int CleanupNoticePeriod
 		{
@@ -283,9 +238,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CleanupNoticePeriod");
 			}
 		}
-		/// <summary>
-		/// Use SeriesRecordingEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? SeriesRecordingEnabled
 		{
@@ -296,9 +248,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SeriesRecordingEnabled");
 			}
 		}
-		/// <summary>
-		/// Use NonEntitledChannelPlaybackEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? NonEntitledChannelPlaybackEnabled
 		{
@@ -309,9 +258,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("NonEntitledChannelPlaybackEnabled");
 			}
 		}
-		/// <summary>
-		/// Use NonExistingChannelPlaybackEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? NonExistingChannelPlaybackEnabled
 		{
@@ -322,9 +268,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("NonExistingChannelPlaybackEnabled");
 			}
 		}
-		/// <summary>
-		/// Use QuotaOveragePolicyAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public QuotaOveragePolicy QuotaOveragePolicy
 		{
@@ -335,9 +278,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("QuotaOveragePolicy");
 			}
 		}
-		/// <summary>
-		/// Use ProtectionPolicyAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public ProtectionPolicy ProtectionPolicy
 		{
@@ -348,9 +288,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProtectionPolicy");
 			}
 		}
-		/// <summary>
-		/// Use RecoveryGracePeriodAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int RecoveryGracePeriod
 		{
@@ -361,9 +298,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RecoveryGracePeriod");
 			}
 		}
-		/// <summary>
-		/// Use PrivateCopyEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? PrivateCopyEnabled
 		{

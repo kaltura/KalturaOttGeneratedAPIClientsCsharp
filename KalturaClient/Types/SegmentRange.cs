@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -52,17 +52,14 @@ namespace Kaltura.Types
 		private long _Id = long.MinValue;
 		private string _SystematicName = null;
 		private string _Name = null;
-		private double _Gte = Double.MinValue;
-		private double _Gt = Double.MinValue;
-		private double _Lte = Double.MinValue;
-		private double _Lt = Double.MinValue;
-		private double _Equals = Double.MinValue;
+		private float _Gte = Single.MinValue;
+		private float _Gt = Single.MinValue;
+		private float _Lte = Single.MinValue;
+		private float _Lt = Single.MinValue;
+		private float _Equals = Single.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -73,9 +70,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use SystematicNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string SystematicName
 		{
@@ -86,9 +80,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SystematicName");
 			}
 		}
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -99,25 +90,8 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
-		/// <summary>
-		/// Use GteAsDouble property instead
-		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use GteAsDouble property instead")]
 		public float Gte
-		{
-			get { return (float)_Gte; }
-			set 
-			{ 
-				_Gte = value;
-				OnPropertyChanged("Gte");
-			}
-		}
-		///<summary>
-		///Use this property GteAsDouble instead of the float Gte property version
-		///</summary>
-		[JsonProperty]
-		public double GteAsDouble
 		{
 			get { return _Gte; }
 			set 
@@ -126,25 +100,8 @@ namespace Kaltura.Types
 				OnPropertyChanged("Gte");
 			}
 		}
-		/// <summary>
-		/// Use GtAsDouble property instead
-		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use GtAsDouble property instead")]
 		public float Gt
-		{
-			get { return (float)_Gt; }
-			set 
-			{ 
-				_Gt = value;
-				OnPropertyChanged("Gt");
-			}
-		}
-		///<summary>
-		///Use this property GtAsDouble instead of the float Gt property version
-		///</summary>
-		[JsonProperty]
-		public double GtAsDouble
 		{
 			get { return _Gt; }
 			set 
@@ -153,25 +110,8 @@ namespace Kaltura.Types
 				OnPropertyChanged("Gt");
 			}
 		}
-		/// <summary>
-		/// Use LteAsDouble property instead
-		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use LteAsDouble property instead")]
 		public float Lte
-		{
-			get { return (float)_Lte; }
-			set 
-			{ 
-				_Lte = value;
-				OnPropertyChanged("Lte");
-			}
-		}
-		///<summary>
-		///Use this property LteAsDouble instead of the float Lte property version
-		///</summary>
-		[JsonProperty]
-		public double LteAsDouble
 		{
 			get { return _Lte; }
 			set 
@@ -180,25 +120,8 @@ namespace Kaltura.Types
 				OnPropertyChanged("Lte");
 			}
 		}
-		/// <summary>
-		/// Use LtAsDouble property instead
-		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use LtAsDouble property instead")]
 		public float Lt
-		{
-			get { return (float)_Lt; }
-			set 
-			{ 
-				_Lt = value;
-				OnPropertyChanged("Lt");
-			}
-		}
-		///<summary>
-		///Use this property LtAsDouble instead of the float Lt property version
-		///</summary>
-		[JsonProperty]
-		public double LtAsDouble
 		{
 			get { return _Lt; }
 			set 
@@ -207,25 +130,8 @@ namespace Kaltura.Types
 				OnPropertyChanged("Lt");
 			}
 		}
-		/// <summary>
-		/// Use EqualsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use EqualsAsDouble property instead")]
 		public float Equals
-		{
-			get { return (float)_Equals; }
-			set 
-			{ 
-				_Equals = value;
-				OnPropertyChanged("Equals");
-			}
-		}
-		///<summary>
-		///Use this property EqualsAsDouble instead of the float Equals property version
-		///</summary>
-		[JsonProperty]
-		public double EqualsAsDouble
 		{
 			get { return _Equals; }
 			set 
@@ -257,23 +163,23 @@ namespace Kaltura.Types
 			}
 			if(node["gte"] != null)
 			{
-				this._Gte = ParseDouble(node["gte"].Value<string>());
+				this._Gte = ParseFloat(node["gte"].Value<string>());
 			}
 			if(node["gt"] != null)
 			{
-				this._Gt = ParseDouble(node["gt"].Value<string>());
+				this._Gt = ParseFloat(node["gt"].Value<string>());
 			}
 			if(node["lte"] != null)
 			{
-				this._Lte = ParseDouble(node["lte"].Value<string>());
+				this._Lte = ParseFloat(node["lte"].Value<string>());
 			}
 			if(node["lt"] != null)
 			{
-				this._Lt = ParseDouble(node["lt"].Value<string>());
+				this._Lt = ParseFloat(node["lt"].Value<string>());
 			}
 			if(node["equals"] != null)
 			{
-				this._Equals = ParseDouble(node["equals"].Value<string>());
+				this._Equals = ParseFloat(node["equals"].Value<string>());
 			}
 		}
 		#endregion
