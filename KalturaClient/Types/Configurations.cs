@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -62,9 +62,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -75,9 +72,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use PartnerIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int PartnerId
 		{
@@ -88,9 +82,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PartnerId");
 			}
 		}
-		/// <summary>
-		/// Use ConfigurationGroupIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ConfigurationGroupId
 		{
@@ -101,9 +92,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ConfigurationGroupId");
 			}
 		}
-		/// <summary>
-		/// Use AppNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string AppName
 		{
@@ -114,9 +102,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AppName");
 			}
 		}
-		/// <summary>
-		/// Use ClientVersionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ClientVersion
 		{
@@ -127,9 +112,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ClientVersion");
 			}
 		}
-		/// <summary>
-		/// Use PlatformAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public Platform Platform
 		{
@@ -140,9 +122,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Platform");
 			}
 		}
-		/// <summary>
-		/// Use ExternalPushIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExternalPushId
 		{
@@ -153,9 +132,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalPushId");
 			}
 		}
-		/// <summary>
-		/// Use IsForceUpdateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsForceUpdate
 		{
@@ -166,9 +142,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsForceUpdate");
 			}
 		}
-		/// <summary>
-		/// Use ContentAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Content
 		{
