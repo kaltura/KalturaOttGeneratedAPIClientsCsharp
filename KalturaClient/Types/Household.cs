@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -78,9 +78,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -91,9 +88,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -104,9 +98,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
-		/// <summary>
-		/// Use DescriptionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Description
 		{
@@ -117,9 +108,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Description");
 			}
 		}
-		/// <summary>
-		/// Use ExternalIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExternalId
 		{
@@ -130,9 +118,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
-		/// <summary>
-		/// Use HouseholdLimitationsIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int HouseholdLimitationsId
 		{
@@ -143,9 +128,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("HouseholdLimitationsId");
 			}
 		}
-		/// <summary>
-		/// Use DevicesLimitAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int DevicesLimit
 		{
@@ -156,9 +138,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("DevicesLimit");
 			}
 		}
-		/// <summary>
-		/// Use UsersLimitAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int UsersLimit
 		{
@@ -169,9 +148,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UsersLimit");
 			}
 		}
-		/// <summary>
-		/// Use ConcurrentLimitAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int ConcurrentLimit
 		{
@@ -182,9 +158,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ConcurrentLimit");
 			}
 		}
-		/// <summary>
-		/// Use RegionIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int RegionId
 		{
@@ -195,9 +168,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RegionId");
 			}
 		}
-		/// <summary>
-		/// Use StateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public HouseholdState State
 		{
@@ -208,9 +178,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("State");
 			}
 		}
-		/// <summary>
-		/// Use IsFrequencyEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsFrequencyEnabled
 		{
@@ -221,9 +188,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsFrequencyEnabled");
 			}
 		}
-		/// <summary>
-		/// Use FrequencyNextDeviceActionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long FrequencyNextDeviceAction
 		{
@@ -234,9 +198,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("FrequencyNextDeviceAction");
 			}
 		}
-		/// <summary>
-		/// Use FrequencyNextUserActionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long FrequencyNextUserAction
 		{
@@ -247,9 +208,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("FrequencyNextUserAction");
 			}
 		}
-		/// <summary>
-		/// Use RestrictionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public HouseholdRestriction Restriction
 		{
@@ -260,9 +218,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Restriction");
 			}
 		}
-		/// <summary>
-		/// Use RoleIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int RoleId
 		{
@@ -273,9 +228,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RoleId");
 			}
 		}
-		/// <summary>
-		/// Use CreateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -286,9 +238,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
-		/// <summary>
-		/// Use UpdateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{

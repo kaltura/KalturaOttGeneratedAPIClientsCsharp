@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -54,9 +54,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -67,9 +64,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use OrderIndexAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int OrderIndex
 		{
@@ -80,9 +74,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("OrderIndex");
 			}
 		}
-		/// <summary>
-		/// Use TypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public UserAssetsListItemType Type
 		{
@@ -93,9 +84,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
-		/// <summary>
-		/// Use UserIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string UserId
 		{
@@ -106,9 +94,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserId");
 			}
 		}
-		/// <summary>
-		/// Use ListTypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public UserAssetsListType ListType
 		{

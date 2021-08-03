@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -60,9 +60,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use EntityReferenceEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public EntityReferenceBy EntityReferenceEqual
 		{
@@ -73,9 +70,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EntityReferenceEqual");
 			}
 		}
-		/// <summary>
-		/// Use StartDateGreaterThanOrEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int StartDateGreaterThanOrEqual
 		{
@@ -86,9 +80,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDateGreaterThanOrEqual");
 			}
 		}
-		/// <summary>
-		/// Use EndDateLessThanOrEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int EndDateLessThanOrEqual
 		{
@@ -99,9 +90,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDateLessThanOrEqual");
 			}
 		}
-		/// <summary>
-		/// Use EntitlementIdEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long EntitlementIdEqual
 		{
@@ -112,9 +100,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EntitlementIdEqual");
 			}
 		}
-		/// <summary>
-		/// Use ExternalIdEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExternalIdEqual
 		{
@@ -125,9 +110,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalIdEqual");
 			}
 		}
-		/// <summary>
-		/// Use BillingItemsTypeEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public BillingItemsType BillingItemsTypeEqual
 		{
@@ -138,9 +120,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("BillingItemsTypeEqual");
 			}
 		}
-		/// <summary>
-		/// Use BillingActionEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public BillingAction BillingActionEqual
 		{
@@ -151,9 +130,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("BillingActionEqual");
 			}
 		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public new TransactionHistoryOrderBy OrderBy
 		{

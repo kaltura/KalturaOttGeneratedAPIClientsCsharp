@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -44,31 +44,14 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private double _Amount = Double.MinValue;
+		private float _Amount = Single.MinValue;
 		private long _StartDate = long.MinValue;
 		private long _EndDate = long.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use AmountAsDouble property instead
-		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use AmountAsDouble property instead")]
 		public float Amount
-		{
-			get { return (float)_Amount; }
-			private set 
-			{ 
-				_Amount = value;
-				OnPropertyChanged("Amount");
-			}
-		}
-		///<summary>
-		///Use this property AmountAsDouble instead of the float Amount property version
-		///</summary>
-		[JsonProperty]
-		public double AmountAsDouble
 		{
 			get { return _Amount; }
 			private set 
@@ -77,9 +60,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Amount");
 			}
 		}
-		/// <summary>
-		/// Use StartDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -90,9 +70,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
-		/// <summary>
-		/// Use EndDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -114,7 +91,7 @@ namespace Kaltura.Types
 		{
 			if(node["amount"] != null)
 			{
-				this._Amount = ParseDouble(node["amount"].Value<string>());
+				this._Amount = ParseFloat(node["amount"].Value<string>());
 			}
 			if(node["startDate"] != null)
 			{
