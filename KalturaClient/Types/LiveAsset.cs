@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -78,9 +78,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use EnableCdvrStateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public TimeShiftedTvState EnableCdvrState
 		{
@@ -91,9 +88,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableCdvrState");
 			}
 		}
-		/// <summary>
-		/// Use EnableCatchUpStateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public TimeShiftedTvState EnableCatchUpState
 		{
@@ -104,9 +98,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableCatchUpState");
 			}
 		}
-		/// <summary>
-		/// Use EnableStartOverStateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public TimeShiftedTvState EnableStartOverState
 		{
@@ -117,9 +108,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableStartOverState");
 			}
 		}
-		/// <summary>
-		/// Use BufferCatchUpSettingAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long BufferCatchUpSetting
 		{
@@ -130,9 +118,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("BufferCatchUpSetting");
 			}
 		}
-		/// <summary>
-		/// Use BufferTrickPlaySettingAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long BufferTrickPlaySetting
 		{
@@ -143,9 +128,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("BufferTrickPlaySetting");
 			}
 		}
-		/// <summary>
-		/// Use EnableRecordingPlaybackNonEntitledChannelStateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public TimeShiftedTvState EnableRecordingPlaybackNonEntitledChannelState
 		{
@@ -156,9 +138,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableRecordingPlaybackNonEntitledChannelState");
 			}
 		}
-		/// <summary>
-		/// Use EnableTrickPlayStateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public TimeShiftedTvState EnableTrickPlayState
 		{
@@ -169,9 +148,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableTrickPlayState");
 			}
 		}
-		/// <summary>
-		/// Use ExternalEpgIngestIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExternalEpgIngestId
 		{
@@ -182,9 +158,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalEpgIngestId");
 			}
 		}
-		/// <summary>
-		/// Use ExternalCdvrIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExternalCdvrId
 		{
@@ -195,9 +168,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalCdvrId");
 			}
 		}
-		/// <summary>
-		/// Use EnableCdvrAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? EnableCdvr
 		{
@@ -208,9 +178,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableCdvr");
 			}
 		}
-		/// <summary>
-		/// Use EnableCatchUpAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? EnableCatchUp
 		{
@@ -221,9 +188,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableCatchUp");
 			}
 		}
-		/// <summary>
-		/// Use EnableStartOverAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? EnableStartOver
 		{
@@ -234,9 +198,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableStartOver");
 			}
 		}
-		/// <summary>
-		/// Use CatchUpBufferAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long CatchUpBuffer
 		{
@@ -247,9 +208,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CatchUpBuffer");
 			}
 		}
-		/// <summary>
-		/// Use TrickPlayBufferAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long TrickPlayBuffer
 		{
@@ -260,9 +218,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("TrickPlayBuffer");
 			}
 		}
-		/// <summary>
-		/// Use EnableRecordingPlaybackNonEntitledChannelAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? EnableRecordingPlaybackNonEntitledChannel
 		{
@@ -273,9 +228,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableRecordingPlaybackNonEntitledChannel");
 			}
 		}
-		/// <summary>
-		/// Use EnableTrickPlayAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? EnableTrickPlay
 		{
@@ -286,9 +238,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableTrickPlay");
 			}
 		}
-		/// <summary>
-		/// Use ChannelTypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public LinearChannelType ChannelType
 		{

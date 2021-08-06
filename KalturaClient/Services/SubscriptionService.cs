@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -36,6 +36,86 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
+	public class SubscriptionAddRequestBuilder : RequestBuilder<Subscription>
+	{
+		#region Constants
+		public const string SUBSCRIPTION = "subscription";
+		#endregion
+
+		public Subscription Subscription { get; set; }
+
+		public SubscriptionAddRequestBuilder()
+			: base("subscription", "add")
+		{
+		}
+
+		public SubscriptionAddRequestBuilder(Subscription subscription)
+			: this()
+		{
+			this.Subscription = subscription;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("subscription"))
+				kparams.AddIfNotNull("subscription", Subscription);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<Subscription>(result);
+		}
+	}
+
+	public class SubscriptionDeleteRequestBuilder : RequestBuilder<bool>
+	{
+		#region Constants
+		public const string ID = "id";
+		#endregion
+
+		public long Id { get; set; }
+
+		public SubscriptionDeleteRequestBuilder()
+			: base("subscription", "delete")
+		{
+		}
+
+		public SubscriptionDeleteRequestBuilder(long id)
+			: this()
+		{
+			this.Id = id;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
+				return true;
+			return false;
+		}
+	}
+
 	public class SubscriptionListRequestBuilder : RequestBuilder<ListResponse<Subscription>>
 	{
 		#region Constants
@@ -77,6 +157,50 @@ namespace Kaltura.Services
 		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<ListResponse<Subscription>>(result);
+		}
+	}
+
+	public class SubscriptionUpdateRequestBuilder : RequestBuilder<Subscription>
+	{
+		#region Constants
+		public const string ID = "id";
+		public const string SUBSCRIPTION = "subscription";
+		#endregion
+
+		public long Id { get; set; }
+		public Subscription Subscription { get; set; }
+
+		public SubscriptionUpdateRequestBuilder()
+			: base("subscription", "update")
+		{
+		}
+
+		public SubscriptionUpdateRequestBuilder(long id, Subscription subscription)
+			: this()
+		{
+			this.Id = id;
+			this.Subscription = subscription;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("subscription"))
+				kparams.AddIfNotNull("subscription", Subscription);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<Subscription>(result);
 		}
 	}
 
@@ -131,9 +255,24 @@ namespace Kaltura.Services
 		{
 		}
 
+		public static SubscriptionAddRequestBuilder Add(Subscription subscription)
+		{
+			return new SubscriptionAddRequestBuilder(subscription);
+		}
+
+		public static SubscriptionDeleteRequestBuilder Delete(long id)
+		{
+			return new SubscriptionDeleteRequestBuilder(id);
+		}
+
 		public static SubscriptionListRequestBuilder List(SubscriptionFilter filter = null, FilterPager pager = null)
 		{
 			return new SubscriptionListRequestBuilder(filter, pager);
+		}
+
+		public static SubscriptionUpdateRequestBuilder Update(long id, Subscription subscription)
+		{
+			return new SubscriptionUpdateRequestBuilder(id, subscription);
 		}
 
 		public static SubscriptionValidateCouponRequestBuilder ValidateCoupon(int id, string code)

@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,9 +56,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use SubscriptionIdInAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string SubscriptionIdIn
 		{
@@ -69,9 +66,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SubscriptionIdIn");
 			}
 		}
-		/// <summary>
-		/// Use FileIdInAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string FileIdIn
 		{
@@ -82,9 +76,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("FileIdIn");
 			}
 		}
-		/// <summary>
-		/// Use CollectionIdInAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string CollectionIdIn
 		{
@@ -95,9 +86,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CollectionIdIn");
 			}
 		}
-		/// <summary>
-		/// Use IsLowestAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsLowest
 		{
@@ -108,9 +96,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsLowest");
 			}
 		}
-		/// <summary>
-		/// Use CouponCodeEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string CouponCodeEqual
 		{
@@ -121,9 +106,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponCodeEqual");
 			}
 		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public new ProductPriceOrderBy OrderBy
 		{
