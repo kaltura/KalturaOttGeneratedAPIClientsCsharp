@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,9 +56,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use TagEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string TagEqual
 		{
@@ -69,9 +66,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("TagEqual");
 			}
 		}
-		/// <summary>
-		/// Use TagStartsWithAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string TagStartsWith
 		{
@@ -82,9 +76,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("TagStartsWith");
 			}
 		}
-		/// <summary>
-		/// Use TypeEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int TypeEqual
 		{
@@ -95,9 +86,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("TypeEqual");
 			}
 		}
-		/// <summary>
-		/// Use LanguageEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string LanguageEqual
 		{
@@ -108,9 +96,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("LanguageEqual");
 			}
 		}
-		/// <summary>
-		/// Use IdInAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string IdIn
 		{
@@ -121,9 +106,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public new TagOrderBy OrderBy
 		{

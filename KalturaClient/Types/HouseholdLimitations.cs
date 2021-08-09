@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -66,9 +66,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -79,61 +76,46 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
 			get { return _Name; }
-			set 
+			private set 
 			{ 
 				_Name = value;
 				OnPropertyChanged("Name");
 			}
 		}
-		/// <summary>
-		/// Use ConcurrentLimitAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int ConcurrentLimit
 		{
 			get { return _ConcurrentLimit; }
-			set 
+			private set 
 			{ 
 				_ConcurrentLimit = value;
 				OnPropertyChanged("ConcurrentLimit");
 			}
 		}
-		/// <summary>
-		/// Use DeviceLimitAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int DeviceLimit
 		{
 			get { return _DeviceLimit; }
-			set 
+			private set 
 			{ 
 				_DeviceLimit = value;
 				OnPropertyChanged("DeviceLimit");
 			}
 		}
-		/// <summary>
-		/// Use DeviceFrequencyAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int DeviceFrequency
 		{
 			get { return _DeviceFrequency; }
-			set 
+			private set 
 			{ 
 				_DeviceFrequency = value;
 				OnPropertyChanged("DeviceFrequency");
 			}
 		}
-		/// <summary>
-		/// Use DeviceFrequencyDescriptionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string DeviceFrequencyDescription
 		{
@@ -144,22 +126,16 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceFrequencyDescription");
 			}
 		}
-		/// <summary>
-		/// Use UserFrequencyAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int UserFrequency
 		{
 			get { return _UserFrequency; }
-			set 
+			private set 
 			{ 
 				_UserFrequency = value;
 				OnPropertyChanged("UserFrequency");
 			}
 		}
-		/// <summary>
-		/// Use UserFrequencyDescriptionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string UserFrequencyDescription
 		{
@@ -170,9 +146,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserFrequencyDescription");
 			}
 		}
-		/// <summary>
-		/// Use NpvrQuotaInSecondsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int NpvrQuotaInSeconds
 		{
@@ -183,27 +156,21 @@ namespace Kaltura.Types
 				OnPropertyChanged("NpvrQuotaInSeconds");
 			}
 		}
-		/// <summary>
-		/// Use UsersLimitAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int UsersLimit
 		{
 			get { return _UsersLimit; }
-			set 
+			private set 
 			{ 
 				_UsersLimit = value;
 				OnPropertyChanged("UsersLimit");
 			}
 		}
-		/// <summary>
-		/// Use DeviceFamiliesLimitationsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<HouseholdDeviceFamilyLimitations> DeviceFamiliesLimitations
 		{
 			get { return _DeviceFamiliesLimitations; }
-			set 
+			private set 
 			{ 
 				_DeviceFamiliesLimitations = value;
 				OnPropertyChanged("DeviceFamiliesLimitations");

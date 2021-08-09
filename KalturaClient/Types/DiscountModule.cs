@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -38,52 +38,20 @@ namespace Kaltura.Types
 	public class DiscountModule : ObjectBase
 	{
 		#region Constants
-		public const string ID = "id";
 		public const string PERCENT = "percent";
 		public const string START_DATE = "startDate";
 		public const string END_DATE = "endDate";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private double _Percent = Double.MinValue;
+		private float _Percent = Single.MinValue;
 		private long _StartDate = long.MinValue;
 		private long _EndDate = long.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
-		public long Id
-		{
-			get { return _Id; }
-			set 
-			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
-			}
-		}
-		/// <summary>
-		/// Use PercentAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		[Obsolete("Use PercentAsDouble property instead")]
 		public float Percent
-		{
-			get { return (float)_Percent; }
-			set 
-			{ 
-				_Percent = value;
-				OnPropertyChanged("Percent");
-			}
-		}
-		///<summary>
-		///Use this property PercentAsDouble instead of the float Percent property version
-		///</summary>
-		[JsonProperty]
-		public double PercentAsDouble
 		{
 			get { return _Percent; }
 			set 
@@ -92,9 +60,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Percent");
 			}
 		}
-		/// <summary>
-		/// Use StartDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -105,9 +70,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
-		/// <summary>
-		/// Use EndDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -127,13 +89,9 @@ namespace Kaltura.Types
 
 		public DiscountModule(JToken node) : base(node)
 		{
-			if(node["id"] != null)
-			{
-				this._Id = ParseLong(node["id"].Value<string>());
-			}
 			if(node["percent"] != null)
 			{
-				this._Percent = ParseDouble(node["percent"].Value<string>());
+				this._Percent = ParseFloat(node["percent"].Value<string>());
 			}
 			if(node["startDate"] != null)
 			{
@@ -152,7 +110,6 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaDiscountModule");
-			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("percent", this._Percent);
 			kparams.AddIfNotNull("startDate", this._StartDate);
 			kparams.AddIfNotNull("endDate", this._EndDate);
@@ -162,8 +119,6 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
 				case PERCENT:
 					return "Percent";
 				case START_DATE:
