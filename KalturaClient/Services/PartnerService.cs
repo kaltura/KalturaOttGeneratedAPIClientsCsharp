@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -36,122 +36,6 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class PartnerAddRequestBuilder : RequestBuilder<Partner>
-	{
-		#region Constants
-		public const string PARTNER = "partner";
-		public const string PARTNER_SETUP = "partnerSetup";
-		#endregion
-
-		public Partner Partner { get; set; }
-		public PartnerSetup PartnerSetup { get; set; }
-
-		public PartnerAddRequestBuilder()
-			: base("partner", "add")
-		{
-		}
-
-		public PartnerAddRequestBuilder(Partner partner, PartnerSetup partnerSetup)
-			: this()
-		{
-			this.Partner = partner;
-			this.PartnerSetup = partnerSetup;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("partner"))
-				kparams.AddIfNotNull("partner", Partner);
-			if (!isMapped("partnerSetup"))
-				kparams.AddIfNotNull("partnerSetup", PartnerSetup);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<Partner>(result);
-		}
-	}
-
-	public class PartnerCreateIndexesRequestBuilder : RequestBuilder<bool>
-	{
-		#region Constants
-		#endregion
-
-
-		public PartnerCreateIndexesRequestBuilder()
-			: base("partner", "createIndexes")
-		{
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-	}
-
-	public class PartnerDeleteRequestBuilder : RequestBuilder<bool>
-	{
-		#region Constants
-		public const string ID = "id";
-		#endregion
-
-		public int Id { get; set; }
-
-		public PartnerDeleteRequestBuilder()
-			: base("partner", "delete")
-		{
-		}
-
-		public PartnerDeleteRequestBuilder(int id)
-			: this()
-		{
-			this.Id = id;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-	}
-
 	public class PartnerExternalLoginRequestBuilder : RequestBuilder<LoginSession>
 	{
 		#region Constants
@@ -181,45 +65,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class PartnerListRequestBuilder : RequestBuilder<ListResponse<Partner>>
-	{
-		#region Constants
-		public const string FILTER = "filter";
-		#endregion
-
-		public PartnerFilter Filter { get; set; }
-
-		public PartnerListRequestBuilder()
-			: base("partner", "list")
-		{
-		}
-
-		public PartnerListRequestBuilder(PartnerFilter filter)
-			: this()
-		{
-			this.Filter = filter;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("filter"))
-				kparams.AddIfNotNull("filter", Filter);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<ListResponse<Partner>>(result);
-		}
-	}
-
 
 	public class PartnerService
 	{
@@ -227,29 +72,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static PartnerAddRequestBuilder Add(Partner partner, PartnerSetup partnerSetup)
-		{
-			return new PartnerAddRequestBuilder(partner, partnerSetup);
-		}
-
-		public static PartnerCreateIndexesRequestBuilder CreateIndexes()
-		{
-			return new PartnerCreateIndexesRequestBuilder();
-		}
-
-		public static PartnerDeleteRequestBuilder Delete(int id)
-		{
-			return new PartnerDeleteRequestBuilder(id);
-		}
-
 		public static PartnerExternalLoginRequestBuilder ExternalLogin()
 		{
 			return new PartnerExternalLoginRequestBuilder();
-		}
-
-		public static PartnerListRequestBuilder List(PartnerFilter filter = null)
-		{
-			return new PartnerListRequestBuilder(filter);
 		}
 	}
 }

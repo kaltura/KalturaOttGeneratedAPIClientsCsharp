@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -42,7 +42,6 @@ namespace Kaltura.Types
 		public const string ID = "id";
 		public const string TYPE = "type";
 		public const string TYPE_ID = "typeId";
-		public const string ALT_URL = "altUrl";
 		public const string DURATION = "duration";
 		public const string EXTERNAL_ID = "externalId";
 		public const string ALT_EXTERNAL_ID = "altExternalId";
@@ -69,7 +68,6 @@ namespace Kaltura.Types
 		private int _Id = Int32.MinValue;
 		private string _Type = null;
 		private int _TypeId = Int32.MinValue;
-		private string _AltUrl = null;
 		private long _Duration = long.MinValue;
 		private string _ExternalId = null;
 		private string _AltExternalId = null;
@@ -92,9 +90,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use AssetIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int AssetId
 		{
@@ -105,9 +100,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetId");
 			}
 		}
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -118,9 +110,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use TypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Type
 		{
@@ -131,9 +120,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
-		/// <summary>
-		/// Use TypeIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int TypeId
 		{
@@ -144,22 +130,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("TypeId");
 			}
 		}
-		/// <summary>
-		/// Use AltUrlAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string AltUrl
-		{
-			get { return _AltUrl; }
-			set 
-			{ 
-				_AltUrl = value;
-				OnPropertyChanged("AltUrl");
-			}
-		}
-		/// <summary>
-		/// Use DurationAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long Duration
 		{
@@ -170,9 +140,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Duration");
 			}
 		}
-		/// <summary>
-		/// Use ExternalIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExternalId
 		{
@@ -183,9 +150,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
-		/// <summary>
-		/// Use AltExternalIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string AltExternalId
 		{
@@ -196,9 +160,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AltExternalId");
 			}
 		}
-		/// <summary>
-		/// Use FileSizeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long FileSize
 		{
@@ -209,9 +170,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("FileSize");
 			}
 		}
-		/// <summary>
-		/// Use AdditionalDataAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string AdditionalData
 		{
@@ -222,9 +180,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AdditionalData");
 			}
 		}
-		/// <summary>
-		/// Use AltStreamingCodeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string AltStreamingCode
 		{
@@ -235,9 +190,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AltStreamingCode");
 			}
 		}
-		/// <summary>
-		/// Use AlternativeCdnAdapaterProfileIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long AlternativeCdnAdapaterProfileId
 		{
@@ -248,9 +200,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AlternativeCdnAdapaterProfileId");
 			}
 		}
-		/// <summary>
-		/// Use EndDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -261,9 +210,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
-		/// <summary>
-		/// Use StartDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -274,9 +220,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
-		/// <summary>
-		/// Use ExternalStoreIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExternalStoreId
 		{
@@ -287,9 +230,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalStoreId");
 			}
 		}
-		/// <summary>
-		/// Use IsDefaultLanguageAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsDefaultLanguage
 		{
@@ -300,9 +240,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsDefaultLanguage");
 			}
 		}
-		/// <summary>
-		/// Use LanguageAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Language
 		{
@@ -313,9 +250,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Language");
 			}
 		}
-		/// <summary>
-		/// Use OrderNumAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int OrderNum
 		{
@@ -326,9 +260,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("OrderNum");
 			}
 		}
-		/// <summary>
-		/// Use OutputProtecationLevelAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string OutputProtecationLevel
 		{
@@ -339,9 +270,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("OutputProtecationLevel");
 			}
 		}
-		/// <summary>
-		/// Use CdnAdapaterProfileIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long CdnAdapaterProfileId
 		{
@@ -352,9 +280,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CdnAdapaterProfileId");
 			}
 		}
-		/// <summary>
-		/// Use StatusAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? Status
 		{
@@ -365,9 +290,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
-		/// <summary>
-		/// Use CatalogEndDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long CatalogEndDate
 		{
@@ -378,9 +300,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CatalogEndDate");
 			}
 		}
-		/// <summary>
-		/// Use OplAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Opl
 		{
@@ -391,9 +310,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Opl");
 			}
 		}
-		/// <summary>
-		/// Use BusinessModuleDetailsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public BusinessModuleDetails BusinessModuleDetails
 		{
@@ -428,10 +344,6 @@ namespace Kaltura.Types
 			if(node["typeId"] != null)
 			{
 				this._TypeId = ParseInt(node["typeId"].Value<string>());
-			}
-			if(node["altUrl"] != null)
-			{
-				this._AltUrl = node["altUrl"].Value<string>();
 			}
 			if(node["duration"] != null)
 			{
@@ -522,7 +434,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("type", this._Type);
 			kparams.AddIfNotNull("typeId", this._TypeId);
-			kparams.AddIfNotNull("altUrl", this._AltUrl);
 			kparams.AddIfNotNull("duration", this._Duration);
 			kparams.AddIfNotNull("externalId", this._ExternalId);
 			kparams.AddIfNotNull("altExternalId", this._AltExternalId);
@@ -556,8 +467,6 @@ namespace Kaltura.Types
 					return "Type";
 				case TYPE_ID:
 					return "TypeId";
-				case ALT_URL:
-					return "AltUrl";
 				case DURATION:
 					return "Duration";
 				case EXTERNAL_ID:

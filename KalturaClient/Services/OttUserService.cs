@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -184,47 +184,6 @@ namespace Kaltura.Services
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-	}
-
-	public class OttUserDeleteDynamicDataRequestBuilder : RequestBuilder<bool>
-	{
-		#region Constants
-		public const string KEY = "key";
-		#endregion
-
-		public string Key { get; set; }
-
-		public OttUserDeleteDynamicDataRequestBuilder()
-			: base("ottuser", "deleteDynamicData")
-		{
-		}
-
-		public OttUserDeleteDynamicDataRequestBuilder(string key)
-			: this()
-		{
-			this.Key = key;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("key"))
-				kparams.AddIfNotNull("key", Key);
 			return kparams;
 		}
 
@@ -871,50 +830,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class OttUserUpsertDynamicDataRequestBuilder : RequestBuilder<DynamicData>
-	{
-		#region Constants
-		public const string KEY = "key";
-		public const string VALUE = "value";
-		#endregion
-
-		public string Key { get; set; }
-		public StringValue Value { get; set; }
-
-		public OttUserUpsertDynamicDataRequestBuilder()
-			: base("ottuser", "upsertDynamicData")
-		{
-		}
-
-		public OttUserUpsertDynamicDataRequestBuilder(string key, StringValue value)
-			: this()
-		{
-			this.Key = key;
-			this.Value = value;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("key"))
-				kparams.AddIfNotNull("key", Key);
-			if (!isMapped("value"))
-				kparams.AddIfNotNull("value", Value);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<DynamicData>(result);
-		}
-	}
-
 
 	public class OttUserService
 	{
@@ -940,11 +855,6 @@ namespace Kaltura.Services
 		public static OttUserDeleteRequestBuilder Delete()
 		{
 			return new OttUserDeleteRequestBuilder();
-		}
-
-		public static OttUserDeleteDynamicDataRequestBuilder DeleteDynamicData(string key)
-		{
-			return new OttUserDeleteDynamicDataRequestBuilder(key);
 		}
 
 		public static OttUserGetRequestBuilder Get()
@@ -1015,11 +925,6 @@ namespace Kaltura.Services
 		public static OttUserUpdatePasswordRequestBuilder UpdatePassword(int userId, string password)
 		{
 			return new OttUserUpdatePasswordRequestBuilder(userId, password);
-		}
-
-		public static OttUserUpsertDynamicDataRequestBuilder UpsertDynamicData(string key, StringValue value)
-		{
-			return new OttUserUpsertDynamicDataRequestBuilder(key, value);
 		}
 	}
 }

@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -51,7 +51,6 @@ namespace Kaltura.Types
 		public const string PARENT_ID = "parentId";
 		public const string CONNECTING_META_ID = "connectingMetaId";
 		public const string CONNECTED_PARENT_META_ID = "connectedParentMetaId";
-		public const string DYNAMIC_DATA = "dynamicData";
 		#endregion
 
 		#region Private Fields
@@ -68,13 +67,9 @@ namespace Kaltura.Types
 		private long _ParentId = long.MinValue;
 		private long _ConnectingMetaId = long.MinValue;
 		private long _ConnectedParentMetaId = long.MinValue;
-		private IDictionary<string, StringValue> _DynamicData;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -85,9 +80,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -98,9 +90,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
-		/// <summary>
-		/// Use MultilingualNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<TranslationToken> MultilingualName
 		{
@@ -111,9 +100,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualName");
 			}
 		}
-		/// <summary>
-		/// Use SystemNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string SystemName
 		{
@@ -124,9 +110,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SystemName");
 			}
 		}
-		/// <summary>
-		/// Use IsProtectedAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsProtected
 		{
@@ -137,9 +120,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsProtected");
 			}
 		}
-		/// <summary>
-		/// Use MetaIdsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string MetaIds
 		{
@@ -150,9 +130,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MetaIds");
 			}
 		}
-		/// <summary>
-		/// Use CreateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -163,9 +140,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
-		/// <summary>
-		/// Use UpdateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{
@@ -176,9 +150,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
-		/// <summary>
-		/// Use FeaturesAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Features
 		{
@@ -189,9 +160,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Features");
 			}
 		}
-		/// <summary>
-		/// Use PluralNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string PluralName
 		{
@@ -202,9 +170,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PluralName");
 			}
 		}
-		/// <summary>
-		/// Use ParentIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long ParentId
 		{
@@ -215,9 +180,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ParentId");
 			}
 		}
-		/// <summary>
-		/// Use ConnectingMetaIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long ConnectingMetaId
 		{
@@ -228,9 +190,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ConnectingMetaId");
 			}
 		}
-		/// <summary>
-		/// Use ConnectedParentMetaIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long ConnectedParentMetaId
 		{
@@ -239,19 +198,6 @@ namespace Kaltura.Types
 			{ 
 				_ConnectedParentMetaId = value;
 				OnPropertyChanged("ConnectedParentMetaId");
-			}
-		}
-		/// <summary>
-		/// Use DynamicDataAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IDictionary<string, StringValue> DynamicData
-		{
-			get { return _DynamicData; }
-			set 
-			{ 
-				_DynamicData = value;
-				OnPropertyChanged("DynamicData");
 			}
 		}
 		#endregion
@@ -319,18 +265,6 @@ namespace Kaltura.Types
 			{
 				this._ConnectedParentMetaId = ParseLong(node["connectedParentMetaId"].Value<string>());
 			}
-			if(node["dynamicData"] != null)
-			{
-				{
-					string key;
-					this._DynamicData = new Dictionary<string, StringValue>();
-					foreach(var arrayNode in node["dynamicData"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._DynamicData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
-					}
-				}
-			}
 		}
 		#endregion
 
@@ -353,7 +287,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("parentId", this._ParentId);
 			kparams.AddIfNotNull("connectingMetaId", this._ConnectingMetaId);
 			kparams.AddIfNotNull("connectedParentMetaId", this._ConnectedParentMetaId);
-			kparams.AddIfNotNull("dynamicData", this._DynamicData);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -386,8 +319,6 @@ namespace Kaltura.Types
 					return "ConnectingMetaId";
 				case CONNECTED_PARENT_META_ID:
 					return "ConnectedParentMetaId";
-				case DYNAMIC_DATA:
-					return "DynamicData";
 				default:
 					return base.getPropertyName(apiName);
 			}

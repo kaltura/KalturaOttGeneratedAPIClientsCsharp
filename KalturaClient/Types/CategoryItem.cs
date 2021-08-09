@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -52,7 +52,6 @@ namespace Kaltura.Types
 		public const string TYPE = "type";
 		public const string VERSION_ID = "versionId";
 		public const string VIRTUAL_ASSET_ID = "virtualAssetId";
-		public const string REFERENCE_ID = "referenceId";
 		#endregion
 
 		#region Private Fields
@@ -70,13 +69,9 @@ namespace Kaltura.Types
 		private string _Type = null;
 		private long _VersionId = long.MinValue;
 		private long _VirtualAssetId = long.MinValue;
-		private string _ReferenceId = null;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -87,9 +82,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -100,9 +92,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
-		/// <summary>
-		/// Use MultilingualNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<TranslationToken> MultilingualName
 		{
@@ -113,9 +102,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualName");
 			}
 		}
-		/// <summary>
-		/// Use ParentIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long ParentId
 		{
@@ -126,9 +112,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ParentId");
 			}
 		}
-		/// <summary>
-		/// Use ChildrenIdsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ChildrenIds
 		{
@@ -139,9 +122,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ChildrenIds");
 			}
 		}
-		/// <summary>
-		/// Use UnifiedChannelsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<UnifiedChannel> UnifiedChannels
 		{
@@ -152,9 +132,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UnifiedChannels");
 			}
 		}
-		/// <summary>
-		/// Use DynamicDataAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> DynamicData
 		{
@@ -165,9 +142,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("DynamicData");
 			}
 		}
-		/// <summary>
-		/// Use UpdateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{
@@ -178,9 +152,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
-		/// <summary>
-		/// Use IsActiveAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsActive
 		{
@@ -191,9 +162,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsActive");
 			}
 		}
-		/// <summary>
-		/// Use StartDateInSecondsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long StartDateInSeconds
 		{
@@ -204,9 +172,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDateInSeconds");
 			}
 		}
-		/// <summary>
-		/// Use EndDateInSecondsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long EndDateInSeconds
 		{
@@ -217,9 +182,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDateInSeconds");
 			}
 		}
-		/// <summary>
-		/// Use TypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Type
 		{
@@ -230,9 +192,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
-		/// <summary>
-		/// Use VersionIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long VersionId
 		{
@@ -243,9 +202,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("VersionId");
 			}
 		}
-		/// <summary>
-		/// Use VirtualAssetIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long VirtualAssetId
 		{
@@ -254,19 +210,6 @@ namespace Kaltura.Types
 			{ 
 				_VirtualAssetId = value;
 				OnPropertyChanged("VirtualAssetId");
-			}
-		}
-		/// <summary>
-		/// Use ReferenceIdAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string ReferenceId
-		{
-			get { return _ReferenceId; }
-			set 
-			{ 
-				_ReferenceId = value;
-				OnPropertyChanged("ReferenceId");
 			}
 		}
 		#endregion
@@ -350,10 +293,6 @@ namespace Kaltura.Types
 			{
 				this._VirtualAssetId = ParseLong(node["virtualAssetId"].Value<string>());
 			}
-			if(node["referenceId"] != null)
-			{
-				this._ReferenceId = node["referenceId"].Value<string>();
-			}
 		}
 		#endregion
 
@@ -377,7 +316,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("type", this._Type);
 			kparams.AddIfNotNull("versionId", this._VersionId);
 			kparams.AddIfNotNull("virtualAssetId", this._VirtualAssetId);
-			kparams.AddIfNotNull("referenceId", this._ReferenceId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -412,8 +350,6 @@ namespace Kaltura.Types
 					return "VersionId";
 				case VIRTUAL_ASSET_ID:
 					return "VirtualAssetId";
-				case REFERENCE_ID:
-					return "ReferenceId";
 				default:
 					return base.getPropertyName(apiName);
 			}

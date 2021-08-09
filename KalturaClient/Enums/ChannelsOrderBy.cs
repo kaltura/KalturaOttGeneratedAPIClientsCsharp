@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -34,8 +34,6 @@ namespace Kaltura.Enums
 		public static readonly ChannelsOrderBy NAME_DESC = new ChannelsOrderBy("NAME_DESC");
 		public static readonly ChannelsOrderBy CREATE_DATE_ASC = new ChannelsOrderBy("CREATE_DATE_ASC");
 		public static readonly ChannelsOrderBy CREATE_DATE_DESC = new ChannelsOrderBy("CREATE_DATE_DESC");
-		public static readonly ChannelsOrderBy UPDATE_DATE_ASC = new ChannelsOrderBy("UPDATE_DATE_ASC");
-		public static readonly ChannelsOrderBy UPDATE_DATE_DESC = new ChannelsOrderBy("UPDATE_DATE_DESC");
 
 		private ChannelsOrderBy(string name) : base(name) { }
 	}

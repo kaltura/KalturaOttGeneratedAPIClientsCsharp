@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -324,45 +324,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class SeriesRecordingRebookCanceledByEpgIdRequestBuilder : RequestBuilder<SeriesRecording>
-	{
-		#region Constants
-		public const string EPG_ID = "epgId";
-		#endregion
-
-		public long EpgId { get; set; }
-
-		public SeriesRecordingRebookCanceledByEpgIdRequestBuilder()
-			: base("seriesrecording", "rebookCanceledByEpgId")
-		{
-		}
-
-		public SeriesRecordingRebookCanceledByEpgIdRequestBuilder(long epgId)
-			: this()
-		{
-			this.EpgId = epgId;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("epgId"))
-				kparams.AddIfNotNull("epgId", EpgId);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<SeriesRecording>(result);
-		}
-	}
-
 
 	public class SeriesRecordingService
 	{
@@ -403,11 +364,6 @@ namespace Kaltura.Services
 		public static SeriesRecordingListRequestBuilder List(SeriesRecordingFilter filter = null)
 		{
 			return new SeriesRecordingListRequestBuilder(filter);
-		}
-
-		public static SeriesRecordingRebookCanceledByEpgIdRequestBuilder RebookCanceledByEpgId(long epgId)
-		{
-			return new SeriesRecordingRebookCanceledByEpgIdRequestBuilder(epgId);
 		}
 	}
 }

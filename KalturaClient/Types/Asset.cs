@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -78,9 +78,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -91,9 +88,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use TypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int Type
 		{
@@ -104,9 +98,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -117,9 +108,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
-		/// <summary>
-		/// Use MultilingualNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<TranslationToken> MultilingualName
 		{
@@ -130,9 +118,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualName");
 			}
 		}
-		/// <summary>
-		/// Use DescriptionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Description
 		{
@@ -143,9 +128,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Description");
 			}
 		}
-		/// <summary>
-		/// Use MultilingualDescriptionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<TranslationToken> MultilingualDescription
 		{
@@ -156,9 +138,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualDescription");
 			}
 		}
-		/// <summary>
-		/// Use ImagesAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<MediaImage> Images
 		{
@@ -169,9 +148,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Images");
 			}
 		}
-		/// <summary>
-		/// Use MediaFilesAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<MediaFile> MediaFiles
 		{
@@ -182,9 +158,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaFiles");
 			}
 		}
-		/// <summary>
-		/// Use MetasAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, Value> Metas
 		{
@@ -195,9 +168,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Metas");
 			}
 		}
-		/// <summary>
-		/// Use TagsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, MultilingualStringValueArray> Tags
 		{
@@ -208,9 +178,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Tags");
 			}
 		}
-		/// <summary>
-		/// Use RelatedEntitiesAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, RelatedEntityArray> RelatedEntities
 		{
@@ -221,9 +188,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RelatedEntities");
 			}
 		}
-		/// <summary>
-		/// Use StartDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -234,9 +198,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
-		/// <summary>
-		/// Use EndDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -247,9 +208,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
-		/// <summary>
-		/// Use CreateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -260,9 +218,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
-		/// <summary>
-		/// Use UpdateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{
@@ -273,9 +228,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
-		/// <summary>
-		/// Use ExternalIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExternalId
 		{
@@ -286,9 +238,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
-		/// <summary>
-		/// Use IndexStatusAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public AssetIndexStatus IndexStatus
 		{

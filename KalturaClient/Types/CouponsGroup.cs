@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -62,22 +62,16 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
 			get { return _Id; }
-			set 
+			private set 
 			{ 
 				_Id = value;
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -88,9 +82,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
-		/// <summary>
-		/// Use StartDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -101,9 +92,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
-		/// <summary>
-		/// Use EndDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -114,9 +102,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
-		/// <summary>
-		/// Use MaxUsesNumberAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int MaxUsesNumber
 		{
@@ -127,9 +112,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxUsesNumber");
 			}
 		}
-		/// <summary>
-		/// Use MaxUsesNumberOnRenewableSubAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int MaxUsesNumberOnRenewableSub
 		{
@@ -140,9 +122,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxUsesNumberOnRenewableSub");
 			}
 		}
-		/// <summary>
-		/// Use CouponGroupTypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public CouponGroupType CouponGroupType
 		{
@@ -153,9 +132,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponGroupType");
 			}
 		}
-		/// <summary>
-		/// Use MaxHouseholdUsesAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int MaxHouseholdUses
 		{
@@ -166,9 +142,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxHouseholdUses");
 			}
 		}
-		/// <summary>
-		/// Use DiscountIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long DiscountId
 		{

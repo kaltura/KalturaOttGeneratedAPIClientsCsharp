@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,9 +56,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use TypeInAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string TypeIn
 		{
@@ -69,9 +66,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("TypeIn");
 			}
 		}
-		/// <summary>
-		/// Use AssetIdInAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string AssetIdIn
 		{
@@ -82,9 +76,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetIdIn");
 			}
 		}
-		/// <summary>
-		/// Use StatusEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public WatchStatus StatusEqual
 		{
@@ -95,9 +86,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("StatusEqual");
 			}
 		}
-		/// <summary>
-		/// Use DaysLessThanOrEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int DaysLessThanOrEqual
 		{
@@ -108,9 +96,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("DaysLessThanOrEqual");
 			}
 		}
-		/// <summary>
-		/// Use KSqlAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string KSql
 		{
@@ -121,9 +106,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("KSql");
 			}
 		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public new AssetHistoryOrderBy OrderBy
 		{
