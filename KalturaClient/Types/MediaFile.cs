@@ -62,6 +62,7 @@ namespace Kaltura.Types
 		public const string CATALOG_END_DATE = "catalogEndDate";
 		public const string OPL = "opl";
 		public const string BUSINESS_MODULE_DETAILS = "businessModuleDetails";
+		public const string LABELS = "labels";
 		#endregion
 
 		#region Private Fields
@@ -89,6 +90,7 @@ namespace Kaltura.Types
 		private long _CatalogEndDate = long.MinValue;
 		private string _Opl = null;
 		private BusinessModuleDetails _BusinessModuleDetails;
+		private string _Labels = null;
 		#endregion
 
 		#region Properties
@@ -404,6 +406,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("BusinessModuleDetails");
 			}
 		}
+		/// <summary>
+		/// Use LabelsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Labels
+		{
+			get { return _Labels; }
+			set 
+			{ 
+				_Labels = value;
+				OnPropertyChanged("Labels");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -509,6 +524,10 @@ namespace Kaltura.Types
 			{
 				this._BusinessModuleDetails = ObjectFactory.Create<BusinessModuleDetails>(node["businessModuleDetails"]);
 			}
+			if(node["labels"] != null)
+			{
+				this._Labels = node["labels"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -542,6 +561,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("catalogEndDate", this._CatalogEndDate);
 			kparams.AddIfNotNull("opl", this._Opl);
 			kparams.AddIfNotNull("businessModuleDetails", this._BusinessModuleDetails);
+			kparams.AddIfNotNull("labels", this._Labels);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -596,6 +616,8 @@ namespace Kaltura.Types
 					return "Opl";
 				case BUSINESS_MODULE_DETAILS:
 					return "BusinessModuleDetails";
+				case LABELS:
+					return "Labels";
 				default:
 					return base.getPropertyName(apiName);
 			}

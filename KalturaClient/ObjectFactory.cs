@@ -196,6 +196,8 @@ namespace Kaltura
 					return new ListResponse<Image>(jToken);
 				case "KalturaImageTypeListResponse":
 					return new ListResponse<ImageType>(jToken);
+				case "KalturaLabelListResponse":
+					return new ListResponse<Label>(jToken);
 				case "KalturaMediaFileListResponse":
 					return new ListResponse<MediaFile>(jToken);
 				case "KalturaMediaFileTypeListResponse":
