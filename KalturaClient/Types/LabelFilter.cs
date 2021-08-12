@@ -35,52 +35,82 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetFilter : PersistedFilter
+	public class LabelFilter : Filter
 	{
 		#region Constants
-		public const string DYNAMIC_ORDER_BY = "dynamicOrderBy";
-		public const string TRENDING_DAYS_EQUAL = "trendingDaysEqual";
+		public const string ID_IN = "idIn";
+		public const string LABEL_EQUAL = "labelEqual";
+		public const string LABEL_STARTS_WITH = "labelStartsWith";
+		public const string ENTITY_ATTRIBUTE_EQUAL = "entityAttributeEqual";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private DynamicOrderBy _DynamicOrderBy;
-		private int _TrendingDaysEqual = Int32.MinValue;
-		private AssetOrderBy _OrderBy = null;
+		private string _IdIn = null;
+		private string _LabelEqual = null;
+		private string _LabelStartsWith = null;
+		private EntityAttribute _EntityAttributeEqual = null;
+		private LabelOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use DynamicOrderByAsDouble property instead
+		/// Use IdInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public DynamicOrderBy DynamicOrderBy
+		public string IdIn
 		{
-			get { return _DynamicOrderBy; }
+			get { return _IdIn; }
 			set 
 			{ 
-				_DynamicOrderBy = value;
-				OnPropertyChanged("DynamicOrderBy");
+				_IdIn = value;
+				OnPropertyChanged("IdIn");
 			}
 		}
 		/// <summary>
-		/// Use TrendingDaysEqualAsDouble property instead
+		/// Use LabelEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int TrendingDaysEqual
+		public string LabelEqual
 		{
-			get { return _TrendingDaysEqual; }
+			get { return _LabelEqual; }
 			set 
 			{ 
-				_TrendingDaysEqual = value;
-				OnPropertyChanged("TrendingDaysEqual");
+				_LabelEqual = value;
+				OnPropertyChanged("LabelEqual");
+			}
+		}
+		/// <summary>
+		/// Use LabelStartsWithAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string LabelStartsWith
+		{
+			get { return _LabelStartsWith; }
+			set 
+			{ 
+				_LabelStartsWith = value;
+				OnPropertyChanged("LabelStartsWith");
+			}
+		}
+		/// <summary>
+		/// Use EntityAttributeEqualAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public EntityAttribute EntityAttributeEqual
+		{
+			get { return _EntityAttributeEqual; }
+			set 
+			{ 
+				_EntityAttributeEqual = value;
+				OnPropertyChanged("EntityAttributeEqual");
 			}
 		}
 		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public new AssetOrderBy OrderBy
+		public new LabelOrderBy OrderBy
 		{
 			get { return _OrderBy; }
 			set 
@@ -92,23 +122,31 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public AssetFilter()
+		public LabelFilter()
 		{
 		}
 
-		public AssetFilter(JToken node) : base(node)
+		public LabelFilter(JToken node) : base(node)
 		{
-			if(node["dynamicOrderBy"] != null)
+			if(node["idIn"] != null)
 			{
-				this._DynamicOrderBy = ObjectFactory.Create<DynamicOrderBy>(node["dynamicOrderBy"]);
+				this._IdIn = node["idIn"].Value<string>();
 			}
-			if(node["trendingDaysEqual"] != null)
+			if(node["labelEqual"] != null)
 			{
-				this._TrendingDaysEqual = ParseInt(node["trendingDaysEqual"].Value<string>());
+				this._LabelEqual = node["labelEqual"].Value<string>();
+			}
+			if(node["labelStartsWith"] != null)
+			{
+				this._LabelStartsWith = node["labelStartsWith"].Value<string>();
+			}
+			if(node["entityAttributeEqual"] != null)
+			{
+				this._EntityAttributeEqual = (EntityAttribute)StringEnum.Parse(typeof(EntityAttribute), node["entityAttributeEqual"].Value<string>());
 			}
 			if(node["orderBy"] != null)
 			{
-				this._OrderBy = (AssetOrderBy)StringEnum.Parse(typeof(AssetOrderBy), node["orderBy"].Value<string>());
+				this._OrderBy = (LabelOrderBy)StringEnum.Parse(typeof(LabelOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,9 +156,11 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetFilter");
-			kparams.AddIfNotNull("dynamicOrderBy", this._DynamicOrderBy);
-			kparams.AddIfNotNull("trendingDaysEqual", this._TrendingDaysEqual);
+				kparams.AddReplace("objectType", "KalturaLabelFilter");
+			kparams.AddIfNotNull("idIn", this._IdIn);
+			kparams.AddIfNotNull("labelEqual", this._LabelEqual);
+			kparams.AddIfNotNull("labelStartsWith", this._LabelStartsWith);
+			kparams.AddIfNotNull("entityAttributeEqual", this._EntityAttributeEqual);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -128,10 +168,14 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case DYNAMIC_ORDER_BY:
-					return "DynamicOrderBy";
-				case TRENDING_DAYS_EQUAL:
-					return "TrendingDaysEqual";
+				case ID_IN:
+					return "IdIn";
+				case LABEL_EQUAL:
+					return "LabelEqual";
+				case LABEL_STARTS_WITH:
+					return "LabelStartsWith";
+				case ENTITY_ATTRIBUTE_EQUAL:
+					return "EntityAttributeEqual";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

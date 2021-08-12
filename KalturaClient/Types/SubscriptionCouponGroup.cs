@@ -35,80 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetFilter : PersistedFilter
+	public class SubscriptionCouponGroup : ObjectBase
 	{
 		#region Constants
-		public const string DYNAMIC_ORDER_BY = "dynamicOrderBy";
-		public const string TRENDING_DAYS_EQUAL = "trendingDaysEqual";
-		public new const string ORDER_BY = "orderBy";
+		public const string ID = "id";
+		public const string START_DATE = "startDate";
+		public const string END_DATE = "endDate";
 		#endregion
 
 		#region Private Fields
-		private DynamicOrderBy _DynamicOrderBy;
-		private int _TrendingDaysEqual = Int32.MinValue;
-		private AssetOrderBy _OrderBy = null;
+		private long _Id = long.MinValue;
+		private long _StartDate = long.MinValue;
+		private long _EndDate = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use DynamicOrderByAsDouble property instead
+		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public DynamicOrderBy DynamicOrderBy
+		public long Id
 		{
-			get { return _DynamicOrderBy; }
+			get { return _Id; }
 			set 
 			{ 
-				_DynamicOrderBy = value;
-				OnPropertyChanged("DynamicOrderBy");
+				_Id = value;
+				OnPropertyChanged("Id");
 			}
 		}
 		/// <summary>
-		/// Use TrendingDaysEqualAsDouble property instead
+		/// Use StartDateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int TrendingDaysEqual
+		public long StartDate
 		{
-			get { return _TrendingDaysEqual; }
+			get { return _StartDate; }
 			set 
 			{ 
-				_TrendingDaysEqual = value;
-				OnPropertyChanged("TrendingDaysEqual");
+				_StartDate = value;
+				OnPropertyChanged("StartDate");
 			}
 		}
 		/// <summary>
-		/// Use OrderByAsDouble property instead
+		/// Use EndDateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public new AssetOrderBy OrderBy
+		public long EndDate
 		{
-			get { return _OrderBy; }
+			get { return _EndDate; }
 			set 
 			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
+				_EndDate = value;
+				OnPropertyChanged("EndDate");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AssetFilter()
+		public SubscriptionCouponGroup()
 		{
 		}
 
-		public AssetFilter(JToken node) : base(node)
+		public SubscriptionCouponGroup(JToken node) : base(node)
 		{
-			if(node["dynamicOrderBy"] != null)
+			if(node["id"] != null)
 			{
-				this._DynamicOrderBy = ObjectFactory.Create<DynamicOrderBy>(node["dynamicOrderBy"]);
+				this._Id = ParseLong(node["id"].Value<string>());
 			}
-			if(node["trendingDaysEqual"] != null)
+			if(node["startDate"] != null)
 			{
-				this._TrendingDaysEqual = ParseInt(node["trendingDaysEqual"].Value<string>());
+				this._StartDate = ParseLong(node["startDate"].Value<string>());
 			}
-			if(node["orderBy"] != null)
+			if(node["endDate"] != null)
 			{
-				this._OrderBy = (AssetOrderBy)StringEnum.Parse(typeof(AssetOrderBy), node["orderBy"].Value<string>());
+				this._EndDate = ParseLong(node["endDate"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,22 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetFilter");
-			kparams.AddIfNotNull("dynamicOrderBy", this._DynamicOrderBy);
-			kparams.AddIfNotNull("trendingDaysEqual", this._TrendingDaysEqual);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+				kparams.AddReplace("objectType", "KalturaSubscriptionCouponGroup");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("startDate", this._StartDate);
+			kparams.AddIfNotNull("endDate", this._EndDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case DYNAMIC_ORDER_BY:
-					return "DynamicOrderBy";
-				case TRENDING_DAYS_EQUAL:
-					return "TrendingDaysEqual";
-				case ORDER_BY:
-					return "OrderBy";
+				case ID:
+					return "Id";
+				case START_DATE:
+					return "StartDate";
+				case END_DATE:
+					return "EndDate";
 				default:
 					return base.getPropertyName(apiName);
 			}

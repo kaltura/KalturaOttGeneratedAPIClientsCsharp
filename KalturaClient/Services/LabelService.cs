@@ -36,35 +36,30 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class CategoryTreeDuplicateRequestBuilder : RequestBuilder<CategoryTree>
+	public class LabelAddRequestBuilder : RequestBuilder<Label>
 	{
 		#region Constants
-		public const string CATEGORY_ITEM_ID = "categoryItemId";
-		public const string NAME = "name";
+		public const string LABEL = "label";
 		#endregion
 
-		public long CategoryItemId { get; set; }
-		public string Name { get; set; }
+		public Label Label { get; set; }
 
-		public CategoryTreeDuplicateRequestBuilder()
-			: base("categorytree", "duplicate")
+		public LabelAddRequestBuilder()
+			: base("label", "add")
 		{
 		}
 
-		public CategoryTreeDuplicateRequestBuilder(long categoryItemId, string name)
+		public LabelAddRequestBuilder(Label label)
 			: this()
 		{
-			this.CategoryItemId = categoryItemId;
-			this.Name = name;
+			this.Label = label;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("categoryItemId"))
-				kparams.AddIfNotNull("categoryItemId", CategoryItemId);
-			if (!isMapped("name"))
-				kparams.AddIfNotNull("name", Name);
+			if (!isMapped("label"))
+				kparams.AddIfNotNull("label", Label);
 			return kparams;
 		}
 
@@ -76,39 +71,80 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<CategoryTree>(result);
+			return ObjectFactory.Create<Label>(result);
 		}
 	}
 
-	public class CategoryTreeGetRequestBuilder : RequestBuilder<CategoryTree>
+	public class LabelDeleteRequestBuilder : RequestBuilder<bool>
 	{
 		#region Constants
-		public const string CATEGORY_ITEM_ID = "categoryItemId";
-		public const string FILTER = "filter";
+		public const string ID = "id";
 		#endregion
 
-		public long CategoryItemId { get; set; }
-		public bool Filter { get; set; }
+		public long Id { get; set; }
 
-		public CategoryTreeGetRequestBuilder()
-			: base("categorytree", "get")
+		public LabelDeleteRequestBuilder()
+			: base("label", "delete")
 		{
 		}
 
-		public CategoryTreeGetRequestBuilder(long categoryItemId, bool filter)
+		public LabelDeleteRequestBuilder(long id)
 			: this()
 		{
-			this.CategoryItemId = categoryItemId;
-			this.Filter = filter;
+			this.Id = id;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("categoryItemId"))
-				kparams.AddIfNotNull("categoryItemId", CategoryItemId);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
+				return true;
+			return false;
+		}
+	}
+
+	public class LabelListRequestBuilder : RequestBuilder<ListResponse<Label>>
+	{
+		#region Constants
+		public const string FILTER = "filter";
+		public const string PAGER = "pager";
+		#endregion
+
+		public LabelFilter Filter { get; set; }
+		public FilterPager Pager { get; set; }
+
+		public LabelListRequestBuilder()
+			: base("label", "list")
+		{
+		}
+
+		public LabelListRequestBuilder(LabelFilter filter, FilterPager pager)
+			: this()
+		{
+			this.Filter = filter;
+			this.Pager = pager;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("filter"))
 				kparams.AddIfNotNull("filter", Filter);
+			if (!isMapped("pager"))
+				kparams.AddIfNotNull("pager", Pager);
 			return kparams;
 		}
 
@@ -120,39 +156,39 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<CategoryTree>(result);
+			return ObjectFactory.Create<ListResponse<Label>>(result);
 		}
 	}
 
-	public class CategoryTreeGetByVersionRequestBuilder : RequestBuilder<CategoryTree>
+	public class LabelUpdateRequestBuilder : RequestBuilder<Label>
 	{
 		#region Constants
-		public const string VERSION_ID = "versionId";
-		public const string DEVICE_FAMILY_ID = "deviceFamilyId";
+		public const string ID = "id";
+		public const string LABEL = "label";
 		#endregion
 
-		public long VersionId { get; set; }
-		public int DeviceFamilyId { get; set; }
+		public long Id { get; set; }
+		public Label Label { get; set; }
 
-		public CategoryTreeGetByVersionRequestBuilder()
-			: base("categorytree", "getByVersion")
+		public LabelUpdateRequestBuilder()
+			: base("label", "update")
 		{
 		}
 
-		public CategoryTreeGetByVersionRequestBuilder(long versionId, int deviceFamilyId)
+		public LabelUpdateRequestBuilder(long id, Label label)
 			: this()
 		{
-			this.VersionId = versionId;
-			this.DeviceFamilyId = deviceFamilyId;
+			this.Id = id;
+			this.Label = label;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("versionId"))
-				kparams.AddIfNotNull("versionId", VersionId);
-			if (!isMapped("deviceFamilyId"))
-				kparams.AddIfNotNull("deviceFamilyId", DeviceFamilyId);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("label"))
+				kparams.AddIfNotNull("label", Label);
 			return kparams;
 		}
 
@@ -164,30 +200,35 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<CategoryTree>(result);
+			return ObjectFactory.Create<Label>(result);
 		}
 	}
 
 
-	public class CategoryTreeService
+	public class LabelService
 	{
-		private CategoryTreeService()
+		private LabelService()
 		{
 		}
 
-		public static CategoryTreeDuplicateRequestBuilder Duplicate(long categoryItemId, string name)
+		public static LabelAddRequestBuilder Add(Label label)
 		{
-			return new CategoryTreeDuplicateRequestBuilder(categoryItemId, name);
+			return new LabelAddRequestBuilder(label);
 		}
 
-		public static CategoryTreeGetRequestBuilder Get(long categoryItemId, bool filter = false)
+		public static LabelDeleteRequestBuilder Delete(long id)
 		{
-			return new CategoryTreeGetRequestBuilder(categoryItemId, filter);
+			return new LabelDeleteRequestBuilder(id);
 		}
 
-		public static CategoryTreeGetByVersionRequestBuilder GetByVersion(long versionId = long.MinValue, int deviceFamilyId = Int32.MinValue)
+		public static LabelListRequestBuilder List(LabelFilter filter, FilterPager pager = null)
 		{
-			return new CategoryTreeGetByVersionRequestBuilder(versionId, deviceFamilyId);
+			return new LabelListRequestBuilder(filter, pager);
+		}
+
+		public static LabelUpdateRequestBuilder Update(long id, Label label)
+		{
+			return new LabelUpdateRequestBuilder(id, label);
 		}
 	}
 }

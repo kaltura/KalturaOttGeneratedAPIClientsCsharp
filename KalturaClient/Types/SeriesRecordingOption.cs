@@ -35,80 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetFilter : PersistedFilter
+	public class SeriesRecordingOption : ObjectBase
 	{
 		#region Constants
-		public const string DYNAMIC_ORDER_BY = "dynamicOrderBy";
-		public const string TRENDING_DAYS_EQUAL = "trendingDaysEqual";
-		public new const string ORDER_BY = "orderBy";
+		public const string MIN_SEASON_NUMBER = "minSeasonNumber";
+		public const string MIN_EPISODE_NUMBER = "minEpisodeNumber";
 		#endregion
 
 		#region Private Fields
-		private DynamicOrderBy _DynamicOrderBy;
-		private int _TrendingDaysEqual = Int32.MinValue;
-		private AssetOrderBy _OrderBy = null;
+		private int _MinSeasonNumber = Int32.MinValue;
+		private int _MinEpisodeNumber = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use DynamicOrderByAsDouble property instead
+		/// Use MinSeasonNumberAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public DynamicOrderBy DynamicOrderBy
+		public int MinSeasonNumber
 		{
-			get { return _DynamicOrderBy; }
+			get { return _MinSeasonNumber; }
 			set 
 			{ 
-				_DynamicOrderBy = value;
-				OnPropertyChanged("DynamicOrderBy");
+				_MinSeasonNumber = value;
+				OnPropertyChanged("MinSeasonNumber");
 			}
 		}
 		/// <summary>
-		/// Use TrendingDaysEqualAsDouble property instead
+		/// Use MinEpisodeNumberAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int TrendingDaysEqual
+		public int MinEpisodeNumber
 		{
-			get { return _TrendingDaysEqual; }
+			get { return _MinEpisodeNumber; }
 			set 
 			{ 
-				_TrendingDaysEqual = value;
-				OnPropertyChanged("TrendingDaysEqual");
-			}
-		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public new AssetOrderBy OrderBy
-		{
-			get { return _OrderBy; }
-			set 
-			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
+				_MinEpisodeNumber = value;
+				OnPropertyChanged("MinEpisodeNumber");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AssetFilter()
+		public SeriesRecordingOption()
 		{
 		}
 
-		public AssetFilter(JToken node) : base(node)
+		public SeriesRecordingOption(JToken node) : base(node)
 		{
-			if(node["dynamicOrderBy"] != null)
+			if(node["minSeasonNumber"] != null)
 			{
-				this._DynamicOrderBy = ObjectFactory.Create<DynamicOrderBy>(node["dynamicOrderBy"]);
+				this._MinSeasonNumber = ParseInt(node["minSeasonNumber"].Value<string>());
 			}
-			if(node["trendingDaysEqual"] != null)
+			if(node["minEpisodeNumber"] != null)
 			{
-				this._TrendingDaysEqual = ParseInt(node["trendingDaysEqual"].Value<string>());
-			}
-			if(node["orderBy"] != null)
-			{
-				this._OrderBy = (AssetOrderBy)StringEnum.Parse(typeof(AssetOrderBy), node["orderBy"].Value<string>());
+				this._MinEpisodeNumber = ParseInt(node["minEpisodeNumber"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,22 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetFilter");
-			kparams.AddIfNotNull("dynamicOrderBy", this._DynamicOrderBy);
-			kparams.AddIfNotNull("trendingDaysEqual", this._TrendingDaysEqual);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+				kparams.AddReplace("objectType", "KalturaSeriesRecordingOption");
+			kparams.AddIfNotNull("minSeasonNumber", this._MinSeasonNumber);
+			kparams.AddIfNotNull("minEpisodeNumber", this._MinEpisodeNumber);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case DYNAMIC_ORDER_BY:
-					return "DynamicOrderBy";
-				case TRENDING_DAYS_EQUAL:
-					return "TrendingDaysEqual";
-				case ORDER_BY:
-					return "OrderBy";
+				case MIN_SEASON_NUMBER:
+					return "MinSeasonNumber";
+				case MIN_EPISODE_NUMBER:
+					return "MinEpisodeNumber";
 				default:
 					return base.getPropertyName(apiName);
 			}

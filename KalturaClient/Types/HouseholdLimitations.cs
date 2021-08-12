@@ -49,6 +49,8 @@ namespace Kaltura.Types
 		public const string NPVR_QUOTA_IN_SECONDS = "npvrQuotaInSeconds";
 		public const string USERS_LIMIT = "usersLimit";
 		public const string DEVICE_FAMILIES_LIMITATIONS = "deviceFamiliesLimitations";
+		public const string DESCRIPTION = "description";
+		public const string ASSOCIATED_DEVICE_FAMILIES_IDS_IN = "associatedDeviceFamiliesIdsIn";
 		#endregion
 
 		#region Private Fields
@@ -63,6 +65,8 @@ namespace Kaltura.Types
 		private int _NpvrQuotaInSeconds = Int32.MinValue;
 		private int _UsersLimit = Int32.MinValue;
 		private IList<HouseholdDeviceFamilyLimitations> _DeviceFamiliesLimitations;
+		private string _Description = null;
+		private string _AssociatedDeviceFamiliesIdsIn = null;
 		#endregion
 
 		#region Properties
@@ -209,6 +213,32 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceFamiliesLimitations");
 			}
 		}
+		/// <summary>
+		/// Use DescriptionAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Description
+		{
+			get { return _Description; }
+			set 
+			{ 
+				_Description = value;
+				OnPropertyChanged("Description");
+			}
+		}
+		/// <summary>
+		/// Use AssociatedDeviceFamiliesIdsInAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string AssociatedDeviceFamiliesIdsIn
+		{
+			get { return _AssociatedDeviceFamiliesIdsIn; }
+			set 
+			{ 
+				_AssociatedDeviceFamiliesIdsIn = value;
+				OnPropertyChanged("AssociatedDeviceFamiliesIdsIn");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -266,6 +296,14 @@ namespace Kaltura.Types
 					this._DeviceFamiliesLimitations.Add(ObjectFactory.Create<HouseholdDeviceFamilyLimitations>(arrayNode));
 				}
 			}
+			if(node["description"] != null)
+			{
+				this._Description = node["description"].Value<string>();
+			}
+			if(node["associatedDeviceFamiliesIdsIn"] != null)
+			{
+				this._AssociatedDeviceFamiliesIdsIn = node["associatedDeviceFamiliesIdsIn"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -286,6 +324,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("npvrQuotaInSeconds", this._NpvrQuotaInSeconds);
 			kparams.AddIfNotNull("usersLimit", this._UsersLimit);
 			kparams.AddIfNotNull("deviceFamiliesLimitations", this._DeviceFamiliesLimitations);
+			kparams.AddIfNotNull("description", this._Description);
+			kparams.AddIfNotNull("associatedDeviceFamiliesIdsIn", this._AssociatedDeviceFamiliesIdsIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -314,6 +354,10 @@ namespace Kaltura.Types
 					return "UsersLimit";
 				case DEVICE_FAMILIES_LIMITATIONS:
 					return "DeviceFamiliesLimitations";
+				case DESCRIPTION:
+					return "Description";
+				case ASSOCIATED_DEVICE_FAMILIES_IDS_IN:
+					return "AssociatedDeviceFamiliesIdsIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

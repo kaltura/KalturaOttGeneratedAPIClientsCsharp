@@ -35,80 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetFilter : PersistedFilter
+	public class Label : ObjectBase
 	{
 		#region Constants
-		public const string DYNAMIC_ORDER_BY = "dynamicOrderBy";
-		public const string TRENDING_DAYS_EQUAL = "trendingDaysEqual";
-		public new const string ORDER_BY = "orderBy";
+		public const string ID = "id";
+		public const string VALUE = "value";
+		public const string ENTITY_ATTRIBUTE = "entityAttribute";
 		#endregion
 
 		#region Private Fields
-		private DynamicOrderBy _DynamicOrderBy;
-		private int _TrendingDaysEqual = Int32.MinValue;
-		private AssetOrderBy _OrderBy = null;
+		private long _Id = long.MinValue;
+		private string _Value = null;
+		private EntityAttribute _EntityAttribute = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use DynamicOrderByAsDouble property instead
+		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public DynamicOrderBy DynamicOrderBy
+		public long Id
 		{
-			get { return _DynamicOrderBy; }
-			set 
+			get { return _Id; }
+			private set 
 			{ 
-				_DynamicOrderBy = value;
-				OnPropertyChanged("DynamicOrderBy");
+				_Id = value;
+				OnPropertyChanged("Id");
 			}
 		}
 		/// <summary>
-		/// Use TrendingDaysEqualAsDouble property instead
+		/// Use ValueAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int TrendingDaysEqual
+		public string Value
 		{
-			get { return _TrendingDaysEqual; }
+			get { return _Value; }
 			set 
 			{ 
-				_TrendingDaysEqual = value;
-				OnPropertyChanged("TrendingDaysEqual");
+				_Value = value;
+				OnPropertyChanged("Value");
 			}
 		}
 		/// <summary>
-		/// Use OrderByAsDouble property instead
+		/// Use EntityAttributeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public new AssetOrderBy OrderBy
+		public EntityAttribute EntityAttribute
 		{
-			get { return _OrderBy; }
+			get { return _EntityAttribute; }
 			set 
 			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
+				_EntityAttribute = value;
+				OnPropertyChanged("EntityAttribute");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AssetFilter()
+		public Label()
 		{
 		}
 
-		public AssetFilter(JToken node) : base(node)
+		public Label(JToken node) : base(node)
 		{
-			if(node["dynamicOrderBy"] != null)
+			if(node["id"] != null)
 			{
-				this._DynamicOrderBy = ObjectFactory.Create<DynamicOrderBy>(node["dynamicOrderBy"]);
+				this._Id = ParseLong(node["id"].Value<string>());
 			}
-			if(node["trendingDaysEqual"] != null)
+			if(node["value"] != null)
 			{
-				this._TrendingDaysEqual = ParseInt(node["trendingDaysEqual"].Value<string>());
+				this._Value = node["value"].Value<string>();
 			}
-			if(node["orderBy"] != null)
+			if(node["entityAttribute"] != null)
 			{
-				this._OrderBy = (AssetOrderBy)StringEnum.Parse(typeof(AssetOrderBy), node["orderBy"].Value<string>());
+				this._EntityAttribute = (EntityAttribute)StringEnum.Parse(typeof(EntityAttribute), node["entityAttribute"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,22 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetFilter");
-			kparams.AddIfNotNull("dynamicOrderBy", this._DynamicOrderBy);
-			kparams.AddIfNotNull("trendingDaysEqual", this._TrendingDaysEqual);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+				kparams.AddReplace("objectType", "KalturaLabel");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("value", this._Value);
+			kparams.AddIfNotNull("entityAttribute", this._EntityAttribute);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case DYNAMIC_ORDER_BY:
-					return "DynamicOrderBy";
-				case TRENDING_DAYS_EQUAL:
-					return "TrendingDaysEqual";
-				case ORDER_BY:
-					return "OrderBy";
+				case ID:
+					return "Id";
+				case VALUE:
+					return "Value";
+				case ENTITY_ATTRIBUTE:
+					return "EntityAttribute";
 				default:
 					return base.getPropertyName(apiName);
 			}

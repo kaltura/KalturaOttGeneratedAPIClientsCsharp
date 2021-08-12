@@ -35,80 +35,99 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetFilter : PersistedFilter
+	public class TriggerCampaignEvent : EventObject
 	{
 		#region Constants
-		public const string DYNAMIC_ORDER_BY = "dynamicOrderBy";
-		public const string TRENDING_DAYS_EQUAL = "trendingDaysEqual";
-		public new const string ORDER_BY = "orderBy";
+		public const string USER_ID = "userId";
+		public const string CAMPAIGN_ID = "campaignId";
+		public const string UDID = "udid";
+		public const string HOUSEHOLD_ID = "householdId";
 		#endregion
 
 		#region Private Fields
-		private DynamicOrderBy _DynamicOrderBy;
-		private int _TrendingDaysEqual = Int32.MinValue;
-		private AssetOrderBy _OrderBy = null;
+		private long _UserId = long.MinValue;
+		private long _CampaignId = long.MinValue;
+		private string _Udid = null;
+		private long _HouseholdId = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use DynamicOrderByAsDouble property instead
+		/// Use UserIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public DynamicOrderBy DynamicOrderBy
+		public long UserId
 		{
-			get { return _DynamicOrderBy; }
-			set 
+			get { return _UserId; }
+			private set 
 			{ 
-				_DynamicOrderBy = value;
-				OnPropertyChanged("DynamicOrderBy");
+				_UserId = value;
+				OnPropertyChanged("UserId");
 			}
 		}
 		/// <summary>
-		/// Use TrendingDaysEqualAsDouble property instead
+		/// Use CampaignIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int TrendingDaysEqual
+		public long CampaignId
 		{
-			get { return _TrendingDaysEqual; }
-			set 
+			get { return _CampaignId; }
+			private set 
 			{ 
-				_TrendingDaysEqual = value;
-				OnPropertyChanged("TrendingDaysEqual");
+				_CampaignId = value;
+				OnPropertyChanged("CampaignId");
 			}
 		}
 		/// <summary>
-		/// Use OrderByAsDouble property instead
+		/// Use UdidAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public new AssetOrderBy OrderBy
+		public string Udid
 		{
-			get { return _OrderBy; }
-			set 
+			get { return _Udid; }
+			private set 
 			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
+				_Udid = value;
+				OnPropertyChanged("Udid");
+			}
+		}
+		/// <summary>
+		/// Use HouseholdIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long HouseholdId
+		{
+			get { return _HouseholdId; }
+			private set 
+			{ 
+				_HouseholdId = value;
+				OnPropertyChanged("HouseholdId");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AssetFilter()
+		public TriggerCampaignEvent()
 		{
 		}
 
-		public AssetFilter(JToken node) : base(node)
+		public TriggerCampaignEvent(JToken node) : base(node)
 		{
-			if(node["dynamicOrderBy"] != null)
+			if(node["userId"] != null)
 			{
-				this._DynamicOrderBy = ObjectFactory.Create<DynamicOrderBy>(node["dynamicOrderBy"]);
+				this._UserId = ParseLong(node["userId"].Value<string>());
 			}
-			if(node["trendingDaysEqual"] != null)
+			if(node["campaignId"] != null)
 			{
-				this._TrendingDaysEqual = ParseInt(node["trendingDaysEqual"].Value<string>());
+				this._CampaignId = ParseLong(node["campaignId"].Value<string>());
 			}
-			if(node["orderBy"] != null)
+			if(node["udid"] != null)
 			{
-				this._OrderBy = (AssetOrderBy)StringEnum.Parse(typeof(AssetOrderBy), node["orderBy"].Value<string>());
+				this._Udid = node["udid"].Value<string>();
+			}
+			if(node["householdId"] != null)
+			{
+				this._HouseholdId = ParseLong(node["householdId"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,22 +137,25 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetFilter");
-			kparams.AddIfNotNull("dynamicOrderBy", this._DynamicOrderBy);
-			kparams.AddIfNotNull("trendingDaysEqual", this._TrendingDaysEqual);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+				kparams.AddReplace("objectType", "KalturaTriggerCampaignEvent");
+			kparams.AddIfNotNull("userId", this._UserId);
+			kparams.AddIfNotNull("campaignId", this._CampaignId);
+			kparams.AddIfNotNull("udid", this._Udid);
+			kparams.AddIfNotNull("householdId", this._HouseholdId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case DYNAMIC_ORDER_BY:
-					return "DynamicOrderBy";
-				case TRENDING_DAYS_EQUAL:
-					return "TrendingDaysEqual";
-				case ORDER_BY:
-					return "OrderBy";
+				case USER_ID:
+					return "UserId";
+				case CAMPAIGN_ID:
+					return "CampaignId";
+				case UDID:
+					return "Udid";
+				case HOUSEHOLD_ID:
+					return "HouseholdId";
 				default:
 					return base.getPropertyName(apiName);
 			}
