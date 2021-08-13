@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ExternalIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalIds
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalIds");
 			}
 		}
+		/// <summary>
+		/// Use EntryIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string EntryId
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EntryId");
 			}
 		}
+		/// <summary>
+		/// Use DeviceRuleIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int DeviceRuleId
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceRuleId");
 			}
 		}
+		/// <summary>
+		/// Use GeoBlockRuleIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int GeoBlockRuleId
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("GeoBlockRuleId");
 			}
 		}
+		/// <summary>
+		/// Use StatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? Status
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
+		/// <summary>
+		/// Use InheritancePolicyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public AssetInheritancePolicy InheritancePolicy
 		{

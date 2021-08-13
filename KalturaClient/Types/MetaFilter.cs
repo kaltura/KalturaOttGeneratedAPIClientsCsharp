@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string IdIn
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
+		/// <summary>
+		/// Use AssetStructIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long AssetStructIdEqual
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetStructIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use DataTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public MetaDataType DataTypeEqual
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DataTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use MultipleValueEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? MultipleValueEqual
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultipleValueEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new MetaOrderBy OrderBy
 		{

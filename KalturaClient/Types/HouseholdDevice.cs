@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -74,6 +74,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use HouseholdIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int HouseholdId
 		{
@@ -84,6 +87,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("HouseholdId");
 			}
 		}
+		/// <summary>
+		/// Use UdidAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Udid
 		{
@@ -94,6 +100,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Udid");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -104,6 +113,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use BrandIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int BrandId
 		{
@@ -114,6 +126,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("BrandId");
 			}
 		}
+		/// <summary>
+		/// Use ActivatedOnAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ActivatedOn
 		{
@@ -124,6 +139,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ActivatedOn");
 			}
 		}
+		/// <summary>
+		/// Use StatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public DeviceStatus Status
 		{
@@ -134,6 +152,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
+		/// <summary>
+		/// Use DeviceFamilyIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long DeviceFamilyId
 		{
@@ -144,6 +165,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceFamilyId");
 			}
 		}
+		/// <summary>
+		/// Use DrmAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public CustomDrmPlaybackPluginData Drm
 		{
@@ -154,6 +178,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Drm");
 			}
 		}
+		/// <summary>
+		/// Use ExternalIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalId
 		{
@@ -164,6 +191,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
+		/// <summary>
+		/// Use MacAddressAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MacAddress
 		{
@@ -174,6 +204,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MacAddress");
 			}
 		}
+		/// <summary>
+		/// Use DynamicDataAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> DynamicData
 		{
@@ -184,6 +217,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DynamicData");
 			}
 		}
+		/// <summary>
+		/// Use ModelAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Model
 		{
@@ -194,6 +230,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Model");
 			}
 		}
+		/// <summary>
+		/// Use ManufacturerAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Manufacturer
 		{
@@ -204,6 +243,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Manufacturer");
 			}
 		}
+		/// <summary>
+		/// Use ManufacturerIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ManufacturerId
 		{
@@ -214,6 +256,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ManufacturerId");
 			}
 		}
+		/// <summary>
+		/// Use LastActivityTimeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long LastActivityTime
 		{

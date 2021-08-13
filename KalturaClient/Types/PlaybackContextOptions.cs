@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MediaProtocolAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MediaProtocol
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaProtocol");
 			}
 		}
+		/// <summary>
+		/// Use StreamerTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string StreamerType
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StreamerType");
 			}
 		}
+		/// <summary>
+		/// Use AssetFileIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AssetFileIds
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetFileIds");
 			}
 		}
+		/// <summary>
+		/// Use AdapterDataAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> AdapterData
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AdapterData");
 			}
 		}
+		/// <summary>
+		/// Use ContextAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public PlaybackContextType Context
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Context");
 			}
 		}
+		/// <summary>
+		/// Use UrlTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public UrlType UrlType
 		{

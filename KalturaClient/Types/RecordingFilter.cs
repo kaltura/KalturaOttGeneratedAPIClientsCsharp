@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -52,6 +52,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use StatusInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string StatusIn
 		{
@@ -62,6 +65,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StatusIn");
 			}
 		}
+		/// <summary>
+		/// Use ExternalRecordingIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalRecordingIdIn
 		{
@@ -72,6 +78,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalRecordingIdIn");
 			}
 		}
+		/// <summary>
+		/// Use KSqlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string KSql
 		{
@@ -82,6 +91,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("KSql");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new RecordingOrderBy OrderBy
 		{

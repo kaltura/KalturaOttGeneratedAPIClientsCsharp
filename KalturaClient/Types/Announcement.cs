@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -72,6 +72,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -82,6 +85,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use MessageAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Message
 		{
@@ -92,6 +98,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Message");
 			}
 		}
+		/// <summary>
+		/// Use EnabledAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? Enabled
 		{
@@ -102,6 +111,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Enabled");
 			}
 		}
+		/// <summary>
+		/// Use StartTimeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long StartTime
 		{
@@ -112,6 +124,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartTime");
 			}
 		}
+		/// <summary>
+		/// Use TimezoneAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Timezone
 		{
@@ -122,6 +137,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Timezone");
 			}
 		}
+		/// <summary>
+		/// Use StatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public AnnouncementStatus Status
 		{
@@ -132,6 +150,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
+		/// <summary>
+		/// Use RecipientsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public AnnouncementRecipientsType Recipients
 		{
@@ -142,6 +163,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Recipients");
 			}
 		}
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -152,6 +176,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use ImageUrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ImageUrl
 		{
@@ -162,6 +189,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ImageUrl");
 			}
 		}
+		/// <summary>
+		/// Use IncludeMailAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IncludeMail
 		{
@@ -172,6 +202,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IncludeMail");
 			}
 		}
+		/// <summary>
+		/// Use MailTemplateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MailTemplate
 		{
@@ -182,6 +215,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MailTemplate");
 			}
 		}
+		/// <summary>
+		/// Use MailSubjectAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MailSubject
 		{
@@ -192,6 +228,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MailSubject");
 			}
 		}
+		/// <summary>
+		/// Use IncludeSmsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IncludeSms
 		{
@@ -202,6 +241,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IncludeSms");
 			}
 		}
+		/// <summary>
+		/// Use IncludeIotAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IncludeIot
 		{
