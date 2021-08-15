@@ -47,6 +47,7 @@ namespace Kaltura.Types
 		public const string CREATE_DATE = "createDate";
 		public const string UPDATE_DATE = "updateDate";
 		public const string EXCLUDED_SEASONS = "excludedSeasons";
+		public const string SERIES_RECORDING_OPTION = "seriesRecordingOption";
 		#endregion
 
 		#region Private Fields
@@ -59,6 +60,7 @@ namespace Kaltura.Types
 		private long _CreateDate = long.MinValue;
 		private long _UpdateDate = long.MinValue;
 		private IList<IntegerValue> _ExcludedSeasons;
+		private SeriesRecordingOption _SeriesRecordingOption;
 		#endregion
 
 		#region Properties
@@ -179,6 +181,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExcludedSeasons");
 			}
 		}
+		/// <summary>
+		/// Use SeriesRecordingOptionAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public SeriesRecordingOption SeriesRecordingOption
+		{
+			get { return _SeriesRecordingOption; }
+			set 
+			{ 
+				_SeriesRecordingOption = value;
+				OnPropertyChanged("SeriesRecordingOption");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -228,6 +243,10 @@ namespace Kaltura.Types
 					this._ExcludedSeasons.Add(ObjectFactory.Create<IntegerValue>(arrayNode));
 				}
 			}
+			if(node["seriesRecordingOption"] != null)
+			{
+				this._SeriesRecordingOption = ObjectFactory.Create<SeriesRecordingOption>(node["seriesRecordingOption"]);
+			}
 		}
 		#endregion
 
@@ -246,6 +265,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			kparams.AddIfNotNull("excludedSeasons", this._ExcludedSeasons);
+			kparams.AddIfNotNull("seriesRecordingOption", this._SeriesRecordingOption);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -270,6 +290,8 @@ namespace Kaltura.Types
 					return "UpdateDate";
 				case EXCLUDED_SEASONS:
 					return "ExcludedSeasons";
+				case SERIES_RECORDING_OPTION:
+					return "SeriesRecordingOption";
 				default:
 					return base.getPropertyName(apiName);
 			}
