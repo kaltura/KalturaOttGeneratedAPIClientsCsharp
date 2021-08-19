@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -45,32 +45,15 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private double _Amount = Double.MinValue;
+		private float _Amount = Single.MinValue;
 		private string _Currency = null;
 		private string _CurrencySign = null;
 		private long _CountryId = long.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use AmountAsDouble property instead
-		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use AmountAsDouble property instead")]
 		public float Amount
-		{
-			get { return (float)_Amount; }
-			set 
-			{ 
-				_Amount = value;
-				OnPropertyChanged("Amount");
-			}
-		}
-		///<summary>
-		///Use this property AmountAsDouble instead of the float Amount property version
-		///</summary>
-		[JsonProperty]
-		public double AmountAsDouble
 		{
 			get { return _Amount; }
 			set 
@@ -79,9 +62,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Amount");
 			}
 		}
-		/// <summary>
-		/// Use CurrencyAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Currency
 		{
@@ -92,9 +72,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Currency");
 			}
 		}
-		/// <summary>
-		/// Use CurrencySignAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string CurrencySign
 		{
@@ -105,9 +82,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CurrencySign");
 			}
 		}
-		/// <summary>
-		/// Use CountryIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long CountryId
 		{
@@ -129,7 +103,7 @@ namespace Kaltura.Types
 		{
 			if(node["amount"] != null)
 			{
-				this._Amount = ParseDouble(node["amount"].Value<string>());
+				this._Amount = ParseFloat(node["amount"].Value<string>());
 			}
 			if(node["currency"] != null)
 			{
