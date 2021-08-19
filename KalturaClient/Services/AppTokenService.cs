@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -163,6 +163,7 @@ namespace Kaltura.Services
 		public new const string USER_ID = "userId";
 		public const string EXPIRY = "expiry";
 		public const string UDID = "udid";
+		public const string EXTRA_PARAMS = "extraParams";
 		#endregion
 
 		public string Id { get; set; }
@@ -170,13 +171,14 @@ namespace Kaltura.Services
 		public new string UserId { get; set; }
 		public int Expiry { get; set; }
 		public string Udid { get; set; }
+		public IDictionary<string, StringValue> ExtraParams { get; set; }
 
 		public AppTokenStartSessionRequestBuilder()
 			: base("apptoken", "startSession")
 		{
 		}
 
-		public AppTokenStartSessionRequestBuilder(string id, string tokenHash, string userId, int expiry, string udid)
+		public AppTokenStartSessionRequestBuilder(string id, string tokenHash, string userId, int expiry, string udid, IDictionary<string, StringValue> extraParams)
 			: this()
 		{
 			this.Id = id;
@@ -184,6 +186,7 @@ namespace Kaltura.Services
 			this.UserId = userId;
 			this.Expiry = expiry;
 			this.Udid = udid;
+			this.ExtraParams = extraParams;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -199,6 +202,8 @@ namespace Kaltura.Services
 				kparams.AddIfNotNull("expiry", Expiry);
 			if (!isMapped("udid"))
 				kparams.AddIfNotNull("udid", Udid);
+			if (!isMapped("extraParams"))
+				kparams.AddIfNotNull("extraParams", ExtraParams);
 			return kparams;
 		}
 
@@ -236,9 +241,9 @@ namespace Kaltura.Services
 			return new AppTokenGetRequestBuilder(id);
 		}
 
-		public static AppTokenStartSessionRequestBuilder StartSession(string id, string tokenHash, string userId = null, int expiry = Int32.MinValue, string udid = null)
+		public static AppTokenStartSessionRequestBuilder StartSession(string id, string tokenHash, string userId = null, int expiry = Int32.MinValue, string udid = null, IDictionary<string, StringValue> extraParams = null)
 		{
-			return new AppTokenStartSessionRequestBuilder(id, tokenHash, userId, expiry, udid);
+			return new AppTokenStartSessionRequestBuilder(id, tokenHash, userId, expiry, udid, extraParams);
 		}
 	}
 }

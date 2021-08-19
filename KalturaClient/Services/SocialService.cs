@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -175,25 +175,28 @@ namespace Kaltura.Services
 		public const string TOKEN = "token";
 		public const string TYPE = "type";
 		public const string UDID = "udid";
+		public const string EXTRA_PARAMS = "extraParams";
 		#endregion
 
 		public new int PartnerId { get; set; }
 		public string Token { get; set; }
 		public SocialNetwork Type { get; set; }
 		public string Udid { get; set; }
+		public IDictionary<string, StringValue> ExtraParams { get; set; }
 
 		public SocialLoginRequestBuilder()
 			: base("social", "login")
 		{
 		}
 
-		public SocialLoginRequestBuilder(int partnerId, string token, SocialNetwork type, string udid)
+		public SocialLoginRequestBuilder(int partnerId, string token, SocialNetwork type, string udid, IDictionary<string, StringValue> extraParams)
 			: this()
 		{
 			this.PartnerId = partnerId;
 			this.Token = token;
 			this.Type = type;
 			this.Udid = udid;
+			this.ExtraParams = extraParams;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -207,6 +210,8 @@ namespace Kaltura.Services
 				kparams.AddIfNotNull("type", Type);
 			if (!isMapped("udid"))
 				kparams.AddIfNotNull("udid", Udid);
+			if (!isMapped("extraParams"))
+				kparams.AddIfNotNull("extraParams", ExtraParams);
 			return kparams;
 		}
 
@@ -420,9 +425,9 @@ namespace Kaltura.Services
 			return new SocialGetConfigurationRequestBuilder(type, partnerId);
 		}
 
-		public static SocialLoginRequestBuilder Login(int partnerId, string token, SocialNetwork type, string udid = null)
+		public static SocialLoginRequestBuilder Login(int partnerId, string token, SocialNetwork type, string udid = null, IDictionary<string, StringValue> extraParams = null)
 		{
-			return new SocialLoginRequestBuilder(partnerId, token, type, udid);
+			return new SocialLoginRequestBuilder(partnerId, token, type, udid, extraParams);
 		}
 
 		public static SocialMergeRequestBuilder Merge(string token, SocialNetwork type)

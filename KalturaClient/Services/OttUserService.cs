@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -131,21 +131,24 @@ namespace Kaltura.Services
 		#region Constants
 		public new const string PARTNER_ID = "partnerId";
 		public const string UDID = "udid";
+		public const string EXTRA_PARAMS = "extraParams";
 		#endregion
 
 		public new int PartnerId { get; set; }
 		public string Udid { get; set; }
+		public IDictionary<string, StringValue> ExtraParams { get; set; }
 
 		public OttUserAnonymousLoginRequestBuilder()
 			: base("ottuser", "anonymousLogin")
 		{
 		}
 
-		public OttUserAnonymousLoginRequestBuilder(int partnerId, string udid)
+		public OttUserAnonymousLoginRequestBuilder(int partnerId, string udid, IDictionary<string, StringValue> extraParams)
 			: this()
 		{
 			this.PartnerId = partnerId;
 			this.Udid = udid;
+			this.ExtraParams = extraParams;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -155,6 +158,8 @@ namespace Kaltura.Services
 				kparams.AddIfNotNull("partnerId", PartnerId);
 			if (!isMapped("udid"))
 				kparams.AddIfNotNull("udid", Udid);
+			if (!isMapped("extraParams"))
+				kparams.AddIfNotNull("extraParams", ExtraParams);
 			return kparams;
 		}
 
@@ -405,25 +410,28 @@ namespace Kaltura.Services
 		public const string PIN = "pin";
 		public const string UDID = "udid";
 		public const string SECRET = "secret";
+		public const string EXTRA_PARAMS = "extraParams";
 		#endregion
 
 		public new int PartnerId { get; set; }
 		public string Pin { get; set; }
 		public string Udid { get; set; }
 		public string Secret { get; set; }
+		public IDictionary<string, StringValue> ExtraParams { get; set; }
 
 		public OttUserLoginWithPinRequestBuilder()
 			: base("ottuser", "loginWithPin")
 		{
 		}
 
-		public OttUserLoginWithPinRequestBuilder(int partnerId, string pin, string udid, string secret)
+		public OttUserLoginWithPinRequestBuilder(int partnerId, string pin, string udid, string secret, IDictionary<string, StringValue> extraParams)
 			: this()
 		{
 			this.PartnerId = partnerId;
 			this.Pin = pin;
 			this.Udid = udid;
 			this.Secret = secret;
+			this.ExtraParams = extraParams;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -437,6 +445,8 @@ namespace Kaltura.Services
 				kparams.AddIfNotNull("udid", Udid);
 			if (!isMapped("secret"))
 				kparams.AddIfNotNull("secret", Secret);
+			if (!isMapped("extraParams"))
+				kparams.AddIfNotNull("extraParams", ExtraParams);
 			return kparams;
 		}
 
@@ -932,9 +942,9 @@ namespace Kaltura.Services
 			return new OttUserAddRoleRequestBuilder(roleId);
 		}
 
-		public static OttUserAnonymousLoginRequestBuilder AnonymousLogin(int partnerId, string udid = null)
+		public static OttUserAnonymousLoginRequestBuilder AnonymousLogin(int partnerId, string udid = null, IDictionary<string, StringValue> extraParams = null)
 		{
-			return new OttUserAnonymousLoginRequestBuilder(partnerId, udid);
+			return new OttUserAnonymousLoginRequestBuilder(partnerId, udid, extraParams);
 		}
 
 		public static OttUserDeleteRequestBuilder Delete()
@@ -967,9 +977,9 @@ namespace Kaltura.Services
 			return new OttUserLoginRequestBuilder(partnerId, username, password, extraParams, udid);
 		}
 
-		public static OttUserLoginWithPinRequestBuilder LoginWithPin(int partnerId, string pin, string udid = null, string secret = null)
+		public static OttUserLoginWithPinRequestBuilder LoginWithPin(int partnerId, string pin, string udid = null, string secret = null, IDictionary<string, StringValue> extraParams = null)
 		{
-			return new OttUserLoginWithPinRequestBuilder(partnerId, pin, udid, secret);
+			return new OttUserLoginWithPinRequestBuilder(partnerId, pin, udid, secret, extraParams);
 		}
 
 		public static OttUserLogoutRequestBuilder Logout(IDictionary<string, StringValue> adapterData = null)

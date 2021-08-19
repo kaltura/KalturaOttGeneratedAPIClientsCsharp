@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -82,6 +82,8 @@ namespace Kaltura
 					return new ListResponse<SSOAdapterProfile>(jToken);
 				case "KalturaUserInterestListResponse":
 					return new ListResponse<UserInterest>(jToken);
+				case "KalturaUserSessionProfileListResponse":
+					return new ListResponse<UserSessionProfile>(jToken);
 				case "KalturaBulkUploadListResponse":
 					return new ListResponse<BulkUpload>(jToken);
 				case "KalturaSocialActionListResponse":
@@ -142,6 +144,8 @@ namespace Kaltura
 					return new ListResponse<TopicNotification>(jToken);
 				case "KalturaTopicNotificationMessageListResponse":
 					return new ListResponse<TopicNotificationMessage>(jToken);
+				case "KalturaDurationListResponse":
+					return new ListResponse<Duration>(jToken);
 				case "KalturaGenericListResponse":
 					return new ListResponse<T>(jToken);
 				case "KalturaIntegerValueListResponse":
@@ -196,6 +200,8 @@ namespace Kaltura
 					return new ListResponse<Image>(jToken);
 				case "KalturaImageTypeListResponse":
 					return new ListResponse<ImageType>(jToken);
+				case "KalturaLabelListResponse":
+					return new ListResponse<Label>(jToken);
 				case "KalturaMediaFileListResponse":
 					return new ListResponse<MediaFile>(jToken);
 				case "KalturaMediaFileTypeListResponse":
