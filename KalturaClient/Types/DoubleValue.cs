@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -42,29 +42,12 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private double _Value = Double.MinValue;
+		private float _Value = Single.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use ValueAsDouble property instead
-		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use ValueAsDouble property instead")]
 		public float Value
-		{
-			get { return (float)_Value; }
-			set 
-			{ 
-				_Value = value;
-				OnPropertyChanged("Value");
-			}
-		}
-		///<summary>
-		///Use this property ValueAsDouble instead of the float Value property version
-		///</summary>
-		[JsonProperty]
-		public double ValueAsDouble
 		{
 			get { return _Value; }
 			set 
@@ -84,7 +67,7 @@ namespace Kaltura.Types
 		{
 			if(node["value"] != null)
 			{
-				this._Value = ParseDouble(node["value"].Value<string>());
+				this._Value = ParseFloat(node["value"].Value<string>());
 			}
 		}
 		#endregion

@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -78,9 +78,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use RecieptCodeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string RecieptCode
 		{
@@ -91,9 +88,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RecieptCode");
 			}
 		}
-		/// <summary>
-		/// Use PurchasedItemNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string PurchasedItemName
 		{
@@ -104,9 +98,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PurchasedItemName");
 			}
 		}
-		/// <summary>
-		/// Use PurchasedItemCodeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string PurchasedItemCode
 		{
@@ -117,9 +108,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PurchasedItemCode");
 			}
 		}
-		/// <summary>
-		/// Use ItemTypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public BillingItemsType ItemType
 		{
@@ -130,9 +118,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ItemType");
 			}
 		}
-		/// <summary>
-		/// Use BillingActionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public BillingAction BillingAction
 		{
@@ -143,9 +128,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("BillingAction");
 			}
 		}
-		/// <summary>
-		/// Use PriceAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public Price Price
 		{
@@ -156,9 +138,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Price");
 			}
 		}
-		/// <summary>
-		/// Use ActionDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long ActionDate
 		{
@@ -169,9 +148,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ActionDate");
 			}
 		}
-		/// <summary>
-		/// Use StartDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -182,9 +158,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
-		/// <summary>
-		/// Use EndDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -195,9 +168,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
-		/// <summary>
-		/// Use PaymentMethodAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public PaymentMethodType PaymentMethod
 		{
@@ -208,9 +178,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PaymentMethod");
 			}
 		}
-		/// <summary>
-		/// Use PaymentMethodExtraDetailsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string PaymentMethodExtraDetails
 		{
@@ -221,9 +188,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PaymentMethodExtraDetails");
 			}
 		}
-		/// <summary>
-		/// Use IsRecurringAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsRecurring
 		{
@@ -234,9 +198,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsRecurring");
 			}
 		}
-		/// <summary>
-		/// Use BillingProviderRefAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int BillingProviderRef
 		{
@@ -247,9 +208,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("BillingProviderRef");
 			}
 		}
-		/// <summary>
-		/// Use PurchaseIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int PurchaseId
 		{
@@ -260,9 +218,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PurchaseId");
 			}
 		}
-		/// <summary>
-		/// Use RemarksAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Remarks
 		{
@@ -273,9 +228,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Remarks");
 			}
 		}
-		/// <summary>
-		/// Use BillingPriceTypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public BillingPriceType BillingPriceType
 		{
@@ -286,9 +238,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("BillingPriceType");
 			}
 		}
-		/// <summary>
-		/// Use ExternalTransactionIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExternalTransactionId
 		{

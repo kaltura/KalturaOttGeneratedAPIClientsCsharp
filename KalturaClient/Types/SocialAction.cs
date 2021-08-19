@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,9 +56,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -69,9 +66,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use ActionTypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public SocialActionType ActionType
 		{
@@ -82,9 +76,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ActionType");
 			}
 		}
-		/// <summary>
-		/// Use TimeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long Time
 		{
@@ -95,9 +86,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Time");
 			}
 		}
-		/// <summary>
-		/// Use AssetIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long AssetId
 		{
@@ -108,9 +96,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetId");
 			}
 		}
-		/// <summary>
-		/// Use AssetTypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public AssetType AssetType
 		{
@@ -121,9 +106,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetType");
 			}
 		}
-		/// <summary>
-		/// Use UrlAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Url
 		{

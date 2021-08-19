@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -525,6 +525,7 @@ namespace Kaltura
 		public static string AssetDoseNotExists = "7009";
 		public static string UserDoseNotExists = "7011";
 		public static string NoFacebookAction = "7012";
+		public static string NotAllowed = "7013";
 		public static string AssetAlreadyRated = "7014";
 		public static string AssetNeverLiked = "7015";
 		public static string SocialActionIdDoseNotExists = "7016";
@@ -638,7 +639,6 @@ namespace Kaltura
 		public static string NotActiveAppToken = "50023";
 		public static string InvalidAppTokenHash = "50022";
 		public static string ExpiredAppToken = "50021";
-		public static string NotAllowed = "7013";
 		public static string GroupMissMatch = "500085";
 		public static string Error = "1";
 		public static string MissingConfiguration = "500006";
