@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -58,6 +58,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ExternalIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalIdIn
 		{
@@ -68,6 +71,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalIdIn");
 			}
 		}
+		/// <summary>
+		/// Use IdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string IdIn
 		{
@@ -78,6 +84,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
+		/// <summary>
+		/// Use ParentIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ParentIdEqual
 		{
@@ -88,6 +97,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ParentIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use LiveAssetIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int LiveAssetIdEqual
 		{
@@ -98,6 +110,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LiveAssetIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use ParentOnlyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? ParentOnly
 		{
@@ -108,6 +123,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ParentOnly");
 			}
 		}
+		/// <summary>
+		/// Use ExclusiveLcnAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? ExclusiveLcn
 		{
@@ -118,6 +136,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExclusiveLcn");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new RegionOrderBy OrderBy
 		{
