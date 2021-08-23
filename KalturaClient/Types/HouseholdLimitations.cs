@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -66,6 +66,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -76,6 +79,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -86,6 +92,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use ConcurrentLimitAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ConcurrentLimit
 		{
@@ -96,6 +105,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ConcurrentLimit");
 			}
 		}
+		/// <summary>
+		/// Use DeviceLimitAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int DeviceLimit
 		{
@@ -106,6 +118,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceLimit");
 			}
 		}
+		/// <summary>
+		/// Use DeviceFrequencyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int DeviceFrequency
 		{
@@ -116,6 +131,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceFrequency");
 			}
 		}
+		/// <summary>
+		/// Use DeviceFrequencyDescriptionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string DeviceFrequencyDescription
 		{
@@ -126,6 +144,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceFrequencyDescription");
 			}
 		}
+		/// <summary>
+		/// Use UserFrequencyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int UserFrequency
 		{
@@ -136,6 +157,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserFrequency");
 			}
 		}
+		/// <summary>
+		/// Use UserFrequencyDescriptionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string UserFrequencyDescription
 		{
@@ -146,6 +170,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserFrequencyDescription");
 			}
 		}
+		/// <summary>
+		/// Use NpvrQuotaInSecondsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int NpvrQuotaInSeconds
 		{
@@ -156,6 +183,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("NpvrQuotaInSeconds");
 			}
 		}
+		/// <summary>
+		/// Use UsersLimitAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int UsersLimit
 		{
@@ -166,6 +196,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UsersLimit");
 			}
 		}
+		/// <summary>
+		/// Use DeviceFamiliesLimitationsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<HouseholdDeviceFamilyLimitations> DeviceFamiliesLimitations
 		{
