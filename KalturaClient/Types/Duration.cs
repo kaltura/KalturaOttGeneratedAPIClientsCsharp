@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -40,17 +40,16 @@ namespace Kaltura.Types
 		#region Constants
 		public const string UNIT = "unit";
 		public const string VALUE = "value";
+		public const string CODE = "code";
 		#endregion
 
 		#region Private Fields
 		private DurationUnit _Unit = null;
 		private int _Value = Int32.MinValue;
+		private long _Code = long.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use UnitAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public DurationUnit Unit
 		{
@@ -61,9 +60,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Unit");
 			}
 		}
-		/// <summary>
-		/// Use ValueAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int Value
 		{
@@ -72,6 +68,16 @@ namespace Kaltura.Types
 			{ 
 				_Value = value;
 				OnPropertyChanged("Value");
+			}
+		}
+		[JsonProperty]
+		public long Code
+		{
+			get { return _Code; }
+			private set 
+			{ 
+				_Code = value;
+				OnPropertyChanged("Code");
 			}
 		}
 		#endregion
@@ -91,6 +97,10 @@ namespace Kaltura.Types
 			{
 				this._Value = ParseInt(node["value"].Value<string>());
 			}
+			if(node["code"] != null)
+			{
+				this._Code = ParseLong(node["code"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -102,6 +112,7 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaDuration");
 			kparams.AddIfNotNull("unit", this._Unit);
 			kparams.AddIfNotNull("value", this._Value);
+			kparams.AddIfNotNull("code", this._Code);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -112,6 +123,8 @@ namespace Kaltura.Types
 					return "Unit";
 				case VALUE:
 					return "Value";
+				case CODE:
+					return "Code";
 				default:
 					return base.getPropertyName(apiName);
 			}

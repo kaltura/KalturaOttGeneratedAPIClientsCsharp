@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,9 +56,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use OnlyOrButAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? OnlyOrBut
 		{
@@ -69,9 +66,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("OnlyOrBut");
 			}
 		}
-		/// <summary>
-		/// Use CountryIdsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string CountryIds
 		{
@@ -82,9 +76,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CountryIds");
 			}
 		}
-		/// <summary>
-		/// Use ProxyRuleIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int ProxyRuleId
 		{
@@ -95,9 +86,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProxyRuleId");
 			}
 		}
-		/// <summary>
-		/// Use ProxyRuleNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ProxyRuleName
 		{
@@ -108,9 +96,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProxyRuleName");
 			}
 		}
-		/// <summary>
-		/// Use ProxyLevelIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int ProxyLevelId
 		{
@@ -121,9 +106,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProxyLevelId");
 			}
 		}
-		/// <summary>
-		/// Use ProxyLevelNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ProxyLevelName
 		{

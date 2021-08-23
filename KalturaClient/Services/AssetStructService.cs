@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -161,14 +161,14 @@ namespace Kaltura.Services
 		public const string FILTER = "filter";
 		#endregion
 
-		public AssetStructFilter Filter { get; set; }
+		public BaseAssetStructFilter Filter { get; set; }
 
 		public AssetStructListRequestBuilder()
 			: base("assetstruct", "list")
 		{
 		}
 
-		public AssetStructListRequestBuilder(AssetStructFilter filter)
+		public AssetStructListRequestBuilder(BaseAssetStructFilter filter)
 			: this()
 		{
 			this.Filter = filter;
@@ -260,7 +260,7 @@ namespace Kaltura.Services
 			return new AssetStructGetRequestBuilder(id);
 		}
 
-		public static AssetStructListRequestBuilder List(AssetStructFilter filter = null)
+		public static AssetStructListRequestBuilder List(BaseAssetStructFilter filter = null)
 		{
 			return new AssetStructListRequestBuilder(filter);
 		}
