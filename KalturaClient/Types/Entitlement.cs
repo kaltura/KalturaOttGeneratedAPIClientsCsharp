@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -74,6 +74,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -84,6 +87,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use ProductIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ProductId
 		{
@@ -94,6 +100,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProductId");
 			}
 		}
+		/// <summary>
+		/// Use CurrentUsesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int CurrentUses
 		{
@@ -104,6 +113,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CurrentUses");
 			}
 		}
+		/// <summary>
+		/// Use EndDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -114,6 +126,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
+		/// <summary>
+		/// Use CurrentDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long CurrentDate
 		{
@@ -124,6 +139,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CurrentDate");
 			}
 		}
+		/// <summary>
+		/// Use LastViewDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long LastViewDate
 		{
@@ -134,6 +152,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LastViewDate");
 			}
 		}
+		/// <summary>
+		/// Use PurchaseDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long PurchaseDate
 		{
@@ -144,6 +165,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PurchaseDate");
 			}
 		}
+		/// <summary>
+		/// Use PaymentMethodAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public PaymentMethodType PaymentMethod
 		{
@@ -154,6 +178,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PaymentMethod");
 			}
 		}
+		/// <summary>
+		/// Use DeviceUdidAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string DeviceUdid
 		{
@@ -164,6 +191,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceUdid");
 			}
 		}
+		/// <summary>
+		/// Use DeviceNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string DeviceName
 		{
@@ -174,6 +204,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceName");
 			}
 		}
+		/// <summary>
+		/// Use IsCancelationWindowEnabledAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsCancelationWindowEnabled
 		{
@@ -184,6 +217,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsCancelationWindowEnabled");
 			}
 		}
+		/// <summary>
+		/// Use MaxUsesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MaxUses
 		{
@@ -194,6 +230,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxUses");
 			}
 		}
+		/// <summary>
+		/// Use UserIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string UserId
 		{
@@ -204,6 +243,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserId");
 			}
 		}
+		/// <summary>
+		/// Use HouseholdIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long HouseholdId
 		{
@@ -214,6 +256,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("HouseholdId");
 			}
 		}
+		/// <summary>
+		/// Use IsPendingAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsPending
 		{
