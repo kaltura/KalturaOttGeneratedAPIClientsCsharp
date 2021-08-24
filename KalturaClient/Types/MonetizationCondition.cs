@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MinValueAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MinValue
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MinValue");
 			}
 		}
+		/// <summary>
+		/// Use MaxValueAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MaxValue
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxValue");
 			}
 		}
+		/// <summary>
+		/// Use DaysAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Days
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Days");
 			}
 		}
+		/// <summary>
+		/// Use TypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public MonetizationType Type
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Type");
 			}
 		}
+		/// <summary>
+		/// Use OperatorAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public MathemticalOperatorType Operator
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Operator");
 			}
 		}
+		/// <summary>
+		/// Use BusinessModuleIdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string BusinessModuleIdIn
 		{

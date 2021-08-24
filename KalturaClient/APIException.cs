@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -633,8 +633,9 @@ namespace Kaltura
 		public static string PropertyIsOpcSupported = "500082";
 		public static string KeyCannotBeEmptyOrNull = "500086";
 		public static string MissingMandatoryArgumentInProperty = "500087";
-		public static string MaxArguments = "500088";
-		public static string ArgumentMustBeWithAsciiCharacters = "500090";
+		public static string ArgumentMaxItemsCrossed = "500088";
+		public static string ArgumentMatchPatternCrossed = "500090";
+		public static string ArgumentMinItemsCrossed = "500091";
 		public static string HouseholdForbidden = "500028";
 		public static string SwitchingUsersIsNotAllowedForPartner = "50024";
 		public static string NotActiveAppToken = "50023";

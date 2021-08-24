@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -51,11 +51,14 @@ namespace Kaltura.Types
 		private int _Likes = Int32.MinValue;
 		private int _Views = Int32.MinValue;
 		private int _RatingCount = Int32.MinValue;
-		private float _Rating = Single.MinValue;
+		private double _Rating = Double.MinValue;
 		private BuzzScore _BuzzScore;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AssetIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int AssetId
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetId");
 			}
 		}
+		/// <summary>
+		/// Use LikesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Likes
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Likes");
 			}
 		}
+		/// <summary>
+		/// Use ViewsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Views
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Views");
 			}
 		}
+		/// <summary>
+		/// Use RatingCountAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int RatingCount
 		{
@@ -96,8 +108,25 @@ namespace Kaltura.Types
 				OnPropertyChanged("RatingCount");
 			}
 		}
+		/// <summary>
+		/// Use RatingAsDouble property instead
+		/// </summary>
 		[JsonProperty]
+		[Obsolete("Use RatingAsDouble property instead")]
 		public float Rating
+		{
+			get { return (float)_Rating; }
+			set 
+			{ 
+				_Rating = value;
+				OnPropertyChanged("Rating");
+			}
+		}
+		///<summary>
+		///Use this property RatingAsDouble instead of the float Rating property version
+		///</summary>
+		[JsonProperty]
+		public double RatingAsDouble
 		{
 			get { return _Rating; }
 			set 
@@ -106,6 +135,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Rating");
 			}
 		}
+		/// <summary>
+		/// Use BuzzScoreAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public BuzzScore BuzzScore
 		{
@@ -143,7 +175,7 @@ namespace Kaltura.Types
 			}
 			if(node["rating"] != null)
 			{
-				this._Rating = ParseFloat(node["rating"].Value<string>());
+				this._Rating = ParseDouble(node["rating"].Value<string>());
 			}
 			if(node["buzzScore"] != null)
 			{

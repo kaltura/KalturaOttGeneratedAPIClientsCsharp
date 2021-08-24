@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -66,6 +66,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PartnerIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int PartnerId
 		{
@@ -76,6 +79,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PartnerId");
 			}
 		}
+		/// <summary>
+		/// Use ConfigurationGroupIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ConfigurationGroupId
 		{
@@ -86,6 +92,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ConfigurationGroupId");
 			}
 		}
+		/// <summary>
+		/// Use UdidAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Udid
 		{
@@ -96,6 +105,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Udid");
 			}
 		}
+		/// <summary>
+		/// Use PushParametersAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public PushParams PushParameters
 		{
@@ -106,6 +118,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PushParameters");
 			}
 		}
+		/// <summary>
+		/// Use VersionNumberAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string VersionNumber
 		{
@@ -116,6 +131,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("VersionNumber");
 			}
 		}
+		/// <summary>
+		/// Use VersionPlatformAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public Platform VersionPlatform
 		{
@@ -126,6 +144,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("VersionPlatform");
 			}
 		}
+		/// <summary>
+		/// Use VersionAppNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string VersionAppName
 		{
@@ -136,6 +157,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("VersionAppName");
 			}
 		}
+		/// <summary>
+		/// Use LastAccessIPAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string LastAccessIP
 		{
@@ -146,6 +170,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LastAccessIP");
 			}
 		}
+		/// <summary>
+		/// Use LastAccessDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long LastAccessDate
 		{
@@ -156,6 +183,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LastAccessDate");
 			}
 		}
+		/// <summary>
+		/// Use UserAgentAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string UserAgent
 		{
@@ -166,6 +196,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserAgent");
 			}
 		}
+		/// <summary>
+		/// Use OperationSystemAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string OperationSystem
 		{
