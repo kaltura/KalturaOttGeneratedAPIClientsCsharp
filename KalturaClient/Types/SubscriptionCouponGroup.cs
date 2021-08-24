@@ -35,16 +35,18 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class PremiumService : ObjectBase
+	public class SubscriptionCouponGroup : ObjectBase
 	{
 		#region Constants
 		public const string ID = "id";
-		public const string NAME = "name";
+		public const string START_DATE = "startDate";
+		public const string END_DATE = "endDate";
 		#endregion
 
 		#region Private Fields
 		private long _Id = long.MinValue;
-		private string _Name = null;
+		private long _StartDate = long.MinValue;
+		private long _EndDate = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -62,34 +64,51 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use NameAsDouble property instead
+		/// Use StartDateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string Name
+		public long StartDate
 		{
-			get { return _Name; }
+			get { return _StartDate; }
 			set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
+				_StartDate = value;
+				OnPropertyChanged("StartDate");
+			}
+		}
+		/// <summary>
+		/// Use EndDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long EndDate
+		{
+			get { return _EndDate; }
+			set 
+			{ 
+				_EndDate = value;
+				OnPropertyChanged("EndDate");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public PremiumService()
+		public SubscriptionCouponGroup()
 		{
 		}
 
-		public PremiumService(JToken node) : base(node)
+		public SubscriptionCouponGroup(JToken node) : base(node)
 		{
 			if(node["id"] != null)
 			{
 				this._Id = ParseLong(node["id"].Value<string>());
 			}
-			if(node["name"] != null)
+			if(node["startDate"] != null)
 			{
-				this._Name = node["name"].Value<string>();
+				this._StartDate = ParseLong(node["startDate"].Value<string>());
+			}
+			if(node["endDate"] != null)
+			{
+				this._EndDate = ParseLong(node["endDate"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,9 +118,10 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPremiumService");
+				kparams.AddReplace("objectType", "KalturaSubscriptionCouponGroup");
 			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
+			kparams.AddIfNotNull("startDate", this._StartDate);
+			kparams.AddIfNotNull("endDate", this._EndDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -110,8 +130,10 @@ namespace Kaltura.Types
 			{
 				case ID:
 					return "Id";
-				case NAME:
-					return "Name";
+				case START_DATE:
+					return "StartDate";
+				case END_DATE:
+					return "EndDate";
 				default:
 					return base.getPropertyName(apiName);
 			}

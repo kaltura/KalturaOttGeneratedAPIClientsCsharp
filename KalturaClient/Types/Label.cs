@@ -35,16 +35,18 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class PremiumService : ObjectBase
+	public class Label : ObjectBase
 	{
 		#region Constants
 		public const string ID = "id";
-		public const string NAME = "name";
+		public const string VALUE = "value";
+		public const string ENTITY_ATTRIBUTE = "entityAttribute";
 		#endregion
 
 		#region Private Fields
 		private long _Id = long.MinValue;
-		private string _Name = null;
+		private string _Value = null;
+		private EntityAttribute _EntityAttribute = null;
 		#endregion
 
 		#region Properties
@@ -55,41 +57,58 @@ namespace Kaltura.Types
 		public long Id
 		{
 			get { return _Id; }
-			set 
+			private set 
 			{ 
 				_Id = value;
 				OnPropertyChanged("Id");
 			}
 		}
 		/// <summary>
-		/// Use NameAsDouble property instead
+		/// Use ValueAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string Name
+		public string Value
 		{
-			get { return _Name; }
+			get { return _Value; }
 			set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
+				_Value = value;
+				OnPropertyChanged("Value");
+			}
+		}
+		/// <summary>
+		/// Use EntityAttributeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public EntityAttribute EntityAttribute
+		{
+			get { return _EntityAttribute; }
+			set 
+			{ 
+				_EntityAttribute = value;
+				OnPropertyChanged("EntityAttribute");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public PremiumService()
+		public Label()
 		{
 		}
 
-		public PremiumService(JToken node) : base(node)
+		public Label(JToken node) : base(node)
 		{
 			if(node["id"] != null)
 			{
 				this._Id = ParseLong(node["id"].Value<string>());
 			}
-			if(node["name"] != null)
+			if(node["value"] != null)
 			{
-				this._Name = node["name"].Value<string>();
+				this._Value = node["value"].Value<string>();
+			}
+			if(node["entityAttribute"] != null)
+			{
+				this._EntityAttribute = (EntityAttribute)StringEnum.Parse(typeof(EntityAttribute), node["entityAttribute"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,9 +118,10 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPremiumService");
+				kparams.AddReplace("objectType", "KalturaLabel");
 			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
+			kparams.AddIfNotNull("value", this._Value);
+			kparams.AddIfNotNull("entityAttribute", this._EntityAttribute);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -110,8 +130,10 @@ namespace Kaltura.Types
 			{
 				case ID:
 					return "Id";
-				case NAME:
-					return "Name";
+				case VALUE:
+					return "Value";
+				case ENTITY_ATTRIBUTE:
+					return "EntityAttribute";
 				default:
 					return base.getPropertyName(apiName);
 			}

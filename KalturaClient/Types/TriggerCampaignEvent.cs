@@ -35,61 +35,99 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class PremiumService : ObjectBase
+	public class TriggerCampaignEvent : EventObject
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string NAME = "name";
+		public const string USER_ID = "userId";
+		public const string CAMPAIGN_ID = "campaignId";
+		public const string UDID = "udid";
+		public const string HOUSEHOLD_ID = "householdId";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
+		private long _UserId = long.MinValue;
+		private long _CampaignId = long.MinValue;
+		private string _Udid = null;
+		private long _HouseholdId = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdAsDouble property instead
+		/// Use UserIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long Id
+		public long UserId
 		{
-			get { return _Id; }
-			set 
+			get { return _UserId; }
+			private set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
+				_UserId = value;
+				OnPropertyChanged("UserId");
 			}
 		}
 		/// <summary>
-		/// Use NameAsDouble property instead
+		/// Use CampaignIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string Name
+		public long CampaignId
 		{
-			get { return _Name; }
-			set 
+			get { return _CampaignId; }
+			private set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
+				_CampaignId = value;
+				OnPropertyChanged("CampaignId");
+			}
+		}
+		/// <summary>
+		/// Use UdidAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Udid
+		{
+			get { return _Udid; }
+			private set 
+			{ 
+				_Udid = value;
+				OnPropertyChanged("Udid");
+			}
+		}
+		/// <summary>
+		/// Use HouseholdIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long HouseholdId
+		{
+			get { return _HouseholdId; }
+			private set 
+			{ 
+				_HouseholdId = value;
+				OnPropertyChanged("HouseholdId");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public PremiumService()
+		public TriggerCampaignEvent()
 		{
 		}
 
-		public PremiumService(JToken node) : base(node)
+		public TriggerCampaignEvent(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["userId"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._UserId = ParseLong(node["userId"].Value<string>());
 			}
-			if(node["name"] != null)
+			if(node["campaignId"] != null)
 			{
-				this._Name = node["name"].Value<string>();
+				this._CampaignId = ParseLong(node["campaignId"].Value<string>());
+			}
+			if(node["udid"] != null)
+			{
+				this._Udid = node["udid"].Value<string>();
+			}
+			if(node["householdId"] != null)
+			{
+				this._HouseholdId = ParseLong(node["householdId"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,19 +137,25 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPremiumService");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
+				kparams.AddReplace("objectType", "KalturaTriggerCampaignEvent");
+			kparams.AddIfNotNull("userId", this._UserId);
+			kparams.AddIfNotNull("campaignId", this._CampaignId);
+			kparams.AddIfNotNull("udid", this._Udid);
+			kparams.AddIfNotNull("householdId", this._HouseholdId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case NAME:
-					return "Name";
+				case USER_ID:
+					return "UserId";
+				case CAMPAIGN_ID:
+					return "CampaignId";
+				case UDID:
+					return "Udid";
+				case HOUSEHOLD_ID:
+					return "HouseholdId";
 				default:
 					return base.getPropertyName(apiName);
 			}
