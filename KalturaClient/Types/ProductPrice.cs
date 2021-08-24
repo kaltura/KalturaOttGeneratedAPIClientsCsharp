@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ProductIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ProductId
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProductId");
 			}
 		}
+		/// <summary>
+		/// Use ProductTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public TransactionType ProductType
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProductType");
 			}
 		}
+		/// <summary>
+		/// Use PriceAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public Price Price
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Price");
 			}
 		}
+		/// <summary>
+		/// Use FullPriceAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public Price FullPrice
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FullPrice");
 			}
 		}
+		/// <summary>
+		/// Use PurchaseStatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public PurchaseStatus PurchaseStatus
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PurchaseStatus");
 			}
 		}
+		/// <summary>
+		/// Use PromotionInfoAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public PromotionInfo PromotionInfo
 		{

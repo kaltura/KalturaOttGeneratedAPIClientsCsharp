@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -62,6 +62,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -72,6 +75,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use VersionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Version
 		{
@@ -82,6 +88,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Version");
 			}
 		}
+		/// <summary>
+		/// Use ImageTypeIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ImageTypeId
 		{
@@ -92,6 +101,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ImageTypeId");
 			}
 		}
+		/// <summary>
+		/// Use ImageObjectIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ImageObjectId
 		{
@@ -102,6 +114,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ImageObjectId");
 			}
 		}
+		/// <summary>
+		/// Use ImageObjectTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ImageObjectType ImageObjectType
 		{
@@ -112,6 +127,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ImageObjectType");
 			}
 		}
+		/// <summary>
+		/// Use StatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ImageStatus Status
 		{
@@ -122,6 +140,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
+		/// <summary>
+		/// Use UrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Url
 		{
@@ -132,6 +153,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Url");
 			}
 		}
+		/// <summary>
+		/// Use ContentIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ContentId
 		{
@@ -142,6 +166,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ContentId");
 			}
 		}
+		/// <summary>
+		/// Use IsDefaultAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsDefault
 		{

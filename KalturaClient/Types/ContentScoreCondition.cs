@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MinScoreAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MinScore
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MinScore");
 			}
 		}
+		/// <summary>
+		/// Use MaxScoreAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int MaxScore
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxScore");
 			}
 		}
+		/// <summary>
+		/// Use DaysAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Days
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Days");
 			}
 		}
+		/// <summary>
+		/// Use FieldAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Field
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Field");
 			}
 		}
+		/// <summary>
+		/// Use ValuesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<StringValue> Values
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Values");
 			}
 		}
+		/// <summary>
+		/// Use ActionsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<ContentActionCondition> Actions
 		{

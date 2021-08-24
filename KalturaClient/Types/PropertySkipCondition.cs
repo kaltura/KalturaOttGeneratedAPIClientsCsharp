@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -50,6 +50,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use PropertyPathAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PropertyPath
 		{
@@ -60,6 +63,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PropertyPath");
 			}
 		}
+		/// <summary>
+		/// Use OperatorAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public SkipOperators Operator
 		{
@@ -70,6 +76,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Operator");
 			}
 		}
+		/// <summary>
+		/// Use ValueAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Value
 		{

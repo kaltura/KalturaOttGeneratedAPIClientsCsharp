@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -44,14 +44,31 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private float _NormalizedAvgScore = Single.MinValue;
+		private double _NormalizedAvgScore = Double.MinValue;
 		private long _UpdateDate = long.MinValue;
-		private float _AvgScore = Single.MinValue;
+		private double _AvgScore = Double.MinValue;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use NormalizedAvgScoreAsDouble property instead
+		/// </summary>
 		[JsonProperty]
+		[Obsolete("Use NormalizedAvgScoreAsDouble property instead")]
 		public float NormalizedAvgScore
+		{
+			get { return (float)_NormalizedAvgScore; }
+			set 
+			{ 
+				_NormalizedAvgScore = value;
+				OnPropertyChanged("NormalizedAvgScore");
+			}
+		}
+		///<summary>
+		///Use this property NormalizedAvgScoreAsDouble instead of the float NormalizedAvgScore property version
+		///</summary>
+		[JsonProperty]
+		public double NormalizedAvgScoreAsDouble
 		{
 			get { return _NormalizedAvgScore; }
 			set 
@@ -60,6 +77,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("NormalizedAvgScore");
 			}
 		}
+		/// <summary>
+		/// Use UpdateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{
@@ -70,8 +90,25 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
+		/// <summary>
+		/// Use AvgScoreAsDouble property instead
+		/// </summary>
 		[JsonProperty]
+		[Obsolete("Use AvgScoreAsDouble property instead")]
 		public float AvgScore
+		{
+			get { return (float)_AvgScore; }
+			set 
+			{ 
+				_AvgScore = value;
+				OnPropertyChanged("AvgScore");
+			}
+		}
+		///<summary>
+		///Use this property AvgScoreAsDouble instead of the float AvgScore property version
+		///</summary>
+		[JsonProperty]
+		public double AvgScoreAsDouble
 		{
 			get { return _AvgScore; }
 			set 
@@ -91,7 +128,7 @@ namespace Kaltura.Types
 		{
 			if(node["normalizedAvgScore"] != null)
 			{
-				this._NormalizedAvgScore = ParseFloat(node["normalizedAvgScore"].Value<string>());
+				this._NormalizedAvgScore = ParseDouble(node["normalizedAvgScore"].Value<string>());
 			}
 			if(node["updateDate"] != null)
 			{
@@ -99,7 +136,7 @@ namespace Kaltura.Types
 			}
 			if(node["avgScore"] != null)
 			{
-				this._AvgScore = ParseFloat(node["avgScore"].Value<string>());
+				this._AvgScore = ParseDouble(node["avgScore"].Value<string>());
 			}
 		}
 		#endregion
