@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -40,21 +40,6 @@ namespace Kaltura.Enums
 		public static readonly RuleActionType FILTER = new RuleActionType("FILTER");
 		public static readonly RuleActionType ASSET_LIFE_CYCLE_TRANSITION = new RuleActionType("ASSET_LIFE_CYCLE_TRANSITION");
 		public static readonly RuleActionType APPLY_FREE_PLAYBACK = new RuleActionType("APPLY_FREE_PLAYBACK");
-		public static readonly RuleActionType FILTERASSETBYKSQL = new RuleActionType("FilterAssetByKsql");
-		public static readonly RuleActionType FILTERFILEBYQUALITYINDISCOVERY = new RuleActionType("FilterFileByQualityInDiscovery");
-		public static readonly RuleActionType FILTERFILEBYQUALITYINPLAYBACK = new RuleActionType("FilterFileByQualityInPlayback");
-		public static readonly RuleActionType FILTERFILEBYFILETYPEFORASSETTYPEINDISCOVERY = new RuleActionType("FilterFileByFileTypeForAssetTypeInDiscovery");
-		public static readonly RuleActionType FILTERFILEBYFILETYPEFORASSETTYPEINPLAYBACK = new RuleActionType("FilterFileByFileTypeForAssetTypeInPlayback");
-		public static readonly RuleActionType FILTERFILEBYFILETYPEINDISCOVERY = new RuleActionType("FilterFileByFileTypeInDiscovery");
-		public static readonly RuleActionType FILTERFILEBYFILETYPEINPLAYBACK = new RuleActionType("FilterFileByFileTypeInPlayback");
-		public static readonly RuleActionType FILTERFILEBYAUDIOCODECINDISCOVERY = new RuleActionType("FilterFileByAudioCodecInDiscovery");
-		public static readonly RuleActionType FILTERFILEBYAUDIOCODECINPLAYBACK = new RuleActionType("FilterFileByAudioCodecInPlayback");
-		public static readonly RuleActionType FILTERFILEBYVIDEOCODECINDISCOVERY = new RuleActionType("FilterFileByVideoCodecInDiscovery");
-		public static readonly RuleActionType FILTERFILEBYVIDEOCODECINPLAYBACK = new RuleActionType("FilterFileByVideoCodecInPlayback");
-		public static readonly RuleActionType FILTERFILEBYSTREAMERTYPEINDISCOVERY = new RuleActionType("FilterFileByStreamerTypeInDiscovery");
-		public static readonly RuleActionType FILTERFILEBYSTREAMERTYPEINPLAYBACK = new RuleActionType("FilterFileByStreamerTypeInPlayback");
-		public static readonly RuleActionType FILTERFILEBYLABELINDISCOVERY = new RuleActionType("FilterFileByLabelInDiscovery");
-		public static readonly RuleActionType FILTERFILEBYLABELINPLAYBACK = new RuleActionType("FilterFileByLabelInPlayback");
 
 		private RuleActionType(string name) : base(name) { }
 	}

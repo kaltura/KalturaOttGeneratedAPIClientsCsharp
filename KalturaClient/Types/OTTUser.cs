@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -82,6 +82,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use HouseholdIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int HouseholdId
 		{
@@ -92,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("HouseholdId");
 			}
 		}
+		/// <summary>
+		/// Use EmailAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Email
 		{
@@ -102,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Email");
 			}
 		}
+		/// <summary>
+		/// Use AddressAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Address
 		{
@@ -112,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Address");
 			}
 		}
+		/// <summary>
+		/// Use CityAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string City
 		{
@@ -122,6 +134,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("City");
 			}
 		}
+		/// <summary>
+		/// Use CountryIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int CountryId
 		{
@@ -132,6 +147,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CountryId");
 			}
 		}
+		/// <summary>
+		/// Use ZipAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Zip
 		{
@@ -142,6 +160,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Zip");
 			}
 		}
+		/// <summary>
+		/// Use PhoneAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Phone
 		{
@@ -152,6 +173,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Phone");
 			}
 		}
+		/// <summary>
+		/// Use AffiliateCodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string AffiliateCode
 		{
@@ -162,6 +186,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AffiliateCode");
 			}
 		}
+		/// <summary>
+		/// Use ExternalIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalId
 		{
@@ -172,6 +199,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
+		/// <summary>
+		/// Use UserTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public OTTUserType UserType
 		{
@@ -182,6 +212,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserType");
 			}
 		}
+		/// <summary>
+		/// Use DynamicDataAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> DynamicData
 		{
@@ -192,6 +225,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DynamicData");
 			}
 		}
+		/// <summary>
+		/// Use IsHouseholdMasterAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsHouseholdMaster
 		{
@@ -202,6 +238,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsHouseholdMaster");
 			}
 		}
+		/// <summary>
+		/// Use SuspensionStateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public HouseholdSuspensionState SuspensionState
 		{
@@ -212,6 +251,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SuspensionState");
 			}
 		}
+		/// <summary>
+		/// Use UserStateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public UserState UserState
 		{
@@ -222,6 +264,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserState");
 			}
 		}
+		/// <summary>
+		/// Use RoleIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string RoleIds
 		{
@@ -232,6 +277,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RoleIds");
 			}
 		}
+		/// <summary>
+		/// Use CreateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -242,6 +290,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
+		/// <summary>
+		/// Use UpdateDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{
@@ -252,6 +303,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
+		/// <summary>
+		/// Use LastLoginDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long LastLoginDate
 		{
@@ -262,6 +316,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LastLoginDate");
 			}
 		}
+		/// <summary>
+		/// Use FailedLoginCountAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int FailedLoginCount
 		{

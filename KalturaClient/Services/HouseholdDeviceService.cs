@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -334,26 +334,23 @@ namespace Kaltura.Services
 		public new const string PARTNER_ID = "partnerId";
 		public const string PIN = "pin";
 		public const string UDID = "udid";
-		public const string EXTRA_PARAMS = "extraParams";
 		#endregion
 
 		public new int PartnerId { get; set; }
 		public string Pin { get; set; }
 		public string Udid { get; set; }
-		public IDictionary<string, StringValue> ExtraParams { get; set; }
 
 		public HouseholdDeviceLoginWithPinRequestBuilder()
 			: base("householddevice", "loginWithPin")
 		{
 		}
 
-		public HouseholdDeviceLoginWithPinRequestBuilder(int partnerId, string pin, string udid, IDictionary<string, StringValue> extraParams)
+		public HouseholdDeviceLoginWithPinRequestBuilder(int partnerId, string pin, string udid)
 			: this()
 		{
 			this.PartnerId = partnerId;
 			this.Pin = pin;
 			this.Udid = udid;
-			this.ExtraParams = extraParams;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -365,8 +362,6 @@ namespace Kaltura.Services
 				kparams.AddIfNotNull("pin", Pin);
 			if (!isMapped("udid"))
 				kparams.AddIfNotNull("udid", Udid);
-			if (!isMapped("extraParams"))
-				kparams.AddIfNotNull("extraParams", ExtraParams);
 			return kparams;
 		}
 
@@ -563,9 +558,9 @@ namespace Kaltura.Services
 			return new HouseholdDeviceListRequestBuilder(filter);
 		}
 
-		public static HouseholdDeviceLoginWithPinRequestBuilder LoginWithPin(int partnerId, string pin, string udid = null, IDictionary<string, StringValue> extraParams = null)
+		public static HouseholdDeviceLoginWithPinRequestBuilder LoginWithPin(int partnerId, string pin, string udid = null)
 		{
-			return new HouseholdDeviceLoginWithPinRequestBuilder(partnerId, pin, udid, extraParams);
+			return new HouseholdDeviceLoginWithPinRequestBuilder(partnerId, pin, udid);
 		}
 
 		public static HouseholdDeviceUpdateRequestBuilder Update(string udid, HouseholdDevice device)

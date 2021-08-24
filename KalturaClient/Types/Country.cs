@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -57,11 +57,14 @@ namespace Kaltura.Types
 		private string _LanguagesCode = null;
 		private string _Currency = null;
 		private string _CurrencySign = null;
-		private float _VatPercent = Single.MinValue;
+		private double _VatPercent = Double.MinValue;
 		private string _TimeZoneId = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -72,6 +75,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -82,6 +88,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use CodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Code
 		{
@@ -92,6 +101,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Code");
 			}
 		}
+		/// <summary>
+		/// Use MainLanguageCodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MainLanguageCode
 		{
@@ -102,6 +114,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MainLanguageCode");
 			}
 		}
+		/// <summary>
+		/// Use LanguagesCodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string LanguagesCode
 		{
@@ -112,6 +127,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("LanguagesCode");
 			}
 		}
+		/// <summary>
+		/// Use CurrencyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Currency
 		{
@@ -122,6 +140,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Currency");
 			}
 		}
+		/// <summary>
+		/// Use CurrencySignAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string CurrencySign
 		{
@@ -132,8 +153,25 @@ namespace Kaltura.Types
 				OnPropertyChanged("CurrencySign");
 			}
 		}
+		/// <summary>
+		/// Use VatPercentAsDouble property instead
+		/// </summary>
 		[JsonProperty]
+		[Obsolete("Use VatPercentAsDouble property instead")]
 		public float VatPercent
+		{
+			get { return (float)_VatPercent; }
+			set 
+			{ 
+				_VatPercent = value;
+				OnPropertyChanged("VatPercent");
+			}
+		}
+		///<summary>
+		///Use this property VatPercentAsDouble instead of the float VatPercent property version
+		///</summary>
+		[JsonProperty]
+		public double VatPercentAsDouble
 		{
 			get { return _VatPercent; }
 			set 
@@ -142,6 +180,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("VatPercent");
 			}
 		}
+		/// <summary>
+		/// Use TimeZoneIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string TimeZoneId
 		{
@@ -191,7 +232,7 @@ namespace Kaltura.Types
 			}
 			if(node["vatPercent"] != null)
 			{
-				this._VatPercent = ParseFloat(node["vatPercent"].Value<string>());
+				this._VatPercent = ParseDouble(node["vatPercent"].Value<string>());
 			}
 			if(node["timeZoneId"] != null)
 			{

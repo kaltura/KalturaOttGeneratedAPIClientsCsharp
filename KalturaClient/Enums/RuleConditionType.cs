@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -46,8 +46,6 @@ namespace Kaltura.Enums
 		public static readonly RuleConditionType DEVICE_MANUFACTURER = new RuleConditionType("DEVICE_MANUFACTURER");
 		public static readonly RuleConditionType DEVICE_MODEL = new RuleConditionType("DEVICE_MODEL");
 		public static readonly RuleConditionType DEVICE_UDID_DYNAMIC_LIST = new RuleConditionType("DEVICE_UDID_DYNAMIC_LIST");
-		public static readonly RuleConditionType DYNAMIC_KEYS = new RuleConditionType("DYNAMIC_KEYS");
-		public static readonly RuleConditionType USER_SESSION_PROFILE = new RuleConditionType("USER_SESSION_PROFILE");
 
 		private RuleConditionType(string name) : base(name) { }
 	}
