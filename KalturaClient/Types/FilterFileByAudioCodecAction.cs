@@ -35,24 +35,43 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class FilterFileByFileTypeForAssetTypeInDiscovery : FilterFileByFileTypeForAssetType
+	public class FilterFileByAudioCodecAction : FilterAction
 	{
 		#region Constants
+		public const string AUDIO_CODEC_IN = "audioCodecIn";
 		#endregion
 
 		#region Private Fields
+		private string _AudioCodecIn = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AudioCodecInAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string AudioCodecIn
+		{
+			get { return _AudioCodecIn; }
+			set 
+			{ 
+				_AudioCodecIn = value;
+				OnPropertyChanged("AudioCodecIn");
+			}
+		}
 		#endregion
 
 		#region CTor
-		public FilterFileByFileTypeForAssetTypeInDiscovery()
+		public FilterFileByAudioCodecAction()
 		{
 		}
 
-		public FilterFileByFileTypeForAssetTypeInDiscovery(JToken node) : base(node)
+		public FilterFileByAudioCodecAction(JToken node) : base(node)
 		{
+			if(node["audioCodecIn"] != null)
+			{
+				this._AudioCodecIn = node["audioCodecIn"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -61,13 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaFilterFileByFileTypeForAssetTypeInDiscovery");
+				kparams.AddReplace("objectType", "KalturaFilterFileByAudioCodecAction");
+			kparams.AddIfNotNull("audioCodecIn", this._AudioCodecIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
+				case AUDIO_CODEC_IN:
+					return "AudioCodecIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

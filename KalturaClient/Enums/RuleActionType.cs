@@ -43,10 +43,10 @@ namespace Kaltura.Enums
 		public static readonly RuleActionType FILTERASSETBYKSQL = new RuleActionType("FilterAssetByKsql");
 		public static readonly RuleActionType FILTERFILEBYQUALITYINDISCOVERY = new RuleActionType("FilterFileByQualityInDiscovery");
 		public static readonly RuleActionType FILTERFILEBYQUALITYINPLAYBACK = new RuleActionType("FilterFileByQualityInPlayback");
-		public static readonly RuleActionType FILTERFILEBYFILETYPEFORASSETTYPEINDISCOVERY = new RuleActionType("FilterFileByFileTypeForAssetTypeInDiscovery");
-		public static readonly RuleActionType FILTERFILEBYFILETYPEFORASSETTYPEINPLAYBACK = new RuleActionType("FilterFileByFileTypeForAssetTypeInPlayback");
-		public static readonly RuleActionType FILTERFILEBYFILETYPEINDISCOVERY = new RuleActionType("FilterFileByFileTypeInDiscovery");
-		public static readonly RuleActionType FILTERFILEBYFILETYPEINPLAYBACK = new RuleActionType("FilterFileByFileTypeInPlayback");
+		public static readonly RuleActionType FILTERFILEBYASSETTYPEINDISCOVERY = new RuleActionType("FilterFileByAssetTypeInDiscovery");
+		public static readonly RuleActionType FILTERFILEBYASSETTYPEINPLAYBACK = new RuleActionType("FilterFileByAssetTypeInPlayback");
+		public static readonly RuleActionType FILTERFILEBYFILETYPEIDINDISCOVERY = new RuleActionType("FilterFileByFileTypeIdInDiscovery");
+		public static readonly RuleActionType FILTERFILEBYFILETYPEIDINPLAYBACK = new RuleActionType("FilterFileByFileTypeIdInPlayback");
 		public static readonly RuleActionType FILTERFILEBYAUDIOCODECINDISCOVERY = new RuleActionType("FilterFileByAudioCodecInDiscovery");
 		public static readonly RuleActionType FILTERFILEBYAUDIOCODECINPLAYBACK = new RuleActionType("FilterFileByAudioCodecInPlayback");
 		public static readonly RuleActionType FILTERFILEBYVIDEOCODECINDISCOVERY = new RuleActionType("FilterFileByVideoCodecInDiscovery");

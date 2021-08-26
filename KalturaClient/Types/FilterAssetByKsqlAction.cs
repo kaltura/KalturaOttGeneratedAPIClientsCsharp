@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class FilterAssetByKsql : AssetRuleAction
+	public class FilterAssetByKsqlAction : FilterAction
 	{
 		#region Constants
 		public const string KSQL = "ksql";
@@ -62,11 +62,11 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public FilterAssetByKsql()
+		public FilterAssetByKsqlAction()
 		{
 		}
 
-		public FilterAssetByKsql(JToken node) : base(node)
+		public FilterAssetByKsqlAction(JToken node) : base(node)
 		{
 			if(node["ksql"] != null)
 			{
@@ -80,7 +80,7 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaFilterAssetByKsql");
+				kparams.AddReplace("objectType", "KalturaFilterAssetByKsqlAction");
 			kparams.AddIfNotNull("ksql", this._Ksql);
 			return kparams;
 		}

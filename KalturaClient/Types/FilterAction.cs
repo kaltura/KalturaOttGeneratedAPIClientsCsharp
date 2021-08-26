@@ -35,43 +35,24 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class FilterFileByLabel : AssetRuleAction
+	public class FilterAction : AssetRuleAction
 	{
 		#region Constants
-		public const string LABELS = "labels";
 		#endregion
 
 		#region Private Fields
-		private string _Labels = null;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use LabelsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string Labels
-		{
-			get { return _Labels; }
-			set 
-			{ 
-				_Labels = value;
-				OnPropertyChanged("Labels");
-			}
-		}
 		#endregion
 
 		#region CTor
-		public FilterFileByLabel()
+		public FilterAction()
 		{
 		}
 
-		public FilterFileByLabel(JToken node) : base(node)
+		public FilterAction(JToken node) : base(node)
 		{
-			if(node["labels"] != null)
-			{
-				this._Labels = node["labels"].Value<string>();
-			}
 		}
 		#endregion
 
@@ -80,16 +61,13 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaFilterFileByLabel");
-			kparams.AddIfNotNull("labels", this._Labels);
+				kparams.AddReplace("objectType", "KalturaFilterAction");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case LABELS:
-					return "Labels";
 				default:
 					return base.getPropertyName(apiName);
 			}

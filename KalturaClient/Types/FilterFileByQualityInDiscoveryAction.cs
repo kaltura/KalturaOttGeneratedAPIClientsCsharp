@@ -35,43 +35,24 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class FilterFileByFileTypeForAssetType : FilterFileByFileType
+	public class FilterFileByQualityInDiscoveryAction : FilterFileByQualityAction
 	{
 		#region Constants
-		public const string ASSET_TYPES = "assetTypes";
 		#endregion
 
 		#region Private Fields
-		private string _AssetTypes = null;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use AssetTypesAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string AssetTypes
-		{
-			get { return _AssetTypes; }
-			set 
-			{ 
-				_AssetTypes = value;
-				OnPropertyChanged("AssetTypes");
-			}
-		}
 		#endregion
 
 		#region CTor
-		public FilterFileByFileTypeForAssetType()
+		public FilterFileByQualityInDiscoveryAction()
 		{
 		}
 
-		public FilterFileByFileTypeForAssetType(JToken node) : base(node)
+		public FilterFileByQualityInDiscoveryAction(JToken node) : base(node)
 		{
-			if(node["assetTypes"] != null)
-			{
-				this._AssetTypes = node["assetTypes"].Value<string>();
-			}
 		}
 		#endregion
 
@@ -80,16 +61,13 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaFilterFileByFileTypeForAssetType");
-			kparams.AddIfNotNull("assetTypes", this._AssetTypes);
+				kparams.AddReplace("objectType", "KalturaFilterFileByQualityInDiscoveryAction");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_TYPES:
-					return "AssetTypes";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class FilterFileByStreamerTypeInPlayback : FilterFileByStreamerType
+	public class FilterFileByStreamerTypeInPlayback : FilterFileByStreamerTypeAction
 	{
 		#region Constants
 		#endregion

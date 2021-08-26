@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class FilterFileByAudioCodecInPlayback : FilterFileByAudioCodec
+	public class FilterFileByFileTypeIdInPlaybackAction : FilterFileByFileTypeIdAction
 	{
 		#region Constants
 		#endregion
@@ -47,11 +47,11 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public FilterFileByAudioCodecInPlayback()
+		public FilterFileByFileTypeIdInPlaybackAction()
 		{
 		}
 
-		public FilterFileByAudioCodecInPlayback(JToken node) : base(node)
+		public FilterFileByFileTypeIdInPlaybackAction(JToken node) : base(node)
 		{
 		}
 		#endregion
@@ -61,7 +61,7 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaFilterFileByAudioCodecInPlayback");
+				kparams.AddReplace("objectType", "KalturaFilterFileByFileTypeIdInPlaybackAction");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)

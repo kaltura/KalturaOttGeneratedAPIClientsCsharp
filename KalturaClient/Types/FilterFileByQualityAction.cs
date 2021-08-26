@@ -35,42 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class FilterFileByStreamerType : AssetRuleAction
+	public class FilterFileByQualityAction : FilterAction
 	{
 		#region Constants
-		public const string STREAMER_TYPES = "streamerTypes";
+		public const string TYPE_QUALITY_IN = "typeQualityIn";
 		#endregion
 
 		#region Private Fields
-		private string _StreamerTypes = null;
+		private string _TypeQualityIn = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use StreamerTypesAsDouble property instead
+		/// Use TypeQualityInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string StreamerTypes
+		public string TypeQualityIn
 		{
-			get { return _StreamerTypes; }
+			get { return _TypeQualityIn; }
 			set 
 			{ 
-				_StreamerTypes = value;
-				OnPropertyChanged("StreamerTypes");
+				_TypeQualityIn = value;
+				OnPropertyChanged("TypeQualityIn");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public FilterFileByStreamerType()
+		public FilterFileByQualityAction()
 		{
 		}
 
-		public FilterFileByStreamerType(JToken node) : base(node)
+		public FilterFileByQualityAction(JToken node) : base(node)
 		{
-			if(node["streamerTypes"] != null)
+			if(node["typeQualityIn"] != null)
 			{
-				this._StreamerTypes = node["streamerTypes"].Value<string>();
+				this._TypeQualityIn = node["typeQualityIn"].Value<string>();
 			}
 		}
 		#endregion
@@ -80,16 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaFilterFileByStreamerType");
-			kparams.AddIfNotNull("streamerTypes", this._StreamerTypes);
+				kparams.AddReplace("objectType", "KalturaFilterFileByQualityAction");
+			kparams.AddIfNotNull("typeQualityIn", this._TypeQualityIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case STREAMER_TYPES:
-					return "StreamerTypes";
+				case TYPE_QUALITY_IN:
+					return "TypeQualityIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

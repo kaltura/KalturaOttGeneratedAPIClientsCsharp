@@ -35,24 +35,43 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class FilterFileByLabelInPlayback : FilterFileByLabel
+	public class FilterFileByFileTypeIdAction : FilterAction
 	{
 		#region Constants
+		public const string FILE_TYPE_ID_IN = "fileTypeIdIn";
 		#endregion
 
 		#region Private Fields
+		private string _FileTypeIdIn = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use FileTypeIdInAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string FileTypeIdIn
+		{
+			get { return _FileTypeIdIn; }
+			set 
+			{ 
+				_FileTypeIdIn = value;
+				OnPropertyChanged("FileTypeIdIn");
+			}
+		}
 		#endregion
 
 		#region CTor
-		public FilterFileByLabelInPlayback()
+		public FilterFileByFileTypeIdAction()
 		{
 		}
 
-		public FilterFileByLabelInPlayback(JToken node) : base(node)
+		public FilterFileByFileTypeIdAction(JToken node) : base(node)
 		{
+			if(node["fileTypeIdIn"] != null)
+			{
+				this._FileTypeIdIn = node["fileTypeIdIn"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -61,13 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaFilterFileByLabelInPlayback");
+				kparams.AddReplace("objectType", "KalturaFilterFileByFileTypeIdAction");
+			kparams.AddIfNotNull("fileTypeIdIn", this._FileTypeIdIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
+				case FILE_TYPE_ID_IN:
+					return "FileTypeIdIn";
 				default:
 					return base.getPropertyName(apiName);
 			}
