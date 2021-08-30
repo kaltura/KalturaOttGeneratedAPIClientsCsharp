@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -52,9 +52,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use SingleMultilingualModeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? SingleMultilingualMode
 		{
@@ -65,9 +62,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SingleMultilingualMode");
 			}
 		}
-		/// <summary>
-		/// Use CategoryManagementAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public CategoryManagement CategoryManagement
 		{
@@ -78,9 +72,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CategoryManagement");
 			}
 		}
-		/// <summary>
-		/// Use EpgMultilingualFallbackSupportAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? EpgMultilingualFallbackSupport
 		{
@@ -91,9 +82,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EpgMultilingualFallbackSupport");
 			}
 		}
-		/// <summary>
-		/// Use UploadExportDatalakeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? UploadExportDatalake
 		{
