@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -52,9 +52,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IsRenewableAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsRenewable
 		{
@@ -64,9 +61,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsRenewable");
 			}
 		}
-		/// <summary>
-		/// Use RenewalsNumberAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int RenewalsNumber
 		{
@@ -76,9 +70,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RenewalsNumber");
 			}
 		}
-		/// <summary>
-		/// Use DiscountIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long DiscountId
 		{
@@ -88,9 +79,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("DiscountId");
 			}
 		}
-		/// <summary>
-		/// Use PriceDetailsIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long PriceDetailsId
 		{

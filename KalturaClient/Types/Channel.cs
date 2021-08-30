@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -74,9 +74,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -87,9 +84,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
-		/// <summary>
-		/// Use MultilingualNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<TranslationToken> MultilingualName
 		{
@@ -100,9 +94,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualName");
 			}
 		}
-		/// <summary>
-		/// Use OldNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string OldName
 		{
@@ -113,9 +104,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("OldName");
 			}
 		}
-		/// <summary>
-		/// Use SystemNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string SystemName
 		{
@@ -126,9 +114,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SystemName");
 			}
 		}
-		/// <summary>
-		/// Use DescriptionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Description
 		{
@@ -139,9 +124,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Description");
 			}
 		}
-		/// <summary>
-		/// Use MultilingualDescriptionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<TranslationToken> MultilingualDescription
 		{
@@ -152,9 +134,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualDescription");
 			}
 		}
-		/// <summary>
-		/// Use OldDescriptionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string OldDescription
 		{
@@ -165,9 +144,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("OldDescription");
 			}
 		}
-		/// <summary>
-		/// Use IsActiveAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsActive
 		{
@@ -178,9 +154,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsActive");
 			}
 		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public ChannelOrder OrderBy
 		{
@@ -191,9 +164,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("OrderBy");
 			}
 		}
-		/// <summary>
-		/// Use CreateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -204,9 +174,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
-		/// <summary>
-		/// Use UpdateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{
@@ -217,9 +184,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
-		/// <summary>
-		/// Use SupportSegmentBasedOrderingAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? SupportSegmentBasedOrdering
 		{
@@ -230,9 +194,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SupportSegmentBasedOrdering");
 			}
 		}
-		/// <summary>
-		/// Use AssetUserRuleIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long AssetUserRuleId
 		{
@@ -243,9 +204,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetUserRuleId");
 			}
 		}
-		/// <summary>
-		/// Use MetaDataAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> MetaData
 		{
@@ -256,9 +214,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MetaData");
 			}
 		}
-		/// <summary>
-		/// Use VirtualAssetIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long VirtualAssetId
 		{

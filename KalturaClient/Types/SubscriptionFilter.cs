@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -64,9 +64,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use SubscriptionIdInAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string SubscriptionIdIn
 		{
@@ -77,9 +74,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SubscriptionIdIn");
 			}
 		}
-		/// <summary>
-		/// Use MediaFileIdEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int MediaFileIdEqual
 		{
@@ -90,9 +84,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaFileIdEqual");
 			}
 		}
-		/// <summary>
-		/// Use ExternalIdInAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExternalIdIn
 		{
@@ -103,9 +94,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalIdIn");
 			}
 		}
-		/// <summary>
-		/// Use CouponGroupIdEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int CouponGroupIdEqual
 		{
@@ -116,9 +104,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponGroupIdEqual");
 			}
 		}
-		/// <summary>
-		/// Use PreviewModuleIdEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long PreviewModuleIdEqual
 		{
@@ -129,9 +114,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PreviewModuleIdEqual");
 			}
 		}
-		/// <summary>
-		/// Use PricePlanIdEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long PricePlanIdEqual
 		{
@@ -142,9 +124,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PricePlanIdEqual");
 			}
 		}
-		/// <summary>
-		/// Use ChannelIdEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long ChannelIdEqual
 		{
@@ -155,9 +134,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ChannelIdEqual");
 			}
 		}
-		/// <summary>
-		/// Use KSqlAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string KSql
 		{
@@ -168,9 +144,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("KSql");
 			}
 		}
-		/// <summary>
-		/// Use AlsoInactiveAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? AlsoInactive
 		{
@@ -181,9 +154,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AlsoInactive");
 			}
 		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public new SubscriptionOrderBy OrderBy
 		{

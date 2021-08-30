@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -62,9 +62,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -75,9 +72,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -88,9 +82,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
-		/// <summary>
-		/// Use IsActiveAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsActive
 		{
@@ -101,9 +92,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsActive");
 			}
 		}
-		/// <summary>
-		/// Use ExternalIdentifierAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExternalIdentifier
 		{
@@ -114,9 +102,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalIdentifier");
 			}
 		}
-		/// <summary>
-		/// Use FilterExpressionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string FilterExpression
 		{
@@ -127,9 +112,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("FilterExpression");
 			}
 		}
-		/// <summary>
-		/// Use RecommendationEngineIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int RecommendationEngineId
 		{
@@ -140,9 +122,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RecommendationEngineId");
 			}
 		}
-		/// <summary>
-		/// Use EnrichmentsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<ChannelEnrichmentHolder> Enrichments
 		{
@@ -153,9 +132,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Enrichments");
 			}
 		}
-		/// <summary>
-		/// Use AssetUserRuleIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long AssetUserRuleId
 		{
@@ -166,9 +142,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetUserRuleId");
 			}
 		}
-		/// <summary>
-		/// Use MetaDataAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> MetaData
 		{
