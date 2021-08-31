@@ -142,6 +142,8 @@ namespace Kaltura
 					return new ListResponse<TopicNotification>(jToken);
 				case "KalturaTopicNotificationMessageListResponse":
 					return new ListResponse<TopicNotificationMessage>(jToken);
+				case "KalturaDurationListResponse":
+					return new ListResponse<Duration>(jToken);
 				case "KalturaGenericListResponse":
 					return new ListResponse<T>(jToken);
 				case "KalturaIntegerValueListResponse":

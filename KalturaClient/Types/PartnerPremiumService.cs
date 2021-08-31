@@ -35,84 +35,71 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class PricePlan : UsageModule
+	public class PartnerPremiumService : ObjectBase
 	{
 		#region Constants
-		public const string IS_RENEWABLE = "isRenewable";
-		public const string RENEWALS_NUMBER = "renewalsNumber";
-		public const string DISCOUNT_ID = "discountId";
-		public const string PRICE_DETAILS_ID = "priceDetailsId";
+		public const string ID = "id";
+		public const string NAME = "name";
+		public const string IS_APPLIED = "isApplied";
 		#endregion
 
 		#region Private Fields
-		private bool? _IsRenewable = null;
-		private int _RenewalsNumber = Int32.MinValue;
-		private long _DiscountId = long.MinValue;
-		private long _PriceDetailsId = long.MinValue;
+		private long _Id = long.MinValue;
+		private string _Name = null;
+		private bool? _IsApplied = null;
 		#endregion
 
 		#region Properties
 		[JsonProperty]
-		public bool? IsRenewable
+		public long Id
 		{
+			get { return _Id; }
 			set 
 			{ 
-				_IsRenewable = value;
-				OnPropertyChanged("IsRenewable");
+				_Id = value;
+				OnPropertyChanged("Id");
 			}
 		}
 		[JsonProperty]
-		public int RenewalsNumber
+		public string Name
 		{
-			set 
+			get { return _Name; }
+			private set 
 			{ 
-				_RenewalsNumber = value;
-				OnPropertyChanged("RenewalsNumber");
+				_Name = value;
+				OnPropertyChanged("Name");
 			}
 		}
 		[JsonProperty]
-		public long DiscountId
+		public bool? IsApplied
 		{
+			get { return _IsApplied; }
 			set 
 			{ 
-				_DiscountId = value;
-				OnPropertyChanged("DiscountId");
-			}
-		}
-		[JsonProperty]
-		public long PriceDetailsId
-		{
-			get { return _PriceDetailsId; }
-			set 
-			{ 
-				_PriceDetailsId = value;
-				OnPropertyChanged("PriceDetailsId");
+				_IsApplied = value;
+				OnPropertyChanged("IsApplied");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public PricePlan()
+		public PartnerPremiumService()
 		{
 		}
 
-		public PricePlan(JToken node) : base(node)
+		public PartnerPremiumService(JToken node) : base(node)
 		{
-			if(node["isRenewable"] != null)
+			if(node["id"] != null)
 			{
-				this._IsRenewable = ParseBool(node["isRenewable"].Value<string>());
+				this._Id = ParseLong(node["id"].Value<string>());
 			}
-			if(node["renewalsNumber"] != null)
+			if(node["name"] != null)
 			{
-				this._RenewalsNumber = ParseInt(node["renewalsNumber"].Value<string>());
+				this._Name = node["name"].Value<string>();
 			}
-			if(node["discountId"] != null)
+			if(node["isApplied"] != null)
 			{
-				this._DiscountId = ParseLong(node["discountId"].Value<string>());
-			}
-			if(node["priceDetailsId"] != null)
-			{
-				this._PriceDetailsId = ParseLong(node["priceDetailsId"].Value<string>());
+				this._IsApplied = ParseBool(node["isApplied"].Value<string>());
 			}
 		}
 		#endregion
@@ -122,25 +109,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPricePlan");
-			kparams.AddIfNotNull("isRenewable", this._IsRenewable);
-			kparams.AddIfNotNull("renewalsNumber", this._RenewalsNumber);
-			kparams.AddIfNotNull("discountId", this._DiscountId);
-			kparams.AddIfNotNull("priceDetailsId", this._PriceDetailsId);
+				kparams.AddReplace("objectType", "KalturaPartnerPremiumService");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("name", this._Name);
+			kparams.AddIfNotNull("isApplied", this._IsApplied);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case IS_RENEWABLE:
-					return "IsRenewable";
-				case RENEWALS_NUMBER:
-					return "RenewalsNumber";
-				case DISCOUNT_ID:
-					return "DiscountId";
-				case PRICE_DETAILS_ID:
-					return "PriceDetailsId";
+				case ID:
+					return "Id";
+				case NAME:
+					return "Name";
+				case IS_APPLIED:
+					return "IsApplied";
 				default:
 					return base.getPropertyName(apiName);
 			}

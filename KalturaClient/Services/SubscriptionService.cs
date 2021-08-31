@@ -160,6 +160,50 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class SubscriptionUpdateRequestBuilder : RequestBuilder<Subscription>
+	{
+		#region Constants
+		public const string ID = "id";
+		public const string SUBSCRIPTION = "subscription";
+		#endregion
+
+		public long Id { get; set; }
+		public Subscription Subscription { get; set; }
+
+		public SubscriptionUpdateRequestBuilder()
+			: base("subscription", "update")
+		{
+		}
+
+		public SubscriptionUpdateRequestBuilder(long id, Subscription subscription)
+			: this()
+		{
+			this.Id = id;
+			this.Subscription = subscription;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("subscription"))
+				kparams.AddIfNotNull("subscription", Subscription);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<Subscription>(result);
+		}
+	}
+
 	public class SubscriptionValidateCouponRequestBuilder : RequestBuilder<Coupon>
 	{
 		#region Constants
@@ -224,6 +268,11 @@ namespace Kaltura.Services
 		public static SubscriptionListRequestBuilder List(SubscriptionFilter filter = null, FilterPager pager = null)
 		{
 			return new SubscriptionListRequestBuilder(filter, pager);
+		}
+
+		public static SubscriptionUpdateRequestBuilder Update(long id, Subscription subscription)
+		{
+			return new SubscriptionUpdateRequestBuilder(id, subscription);
 		}
 
 		public static SubscriptionValidateCouponRequestBuilder ValidateCoupon(int id, string code)

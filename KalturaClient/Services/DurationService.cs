@@ -28,70 +28,53 @@
 using System;
 using System.Xml;
 using System.Collections.Generic;
-using Kaltura.Enums;
+using System.IO;
 using Kaltura.Request;
-using Newtonsoft.Json;
+using Kaltura.Types;
+using Kaltura.Enums;
 using Newtonsoft.Json.Linq;
 
-namespace Kaltura.Types
+namespace Kaltura.Services
 {
-	public class NpvrPremiumService : PremiumService
+	public class DurationListRequestBuilder : RequestBuilder<ListResponse<Duration>>
 	{
 		#region Constants
-		public const string QUOTA_IN_MINUTES = "quotaInMinutes";
 		#endregion
 
-		#region Private Fields
-		private long _QuotaInMinutes = long.MinValue;
-		#endregion
 
-		#region Properties
-		[JsonProperty]
-		public long QuotaInMinutes
-		{
-			get { return _QuotaInMinutes; }
-			set 
-			{ 
-				_QuotaInMinutes = value;
-				OnPropertyChanged("QuotaInMinutes");
-			}
-		}
-		#endregion
-
-		#region CTor
-		public NpvrPremiumService()
+		public DurationListRequestBuilder()
+			: base("duration", "list")
 		{
 		}
 
-		public NpvrPremiumService(JToken node) : base(node)
+		public override Params getParameters(bool includeServiceAndAction)
 		{
-			if(node["quotaInMinutes"] != null)
-			{
-				this._QuotaInMinutes = ParseLong(node["quotaInMinutes"].Value<string>());
-			}
-		}
-		#endregion
-
-		#region Methods
-		public override Params ToParams(bool includeObjectType = true)
-		{
-			Params kparams = base.ToParams(includeObjectType);
-			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaNpvrPremiumService");
-			kparams.AddIfNotNull("quotaInMinutes", this._QuotaInMinutes);
+			Params kparams = base.getParameters(includeServiceAndAction);
 			return kparams;
 		}
-		protected override string getPropertyName(string apiName)
+
+		public override Files getFiles()
 		{
-			switch(apiName)
-			{
-				case QUOTA_IN_MINUTES:
-					return "QuotaInMinutes";
-				default:
-					return base.getPropertyName(apiName);
-			}
+			Files kfiles = base.getFiles();
+			return kfiles;
 		}
-		#endregion
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<ListResponse<Duration>>(result);
+		}
+	}
+
+
+	public class DurationService
+	{
+		private DurationService()
+		{
+		}
+
+		public static DurationListRequestBuilder List()
+		{
+			return new DurationListRequestBuilder();
+		}
 	}
 }
-
