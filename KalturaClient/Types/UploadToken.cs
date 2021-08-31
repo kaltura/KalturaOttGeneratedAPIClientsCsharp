@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -48,15 +48,12 @@ namespace Kaltura.Types
 		#region Private Fields
 		private string _Id = null;
 		private UploadTokenStatus _Status = null;
-		private double _FileSize = Double.MinValue;
+		private float _FileSize = Single.MinValue;
 		private long _CreateDate = long.MinValue;
 		private long _UpdateDate = long.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -67,9 +64,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use StatusAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public UploadTokenStatus Status
 		{
@@ -80,25 +74,8 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
-		/// <summary>
-		/// Use FileSizeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use FileSizeAsDouble property instead")]
 		public float FileSize
-		{
-			get { return (float)_FileSize; }
-			private set 
-			{ 
-				_FileSize = value;
-				OnPropertyChanged("FileSize");
-			}
-		}
-		///<summary>
-		///Use this property FileSizeAsDouble instead of the float FileSize property version
-		///</summary>
-		[JsonProperty]
-		public double FileSizeAsDouble
 		{
 			get { return _FileSize; }
 			private set 
@@ -107,9 +84,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("FileSize");
 			}
 		}
-		/// <summary>
-		/// Use CreateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long CreateDate
 		{
@@ -120,9 +94,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CreateDate");
 			}
 		}
-		/// <summary>
-		/// Use UpdateDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long UpdateDate
 		{
@@ -152,7 +123,7 @@ namespace Kaltura.Types
 			}
 			if(node["fileSize"] != null)
 			{
-				this._FileSize = ParseDouble(node["fileSize"].Value<string>());
+				this._FileSize = ParseFloat(node["fileSize"].Value<string>());
 			}
 			if(node["createDate"] != null)
 			{

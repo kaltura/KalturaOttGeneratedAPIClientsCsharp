@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -162,7 +162,7 @@ namespace Kaltura.Services
 		public const string PAGER = "pager";
 		#endregion
 
-		public ChannelsFilter Filter { get; set; }
+		public ChannelsBaseFilter Filter { get; set; }
 		public FilterPager Pager { get; set; }
 
 		public ChannelListRequestBuilder()
@@ -170,7 +170,7 @@ namespace Kaltura.Services
 		{
 		}
 
-		public ChannelListRequestBuilder(ChannelsFilter filter, FilterPager pager)
+		public ChannelListRequestBuilder(ChannelsBaseFilter filter, FilterPager pager)
 			: this()
 		{
 			this.Filter = filter;
@@ -265,7 +265,7 @@ namespace Kaltura.Services
 			return new ChannelGetRequestBuilder(id);
 		}
 
-		public static ChannelListRequestBuilder List(ChannelsFilter filter = null, FilterPager pager = null)
+		public static ChannelListRequestBuilder List(ChannelsBaseFilter filter = null, FilterPager pager = null)
 		{
 			return new ChannelListRequestBuilder(filter, pager);
 		}

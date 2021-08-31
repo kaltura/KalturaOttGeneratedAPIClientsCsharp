@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -44,31 +44,14 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private double _Price = Double.MinValue;
+		private float _Price = Single.MinValue;
 		private long _PurchaseId = long.MinValue;
 		private long _SubscriptionId = long.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use PriceAsDouble property instead
-		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use PriceAsDouble property instead")]
 		public float Price
-		{
-			get { return (float)_Price; }
-			set 
-			{ 
-				_Price = value;
-				OnPropertyChanged("Price");
-			}
-		}
-		///<summary>
-		///Use this property PriceAsDouble instead of the float Price property version
-		///</summary>
-		[JsonProperty]
-		public double PriceAsDouble
 		{
 			get { return _Price; }
 			set 
@@ -77,9 +60,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Price");
 			}
 		}
-		/// <summary>
-		/// Use PurchaseIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long PurchaseId
 		{
@@ -90,9 +70,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PurchaseId");
 			}
 		}
-		/// <summary>
-		/// Use SubscriptionIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long SubscriptionId
 		{
@@ -114,7 +91,7 @@ namespace Kaltura.Types
 		{
 			if(node["price"] != null)
 			{
-				this._Price = ParseDouble(node["price"].Value<string>());
+				this._Price = ParseFloat(node["price"].Value<string>());
 			}
 			if(node["purchaseId"] != null)
 			{

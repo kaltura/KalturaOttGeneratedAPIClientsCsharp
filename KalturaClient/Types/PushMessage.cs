@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,9 +56,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use MessageAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Message
 		{
@@ -69,9 +66,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Message");
 			}
 		}
-		/// <summary>
-		/// Use SoundAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Sound
 		{
@@ -82,9 +76,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Sound");
 			}
 		}
-		/// <summary>
-		/// Use ActionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Action
 		{
@@ -95,9 +86,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Action");
 			}
 		}
-		/// <summary>
-		/// Use UrlAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Url
 		{
@@ -108,9 +96,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Url");
 			}
 		}
-		/// <summary>
-		/// Use UdidAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Udid
 		{
@@ -121,9 +106,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Udid");
 			}
 		}
-		/// <summary>
-		/// Use PushChannelsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string PushChannels
 		{

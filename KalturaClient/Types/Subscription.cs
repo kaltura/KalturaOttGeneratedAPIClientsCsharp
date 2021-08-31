@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Subscription : ObjectBase
+	public class Subscription : OTTObjectSupportNullable
 	{
 		#region Constants
 		public const string ID = "id";
@@ -78,6 +78,8 @@ namespace Kaltura.Types
 		public const string ADS_POLICY = "adsPolicy";
 		public const string ADS_PARAM = "adsParam";
 		public const string IS_ACTIVE = "isActive";
+		public const string CREATE_DATE = "createDate";
+		public const string UPDATE_DATE = "updateDate";
 		#endregion
 
 		#region Private Fields
@@ -121,12 +123,11 @@ namespace Kaltura.Types
 		private AdsPolicy _AdsPolicy = null;
 		private string _AdsParam = null;
 		private bool? _IsActive = null;
+		private long _CreateDate = long.MinValue;
+		private long _UpdateDate = long.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -137,9 +138,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use ChannelsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<BaseChannel> Channels
 		{
@@ -150,9 +148,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Channels");
 			}
 		}
-		/// <summary>
-		/// Use ChannelsIdsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ChannelsIds
 		{
@@ -163,9 +158,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ChannelsIds");
 			}
 		}
-		/// <summary>
-		/// Use StartDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -176,9 +168,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
-		/// <summary>
-		/// Use EndDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -189,9 +178,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
-		/// <summary>
-		/// Use FileTypesAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<IntegerValue> FileTypes
 		{
@@ -202,9 +188,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("FileTypes");
 			}
 		}
-		/// <summary>
-		/// Use FileTypesIdsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string FileTypesIds
 		{
@@ -215,9 +198,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("FileTypesIds");
 			}
 		}
-		/// <summary>
-		/// Use IsRenewableAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsRenewable
 		{
@@ -228,9 +208,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsRenewable");
 			}
 		}
-		/// <summary>
-		/// Use RenewalsNumberAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int RenewalsNumber
 		{
@@ -241,9 +218,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RenewalsNumber");
 			}
 		}
-		/// <summary>
-		/// Use IsInfiniteRenewalAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsInfiniteRenewal
 		{
@@ -254,9 +228,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsInfiniteRenewal");
 			}
 		}
-		/// <summary>
-		/// Use PriceAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public PriceDetails Price
 		{
@@ -267,9 +238,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Price");
 			}
 		}
-		/// <summary>
-		/// Use DiscountModuleAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public DiscountModule DiscountModule
 		{
@@ -280,9 +248,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("DiscountModule");
 			}
 		}
-		/// <summary>
-		/// Use InternalDiscountModuleIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long InternalDiscountModuleId
 		{
@@ -293,9 +258,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("InternalDiscountModuleId");
 			}
 		}
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -306,9 +268,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
-		/// <summary>
-		/// Use MultilingualNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<TranslationToken> MultilingualName
 		{
@@ -319,9 +278,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualName");
 			}
 		}
-		/// <summary>
-		/// Use DescriptionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Description
 		{
@@ -332,9 +288,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Description");
 			}
 		}
-		/// <summary>
-		/// Use MultilingualDescriptionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<TranslationToken> MultilingualDescription
 		{
@@ -345,9 +298,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MultilingualDescription");
 			}
 		}
-		/// <summary>
-		/// Use MediaIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int MediaId
 		{
@@ -358,9 +308,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaId");
 			}
 		}
-		/// <summary>
-		/// Use ProrityInOrderAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long ProrityInOrder
 		{
@@ -371,9 +318,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProrityInOrder");
 			}
 		}
-		/// <summary>
-		/// Use PricePlanIdsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string PricePlanIds
 		{
@@ -384,9 +328,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PricePlanIds");
 			}
 		}
-		/// <summary>
-		/// Use PreviewModuleAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public PreviewModule PreviewModule
 		{
@@ -397,9 +338,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PreviewModule");
 			}
 		}
-		/// <summary>
-		/// Use PreviewModuleIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long PreviewModuleId
 		{
@@ -410,9 +348,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PreviewModuleId");
 			}
 		}
-		/// <summary>
-		/// Use HouseholdLimitationsIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int HouseholdLimitationsId
 		{
@@ -423,9 +358,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("HouseholdLimitationsId");
 			}
 		}
-		/// <summary>
-		/// Use GracePeriodMinutesAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int GracePeriodMinutes
 		{
@@ -436,9 +368,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("GracePeriodMinutes");
 			}
 		}
-		/// <summary>
-		/// Use PremiumServicesAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<PremiumService> PremiumServices
 		{
@@ -449,9 +378,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PremiumServices");
 			}
 		}
-		/// <summary>
-		/// Use MaxViewsNumberAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int MaxViewsNumber
 		{
@@ -462,9 +388,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxViewsNumber");
 			}
 		}
-		/// <summary>
-		/// Use ViewLifeCycleAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int ViewLifeCycle
 		{
@@ -475,9 +398,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ViewLifeCycle");
 			}
 		}
-		/// <summary>
-		/// Use WaiverPeriodAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int WaiverPeriod
 		{
@@ -488,9 +408,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("WaiverPeriod");
 			}
 		}
-		/// <summary>
-		/// Use IsWaiverEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsWaiverEnabled
 		{
@@ -501,9 +418,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsWaiverEnabled");
 			}
 		}
-		/// <summary>
-		/// Use UserTypesAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<OTTUserType> UserTypes
 		{
@@ -514,9 +428,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserTypes");
 			}
 		}
-		/// <summary>
-		/// Use CouponsGroupsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<CouponsGroup> CouponsGroups
 		{
@@ -527,9 +438,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponsGroups");
 			}
 		}
-		/// <summary>
-		/// Use SubscriptionCouponGroupAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<SubscriptionCouponGroup> SubscriptionCouponGroup
 		{
@@ -540,9 +448,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SubscriptionCouponGroup");
 			}
 		}
-		/// <summary>
-		/// Use ProductCodesAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public IList<ProductCode> ProductCodes
 		{
@@ -553,9 +458,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProductCodes");
 			}
 		}
-		/// <summary>
-		/// Use DependencyTypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public SubscriptionDependencyType DependencyType
 		{
@@ -566,9 +468,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("DependencyType");
 			}
 		}
-		/// <summary>
-		/// Use ExternalIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExternalId
 		{
@@ -579,9 +478,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
-		/// <summary>
-		/// Use IsCancellationBlockedAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsCancellationBlocked
 		{
@@ -592,9 +488,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsCancellationBlocked");
 			}
 		}
-		/// <summary>
-		/// Use PreSaleDateAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long PreSaleDate
 		{
@@ -605,9 +498,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PreSaleDate");
 			}
 		}
-		/// <summary>
-		/// Use AdsPolicyAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public AdsPolicy AdsPolicy
 		{
@@ -618,9 +508,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AdsPolicy");
 			}
 		}
-		/// <summary>
-		/// Use AdsParamAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string AdsParam
 		{
@@ -631,9 +518,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AdsParam");
 			}
 		}
-		/// <summary>
-		/// Use IsActiveAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IsActive
 		{
@@ -642,6 +526,26 @@ namespace Kaltura.Types
 			{ 
 				_IsActive = value;
 				OnPropertyChanged("IsActive");
+			}
+		}
+		[JsonProperty]
+		public long CreateDate
+		{
+			get { return _CreateDate; }
+			private set 
+			{ 
+				_CreateDate = value;
+				OnPropertyChanged("CreateDate");
+			}
+		}
+		[JsonProperty]
+		public long UpdateDate
+		{
+			get { return _UpdateDate; }
+			private set 
+			{ 
+				_UpdateDate = value;
+				OnPropertyChanged("UpdateDate");
 			}
 		}
 		#endregion
@@ -849,6 +753,14 @@ namespace Kaltura.Types
 			{
 				this._IsActive = ParseBool(node["isActive"].Value<string>());
 			}
+			if(node["createDate"] != null)
+			{
+				this._CreateDate = ParseLong(node["createDate"].Value<string>());
+			}
+			if(node["updateDate"] != null)
+			{
+				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -898,6 +810,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("adsPolicy", this._AdsPolicy);
 			kparams.AddIfNotNull("adsParam", this._AdsParam);
 			kparams.AddIfNotNull("isActive", this._IsActive);
+			kparams.AddIfNotNull("createDate", this._CreateDate);
+			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -984,6 +898,10 @@ namespace Kaltura.Types
 					return "AdsParam";
 				case IS_ACTIVE:
 					return "IsActive";
+				case CREATE_DATE:
+					return "CreateDate";
+				case UPDATE_DATE:
+					return "UpdateDate";
 				default:
 					return base.getPropertyName(apiName);
 			}
