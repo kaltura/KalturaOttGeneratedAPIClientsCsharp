@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -155,6 +155,50 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class DiscountDetailsUpdateRequestBuilder : RequestBuilder<DiscountDetails>
+	{
+		#region Constants
+		public const string ID = "id";
+		public const string DISCOUNT_DETAILS = "discountDetails";
+		#endregion
+
+		public long Id { get; set; }
+		public DiscountDetails DiscountDetails { get; set; }
+
+		public DiscountDetailsUpdateRequestBuilder()
+			: base("discountdetails", "update")
+		{
+		}
+
+		public DiscountDetailsUpdateRequestBuilder(long id, DiscountDetails discountDetails)
+			: this()
+		{
+			this.Id = id;
+			this.DiscountDetails = discountDetails;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("discountDetails"))
+				kparams.AddIfNotNull("discountDetails", DiscountDetails);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<DiscountDetails>(result);
+		}
+	}
+
 
 	public class DiscountDetailsService
 	{
@@ -175,6 +219,11 @@ namespace Kaltura.Services
 		public static DiscountDetailsListRequestBuilder List(DiscountDetailsFilter filter = null)
 		{
 			return new DiscountDetailsListRequestBuilder(filter);
+		}
+
+		public static DiscountDetailsUpdateRequestBuilder Update(long id, DiscountDetails discountDetails)
+		{
+			return new DiscountDetailsUpdateRequestBuilder(id, discountDetails);
 		}
 	}
 }

@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -42,7 +42,11 @@ namespace Kaltura.Types
 		public const string MEDIA_FILE_ID_EQUAL = "mediaFileIdEqual";
 		public const string EXTERNAL_ID_IN = "externalIdIn";
 		public const string COUPON_GROUP_ID_EQUAL = "couponGroupIdEqual";
+		public const string PREVIEW_MODULE_ID_EQUAL = "previewModuleIdEqual";
+		public const string PRICE_PLAN_ID_EQUAL = "pricePlanIdEqual";
+		public const string CHANNEL_ID_EQUAL = "channelIdEqual";
 		public const string KSQL = "kSql";
+		public const string ALSO_INACTIVE = "alsoInactive";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -51,14 +55,15 @@ namespace Kaltura.Types
 		private int _MediaFileIdEqual = Int32.MinValue;
 		private string _ExternalIdIn = null;
 		private int _CouponGroupIdEqual = Int32.MinValue;
+		private long _PreviewModuleIdEqual = long.MinValue;
+		private long _PricePlanIdEqual = long.MinValue;
+		private long _ChannelIdEqual = long.MinValue;
 		private string _KSql = null;
+		private bool? _AlsoInactive = null;
 		private SubscriptionOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use SubscriptionIdInAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string SubscriptionIdIn
 		{
@@ -69,9 +74,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SubscriptionIdIn");
 			}
 		}
-		/// <summary>
-		/// Use MediaFileIdEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int MediaFileIdEqual
 		{
@@ -82,9 +84,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaFileIdEqual");
 			}
 		}
-		/// <summary>
-		/// Use ExternalIdInAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ExternalIdIn
 		{
@@ -95,9 +94,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalIdIn");
 			}
 		}
-		/// <summary>
-		/// Use CouponGroupIdEqualAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int CouponGroupIdEqual
 		{
@@ -108,9 +104,36 @@ namespace Kaltura.Types
 				OnPropertyChanged("CouponGroupIdEqual");
 			}
 		}
-		/// <summary>
-		/// Use KSqlAsDouble property instead
-		/// </summary>
+		[JsonProperty]
+		public long PreviewModuleIdEqual
+		{
+			get { return _PreviewModuleIdEqual; }
+			set 
+			{ 
+				_PreviewModuleIdEqual = value;
+				OnPropertyChanged("PreviewModuleIdEqual");
+			}
+		}
+		[JsonProperty]
+		public long PricePlanIdEqual
+		{
+			get { return _PricePlanIdEqual; }
+			set 
+			{ 
+				_PricePlanIdEqual = value;
+				OnPropertyChanged("PricePlanIdEqual");
+			}
+		}
+		[JsonProperty]
+		public long ChannelIdEqual
+		{
+			get { return _ChannelIdEqual; }
+			set 
+			{ 
+				_ChannelIdEqual = value;
+				OnPropertyChanged("ChannelIdEqual");
+			}
+		}
 		[JsonProperty]
 		public string KSql
 		{
@@ -121,9 +144,16 @@ namespace Kaltura.Types
 				OnPropertyChanged("KSql");
 			}
 		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
+		[JsonProperty]
+		public bool? AlsoInactive
+		{
+			get { return _AlsoInactive; }
+			set 
+			{ 
+				_AlsoInactive = value;
+				OnPropertyChanged("AlsoInactive");
+			}
+		}
 		[JsonProperty]
 		public new SubscriptionOrderBy OrderBy
 		{
@@ -159,9 +189,25 @@ namespace Kaltura.Types
 			{
 				this._CouponGroupIdEqual = ParseInt(node["couponGroupIdEqual"].Value<string>());
 			}
+			if(node["previewModuleIdEqual"] != null)
+			{
+				this._PreviewModuleIdEqual = ParseLong(node["previewModuleIdEqual"].Value<string>());
+			}
+			if(node["pricePlanIdEqual"] != null)
+			{
+				this._PricePlanIdEqual = ParseLong(node["pricePlanIdEqual"].Value<string>());
+			}
+			if(node["channelIdEqual"] != null)
+			{
+				this._ChannelIdEqual = ParseLong(node["channelIdEqual"].Value<string>());
+			}
 			if(node["kSql"] != null)
 			{
 				this._KSql = node["kSql"].Value<string>();
+			}
+			if(node["alsoInactive"] != null)
+			{
+				this._AlsoInactive = ParseBool(node["alsoInactive"].Value<string>());
 			}
 			if(node["orderBy"] != null)
 			{
@@ -180,7 +226,11 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("mediaFileIdEqual", this._MediaFileIdEqual);
 			kparams.AddIfNotNull("externalIdIn", this._ExternalIdIn);
 			kparams.AddIfNotNull("couponGroupIdEqual", this._CouponGroupIdEqual);
+			kparams.AddIfNotNull("previewModuleIdEqual", this._PreviewModuleIdEqual);
+			kparams.AddIfNotNull("pricePlanIdEqual", this._PricePlanIdEqual);
+			kparams.AddIfNotNull("channelIdEqual", this._ChannelIdEqual);
 			kparams.AddIfNotNull("kSql", this._KSql);
+			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -196,8 +246,16 @@ namespace Kaltura.Types
 					return "ExternalIdIn";
 				case COUPON_GROUP_ID_EQUAL:
 					return "CouponGroupIdEqual";
+				case PREVIEW_MODULE_ID_EQUAL:
+					return "PreviewModuleIdEqual";
+				case PRICE_PLAN_ID_EQUAL:
+					return "PricePlanIdEqual";
+				case CHANNEL_ID_EQUAL:
+					return "ChannelIdEqual";
 				case KSQL:
 					return "KSql";
+				case ALSO_INACTIVE:
+					return "AlsoInactive";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
