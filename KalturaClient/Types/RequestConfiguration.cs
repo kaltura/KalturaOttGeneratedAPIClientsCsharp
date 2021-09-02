@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -62,9 +62,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use PartnerIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int PartnerId
 		{
@@ -75,9 +72,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PartnerId");
 			}
 		}
-		/// <summary>
-		/// Use UserIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int UserId
 		{
@@ -88,9 +82,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserId");
 			}
 		}
-		/// <summary>
-		/// Use LanguageAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Language
 		{
@@ -101,9 +92,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Language");
 			}
 		}
-		/// <summary>
-		/// Use CurrencyAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Currency
 		{
@@ -114,9 +102,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Currency");
 			}
 		}
-		/// <summary>
-		/// Use KsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string Ks
 		{
@@ -127,9 +112,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Ks");
 			}
 		}
-		/// <summary>
-		/// Use ResponseProfileAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public BaseResponseProfile ResponseProfile
 		{
@@ -140,9 +122,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ResponseProfile");
 			}
 		}
-		/// <summary>
-		/// Use AbortOnErrorAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? AbortOnError
 		{
@@ -153,9 +132,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AbortOnError");
 			}
 		}
-		/// <summary>
-		/// Use AbortAllOnErrorAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? AbortAllOnError
 		{
@@ -166,9 +142,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AbortAllOnError");
 			}
 		}
-		/// <summary>
-		/// Use SkipConditionAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public SkipCondition SkipCondition
 		{

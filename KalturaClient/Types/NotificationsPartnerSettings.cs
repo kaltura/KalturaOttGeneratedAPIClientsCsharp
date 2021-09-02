@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -82,9 +82,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use PushNotificationEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? PushNotificationEnabled
 		{
@@ -95,9 +92,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PushNotificationEnabled");
 			}
 		}
-		/// <summary>
-		/// Use PushSystemAnnouncementsEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? PushSystemAnnouncementsEnabled
 		{
@@ -108,9 +102,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PushSystemAnnouncementsEnabled");
 			}
 		}
-		/// <summary>
-		/// Use PushStartHourAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int PushStartHour
 		{
@@ -121,9 +112,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PushStartHour");
 			}
 		}
-		/// <summary>
-		/// Use PushEndHourAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int PushEndHour
 		{
@@ -134,9 +122,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PushEndHour");
 			}
 		}
-		/// <summary>
-		/// Use InboxEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? InboxEnabled
 		{
@@ -147,9 +132,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("InboxEnabled");
 			}
 		}
-		/// <summary>
-		/// Use MessageTTLDaysAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int MessageTTLDays
 		{
@@ -160,9 +142,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MessageTTLDays");
 			}
 		}
-		/// <summary>
-		/// Use AutomaticIssueFollowNotificationAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? AutomaticIssueFollowNotification
 		{
@@ -173,9 +152,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AutomaticIssueFollowNotification");
 			}
 		}
-		/// <summary>
-		/// Use TopicExpirationDurationDaysAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int TopicExpirationDurationDays
 		{
@@ -186,9 +162,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("TopicExpirationDurationDays");
 			}
 		}
-		/// <summary>
-		/// Use ReminderEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? ReminderEnabled
 		{
@@ -199,9 +172,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ReminderEnabled");
 			}
 		}
-		/// <summary>
-		/// Use ReminderOffsetSecAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int ReminderOffsetSec
 		{
@@ -212,9 +182,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ReminderOffsetSec");
 			}
 		}
-		/// <summary>
-		/// Use PushAdapterUrlAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string PushAdapterUrl
 		{
@@ -225,9 +192,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PushAdapterUrl");
 			}
 		}
-		/// <summary>
-		/// Use ChurnMailTemplateNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ChurnMailTemplateName
 		{
@@ -238,9 +202,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ChurnMailTemplateName");
 			}
 		}
-		/// <summary>
-		/// Use ChurnMailSubjectAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string ChurnMailSubject
 		{
@@ -251,9 +212,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("ChurnMailSubject");
 			}
 		}
-		/// <summary>
-		/// Use SenderEmailAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string SenderEmail
 		{
@@ -264,9 +222,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SenderEmail");
 			}
 		}
-		/// <summary>
-		/// Use MailSenderNameAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public string MailSenderName
 		{
@@ -277,9 +232,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MailSenderName");
 			}
 		}
-		/// <summary>
-		/// Use MailNotificationAdapterIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long MailNotificationAdapterId
 		{
@@ -290,9 +242,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MailNotificationAdapterId");
 			}
 		}
-		/// <summary>
-		/// Use SmsEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? SmsEnabled
 		{
@@ -303,9 +252,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SmsEnabled");
 			}
 		}
-		/// <summary>
-		/// Use IotEnabledAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public bool? IotEnabled
 		{
@@ -316,9 +262,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IotEnabled");
 			}
 		}
-		/// <summary>
-		/// Use EpgNotificationAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public EpgNotificationSettings EpgNotification
 		{

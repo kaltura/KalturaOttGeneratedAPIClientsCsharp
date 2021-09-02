@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -51,16 +51,13 @@ namespace Kaltura.Types
 		private long _Id = long.MinValue;
 		private long _SubscriptionId = long.MinValue;
 		private CompensationType _CompensationType = null;
-		private double _Amount = Double.MinValue;
+		private float _Amount = Single.MinValue;
 		private int _TotalRenewalIterations = Int32.MinValue;
 		private int _AppliedRenewalIterations = Int32.MinValue;
 		private int _PurchaseId = Int32.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -71,9 +68,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
-		/// <summary>
-		/// Use SubscriptionIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public long SubscriptionId
 		{
@@ -84,9 +78,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("SubscriptionId");
 			}
 		}
-		/// <summary>
-		/// Use CompensationTypeAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public CompensationType CompensationType
 		{
@@ -97,25 +88,8 @@ namespace Kaltura.Types
 				OnPropertyChanged("CompensationType");
 			}
 		}
-		/// <summary>
-		/// Use AmountAsDouble property instead
-		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use AmountAsDouble property instead")]
 		public float Amount
-		{
-			get { return (float)_Amount; }
-			set 
-			{ 
-				_Amount = value;
-				OnPropertyChanged("Amount");
-			}
-		}
-		///<summary>
-		///Use this property AmountAsDouble instead of the float Amount property version
-		///</summary>
-		[JsonProperty]
-		public double AmountAsDouble
 		{
 			get { return _Amount; }
 			set 
@@ -124,9 +98,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Amount");
 			}
 		}
-		/// <summary>
-		/// Use TotalRenewalIterationsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int TotalRenewalIterations
 		{
@@ -137,9 +108,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("TotalRenewalIterations");
 			}
 		}
-		/// <summary>
-		/// Use AppliedRenewalIterationsAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int AppliedRenewalIterations
 		{
@@ -150,9 +118,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AppliedRenewalIterations");
 			}
 		}
-		/// <summary>
-		/// Use PurchaseIdAsDouble property instead
-		/// </summary>
 		[JsonProperty]
 		public int PurchaseId
 		{
@@ -186,7 +151,7 @@ namespace Kaltura.Types
 			}
 			if(node["amount"] != null)
 			{
-				this._Amount = ParseDouble(node["amount"].Value<string>());
+				this._Amount = ParseFloat(node["amount"].Value<string>());
 			}
 			if(node["totalRenewalIterations"] != null)
 			{
