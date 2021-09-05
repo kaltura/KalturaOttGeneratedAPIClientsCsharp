@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -118,19 +118,22 @@ namespace Kaltura.Services
 	{
 		#region Constants
 		public const string FILTER = "filter";
+		public const string PAGER = "pager";
 		#endregion
 
 		public UserSessionProfileFilter Filter { get; set; }
+		public FilterPager Pager { get; set; }
 
 		public UserSessionProfileListRequestBuilder()
 			: base("usersessionprofile", "list")
 		{
 		}
 
-		public UserSessionProfileListRequestBuilder(UserSessionProfileFilter filter)
+		public UserSessionProfileListRequestBuilder(UserSessionProfileFilter filter, FilterPager pager)
 			: this()
 		{
 			this.Filter = filter;
+			this.Pager = pager;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -138,6 +141,8 @@ namespace Kaltura.Services
 			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("filter"))
 				kparams.AddIfNotNull("filter", Filter);
+			if (!isMapped("pager"))
+				kparams.AddIfNotNull("pager", Pager);
 			return kparams;
 		}
 
@@ -214,9 +219,9 @@ namespace Kaltura.Services
 			return new UserSessionProfileDeleteRequestBuilder(id);
 		}
 
-		public static UserSessionProfileListRequestBuilder List(UserSessionProfileFilter filter = null)
+		public static UserSessionProfileListRequestBuilder List(UserSessionProfileFilter filter = null, FilterPager pager = null)
 		{
-			return new UserSessionProfileListRequestBuilder(filter);
+			return new UserSessionProfileListRequestBuilder(filter, pager);
 		}
 
 		public static UserSessionProfileUpdateRequestBuilder Update(long id, UserSessionProfile userSessionProfile)

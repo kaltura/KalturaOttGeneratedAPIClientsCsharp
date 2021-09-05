@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -64,6 +64,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use NextRenewalDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long NextRenewalDate
 		{
@@ -74,6 +77,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("NextRenewalDate");
 			}
 		}
+		/// <summary>
+		/// Use IsRenewableForPurchaseAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsRenewableForPurchase
 		{
@@ -84,6 +90,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsRenewableForPurchase");
 			}
 		}
+		/// <summary>
+		/// Use IsRenewableAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsRenewable
 		{
@@ -94,6 +103,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsRenewable");
 			}
 		}
+		/// <summary>
+		/// Use IsInGracePeriodAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsInGracePeriod
 		{
@@ -104,6 +116,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsInGracePeriod");
 			}
 		}
+		/// <summary>
+		/// Use PaymentGatewayIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int PaymentGatewayId
 		{
@@ -114,6 +129,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PaymentGatewayId");
 			}
 		}
+		/// <summary>
+		/// Use PaymentMethodIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int PaymentMethodId
 		{
@@ -124,6 +142,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PaymentMethodId");
 			}
 		}
+		/// <summary>
+		/// Use ScheduledSubscriptionIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ScheduledSubscriptionId
 		{
@@ -134,6 +155,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ScheduledSubscriptionId");
 			}
 		}
+		/// <summary>
+		/// Use UnifiedPaymentIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long UnifiedPaymentId
 		{
@@ -144,6 +168,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UnifiedPaymentId");
 			}
 		}
+		/// <summary>
+		/// Use IsSuspendedAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsSuspended
 		{
@@ -154,6 +181,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsSuspended");
 			}
 		}
+		/// <summary>
+		/// Use PriceDetailsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public EntitlementPriceDetails PriceDetails
 		{
