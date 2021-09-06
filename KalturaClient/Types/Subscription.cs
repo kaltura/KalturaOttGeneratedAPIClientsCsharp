@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Subscription : ObjectBase
+	public class Subscription : OTTObjectSupportNullable
 	{
 		#region Constants
 		public const string ID = "id";
@@ -78,6 +78,8 @@ namespace Kaltura.Types
 		public const string ADS_POLICY = "adsPolicy";
 		public const string ADS_PARAM = "adsParam";
 		public const string IS_ACTIVE = "isActive";
+		public const string CREATE_DATE = "createDate";
+		public const string UPDATE_DATE = "updateDate";
 		#endregion
 
 		#region Private Fields
@@ -121,6 +123,8 @@ namespace Kaltura.Types
 		private AdsPolicy _AdsPolicy = null;
 		private string _AdsParam = null;
 		private bool? _IsActive = null;
+		private long _CreateDate = long.MinValue;
+		private long _UpdateDate = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -644,6 +648,32 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsActive");
 			}
 		}
+		/// <summary>
+		/// Use CreateDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long CreateDate
+		{
+			get { return _CreateDate; }
+			private set 
+			{ 
+				_CreateDate = value;
+				OnPropertyChanged("CreateDate");
+			}
+		}
+		/// <summary>
+		/// Use UpdateDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long UpdateDate
+		{
+			get { return _UpdateDate; }
+			private set 
+			{ 
+				_UpdateDate = value;
+				OnPropertyChanged("UpdateDate");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -849,6 +879,14 @@ namespace Kaltura.Types
 			{
 				this._IsActive = ParseBool(node["isActive"].Value<string>());
 			}
+			if(node["createDate"] != null)
+			{
+				this._CreateDate = ParseLong(node["createDate"].Value<string>());
+			}
+			if(node["updateDate"] != null)
+			{
+				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -898,6 +936,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("adsPolicy", this._AdsPolicy);
 			kparams.AddIfNotNull("adsParam", this._AdsParam);
 			kparams.AddIfNotNull("isActive", this._IsActive);
+			kparams.AddIfNotNull("createDate", this._CreateDate);
+			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -984,6 +1024,10 @@ namespace Kaltura.Types
 					return "AdsParam";
 				case IS_ACTIVE:
 					return "IsActive";
+				case CREATE_DATE:
+					return "CreateDate";
+				case UPDATE_DATE:
+					return "UpdateDate";
 				default:
 					return base.getPropertyName(apiName);
 			}

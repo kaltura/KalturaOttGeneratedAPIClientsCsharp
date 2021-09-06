@@ -119,17 +119,27 @@ namespace Kaltura.Services
 	public class PreviewModuleListRequestBuilder : RequestBuilder<ListResponse<PreviewModule>>
 	{
 		#region Constants
+		public const string FILTER = "filter";
 		#endregion
 
+		public PreviewModuleFilter Filter { get; set; }
 
 		public PreviewModuleListRequestBuilder()
 			: base("previewmodule", "list")
 		{
 		}
 
+		public PreviewModuleListRequestBuilder(PreviewModuleFilter filter)
+			: this()
+		{
+			this.Filter = filter;
+		}
+
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("filter"))
+				kparams.AddIfNotNull("filter", Filter);
 			return kparams;
 		}
 
@@ -142,6 +152,50 @@ namespace Kaltura.Services
 		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<ListResponse<PreviewModule>>(result);
+		}
+	}
+
+	public class PreviewModuleUpdateRequestBuilder : RequestBuilder<PreviewModule>
+	{
+		#region Constants
+		public const string ID = "id";
+		public const string PREVIEW_MODULE = "previewModule";
+		#endregion
+
+		public long Id { get; set; }
+		public PreviewModule PreviewModule { get; set; }
+
+		public PreviewModuleUpdateRequestBuilder()
+			: base("previewmodule", "update")
+		{
+		}
+
+		public PreviewModuleUpdateRequestBuilder(long id, PreviewModule previewModule)
+			: this()
+		{
+			this.Id = id;
+			this.PreviewModule = previewModule;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("previewModule"))
+				kparams.AddIfNotNull("previewModule", PreviewModule);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<PreviewModule>(result);
 		}
 	}
 
@@ -162,9 +216,14 @@ namespace Kaltura.Services
 			return new PreviewModuleDeleteRequestBuilder(id);
 		}
 
-		public static PreviewModuleListRequestBuilder List()
+		public static PreviewModuleListRequestBuilder List(PreviewModuleFilter filter = null)
 		{
-			return new PreviewModuleListRequestBuilder();
+			return new PreviewModuleListRequestBuilder(filter);
+		}
+
+		public static PreviewModuleUpdateRequestBuilder Update(long id, PreviewModule previewModule)
+		{
+			return new PreviewModuleUpdateRequestBuilder(id, previewModule);
 		}
 	}
 }

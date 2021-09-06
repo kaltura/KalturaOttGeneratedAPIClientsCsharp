@@ -155,6 +155,50 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class PriceDetailsUpdateRequestBuilder : RequestBuilder<PriceDetails>
+	{
+		#region Constants
+		public const string ID = "id";
+		public const string PRICE_DETAILS = "priceDetails";
+		#endregion
+
+		public long Id { get; set; }
+		public PriceDetails PriceDetails { get; set; }
+
+		public PriceDetailsUpdateRequestBuilder()
+			: base("pricedetails", "update")
+		{
+		}
+
+		public PriceDetailsUpdateRequestBuilder(long id, PriceDetails priceDetails)
+			: this()
+		{
+			this.Id = id;
+			this.PriceDetails = priceDetails;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("priceDetails"))
+				kparams.AddIfNotNull("priceDetails", PriceDetails);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<PriceDetails>(result);
+		}
+	}
+
 
 	public class PriceDetailsService
 	{
@@ -175,6 +219,11 @@ namespace Kaltura.Services
 		public static PriceDetailsListRequestBuilder List(PriceDetailsFilter filter = null)
 		{
 			return new PriceDetailsListRequestBuilder(filter);
+		}
+
+		public static PriceDetailsUpdateRequestBuilder Update(long id, PriceDetails priceDetails)
+		{
+			return new PriceDetailsUpdateRequestBuilder(id, priceDetails);
 		}
 	}
 }

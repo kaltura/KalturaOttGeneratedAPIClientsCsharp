@@ -35,42 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class NpvrPremiumService : PremiumService
+	public class PreviewModuleFilter : Filter
 	{
 		#region Constants
-		public const string QUOTA_IN_MINUTES = "quotaInMinutes";
+		public const string ID_IN = "idIn";
+		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private long _QuotaInMinutes = long.MinValue;
+		private string _IdIn = null;
+		private PreviewModuleOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use QuotaInMinutesAsDouble property instead
+		/// Use IdInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long QuotaInMinutes
+		public string IdIn
 		{
-			get { return _QuotaInMinutes; }
+			get { return _IdIn; }
 			set 
 			{ 
-				_QuotaInMinutes = value;
-				OnPropertyChanged("QuotaInMinutes");
+				_IdIn = value;
+				OnPropertyChanged("IdIn");
+			}
+		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public new PreviewModuleOrderBy OrderBy
+		{
+			get { return _OrderBy; }
+			set 
+			{ 
+				_OrderBy = value;
+				OnPropertyChanged("OrderBy");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public NpvrPremiumService()
+		public PreviewModuleFilter()
 		{
 		}
 
-		public NpvrPremiumService(JToken node) : base(node)
+		public PreviewModuleFilter(JToken node) : base(node)
 		{
-			if(node["quotaInMinutes"] != null)
+			if(node["idIn"] != null)
 			{
-				this._QuotaInMinutes = ParseLong(node["quotaInMinutes"].Value<string>());
+				this._IdIn = node["idIn"].Value<string>();
+			}
+			if(node["orderBy"] != null)
+			{
+				this._OrderBy = (PreviewModuleOrderBy)StringEnum.Parse(typeof(PreviewModuleOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -80,16 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaNpvrPremiumService");
-			kparams.AddIfNotNull("quotaInMinutes", this._QuotaInMinutes);
+				kparams.AddReplace("objectType", "KalturaPreviewModuleFilter");
+			kparams.AddIfNotNull("idIn", this._IdIn);
+			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case QUOTA_IN_MINUTES:
-					return "QuotaInMinutes";
+				case ID_IN:
+					return "IdIn";
+				case ORDER_BY:
+					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}
