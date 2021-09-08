@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -58,6 +58,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use UserIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string UserId
 		{
@@ -68,6 +71,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserId");
 			}
 		}
+		/// <summary>
+		/// Use PositionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Position
 		{
@@ -78,6 +84,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Position");
 			}
 		}
+		/// <summary>
+		/// Use PositionOwnerAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public PositionOwner PositionOwner
 		{
@@ -88,6 +97,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PositionOwner");
 			}
 		}
+		/// <summary>
+		/// Use FinishedWatchingAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? FinishedWatching
 		{
@@ -98,6 +110,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FinishedWatching");
 			}
 		}
+		/// <summary>
+		/// Use PlayerDataAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public BookmarkPlayerData PlayerData
 		{
@@ -108,6 +123,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PlayerData");
 			}
 		}
+		/// <summary>
+		/// Use ProgramIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ProgramId
 		{
@@ -118,6 +136,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ProgramId");
 			}
 		}
+		/// <summary>
+		/// Use IsReportingModeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsReportingMode
 		{
