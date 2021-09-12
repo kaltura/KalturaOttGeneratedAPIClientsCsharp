@@ -46,6 +46,8 @@ namespace Kaltura.Enums
 		public static readonly RuleConditionType DEVICE_MANUFACTURER = new RuleConditionType("DEVICE_MANUFACTURER");
 		public static readonly RuleConditionType DEVICE_MODEL = new RuleConditionType("DEVICE_MODEL");
 		public static readonly RuleConditionType DEVICE_UDID_DYNAMIC_LIST = new RuleConditionType("DEVICE_UDID_DYNAMIC_LIST");
+		public static readonly RuleConditionType DYNAMIC_KEYS = new RuleConditionType("DYNAMIC_KEYS");
+		public static readonly RuleConditionType USER_SESSION_PROFILE = new RuleConditionType("USER_SESSION_PROFILE");
 
 		private RuleConditionType(string name) : base(name) { }
 	}

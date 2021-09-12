@@ -53,7 +53,7 @@ namespace Kaltura.Types
 		public long QuotaInMinutes
 		{
 			get { return _QuotaInMinutes; }
-			private set 
+			set 
 			{ 
 				_QuotaInMinutes = value;
 				OnPropertyChanged("QuotaInMinutes");
