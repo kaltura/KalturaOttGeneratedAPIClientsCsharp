@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -155,6 +155,47 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class HouseholdLimitationsIsUsedRequestBuilder : RequestBuilder<bool>
+	{
+		#region Constants
+		public const string DLM_ID = "dlmId";
+		#endregion
+
+		public int DlmId { get; set; }
+
+		public HouseholdLimitationsIsUsedRequestBuilder()
+			: base("householdlimitations", "isUsed")
+		{
+		}
+
+		public HouseholdLimitationsIsUsedRequestBuilder(int dlmId)
+			: this()
+		{
+			this.DlmId = dlmId;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("dlmId"))
+				kparams.AddIfNotNull("dlmId", DlmId);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
+				return true;
+			return false;
+		}
+	}
+
 	public class HouseholdLimitationsListRequestBuilder : RequestBuilder<ListResponse<HouseholdLimitations>>
 	{
 		#region Constants
@@ -184,6 +225,50 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class HouseholdLimitationsUpdateRequestBuilder : RequestBuilder<HouseholdLimitations>
+	{
+		#region Constants
+		public const string DLM_ID = "dlmId";
+		public const string HOUSEHOLD_LIMITATION = "householdLimitation";
+		#endregion
+
+		public int DlmId { get; set; }
+		public HouseholdLimitations HouseholdLimitation { get; set; }
+
+		public HouseholdLimitationsUpdateRequestBuilder()
+			: base("householdlimitations", "update")
+		{
+		}
+
+		public HouseholdLimitationsUpdateRequestBuilder(int dlmId, HouseholdLimitations householdLimitation)
+			: this()
+		{
+			this.DlmId = dlmId;
+			this.HouseholdLimitation = householdLimitation;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("dlmId"))
+				kparams.AddIfNotNull("dlmId", DlmId);
+			if (!isMapped("householdLimitation"))
+				kparams.AddIfNotNull("householdLimitation", HouseholdLimitation);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<HouseholdLimitations>(result);
+		}
+	}
+
 
 	public class HouseholdLimitationsService
 	{
@@ -206,9 +291,19 @@ namespace Kaltura.Services
 			return new HouseholdLimitationsGetRequestBuilder(id);
 		}
 
+		public static HouseholdLimitationsIsUsedRequestBuilder IsUsed(int dlmId)
+		{
+			return new HouseholdLimitationsIsUsedRequestBuilder(dlmId);
+		}
+
 		public static HouseholdLimitationsListRequestBuilder List()
 		{
 			return new HouseholdLimitationsListRequestBuilder();
+		}
+
+		public static HouseholdLimitationsUpdateRequestBuilder Update(int dlmId, HouseholdLimitations householdLimitation)
+		{
+			return new HouseholdLimitationsUpdateRequestBuilder(dlmId, householdLimitation);
 		}
 	}
 }

@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -44,10 +44,13 @@ namespace Kaltura.Types
 
 		#region Private Fields
 		private string _MediaIds = null;
-		private IList<SlimAsset> _Assets;
+		private IList<ManualCollectionAsset> _Assets;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MediaIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MediaIds
 		{
@@ -58,8 +61,11 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaIds");
 			}
 		}
+		/// <summary>
+		/// Use AssetsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
-		public IList<SlimAsset> Assets
+		public IList<ManualCollectionAsset> Assets
 		{
 			get { return _Assets; }
 			set 
@@ -83,10 +89,10 @@ namespace Kaltura.Types
 			}
 			if(node["assets"] != null)
 			{
-				this._Assets = new List<SlimAsset>();
+				this._Assets = new List<ManualCollectionAsset>();
 				foreach(var arrayNode in node["assets"].Children())
 				{
-					this._Assets.Add(ObjectFactory.Create<SlimAsset>(arrayNode));
+					this._Assets.Add(ObjectFactory.Create<ManualCollectionAsset>(arrayNode));
 				}
 			}
 		}

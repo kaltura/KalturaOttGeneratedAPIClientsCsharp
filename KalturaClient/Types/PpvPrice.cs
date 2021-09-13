@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -76,6 +76,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use FileIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int FileId
 		{
@@ -86,6 +89,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FileId");
 			}
 		}
+		/// <summary>
+		/// Use PpvModuleIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PpvModuleId
 		{
@@ -96,6 +102,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PpvModuleId");
 			}
 		}
+		/// <summary>
+		/// Use IsSubscriptionOnlyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsSubscriptionOnly
 		{
@@ -106,6 +115,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsSubscriptionOnly");
 			}
 		}
+		/// <summary>
+		/// Use SubscriptionIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string SubscriptionId
 		{
@@ -116,6 +128,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("SubscriptionId");
 			}
 		}
+		/// <summary>
+		/// Use CollectionIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string CollectionId
 		{
@@ -126,6 +141,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("CollectionId");
 			}
 		}
+		/// <summary>
+		/// Use PrePaidIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PrePaidId
 		{
@@ -136,6 +154,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PrePaidId");
 			}
 		}
+		/// <summary>
+		/// Use PpvDescriptionsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<TranslationToken> PpvDescriptions
 		{
@@ -146,6 +167,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PpvDescriptions");
 			}
 		}
+		/// <summary>
+		/// Use PurchaseUserIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PurchaseUserId
 		{
@@ -156,6 +180,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PurchaseUserId");
 			}
 		}
+		/// <summary>
+		/// Use PurchasedMediaFileIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int PurchasedMediaFileId
 		{
@@ -166,6 +193,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PurchasedMediaFileId");
 			}
 		}
+		/// <summary>
+		/// Use RelatedMediaFileIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<IntegerValue> RelatedMediaFileIds
 		{
@@ -176,6 +206,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RelatedMediaFileIds");
 			}
 		}
+		/// <summary>
+		/// Use StartDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long StartDate
 		{
@@ -186,6 +219,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("StartDate");
 			}
 		}
+		/// <summary>
+		/// Use EndDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long EndDate
 		{
@@ -196,6 +232,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
+		/// <summary>
+		/// Use DiscountEndDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long DiscountEndDate
 		{
@@ -206,6 +245,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DiscountEndDate");
 			}
 		}
+		/// <summary>
+		/// Use FirstDeviceNameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string FirstDeviceName
 		{
@@ -216,6 +258,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("FirstDeviceName");
 			}
 		}
+		/// <summary>
+		/// Use IsInCancelationPeriodAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsInCancelationPeriod
 		{
@@ -226,6 +271,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsInCancelationPeriod");
 			}
 		}
+		/// <summary>
+		/// Use PpvProductCodeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string PpvProductCode
 		{

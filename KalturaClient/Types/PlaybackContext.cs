@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use SourcesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<PlaybackSource> Sources
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Sources");
 			}
 		}
+		/// <summary>
+		/// Use ActionsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<RuleAction> Actions
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Actions");
 			}
 		}
+		/// <summary>
+		/// Use MessagesAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<AccessControlMessage> Messages
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Messages");
 			}
 		}
+		/// <summary>
+		/// Use PlaybackCaptionsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<CaptionPlaybackPluginData> PlaybackCaptions
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("PlaybackCaptions");
 			}
 		}
+		/// <summary>
+		/// Use PluginsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<PlaybackPluginData> Plugins
 		{

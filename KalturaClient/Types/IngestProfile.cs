@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -64,6 +64,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -74,6 +77,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -84,6 +90,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use ExternalIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ExternalId
 		{
@@ -94,6 +103,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ExternalId");
 			}
 		}
+		/// <summary>
+		/// Use AssetTypeIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int AssetTypeId
 		{
@@ -104,6 +116,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetTypeId");
 			}
 		}
+		/// <summary>
+		/// Use TransformationAdapterUrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string TransformationAdapterUrl
 		{
@@ -114,6 +129,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TransformationAdapterUrl");
 			}
 		}
+		/// <summary>
+		/// Use TransformationAdapterSettingsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IDictionary<string, StringValue> TransformationAdapterSettings
 		{
@@ -124,6 +142,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TransformationAdapterSettings");
 			}
 		}
+		/// <summary>
+		/// Use TransformationAdapterSharedSecretAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string TransformationAdapterSharedSecret
 		{
@@ -134,6 +155,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("TransformationAdapterSharedSecret");
 			}
 		}
+		/// <summary>
+		/// Use DefaultAutoFillPolicyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IngestProfileAutofillPolicy DefaultAutoFillPolicy
 		{
@@ -144,6 +168,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DefaultAutoFillPolicy");
 			}
 		}
+		/// <summary>
+		/// Use DefaultOverlapPolicyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IngestProfileOverlapPolicy DefaultOverlapPolicy
 		{
@@ -154,6 +181,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DefaultOverlapPolicy");
 			}
 		}
+		/// <summary>
+		/// Use OverlapChannelsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string OverlapChannels
 		{
