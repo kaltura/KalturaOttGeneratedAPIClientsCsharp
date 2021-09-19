@@ -38,25 +38,40 @@ namespace Kaltura.Types
 	public class DynamicKeysCondition : Condition
 	{
 		#region Constants
-		public const string KEY_VALUES = "keyValues";
+		public const string KEY = "key";
+		public const string VALUES = "values";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, StringValueArray> _KeyValues;
+		private string _Key = null;
+		private string _Values = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use KeyValuesAsDouble property instead
+		/// Use KeyAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, StringValueArray> KeyValues
+		public string Key
 		{
-			get { return _KeyValues; }
+			get { return _Key; }
 			set 
 			{ 
-				_KeyValues = value;
-				OnPropertyChanged("KeyValues");
+				_Key = value;
+				OnPropertyChanged("Key");
+			}
+		}
+		/// <summary>
+		/// Use ValuesAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Values
+		{
+			get { return _Values; }
+			set 
+			{ 
+				_Values = value;
+				OnPropertyChanged("Values");
 			}
 		}
 		#endregion
@@ -68,17 +83,13 @@ namespace Kaltura.Types
 
 		public DynamicKeysCondition(JToken node) : base(node)
 		{
-			if(node["keyValues"] != null)
+			if(node["key"] != null)
 			{
-				{
-					string key;
-					this._KeyValues = new Dictionary<string, StringValueArray>();
-					foreach(var arrayNode in node["keyValues"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._KeyValues[key] = ObjectFactory.Create<StringValueArray>(arrayNode.Value);
-					}
-				}
+				this._Key = node["key"].Value<string>();
+			}
+			if(node["values"] != null)
+			{
+				this._Values = node["values"].Value<string>();
 			}
 		}
 		#endregion
@@ -89,15 +100,18 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaDynamicKeysCondition");
-			kparams.AddIfNotNull("keyValues", this._KeyValues);
+			kparams.AddIfNotNull("key", this._Key);
+			kparams.AddIfNotNull("values", this._Values);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case KEY_VALUES:
-					return "KeyValues";
+				case KEY:
+					return "Key";
+				case VALUES:
+					return "Values";
 				default:
 					return base.getPropertyName(apiName);
 			}

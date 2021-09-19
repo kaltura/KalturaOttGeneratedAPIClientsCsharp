@@ -35,42 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class FilterFileByAssetTypeAction : FilterFileByFileTypeIdAction
+	public class DeviceDynamicDataCondition : Condition
 	{
 		#region Constants
-		public const string ASSET_TYPE_IN = "assetTypeIn";
+		public const string KEY = "key";
+		public const string VALUE = "value";
 		#endregion
 
 		#region Private Fields
-		private string _AssetTypeIn = null;
+		private string _Key = null;
+		private string _Value = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetTypeInAsDouble property instead
+		/// Use KeyAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string AssetTypeIn
+		public string Key
 		{
-			get { return _AssetTypeIn; }
+			get { return _Key; }
 			set 
 			{ 
-				_AssetTypeIn = value;
-				OnPropertyChanged("AssetTypeIn");
+				_Key = value;
+				OnPropertyChanged("Key");
+			}
+		}
+		/// <summary>
+		/// Use ValueAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Value
+		{
+			get { return _Value; }
+			set 
+			{ 
+				_Value = value;
+				OnPropertyChanged("Value");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public FilterFileByAssetTypeAction()
+		public DeviceDynamicDataCondition()
 		{
 		}
 
-		public FilterFileByAssetTypeAction(JToken node) : base(node)
+		public DeviceDynamicDataCondition(JToken node) : base(node)
 		{
-			if(node["assetTypeIn"] != null)
+			if(node["key"] != null)
 			{
-				this._AssetTypeIn = node["assetTypeIn"].Value<string>();
+				this._Key = node["key"].Value<string>();
+			}
+			if(node["value"] != null)
+			{
+				this._Value = node["value"].Value<string>();
 			}
 		}
 		#endregion
@@ -80,16 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaFilterFileByAssetTypeAction");
-			kparams.AddIfNotNull("assetTypeIn", this._AssetTypeIn);
+				kparams.AddReplace("objectType", "KalturaDeviceDynamicDataCondition");
+			kparams.AddIfNotNull("key", this._Key);
+			kparams.AddIfNotNull("value", this._Value);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_TYPE_IN:
-					return "AssetTypeIn";
+				case KEY:
+					return "Key";
+				case VALUE:
+					return "Value";
 				default:
 					return base.getPropertyName(apiName);
 			}

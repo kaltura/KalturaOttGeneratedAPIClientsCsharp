@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class FilterFileByAssetTypeInPlaybackAction : FilterFileByAssetTypeAction
+	public class FilterFileByFileTypeIdForAssetTypeInDiscoveryAction : FilterFileByFileTypeIdForAssetTypeAction
 	{
 		#region Constants
 		#endregion
@@ -47,11 +47,11 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public FilterFileByAssetTypeInPlaybackAction()
+		public FilterFileByFileTypeIdForAssetTypeInDiscoveryAction()
 		{
 		}
 
-		public FilterFileByAssetTypeInPlaybackAction(JToken node) : base(node)
+		public FilterFileByFileTypeIdForAssetTypeInDiscoveryAction(JToken node) : base(node)
 		{
 		}
 		#endregion
@@ -61,7 +61,7 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaFilterFileByAssetTypeInPlaybackAction");
+				kparams.AddReplace("objectType", "KalturaFilterFileByFileTypeIdForAssetTypeInDiscoveryAction");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)

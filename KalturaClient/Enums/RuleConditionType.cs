@@ -48,6 +48,7 @@ namespace Kaltura.Enums
 		public static readonly RuleConditionType DEVICE_UDID_DYNAMIC_LIST = new RuleConditionType("DEVICE_UDID_DYNAMIC_LIST");
 		public static readonly RuleConditionType DYNAMIC_KEYS = new RuleConditionType("DYNAMIC_KEYS");
 		public static readonly RuleConditionType USER_SESSION_PROFILE = new RuleConditionType("USER_SESSION_PROFILE");
+		public static readonly RuleConditionType DEVICE_DYNAMIC_DATA = new RuleConditionType("DEVICE_DYNAMIC_DATA");
 
 		private RuleConditionType(string name) : base(name) { }
 	}

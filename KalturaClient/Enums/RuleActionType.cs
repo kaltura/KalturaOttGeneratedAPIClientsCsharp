@@ -43,8 +43,8 @@ namespace Kaltura.Enums
 		public static readonly RuleActionType FILTERASSETBYKSQL = new RuleActionType("FilterAssetByKsql");
 		public static readonly RuleActionType FILTERFILEBYQUALITYINDISCOVERY = new RuleActionType("FilterFileByQualityInDiscovery");
 		public static readonly RuleActionType FILTERFILEBYQUALITYINPLAYBACK = new RuleActionType("FilterFileByQualityInPlayback");
-		public static readonly RuleActionType FILTERFILEBYASSETTYPEINDISCOVERY = new RuleActionType("FilterFileByAssetTypeInDiscovery");
-		public static readonly RuleActionType FILTERFILEBYASSETTYPEINPLAYBACK = new RuleActionType("FilterFileByAssetTypeInPlayback");
+		public static readonly RuleActionType FILTERFILEBYFILETYPEIDFORASSETTYPEINDISCOVERY = new RuleActionType("FilterFileByFileTypeIdForAssetTypeInDiscovery");
+		public static readonly RuleActionType FILTERFILEBYFILETYPEIDFORASSETTYPEINPLAYBACK = new RuleActionType("FilterFileByFileTypeIdForAssetTypeInPlayback");
 		public static readonly RuleActionType FILTERFILEBYFILETYPEIDINDISCOVERY = new RuleActionType("FilterFileByFileTypeIdInDiscovery");
 		public static readonly RuleActionType FILTERFILEBYFILETYPEIDINPLAYBACK = new RuleActionType("FilterFileByFileTypeIdInPlayback");
 		public static readonly RuleActionType FILTERFILEBYAUDIOCODECINDISCOVERY = new RuleActionType("FilterFileByAudioCodecInDiscovery");

@@ -35,42 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class FilterFileByQualityAction : FilterAction
+	public class FilterFileByFileTypeIdForAssetTypeAction : FilterFileByFileTypeIdAction
 	{
 		#region Constants
-		public const string QUALITY_IN = "qualityIn";
+		public const string ASSET_TYPE_IN = "assetTypeIn";
 		#endregion
 
 		#region Private Fields
-		private string _QualityIn = null;
+		private string _AssetTypeIn = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use QualityInAsDouble property instead
+		/// Use AssetTypeInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string QualityIn
+		public string AssetTypeIn
 		{
-			get { return _QualityIn; }
+			get { return _AssetTypeIn; }
 			set 
 			{ 
-				_QualityIn = value;
-				OnPropertyChanged("QualityIn");
+				_AssetTypeIn = value;
+				OnPropertyChanged("AssetTypeIn");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public FilterFileByQualityAction()
+		public FilterFileByFileTypeIdForAssetTypeAction()
 		{
 		}
 
-		public FilterFileByQualityAction(JToken node) : base(node)
+		public FilterFileByFileTypeIdForAssetTypeAction(JToken node) : base(node)
 		{
-			if(node["qualityIn"] != null)
+			if(node["assetTypeIn"] != null)
 			{
-				this._QualityIn = node["qualityIn"].Value<string>();
+				this._AssetTypeIn = node["assetTypeIn"].Value<string>();
 			}
 		}
 		#endregion
@@ -80,16 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaFilterFileByQualityAction");
-			kparams.AddIfNotNull("qualityIn", this._QualityIn);
+				kparams.AddReplace("objectType", "KalturaFilterFileByFileTypeIdForAssetTypeAction");
+			kparams.AddIfNotNull("assetTypeIn", this._AssetTypeIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case QUALITY_IN:
-					return "QualityIn";
+				case ASSET_TYPE_IN:
+					return "AssetTypeIn";
 				default:
 					return base.getPropertyName(apiName);
 			}
