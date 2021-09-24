@@ -27,17 +27,11 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class SubscriptionOrderBy : StringEnum
+	public sealed class ManualCollectionAssetType : StringEnum
 	{
-		public static readonly SubscriptionOrderBy START_DATE_ASC = new SubscriptionOrderBy("START_DATE_ASC");
-		public static readonly SubscriptionOrderBy START_DATE_DESC = new SubscriptionOrderBy("START_DATE_DESC");
-		public static readonly SubscriptionOrderBy CREATE_DATE_ASC = new SubscriptionOrderBy("CREATE_DATE_ASC");
-		public static readonly SubscriptionOrderBy CREATE_DATE_DESC = new SubscriptionOrderBy("CREATE_DATE_DESC");
-		public static readonly SubscriptionOrderBy UPDATE_DATE_ASC = new SubscriptionOrderBy("UPDATE_DATE_ASC");
-		public static readonly SubscriptionOrderBy UPDATE_DATE_DESC = new SubscriptionOrderBy("UPDATE_DATE_DESC");
-		public static readonly SubscriptionOrderBy NAME_ASC = new SubscriptionOrderBy("NAME_ASC");
-		public static readonly SubscriptionOrderBy NAME_DESC = new SubscriptionOrderBy("NAME_DESC");
+		public static readonly ManualCollectionAssetType MEDIA = new ManualCollectionAssetType("media");
+		public static readonly ManualCollectionAssetType EPG = new ManualCollectionAssetType("epg");
 
-		private SubscriptionOrderBy(string name) : base(name) { }
+		private ManualCollectionAssetType(string name) : base(name) { }
 	}
 }

@@ -35,42 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class NpvrPremiumService : PremiumService
+	public class ManualCollectionAsset : ObjectBase
 	{
 		#region Constants
-		public const string QUOTA_IN_MINUTES = "quotaInMinutes";
+		public const string ID = "id";
+		public const string TYPE = "type";
 		#endregion
 
 		#region Private Fields
-		private long _QuotaInMinutes = long.MinValue;
+		private string _Id = null;
+		private ManualCollectionAssetType _Type = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use QuotaInMinutesAsDouble property instead
+		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long QuotaInMinutes
+		public string Id
 		{
-			get { return _QuotaInMinutes; }
+			get { return _Id; }
 			set 
 			{ 
-				_QuotaInMinutes = value;
-				OnPropertyChanged("QuotaInMinutes");
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
+		}
+		/// <summary>
+		/// Use TypeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public ManualCollectionAssetType Type
+		{
+			get { return _Type; }
+			set 
+			{ 
+				_Type = value;
+				OnPropertyChanged("Type");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public NpvrPremiumService()
+		public ManualCollectionAsset()
 		{
 		}
 
-		public NpvrPremiumService(JToken node) : base(node)
+		public ManualCollectionAsset(JToken node) : base(node)
 		{
-			if(node["quotaInMinutes"] != null)
+			if(node["id"] != null)
 			{
-				this._QuotaInMinutes = ParseLong(node["quotaInMinutes"].Value<string>());
+				this._Id = node["id"].Value<string>();
+			}
+			if(node["type"] != null)
+			{
+				this._Type = (ManualCollectionAssetType)StringEnum.Parse(typeof(ManualCollectionAssetType), node["type"].Value<string>());
 			}
 		}
 		#endregion
@@ -80,16 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaNpvrPremiumService");
-			kparams.AddIfNotNull("quotaInMinutes", this._QuotaInMinutes);
+				kparams.AddReplace("objectType", "KalturaManualCollectionAsset");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("type", this._Type);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case QUOTA_IN_MINUTES:
-					return "QuotaInMinutes";
+				case ID:
+					return "Id";
+				case TYPE:
+					return "Type";
 				default:
 					return base.getPropertyName(apiName);
 			}

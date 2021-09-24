@@ -39,10 +39,12 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string MEDIA_IDS = "mediaIds";
+		public const string ASSETS = "assets";
 		#endregion
 
 		#region Private Fields
 		private string _MediaIds = null;
+		private IList<ManualCollectionAsset> _Assets;
 		#endregion
 
 		#region Properties
@@ -59,6 +61,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaIds");
 			}
 		}
+		/// <summary>
+		/// Use AssetsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public IList<ManualCollectionAsset> Assets
+		{
+			get { return _Assets; }
+			set 
+			{ 
+				_Assets = value;
+				OnPropertyChanged("Assets");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -72,6 +87,14 @@ namespace Kaltura.Types
 			{
 				this._MediaIds = node["mediaIds"].Value<string>();
 			}
+			if(node["assets"] != null)
+			{
+				this._Assets = new List<ManualCollectionAsset>();
+				foreach(var arrayNode in node["assets"].Children())
+				{
+					this._Assets.Add(ObjectFactory.Create<ManualCollectionAsset>(arrayNode));
+				}
+			}
 		}
 		#endregion
 
@@ -82,6 +105,7 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaManualChannel");
 			kparams.AddIfNotNull("mediaIds", this._MediaIds);
+			kparams.AddIfNotNull("assets", this._Assets);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -90,6 +114,8 @@ namespace Kaltura.Types
 			{
 				case MEDIA_IDS:
 					return "MediaIds";
+				case ASSETS:
+					return "Assets";
 				default:
 					return base.getPropertyName(apiName);
 			}

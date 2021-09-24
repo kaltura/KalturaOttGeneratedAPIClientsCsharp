@@ -35,42 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class NpvrPremiumService : PremiumService
+	public class PartnerPremiumService : ObjectBase
 	{
 		#region Constants
-		public const string QUOTA_IN_MINUTES = "quotaInMinutes";
+		public const string ID = "id";
+		public const string NAME = "name";
+		public const string IS_APPLIED = "isApplied";
 		#endregion
 
 		#region Private Fields
-		private long _QuotaInMinutes = long.MinValue;
+		private long _Id = long.MinValue;
+		private string _Name = null;
+		private bool? _IsApplied = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use QuotaInMinutesAsDouble property instead
+		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long QuotaInMinutes
+		public long Id
 		{
-			get { return _QuotaInMinutes; }
+			get { return _Id; }
 			set 
 			{ 
-				_QuotaInMinutes = value;
-				OnPropertyChanged("QuotaInMinutes");
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
+		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Name
+		{
+			get { return _Name; }
+			private set 
+			{ 
+				_Name = value;
+				OnPropertyChanged("Name");
+			}
+		}
+		/// <summary>
+		/// Use IsAppliedAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IsApplied
+		{
+			get { return _IsApplied; }
+			set 
+			{ 
+				_IsApplied = value;
+				OnPropertyChanged("IsApplied");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public NpvrPremiumService()
+		public PartnerPremiumService()
 		{
 		}
 
-		public NpvrPremiumService(JToken node) : base(node)
+		public PartnerPremiumService(JToken node) : base(node)
 		{
-			if(node["quotaInMinutes"] != null)
+			if(node["id"] != null)
 			{
-				this._QuotaInMinutes = ParseLong(node["quotaInMinutes"].Value<string>());
+				this._Id = ParseLong(node["id"].Value<string>());
+			}
+			if(node["name"] != null)
+			{
+				this._Name = node["name"].Value<string>();
+			}
+			if(node["isApplied"] != null)
+			{
+				this._IsApplied = ParseBool(node["isApplied"].Value<string>());
 			}
 		}
 		#endregion
@@ -80,16 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaNpvrPremiumService");
-			kparams.AddIfNotNull("quotaInMinutes", this._QuotaInMinutes);
+				kparams.AddReplace("objectType", "KalturaPartnerPremiumService");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("name", this._Name);
+			kparams.AddIfNotNull("isApplied", this._IsApplied);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case QUOTA_IN_MINUTES:
-					return "QuotaInMinutes";
+				case ID:
+					return "Id";
+				case NAME:
+					return "Name";
+				case IS_APPLIED:
+					return "IsApplied";
 				default:
 					return base.getPropertyName(apiName);
 			}
