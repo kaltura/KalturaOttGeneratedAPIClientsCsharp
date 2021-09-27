@@ -46,6 +46,7 @@ namespace Kaltura.Types
 		public const string ID = "id";
 		public const string IS_DEFAULT = "isDefault";
 		public const string IMAGE_TYPE_ID = "imageTypeId";
+		public const string IMAGE_TYPE_NAME = "imageTypeName";
 		#endregion
 
 		#region Private Fields
@@ -57,6 +58,7 @@ namespace Kaltura.Types
 		private string _Id = null;
 		private bool? _IsDefault = null;
 		private long _ImageTypeId = long.MinValue;
+		private string _ImageTypeName = null;
 		#endregion
 
 		#region Properties
@@ -164,6 +166,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("ImageTypeId");
 			}
 		}
+		/// <summary>
+		/// Use ImageTypeNameAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string ImageTypeName
+		{
+			get { return _ImageTypeName; }
+			set 
+			{ 
+				_ImageTypeName = value;
+				OnPropertyChanged("ImageTypeName");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -205,6 +220,10 @@ namespace Kaltura.Types
 			{
 				this._ImageTypeId = ParseLong(node["imageTypeId"].Value<string>());
 			}
+			if(node["imageTypeName"] != null)
+			{
+				this._ImageTypeName = node["imageTypeName"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -222,6 +241,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("isDefault", this._IsDefault);
 			kparams.AddIfNotNull("imageTypeId", this._ImageTypeId);
+			kparams.AddIfNotNull("imageTypeName", this._ImageTypeName);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -244,6 +264,8 @@ namespace Kaltura.Types
 					return "IsDefault";
 				case IMAGE_TYPE_ID:
 					return "ImageTypeId";
+				case IMAGE_TYPE_NAME:
+					return "ImageTypeName";
 				default:
 					return base.getPropertyName(apiName);
 			}

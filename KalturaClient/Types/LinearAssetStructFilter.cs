@@ -35,43 +35,24 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class NpvrPremiumService : PremiumService
+	public class LinearAssetStructFilter : BaseAssetStructFilter
 	{
 		#region Constants
-		public const string QUOTA_IN_MINUTES = "quotaInMinutes";
 		#endregion
 
 		#region Private Fields
-		private long _QuotaInMinutes = long.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use QuotaInMinutesAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long QuotaInMinutes
-		{
-			get { return _QuotaInMinutes; }
-			set 
-			{ 
-				_QuotaInMinutes = value;
-				OnPropertyChanged("QuotaInMinutes");
-			}
-		}
 		#endregion
 
 		#region CTor
-		public NpvrPremiumService()
+		public LinearAssetStructFilter()
 		{
 		}
 
-		public NpvrPremiumService(JToken node) : base(node)
+		public LinearAssetStructFilter(JToken node) : base(node)
 		{
-			if(node["quotaInMinutes"] != null)
-			{
-				this._QuotaInMinutes = ParseLong(node["quotaInMinutes"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -80,16 +61,13 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaNpvrPremiumService");
-			kparams.AddIfNotNull("quotaInMinutes", this._QuotaInMinutes);
+				kparams.AddReplace("objectType", "KalturaLinearAssetStructFilter");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case QUOTA_IN_MINUTES:
-					return "QuotaInMinutes";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -35,42 +35,46 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class NpvrPremiumService : PremiumService
+	public class PartnerPremiumServices : ObjectBase
 	{
 		#region Constants
-		public const string QUOTA_IN_MINUTES = "quotaInMinutes";
+		public const string OBJECTS = "objects";
 		#endregion
 
 		#region Private Fields
-		private long _QuotaInMinutes = long.MinValue;
+		private IList<PartnerPremiumService> _Objects;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use QuotaInMinutesAsDouble property instead
+		/// Use ObjectsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long QuotaInMinutes
+		public IList<PartnerPremiumService> Objects
 		{
-			get { return _QuotaInMinutes; }
+			get { return _Objects; }
 			set 
 			{ 
-				_QuotaInMinutes = value;
-				OnPropertyChanged("QuotaInMinutes");
+				_Objects = value;
+				OnPropertyChanged("Objects");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public NpvrPremiumService()
+		public PartnerPremiumServices()
 		{
 		}
 
-		public NpvrPremiumService(JToken node) : base(node)
+		public PartnerPremiumServices(JToken node) : base(node)
 		{
-			if(node["quotaInMinutes"] != null)
+			if(node["objects"] != null)
 			{
-				this._QuotaInMinutes = ParseLong(node["quotaInMinutes"].Value<string>());
+				this._Objects = new List<PartnerPremiumService>();
+				foreach(var arrayNode in node["objects"].Children())
+				{
+					this._Objects.Add(ObjectFactory.Create<PartnerPremiumService>(arrayNode));
+				}
 			}
 		}
 		#endregion
@@ -80,16 +84,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaNpvrPremiumService");
-			kparams.AddIfNotNull("quotaInMinutes", this._QuotaInMinutes);
+				kparams.AddReplace("objectType", "KalturaPartnerPremiumServices");
+			kparams.AddIfNotNull("objects", this._Objects);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case QUOTA_IN_MINUTES:
-					return "QuotaInMinutes";
+				case OBJECTS:
+					return "Objects";
 				default:
 					return base.getPropertyName(apiName);
 			}

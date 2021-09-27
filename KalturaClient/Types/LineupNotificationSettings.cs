@@ -35,42 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class NpvrPremiumService : PremiumService
+	public class LineupNotificationSettings : ObjectBase
 	{
 		#region Constants
-		public const string QUOTA_IN_MINUTES = "quotaInMinutes";
+		public const string ENABLED = "enabled";
 		#endregion
 
 		#region Private Fields
-		private long _QuotaInMinutes = long.MinValue;
+		private bool? _Enabled = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use QuotaInMinutesAsDouble property instead
+		/// Use EnabledAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long QuotaInMinutes
+		public bool? Enabled
 		{
-			get { return _QuotaInMinutes; }
+			get { return _Enabled; }
 			set 
 			{ 
-				_QuotaInMinutes = value;
-				OnPropertyChanged("QuotaInMinutes");
+				_Enabled = value;
+				OnPropertyChanged("Enabled");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public NpvrPremiumService()
+		public LineupNotificationSettings()
 		{
 		}
 
-		public NpvrPremiumService(JToken node) : base(node)
+		public LineupNotificationSettings(JToken node) : base(node)
 		{
-			if(node["quotaInMinutes"] != null)
+			if(node["enabled"] != null)
 			{
-				this._QuotaInMinutes = ParseLong(node["quotaInMinutes"].Value<string>());
+				this._Enabled = ParseBool(node["enabled"].Value<string>());
 			}
 		}
 		#endregion
@@ -80,16 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaNpvrPremiumService");
-			kparams.AddIfNotNull("quotaInMinutes", this._QuotaInMinutes);
+				kparams.AddReplace("objectType", "KalturaLineupNotificationSettings");
+			kparams.AddIfNotNull("enabled", this._Enabled);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case QUOTA_IN_MINUTES:
-					return "QuotaInMinutes";
+				case ENABLED:
+					return "Enabled";
 				default:
 					return base.getPropertyName(apiName);
 			}

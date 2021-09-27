@@ -57,6 +57,7 @@ namespace Kaltura.Types
 		public const string SMS_ENABLED = "smsEnabled";
 		public const string IOT_ENABLED = "iotEnabled";
 		public const string EPG_NOTIFICATION = "epgNotification";
+		public const string LINEUP_NOTIFICATION = "lineupNotification";
 		#endregion
 
 		#region Private Fields
@@ -79,6 +80,7 @@ namespace Kaltura.Types
 		private bool? _SmsEnabled = null;
 		private bool? _IotEnabled = null;
 		private EpgNotificationSettings _EpgNotification;
+		private LineupNotificationSettings _LineupNotification;
 		#endregion
 
 		#region Properties
@@ -329,6 +331,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("EpgNotification");
 			}
 		}
+		/// <summary>
+		/// Use LineupNotificationAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public LineupNotificationSettings LineupNotification
+		{
+			get { return _LineupNotification; }
+			set 
+			{ 
+				_LineupNotification = value;
+				OnPropertyChanged("LineupNotification");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -414,6 +429,10 @@ namespace Kaltura.Types
 			{
 				this._EpgNotification = ObjectFactory.Create<EpgNotificationSettings>(node["epgNotification"]);
 			}
+			if(node["lineupNotification"] != null)
+			{
+				this._LineupNotification = ObjectFactory.Create<LineupNotificationSettings>(node["lineupNotification"]);
+			}
 		}
 		#endregion
 
@@ -442,6 +461,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("smsEnabled", this._SmsEnabled);
 			kparams.AddIfNotNull("iotEnabled", this._IotEnabled);
 			kparams.AddIfNotNull("epgNotification", this._EpgNotification);
+			kparams.AddIfNotNull("lineupNotification", this._LineupNotification);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -486,6 +506,8 @@ namespace Kaltura.Types
 					return "IotEnabled";
 				case EPG_NOTIFICATION:
 					return "EpgNotification";
+				case LINEUP_NOTIFICATION:
+					return "LineupNotification";
 				default:
 					return base.getPropertyName(apiName);
 			}
