@@ -292,6 +292,8 @@ namespace Kaltura
 					return new ListResponse<HouseholdCoupon>(jToken);
 				case "KalturaHouseholdSegmentListResponse":
 					return new ListResponse<HouseholdSegment>(jToken);
+				case "KalturaLineupChannelAssetListResponse":
+					return new ListResponse<LineupChannelAsset>(jToken);
 				case "KalturaPasswordPolicyListResponse":
 					return new ListResponse<PasswordPolicy>(jToken);
 				case "KalturaPermissionItemListResponse":
