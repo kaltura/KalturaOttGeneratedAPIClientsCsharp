@@ -35,24 +35,43 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseAssetStructFilter : Filter
+	public class CustomFieldsPartnerConfiguration : PartnerConfiguration
 	{
 		#region Constants
+		public const string META_SYSTEM_NAME_INSTEAD_OF_ALIAS_LIST = "metaSystemNameInsteadOfAliasList";
 		#endregion
 
 		#region Private Fields
+		private string _MetaSystemNameInsteadOfAliasList = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MetaSystemNameInsteadOfAliasListAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string MetaSystemNameInsteadOfAliasList
+		{
+			get { return _MetaSystemNameInsteadOfAliasList; }
+			set 
+			{ 
+				_MetaSystemNameInsteadOfAliasList = value;
+				OnPropertyChanged("MetaSystemNameInsteadOfAliasList");
+			}
+		}
 		#endregion
 
 		#region CTor
-		public BaseAssetStructFilter()
+		public CustomFieldsPartnerConfiguration()
 		{
 		}
 
-		public BaseAssetStructFilter(JToken node) : base(node)
+		public CustomFieldsPartnerConfiguration(JToken node) : base(node)
 		{
+			if(node["metaSystemNameInsteadOfAliasList"] != null)
+			{
+				this._MetaSystemNameInsteadOfAliasList = node["metaSystemNameInsteadOfAliasList"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -61,13 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseAssetStructFilter");
+				kparams.AddReplace("objectType", "KalturaCustomFieldsPartnerConfiguration");
+			kparams.AddIfNotNull("metaSystemNameInsteadOfAliasList", this._MetaSystemNameInsteadOfAliasList);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
+				case META_SYSTEM_NAME_INSTEAD_OF_ALIAS_LIST:
+					return "MetaSystemNameInsteadOfAliasList";
 				default:
 					return base.getPropertyName(apiName);
 			}
