@@ -41,7 +41,6 @@ namespace Kaltura.Types
 		public const string ID = "id";
 		public const string VERSION = "version";
 		public const string IMAGE_TYPE_ID = "imageTypeId";
-		public const string IMAGE_TYPE_NAME = "imageTypeName";
 		public const string IMAGE_OBJECT_ID = "imageObjectId";
 		public const string IMAGE_OBJECT_TYPE = "imageObjectType";
 		public const string STATUS = "status";
@@ -54,7 +53,6 @@ namespace Kaltura.Types
 		private long _Id = long.MinValue;
 		private string _Version = null;
 		private long _ImageTypeId = long.MinValue;
-		private string _ImageTypeName = null;
 		private long _ImageObjectId = long.MinValue;
 		private ImageObjectType _ImageObjectType = null;
 		private ImageStatus _Status = null;
@@ -101,19 +99,6 @@ namespace Kaltura.Types
 			{ 
 				_ImageTypeId = value;
 				OnPropertyChanged("ImageTypeId");
-			}
-		}
-		/// <summary>
-		/// Use ImageTypeNameAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string ImageTypeName
-		{
-			get { return _ImageTypeName; }
-			set 
-			{ 
-				_ImageTypeName = value;
-				OnPropertyChanged("ImageTypeName");
 			}
 		}
 		/// <summary>
@@ -215,10 +200,6 @@ namespace Kaltura.Types
 			{
 				this._ImageTypeId = ParseLong(node["imageTypeId"].Value<string>());
 			}
-			if(node["imageTypeName"] != null)
-			{
-				this._ImageTypeName = node["imageTypeName"].Value<string>();
-			}
 			if(node["imageObjectId"] != null)
 			{
 				this._ImageObjectId = ParseLong(node["imageObjectId"].Value<string>());
@@ -255,7 +236,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("version", this._Version);
 			kparams.AddIfNotNull("imageTypeId", this._ImageTypeId);
-			kparams.AddIfNotNull("imageTypeName", this._ImageTypeName);
 			kparams.AddIfNotNull("imageObjectId", this._ImageObjectId);
 			kparams.AddIfNotNull("imageObjectType", this._ImageObjectType);
 			kparams.AddIfNotNull("status", this._Status);
@@ -274,8 +254,6 @@ namespace Kaltura.Types
 					return "Version";
 				case IMAGE_TYPE_ID:
 					return "ImageTypeId";
-				case IMAGE_TYPE_NAME:
-					return "ImageTypeName";
 				case IMAGE_OBJECT_ID:
 					return "ImageObjectId";
 				case IMAGE_OBJECT_TYPE:

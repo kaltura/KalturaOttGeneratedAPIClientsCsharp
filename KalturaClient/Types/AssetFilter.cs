@@ -39,13 +39,11 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string DYNAMIC_ORDER_BY = "dynamicOrderBy";
-		public const string TRENDING_DAYS_EQUAL = "trendingDaysEqual";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
 		private DynamicOrderBy _DynamicOrderBy;
-		private int _TrendingDaysEqual = Int32.MinValue;
 		private AssetOrderBy _OrderBy = null;
 		#endregion
 
@@ -61,19 +59,6 @@ namespace Kaltura.Types
 			{ 
 				_DynamicOrderBy = value;
 				OnPropertyChanged("DynamicOrderBy");
-			}
-		}
-		/// <summary>
-		/// Use TrendingDaysEqualAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int TrendingDaysEqual
-		{
-			get { return _TrendingDaysEqual; }
-			set 
-			{ 
-				_TrendingDaysEqual = value;
-				OnPropertyChanged("TrendingDaysEqual");
 			}
 		}
 		/// <summary>
@@ -102,10 +87,6 @@ namespace Kaltura.Types
 			{
 				this._DynamicOrderBy = ObjectFactory.Create<DynamicOrderBy>(node["dynamicOrderBy"]);
 			}
-			if(node["trendingDaysEqual"] != null)
-			{
-				this._TrendingDaysEqual = ParseInt(node["trendingDaysEqual"].Value<string>());
-			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (AssetOrderBy)StringEnum.Parse(typeof(AssetOrderBy), node["orderBy"].Value<string>());
@@ -120,7 +101,6 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaAssetFilter");
 			kparams.AddIfNotNull("dynamicOrderBy", this._DynamicOrderBy);
-			kparams.AddIfNotNull("trendingDaysEqual", this._TrendingDaysEqual);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -130,8 +110,6 @@ namespace Kaltura.Types
 			{
 				case DYNAMIC_ORDER_BY:
 					return "DynamicOrderBy";
-				case TRENDING_DAYS_EQUAL:
-					return "TrendingDaysEqual";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

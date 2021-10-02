@@ -51,10 +51,7 @@ namespace Kaltura.Types
 		public const string ENABLE_REGION_FILTERING = "enableRegionFiltering";
 		public const string DEFAULT_REGION = "defaultRegion";
 		public const string ROLLING_DEVICE_DATA = "rollingDeviceData";
-		public const string LINEAR_WATCH_HISTORY_THRESHOLD = "linearWatchHistoryThreshold";
 		public const string FINISHED_PERCENT_THRESHOLD = "finishedPercentThreshold";
-		public const string SUSPENSION_PROFILE_INHERITANCE_TYPE = "suspensionProfileInheritanceType";
-		public const string ALLOW_DEVICE_MOBILITY = "allowDeviceMobility";
 		#endregion
 
 		#region Private Fields
@@ -71,10 +68,7 @@ namespace Kaltura.Types
 		private bool? _EnableRegionFiltering = null;
 		private int _DefaultRegion = Int32.MinValue;
 		private RollingDeviceRemovalData _RollingDeviceData;
-		private int _LinearWatchHistoryThreshold = Int32.MinValue;
 		private int _FinishedPercentThreshold = Int32.MinValue;
-		private SuspensionProfileInheritanceType _SuspensionProfileInheritanceType = null;
-		private bool? _AllowDeviceMobility = null;
 		#endregion
 
 		#region Properties
@@ -248,19 +242,6 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use LinearWatchHistoryThresholdAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int LinearWatchHistoryThreshold
-		{
-			get { return _LinearWatchHistoryThreshold; }
-			set 
-			{ 
-				_LinearWatchHistoryThreshold = value;
-				OnPropertyChanged("LinearWatchHistoryThreshold");
-			}
-		}
-		/// <summary>
 		/// Use FinishedPercentThresholdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -271,32 +252,6 @@ namespace Kaltura.Types
 			{ 
 				_FinishedPercentThreshold = value;
 				OnPropertyChanged("FinishedPercentThreshold");
-			}
-		}
-		/// <summary>
-		/// Use SuspensionProfileInheritanceTypeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public SuspensionProfileInheritanceType SuspensionProfileInheritanceType
-		{
-			get { return _SuspensionProfileInheritanceType; }
-			set 
-			{ 
-				_SuspensionProfileInheritanceType = value;
-				OnPropertyChanged("SuspensionProfileInheritanceType");
-			}
-		}
-		/// <summary>
-		/// Use AllowDeviceMobilityAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public bool? AllowDeviceMobility
-		{
-			get { return _AllowDeviceMobility; }
-			set 
-			{ 
-				_AllowDeviceMobility = value;
-				OnPropertyChanged("AllowDeviceMobility");
 			}
 		}
 		#endregion
@@ -360,21 +315,9 @@ namespace Kaltura.Types
 			{
 				this._RollingDeviceData = ObjectFactory.Create<RollingDeviceRemovalData>(node["rollingDeviceData"]);
 			}
-			if(node["linearWatchHistoryThreshold"] != null)
-			{
-				this._LinearWatchHistoryThreshold = ParseInt(node["linearWatchHistoryThreshold"].Value<string>());
-			}
 			if(node["finishedPercentThreshold"] != null)
 			{
 				this._FinishedPercentThreshold = ParseInt(node["finishedPercentThreshold"].Value<string>());
-			}
-			if(node["suspensionProfileInheritanceType"] != null)
-			{
-				this._SuspensionProfileInheritanceType = (SuspensionProfileInheritanceType)StringEnum.Parse(typeof(SuspensionProfileInheritanceType), node["suspensionProfileInheritanceType"].Value<string>());
-			}
-			if(node["allowDeviceMobility"] != null)
-			{
-				this._AllowDeviceMobility = ParseBool(node["allowDeviceMobility"].Value<string>());
 			}
 		}
 		#endregion
@@ -398,10 +341,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("enableRegionFiltering", this._EnableRegionFiltering);
 			kparams.AddIfNotNull("defaultRegion", this._DefaultRegion);
 			kparams.AddIfNotNull("rollingDeviceData", this._RollingDeviceData);
-			kparams.AddIfNotNull("linearWatchHistoryThreshold", this._LinearWatchHistoryThreshold);
 			kparams.AddIfNotNull("finishedPercentThreshold", this._FinishedPercentThreshold);
-			kparams.AddIfNotNull("suspensionProfileInheritanceType", this._SuspensionProfileInheritanceType);
-			kparams.AddIfNotNull("allowDeviceMobility", this._AllowDeviceMobility);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -434,14 +374,8 @@ namespace Kaltura.Types
 					return "DefaultRegion";
 				case ROLLING_DEVICE_DATA:
 					return "RollingDeviceData";
-				case LINEAR_WATCH_HISTORY_THRESHOLD:
-					return "LinearWatchHistoryThreshold";
 				case FINISHED_PERCENT_THRESHOLD:
 					return "FinishedPercentThreshold";
-				case SUSPENSION_PROFILE_INHERITANCE_TYPE:
-					return "SuspensionProfileInheritanceType";
-				case ALLOW_DEVICE_MOBILITY:
-					return "AllowDeviceMobility";
 				default:
 					return base.getPropertyName(apiName);
 			}

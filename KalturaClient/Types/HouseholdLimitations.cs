@@ -49,8 +49,6 @@ namespace Kaltura.Types
 		public const string NPVR_QUOTA_IN_SECONDS = "npvrQuotaInSeconds";
 		public const string USERS_LIMIT = "usersLimit";
 		public const string DEVICE_FAMILIES_LIMITATIONS = "deviceFamiliesLimitations";
-		public const string DESCRIPTION = "description";
-		public const string ASSOCIATED_DEVICE_FAMILIES_IDS_IN = "associatedDeviceFamiliesIdsIn";
 		#endregion
 
 		#region Private Fields
@@ -65,8 +63,6 @@ namespace Kaltura.Types
 		private int _NpvrQuotaInSeconds = Int32.MinValue;
 		private int _UsersLimit = Int32.MinValue;
 		private IList<HouseholdDeviceFamilyLimitations> _DeviceFamiliesLimitations;
-		private string _Description = null;
-		private string _AssociatedDeviceFamiliesIdsIn = null;
 		#endregion
 
 		#region Properties
@@ -90,7 +86,7 @@ namespace Kaltura.Types
 		public string Name
 		{
 			get { return _Name; }
-			set 
+			private set 
 			{ 
 				_Name = value;
 				OnPropertyChanged("Name");
@@ -103,7 +99,7 @@ namespace Kaltura.Types
 		public int ConcurrentLimit
 		{
 			get { return _ConcurrentLimit; }
-			set 
+			private set 
 			{ 
 				_ConcurrentLimit = value;
 				OnPropertyChanged("ConcurrentLimit");
@@ -116,7 +112,7 @@ namespace Kaltura.Types
 		public int DeviceLimit
 		{
 			get { return _DeviceLimit; }
-			set 
+			private set 
 			{ 
 				_DeviceLimit = value;
 				OnPropertyChanged("DeviceLimit");
@@ -129,7 +125,7 @@ namespace Kaltura.Types
 		public int DeviceFrequency
 		{
 			get { return _DeviceFrequency; }
-			set 
+			private set 
 			{ 
 				_DeviceFrequency = value;
 				OnPropertyChanged("DeviceFrequency");
@@ -155,7 +151,7 @@ namespace Kaltura.Types
 		public int UserFrequency
 		{
 			get { return _UserFrequency; }
-			set 
+			private set 
 			{ 
 				_UserFrequency = value;
 				OnPropertyChanged("UserFrequency");
@@ -194,7 +190,7 @@ namespace Kaltura.Types
 		public int UsersLimit
 		{
 			get { return _UsersLimit; }
-			set 
+			private set 
 			{ 
 				_UsersLimit = value;
 				OnPropertyChanged("UsersLimit");
@@ -207,36 +203,10 @@ namespace Kaltura.Types
 		public IList<HouseholdDeviceFamilyLimitations> DeviceFamiliesLimitations
 		{
 			get { return _DeviceFamiliesLimitations; }
-			set 
+			private set 
 			{ 
 				_DeviceFamiliesLimitations = value;
 				OnPropertyChanged("DeviceFamiliesLimitations");
-			}
-		}
-		/// <summary>
-		/// Use DescriptionAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string Description
-		{
-			get { return _Description; }
-			set 
-			{ 
-				_Description = value;
-				OnPropertyChanged("Description");
-			}
-		}
-		/// <summary>
-		/// Use AssociatedDeviceFamiliesIdsInAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string AssociatedDeviceFamiliesIdsIn
-		{
-			get { return _AssociatedDeviceFamiliesIdsIn; }
-			set 
-			{ 
-				_AssociatedDeviceFamiliesIdsIn = value;
-				OnPropertyChanged("AssociatedDeviceFamiliesIdsIn");
 			}
 		}
 		#endregion
@@ -296,14 +266,6 @@ namespace Kaltura.Types
 					this._DeviceFamiliesLimitations.Add(ObjectFactory.Create<HouseholdDeviceFamilyLimitations>(arrayNode));
 				}
 			}
-			if(node["description"] != null)
-			{
-				this._Description = node["description"].Value<string>();
-			}
-			if(node["associatedDeviceFamiliesIdsIn"] != null)
-			{
-				this._AssociatedDeviceFamiliesIdsIn = node["associatedDeviceFamiliesIdsIn"].Value<string>();
-			}
 		}
 		#endregion
 
@@ -324,8 +286,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("npvrQuotaInSeconds", this._NpvrQuotaInSeconds);
 			kparams.AddIfNotNull("usersLimit", this._UsersLimit);
 			kparams.AddIfNotNull("deviceFamiliesLimitations", this._DeviceFamiliesLimitations);
-			kparams.AddIfNotNull("description", this._Description);
-			kparams.AddIfNotNull("associatedDeviceFamiliesIdsIn", this._AssociatedDeviceFamiliesIdsIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -354,10 +314,6 @@ namespace Kaltura.Types
 					return "UsersLimit";
 				case DEVICE_FAMILIES_LIMITATIONS:
 					return "DeviceFamiliesLimitations";
-				case DESCRIPTION:
-					return "Description";
-				case ASSOCIATED_DEVICE_FAMILIES_IDS_IN:
-					return "AssociatedDeviceFamiliesIdsIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

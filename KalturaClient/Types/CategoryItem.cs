@@ -52,7 +52,6 @@ namespace Kaltura.Types
 		public const string TYPE = "type";
 		public const string VERSION_ID = "versionId";
 		public const string VIRTUAL_ASSET_ID = "virtualAssetId";
-		public const string REFERENCE_ID = "referenceId";
 		#endregion
 
 		#region Private Fields
@@ -70,7 +69,6 @@ namespace Kaltura.Types
 		private string _Type = null;
 		private long _VersionId = long.MinValue;
 		private long _VirtualAssetId = long.MinValue;
-		private string _ReferenceId = null;
 		#endregion
 
 		#region Properties
@@ -256,19 +254,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("VirtualAssetId");
 			}
 		}
-		/// <summary>
-		/// Use ReferenceIdAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string ReferenceId
-		{
-			get { return _ReferenceId; }
-			set 
-			{ 
-				_ReferenceId = value;
-				OnPropertyChanged("ReferenceId");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -350,10 +335,6 @@ namespace Kaltura.Types
 			{
 				this._VirtualAssetId = ParseLong(node["virtualAssetId"].Value<string>());
 			}
-			if(node["referenceId"] != null)
-			{
-				this._ReferenceId = node["referenceId"].Value<string>();
-			}
 		}
 		#endregion
 
@@ -377,7 +358,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("type", this._Type);
 			kparams.AddIfNotNull("versionId", this._VersionId);
 			kparams.AddIfNotNull("virtualAssetId", this._VirtualAssetId);
-			kparams.AddIfNotNull("referenceId", this._ReferenceId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -412,8 +392,6 @@ namespace Kaltura.Types
 					return "VersionId";
 				case VIRTUAL_ASSET_ID:
 					return "VirtualAssetId";
-				case REFERENCE_ID:
-					return "ReferenceId";
 				default:
 					return base.getPropertyName(apiName);
 			}

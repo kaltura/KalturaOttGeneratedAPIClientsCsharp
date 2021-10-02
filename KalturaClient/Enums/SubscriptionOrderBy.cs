@@ -31,12 +31,6 @@ namespace Kaltura.Enums
 	{
 		public static readonly SubscriptionOrderBy START_DATE_ASC = new SubscriptionOrderBy("START_DATE_ASC");
 		public static readonly SubscriptionOrderBy START_DATE_DESC = new SubscriptionOrderBy("START_DATE_DESC");
-		public static readonly SubscriptionOrderBy CREATE_DATE_ASC = new SubscriptionOrderBy("CREATE_DATE_ASC");
-		public static readonly SubscriptionOrderBy CREATE_DATE_DESC = new SubscriptionOrderBy("CREATE_DATE_DESC");
-		public static readonly SubscriptionOrderBy UPDATE_DATE_ASC = new SubscriptionOrderBy("UPDATE_DATE_ASC");
-		public static readonly SubscriptionOrderBy UPDATE_DATE_DESC = new SubscriptionOrderBy("UPDATE_DATE_DESC");
-		public static readonly SubscriptionOrderBy NAME_ASC = new SubscriptionOrderBy("NAME_ASC");
-		public static readonly SubscriptionOrderBy NAME_DESC = new SubscriptionOrderBy("NAME_DESC");
 
 		private SubscriptionOrderBy(string name) : base(name) { }
 	}

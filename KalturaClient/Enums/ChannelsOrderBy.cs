@@ -34,8 +34,6 @@ namespace Kaltura.Enums
 		public static readonly ChannelsOrderBy NAME_DESC = new ChannelsOrderBy("NAME_DESC");
 		public static readonly ChannelsOrderBy CREATE_DATE_ASC = new ChannelsOrderBy("CREATE_DATE_ASC");
 		public static readonly ChannelsOrderBy CREATE_DATE_DESC = new ChannelsOrderBy("CREATE_DATE_DESC");
-		public static readonly ChannelsOrderBy UPDATE_DATE_ASC = new ChannelsOrderBy("UPDATE_DATE_ASC");
-		public static readonly ChannelsOrderBy UPDATE_DATE_DESC = new ChannelsOrderBy("UPDATE_DATE_DESC");
 
 		private ChannelsOrderBy(string name) : base(name) { }
 	}

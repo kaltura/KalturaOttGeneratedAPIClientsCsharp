@@ -69,7 +69,7 @@ namespace Kaltura.Types
 		public long Id
 		{
 			get { return _Id; }
-			set 
+			private set 
 			{ 
 				_Id = value;
 				OnPropertyChanged("Id");
@@ -81,7 +81,8 @@ namespace Kaltura.Types
 		[JsonProperty]
 		public string Name
 		{
-			set 
+			get { return _Name; }
+			private set 
 			{ 
 				_Name = value;
 				OnPropertyChanged("Name");
@@ -93,7 +94,8 @@ namespace Kaltura.Types
 		[JsonProperty]
 		public int MaxViewsNumber
 		{
-			set 
+			get { return _MaxViewsNumber; }
+			private set 
 			{ 
 				_MaxViewsNumber = value;
 				OnPropertyChanged("MaxViewsNumber");
@@ -105,7 +107,8 @@ namespace Kaltura.Types
 		[JsonProperty]
 		public int ViewLifeCycle
 		{
-			set 
+			get { return _ViewLifeCycle; }
+			private set 
 			{ 
 				_ViewLifeCycle = value;
 				OnPropertyChanged("ViewLifeCycle");
@@ -117,7 +120,8 @@ namespace Kaltura.Types
 		[JsonProperty]
 		public int FullLifeCycle
 		{
-			set 
+			get { return _FullLifeCycle; }
+			private set 
 			{ 
 				_FullLifeCycle = value;
 				OnPropertyChanged("FullLifeCycle");
@@ -143,7 +147,7 @@ namespace Kaltura.Types
 		public int WaiverPeriod
 		{
 			get { return _WaiverPeriod; }
-			set 
+			private set 
 			{ 
 				_WaiverPeriod = value;
 				OnPropertyChanged("WaiverPeriod");
@@ -156,7 +160,7 @@ namespace Kaltura.Types
 		public bool? IsWaiverEnabled
 		{
 			get { return _IsWaiverEnabled; }
-			set 
+			private set 
 			{ 
 				_IsWaiverEnabled = value;
 				OnPropertyChanged("IsWaiverEnabled");
@@ -169,7 +173,7 @@ namespace Kaltura.Types
 		public bool? IsOfflinePlayback
 		{
 			get { return _IsOfflinePlayback; }
-			set 
+			private set 
 			{ 
 				_IsOfflinePlayback = value;
 				OnPropertyChanged("IsOfflinePlayback");

@@ -40,13 +40,11 @@ namespace Kaltura.Types
 		#region Constants
 		public const string UNIT = "unit";
 		public const string VALUE = "value";
-		public const string CODE = "code";
 		#endregion
 
 		#region Private Fields
 		private DurationUnit _Unit = null;
 		private int _Value = Int32.MinValue;
-		private long _Code = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -76,19 +74,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Value");
 			}
 		}
-		/// <summary>
-		/// Use CodeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long Code
-		{
-			get { return _Code; }
-			private set 
-			{ 
-				_Code = value;
-				OnPropertyChanged("Code");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -106,10 +91,6 @@ namespace Kaltura.Types
 			{
 				this._Value = ParseInt(node["value"].Value<string>());
 			}
-			if(node["code"] != null)
-			{
-				this._Code = ParseLong(node["code"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -121,7 +102,6 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaDuration");
 			kparams.AddIfNotNull("unit", this._Unit);
 			kparams.AddIfNotNull("value", this._Value);
-			kparams.AddIfNotNull("code", this._Code);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -132,8 +112,6 @@ namespace Kaltura.Types
 					return "Unit";
 				case VALUE:
 					return "Value";
-				case CODE:
-					return "Code";
 				default:
 					return base.getPropertyName(apiName);
 			}
