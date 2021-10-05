@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ChannelsFilter : Filter
+	public class ChannelsFilter : ChannelsBaseFilter
 	{
 		#region Constants
 		public const string ID_EQUAL = "idEqual";

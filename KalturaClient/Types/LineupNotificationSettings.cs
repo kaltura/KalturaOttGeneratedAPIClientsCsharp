@@ -35,65 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ManualChannel : Channel
+	public class LineupNotificationSettings : ObjectBase
 	{
 		#region Constants
-		public const string MEDIA_IDS = "mediaIds";
-		public const string ASSETS = "assets";
+		public const string ENABLED = "enabled";
 		#endregion
 
 		#region Private Fields
-		private string _MediaIds = null;
-		private IList<ManualCollectionAsset> _Assets;
+		private bool? _Enabled = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use MediaIdsAsDouble property instead
+		/// Use EnabledAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string MediaIds
+		public bool? Enabled
 		{
-			get { return _MediaIds; }
+			get { return _Enabled; }
 			set 
 			{ 
-				_MediaIds = value;
-				OnPropertyChanged("MediaIds");
-			}
-		}
-		/// <summary>
-		/// Use AssetsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<ManualCollectionAsset> Assets
-		{
-			get { return _Assets; }
-			set 
-			{ 
-				_Assets = value;
-				OnPropertyChanged("Assets");
+				_Enabled = value;
+				OnPropertyChanged("Enabled");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ManualChannel()
+		public LineupNotificationSettings()
 		{
 		}
 
-		public ManualChannel(JToken node) : base(node)
+		public LineupNotificationSettings(JToken node) : base(node)
 		{
-			if(node["mediaIds"] != null)
+			if(node["enabled"] != null)
 			{
-				this._MediaIds = node["mediaIds"].Value<string>();
-			}
-			if(node["assets"] != null)
-			{
-				this._Assets = new List<ManualCollectionAsset>();
-				foreach(var arrayNode in node["assets"].Children())
-				{
-					this._Assets.Add(ObjectFactory.Create<ManualCollectionAsset>(arrayNode));
-				}
+				this._Enabled = ParseBool(node["enabled"].Value<string>());
 			}
 		}
 		#endregion
@@ -103,19 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaManualChannel");
-			kparams.AddIfNotNull("mediaIds", this._MediaIds);
-			kparams.AddIfNotNull("assets", this._Assets);
+				kparams.AddReplace("objectType", "KalturaLineupNotificationSettings");
+			kparams.AddIfNotNull("enabled", this._Enabled);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case MEDIA_IDS:
-					return "MediaIds";
-				case ASSETS:
-					return "Assets";
+				case ENABLED:
+					return "Enabled";
 				default:
 					return base.getPropertyName(apiName);
 			}

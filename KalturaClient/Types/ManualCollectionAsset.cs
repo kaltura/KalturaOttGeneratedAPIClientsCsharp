@@ -35,65 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ManualChannel : Channel
+	public class ManualCollectionAsset : ObjectBase
 	{
 		#region Constants
-		public const string MEDIA_IDS = "mediaIds";
-		public const string ASSETS = "assets";
+		public const string ID = "id";
+		public const string TYPE = "type";
 		#endregion
 
 		#region Private Fields
-		private string _MediaIds = null;
-		private IList<ManualCollectionAsset> _Assets;
+		private string _Id = null;
+		private ManualCollectionAssetType _Type = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use MediaIdsAsDouble property instead
+		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string MediaIds
+		public string Id
 		{
-			get { return _MediaIds; }
+			get { return _Id; }
 			set 
 			{ 
-				_MediaIds = value;
-				OnPropertyChanged("MediaIds");
+				_Id = value;
+				OnPropertyChanged("Id");
 			}
 		}
 		/// <summary>
-		/// Use AssetsAsDouble property instead
+		/// Use TypeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<ManualCollectionAsset> Assets
+		public ManualCollectionAssetType Type
 		{
-			get { return _Assets; }
+			get { return _Type; }
 			set 
 			{ 
-				_Assets = value;
-				OnPropertyChanged("Assets");
+				_Type = value;
+				OnPropertyChanged("Type");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ManualChannel()
+		public ManualCollectionAsset()
 		{
 		}
 
-		public ManualChannel(JToken node) : base(node)
+		public ManualCollectionAsset(JToken node) : base(node)
 		{
-			if(node["mediaIds"] != null)
+			if(node["id"] != null)
 			{
-				this._MediaIds = node["mediaIds"].Value<string>();
+				this._Id = node["id"].Value<string>();
 			}
-			if(node["assets"] != null)
+			if(node["type"] != null)
 			{
-				this._Assets = new List<ManualCollectionAsset>();
-				foreach(var arrayNode in node["assets"].Children())
-				{
-					this._Assets.Add(ObjectFactory.Create<ManualCollectionAsset>(arrayNode));
-				}
+				this._Type = (ManualCollectionAssetType)StringEnum.Parse(typeof(ManualCollectionAssetType), node["type"].Value<string>());
 			}
 		}
 		#endregion
@@ -103,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaManualChannel");
-			kparams.AddIfNotNull("mediaIds", this._MediaIds);
-			kparams.AddIfNotNull("assets", this._Assets);
+				kparams.AddReplace("objectType", "KalturaManualCollectionAsset");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("type", this._Type);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case MEDIA_IDS:
-					return "MediaIds";
-				case ASSETS:
-					return "Assets";
+				case ID:
+					return "Id";
+				case TYPE:
+					return "Type";
 				default:
 					return base.getPropertyName(apiName);
 			}

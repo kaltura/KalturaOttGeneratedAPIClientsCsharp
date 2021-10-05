@@ -35,65 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ManualChannel : Channel
+	public class ChannelSearchByKsqlFilter : ChannelsBaseFilter
 	{
 		#region Constants
-		public const string MEDIA_IDS = "mediaIds";
-		public const string ASSETS = "assets";
+		public const string KSQL = "kSql";
+		public const string CHANNEL_STRUCT_EQUAL = "channelStructEqual";
 		#endregion
 
 		#region Private Fields
-		private string _MediaIds = null;
-		private IList<ManualCollectionAsset> _Assets;
+		private string _KSql = null;
+		private ChannelStruct _ChannelStructEqual = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use MediaIdsAsDouble property instead
+		/// Use KSqlAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string MediaIds
+		public string KSql
 		{
-			get { return _MediaIds; }
+			get { return _KSql; }
 			set 
 			{ 
-				_MediaIds = value;
-				OnPropertyChanged("MediaIds");
+				_KSql = value;
+				OnPropertyChanged("KSql");
 			}
 		}
 		/// <summary>
-		/// Use AssetsAsDouble property instead
+		/// Use ChannelStructEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<ManualCollectionAsset> Assets
+		public ChannelStruct ChannelStructEqual
 		{
-			get { return _Assets; }
+			get { return _ChannelStructEqual; }
 			set 
 			{ 
-				_Assets = value;
-				OnPropertyChanged("Assets");
+				_ChannelStructEqual = value;
+				OnPropertyChanged("ChannelStructEqual");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ManualChannel()
+		public ChannelSearchByKsqlFilter()
 		{
 		}
 
-		public ManualChannel(JToken node) : base(node)
+		public ChannelSearchByKsqlFilter(JToken node) : base(node)
 		{
-			if(node["mediaIds"] != null)
+			if(node["kSql"] != null)
 			{
-				this._MediaIds = node["mediaIds"].Value<string>();
+				this._KSql = node["kSql"].Value<string>();
 			}
-			if(node["assets"] != null)
+			if(node["channelStructEqual"] != null)
 			{
-				this._Assets = new List<ManualCollectionAsset>();
-				foreach(var arrayNode in node["assets"].Children())
-				{
-					this._Assets.Add(ObjectFactory.Create<ManualCollectionAsset>(arrayNode));
-				}
+				this._ChannelStructEqual = (ChannelStruct)StringEnum.Parse(typeof(ChannelStruct), node["channelStructEqual"].Value<string>());
 			}
 		}
 		#endregion
@@ -103,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaManualChannel");
-			kparams.AddIfNotNull("mediaIds", this._MediaIds);
-			kparams.AddIfNotNull("assets", this._Assets);
+				kparams.AddReplace("objectType", "KalturaChannelSearchByKsqlFilter");
+			kparams.AddIfNotNull("kSql", this._KSql);
+			kparams.AddIfNotNull("channelStructEqual", this._ChannelStructEqual);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case MEDIA_IDS:
-					return "MediaIds";
-				case ASSETS:
-					return "Assets";
+				case KSQL:
+					return "KSql";
+				case CHANNEL_STRUCT_EQUAL:
+					return "ChannelStructEqual";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -35,65 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ManualChannel : Channel
+	public class EpgServicePartnerConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string MEDIA_IDS = "mediaIds";
-		public const string ASSETS = "assets";
+		public const string NUMBER_OF_SLOTS = "numberOfSlots";
+		public const string FIRST_SLOT_OFFSET = "firstSlotOffset";
 		#endregion
 
 		#region Private Fields
-		private string _MediaIds = null;
-		private IList<ManualCollectionAsset> _Assets;
+		private int _NumberOfSlots = Int32.MinValue;
+		private int _FirstSlotOffset = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use MediaIdsAsDouble property instead
+		/// Use NumberOfSlotsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string MediaIds
+		public int NumberOfSlots
 		{
-			get { return _MediaIds; }
+			get { return _NumberOfSlots; }
 			set 
 			{ 
-				_MediaIds = value;
-				OnPropertyChanged("MediaIds");
+				_NumberOfSlots = value;
+				OnPropertyChanged("NumberOfSlots");
 			}
 		}
 		/// <summary>
-		/// Use AssetsAsDouble property instead
+		/// Use FirstSlotOffsetAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<ManualCollectionAsset> Assets
+		public int FirstSlotOffset
 		{
-			get { return _Assets; }
+			get { return _FirstSlotOffset; }
 			set 
 			{ 
-				_Assets = value;
-				OnPropertyChanged("Assets");
+				_FirstSlotOffset = value;
+				OnPropertyChanged("FirstSlotOffset");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ManualChannel()
+		public EpgServicePartnerConfiguration()
 		{
 		}
 
-		public ManualChannel(JToken node) : base(node)
+		public EpgServicePartnerConfiguration(JToken node) : base(node)
 		{
-			if(node["mediaIds"] != null)
+			if(node["numberOfSlots"] != null)
 			{
-				this._MediaIds = node["mediaIds"].Value<string>();
+				this._NumberOfSlots = ParseInt(node["numberOfSlots"].Value<string>());
 			}
-			if(node["assets"] != null)
+			if(node["firstSlotOffset"] != null)
 			{
-				this._Assets = new List<ManualCollectionAsset>();
-				foreach(var arrayNode in node["assets"].Children())
-				{
-					this._Assets.Add(ObjectFactory.Create<ManualCollectionAsset>(arrayNode));
-				}
+				this._FirstSlotOffset = ParseInt(node["firstSlotOffset"].Value<string>());
 			}
 		}
 		#endregion
@@ -103,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaManualChannel");
-			kparams.AddIfNotNull("mediaIds", this._MediaIds);
-			kparams.AddIfNotNull("assets", this._Assets);
+				kparams.AddReplace("objectType", "KalturaEpgServicePartnerConfiguration");
+			kparams.AddIfNotNull("numberOfSlots", this._NumberOfSlots);
+			kparams.AddIfNotNull("firstSlotOffset", this._FirstSlotOffset);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case MEDIA_IDS:
-					return "MediaIds";
-				case ASSETS:
-					return "Assets";
+				case NUMBER_OF_SLOTS:
+					return "NumberOfSlots";
+				case FIRST_SLOT_OFFSET:
+					return "FirstSlotOffset";
 				default:
 					return base.getPropertyName(apiName);
 			}

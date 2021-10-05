@@ -161,14 +161,14 @@ namespace Kaltura.Services
 		public const string FILTER = "filter";
 		#endregion
 
-		public AssetStructFilter Filter { get; set; }
+		public BaseAssetStructFilter Filter { get; set; }
 
 		public AssetStructListRequestBuilder()
 			: base("assetstruct", "list")
 		{
 		}
 
-		public AssetStructListRequestBuilder(AssetStructFilter filter)
+		public AssetStructListRequestBuilder(BaseAssetStructFilter filter)
 			: this()
 		{
 			this.Filter = filter;
@@ -260,7 +260,7 @@ namespace Kaltura.Services
 			return new AssetStructGetRequestBuilder(id);
 		}
 
-		public static AssetStructListRequestBuilder List(AssetStructFilter filter = null)
+		public static AssetStructListRequestBuilder List(BaseAssetStructFilter filter = null)
 		{
 			return new AssetStructListRequestBuilder(filter);
 		}

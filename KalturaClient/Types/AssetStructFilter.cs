@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetStructFilter : Filter
+	public class AssetStructFilter : BaseAssetStructFilter
 	{
 		#region Constants
 		public const string ID_IN = "idIn";
