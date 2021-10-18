@@ -82,6 +82,8 @@ namespace Kaltura
 					return new ListResponse<SSOAdapterProfile>(jToken);
 				case "KalturaUserInterestListResponse":
 					return new ListResponse<UserInterest>(jToken);
+				case "KalturaUserSessionProfileListResponse":
+					return new ListResponse<UserSessionProfile>(jToken);
 				case "KalturaBulkUploadListResponse":
 					return new ListResponse<BulkUpload>(jToken);
 				case "KalturaSocialActionListResponse":

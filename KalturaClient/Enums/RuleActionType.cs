@@ -40,6 +40,21 @@ namespace Kaltura.Enums
 		public static readonly RuleActionType FILTER = new RuleActionType("FILTER");
 		public static readonly RuleActionType ASSET_LIFE_CYCLE_TRANSITION = new RuleActionType("ASSET_LIFE_CYCLE_TRANSITION");
 		public static readonly RuleActionType APPLY_FREE_PLAYBACK = new RuleActionType("APPLY_FREE_PLAYBACK");
+		public static readonly RuleActionType FILTERASSETBYKSQL = new RuleActionType("FilterAssetByKsql");
+		public static readonly RuleActionType FILTERFILEBYQUALITYINDISCOVERY = new RuleActionType("FilterFileByQualityInDiscovery");
+		public static readonly RuleActionType FILTERFILEBYQUALITYINPLAYBACK = new RuleActionType("FilterFileByQualityInPlayback");
+		public static readonly RuleActionType FILTERFILEBYFILETYPEIDFORASSETTYPEINDISCOVERY = new RuleActionType("FilterFileByFileTypeIdForAssetTypeInDiscovery");
+		public static readonly RuleActionType FILTERFILEBYFILETYPEIDFORASSETTYPEINPLAYBACK = new RuleActionType("FilterFileByFileTypeIdForAssetTypeInPlayback");
+		public static readonly RuleActionType FILTERFILEBYFILETYPEIDINDISCOVERY = new RuleActionType("FilterFileByFileTypeIdInDiscovery");
+		public static readonly RuleActionType FILTERFILEBYFILETYPEIDINPLAYBACK = new RuleActionType("FilterFileByFileTypeIdInPlayback");
+		public static readonly RuleActionType FILTERFILEBYAUDIOCODECINDISCOVERY = new RuleActionType("FilterFileByAudioCodecInDiscovery");
+		public static readonly RuleActionType FILTERFILEBYAUDIOCODECINPLAYBACK = new RuleActionType("FilterFileByAudioCodecInPlayback");
+		public static readonly RuleActionType FILTERFILEBYVIDEOCODECINDISCOVERY = new RuleActionType("FilterFileByVideoCodecInDiscovery");
+		public static readonly RuleActionType FILTERFILEBYVIDEOCODECINPLAYBACK = new RuleActionType("FilterFileByVideoCodecInPlayback");
+		public static readonly RuleActionType FILTERFILEBYSTREAMERTYPEINDISCOVERY = new RuleActionType("FilterFileByStreamerTypeInDiscovery");
+		public static readonly RuleActionType FILTERFILEBYSTREAMERTYPEINPLAYBACK = new RuleActionType("FilterFileByStreamerTypeInPlayback");
+		public static readonly RuleActionType FILTERFILEBYLABELINDISCOVERY = new RuleActionType("FilterFileByLabelInDiscovery");
+		public static readonly RuleActionType FILTERFILEBYLABELINPLAYBACK = new RuleActionType("FilterFileByLabelInPlayback");
 
 		private RuleActionType(string name) : base(name) { }
 	}

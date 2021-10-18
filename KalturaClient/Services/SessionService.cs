@@ -36,6 +36,70 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
+	public class SessionCreateSessionCharacteristicRequestBuilder : RequestBuilder<SessionCharacteristic>
+	{
+		#region Constants
+		public new const string USER_ID = "userId";
+		public const string HOUSEHOLD_ID = "householdId";
+		public const string UDID = "udid";
+		public const string EXPIRATION = "expiration";
+		public const string REGION_ID = "regionId";
+		public const string SESSION_CHARACTERISTIC_PARAMS = "sessionCharacteristicParams";
+		#endregion
+
+		public new string UserId { get; set; }
+		public long HouseholdId { get; set; }
+		public string Udid { get; set; }
+		public long Expiration { get; set; }
+		public int RegionId { get; set; }
+		public IDictionary<string, StringValueArray> SessionCharacteristicParams { get; set; }
+
+		public SessionCreateSessionCharacteristicRequestBuilder()
+			: base("session", "createSessionCharacteristic")
+		{
+		}
+
+		public SessionCreateSessionCharacteristicRequestBuilder(string userId, long householdId, string udid, long expiration, int regionId, IDictionary<string, StringValueArray> sessionCharacteristicParams)
+			: this()
+		{
+			this.UserId = userId;
+			this.HouseholdId = householdId;
+			this.Udid = udid;
+			this.Expiration = expiration;
+			this.RegionId = regionId;
+			this.SessionCharacteristicParams = sessionCharacteristicParams;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("userId"))
+				kparams.AddIfNotNull("userId", UserId);
+			if (!isMapped("householdId"))
+				kparams.AddIfNotNull("householdId", HouseholdId);
+			if (!isMapped("udid"))
+				kparams.AddIfNotNull("udid", Udid);
+			if (!isMapped("expiration"))
+				kparams.AddIfNotNull("expiration", Expiration);
+			if (!isMapped("regionId"))
+				kparams.AddIfNotNull("regionId", RegionId);
+			if (!isMapped("sessionCharacteristicParams"))
+				kparams.AddIfNotNull("sessionCharacteristicParams", SessionCharacteristicParams);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<SessionCharacteristic>(result);
+		}
+	}
+
 	public class SessionGetRequestBuilder : RequestBuilder<Session>
 	{
 		#region Constants
@@ -150,6 +214,11 @@ namespace Kaltura.Services
 	{
 		private SessionService()
 		{
+		}
+
+		public static SessionCreateSessionCharacteristicRequestBuilder CreateSessionCharacteristic(string userId, long householdId, string udid, long expiration, int regionId = Int32.MinValue, IDictionary<string, StringValueArray> sessionCharacteristicParams = null)
+		{
+			return new SessionCreateSessionCharacteristicRequestBuilder(userId, householdId, udid, expiration, regionId, sessionCharacteristicParams);
 		}
 
 		public static SessionGetRequestBuilder Get(string session = null)
