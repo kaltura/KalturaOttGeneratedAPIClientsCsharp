@@ -35,22 +35,22 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class PriceDetails : ObjectBase
+	public class SessionCharacteristic : ObjectBase
 	{
 		#region Constants
 		public const string ID = "id";
-		public const string NAME = "name";
-		public const string PRICE = "price";
-		public const string MULTI_CURRENCY_PRICE = "multiCurrencyPrice";
-		public const string DESCRIPTIONS = "descriptions";
+		public const string REGION_ID = "regionId";
+		public const string USER_SEGMENTS_IDS = "userSegmentsIds";
+		public const string USER_ROLES_IDS = "userRolesIds";
+		public const string USER_SESSION_PROFILES_IDS = "userSessionProfilesIds";
 		#endregion
 
 		#region Private Fields
-		private int _Id = Int32.MinValue;
-		private string _Name = null;
-		private Price _Price;
-		private IList<Price> _MultiCurrencyPrice;
-		private IList<TranslationToken> _Descriptions;
+		private string _Id = null;
+		private int _RegionId = Int32.MinValue;
+		private string _UserSegmentsIds = null;
+		private string _UserRolesIds = null;
+		private string _UserSessionProfilesIds = null;
 		#endregion
 
 		#region Properties
@@ -58,103 +58,95 @@ namespace Kaltura.Types
 		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int Id
+		public string Id
 		{
 			get { return _Id; }
-			set 
+			private set 
 			{ 
 				_Id = value;
 				OnPropertyChanged("Id");
 			}
 		}
 		/// <summary>
-		/// Use NameAsDouble property instead
+		/// Use RegionIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string Name
+		public int RegionId
 		{
-			get { return _Name; }
-			set 
-			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
-			}
-		}
-		/// <summary>
-		/// Use PriceAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public Price Price
-		{
-			get { return _Price; }
+			get { return _RegionId; }
 			private set 
 			{ 
-				_Price = value;
-				OnPropertyChanged("Price");
+				_RegionId = value;
+				OnPropertyChanged("RegionId");
 			}
 		}
 		/// <summary>
-		/// Use MultiCurrencyPriceAsDouble property instead
+		/// Use UserSegmentsIdsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<Price> MultiCurrencyPrice
+		public string UserSegmentsIds
 		{
-			get { return _MultiCurrencyPrice; }
-			set 
+			get { return _UserSegmentsIds; }
+			private set 
 			{ 
-				_MultiCurrencyPrice = value;
-				OnPropertyChanged("MultiCurrencyPrice");
+				_UserSegmentsIds = value;
+				OnPropertyChanged("UserSegmentsIds");
 			}
 		}
 		/// <summary>
-		/// Use DescriptionsAsDouble property instead
+		/// Use UserRolesIdsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<TranslationToken> Descriptions
+		public string UserRolesIds
 		{
-			get { return _Descriptions; }
-			set 
+			get { return _UserRolesIds; }
+			private set 
 			{ 
-				_Descriptions = value;
-				OnPropertyChanged("Descriptions");
+				_UserRolesIds = value;
+				OnPropertyChanged("UserRolesIds");
+			}
+		}
+		/// <summary>
+		/// Use UserSessionProfilesIdsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string UserSessionProfilesIds
+		{
+			get { return _UserSessionProfilesIds; }
+			private set 
+			{ 
+				_UserSessionProfilesIds = value;
+				OnPropertyChanged("UserSessionProfilesIds");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public PriceDetails()
+		public SessionCharacteristic()
 		{
 		}
 
-		public PriceDetails(JToken node) : base(node)
+		public SessionCharacteristic(JToken node) : base(node)
 		{
 			if(node["id"] != null)
 			{
-				this._Id = ParseInt(node["id"].Value<string>());
+				this._Id = node["id"].Value<string>();
 			}
-			if(node["name"] != null)
+			if(node["regionId"] != null)
 			{
-				this._Name = node["name"].Value<string>();
+				this._RegionId = ParseInt(node["regionId"].Value<string>());
 			}
-			if(node["price"] != null)
+			if(node["userSegmentsIds"] != null)
 			{
-				this._Price = ObjectFactory.Create<Price>(node["price"]);
+				this._UserSegmentsIds = node["userSegmentsIds"].Value<string>();
 			}
-			if(node["multiCurrencyPrice"] != null)
+			if(node["userRolesIds"] != null)
 			{
-				this._MultiCurrencyPrice = new List<Price>();
-				foreach(var arrayNode in node["multiCurrencyPrice"].Children())
-				{
-					this._MultiCurrencyPrice.Add(ObjectFactory.Create<Price>(arrayNode));
-				}
+				this._UserRolesIds = node["userRolesIds"].Value<string>();
 			}
-			if(node["descriptions"] != null)
+			if(node["userSessionProfilesIds"] != null)
 			{
-				this._Descriptions = new List<TranslationToken>();
-				foreach(var arrayNode in node["descriptions"].Children())
-				{
-					this._Descriptions.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
-				}
+				this._UserSessionProfilesIds = node["userSessionProfilesIds"].Value<string>();
 			}
 		}
 		#endregion
@@ -164,12 +156,12 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPriceDetails");
+				kparams.AddReplace("objectType", "KalturaSessionCharacteristic");
 			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("price", this._Price);
-			kparams.AddIfNotNull("multiCurrencyPrice", this._MultiCurrencyPrice);
-			kparams.AddIfNotNull("descriptions", this._Descriptions);
+			kparams.AddIfNotNull("regionId", this._RegionId);
+			kparams.AddIfNotNull("userSegmentsIds", this._UserSegmentsIds);
+			kparams.AddIfNotNull("userRolesIds", this._UserRolesIds);
+			kparams.AddIfNotNull("userSessionProfilesIds", this._UserSessionProfilesIds);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -178,14 +170,14 @@ namespace Kaltura.Types
 			{
 				case ID:
 					return "Id";
-				case NAME:
-					return "Name";
-				case PRICE:
-					return "Price";
-				case MULTI_CURRENCY_PRICE:
-					return "MultiCurrencyPrice";
-				case DESCRIPTIONS:
-					return "Descriptions";
+				case REGION_ID:
+					return "RegionId";
+				case USER_SEGMENTS_IDS:
+					return "UserSegmentsIds";
+				case USER_ROLES_IDS:
+					return "UserRolesIds";
+				case USER_SESSION_PROFILES_IDS:
+					return "UserSessionProfilesIds";
 				default:
 					return base.getPropertyName(apiName);
 			}

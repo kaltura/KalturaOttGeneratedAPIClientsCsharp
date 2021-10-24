@@ -35,22 +35,18 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class PriceDetails : ObjectBase
+	public class UserSessionProfile : ObjectBase
 	{
 		#region Constants
 		public const string ID = "id";
 		public const string NAME = "name";
-		public const string PRICE = "price";
-		public const string MULTI_CURRENCY_PRICE = "multiCurrencyPrice";
-		public const string DESCRIPTIONS = "descriptions";
+		public const string EXPRESSION = "expression";
 		#endregion
 
 		#region Private Fields
-		private int _Id = Int32.MinValue;
+		private long _Id = long.MinValue;
 		private string _Name = null;
-		private Price _Price;
-		private IList<Price> _MultiCurrencyPrice;
-		private IList<TranslationToken> _Descriptions;
+		private UserSessionProfileExpression _Expression;
 		#endregion
 
 		#region Properties
@@ -58,10 +54,10 @@ namespace Kaltura.Types
 		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int Id
+		public long Id
 		{
 			get { return _Id; }
-			set 
+			private set 
 			{ 
 				_Id = value;
 				OnPropertyChanged("Id");
@@ -81,80 +77,38 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use PriceAsDouble property instead
+		/// Use ExpressionAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public Price Price
+		public UserSessionProfileExpression Expression
 		{
-			get { return _Price; }
-			private set 
-			{ 
-				_Price = value;
-				OnPropertyChanged("Price");
-			}
-		}
-		/// <summary>
-		/// Use MultiCurrencyPriceAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<Price> MultiCurrencyPrice
-		{
-			get { return _MultiCurrencyPrice; }
+			get { return _Expression; }
 			set 
 			{ 
-				_MultiCurrencyPrice = value;
-				OnPropertyChanged("MultiCurrencyPrice");
-			}
-		}
-		/// <summary>
-		/// Use DescriptionsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<TranslationToken> Descriptions
-		{
-			get { return _Descriptions; }
-			set 
-			{ 
-				_Descriptions = value;
-				OnPropertyChanged("Descriptions");
+				_Expression = value;
+				OnPropertyChanged("Expression");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public PriceDetails()
+		public UserSessionProfile()
 		{
 		}
 
-		public PriceDetails(JToken node) : base(node)
+		public UserSessionProfile(JToken node) : base(node)
 		{
 			if(node["id"] != null)
 			{
-				this._Id = ParseInt(node["id"].Value<string>());
+				this._Id = ParseLong(node["id"].Value<string>());
 			}
 			if(node["name"] != null)
 			{
 				this._Name = node["name"].Value<string>();
 			}
-			if(node["price"] != null)
+			if(node["expression"] != null)
 			{
-				this._Price = ObjectFactory.Create<Price>(node["price"]);
-			}
-			if(node["multiCurrencyPrice"] != null)
-			{
-				this._MultiCurrencyPrice = new List<Price>();
-				foreach(var arrayNode in node["multiCurrencyPrice"].Children())
-				{
-					this._MultiCurrencyPrice.Add(ObjectFactory.Create<Price>(arrayNode));
-				}
-			}
-			if(node["descriptions"] != null)
-			{
-				this._Descriptions = new List<TranslationToken>();
-				foreach(var arrayNode in node["descriptions"].Children())
-				{
-					this._Descriptions.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
-				}
+				this._Expression = ObjectFactory.Create<UserSessionProfileExpression>(node["expression"]);
 			}
 		}
 		#endregion
@@ -164,12 +118,10 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPriceDetails");
+				kparams.AddReplace("objectType", "KalturaUserSessionProfile");
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("price", this._Price);
-			kparams.AddIfNotNull("multiCurrencyPrice", this._MultiCurrencyPrice);
-			kparams.AddIfNotNull("descriptions", this._Descriptions);
+			kparams.AddIfNotNull("expression", this._Expression);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -180,12 +132,8 @@ namespace Kaltura.Types
 					return "Id";
 				case NAME:
 					return "Name";
-				case PRICE:
-					return "Price";
-				case MULTI_CURRENCY_PRICE:
-					return "MultiCurrencyPrice";
-				case DESCRIPTIONS:
-					return "Descriptions";
+				case EXPRESSION:
+					return "Expression";
 				default:
 					return base.getPropertyName(apiName);
 			}

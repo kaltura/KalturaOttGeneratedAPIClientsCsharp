@@ -36,30 +36,30 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class PpvAddRequestBuilder : RequestBuilder<Ppv>
+	public class UserSessionProfileAddRequestBuilder : RequestBuilder<UserSessionProfile>
 	{
 		#region Constants
-		public const string PPV = "ppv";
+		public const string USER_SESSION_PROFILE = "userSessionProfile";
 		#endregion
 
-		public Ppv Ppv { get; set; }
+		public UserSessionProfile UserSessionProfile { get; set; }
 
-		public PpvAddRequestBuilder()
-			: base("ppv", "add")
+		public UserSessionProfileAddRequestBuilder()
+			: base("usersessionprofile", "add")
 		{
 		}
 
-		public PpvAddRequestBuilder(Ppv ppv)
+		public UserSessionProfileAddRequestBuilder(UserSessionProfile userSessionProfile)
 			: this()
 		{
-			this.Ppv = ppv;
+			this.UserSessionProfile = userSessionProfile;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("ppv"))
-				kparams.AddIfNotNull("ppv", Ppv);
+			if (!isMapped("userSessionProfile"))
+				kparams.AddIfNotNull("userSessionProfile", UserSessionProfile);
 			return kparams;
 		}
 
@@ -71,11 +71,11 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<Ppv>(result);
+			return ObjectFactory.Create<UserSessionProfile>(result);
 		}
 	}
 
-	public class PpvDeleteRequestBuilder : RequestBuilder<bool>
+	public class UserSessionProfileDeleteRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
 		public const string ID = "id";
@@ -83,12 +83,12 @@ namespace Kaltura.Services
 
 		public long Id { get; set; }
 
-		public PpvDeleteRequestBuilder()
-			: base("ppv", "delete")
+		public UserSessionProfileDeleteRequestBuilder()
+			: base("usersessionprofile", "delete")
 		{
 		}
 
-		public PpvDeleteRequestBuilder(long id)
+		public UserSessionProfileDeleteRequestBuilder(long id)
 			: this()
 		{
 			this.Id = id;
@@ -110,67 +110,26 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
-				return true;
-			return false;
+			return null;
 		}
 	}
 
-	public class PpvGetRequestBuilder : RequestBuilder<Ppv>
-	{
-		#region Constants
-		public const string ID = "id";
-		#endregion
-
-		public long Id { get; set; }
-
-		public PpvGetRequestBuilder()
-			: base("ppv", "get")
-		{
-		}
-
-		public PpvGetRequestBuilder(long id)
-			: this()
-		{
-			this.Id = id;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<Ppv>(result);
-		}
-	}
-
-	public class PpvListRequestBuilder : RequestBuilder<ListResponse<Ppv>>
+	public class UserSessionProfileListRequestBuilder : RequestBuilder<ListResponse<UserSessionProfile>>
 	{
 		#region Constants
 		public const string FILTER = "filter";
 		public const string PAGER = "pager";
 		#endregion
 
-		public PpvFilter Filter { get; set; }
+		public UserSessionProfileFilter Filter { get; set; }
 		public FilterPager Pager { get; set; }
 
-		public PpvListRequestBuilder()
-			: base("ppv", "list")
+		public UserSessionProfileListRequestBuilder()
+			: base("usersessionprofile", "list")
 		{
 		}
 
-		public PpvListRequestBuilder(PpvFilter filter, FilterPager pager)
+		public UserSessionProfileListRequestBuilder(UserSessionProfileFilter filter, FilterPager pager)
 			: this()
 		{
 			this.Filter = filter;
@@ -195,30 +154,30 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<ListResponse<Ppv>>(result);
+			return ObjectFactory.Create<ListResponse<UserSessionProfile>>(result);
 		}
 	}
 
-	public class PpvUpdateRequestBuilder : RequestBuilder<Ppv>
+	public class UserSessionProfileUpdateRequestBuilder : RequestBuilder<UserSessionProfile>
 	{
 		#region Constants
 		public const string ID = "id";
-		public const string PPV = "ppv";
+		public const string USER_SESSION_PROFILE = "userSessionProfile";
 		#endregion
 
-		public int Id { get; set; }
-		public Ppv Ppv { get; set; }
+		public long Id { get; set; }
+		public UserSessionProfile UserSessionProfile { get; set; }
 
-		public PpvUpdateRequestBuilder()
-			: base("ppv", "update")
+		public UserSessionProfileUpdateRequestBuilder()
+			: base("usersessionprofile", "update")
 		{
 		}
 
-		public PpvUpdateRequestBuilder(int id, Ppv ppv)
+		public UserSessionProfileUpdateRequestBuilder(long id, UserSessionProfile userSessionProfile)
 			: this()
 		{
 			this.Id = id;
-			this.Ppv = ppv;
+			this.UserSessionProfile = userSessionProfile;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -226,8 +185,8 @@ namespace Kaltura.Services
 			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("id"))
 				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("ppv"))
-				kparams.AddIfNotNull("ppv", Ppv);
+			if (!isMapped("userSessionProfile"))
+				kparams.AddIfNotNull("userSessionProfile", UserSessionProfile);
 			return kparams;
 		}
 
@@ -239,40 +198,35 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<Ppv>(result);
+			return ObjectFactory.Create<UserSessionProfile>(result);
 		}
 	}
 
 
-	public class PpvService
+	public class UserSessionProfileService
 	{
-		private PpvService()
+		private UserSessionProfileService()
 		{
 		}
 
-		public static PpvAddRequestBuilder Add(Ppv ppv)
+		public static UserSessionProfileAddRequestBuilder Add(UserSessionProfile userSessionProfile)
 		{
-			return new PpvAddRequestBuilder(ppv);
+			return new UserSessionProfileAddRequestBuilder(userSessionProfile);
 		}
 
-		public static PpvDeleteRequestBuilder Delete(long id)
+		public static UserSessionProfileDeleteRequestBuilder Delete(long id)
 		{
-			return new PpvDeleteRequestBuilder(id);
+			return new UserSessionProfileDeleteRequestBuilder(id);
 		}
 
-		public static PpvGetRequestBuilder Get(long id)
+		public static UserSessionProfileListRequestBuilder List(UserSessionProfileFilter filter = null, FilterPager pager = null)
 		{
-			return new PpvGetRequestBuilder(id);
+			return new UserSessionProfileListRequestBuilder(filter, pager);
 		}
 
-		public static PpvListRequestBuilder List(PpvFilter filter = null, FilterPager pager = null)
+		public static UserSessionProfileUpdateRequestBuilder Update(long id, UserSessionProfile userSessionProfile)
 		{
-			return new PpvListRequestBuilder(filter, pager);
-		}
-
-		public static PpvUpdateRequestBuilder Update(int id, Ppv ppv)
-		{
-			return new PpvUpdateRequestBuilder(id, ppv);
+			return new UserSessionProfileUpdateRequestBuilder(id, userSessionProfile);
 		}
 	}
 }

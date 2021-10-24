@@ -25,15 +25,54 @@
 //
 // @ignore
 // ===================================================================================================
-namespace Kaltura.Enums
-{
-	public sealed class PpvOrderBy : StringEnum
-	{
-		public static readonly PpvOrderBy NAME_ASC = new PpvOrderBy("NAME_ASC");
-		public static readonly PpvOrderBy NAME_DESC = new PpvOrderBy("NAME_DESC");
-		public static readonly PpvOrderBy UPDATE_DATE_ASC = new PpvOrderBy("UPDATE_DATE_ASC");
-		public static readonly PpvOrderBy UPDATE_DATE_DESC = new PpvOrderBy("UPDATE_DATE_DESC");
+using System;
+using System.Xml;
+using System.Collections.Generic;
+using Kaltura.Enums;
+using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-		private PpvOrderBy(string name) : base(name) { }
+namespace Kaltura.Types
+{
+	public class UserSessionProfileExpression : ObjectBase
+	{
+		#region Constants
+		#endregion
+
+		#region Private Fields
+		#endregion
+
+		#region Properties
+		#endregion
+
+		#region CTor
+		public UserSessionProfileExpression()
+		{
+		}
+
+		public UserSessionProfileExpression(JToken node) : base(node)
+		{
+		}
+		#endregion
+
+		#region Methods
+		public override Params ToParams(bool includeObjectType = true)
+		{
+			Params kparams = base.ToParams(includeObjectType);
+			if (includeObjectType)
+				kparams.AddReplace("objectType", "KalturaUserSessionProfileExpression");
+			return kparams;
+		}
+		protected override string getPropertyName(string apiName)
+		{
+			switch(apiName)
+			{
+				default:
+					return base.getPropertyName(apiName);
+			}
+		}
+		#endregion
 	}
 }
+

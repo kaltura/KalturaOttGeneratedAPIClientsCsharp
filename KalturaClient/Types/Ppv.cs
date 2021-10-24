@@ -42,6 +42,7 @@ namespace Kaltura.Types
 		public const string NAME = "name";
 		public const string PRICE = "price";
 		public const string FILE_TYPES = "fileTypes";
+		public const string FILE_TYPES_IDS = "fileTypesIds";
 		public const string DISCOUNT_MODULE = "discountModule";
 		public const string COUPONS_GROUP = "couponsGroup";
 		public const string DESCRIPTIONS = "descriptions";
@@ -49,6 +50,11 @@ namespace Kaltura.Types
 		public const string IS_SUBSCRIPTION_ONLY = "isSubscriptionOnly";
 		public const string FIRST_DEVICE_LIMITATION = "firstDeviceLimitation";
 		public const string USAGE_MODULE = "usageModule";
+		public const string EXTERNAL_ID = "externalId";
+		public const string ADS_POLICY = "adsPolicy";
+		public const string IS_ACTIVE = "isActive";
+		public const string UPDATE_DATE = "updateDate";
+		public const string CREATE_DATE = "createDate";
 		#endregion
 
 		#region Private Fields
@@ -56,6 +62,7 @@ namespace Kaltura.Types
 		private string _Name = null;
 		private PriceDetails _Price;
 		private IList<IntegerValue> _FileTypes;
+		private string _FileTypesIds = null;
 		private DiscountModule _DiscountModule;
 		private CouponsGroup _CouponsGroup;
 		private IList<TranslationToken> _Descriptions;
@@ -63,6 +70,11 @@ namespace Kaltura.Types
 		private bool? _IsSubscriptionOnly = null;
 		private bool? _FirstDeviceLimitation = null;
 		private UsageModule _UsageModule;
+		private string _ExternalId = null;
+		private AdsPolicy _AdsPolicy = null;
+		private bool? _IsActive = null;
+		private long _UpdateDate = long.MinValue;
+		private long _CreateDate = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -119,6 +131,19 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use FileTypesIdsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string FileTypesIds
+		{
+			get { return _FileTypesIds; }
+			set 
+			{ 
+				_FileTypesIds = value;
+				OnPropertyChanged("FileTypesIds");
+			}
+		}
+		/// <summary>
 		/// Use DiscountModuleAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -164,7 +189,7 @@ namespace Kaltura.Types
 		public string ProductCode
 		{
 			get { return _ProductCode; }
-			set 
+			private set 
 			{ 
 				_ProductCode = value;
 				OnPropertyChanged("ProductCode");
@@ -209,6 +234,71 @@ namespace Kaltura.Types
 				OnPropertyChanged("UsageModule");
 			}
 		}
+		/// <summary>
+		/// Use ExternalIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string ExternalId
+		{
+			get { return _ExternalId; }
+			set 
+			{ 
+				_ExternalId = value;
+				OnPropertyChanged("ExternalId");
+			}
+		}
+		/// <summary>
+		/// Use AdsPolicyAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public AdsPolicy AdsPolicy
+		{
+			get { return _AdsPolicy; }
+			set 
+			{ 
+				_AdsPolicy = value;
+				OnPropertyChanged("AdsPolicy");
+			}
+		}
+		/// <summary>
+		/// Use IsActiveAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IsActive
+		{
+			get { return _IsActive; }
+			set 
+			{ 
+				_IsActive = value;
+				OnPropertyChanged("IsActive");
+			}
+		}
+		/// <summary>
+		/// Use UpdateDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long UpdateDate
+		{
+			get { return _UpdateDate; }
+			private set 
+			{ 
+				_UpdateDate = value;
+				OnPropertyChanged("UpdateDate");
+			}
+		}
+		/// <summary>
+		/// Use CreateDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long CreateDate
+		{
+			get { return _CreateDate; }
+			private set 
+			{ 
+				_CreateDate = value;
+				OnPropertyChanged("CreateDate");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -237,6 +327,10 @@ namespace Kaltura.Types
 				{
 					this._FileTypes.Add(ObjectFactory.Create<IntegerValue>(arrayNode));
 				}
+			}
+			if(node["fileTypesIds"] != null)
+			{
+				this._FileTypesIds = node["fileTypesIds"].Value<string>();
 			}
 			if(node["discountModule"] != null)
 			{
@@ -270,6 +364,26 @@ namespace Kaltura.Types
 			{
 				this._UsageModule = ObjectFactory.Create<UsageModule>(node["usageModule"]);
 			}
+			if(node["externalId"] != null)
+			{
+				this._ExternalId = node["externalId"].Value<string>();
+			}
+			if(node["adsPolicy"] != null)
+			{
+				this._AdsPolicy = (AdsPolicy)StringEnum.Parse(typeof(AdsPolicy), node["adsPolicy"].Value<string>());
+			}
+			if(node["isActive"] != null)
+			{
+				this._IsActive = ParseBool(node["isActive"].Value<string>());
+			}
+			if(node["updateDate"] != null)
+			{
+				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
+			}
+			if(node["createDate"] != null)
+			{
+				this._CreateDate = ParseLong(node["createDate"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -283,6 +397,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("name", this._Name);
 			kparams.AddIfNotNull("price", this._Price);
 			kparams.AddIfNotNull("fileTypes", this._FileTypes);
+			kparams.AddIfNotNull("fileTypesIds", this._FileTypesIds);
 			kparams.AddIfNotNull("discountModule", this._DiscountModule);
 			kparams.AddIfNotNull("couponsGroup", this._CouponsGroup);
 			kparams.AddIfNotNull("descriptions", this._Descriptions);
@@ -290,6 +405,11 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("isSubscriptionOnly", this._IsSubscriptionOnly);
 			kparams.AddIfNotNull("firstDeviceLimitation", this._FirstDeviceLimitation);
 			kparams.AddIfNotNull("usageModule", this._UsageModule);
+			kparams.AddIfNotNull("externalId", this._ExternalId);
+			kparams.AddIfNotNull("adsPolicy", this._AdsPolicy);
+			kparams.AddIfNotNull("isActive", this._IsActive);
+			kparams.AddIfNotNull("updateDate", this._UpdateDate);
+			kparams.AddIfNotNull("createDate", this._CreateDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -304,6 +424,8 @@ namespace Kaltura.Types
 					return "Price";
 				case FILE_TYPES:
 					return "FileTypes";
+				case FILE_TYPES_IDS:
+					return "FileTypesIds";
 				case DISCOUNT_MODULE:
 					return "DiscountModule";
 				case COUPONS_GROUP:
@@ -318,6 +440,16 @@ namespace Kaltura.Types
 					return "FirstDeviceLimitation";
 				case USAGE_MODULE:
 					return "UsageModule";
+				case EXTERNAL_ID:
+					return "ExternalId";
+				case ADS_POLICY:
+					return "AdsPolicy";
+				case IS_ACTIVE:
+					return "IsActive";
+				case UPDATE_DATE:
+					return "UpdateDate";
+				case CREATE_DATE:
+					return "CreateDate";
 				default:
 					return base.getPropertyName(apiName);
 			}
