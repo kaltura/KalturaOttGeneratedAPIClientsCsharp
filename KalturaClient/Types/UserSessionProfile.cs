@@ -35,80 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class SeriesRecordingOption : ObjectBase
+	public class UserSessionProfile : ObjectBase
 	{
 		#region Constants
-		public const string MIN_SEASON_NUMBER = "minSeasonNumber";
-		public const string MIN_EPISODE_NUMBER = "minEpisodeNumber";
-		public const string CHRONOLOGICAL_RECORD_START_TIME = "chronologicalRecordStartTime";
+		public const string ID = "id";
+		public const string NAME = "name";
+		public const string EXPRESSION = "expression";
 		#endregion
 
 		#region Private Fields
-		private int _MinSeasonNumber = Int32.MinValue;
-		private int _MinEpisodeNumber = Int32.MinValue;
-		private ChronologicalRecordStartTime _ChronologicalRecordStartTime = null;
+		private long _Id = long.MinValue;
+		private string _Name = null;
+		private UserSessionProfileExpression _Expression;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use MinSeasonNumberAsDouble property instead
+		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int MinSeasonNumber
+		public long Id
 		{
-			get { return _MinSeasonNumber; }
-			set 
+			get { return _Id; }
+			private set 
 			{ 
-				_MinSeasonNumber = value;
-				OnPropertyChanged("MinSeasonNumber");
+				_Id = value;
+				OnPropertyChanged("Id");
 			}
 		}
 		/// <summary>
-		/// Use MinEpisodeNumberAsDouble property instead
+		/// Use NameAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int MinEpisodeNumber
+		public string Name
 		{
-			get { return _MinEpisodeNumber; }
+			get { return _Name; }
 			set 
 			{ 
-				_MinEpisodeNumber = value;
-				OnPropertyChanged("MinEpisodeNumber");
+				_Name = value;
+				OnPropertyChanged("Name");
 			}
 		}
 		/// <summary>
-		/// Use ChronologicalRecordStartTimeAsDouble property instead
+		/// Use ExpressionAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ChronologicalRecordStartTime ChronologicalRecordStartTime
+		public UserSessionProfileExpression Expression
 		{
-			get { return _ChronologicalRecordStartTime; }
+			get { return _Expression; }
 			set 
 			{ 
-				_ChronologicalRecordStartTime = value;
-				OnPropertyChanged("ChronologicalRecordStartTime");
+				_Expression = value;
+				OnPropertyChanged("Expression");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public SeriesRecordingOption()
+		public UserSessionProfile()
 		{
 		}
 
-		public SeriesRecordingOption(JToken node) : base(node)
+		public UserSessionProfile(JToken node) : base(node)
 		{
-			if(node["minSeasonNumber"] != null)
+			if(node["id"] != null)
 			{
-				this._MinSeasonNumber = ParseInt(node["minSeasonNumber"].Value<string>());
+				this._Id = ParseLong(node["id"].Value<string>());
 			}
-			if(node["minEpisodeNumber"] != null)
+			if(node["name"] != null)
 			{
-				this._MinEpisodeNumber = ParseInt(node["minEpisodeNumber"].Value<string>());
+				this._Name = node["name"].Value<string>();
 			}
-			if(node["chronologicalRecordStartTime"] != null)
+			if(node["expression"] != null)
 			{
-				this._ChronologicalRecordStartTime = (ChronologicalRecordStartTime)StringEnum.Parse(typeof(ChronologicalRecordStartTime), node["chronologicalRecordStartTime"].Value<string>());
+				this._Expression = ObjectFactory.Create<UserSessionProfileExpression>(node["expression"]);
 			}
 		}
 		#endregion
@@ -118,22 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaSeriesRecordingOption");
-			kparams.AddIfNotNull("minSeasonNumber", this._MinSeasonNumber);
-			kparams.AddIfNotNull("minEpisodeNumber", this._MinEpisodeNumber);
-			kparams.AddIfNotNull("chronologicalRecordStartTime", this._ChronologicalRecordStartTime);
+				kparams.AddReplace("objectType", "KalturaUserSessionProfile");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("name", this._Name);
+			kparams.AddIfNotNull("expression", this._Expression);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case MIN_SEASON_NUMBER:
-					return "MinSeasonNumber";
-				case MIN_EPISODE_NUMBER:
-					return "MinEpisodeNumber";
-				case CHRONOLOGICAL_RECORD_START_TIME:
-					return "ChronologicalRecordStartTime";
+				case ID:
+					return "Id";
+				case NAME:
+					return "Name";
+				case EXPRESSION:
+					return "Expression";
 				default:
 					return base.getPropertyName(apiName);
 			}
