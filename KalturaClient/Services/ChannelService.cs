@@ -162,7 +162,7 @@ namespace Kaltura.Services
 		public const string PAGER = "pager";
 		#endregion
 
-		public ChannelsBaseFilter Filter { get; set; }
+		public ChannelsFilter Filter { get; set; }
 		public FilterPager Pager { get; set; }
 
 		public ChannelListRequestBuilder()
@@ -170,7 +170,7 @@ namespace Kaltura.Services
 		{
 		}
 
-		public ChannelListRequestBuilder(ChannelsBaseFilter filter, FilterPager pager)
+		public ChannelListRequestBuilder(ChannelsFilter filter, FilterPager pager)
 			: this()
 		{
 			this.Filter = filter;
@@ -265,7 +265,7 @@ namespace Kaltura.Services
 			return new ChannelGetRequestBuilder(id);
 		}
 
-		public static ChannelListRequestBuilder List(ChannelsBaseFilter filter = null, FilterPager pager = null)
+		public static ChannelListRequestBuilder List(ChannelsFilter filter = null, FilterPager pager = null)
 		{
 			return new ChannelListRequestBuilder(filter, pager);
 		}
