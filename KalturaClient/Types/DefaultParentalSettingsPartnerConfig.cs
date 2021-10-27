@@ -48,9 +48,9 @@ namespace Kaltura.Types
 		#region Private Fields
 		private long _DefaultMoviesParentalRuleId = long.MinValue;
 		private long _DefaultTvSeriesParentalRuleId = long.MinValue;
-		private int _DefaultParentalPin = Int32.MinValue;
-		private int _DefaultPurchasePin = Int32.MinValue;
-		private int _DefaultPurchaseSettings = Int32.MinValue;
+		private string _DefaultParentalPin = null;
+		private string _DefaultPurchasePin = null;
+		private long _DefaultPurchaseSettings = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -84,7 +84,7 @@ namespace Kaltura.Types
 		/// Use DefaultParentalPinAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int DefaultParentalPin
+		public string DefaultParentalPin
 		{
 			get { return _DefaultParentalPin; }
 			set 
@@ -97,7 +97,7 @@ namespace Kaltura.Types
 		/// Use DefaultPurchasePinAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int DefaultPurchasePin
+		public string DefaultPurchasePin
 		{
 			get { return _DefaultPurchasePin; }
 			set 
@@ -110,7 +110,7 @@ namespace Kaltura.Types
 		/// Use DefaultPurchaseSettingsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int DefaultPurchaseSettings
+		public long DefaultPurchaseSettings
 		{
 			get { return _DefaultPurchaseSettings; }
 			set 
@@ -138,15 +138,15 @@ namespace Kaltura.Types
 			}
 			if(node["defaultParentalPin"] != null)
 			{
-				this._DefaultParentalPin = ParseInt(node["defaultParentalPin"].Value<string>());
+				this._DefaultParentalPin = node["defaultParentalPin"].Value<string>();
 			}
 			if(node["defaultPurchasePin"] != null)
 			{
-				this._DefaultPurchasePin = ParseInt(node["defaultPurchasePin"].Value<string>());
+				this._DefaultPurchasePin = node["defaultPurchasePin"].Value<string>();
 			}
 			if(node["defaultPurchaseSettings"] != null)
 			{
-				this._DefaultPurchaseSettings = ParseInt(node["defaultPurchaseSettings"].Value<string>());
+				this._DefaultPurchaseSettings = ParseLong(node["defaultPurchaseSettings"].Value<string>());
 			}
 		}
 		#endregion
