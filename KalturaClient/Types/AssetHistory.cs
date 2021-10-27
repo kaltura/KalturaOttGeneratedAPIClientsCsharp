@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AssetIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long AssetId
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetId");
 			}
 		}
+		/// <summary>
+		/// Use AssetTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public AssetType AssetType
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetType");
 			}
 		}
+		/// <summary>
+		/// Use PositionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Position
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Position");
 			}
 		}
+		/// <summary>
+		/// Use DurationAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Duration
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Duration");
 			}
 		}
+		/// <summary>
+		/// Use WatchedDateAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long WatchedDate
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("WatchedDate");
 			}
 		}
+		/// <summary>
+		/// Use FinishedWatchingAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? FinishedWatching
 		{

@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -39,13 +39,18 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string MEDIA_IDS = "mediaIds";
+		public const string ASSETS = "assets";
 		#endregion
 
 		#region Private Fields
 		private string _MediaIds = null;
+		private IList<ManualCollectionAsset> _Assets;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MediaIdsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string MediaIds
 		{
@@ -54,6 +59,19 @@ namespace Kaltura.Types
 			{ 
 				_MediaIds = value;
 				OnPropertyChanged("MediaIds");
+			}
+		}
+		/// <summary>
+		/// Use AssetsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public IList<ManualCollectionAsset> Assets
+		{
+			get { return _Assets; }
+			set 
+			{ 
+				_Assets = value;
+				OnPropertyChanged("Assets");
 			}
 		}
 		#endregion
@@ -69,6 +87,14 @@ namespace Kaltura.Types
 			{
 				this._MediaIds = node["mediaIds"].Value<string>();
 			}
+			if(node["assets"] != null)
+			{
+				this._Assets = new List<ManualCollectionAsset>();
+				foreach(var arrayNode in node["assets"].Children())
+				{
+					this._Assets.Add(ObjectFactory.Create<ManualCollectionAsset>(arrayNode));
+				}
+			}
 		}
 		#endregion
 
@@ -79,6 +105,7 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaManualChannel");
 			kparams.AddIfNotNull("mediaIds", this._MediaIds);
+			kparams.AddIfNotNull("assets", this._Assets);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -87,6 +114,8 @@ namespace Kaltura.Types
 			{
 				case MEDIA_IDS:
 					return "MediaIds";
+				case ASSETS:
+					return "Assets";
 				default:
 					return base.getPropertyName(apiName);
 			}

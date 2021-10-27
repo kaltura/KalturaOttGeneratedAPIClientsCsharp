@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -41,6 +41,7 @@ namespace Kaltura.Types
 		public const string ID = "id";
 		public const string VERSION = "version";
 		public const string IMAGE_TYPE_ID = "imageTypeId";
+		public const string IMAGE_TYPE_NAME = "imageTypeName";
 		public const string IMAGE_OBJECT_ID = "imageObjectId";
 		public const string IMAGE_OBJECT_TYPE = "imageObjectType";
 		public const string STATUS = "status";
@@ -53,6 +54,7 @@ namespace Kaltura.Types
 		private long _Id = long.MinValue;
 		private string _Version = null;
 		private long _ImageTypeId = long.MinValue;
+		private string _ImageTypeName = null;
 		private long _ImageObjectId = long.MinValue;
 		private ImageObjectType _ImageObjectType = null;
 		private ImageStatus _Status = null;
@@ -62,6 +64,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long Id
 		{
@@ -72,6 +77,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use VersionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Version
 		{
@@ -82,6 +90,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Version");
 			}
 		}
+		/// <summary>
+		/// Use ImageTypeIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ImageTypeId
 		{
@@ -92,6 +103,22 @@ namespace Kaltura.Types
 				OnPropertyChanged("ImageTypeId");
 			}
 		}
+		/// <summary>
+		/// Use ImageTypeNameAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string ImageTypeName
+		{
+			get { return _ImageTypeName; }
+			set 
+			{ 
+				_ImageTypeName = value;
+				OnPropertyChanged("ImageTypeName");
+			}
+		}
+		/// <summary>
+		/// Use ImageObjectIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ImageObjectId
 		{
@@ -102,6 +129,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ImageObjectId");
 			}
 		}
+		/// <summary>
+		/// Use ImageObjectTypeAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ImageObjectType ImageObjectType
 		{
@@ -112,6 +142,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ImageObjectType");
 			}
 		}
+		/// <summary>
+		/// Use StatusAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ImageStatus Status
 		{
@@ -122,6 +155,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Status");
 			}
 		}
+		/// <summary>
+		/// Use UrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Url
 		{
@@ -132,6 +168,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Url");
 			}
 		}
+		/// <summary>
+		/// Use ContentIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string ContentId
 		{
@@ -142,6 +181,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ContentId");
 			}
 		}
+		/// <summary>
+		/// Use IsDefaultAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsDefault
 		{
@@ -172,6 +214,10 @@ namespace Kaltura.Types
 			if(node["imageTypeId"] != null)
 			{
 				this._ImageTypeId = ParseLong(node["imageTypeId"].Value<string>());
+			}
+			if(node["imageTypeName"] != null)
+			{
+				this._ImageTypeName = node["imageTypeName"].Value<string>();
 			}
 			if(node["imageObjectId"] != null)
 			{
@@ -209,6 +255,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("version", this._Version);
 			kparams.AddIfNotNull("imageTypeId", this._ImageTypeId);
+			kparams.AddIfNotNull("imageTypeName", this._ImageTypeName);
 			kparams.AddIfNotNull("imageObjectId", this._ImageObjectId);
 			kparams.AddIfNotNull("imageObjectType", this._ImageObjectType);
 			kparams.AddIfNotNull("status", this._Status);
@@ -227,6 +274,8 @@ namespace Kaltura.Types
 					return "Version";
 				case IMAGE_TYPE_ID:
 					return "ImageTypeId";
+				case IMAGE_TYPE_NAME:
+					return "ImageTypeName";
 				case IMAGE_OBJECT_ID:
 					return "ImageObjectId";
 				case IMAGE_OBJECT_TYPE:

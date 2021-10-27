@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -43,6 +43,7 @@ namespace Kaltura.Types
 		public const string ANONYMOUS_KS_EXPIRATION_SECONDS = "anonymousKSExpirationSeconds";
 		public const string REFRESH_EXPIRATION_FOR_PIN_LOGIN_SECONDS = "refreshExpirationForPinLoginSeconds";
 		public const string APP_TOKEN_MAX_EXPIRY_SECONDS = "appTokenMaxExpirySeconds";
+		public const string AUTO_REFRESH_APP_TOKEN = "autoRefreshAppToken";
 		public const string UPLOAD_TOKEN_EXPIRY_SECONDS = "uploadTokenExpirySeconds";
 		public const string APPTOKEN_USER_VALIDATION_DISABLED = "apptokenUserValidationDisabled";
 		#endregion
@@ -53,11 +54,15 @@ namespace Kaltura.Types
 		private long _AnonymousKSExpirationSeconds = long.MinValue;
 		private long _RefreshExpirationForPinLoginSeconds = long.MinValue;
 		private int _AppTokenMaxExpirySeconds = Int32.MinValue;
+		private bool? _AutoRefreshAppToken = null;
 		private int _UploadTokenExpirySeconds = Int32.MinValue;
 		private bool? _ApptokenUserValidationDisabled = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use KsExpirationSecondsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long KsExpirationSeconds
 		{
@@ -68,6 +73,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("KsExpirationSeconds");
 			}
 		}
+		/// <summary>
+		/// Use AppTokenSessionMaxDurationSecondsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int AppTokenSessionMaxDurationSeconds
 		{
@@ -78,6 +86,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AppTokenSessionMaxDurationSeconds");
 			}
 		}
+		/// <summary>
+		/// Use AnonymousKSExpirationSecondsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long AnonymousKSExpirationSeconds
 		{
@@ -88,6 +99,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("AnonymousKSExpirationSeconds");
 			}
 		}
+		/// <summary>
+		/// Use RefreshExpirationForPinLoginSecondsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long RefreshExpirationForPinLoginSeconds
 		{
@@ -98,6 +112,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("RefreshExpirationForPinLoginSeconds");
 			}
 		}
+		/// <summary>
+		/// Use AppTokenMaxExpirySecondsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int AppTokenMaxExpirySeconds
 		{
@@ -108,6 +125,22 @@ namespace Kaltura.Types
 				OnPropertyChanged("AppTokenMaxExpirySeconds");
 			}
 		}
+		/// <summary>
+		/// Use AutoRefreshAppTokenAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? AutoRefreshAppToken
+		{
+			get { return _AutoRefreshAppToken; }
+			set 
+			{ 
+				_AutoRefreshAppToken = value;
+				OnPropertyChanged("AutoRefreshAppToken");
+			}
+		}
+		/// <summary>
+		/// Use UploadTokenExpirySecondsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int UploadTokenExpirySeconds
 		{
@@ -118,6 +151,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UploadTokenExpirySeconds");
 			}
 		}
+		/// <summary>
+		/// Use ApptokenUserValidationDisabledAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? ApptokenUserValidationDisabled
 		{
@@ -157,6 +193,10 @@ namespace Kaltura.Types
 			{
 				this._AppTokenMaxExpirySeconds = ParseInt(node["appTokenMaxExpirySeconds"].Value<string>());
 			}
+			if(node["autoRefreshAppToken"] != null)
+			{
+				this._AutoRefreshAppToken = ParseBool(node["autoRefreshAppToken"].Value<string>());
+			}
 			if(node["uploadTokenExpirySeconds"] != null)
 			{
 				this._UploadTokenExpirySeconds = ParseInt(node["uploadTokenExpirySeconds"].Value<string>());
@@ -179,6 +219,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("anonymousKSExpirationSeconds", this._AnonymousKSExpirationSeconds);
 			kparams.AddIfNotNull("refreshExpirationForPinLoginSeconds", this._RefreshExpirationForPinLoginSeconds);
 			kparams.AddIfNotNull("appTokenMaxExpirySeconds", this._AppTokenMaxExpirySeconds);
+			kparams.AddIfNotNull("autoRefreshAppToken", this._AutoRefreshAppToken);
 			kparams.AddIfNotNull("uploadTokenExpirySeconds", this._UploadTokenExpirySeconds);
 			kparams.AddIfNotNull("apptokenUserValidationDisabled", this._ApptokenUserValidationDisabled);
 			return kparams;
@@ -197,6 +238,8 @@ namespace Kaltura.Types
 					return "RefreshExpirationForPinLoginSeconds";
 				case APP_TOKEN_MAX_EXPIRY_SECONDS:
 					return "AppTokenMaxExpirySeconds";
+				case AUTO_REFRESH_APP_TOKEN:
+					return "AutoRefreshAppToken";
 				case UPLOAD_TOKEN_EXPIRY_SECONDS:
 					return "UploadTokenExpirySeconds";
 				case APPTOKEN_USER_VALIDATION_DISABLED:

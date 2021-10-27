@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -46,6 +46,7 @@ namespace Kaltura.Types
 		public const string ID = "id";
 		public const string IS_DEFAULT = "isDefault";
 		public const string IMAGE_TYPE_ID = "imageTypeId";
+		public const string IMAGE_TYPE_NAME = "imageTypeName";
 		#endregion
 
 		#region Private Fields
@@ -57,9 +58,13 @@ namespace Kaltura.Types
 		private string _Id = null;
 		private bool? _IsDefault = null;
 		private long _ImageTypeId = long.MinValue;
+		private string _ImageTypeName = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use RatioAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Ratio
 		{
@@ -70,6 +75,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Ratio");
 			}
 		}
+		/// <summary>
+		/// Use WidthAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Width
 		{
@@ -80,6 +88,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Width");
 			}
 		}
+		/// <summary>
+		/// Use HeightAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Height
 		{
@@ -90,6 +101,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Height");
 			}
 		}
+		/// <summary>
+		/// Use UrlAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Url
 		{
@@ -100,6 +114,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Url");
 			}
 		}
+		/// <summary>
+		/// Use VersionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Version
 		{
@@ -110,6 +127,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Version");
 			}
 		}
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Id
 		{
@@ -120,6 +140,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use IsDefaultAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsDefault
 		{
@@ -130,6 +153,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsDefault");
 			}
 		}
+		/// <summary>
+		/// Use ImageTypeIdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long ImageTypeId
 		{
@@ -138,6 +164,19 @@ namespace Kaltura.Types
 			{ 
 				_ImageTypeId = value;
 				OnPropertyChanged("ImageTypeId");
+			}
+		}
+		/// <summary>
+		/// Use ImageTypeNameAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string ImageTypeName
+		{
+			get { return _ImageTypeName; }
+			set 
+			{ 
+				_ImageTypeName = value;
+				OnPropertyChanged("ImageTypeName");
 			}
 		}
 		#endregion
@@ -181,6 +220,10 @@ namespace Kaltura.Types
 			{
 				this._ImageTypeId = ParseLong(node["imageTypeId"].Value<string>());
 			}
+			if(node["imageTypeName"] != null)
+			{
+				this._ImageTypeName = node["imageTypeName"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -198,6 +241,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("isDefault", this._IsDefault);
 			kparams.AddIfNotNull("imageTypeId", this._ImageTypeId);
+			kparams.AddIfNotNull("imageTypeName", this._ImageTypeName);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -220,6 +264,8 @@ namespace Kaltura.Types
 					return "IsDefault";
 				case IMAGE_TYPE_ID:
 					return "ImageTypeId";
+				case IMAGE_TYPE_NAME:
+					return "ImageTypeName";
 				default:
 					return base.getPropertyName(apiName);
 			}

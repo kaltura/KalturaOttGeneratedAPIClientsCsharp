@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,6 +56,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int IdEqual
 		{
@@ -66,6 +69,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdEqual");
 			}
 		}
+		/// <summary>
+		/// Use MediaIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long MediaIdEqual
 		{
@@ -76,6 +82,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MediaIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use NameEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string NameEqual
 		{
@@ -86,6 +95,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("NameEqual");
 			}
 		}
+		/// <summary>
+		/// Use NameStartsWithAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string NameStartsWith
 		{
@@ -96,6 +108,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("NameStartsWith");
 			}
 		}
+		/// <summary>
+		/// Use IdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string IdIn
 		{
@@ -106,6 +121,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new ChannelsOrderBy OrderBy
 		{

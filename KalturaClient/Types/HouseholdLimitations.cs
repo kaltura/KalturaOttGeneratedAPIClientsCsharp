@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -49,6 +49,8 @@ namespace Kaltura.Types
 		public const string NPVR_QUOTA_IN_SECONDS = "npvrQuotaInSeconds";
 		public const string USERS_LIMIT = "usersLimit";
 		public const string DEVICE_FAMILIES_LIMITATIONS = "deviceFamiliesLimitations";
+		public const string DESCRIPTION = "description";
+		public const string ASSOCIATED_DEVICE_FAMILIES_IDS_IN = "associatedDeviceFamiliesIdsIn";
 		#endregion
 
 		#region Private Fields
@@ -63,9 +65,14 @@ namespace Kaltura.Types
 		private int _NpvrQuotaInSeconds = Int32.MinValue;
 		private int _UsersLimit = Int32.MinValue;
 		private IList<HouseholdDeviceFamilyLimitations> _DeviceFamiliesLimitations;
+		private string _Description = null;
+		private string _AssociatedDeviceFamiliesIdsIn = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int Id
 		{
@@ -76,6 +83,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Id");
 			}
 		}
+		/// <summary>
+		/// Use NameAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string Name
 		{
@@ -86,6 +96,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("Name");
 			}
 		}
+		/// <summary>
+		/// Use ConcurrentLimitAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int ConcurrentLimit
 		{
@@ -96,6 +109,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ConcurrentLimit");
 			}
 		}
+		/// <summary>
+		/// Use DeviceLimitAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int DeviceLimit
 		{
@@ -106,6 +122,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceLimit");
 			}
 		}
+		/// <summary>
+		/// Use DeviceFrequencyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int DeviceFrequency
 		{
@@ -116,6 +135,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceFrequency");
 			}
 		}
+		/// <summary>
+		/// Use DeviceFrequencyDescriptionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string DeviceFrequencyDescription
 		{
@@ -126,6 +148,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("DeviceFrequencyDescription");
 			}
 		}
+		/// <summary>
+		/// Use UserFrequencyAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int UserFrequency
 		{
@@ -136,6 +161,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserFrequency");
 			}
 		}
+		/// <summary>
+		/// Use UserFrequencyDescriptionAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string UserFrequencyDescription
 		{
@@ -146,6 +174,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UserFrequencyDescription");
 			}
 		}
+		/// <summary>
+		/// Use NpvrQuotaInSecondsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int NpvrQuotaInSeconds
 		{
@@ -156,6 +187,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("NpvrQuotaInSeconds");
 			}
 		}
+		/// <summary>
+		/// Use UsersLimitAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public int UsersLimit
 		{
@@ -166,6 +200,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("UsersLimit");
 			}
 		}
+		/// <summary>
+		/// Use DeviceFamiliesLimitationsAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public IList<HouseholdDeviceFamilyLimitations> DeviceFamiliesLimitations
 		{
@@ -174,6 +211,32 @@ namespace Kaltura.Types
 			{ 
 				_DeviceFamiliesLimitations = value;
 				OnPropertyChanged("DeviceFamiliesLimitations");
+			}
+		}
+		/// <summary>
+		/// Use DescriptionAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Description
+		{
+			get { return _Description; }
+			set 
+			{ 
+				_Description = value;
+				OnPropertyChanged("Description");
+			}
+		}
+		/// <summary>
+		/// Use AssociatedDeviceFamiliesIdsInAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string AssociatedDeviceFamiliesIdsIn
+		{
+			get { return _AssociatedDeviceFamiliesIdsIn; }
+			set 
+			{ 
+				_AssociatedDeviceFamiliesIdsIn = value;
+				OnPropertyChanged("AssociatedDeviceFamiliesIdsIn");
 			}
 		}
 		#endregion
@@ -233,6 +296,14 @@ namespace Kaltura.Types
 					this._DeviceFamiliesLimitations.Add(ObjectFactory.Create<HouseholdDeviceFamilyLimitations>(arrayNode));
 				}
 			}
+			if(node["description"] != null)
+			{
+				this._Description = node["description"].Value<string>();
+			}
+			if(node["associatedDeviceFamiliesIdsIn"] != null)
+			{
+				this._AssociatedDeviceFamiliesIdsIn = node["associatedDeviceFamiliesIdsIn"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -253,6 +324,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("npvrQuotaInSeconds", this._NpvrQuotaInSeconds);
 			kparams.AddIfNotNull("usersLimit", this._UsersLimit);
 			kparams.AddIfNotNull("deviceFamiliesLimitations", this._DeviceFamiliesLimitations);
+			kparams.AddIfNotNull("description", this._Description);
+			kparams.AddIfNotNull("associatedDeviceFamiliesIdsIn", this._AssociatedDeviceFamiliesIdsIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -281,6 +354,10 @@ namespace Kaltura.Types
 					return "UsersLimit";
 				case DEVICE_FAMILIES_LIMITATIONS:
 					return "DeviceFamiliesLimitations";
+				case DESCRIPTION:
+					return "Description";
+				case ASSOCIATED_DEVICE_FAMILIES_IDS_IN:
+					return "AssociatedDeviceFamiliesIdsIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

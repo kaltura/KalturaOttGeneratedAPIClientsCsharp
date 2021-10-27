@@ -5,7 +5,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetStructFilter : Filter
+	public class AssetStructFilter : BaseAssetStructFilter
 	{
 		#region Constants
 		public const string ID_IN = "idIn";
@@ -54,6 +54,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdInAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public string IdIn
 		{
@@ -64,6 +67,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdIn");
 			}
 		}
+		/// <summary>
+		/// Use MetaIdEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public long MetaIdEqual
 		{
@@ -74,6 +80,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("MetaIdEqual");
 			}
 		}
+		/// <summary>
+		/// Use IsProtectedEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public bool? IsProtectedEqual
 		{
@@ -84,6 +93,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsProtectedEqual");
 			}
 		}
+		/// <summary>
+		/// Use ObjectVirtualAssetInfoTypeEqualAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public ObjectVirtualAssetInfoType ObjectVirtualAssetInfoTypeEqual
 		{
@@ -94,6 +106,9 @@ namespace Kaltura.Types
 				OnPropertyChanged("ObjectVirtualAssetInfoTypeEqual");
 			}
 		}
+		/// <summary>
+		/// Use OrderByAsDouble property instead
+		/// </summary>
 		[JsonProperty]
 		public new AssetStructOrderBy OrderBy
 		{
