@@ -617,6 +617,7 @@ namespace Kaltura
 		public static string ArgumentMinLengthCrossed = "500046";
 		public static string ArgumentMaxValueCrossed = "500047";
 		public static string ArgumentMinValueCrossed = "500048";
+		public static string ArgumentNotInPredefinedRange = "500092";
 		public static string ArgumentsConflictEachOther = "500061";
 		public static string ArgumentsDuplicate = "500066";
 		public static string InvalidArgumentValue = "500067";

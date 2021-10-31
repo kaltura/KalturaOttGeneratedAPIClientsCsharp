@@ -42,6 +42,8 @@ namespace Kaltura.Enums
 		public static readonly PartnerConfigurationType SECURITY = new PartnerConfigurationType("Security");
 		public static readonly PartnerConfigurationType OPC = new PartnerConfigurationType("Opc");
 		public static readonly PartnerConfigurationType BASE = new PartnerConfigurationType("Base");
+		public static readonly PartnerConfigurationType CUSTOMFIELDS = new PartnerConfigurationType("CustomFields");
+		public static readonly PartnerConfigurationType DEFAULTPARENTALSETTINGS = new PartnerConfigurationType("DefaultParentalSettings");
 
 		private PartnerConfigurationType(string name) : base(name) { }
 	}
