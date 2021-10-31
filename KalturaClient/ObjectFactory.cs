@@ -82,6 +82,8 @@ namespace Kaltura
 					return new ListResponse<SSOAdapterProfile>(jToken);
 				case "KalturaUserInterestListResponse":
 					return new ListResponse<UserInterest>(jToken);
+				case "KalturaUserSessionProfileListResponse":
+					return new ListResponse<UserSessionProfile>(jToken);
 				case "KalturaBulkUploadListResponse":
 					return new ListResponse<BulkUpload>(jToken);
 				case "KalturaSocialActionListResponse":
@@ -292,6 +294,8 @@ namespace Kaltura
 					return new ListResponse<HouseholdCoupon>(jToken);
 				case "KalturaHouseholdSegmentListResponse":
 					return new ListResponse<HouseholdSegment>(jToken);
+				case "KalturaLineupChannelAssetListResponse":
+					return new ListResponse<LineupChannelAsset>(jToken);
 				case "KalturaPasswordPolicyListResponse":
 					return new ListResponse<PasswordPolicy>(jToken);
 				case "KalturaPermissionItemListResponse":
