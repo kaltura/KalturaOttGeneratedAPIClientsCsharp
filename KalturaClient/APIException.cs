@@ -617,6 +617,7 @@ namespace Kaltura
 		public static string ArgumentMinLengthCrossed = "500046";
 		public static string ArgumentMaxValueCrossed = "500047";
 		public static string ArgumentMinValueCrossed = "500048";
+		public static string ArgumentNotInPredefinedRange = "500092";
 		public static string ArgumentsConflictEachOther = "500061";
 		public static string ArgumentsDuplicate = "500066";
 		public static string InvalidArgumentValue = "500067";
@@ -633,7 +634,9 @@ namespace Kaltura
 		public static string PropertyIsOpcSupported = "500082";
 		public static string KeyCannotBeEmptyOrNull = "500086";
 		public static string MissingMandatoryArgumentInProperty = "500087";
-		public static string MaxArguments = "500088";
+		public static string ArgumentMaxItemsCrossed = "500088";
+		public static string ArgumentMatchPatternCrossed = "500090";
+		public static string ArgumentMinItemsCrossed = "500091";
 		public static string HouseholdForbidden = "500028";
 		public static string SwitchingUsersIsNotAllowedForPartner = "50024";
 		public static string NotActiveAppToken = "50023";
