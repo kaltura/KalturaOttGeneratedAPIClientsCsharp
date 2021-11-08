@@ -41,16 +41,19 @@ namespace Kaltura.Types
 		public const string ID = "id";
 		public const string NAME = "name";
 		public const string PRICE = "price";
+		public const string PRICE_DETAILS_ID = "priceDetailsId";
 		public const string FILE_TYPES = "fileTypes";
 		public const string FILE_TYPES_IDS = "fileTypesIds";
 		public const string DISCOUNT_MODULE = "discountModule";
+		public const string DISCOUNT_ID = "discountId";
 		public const string COUPONS_GROUP = "couponsGroup";
+		public const string COUPONS_GROUP_ID = "couponsGroupId";
 		public const string DESCRIPTIONS = "descriptions";
 		public const string PRODUCT_CODE = "productCode";
 		public const string IS_SUBSCRIPTION_ONLY = "isSubscriptionOnly";
 		public const string FIRST_DEVICE_LIMITATION = "firstDeviceLimitation";
 		public const string USAGE_MODULE = "usageModule";
-		public const string EXTERNAL_ID = "externalId";
+		public const string USAGE_MODULE_ID = "usageModuleId";
 		public const string ADS_POLICY = "adsPolicy";
 		public const string IS_ACTIVE = "isActive";
 		public const string UPDATE_DATE = "updateDate";
@@ -62,16 +65,19 @@ namespace Kaltura.Types
 		private string _Id = null;
 		private string _Name = null;
 		private PriceDetails _Price;
+		private int _PriceDetailsId = Int32.MinValue;
 		private IList<IntegerValue> _FileTypes;
 		private string _FileTypesIds = null;
 		private DiscountModule _DiscountModule;
+		private long _DiscountId = long.MinValue;
 		private CouponsGroup _CouponsGroup;
+		private long _CouponsGroupId = long.MinValue;
 		private IList<TranslationToken> _Descriptions;
 		private string _ProductCode = null;
 		private bool? _IsSubscriptionOnly = null;
 		private bool? _FirstDeviceLimitation = null;
 		private UsageModule _UsageModule;
-		private string _ExternalId = null;
+		private long _UsageModuleId = long.MinValue;
 		private AdsPolicy _AdsPolicy = null;
 		private bool? _IsActive = null;
 		private long _UpdateDate = long.MinValue;
@@ -113,10 +119,23 @@ namespace Kaltura.Types
 		public PriceDetails Price
 		{
 			get { return _Price; }
-			set 
+			private set 
 			{ 
 				_Price = value;
 				OnPropertyChanged("Price");
+			}
+		}
+		/// <summary>
+		/// Use PriceDetailsIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int PriceDetailsId
+		{
+			get { return _PriceDetailsId; }
+			set 
+			{ 
+				_PriceDetailsId = value;
+				OnPropertyChanged("PriceDetailsId");
 			}
 		}
 		/// <summary>
@@ -126,7 +145,7 @@ namespace Kaltura.Types
 		public IList<IntegerValue> FileTypes
 		{
 			get { return _FileTypes; }
-			set 
+			private set 
 			{ 
 				_FileTypes = value;
 				OnPropertyChanged("FileTypes");
@@ -152,10 +171,23 @@ namespace Kaltura.Types
 		public DiscountModule DiscountModule
 		{
 			get { return _DiscountModule; }
-			set 
+			private set 
 			{ 
 				_DiscountModule = value;
 				OnPropertyChanged("DiscountModule");
+			}
+		}
+		/// <summary>
+		/// Use DiscountIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long DiscountId
+		{
+			get { return _DiscountId; }
+			set 
+			{ 
+				_DiscountId = value;
+				OnPropertyChanged("DiscountId");
 			}
 		}
 		/// <summary>
@@ -165,10 +197,23 @@ namespace Kaltura.Types
 		public CouponsGroup CouponsGroup
 		{
 			get { return _CouponsGroup; }
-			set 
+			private set 
 			{ 
 				_CouponsGroup = value;
 				OnPropertyChanged("CouponsGroup");
+			}
+		}
+		/// <summary>
+		/// Use CouponsGroupIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long CouponsGroupId
+		{
+			get { return _CouponsGroupId; }
+			set 
+			{ 
+				_CouponsGroupId = value;
+				OnPropertyChanged("CouponsGroupId");
 			}
 		}
 		/// <summary>
@@ -191,7 +236,7 @@ namespace Kaltura.Types
 		public string ProductCode
 		{
 			get { return _ProductCode; }
-			private set 
+			set 
 			{ 
 				_ProductCode = value;
 				OnPropertyChanged("ProductCode");
@@ -230,23 +275,23 @@ namespace Kaltura.Types
 		public UsageModule UsageModule
 		{
 			get { return _UsageModule; }
-			set 
+			private set 
 			{ 
 				_UsageModule = value;
 				OnPropertyChanged("UsageModule");
 			}
 		}
 		/// <summary>
-		/// Use ExternalIdAsDouble property instead
+		/// Use UsageModuleIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string ExternalId
+		public long UsageModuleId
 		{
-			get { return _ExternalId; }
+			get { return _UsageModuleId; }
 			set 
 			{ 
-				_ExternalId = value;
-				OnPropertyChanged("ExternalId");
+				_UsageModuleId = value;
+				OnPropertyChanged("UsageModuleId");
 			}
 		}
 		/// <summary>
@@ -335,6 +380,10 @@ namespace Kaltura.Types
 			{
 				this._Price = ObjectFactory.Create<PriceDetails>(node["price"]);
 			}
+			if(node["priceDetailsId"] != null)
+			{
+				this._PriceDetailsId = ParseInt(node["priceDetailsId"].Value<string>());
+			}
 			if(node["fileTypes"] != null)
 			{
 				this._FileTypes = new List<IntegerValue>();
@@ -351,9 +400,17 @@ namespace Kaltura.Types
 			{
 				this._DiscountModule = ObjectFactory.Create<DiscountModule>(node["discountModule"]);
 			}
+			if(node["discountId"] != null)
+			{
+				this._DiscountId = ParseLong(node["discountId"].Value<string>());
+			}
 			if(node["couponsGroup"] != null)
 			{
 				this._CouponsGroup = ObjectFactory.Create<CouponsGroup>(node["couponsGroup"]);
+			}
+			if(node["couponsGroupId"] != null)
+			{
+				this._CouponsGroupId = ParseLong(node["couponsGroupId"].Value<string>());
 			}
 			if(node["descriptions"] != null)
 			{
@@ -379,9 +436,9 @@ namespace Kaltura.Types
 			{
 				this._UsageModule = ObjectFactory.Create<UsageModule>(node["usageModule"]);
 			}
-			if(node["externalId"] != null)
+			if(node["usageModuleId"] != null)
 			{
-				this._ExternalId = node["externalId"].Value<string>();
+				this._UsageModuleId = ParseLong(node["usageModuleId"].Value<string>());
 			}
 			if(node["adsPolicy"] != null)
 			{
@@ -415,16 +472,19 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("name", this._Name);
 			kparams.AddIfNotNull("price", this._Price);
+			kparams.AddIfNotNull("priceDetailsId", this._PriceDetailsId);
 			kparams.AddIfNotNull("fileTypes", this._FileTypes);
 			kparams.AddIfNotNull("fileTypesIds", this._FileTypesIds);
 			kparams.AddIfNotNull("discountModule", this._DiscountModule);
+			kparams.AddIfNotNull("discountId", this._DiscountId);
 			kparams.AddIfNotNull("couponsGroup", this._CouponsGroup);
+			kparams.AddIfNotNull("couponsGroupId", this._CouponsGroupId);
 			kparams.AddIfNotNull("descriptions", this._Descriptions);
 			kparams.AddIfNotNull("productCode", this._ProductCode);
 			kparams.AddIfNotNull("isSubscriptionOnly", this._IsSubscriptionOnly);
 			kparams.AddIfNotNull("firstDeviceLimitation", this._FirstDeviceLimitation);
 			kparams.AddIfNotNull("usageModule", this._UsageModule);
-			kparams.AddIfNotNull("externalId", this._ExternalId);
+			kparams.AddIfNotNull("usageModuleId", this._UsageModuleId);
 			kparams.AddIfNotNull("adsPolicy", this._AdsPolicy);
 			kparams.AddIfNotNull("isActive", this._IsActive);
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
@@ -442,14 +502,20 @@ namespace Kaltura.Types
 					return "Name";
 				case PRICE:
 					return "Price";
+				case PRICE_DETAILS_ID:
+					return "PriceDetailsId";
 				case FILE_TYPES:
 					return "FileTypes";
 				case FILE_TYPES_IDS:
 					return "FileTypesIds";
 				case DISCOUNT_MODULE:
 					return "DiscountModule";
+				case DISCOUNT_ID:
+					return "DiscountId";
 				case COUPONS_GROUP:
 					return "CouponsGroup";
+				case COUPONS_GROUP_ID:
+					return "CouponsGroupId";
 				case DESCRIPTIONS:
 					return "Descriptions";
 				case PRODUCT_CODE:
@@ -460,8 +526,8 @@ namespace Kaltura.Types
 					return "FirstDeviceLimitation";
 				case USAGE_MODULE:
 					return "UsageModule";
-				case EXTERNAL_ID:
-					return "ExternalId";
+				case USAGE_MODULE_ID:
+					return "UsageModuleId";
 				case ADS_POLICY:
 					return "AdsPolicy";
 				case IS_ACTIVE:
