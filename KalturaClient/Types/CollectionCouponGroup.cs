@@ -35,99 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class PpvFilter : Filter
+	public class CollectionCouponGroup : ObjectBase
 	{
 		#region Constants
-		public const string ID_IN = "idIn";
-		public const string COUPON_GROUP_ID_EQUAL = "couponGroupIdEqual";
-		public const string ALSO_INACTIVE = "alsoInactive";
-		public new const string ORDER_BY = "orderBy";
+		public const string ID = "id";
+		public const string START_DATE = "startDate";
+		public const string END_DATE = "endDate";
 		#endregion
 
 		#region Private Fields
-		private string _IdIn = null;
-		private int _CouponGroupIdEqual = Int32.MinValue;
-		private bool? _AlsoInactive = null;
-		private PpvOrderBy _OrderBy = null;
+		private long _Id = long.MinValue;
+		private long _StartDate = long.MinValue;
+		private long _EndDate = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdInAsDouble property instead
+		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string IdIn
+		public long Id
 		{
-			get { return _IdIn; }
+			get { return _Id; }
 			set 
 			{ 
-				_IdIn = value;
-				OnPropertyChanged("IdIn");
+				_Id = value;
+				OnPropertyChanged("Id");
 			}
 		}
 		/// <summary>
-		/// Use CouponGroupIdEqualAsDouble property instead
+		/// Use StartDateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int CouponGroupIdEqual
+		public long StartDate
 		{
-			get { return _CouponGroupIdEqual; }
+			get { return _StartDate; }
 			set 
 			{ 
-				_CouponGroupIdEqual = value;
-				OnPropertyChanged("CouponGroupIdEqual");
+				_StartDate = value;
+				OnPropertyChanged("StartDate");
 			}
 		}
 		/// <summary>
-		/// Use AlsoInactiveAsDouble property instead
+		/// Use EndDateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? AlsoInactive
+		public long EndDate
 		{
-			get { return _AlsoInactive; }
+			get { return _EndDate; }
 			set 
 			{ 
-				_AlsoInactive = value;
-				OnPropertyChanged("AlsoInactive");
-			}
-		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public new PpvOrderBy OrderBy
-		{
-			get { return _OrderBy; }
-			set 
-			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
+				_EndDate = value;
+				OnPropertyChanged("EndDate");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public PpvFilter()
+		public CollectionCouponGroup()
 		{
 		}
 
-		public PpvFilter(JToken node) : base(node)
+		public CollectionCouponGroup(JToken node) : base(node)
 		{
-			if(node["idIn"] != null)
+			if(node["id"] != null)
 			{
-				this._IdIn = node["idIn"].Value<string>();
+				this._Id = ParseLong(node["id"].Value<string>());
 			}
-			if(node["couponGroupIdEqual"] != null)
+			if(node["startDate"] != null)
 			{
-				this._CouponGroupIdEqual = ParseInt(node["couponGroupIdEqual"].Value<string>());
+				this._StartDate = ParseLong(node["startDate"].Value<string>());
 			}
-			if(node["alsoInactive"] != null)
+			if(node["endDate"] != null)
 			{
-				this._AlsoInactive = ParseBool(node["alsoInactive"].Value<string>());
-			}
-			if(node["orderBy"] != null)
-			{
-				this._OrderBy = (PpvOrderBy)StringEnum.Parse(typeof(PpvOrderBy), node["orderBy"].Value<string>());
+				this._EndDate = ParseLong(node["endDate"].Value<string>());
 			}
 		}
 		#endregion
@@ -137,25 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPpvFilter");
-			kparams.AddIfNotNull("idIn", this._IdIn);
-			kparams.AddIfNotNull("couponGroupIdEqual", this._CouponGroupIdEqual);
-			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+				kparams.AddReplace("objectType", "KalturaCollectionCouponGroup");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("startDate", this._StartDate);
+			kparams.AddIfNotNull("endDate", this._EndDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID_IN:
-					return "IdIn";
-				case COUPON_GROUP_ID_EQUAL:
-					return "CouponGroupIdEqual";
-				case ALSO_INACTIVE:
-					return "AlsoInactive";
-				case ORDER_BY:
-					return "OrderBy";
+				case ID:
+					return "Id";
+				case START_DATE:
+					return "StartDate";
+				case END_DATE:
+					return "EndDate";
 				default:
 					return base.getPropertyName(apiName);
 			}

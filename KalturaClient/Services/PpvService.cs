@@ -36,6 +36,86 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
+	public class PpvAddRequestBuilder : RequestBuilder<Ppv>
+	{
+		#region Constants
+		public const string PPV = "ppv";
+		#endregion
+
+		public Ppv Ppv { get; set; }
+
+		public PpvAddRequestBuilder()
+			: base("ppv", "add")
+		{
+		}
+
+		public PpvAddRequestBuilder(Ppv ppv)
+			: this()
+		{
+			this.Ppv = ppv;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("ppv"))
+				kparams.AddIfNotNull("ppv", Ppv);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<Ppv>(result);
+		}
+	}
+
+	public class PpvDeleteRequestBuilder : RequestBuilder<bool>
+	{
+		#region Constants
+		public const string ID = "id";
+		#endregion
+
+		public long Id { get; set; }
+
+		public PpvDeleteRequestBuilder()
+			: base("ppv", "delete")
+		{
+		}
+
+		public PpvDeleteRequestBuilder(long id)
+			: this()
+		{
+			this.Id = id;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
+				return true;
+			return false;
+		}
+	}
+
 	public class PpvGetRequestBuilder : RequestBuilder<Ppv>
 	{
 		#region Constants
@@ -79,19 +159,22 @@ namespace Kaltura.Services
 	{
 		#region Constants
 		public const string FILTER = "filter";
+		public const string PAGER = "pager";
 		#endregion
 
 		public PpvFilter Filter { get; set; }
+		public FilterPager Pager { get; set; }
 
 		public PpvListRequestBuilder()
 			: base("ppv", "list")
 		{
 		}
 
-		public PpvListRequestBuilder(PpvFilter filter)
+		public PpvListRequestBuilder(PpvFilter filter, FilterPager pager)
 			: this()
 		{
 			this.Filter = filter;
+			this.Pager = pager;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -99,6 +182,8 @@ namespace Kaltura.Services
 			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("filter"))
 				kparams.AddIfNotNull("filter", Filter);
+			if (!isMapped("pager"))
+				kparams.AddIfNotNull("pager", Pager);
 			return kparams;
 		}
 
@@ -114,6 +199,50 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class PpvUpdateRequestBuilder : RequestBuilder<Ppv>
+	{
+		#region Constants
+		public const string ID = "id";
+		public const string PPV = "ppv";
+		#endregion
+
+		public int Id { get; set; }
+		public Ppv Ppv { get; set; }
+
+		public PpvUpdateRequestBuilder()
+			: base("ppv", "update")
+		{
+		}
+
+		public PpvUpdateRequestBuilder(int id, Ppv ppv)
+			: this()
+		{
+			this.Id = id;
+			this.Ppv = ppv;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("ppv"))
+				kparams.AddIfNotNull("ppv", Ppv);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<Ppv>(result);
+		}
+	}
+
 
 	public class PpvService
 	{
@@ -121,14 +250,29 @@ namespace Kaltura.Services
 		{
 		}
 
+		public static PpvAddRequestBuilder Add(Ppv ppv)
+		{
+			return new PpvAddRequestBuilder(ppv);
+		}
+
+		public static PpvDeleteRequestBuilder Delete(long id)
+		{
+			return new PpvDeleteRequestBuilder(id);
+		}
+
 		public static PpvGetRequestBuilder Get(long id)
 		{
 			return new PpvGetRequestBuilder(id);
 		}
 
-		public static PpvListRequestBuilder List(PpvFilter filter = null)
+		public static PpvListRequestBuilder List(PpvFilter filter = null, FilterPager pager = null)
 		{
-			return new PpvListRequestBuilder(filter);
+			return new PpvListRequestBuilder(filter, pager);
+		}
+
+		public static PpvUpdateRequestBuilder Update(int id, Ppv ppv)
+		{
+			return new PpvUpdateRequestBuilder(id, ppv);
 		}
 	}
 }
