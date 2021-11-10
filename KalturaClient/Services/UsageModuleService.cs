@@ -119,27 +119,17 @@ namespace Kaltura.Services
 	public class UsageModuleListRequestBuilder : RequestBuilder<ListResponse<UsageModule>>
 	{
 		#region Constants
-		public const string FILTER = "filter";
 		#endregion
 
-		public UsageModuleFilter Filter { get; set; }
 
 		public UsageModuleListRequestBuilder()
 			: base("usagemodule", "list")
 		{
 		}
 
-		public UsageModuleListRequestBuilder(UsageModuleFilter filter)
-			: this()
-		{
-			this.Filter = filter;
-		}
-
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("filter"))
-				kparams.AddIfNotNull("filter", Filter);
 			return kparams;
 		}
 
@@ -152,50 +142,6 @@ namespace Kaltura.Services
 		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<ListResponse<UsageModule>>(result);
-		}
-	}
-
-	public class UsageModuleUpdateRequestBuilder : RequestBuilder<UsageModule>
-	{
-		#region Constants
-		public const string ID = "id";
-		public const string USAGE_MODULE = "usageModule";
-		#endregion
-
-		public int Id { get; set; }
-		public UsageModule UsageModule { get; set; }
-
-		public UsageModuleUpdateRequestBuilder()
-			: base("usagemodule", "update")
-		{
-		}
-
-		public UsageModuleUpdateRequestBuilder(int id, UsageModule usageModule)
-			: this()
-		{
-			this.Id = id;
-			this.UsageModule = usageModule;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("usageModule"))
-				kparams.AddIfNotNull("usageModule", UsageModule);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<UsageModule>(result);
 		}
 	}
 
@@ -216,14 +162,9 @@ namespace Kaltura.Services
 			return new UsageModuleDeleteRequestBuilder(id);
 		}
 
-		public static UsageModuleListRequestBuilder List(UsageModuleFilter filter = null)
+		public static UsageModuleListRequestBuilder List()
 		{
-			return new UsageModuleListRequestBuilder(filter);
-		}
-
-		public static UsageModuleUpdateRequestBuilder Update(int id, UsageModule usageModule)
-		{
-			return new UsageModuleUpdateRequestBuilder(id, usageModule);
+			return new UsageModuleListRequestBuilder();
 		}
 	}
 }
