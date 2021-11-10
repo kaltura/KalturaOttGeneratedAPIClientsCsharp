@@ -50,21 +50,7 @@ namespace Kaltura.Types
 		/// Use ValueAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use ValueAsDouble property instead")]
-		public float Value
-		{
-			get { return (float)_Value; }
-			set 
-			{ 
-				_Value = value;
-				OnPropertyChanged("Value");
-			}
-		}
-		///<summary>
-		///Use this property ValueAsDouble instead of the float Value property version
-		///</summary>
-		[JsonProperty]
-		public double ValueAsDouble
+		public double Value
 		{
 			get { return _Value; }
 			set 

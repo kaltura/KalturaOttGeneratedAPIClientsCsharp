@@ -69,21 +69,7 @@ namespace Kaltura.Types
 		/// Use PercentAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use PercentAsDouble property instead")]
-		public float Percent
-		{
-			get { return (float)_Percent; }
-			set 
-			{ 
-				_Percent = value;
-				OnPropertyChanged("Percent");
-			}
-		}
-		///<summary>
-		///Use this property PercentAsDouble instead of the float Percent property version
-		///</summary>
-		[JsonProperty]
-		public double PercentAsDouble
+		public double Percent
 		{
 			get { return _Percent; }
 			set 
