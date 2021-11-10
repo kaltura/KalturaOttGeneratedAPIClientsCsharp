@@ -80,47 +80,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class LineupSendUpdatedNotificationRequestBuilder : RequestBuilder<bool>
-	{
-		#region Constants
-		public const string REGION_IDS = "regionIds";
-		#endregion
-
-		public string RegionIds { get; set; }
-
-		public LineupSendUpdatedNotificationRequestBuilder()
-			: base("lineup", "sendUpdatedNotification")
-		{
-		}
-
-		public LineupSendUpdatedNotificationRequestBuilder(string regionIds)
-			: this()
-		{
-			this.RegionIds = regionIds;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("regionIds"))
-				kparams.AddIfNotNull("regionIds", RegionIds);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-	}
-
 
 	public class LineupService
 	{
@@ -131,11 +90,6 @@ namespace Kaltura.Services
 		public static LineupGetRequestBuilder Get(int pageIndex, int pageSize)
 		{
 			return new LineupGetRequestBuilder(pageIndex, pageSize);
-		}
-
-		public static LineupSendUpdatedNotificationRequestBuilder SendUpdatedNotification(string regionIds)
-		{
-			return new LineupSendUpdatedNotificationRequestBuilder(regionIds);
 		}
 	}
 }
