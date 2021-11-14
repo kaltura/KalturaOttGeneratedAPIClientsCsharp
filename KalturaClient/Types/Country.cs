@@ -157,21 +157,7 @@ namespace Kaltura.Types
 		/// Use VatPercentAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use VatPercentAsDouble property instead")]
-		public float VatPercent
-		{
-			get { return (float)_VatPercent; }
-			set 
-			{ 
-				_VatPercent = value;
-				OnPropertyChanged("VatPercent");
-			}
-		}
-		///<summary>
-		///Use this property VatPercentAsDouble instead of the float VatPercent property version
-		///</summary>
-		[JsonProperty]
-		public double VatPercentAsDouble
+		public double VatPercent
 		{
 			get { return _VatPercent; }
 			set 

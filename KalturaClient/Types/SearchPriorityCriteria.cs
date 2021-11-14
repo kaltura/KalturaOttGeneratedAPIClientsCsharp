@@ -35,80 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ChannelExternalFilter : AssetFilter
+	public class SearchPriorityCriteria : ObjectBase
 	{
 		#region Constants
-		public const string ID_EQUAL = "idEqual";
-		public const string UTC_OFFSET_EQUAL = "utcOffsetEqual";
-		public const string FREE_TEXT = "freeText";
+		public const string TYPE = "type";
+		public const string VALUE = "value";
 		#endregion
 
 		#region Private Fields
-		private int _IdEqual = Int32.MinValue;
-		private double _UtcOffsetEqual = Double.MinValue;
-		private string _FreeText = null;
+		private SearchPriorityCriteriaType _Type = null;
+		private string _Value = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdEqualAsDouble property instead
+		/// Use TypeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int IdEqual
+		public SearchPriorityCriteriaType Type
 		{
-			get { return _IdEqual; }
+			get { return _Type; }
 			set 
 			{ 
-				_IdEqual = value;
-				OnPropertyChanged("IdEqual");
+				_Type = value;
+				OnPropertyChanged("Type");
 			}
 		}
 		/// <summary>
-		/// Use UtcOffsetEqualAsDouble property instead
+		/// Use ValueAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public double UtcOffsetEqual
+		public string Value
 		{
-			get { return _UtcOffsetEqual; }
+			get { return _Value; }
 			set 
 			{ 
-				_UtcOffsetEqual = value;
-				OnPropertyChanged("UtcOffsetEqual");
-			}
-		}
-		/// <summary>
-		/// Use FreeTextAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string FreeText
-		{
-			get { return _FreeText; }
-			set 
-			{ 
-				_FreeText = value;
-				OnPropertyChanged("FreeText");
+				_Value = value;
+				OnPropertyChanged("Value");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ChannelExternalFilter()
+		public SearchPriorityCriteria()
 		{
 		}
 
-		public ChannelExternalFilter(JToken node) : base(node)
+		public SearchPriorityCriteria(JToken node) : base(node)
 		{
-			if(node["idEqual"] != null)
+			if(node["type"] != null)
 			{
-				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
+				this._Type = (SearchPriorityCriteriaType)StringEnum.Parse(typeof(SearchPriorityCriteriaType), node["type"].Value<string>());
 			}
-			if(node["utcOffsetEqual"] != null)
+			if(node["value"] != null)
 			{
-				this._UtcOffsetEqual = ParseDouble(node["utcOffsetEqual"].Value<string>());
-			}
-			if(node["freeText"] != null)
-			{
-				this._FreeText = node["freeText"].Value<string>();
+				this._Value = node["value"].Value<string>();
 			}
 		}
 		#endregion
@@ -118,22 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaChannelExternalFilter");
-			kparams.AddIfNotNull("idEqual", this._IdEqual);
-			kparams.AddIfNotNull("utcOffsetEqual", this._UtcOffsetEqual);
-			kparams.AddIfNotNull("freeText", this._FreeText);
+				kparams.AddReplace("objectType", "KalturaSearchPriorityCriteria");
+			kparams.AddIfNotNull("type", this._Type);
+			kparams.AddIfNotNull("value", this._Value);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID_EQUAL:
-					return "IdEqual";
-				case UTC_OFFSET_EQUAL:
-					return "UtcOffsetEqual";
-				case FREE_TEXT:
-					return "FreeText";
+				case TYPE:
+					return "Type";
+				case VALUE:
+					return "Value";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -149,7 +149,7 @@ namespace Kaltura
 		public static string RecordingPlaybackNotAllowedForNotEntitledEpgChannel = "3051";
 		public static string SeasonNumberNotMatch = "3052";
 		public static string SubscriptionCancellationIsBlocked = "3074";
-		public static string UnknownPriceReason = "3077";
+		public static string InvalidOffer = "3077";
 		public static string SubscriptionDoesNotExist = "3081";
 		public static string OtherCouponIsAlreadyAppliedForSubscription = "3082";
 		public static string CampaignIsAlreadyAppliedForSubscription = "3085";

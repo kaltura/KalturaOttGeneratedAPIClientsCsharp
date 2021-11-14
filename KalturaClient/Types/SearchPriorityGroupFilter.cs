@@ -35,26 +35,39 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ChannelExternalFilter : AssetFilter
+	public class SearchPriorityGroupFilter : Filter
 	{
 		#region Constants
+		public const string ACTIVE_ONLY_EQUAL = "activeOnlyEqual";
 		public const string ID_EQUAL = "idEqual";
-		public const string UTC_OFFSET_EQUAL = "utcOffsetEqual";
-		public const string FREE_TEXT = "freeText";
+		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private int _IdEqual = Int32.MinValue;
-		private double _UtcOffsetEqual = Double.MinValue;
-		private string _FreeText = null;
+		private bool? _ActiveOnlyEqual = null;
+		private long _IdEqual = long.MinValue;
+		private SearchPriorityGroupOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
+		/// Use ActiveOnlyEqualAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? ActiveOnlyEqual
+		{
+			get { return _ActiveOnlyEqual; }
+			set 
+			{ 
+				_ActiveOnlyEqual = value;
+				OnPropertyChanged("ActiveOnlyEqual");
+			}
+		}
+		/// <summary>
 		/// Use IdEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int IdEqual
+		public long IdEqual
 		{
 			get { return _IdEqual; }
 			set 
@@ -64,51 +77,38 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use UtcOffsetEqualAsDouble property instead
+		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public double UtcOffsetEqual
+		public new SearchPriorityGroupOrderBy OrderBy
 		{
-			get { return _UtcOffsetEqual; }
+			get { return _OrderBy; }
 			set 
 			{ 
-				_UtcOffsetEqual = value;
-				OnPropertyChanged("UtcOffsetEqual");
-			}
-		}
-		/// <summary>
-		/// Use FreeTextAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string FreeText
-		{
-			get { return _FreeText; }
-			set 
-			{ 
-				_FreeText = value;
-				OnPropertyChanged("FreeText");
+				_OrderBy = value;
+				OnPropertyChanged("OrderBy");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ChannelExternalFilter()
+		public SearchPriorityGroupFilter()
 		{
 		}
 
-		public ChannelExternalFilter(JToken node) : base(node)
+		public SearchPriorityGroupFilter(JToken node) : base(node)
 		{
+			if(node["activeOnlyEqual"] != null)
+			{
+				this._ActiveOnlyEqual = ParseBool(node["activeOnlyEqual"].Value<string>());
+			}
 			if(node["idEqual"] != null)
 			{
-				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
+				this._IdEqual = ParseLong(node["idEqual"].Value<string>());
 			}
-			if(node["utcOffsetEqual"] != null)
+			if(node["orderBy"] != null)
 			{
-				this._UtcOffsetEqual = ParseDouble(node["utcOffsetEqual"].Value<string>());
-			}
-			if(node["freeText"] != null)
-			{
-				this._FreeText = node["freeText"].Value<string>();
+				this._OrderBy = (SearchPriorityGroupOrderBy)StringEnum.Parse(typeof(SearchPriorityGroupOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,22 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaChannelExternalFilter");
+				kparams.AddReplace("objectType", "KalturaSearchPriorityGroupFilter");
+			kparams.AddIfNotNull("activeOnlyEqual", this._ActiveOnlyEqual);
 			kparams.AddIfNotNull("idEqual", this._IdEqual);
-			kparams.AddIfNotNull("utcOffsetEqual", this._UtcOffsetEqual);
-			kparams.AddIfNotNull("freeText", this._FreeText);
+			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
+				case ACTIVE_ONLY_EQUAL:
+					return "ActiveOnlyEqual";
 				case ID_EQUAL:
 					return "IdEqual";
-				case UTC_OFFSET_EQUAL:
-					return "UtcOffsetEqual";
-				case FREE_TEXT:
-					return "FreeText";
+				case ORDER_BY:
+					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}

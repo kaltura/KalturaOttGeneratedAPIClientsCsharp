@@ -112,21 +112,7 @@ namespace Kaltura.Types
 		/// Use RatingAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use RatingAsDouble property instead")]
-		public float Rating
-		{
-			get { return (float)_Rating; }
-			set 
-			{ 
-				_Rating = value;
-				OnPropertyChanged("Rating");
-			}
-		}
-		///<summary>
-		///Use this property RatingAsDouble instead of the float Rating property version
-		///</summary>
-		[JsonProperty]
-		public double RatingAsDouble
+		public double Rating
 		{
 			get { return _Rating; }
 			set 

@@ -35,80 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ChannelExternalFilter : AssetFilter
+	public class SearchPriorityGroupOrderedIdsSet : ObjectBase
 	{
 		#region Constants
-		public const string ID_EQUAL = "idEqual";
-		public const string UTC_OFFSET_EQUAL = "utcOffsetEqual";
-		public const string FREE_TEXT = "freeText";
+		public const string PRIORITY_GROUP_IDS = "priorityGroupIds";
 		#endregion
 
 		#region Private Fields
-		private int _IdEqual = Int32.MinValue;
-		private double _UtcOffsetEqual = Double.MinValue;
-		private string _FreeText = null;
+		private string _PriorityGroupIds = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdEqualAsDouble property instead
+		/// Use PriorityGroupIdsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int IdEqual
+		public string PriorityGroupIds
 		{
-			get { return _IdEqual; }
+			get { return _PriorityGroupIds; }
 			set 
 			{ 
-				_IdEqual = value;
-				OnPropertyChanged("IdEqual");
-			}
-		}
-		/// <summary>
-		/// Use UtcOffsetEqualAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public double UtcOffsetEqual
-		{
-			get { return _UtcOffsetEqual; }
-			set 
-			{ 
-				_UtcOffsetEqual = value;
-				OnPropertyChanged("UtcOffsetEqual");
-			}
-		}
-		/// <summary>
-		/// Use FreeTextAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string FreeText
-		{
-			get { return _FreeText; }
-			set 
-			{ 
-				_FreeText = value;
-				OnPropertyChanged("FreeText");
+				_PriorityGroupIds = value;
+				OnPropertyChanged("PriorityGroupIds");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ChannelExternalFilter()
+		public SearchPriorityGroupOrderedIdsSet()
 		{
 		}
 
-		public ChannelExternalFilter(JToken node) : base(node)
+		public SearchPriorityGroupOrderedIdsSet(JToken node) : base(node)
 		{
-			if(node["idEqual"] != null)
+			if(node["priorityGroupIds"] != null)
 			{
-				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
-			}
-			if(node["utcOffsetEqual"] != null)
-			{
-				this._UtcOffsetEqual = ParseDouble(node["utcOffsetEqual"].Value<string>());
-			}
-			if(node["freeText"] != null)
-			{
-				this._FreeText = node["freeText"].Value<string>();
+				this._PriorityGroupIds = node["priorityGroupIds"].Value<string>();
 			}
 		}
 		#endregion
@@ -118,22 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaChannelExternalFilter");
-			kparams.AddIfNotNull("idEqual", this._IdEqual);
-			kparams.AddIfNotNull("utcOffsetEqual", this._UtcOffsetEqual);
-			kparams.AddIfNotNull("freeText", this._FreeText);
+				kparams.AddReplace("objectType", "KalturaSearchPriorityGroupOrderedIdsSet");
+			kparams.AddIfNotNull("priorityGroupIds", this._PriorityGroupIds);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID_EQUAL:
-					return "IdEqual";
-				case UTC_OFFSET_EQUAL:
-					return "UtcOffsetEqual";
-				case FREE_TEXT:
-					return "FreeText";
+				case PRIORITY_GROUP_IDS:
+					return "PriorityGroupIds";
 				default:
 					return base.getPropertyName(apiName);
 			}

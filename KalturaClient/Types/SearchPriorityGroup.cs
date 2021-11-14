@@ -35,80 +35,103 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ChannelExternalFilter : AssetFilter
+	public class SearchPriorityGroup : ObjectBase
 	{
 		#region Constants
-		public const string ID_EQUAL = "idEqual";
-		public const string UTC_OFFSET_EQUAL = "utcOffsetEqual";
-		public const string FREE_TEXT = "freeText";
+		public const string ID = "id";
+		public const string NAME = "name";
+		public const string MULTILINGUAL_NAME = "multilingualName";
+		public const string CRITERIA = "criteria";
 		#endregion
 
 		#region Private Fields
-		private int _IdEqual = Int32.MinValue;
-		private double _UtcOffsetEqual = Double.MinValue;
-		private string _FreeText = null;
+		private long _Id = long.MinValue;
+		private string _Name = null;
+		private IList<TranslationToken> _MultilingualName;
+		private SearchPriorityCriteria _Criteria;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdEqualAsDouble property instead
+		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int IdEqual
+		public long Id
 		{
-			get { return _IdEqual; }
-			set 
+			get { return _Id; }
+			private set 
 			{ 
-				_IdEqual = value;
-				OnPropertyChanged("IdEqual");
+				_Id = value;
+				OnPropertyChanged("Id");
 			}
 		}
 		/// <summary>
-		/// Use UtcOffsetEqualAsDouble property instead
+		/// Use NameAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public double UtcOffsetEqual
+		public string Name
 		{
-			get { return _UtcOffsetEqual; }
-			set 
+			get { return _Name; }
+			private set 
 			{ 
-				_UtcOffsetEqual = value;
-				OnPropertyChanged("UtcOffsetEqual");
+				_Name = value;
+				OnPropertyChanged("Name");
 			}
 		}
 		/// <summary>
-		/// Use FreeTextAsDouble property instead
+		/// Use MultilingualNameAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string FreeText
+		public IList<TranslationToken> MultilingualName
 		{
-			get { return _FreeText; }
+			get { return _MultilingualName; }
 			set 
 			{ 
-				_FreeText = value;
-				OnPropertyChanged("FreeText");
+				_MultilingualName = value;
+				OnPropertyChanged("MultilingualName");
+			}
+		}
+		/// <summary>
+		/// Use CriteriaAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public SearchPriorityCriteria Criteria
+		{
+			get { return _Criteria; }
+			set 
+			{ 
+				_Criteria = value;
+				OnPropertyChanged("Criteria");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ChannelExternalFilter()
+		public SearchPriorityGroup()
 		{
 		}
 
-		public ChannelExternalFilter(JToken node) : base(node)
+		public SearchPriorityGroup(JToken node) : base(node)
 		{
-			if(node["idEqual"] != null)
+			if(node["id"] != null)
 			{
-				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
+				this._Id = ParseLong(node["id"].Value<string>());
 			}
-			if(node["utcOffsetEqual"] != null)
+			if(node["name"] != null)
 			{
-				this._UtcOffsetEqual = ParseDouble(node["utcOffsetEqual"].Value<string>());
+				this._Name = node["name"].Value<string>();
 			}
-			if(node["freeText"] != null)
+			if(node["multilingualName"] != null)
 			{
-				this._FreeText = node["freeText"].Value<string>();
+				this._MultilingualName = new List<TranslationToken>();
+				foreach(var arrayNode in node["multilingualName"].Children())
+				{
+					this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
+				}
+			}
+			if(node["criteria"] != null)
+			{
+				this._Criteria = ObjectFactory.Create<SearchPriorityCriteria>(node["criteria"]);
 			}
 		}
 		#endregion
@@ -118,22 +141,25 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaChannelExternalFilter");
-			kparams.AddIfNotNull("idEqual", this._IdEqual);
-			kparams.AddIfNotNull("utcOffsetEqual", this._UtcOffsetEqual);
-			kparams.AddIfNotNull("freeText", this._FreeText);
+				kparams.AddReplace("objectType", "KalturaSearchPriorityGroup");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("name", this._Name);
+			kparams.AddIfNotNull("multilingualName", this._MultilingualName);
+			kparams.AddIfNotNull("criteria", this._Criteria);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID_EQUAL:
-					return "IdEqual";
-				case UTC_OFFSET_EQUAL:
-					return "UtcOffsetEqual";
-				case FREE_TEXT:
-					return "FreeText";
+				case ID:
+					return "Id";
+				case NAME:
+					return "Name";
+				case MULTILINGUAL_NAME:
+					return "MultilingualName";
+				case CRITERIA:
+					return "Criteria";
 				default:
 					return base.getPropertyName(apiName);
 			}
