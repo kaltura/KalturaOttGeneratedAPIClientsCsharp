@@ -35,80 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class RecordingAsset : ProgramAsset
+	public class SearchPriorityGroupFilter : Filter
 	{
 		#region Constants
-		public const string RECORDING_ID = "recordingId";
-		public const string RECORDING_TYPE = "recordingType";
-		public const string VIEWABLE_UNTIL_DATE = "viewableUntilDate";
+		public const string ACTIVE_ONLY_EQUAL = "activeOnlyEqual";
+		public const string ID_EQUAL = "idEqual";
+		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private string _RecordingId = null;
-		private RecordingType _RecordingType = null;
-		private long _ViewableUntilDate = long.MinValue;
+		private bool? _ActiveOnlyEqual = null;
+		private long _IdEqual = long.MinValue;
+		private SearchPriorityGroupOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use RecordingIdAsDouble property instead
+		/// Use ActiveOnlyEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string RecordingId
+		public bool? ActiveOnlyEqual
 		{
-			get { return _RecordingId; }
+			get { return _ActiveOnlyEqual; }
 			set 
 			{ 
-				_RecordingId = value;
-				OnPropertyChanged("RecordingId");
+				_ActiveOnlyEqual = value;
+				OnPropertyChanged("ActiveOnlyEqual");
 			}
 		}
 		/// <summary>
-		/// Use RecordingTypeAsDouble property instead
+		/// Use IdEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public RecordingType RecordingType
+		public long IdEqual
 		{
-			get { return _RecordingType; }
+			get { return _IdEqual; }
 			set 
 			{ 
-				_RecordingType = value;
-				OnPropertyChanged("RecordingType");
+				_IdEqual = value;
+				OnPropertyChanged("IdEqual");
 			}
 		}
 		/// <summary>
-		/// Use ViewableUntilDateAsDouble property instead
+		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long ViewableUntilDate
+		public new SearchPriorityGroupOrderBy OrderBy
 		{
-			get { return _ViewableUntilDate; }
+			get { return _OrderBy; }
 			set 
 			{ 
-				_ViewableUntilDate = value;
-				OnPropertyChanged("ViewableUntilDate");
+				_OrderBy = value;
+				OnPropertyChanged("OrderBy");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public RecordingAsset()
+		public SearchPriorityGroupFilter()
 		{
 		}
 
-		public RecordingAsset(JToken node) : base(node)
+		public SearchPriorityGroupFilter(JToken node) : base(node)
 		{
-			if(node["recordingId"] != null)
+			if(node["activeOnlyEqual"] != null)
 			{
-				this._RecordingId = node["recordingId"].Value<string>();
+				this._ActiveOnlyEqual = ParseBool(node["activeOnlyEqual"].Value<string>());
 			}
-			if(node["recordingType"] != null)
+			if(node["idEqual"] != null)
 			{
-				this._RecordingType = (RecordingType)StringEnum.Parse(typeof(RecordingType), node["recordingType"].Value<string>());
+				this._IdEqual = ParseLong(node["idEqual"].Value<string>());
 			}
-			if(node["viewableUntilDate"] != null)
+			if(node["orderBy"] != null)
 			{
-				this._ViewableUntilDate = ParseLong(node["viewableUntilDate"].Value<string>());
+				this._OrderBy = (SearchPriorityGroupOrderBy)StringEnum.Parse(typeof(SearchPriorityGroupOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,22 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRecordingAsset");
-			kparams.AddIfNotNull("recordingId", this._RecordingId);
-			kparams.AddIfNotNull("recordingType", this._RecordingType);
-			kparams.AddIfNotNull("viewableUntilDate", this._ViewableUntilDate);
+				kparams.AddReplace("objectType", "KalturaSearchPriorityGroupFilter");
+			kparams.AddIfNotNull("activeOnlyEqual", this._ActiveOnlyEqual);
+			kparams.AddIfNotNull("idEqual", this._IdEqual);
+			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case RECORDING_ID:
-					return "RecordingId";
-				case RECORDING_TYPE:
-					return "RecordingType";
-				case VIEWABLE_UNTIL_DATE:
-					return "ViewableUntilDate";
+				case ACTIVE_ONLY_EQUAL:
+					return "ActiveOnlyEqual";
+				case ID_EQUAL:
+					return "IdEqual";
+				case ORDER_BY:
+					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}

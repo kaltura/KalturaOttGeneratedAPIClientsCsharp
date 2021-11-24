@@ -41,6 +41,7 @@ namespace Kaltura.Types
 		public const string COLLECTION_ID_IN = "collectionIdIn";
 		public const string MEDIA_FILE_ID_EQUAL = "mediaFileIdEqual";
 		public const string COUPON_GROUP_ID_EQUAL = "couponGroupIdEqual";
+		public const string ALSO_INACTIVE = "alsoInactive";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -48,6 +49,7 @@ namespace Kaltura.Types
 		private string _CollectionIdIn = null;
 		private int _MediaFileIdEqual = Int32.MinValue;
 		private int _CouponGroupIdEqual = Int32.MinValue;
+		private bool? _AlsoInactive = null;
 		private CollectionOrderBy _OrderBy = null;
 		#endregion
 
@@ -92,6 +94,19 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use AlsoInactiveAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? AlsoInactive
+		{
+			get { return _AlsoInactive; }
+			set 
+			{ 
+				_AlsoInactive = value;
+				OnPropertyChanged("AlsoInactive");
+			}
+		}
+		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -125,6 +140,10 @@ namespace Kaltura.Types
 			{
 				this._CouponGroupIdEqual = ParseInt(node["couponGroupIdEqual"].Value<string>());
 			}
+			if(node["alsoInactive"] != null)
+			{
+				this._AlsoInactive = ParseBool(node["alsoInactive"].Value<string>());
+			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (CollectionOrderBy)StringEnum.Parse(typeof(CollectionOrderBy), node["orderBy"].Value<string>());
@@ -141,6 +160,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("collectionIdIn", this._CollectionIdIn);
 			kparams.AddIfNotNull("mediaFileIdEqual", this._MediaFileIdEqual);
 			kparams.AddIfNotNull("couponGroupIdEqual", this._CouponGroupIdEqual);
+			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -154,6 +174,8 @@ namespace Kaltura.Types
 					return "MediaFileIdEqual";
 				case COUPON_GROUP_ID_EQUAL:
 					return "CouponGroupIdEqual";
+				case ALSO_INACTIVE:
+					return "AlsoInactive";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

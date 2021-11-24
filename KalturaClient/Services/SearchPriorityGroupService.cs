@@ -36,30 +36,30 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class PpvAddRequestBuilder : RequestBuilder<Ppv>
+	public class SearchPriorityGroupAddRequestBuilder : RequestBuilder<SearchPriorityGroup>
 	{
 		#region Constants
-		public const string PPV = "ppv";
+		public const string SEARCH_PRIORITY_GROUP = "searchPriorityGroup";
 		#endregion
 
-		public Ppv Ppv { get; set; }
+		public SearchPriorityGroup SearchPriorityGroup { get; set; }
 
-		public PpvAddRequestBuilder()
-			: base("ppv", "add")
+		public SearchPriorityGroupAddRequestBuilder()
+			: base("searchprioritygroup", "add")
 		{
 		}
 
-		public PpvAddRequestBuilder(Ppv ppv)
+		public SearchPriorityGroupAddRequestBuilder(SearchPriorityGroup searchPriorityGroup)
 			: this()
 		{
-			this.Ppv = ppv;
+			this.SearchPriorityGroup = searchPriorityGroup;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("ppv"))
-				kparams.AddIfNotNull("ppv", Ppv);
+			if (!isMapped("searchPriorityGroup"))
+				kparams.AddIfNotNull("searchPriorityGroup", SearchPriorityGroup);
 			return kparams;
 		}
 
@@ -71,24 +71,24 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<Ppv>(result);
+			return ObjectFactory.Create<SearchPriorityGroup>(result);
 		}
 	}
 
-	public class PpvDeleteRequestBuilder : RequestBuilder<bool>
+	public class SearchPriorityGroupDeleteRequestBuilder : RequestBuilder<bool>
 	{
 		#region Constants
 		public const string ID = "id";
 		#endregion
 
-		public long Id { get; set; }
+		public int Id { get; set; }
 
-		public PpvDeleteRequestBuilder()
-			: base("ppv", "delete")
+		public SearchPriorityGroupDeleteRequestBuilder()
+			: base("searchprioritygroup", "delete")
 		{
 		}
 
-		public PpvDeleteRequestBuilder(long id)
+		public SearchPriorityGroupDeleteRequestBuilder(int id)
 			: this()
 		{
 			this.Id = id;
@@ -116,61 +116,22 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class PpvGetRequestBuilder : RequestBuilder<Ppv>
-	{
-		#region Constants
-		public const string ID = "id";
-		#endregion
-
-		public long Id { get; set; }
-
-		public PpvGetRequestBuilder()
-			: base("ppv", "get")
-		{
-		}
-
-		public PpvGetRequestBuilder(long id)
-			: this()
-		{
-			this.Id = id;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<Ppv>(result);
-		}
-	}
-
-	public class PpvListRequestBuilder : RequestBuilder<ListResponse<Ppv>>
+	public class SearchPriorityGroupListRequestBuilder : RequestBuilder<ListResponse<SearchPriorityGroup>>
 	{
 		#region Constants
 		public const string FILTER = "filter";
 		public const string PAGER = "pager";
 		#endregion
 
-		public PpvFilter Filter { get; set; }
+		public SearchPriorityGroupFilter Filter { get; set; }
 		public FilterPager Pager { get; set; }
 
-		public PpvListRequestBuilder()
-			: base("ppv", "list")
+		public SearchPriorityGroupListRequestBuilder()
+			: base("searchprioritygroup", "list")
 		{
 		}
 
-		public PpvListRequestBuilder(PpvFilter filter, FilterPager pager)
+		public SearchPriorityGroupListRequestBuilder(SearchPriorityGroupFilter filter, FilterPager pager)
 			: this()
 		{
 			this.Filter = filter;
@@ -195,30 +156,30 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<ListResponse<Ppv>>(result);
+			return ObjectFactory.Create<ListResponse<SearchPriorityGroup>>(result);
 		}
 	}
 
-	public class PpvUpdateRequestBuilder : RequestBuilder<Ppv>
+	public class SearchPriorityGroupUpdateRequestBuilder : RequestBuilder<SearchPriorityGroup>
 	{
 		#region Constants
 		public const string ID = "id";
-		public const string PPV = "ppv";
+		public const string SEARCH_PRIORITY_GROUP = "searchPriorityGroup";
 		#endregion
 
-		public int Id { get; set; }
-		public Ppv Ppv { get; set; }
+		public long Id { get; set; }
+		public SearchPriorityGroup SearchPriorityGroup { get; set; }
 
-		public PpvUpdateRequestBuilder()
-			: base("ppv", "update")
+		public SearchPriorityGroupUpdateRequestBuilder()
+			: base("searchprioritygroup", "update")
 		{
 		}
 
-		public PpvUpdateRequestBuilder(int id, Ppv ppv)
+		public SearchPriorityGroupUpdateRequestBuilder(long id, SearchPriorityGroup searchPriorityGroup)
 			: this()
 		{
 			this.Id = id;
-			this.Ppv = ppv;
+			this.SearchPriorityGroup = searchPriorityGroup;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -226,8 +187,8 @@ namespace Kaltura.Services
 			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("id"))
 				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("ppv"))
-				kparams.AddIfNotNull("ppv", Ppv);
+			if (!isMapped("searchPriorityGroup"))
+				kparams.AddIfNotNull("searchPriorityGroup", SearchPriorityGroup);
 			return kparams;
 		}
 
@@ -239,40 +200,35 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<Ppv>(result);
+			return ObjectFactory.Create<SearchPriorityGroup>(result);
 		}
 	}
 
 
-	public class PpvService
+	public class SearchPriorityGroupService
 	{
-		private PpvService()
+		private SearchPriorityGroupService()
 		{
 		}
 
-		public static PpvAddRequestBuilder Add(Ppv ppv)
+		public static SearchPriorityGroupAddRequestBuilder Add(SearchPriorityGroup searchPriorityGroup)
 		{
-			return new PpvAddRequestBuilder(ppv);
+			return new SearchPriorityGroupAddRequestBuilder(searchPriorityGroup);
 		}
 
-		public static PpvDeleteRequestBuilder Delete(long id)
+		public static SearchPriorityGroupDeleteRequestBuilder Delete(int id)
 		{
-			return new PpvDeleteRequestBuilder(id);
+			return new SearchPriorityGroupDeleteRequestBuilder(id);
 		}
 
-		public static PpvGetRequestBuilder Get(long id)
+		public static SearchPriorityGroupListRequestBuilder List(SearchPriorityGroupFilter filter, FilterPager pager = null)
 		{
-			return new PpvGetRequestBuilder(id);
+			return new SearchPriorityGroupListRequestBuilder(filter, pager);
 		}
 
-		public static PpvListRequestBuilder List(PpvFilter filter = null, FilterPager pager = null)
+		public static SearchPriorityGroupUpdateRequestBuilder Update(long id, SearchPriorityGroup searchPriorityGroup)
 		{
-			return new PpvListRequestBuilder(filter, pager);
-		}
-
-		public static PpvUpdateRequestBuilder Update(int id, Ppv ppv)
-		{
-			return new PpvUpdateRequestBuilder(id, ppv);
+			return new SearchPriorityGroupUpdateRequestBuilder(id, searchPriorityGroup);
 		}
 	}
 }

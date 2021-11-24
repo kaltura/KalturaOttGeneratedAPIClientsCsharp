@@ -35,80 +35,103 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class RecordingAsset : ProgramAsset
+	public class SearchPriorityGroup : ObjectBase
 	{
 		#region Constants
-		public const string RECORDING_ID = "recordingId";
-		public const string RECORDING_TYPE = "recordingType";
-		public const string VIEWABLE_UNTIL_DATE = "viewableUntilDate";
+		public const string ID = "id";
+		public const string NAME = "name";
+		public const string MULTILINGUAL_NAME = "multilingualName";
+		public const string CRITERIA = "criteria";
 		#endregion
 
 		#region Private Fields
-		private string _RecordingId = null;
-		private RecordingType _RecordingType = null;
-		private long _ViewableUntilDate = long.MinValue;
+		private long _Id = long.MinValue;
+		private string _Name = null;
+		private IList<TranslationToken> _MultilingualName;
+		private SearchPriorityCriteria _Criteria;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use RecordingIdAsDouble property instead
+		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string RecordingId
+		public long Id
 		{
-			get { return _RecordingId; }
-			set 
+			get { return _Id; }
+			private set 
 			{ 
-				_RecordingId = value;
-				OnPropertyChanged("RecordingId");
+				_Id = value;
+				OnPropertyChanged("Id");
 			}
 		}
 		/// <summary>
-		/// Use RecordingTypeAsDouble property instead
+		/// Use NameAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public RecordingType RecordingType
+		public string Name
 		{
-			get { return _RecordingType; }
-			set 
+			get { return _Name; }
+			private set 
 			{ 
-				_RecordingType = value;
-				OnPropertyChanged("RecordingType");
+				_Name = value;
+				OnPropertyChanged("Name");
 			}
 		}
 		/// <summary>
-		/// Use ViewableUntilDateAsDouble property instead
+		/// Use MultilingualNameAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long ViewableUntilDate
+		public IList<TranslationToken> MultilingualName
 		{
-			get { return _ViewableUntilDate; }
+			get { return _MultilingualName; }
 			set 
 			{ 
-				_ViewableUntilDate = value;
-				OnPropertyChanged("ViewableUntilDate");
+				_MultilingualName = value;
+				OnPropertyChanged("MultilingualName");
+			}
+		}
+		/// <summary>
+		/// Use CriteriaAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public SearchPriorityCriteria Criteria
+		{
+			get { return _Criteria; }
+			set 
+			{ 
+				_Criteria = value;
+				OnPropertyChanged("Criteria");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public RecordingAsset()
+		public SearchPriorityGroup()
 		{
 		}
 
-		public RecordingAsset(JToken node) : base(node)
+		public SearchPriorityGroup(JToken node) : base(node)
 		{
-			if(node["recordingId"] != null)
+			if(node["id"] != null)
 			{
-				this._RecordingId = node["recordingId"].Value<string>();
+				this._Id = ParseLong(node["id"].Value<string>());
 			}
-			if(node["recordingType"] != null)
+			if(node["name"] != null)
 			{
-				this._RecordingType = (RecordingType)StringEnum.Parse(typeof(RecordingType), node["recordingType"].Value<string>());
+				this._Name = node["name"].Value<string>();
 			}
-			if(node["viewableUntilDate"] != null)
+			if(node["multilingualName"] != null)
 			{
-				this._ViewableUntilDate = ParseLong(node["viewableUntilDate"].Value<string>());
+				this._MultilingualName = new List<TranslationToken>();
+				foreach(var arrayNode in node["multilingualName"].Children())
+				{
+					this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
+				}
+			}
+			if(node["criteria"] != null)
+			{
+				this._Criteria = ObjectFactory.Create<SearchPriorityCriteria>(node["criteria"]);
 			}
 		}
 		#endregion
@@ -118,22 +141,25 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRecordingAsset");
-			kparams.AddIfNotNull("recordingId", this._RecordingId);
-			kparams.AddIfNotNull("recordingType", this._RecordingType);
-			kparams.AddIfNotNull("viewableUntilDate", this._ViewableUntilDate);
+				kparams.AddReplace("objectType", "KalturaSearchPriorityGroup");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("name", this._Name);
+			kparams.AddIfNotNull("multilingualName", this._MultilingualName);
+			kparams.AddIfNotNull("criteria", this._Criteria);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case RECORDING_ID:
-					return "RecordingId";
-				case RECORDING_TYPE:
-					return "RecordingType";
-				case VIEWABLE_UNTIL_DATE:
-					return "ViewableUntilDate";
+				case ID:
+					return "Id";
+				case NAME:
+					return "Name";
+				case MULTILINGUAL_NAME:
+					return "MultilingualName";
+				case CRITERIA:
+					return "Criteria";
 				default:
 					return base.getPropertyName(apiName);
 			}

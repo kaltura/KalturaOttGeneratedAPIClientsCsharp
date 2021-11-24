@@ -35,80 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class RecordingAsset : ProgramAsset
+	public class SearchPriorityCriteria : ObjectBase
 	{
 		#region Constants
-		public const string RECORDING_ID = "recordingId";
-		public const string RECORDING_TYPE = "recordingType";
-		public const string VIEWABLE_UNTIL_DATE = "viewableUntilDate";
+		public const string TYPE = "type";
+		public const string VALUE = "value";
 		#endregion
 
 		#region Private Fields
-		private string _RecordingId = null;
-		private RecordingType _RecordingType = null;
-		private long _ViewableUntilDate = long.MinValue;
+		private SearchPriorityCriteriaType _Type = null;
+		private string _Value = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use RecordingIdAsDouble property instead
+		/// Use TypeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string RecordingId
+		public SearchPriorityCriteriaType Type
 		{
-			get { return _RecordingId; }
+			get { return _Type; }
 			set 
 			{ 
-				_RecordingId = value;
-				OnPropertyChanged("RecordingId");
+				_Type = value;
+				OnPropertyChanged("Type");
 			}
 		}
 		/// <summary>
-		/// Use RecordingTypeAsDouble property instead
+		/// Use ValueAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public RecordingType RecordingType
+		public string Value
 		{
-			get { return _RecordingType; }
+			get { return _Value; }
 			set 
 			{ 
-				_RecordingType = value;
-				OnPropertyChanged("RecordingType");
-			}
-		}
-		/// <summary>
-		/// Use ViewableUntilDateAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long ViewableUntilDate
-		{
-			get { return _ViewableUntilDate; }
-			set 
-			{ 
-				_ViewableUntilDate = value;
-				OnPropertyChanged("ViewableUntilDate");
+				_Value = value;
+				OnPropertyChanged("Value");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public RecordingAsset()
+		public SearchPriorityCriteria()
 		{
 		}
 
-		public RecordingAsset(JToken node) : base(node)
+		public SearchPriorityCriteria(JToken node) : base(node)
 		{
-			if(node["recordingId"] != null)
+			if(node["type"] != null)
 			{
-				this._RecordingId = node["recordingId"].Value<string>();
+				this._Type = (SearchPriorityCriteriaType)StringEnum.Parse(typeof(SearchPriorityCriteriaType), node["type"].Value<string>());
 			}
-			if(node["recordingType"] != null)
+			if(node["value"] != null)
 			{
-				this._RecordingType = (RecordingType)StringEnum.Parse(typeof(RecordingType), node["recordingType"].Value<string>());
-			}
-			if(node["viewableUntilDate"] != null)
-			{
-				this._ViewableUntilDate = ParseLong(node["viewableUntilDate"].Value<string>());
+				this._Value = node["value"].Value<string>();
 			}
 		}
 		#endregion
@@ -118,22 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRecordingAsset");
-			kparams.AddIfNotNull("recordingId", this._RecordingId);
-			kparams.AddIfNotNull("recordingType", this._RecordingType);
-			kparams.AddIfNotNull("viewableUntilDate", this._ViewableUntilDate);
+				kparams.AddReplace("objectType", "KalturaSearchPriorityCriteria");
+			kparams.AddIfNotNull("type", this._Type);
+			kparams.AddIfNotNull("value", this._Value);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case RECORDING_ID:
-					return "RecordingId";
-				case RECORDING_TYPE:
-					return "RecordingType";
-				case VIEWABLE_UNTIL_DATE:
-					return "ViewableUntilDate";
+				case TYPE:
+					return "Type";
+				case VALUE:
+					return "Value";
 				default:
 					return base.getPropertyName(apiName);
 			}

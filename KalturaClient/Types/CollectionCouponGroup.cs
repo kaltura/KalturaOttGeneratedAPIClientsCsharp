@@ -35,80 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class RecordingAsset : ProgramAsset
+	public class CollectionCouponGroup : ObjectBase
 	{
 		#region Constants
-		public const string RECORDING_ID = "recordingId";
-		public const string RECORDING_TYPE = "recordingType";
-		public const string VIEWABLE_UNTIL_DATE = "viewableUntilDate";
+		public const string ID = "id";
+		public const string START_DATE = "startDate";
+		public const string END_DATE = "endDate";
 		#endregion
 
 		#region Private Fields
-		private string _RecordingId = null;
-		private RecordingType _RecordingType = null;
-		private long _ViewableUntilDate = long.MinValue;
+		private long _Id = long.MinValue;
+		private long _StartDate = long.MinValue;
+		private long _EndDate = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use RecordingIdAsDouble property instead
+		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string RecordingId
+		public long Id
 		{
-			get { return _RecordingId; }
+			get { return _Id; }
 			set 
 			{ 
-				_RecordingId = value;
-				OnPropertyChanged("RecordingId");
+				_Id = value;
+				OnPropertyChanged("Id");
 			}
 		}
 		/// <summary>
-		/// Use RecordingTypeAsDouble property instead
+		/// Use StartDateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public RecordingType RecordingType
+		public long StartDate
 		{
-			get { return _RecordingType; }
+			get { return _StartDate; }
 			set 
 			{ 
-				_RecordingType = value;
-				OnPropertyChanged("RecordingType");
+				_StartDate = value;
+				OnPropertyChanged("StartDate");
 			}
 		}
 		/// <summary>
-		/// Use ViewableUntilDateAsDouble property instead
+		/// Use EndDateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long ViewableUntilDate
+		public long EndDate
 		{
-			get { return _ViewableUntilDate; }
+			get { return _EndDate; }
 			set 
 			{ 
-				_ViewableUntilDate = value;
-				OnPropertyChanged("ViewableUntilDate");
+				_EndDate = value;
+				OnPropertyChanged("EndDate");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public RecordingAsset()
+		public CollectionCouponGroup()
 		{
 		}
 
-		public RecordingAsset(JToken node) : base(node)
+		public CollectionCouponGroup(JToken node) : base(node)
 		{
-			if(node["recordingId"] != null)
+			if(node["id"] != null)
 			{
-				this._RecordingId = node["recordingId"].Value<string>();
+				this._Id = ParseLong(node["id"].Value<string>());
 			}
-			if(node["recordingType"] != null)
+			if(node["startDate"] != null)
 			{
-				this._RecordingType = (RecordingType)StringEnum.Parse(typeof(RecordingType), node["recordingType"].Value<string>());
+				this._StartDate = ParseLong(node["startDate"].Value<string>());
 			}
-			if(node["viewableUntilDate"] != null)
+			if(node["endDate"] != null)
 			{
-				this._ViewableUntilDate = ParseLong(node["viewableUntilDate"].Value<string>());
+				this._EndDate = ParseLong(node["endDate"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,22 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRecordingAsset");
-			kparams.AddIfNotNull("recordingId", this._RecordingId);
-			kparams.AddIfNotNull("recordingType", this._RecordingType);
-			kparams.AddIfNotNull("viewableUntilDate", this._ViewableUntilDate);
+				kparams.AddReplace("objectType", "KalturaCollectionCouponGroup");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("startDate", this._StartDate);
+			kparams.AddIfNotNull("endDate", this._EndDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case RECORDING_ID:
-					return "RecordingId";
-				case RECORDING_TYPE:
-					return "RecordingType";
-				case VIEWABLE_UNTIL_DATE:
-					return "ViewableUntilDate";
+				case ID:
+					return "Id";
+				case START_DATE:
+					return "StartDate";
+				case END_DATE:
+					return "EndDate";
 				default:
 					return base.getPropertyName(apiName);
 			}
