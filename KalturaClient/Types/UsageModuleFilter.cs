@@ -35,80 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class RecordingAsset : ProgramAsset
+	public class UsageModuleFilter : Filter
 	{
 		#region Constants
-		public const string RECORDING_ID = "recordingId";
-		public const string RECORDING_TYPE = "recordingType";
-		public const string VIEWABLE_UNTIL_DATE = "viewableUntilDate";
+		public const string ID_EQUAL = "idEqual";
 		#endregion
 
 		#region Private Fields
-		private string _RecordingId = null;
-		private RecordingType _RecordingType = null;
-		private long _ViewableUntilDate = long.MinValue;
+		private int _IdEqual = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use RecordingIdAsDouble property instead
+		/// Use IdEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string RecordingId
+		public int IdEqual
 		{
-			get { return _RecordingId; }
+			get { return _IdEqual; }
 			set 
 			{ 
-				_RecordingId = value;
-				OnPropertyChanged("RecordingId");
-			}
-		}
-		/// <summary>
-		/// Use RecordingTypeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public RecordingType RecordingType
-		{
-			get { return _RecordingType; }
-			set 
-			{ 
-				_RecordingType = value;
-				OnPropertyChanged("RecordingType");
-			}
-		}
-		/// <summary>
-		/// Use ViewableUntilDateAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long ViewableUntilDate
-		{
-			get { return _ViewableUntilDate; }
-			set 
-			{ 
-				_ViewableUntilDate = value;
-				OnPropertyChanged("ViewableUntilDate");
+				_IdEqual = value;
+				OnPropertyChanged("IdEqual");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public RecordingAsset()
+		public UsageModuleFilter()
 		{
 		}
 
-		public RecordingAsset(JToken node) : base(node)
+		public UsageModuleFilter(JToken node) : base(node)
 		{
-			if(node["recordingId"] != null)
+			if(node["idEqual"] != null)
 			{
-				this._RecordingId = node["recordingId"].Value<string>();
-			}
-			if(node["recordingType"] != null)
-			{
-				this._RecordingType = (RecordingType)StringEnum.Parse(typeof(RecordingType), node["recordingType"].Value<string>());
-			}
-			if(node["viewableUntilDate"] != null)
-			{
-				this._ViewableUntilDate = ParseLong(node["viewableUntilDate"].Value<string>());
+				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,22 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRecordingAsset");
-			kparams.AddIfNotNull("recordingId", this._RecordingId);
-			kparams.AddIfNotNull("recordingType", this._RecordingType);
-			kparams.AddIfNotNull("viewableUntilDate", this._ViewableUntilDate);
+				kparams.AddReplace("objectType", "KalturaUsageModuleFilter");
+			kparams.AddIfNotNull("idEqual", this._IdEqual);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case RECORDING_ID:
-					return "RecordingId";
-				case RECORDING_TYPE:
-					return "RecordingType";
-				case VIEWABLE_UNTIL_DATE:
-					return "ViewableUntilDate";
+				case ID_EQUAL:
+					return "IdEqual";
 				default:
 					return base.getPropertyName(apiName);
 			}
