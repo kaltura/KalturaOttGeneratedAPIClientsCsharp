@@ -35,42 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class UsageModuleFilter : Filter
+	public class RegionChannelNumberMultiLcns : RegionChannelNumber
 	{
 		#region Constants
-		public const string ID_EQUAL = "idEqual";
+		public const string LCNS = "lcns";
 		#endregion
 
 		#region Private Fields
-		private int _IdEqual = Int32.MinValue;
+		private string _Lcns = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdEqualAsDouble property instead
+		/// Use LcnsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int IdEqual
+		public string Lcns
 		{
-			get { return _IdEqual; }
+			get { return _Lcns; }
 			set 
 			{ 
-				_IdEqual = value;
-				OnPropertyChanged("IdEqual");
+				_Lcns = value;
+				OnPropertyChanged("Lcns");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public UsageModuleFilter()
+		public RegionChannelNumberMultiLcns()
 		{
 		}
 
-		public UsageModuleFilter(JToken node) : base(node)
+		public RegionChannelNumberMultiLcns(JToken node) : base(node)
 		{
-			if(node["idEqual"] != null)
+			if(node["lcns"] != null)
 			{
-				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
+				this._Lcns = node["lcns"].Value<string>();
 			}
 		}
 		#endregion
@@ -80,16 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaUsageModuleFilter");
-			kparams.AddIfNotNull("idEqual", this._IdEqual);
+				kparams.AddReplace("objectType", "KalturaRegionChannelNumberMultiLcns");
+			kparams.AddIfNotNull("lcns", this._Lcns);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID_EQUAL:
-					return "IdEqual";
+				case LCNS:
+					return "Lcns";
 				default:
 					return base.getPropertyName(apiName);
 			}

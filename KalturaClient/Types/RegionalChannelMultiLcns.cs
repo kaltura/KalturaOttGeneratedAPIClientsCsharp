@@ -35,80 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class CollectionCouponGroup : ObjectBase
+	public class RegionalChannelMultiLcns : RegionalChannel
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string START_DATE = "startDate";
-		public const string END_DATE = "endDate";
+		public const string LCNS = "lcns";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private long _StartDate = long.MinValue;
-		private long _EndDate = long.MinValue;
+		private string _Lcns = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdAsDouble property instead
+		/// Use LcnsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long Id
+		public string Lcns
 		{
-			get { return _Id; }
+			get { return _Lcns; }
 			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
-			}
-		}
-		/// <summary>
-		/// Use StartDateAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long StartDate
-		{
-			get { return _StartDate; }
-			set 
-			{ 
-				_StartDate = value;
-				OnPropertyChanged("StartDate");
-			}
-		}
-		/// <summary>
-		/// Use EndDateAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long EndDate
-		{
-			get { return _EndDate; }
-			set 
-			{ 
-				_EndDate = value;
-				OnPropertyChanged("EndDate");
+				_Lcns = value;
+				OnPropertyChanged("Lcns");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public CollectionCouponGroup()
+		public RegionalChannelMultiLcns()
 		{
 		}
 
-		public CollectionCouponGroup(JToken node) : base(node)
+		public RegionalChannelMultiLcns(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["lcns"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
-			}
-			if(node["startDate"] != null)
-			{
-				this._StartDate = ParseLong(node["startDate"].Value<string>());
-			}
-			if(node["endDate"] != null)
-			{
-				this._EndDate = ParseLong(node["endDate"].Value<string>());
+				this._Lcns = node["lcns"].Value<string>();
 			}
 		}
 		#endregion
@@ -118,22 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaCollectionCouponGroup");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("startDate", this._StartDate);
-			kparams.AddIfNotNull("endDate", this._EndDate);
+				kparams.AddReplace("objectType", "KalturaRegionalChannelMultiLcns");
+			kparams.AddIfNotNull("lcns", this._Lcns);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case START_DATE:
-					return "StartDate";
-				case END_DATE:
-					return "EndDate";
+				case LCNS:
+					return "Lcns";
 				default:
 					return base.getPropertyName(apiName);
 			}

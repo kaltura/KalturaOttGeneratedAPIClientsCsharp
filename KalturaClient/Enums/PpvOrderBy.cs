@@ -31,8 +31,6 @@ namespace Kaltura.Enums
 	{
 		public static readonly PpvOrderBy NAME_ASC = new PpvOrderBy("NAME_ASC");
 		public static readonly PpvOrderBy NAME_DESC = new PpvOrderBy("NAME_DESC");
-		public static readonly PpvOrderBy UPDATE_DATE_ASC = new PpvOrderBy("UPDATE_DATE_ASC");
-		public static readonly PpvOrderBy UPDATE_DATE_DESC = new PpvOrderBy("UPDATE_DATE_DESC");
 
 		private PpvOrderBy(string name) : base(name) { }
 	}
