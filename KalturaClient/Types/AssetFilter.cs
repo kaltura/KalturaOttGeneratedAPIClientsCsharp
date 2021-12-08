@@ -40,12 +40,14 @@ namespace Kaltura.Types
 		#region Constants
 		public const string DYNAMIC_ORDER_BY = "dynamicOrderBy";
 		public const string TRENDING_DAYS_EQUAL = "trendingDaysEqual";
+		public const string SHOULD_APPLY_PRIORITY_GROUPS_EQUAL = "shouldApplyPriorityGroupsEqual";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
 		private DynamicOrderBy _DynamicOrderBy;
 		private int _TrendingDaysEqual = Int32.MinValue;
+		private bool? _ShouldApplyPriorityGroupsEqual = null;
 		private AssetOrderBy _OrderBy = null;
 		#endregion
 
@@ -74,6 +76,19 @@ namespace Kaltura.Types
 			{ 
 				_TrendingDaysEqual = value;
 				OnPropertyChanged("TrendingDaysEqual");
+			}
+		}
+		/// <summary>
+		/// Use ShouldApplyPriorityGroupsEqualAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? ShouldApplyPriorityGroupsEqual
+		{
+			get { return _ShouldApplyPriorityGroupsEqual; }
+			set 
+			{ 
+				_ShouldApplyPriorityGroupsEqual = value;
+				OnPropertyChanged("ShouldApplyPriorityGroupsEqual");
 			}
 		}
 		/// <summary>
@@ -106,6 +121,10 @@ namespace Kaltura.Types
 			{
 				this._TrendingDaysEqual = ParseInt(node["trendingDaysEqual"].Value<string>());
 			}
+			if(node["shouldApplyPriorityGroupsEqual"] != null)
+			{
+				this._ShouldApplyPriorityGroupsEqual = ParseBool(node["shouldApplyPriorityGroupsEqual"].Value<string>());
+			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (AssetOrderBy)StringEnum.Parse(typeof(AssetOrderBy), node["orderBy"].Value<string>());
@@ -121,6 +140,7 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaAssetFilter");
 			kparams.AddIfNotNull("dynamicOrderBy", this._DynamicOrderBy);
 			kparams.AddIfNotNull("trendingDaysEqual", this._TrendingDaysEqual);
+			kparams.AddIfNotNull("shouldApplyPriorityGroupsEqual", this._ShouldApplyPriorityGroupsEqual);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -132,6 +152,8 @@ namespace Kaltura.Types
 					return "DynamicOrderBy";
 				case TRENDING_DAYS_EQUAL:
 					return "TrendingDaysEqual";
+				case SHOULD_APPLY_PRIORITY_GROUPS_EQUAL:
+					return "ShouldApplyPriorityGroupsEqual";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
