@@ -41,12 +41,16 @@ namespace Kaltura.Types
 		public const string FREQUENCY = "frequency";
 		public const string DEVICE_LIMIT = "deviceLimit";
 		public const string CONCURRENT_LIMIT = "concurrentLimit";
+		public const string IS_DEFAULT_DEVICE_LIMIT = "isDefaultDeviceLimit";
+		public const string IS_DEFAULT_CONCURRENT_LIMIT  = "isDefaultConcurrentLimit ";
 		#endregion
 
 		#region Private Fields
 		private int _Frequency = Int32.MinValue;
 		private int _DeviceLimit = Int32.MinValue;
 		private int _ConcurrentLimit = Int32.MinValue;
+		private bool? _IsDefaultDeviceLimit = null;
+		private bool? _IsDefaultConcurrentLimit  = null;
 		#endregion
 
 		#region Properties
@@ -89,6 +93,32 @@ namespace Kaltura.Types
 				OnPropertyChanged("ConcurrentLimit");
 			}
 		}
+		/// <summary>
+		/// Use IsDefaultDeviceLimitAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IsDefaultDeviceLimit
+		{
+			get { return _IsDefaultDeviceLimit; }
+			private set 
+			{ 
+				_IsDefaultDeviceLimit = value;
+				OnPropertyChanged("IsDefaultDeviceLimit");
+			}
+		}
+		/// <summary>
+		/// Use IsDefaultConcurrentLimit AsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IsDefaultConcurrentLimit 
+		{
+			get { return _IsDefaultConcurrentLimit ; }
+			private set 
+			{ 
+				_IsDefaultConcurrentLimit  = value;
+				OnPropertyChanged("IsDefaultConcurrentLimit ");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -110,6 +140,14 @@ namespace Kaltura.Types
 			{
 				this._ConcurrentLimit = ParseInt(node["concurrentLimit"].Value<string>());
 			}
+			if(node["isDefaultDeviceLimit"] != null)
+			{
+				this._IsDefaultDeviceLimit = ParseBool(node["isDefaultDeviceLimit"].Value<string>());
+			}
+			if(node["isDefaultConcurrentLimit "] != null)
+			{
+				this._IsDefaultConcurrentLimit  = ParseBool(node["isDefaultConcurrentLimit "].Value<string>());
+			}
 		}
 		#endregion
 
@@ -122,6 +160,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("frequency", this._Frequency);
 			kparams.AddIfNotNull("deviceLimit", this._DeviceLimit);
 			kparams.AddIfNotNull("concurrentLimit", this._ConcurrentLimit);
+			kparams.AddIfNotNull("isDefaultDeviceLimit", this._IsDefaultDeviceLimit);
+			kparams.AddIfNotNull("isDefaultConcurrentLimit ", this._IsDefaultConcurrentLimit );
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -134,6 +174,10 @@ namespace Kaltura.Types
 					return "DeviceLimit";
 				case CONCURRENT_LIMIT:
 					return "ConcurrentLimit";
+				case IS_DEFAULT_DEVICE_LIMIT:
+					return "IsDefaultDeviceLimit";
+				case IS_DEFAULT_CONCURRENT_LIMIT :
+					return "IsDefaultConcurrentLimit ";
 				default:
 					return base.getPropertyName(apiName);
 			}
