@@ -41,14 +41,12 @@ namespace Kaltura.Types
 		public const string VIEW_LIFE_CYCLE = "viewLifeCycle";
 		public const string FULL_LIFE_CYCLE = "fullLifeCycle";
 		public const string IS_OFFLINE_PLAY_BACK = "isOfflinePlayBack";
-		public const string IS_LIVE_PLAY_BACK = "isLivePlayBack";
 		#endregion
 
 		#region Private Fields
 		private string _ViewLifeCycle = null;
 		private string _FullLifeCycle = null;
 		private bool? _IsOfflinePlayBack = null;
-		private bool? _IsLivePlayBack = null;
 		#endregion
 
 		#region Properties
@@ -91,19 +89,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsOfflinePlayBack");
 			}
 		}
-		/// <summary>
-		/// Use IsLivePlayBackAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public bool? IsLivePlayBack
-		{
-			get { return _IsLivePlayBack; }
-			private set 
-			{ 
-				_IsLivePlayBack = value;
-				OnPropertyChanged("IsLivePlayBack");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -125,10 +110,6 @@ namespace Kaltura.Types
 			{
 				this._IsOfflinePlayBack = ParseBool(node["isOfflinePlayBack"].Value<string>());
 			}
-			if(node["isLivePlayBack"] != null)
-			{
-				this._IsLivePlayBack = ParseBool(node["isLivePlayBack"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -141,7 +122,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("viewLifeCycle", this._ViewLifeCycle);
 			kparams.AddIfNotNull("fullLifeCycle", this._FullLifeCycle);
 			kparams.AddIfNotNull("isOfflinePlayBack", this._IsOfflinePlayBack);
-			kparams.AddIfNotNull("isLivePlayBack", this._IsLivePlayBack);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -154,8 +134,6 @@ namespace Kaltura.Types
 					return "FullLifeCycle";
 				case IS_OFFLINE_PLAY_BACK:
 					return "IsOfflinePlayBack";
-				case IS_LIVE_PLAY_BACK:
-					return "IsLivePlayBack";
 				default:
 					return base.getPropertyName(apiName);
 			}

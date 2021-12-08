@@ -35,22 +35,19 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Subscription : OTTObjectSupportNullable
+	public class Subscription : ObjectBase
 	{
 		#region Constants
 		public const string ID = "id";
 		public const string CHANNELS = "channels";
-		public const string CHANNELS_IDS = "channelsIds";
 		public const string START_DATE = "startDate";
 		public const string END_DATE = "endDate";
 		public const string FILE_TYPES = "fileTypes";
-		public const string FILE_TYPES_IDS = "fileTypesIds";
 		public const string IS_RENEWABLE = "isRenewable";
 		public const string RENEWALS_NUMBER = "renewalsNumber";
 		public const string IS_INFINITE_RENEWAL = "isInfiniteRenewal";
 		public const string PRICE = "price";
 		public const string DISCOUNT_MODULE = "discountModule";
-		public const string INTERNAL_DISCOUNT_MODULE_ID = "internalDiscountModuleId";
 		public const string NAME = "name";
 		public const string MULTILINGUAL_NAME = "multilingualName";
 		public const string DESCRIPTION = "description";
@@ -59,7 +56,6 @@ namespace Kaltura.Types
 		public const string PRORITY_IN_ORDER = "prorityInOrder";
 		public const string PRICE_PLAN_IDS = "pricePlanIds";
 		public const string PREVIEW_MODULE = "previewModule";
-		public const string PREVIEW_MODULE_ID = "previewModuleId";
 		public const string HOUSEHOLD_LIMITATIONS_ID = "householdLimitationsId";
 		public const string GRACE_PERIOD_MINUTES = "gracePeriodMinutes";
 		public const string PREMIUM_SERVICES = "premiumServices";
@@ -69,33 +65,24 @@ namespace Kaltura.Types
 		public const string IS_WAIVER_ENABLED = "isWaiverEnabled";
 		public const string USER_TYPES = "userTypes";
 		public const string COUPONS_GROUPS = "couponsGroups";
-		public const string SUBSCRIPTION_COUPON_GROUP = "subscriptionCouponGroup";
 		public const string PRODUCT_CODES = "productCodes";
 		public const string DEPENDENCY_TYPE = "dependencyType";
 		public const string EXTERNAL_ID = "externalId";
 		public const string IS_CANCELLATION_BLOCKED = "isCancellationBlocked";
 		public const string PRE_SALE_DATE = "preSaleDate";
-		public const string ADS_POLICY = "adsPolicy";
-		public const string ADS_PARAM = "adsParam";
-		public const string IS_ACTIVE = "isActive";
-		public const string CREATE_DATE = "createDate";
-		public const string UPDATE_DATE = "updateDate";
 		#endregion
 
 		#region Private Fields
 		private string _Id = null;
 		private IList<BaseChannel> _Channels;
-		private string _ChannelsIds = null;
 		private long _StartDate = long.MinValue;
 		private long _EndDate = long.MinValue;
 		private IList<IntegerValue> _FileTypes;
-		private string _FileTypesIds = null;
 		private bool? _IsRenewable = null;
 		private int _RenewalsNumber = Int32.MinValue;
 		private bool? _IsInfiniteRenewal = null;
 		private PriceDetails _Price;
 		private DiscountModule _DiscountModule;
-		private long _InternalDiscountModuleId = long.MinValue;
 		private string _Name = null;
 		private IList<TranslationToken> _MultilingualName;
 		private string _Description = null;
@@ -104,7 +91,6 @@ namespace Kaltura.Types
 		private long _ProrityInOrder = long.MinValue;
 		private string _PricePlanIds = null;
 		private PreviewModule _PreviewModule;
-		private long _PreviewModuleId = long.MinValue;
 		private int _HouseholdLimitationsId = Int32.MinValue;
 		private int _GracePeriodMinutes = Int32.MinValue;
 		private IList<PremiumService> _PremiumServices;
@@ -114,17 +100,11 @@ namespace Kaltura.Types
 		private bool? _IsWaiverEnabled = null;
 		private IList<OTTUserType> _UserTypes;
 		private IList<CouponsGroup> _CouponsGroups;
-		private IList<SubscriptionCouponGroup> _SubscriptionCouponGroup;
 		private IList<ProductCode> _ProductCodes;
 		private SubscriptionDependencyType _DependencyType = null;
 		private string _ExternalId = null;
 		private bool? _IsCancellationBlocked = null;
 		private long _PreSaleDate = long.MinValue;
-		private AdsPolicy _AdsPolicy = null;
-		private string _AdsParam = null;
-		private bool? _IsActive = null;
-		private long _CreateDate = long.MinValue;
-		private long _UpdateDate = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -148,23 +128,10 @@ namespace Kaltura.Types
 		public IList<BaseChannel> Channels
 		{
 			get { return _Channels; }
-			private set 
+			set 
 			{ 
 				_Channels = value;
 				OnPropertyChanged("Channels");
-			}
-		}
-		/// <summary>
-		/// Use ChannelsIdsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string ChannelsIds
-		{
-			get { return _ChannelsIds; }
-			set 
-			{ 
-				_ChannelsIds = value;
-				OnPropertyChanged("ChannelsIds");
 			}
 		}
 		/// <summary>
@@ -200,23 +167,10 @@ namespace Kaltura.Types
 		public IList<IntegerValue> FileTypes
 		{
 			get { return _FileTypes; }
-			private set 
+			set 
 			{ 
 				_FileTypes = value;
 				OnPropertyChanged("FileTypes");
-			}
-		}
-		/// <summary>
-		/// Use FileTypesIdsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string FileTypesIds
-		{
-			get { return _FileTypesIds; }
-			set 
-			{ 
-				_FileTypesIds = value;
-				OnPropertyChanged("FileTypesIds");
 			}
 		}
 		/// <summary>
@@ -226,7 +180,7 @@ namespace Kaltura.Types
 		public bool? IsRenewable
 		{
 			get { return _IsRenewable; }
-			private set 
+			set 
 			{ 
 				_IsRenewable = value;
 				OnPropertyChanged("IsRenewable");
@@ -239,7 +193,7 @@ namespace Kaltura.Types
 		public int RenewalsNumber
 		{
 			get { return _RenewalsNumber; }
-			private set 
+			set 
 			{ 
 				_RenewalsNumber = value;
 				OnPropertyChanged("RenewalsNumber");
@@ -252,7 +206,7 @@ namespace Kaltura.Types
 		public bool? IsInfiniteRenewal
 		{
 			get { return _IsInfiniteRenewal; }
-			private set 
+			set 
 			{ 
 				_IsInfiniteRenewal = value;
 				OnPropertyChanged("IsInfiniteRenewal");
@@ -265,7 +219,7 @@ namespace Kaltura.Types
 		public PriceDetails Price
 		{
 			get { return _Price; }
-			private set 
+			set 
 			{ 
 				_Price = value;
 				OnPropertyChanged("Price");
@@ -278,23 +232,10 @@ namespace Kaltura.Types
 		public DiscountModule DiscountModule
 		{
 			get { return _DiscountModule; }
-			private set 
+			set 
 			{ 
 				_DiscountModule = value;
 				OnPropertyChanged("DiscountModule");
-			}
-		}
-		/// <summary>
-		/// Use InternalDiscountModuleIdAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long InternalDiscountModuleId
-		{
-			get { return _InternalDiscountModuleId; }
-			set 
-			{ 
-				_InternalDiscountModuleId = value;
-				OnPropertyChanged("InternalDiscountModuleId");
 			}
 		}
 		/// <summary>
@@ -356,7 +297,7 @@ namespace Kaltura.Types
 		public int MediaId
 		{
 			get { return _MediaId; }
-			private set 
+			set 
 			{ 
 				_MediaId = value;
 				OnPropertyChanged("MediaId");
@@ -395,23 +336,10 @@ namespace Kaltura.Types
 		public PreviewModule PreviewModule
 		{
 			get { return _PreviewModule; }
-			private set 
+			set 
 			{ 
 				_PreviewModule = value;
 				OnPropertyChanged("PreviewModule");
-			}
-		}
-		/// <summary>
-		/// Use PreviewModuleIdAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long PreviewModuleId
-		{
-			get { return _PreviewModuleId; }
-			set 
-			{ 
-				_PreviewModuleId = value;
-				OnPropertyChanged("PreviewModuleId");
 			}
 		}
 		/// <summary>
@@ -460,7 +388,7 @@ namespace Kaltura.Types
 		public int MaxViewsNumber
 		{
 			get { return _MaxViewsNumber; }
-			private set 
+			set 
 			{ 
 				_MaxViewsNumber = value;
 				OnPropertyChanged("MaxViewsNumber");
@@ -473,7 +401,7 @@ namespace Kaltura.Types
 		public int ViewLifeCycle
 		{
 			get { return _ViewLifeCycle; }
-			private set 
+			set 
 			{ 
 				_ViewLifeCycle = value;
 				OnPropertyChanged("ViewLifeCycle");
@@ -486,7 +414,7 @@ namespace Kaltura.Types
 		public int WaiverPeriod
 		{
 			get { return _WaiverPeriod; }
-			private set 
+			set 
 			{ 
 				_WaiverPeriod = value;
 				OnPropertyChanged("WaiverPeriod");
@@ -499,7 +427,7 @@ namespace Kaltura.Types
 		public bool? IsWaiverEnabled
 		{
 			get { return _IsWaiverEnabled; }
-			private set 
+			set 
 			{ 
 				_IsWaiverEnabled = value;
 				OnPropertyChanged("IsWaiverEnabled");
@@ -512,7 +440,7 @@ namespace Kaltura.Types
 		public IList<OTTUserType> UserTypes
 		{
 			get { return _UserTypes; }
-			private set 
+			set 
 			{ 
 				_UserTypes = value;
 				OnPropertyChanged("UserTypes");
@@ -525,23 +453,10 @@ namespace Kaltura.Types
 		public IList<CouponsGroup> CouponsGroups
 		{
 			get { return _CouponsGroups; }
-			private set 
+			set 
 			{ 
 				_CouponsGroups = value;
 				OnPropertyChanged("CouponsGroups");
-			}
-		}
-		/// <summary>
-		/// Use SubscriptionCouponGroupAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<SubscriptionCouponGroup> SubscriptionCouponGroup
-		{
-			get { return _SubscriptionCouponGroup; }
-			set 
-			{ 
-				_SubscriptionCouponGroup = value;
-				OnPropertyChanged("SubscriptionCouponGroup");
 			}
 		}
 		/// <summary>
@@ -609,71 +524,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("PreSaleDate");
 			}
 		}
-		/// <summary>
-		/// Use AdsPolicyAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public AdsPolicy AdsPolicy
-		{
-			get { return _AdsPolicy; }
-			set 
-			{ 
-				_AdsPolicy = value;
-				OnPropertyChanged("AdsPolicy");
-			}
-		}
-		/// <summary>
-		/// Use AdsParamAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string AdsParam
-		{
-			get { return _AdsParam; }
-			set 
-			{ 
-				_AdsParam = value;
-				OnPropertyChanged("AdsParam");
-			}
-		}
-		/// <summary>
-		/// Use IsActiveAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public bool? IsActive
-		{
-			get { return _IsActive; }
-			set 
-			{ 
-				_IsActive = value;
-				OnPropertyChanged("IsActive");
-			}
-		}
-		/// <summary>
-		/// Use CreateDateAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long CreateDate
-		{
-			get { return _CreateDate; }
-			private set 
-			{ 
-				_CreateDate = value;
-				OnPropertyChanged("CreateDate");
-			}
-		}
-		/// <summary>
-		/// Use UpdateDateAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long UpdateDate
-		{
-			get { return _UpdateDate; }
-			private set 
-			{ 
-				_UpdateDate = value;
-				OnPropertyChanged("UpdateDate");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -695,10 +545,6 @@ namespace Kaltura.Types
 					this._Channels.Add(ObjectFactory.Create<BaseChannel>(arrayNode));
 				}
 			}
-			if(node["channelsIds"] != null)
-			{
-				this._ChannelsIds = node["channelsIds"].Value<string>();
-			}
 			if(node["startDate"] != null)
 			{
 				this._StartDate = ParseLong(node["startDate"].Value<string>());
@@ -714,10 +560,6 @@ namespace Kaltura.Types
 				{
 					this._FileTypes.Add(ObjectFactory.Create<IntegerValue>(arrayNode));
 				}
-			}
-			if(node["fileTypesIds"] != null)
-			{
-				this._FileTypesIds = node["fileTypesIds"].Value<string>();
 			}
 			if(node["isRenewable"] != null)
 			{
@@ -738,10 +580,6 @@ namespace Kaltura.Types
 			if(node["discountModule"] != null)
 			{
 				this._DiscountModule = ObjectFactory.Create<DiscountModule>(node["discountModule"]);
-			}
-			if(node["internalDiscountModuleId"] != null)
-			{
-				this._InternalDiscountModuleId = ParseLong(node["internalDiscountModuleId"].Value<string>());
 			}
 			if(node["name"] != null)
 			{
@@ -782,10 +620,6 @@ namespace Kaltura.Types
 			if(node["previewModule"] != null)
 			{
 				this._PreviewModule = ObjectFactory.Create<PreviewModule>(node["previewModule"]);
-			}
-			if(node["previewModuleId"] != null)
-			{
-				this._PreviewModuleId = ParseLong(node["previewModuleId"].Value<string>());
 			}
 			if(node["householdLimitationsId"] != null)
 			{
@@ -835,14 +669,6 @@ namespace Kaltura.Types
 					this._CouponsGroups.Add(ObjectFactory.Create<CouponsGroup>(arrayNode));
 				}
 			}
-			if(node["subscriptionCouponGroup"] != null)
-			{
-				this._SubscriptionCouponGroup = new List<SubscriptionCouponGroup>();
-				foreach(var arrayNode in node["subscriptionCouponGroup"].Children())
-				{
-					this._SubscriptionCouponGroup.Add(ObjectFactory.Create<SubscriptionCouponGroup>(arrayNode));
-				}
-			}
 			if(node["productCodes"] != null)
 			{
 				this._ProductCodes = new List<ProductCode>();
@@ -867,26 +693,6 @@ namespace Kaltura.Types
 			{
 				this._PreSaleDate = ParseLong(node["preSaleDate"].Value<string>());
 			}
-			if(node["adsPolicy"] != null)
-			{
-				this._AdsPolicy = (AdsPolicy)StringEnum.Parse(typeof(AdsPolicy), node["adsPolicy"].Value<string>());
-			}
-			if(node["adsParam"] != null)
-			{
-				this._AdsParam = node["adsParam"].Value<string>();
-			}
-			if(node["isActive"] != null)
-			{
-				this._IsActive = ParseBool(node["isActive"].Value<string>());
-			}
-			if(node["createDate"] != null)
-			{
-				this._CreateDate = ParseLong(node["createDate"].Value<string>());
-			}
-			if(node["updateDate"] != null)
-			{
-				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -898,17 +704,14 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaSubscription");
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("channels", this._Channels);
-			kparams.AddIfNotNull("channelsIds", this._ChannelsIds);
 			kparams.AddIfNotNull("startDate", this._StartDate);
 			kparams.AddIfNotNull("endDate", this._EndDate);
 			kparams.AddIfNotNull("fileTypes", this._FileTypes);
-			kparams.AddIfNotNull("fileTypesIds", this._FileTypesIds);
 			kparams.AddIfNotNull("isRenewable", this._IsRenewable);
 			kparams.AddIfNotNull("renewalsNumber", this._RenewalsNumber);
 			kparams.AddIfNotNull("isInfiniteRenewal", this._IsInfiniteRenewal);
 			kparams.AddIfNotNull("price", this._Price);
 			kparams.AddIfNotNull("discountModule", this._DiscountModule);
-			kparams.AddIfNotNull("internalDiscountModuleId", this._InternalDiscountModuleId);
 			kparams.AddIfNotNull("name", this._Name);
 			kparams.AddIfNotNull("multilingualName", this._MultilingualName);
 			kparams.AddIfNotNull("description", this._Description);
@@ -917,7 +720,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("prorityInOrder", this._ProrityInOrder);
 			kparams.AddIfNotNull("pricePlanIds", this._PricePlanIds);
 			kparams.AddIfNotNull("previewModule", this._PreviewModule);
-			kparams.AddIfNotNull("previewModuleId", this._PreviewModuleId);
 			kparams.AddIfNotNull("householdLimitationsId", this._HouseholdLimitationsId);
 			kparams.AddIfNotNull("gracePeriodMinutes", this._GracePeriodMinutes);
 			kparams.AddIfNotNull("premiumServices", this._PremiumServices);
@@ -927,17 +729,11 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("isWaiverEnabled", this._IsWaiverEnabled);
 			kparams.AddIfNotNull("userTypes", this._UserTypes);
 			kparams.AddIfNotNull("couponsGroups", this._CouponsGroups);
-			kparams.AddIfNotNull("subscriptionCouponGroup", this._SubscriptionCouponGroup);
 			kparams.AddIfNotNull("productCodes", this._ProductCodes);
 			kparams.AddIfNotNull("dependencyType", this._DependencyType);
 			kparams.AddIfNotNull("externalId", this._ExternalId);
 			kparams.AddIfNotNull("isCancellationBlocked", this._IsCancellationBlocked);
 			kparams.AddIfNotNull("preSaleDate", this._PreSaleDate);
-			kparams.AddIfNotNull("adsPolicy", this._AdsPolicy);
-			kparams.AddIfNotNull("adsParam", this._AdsParam);
-			kparams.AddIfNotNull("isActive", this._IsActive);
-			kparams.AddIfNotNull("createDate", this._CreateDate);
-			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -948,16 +744,12 @@ namespace Kaltura.Types
 					return "Id";
 				case CHANNELS:
 					return "Channels";
-				case CHANNELS_IDS:
-					return "ChannelsIds";
 				case START_DATE:
 					return "StartDate";
 				case END_DATE:
 					return "EndDate";
 				case FILE_TYPES:
 					return "FileTypes";
-				case FILE_TYPES_IDS:
-					return "FileTypesIds";
 				case IS_RENEWABLE:
 					return "IsRenewable";
 				case RENEWALS_NUMBER:
@@ -968,8 +760,6 @@ namespace Kaltura.Types
 					return "Price";
 				case DISCOUNT_MODULE:
 					return "DiscountModule";
-				case INTERNAL_DISCOUNT_MODULE_ID:
-					return "InternalDiscountModuleId";
 				case NAME:
 					return "Name";
 				case MULTILINGUAL_NAME:
@@ -986,8 +776,6 @@ namespace Kaltura.Types
 					return "PricePlanIds";
 				case PREVIEW_MODULE:
 					return "PreviewModule";
-				case PREVIEW_MODULE_ID:
-					return "PreviewModuleId";
 				case HOUSEHOLD_LIMITATIONS_ID:
 					return "HouseholdLimitationsId";
 				case GRACE_PERIOD_MINUTES:
@@ -1006,8 +794,6 @@ namespace Kaltura.Types
 					return "UserTypes";
 				case COUPONS_GROUPS:
 					return "CouponsGroups";
-				case SUBSCRIPTION_COUPON_GROUP:
-					return "SubscriptionCouponGroup";
 				case PRODUCT_CODES:
 					return "ProductCodes";
 				case DEPENDENCY_TYPE:
@@ -1018,16 +804,6 @@ namespace Kaltura.Types
 					return "IsCancellationBlocked";
 				case PRE_SALE_DATE:
 					return "PreSaleDate";
-				case ADS_POLICY:
-					return "AdsPolicy";
-				case ADS_PARAM:
-					return "AdsParam";
-				case IS_ACTIVE:
-					return "IsActive";
-				case CREATE_DATE:
-					return "CreateDate";
-				case UPDATE_DATE:
-					return "UpdateDate";
 				default:
 					return base.getPropertyName(apiName);
 			}

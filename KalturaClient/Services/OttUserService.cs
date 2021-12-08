@@ -201,47 +201,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class OttUserDeleteDynamicDataRequestBuilder : RequestBuilder<bool>
-	{
-		#region Constants
-		public const string KEY = "key";
-		#endregion
-
-		public string Key { get; set; }
-
-		public OttUserDeleteDynamicDataRequestBuilder()
-			: base("ottuser", "deleteDynamicData")
-		{
-		}
-
-		public OttUserDeleteDynamicDataRequestBuilder(string key)
-			: this()
-		{
-			this.Key = key;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("key"))
-				kparams.AddIfNotNull("key", Key);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-	}
-
 	public class OttUserGetRequestBuilder : RequestBuilder<OTTUser>
 	{
 		#region Constants
@@ -405,28 +364,25 @@ namespace Kaltura.Services
 		public const string PIN = "pin";
 		public const string UDID = "udid";
 		public const string SECRET = "secret";
-		public const string EXTRA_PARAMS = "extraParams";
 		#endregion
 
 		public new int PartnerId { get; set; }
 		public string Pin { get; set; }
 		public string Udid { get; set; }
 		public string Secret { get; set; }
-		public IDictionary<string, StringValue> ExtraParams { get; set; }
 
 		public OttUserLoginWithPinRequestBuilder()
 			: base("ottuser", "loginWithPin")
 		{
 		}
 
-		public OttUserLoginWithPinRequestBuilder(int partnerId, string pin, string udid, string secret, IDictionary<string, StringValue> extraParams)
+		public OttUserLoginWithPinRequestBuilder(int partnerId, string pin, string udid, string secret)
 			: this()
 		{
 			this.PartnerId = partnerId;
 			this.Pin = pin;
 			this.Udid = udid;
 			this.Secret = secret;
-			this.ExtraParams = extraParams;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -440,8 +396,6 @@ namespace Kaltura.Services
 				kparams.AddIfNotNull("udid", Udid);
 			if (!isMapped("secret"))
 				kparams.AddIfNotNull("secret", Secret);
-			if (!isMapped("extraParams"))
-				kparams.AddIfNotNull("extraParams", ExtraParams);
 			return kparams;
 		}
 
@@ -876,50 +830,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class OttUserUpsertDynamicDataRequestBuilder : RequestBuilder<DynamicData>
-	{
-		#region Constants
-		public const string KEY = "key";
-		public const string VALUE = "value";
-		#endregion
-
-		public string Key { get; set; }
-		public StringValue Value { get; set; }
-
-		public OttUserUpsertDynamicDataRequestBuilder()
-			: base("ottuser", "upsertDynamicData")
-		{
-		}
-
-		public OttUserUpsertDynamicDataRequestBuilder(string key, StringValue value)
-			: this()
-		{
-			this.Key = key;
-			this.Value = value;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("key"))
-				kparams.AddIfNotNull("key", Key);
-			if (!isMapped("value"))
-				kparams.AddIfNotNull("value", Value);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<DynamicData>(result);
-		}
-	}
-
 
 	public class OttUserService
 	{
@@ -947,11 +857,6 @@ namespace Kaltura.Services
 			return new OttUserDeleteRequestBuilder();
 		}
 
-		public static OttUserDeleteDynamicDataRequestBuilder DeleteDynamicData(string key)
-		{
-			return new OttUserDeleteDynamicDataRequestBuilder(key);
-		}
-
 		public static OttUserGetRequestBuilder Get()
 		{
 			return new OttUserGetRequestBuilder();
@@ -972,9 +877,9 @@ namespace Kaltura.Services
 			return new OttUserLoginRequestBuilder(partnerId, username, password, extraParams, udid);
 		}
 
-		public static OttUserLoginWithPinRequestBuilder LoginWithPin(int partnerId, string pin, string udid = null, string secret = null, IDictionary<string, StringValue> extraParams = null)
+		public static OttUserLoginWithPinRequestBuilder LoginWithPin(int partnerId, string pin, string udid = null, string secret = null)
 		{
-			return new OttUserLoginWithPinRequestBuilder(partnerId, pin, udid, secret, extraParams);
+			return new OttUserLoginWithPinRequestBuilder(partnerId, pin, udid, secret);
 		}
 
 		public static OttUserLogoutRequestBuilder Logout(IDictionary<string, StringValue> adapterData = null)
@@ -1020,11 +925,6 @@ namespace Kaltura.Services
 		public static OttUserUpdatePasswordRequestBuilder UpdatePassword(int userId, string password)
 		{
 			return new OttUserUpdatePasswordRequestBuilder(userId, password);
-		}
-
-		public static OttUserUpsertDynamicDataRequestBuilder UpsertDynamicData(string key, StringValue value)
-		{
-			return new OttUserUpsertDynamicDataRequestBuilder(key, value);
 		}
 	}
 }

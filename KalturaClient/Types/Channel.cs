@@ -52,7 +52,6 @@ namespace Kaltura.Types
 		public const string SUPPORT_SEGMENT_BASED_ORDERING = "supportSegmentBasedOrdering";
 		public const string ASSET_USER_RULE_ID = "assetUserRuleId";
 		public const string META_DATA = "metaData";
-		public const string VIRTUAL_ASSET_ID = "virtualAssetId";
 		#endregion
 
 		#region Private Fields
@@ -70,7 +69,6 @@ namespace Kaltura.Types
 		private bool? _SupportSegmentBasedOrdering = null;
 		private long _AssetUserRuleId = long.MinValue;
 		private IDictionary<string, StringValue> _MetaData;
-		private long _VirtualAssetId = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -256,19 +254,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("MetaData");
 			}
 		}
-		/// <summary>
-		/// Use VirtualAssetIdAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long VirtualAssetId
-		{
-			get { return _VirtualAssetId; }
-			private set 
-			{ 
-				_VirtualAssetId = value;
-				OnPropertyChanged("VirtualAssetId");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -350,10 +335,6 @@ namespace Kaltura.Types
 					}
 				}
 			}
-			if(node["virtualAssetId"] != null)
-			{
-				this._VirtualAssetId = ParseLong(node["virtualAssetId"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -377,7 +358,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("supportSegmentBasedOrdering", this._SupportSegmentBasedOrdering);
 			kparams.AddIfNotNull("assetUserRuleId", this._AssetUserRuleId);
 			kparams.AddIfNotNull("metaData", this._MetaData);
-			kparams.AddIfNotNull("virtualAssetId", this._VirtualAssetId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -412,8 +392,6 @@ namespace Kaltura.Types
 					return "AssetUserRuleId";
 				case META_DATA:
 					return "MetaData";
-				case VIRTUAL_ASSET_ID:
-					return "VirtualAssetId";
 				default:
 					return base.getPropertyName(apiName);
 			}

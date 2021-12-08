@@ -36,86 +36,6 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class CollectionAddRequestBuilder : RequestBuilder<Collection>
-	{
-		#region Constants
-		public const string COLLECTION = "collection";
-		#endregion
-
-		public Collection Collection { get; set; }
-
-		public CollectionAddRequestBuilder()
-			: base("collection", "add")
-		{
-		}
-
-		public CollectionAddRequestBuilder(Collection collection)
-			: this()
-		{
-			this.Collection = collection;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("collection"))
-				kparams.AddIfNotNull("collection", Collection);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<Collection>(result);
-		}
-	}
-
-	public class CollectionDeleteRequestBuilder : RequestBuilder<bool>
-	{
-		#region Constants
-		public const string ID = "id";
-		#endregion
-
-		public long Id { get; set; }
-
-		public CollectionDeleteRequestBuilder()
-			: base("collection", "delete")
-		{
-		}
-
-		public CollectionDeleteRequestBuilder(long id)
-			: this()
-		{
-			this.Id = id;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
-				return true;
-			return false;
-		}
-	}
-
 	public class CollectionListRequestBuilder : RequestBuilder<ListResponse<Collection>>
 	{
 		#region Constants
@@ -160,50 +80,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class CollectionUpdateRequestBuilder : RequestBuilder<Collection>
-	{
-		#region Constants
-		public const string ID = "id";
-		public const string COLLECTION = "collection";
-		#endregion
-
-		public long Id { get; set; }
-		public Collection Collection { get; set; }
-
-		public CollectionUpdateRequestBuilder()
-			: base("collection", "update")
-		{
-		}
-
-		public CollectionUpdateRequestBuilder(long id, Collection collection)
-			: this()
-		{
-			this.Id = id;
-			this.Collection = collection;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("collection"))
-				kparams.AddIfNotNull("collection", Collection);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<Collection>(result);
-		}
-	}
-
 
 	public class CollectionService
 	{
@@ -211,24 +87,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static CollectionAddRequestBuilder Add(Collection collection)
-		{
-			return new CollectionAddRequestBuilder(collection);
-		}
-
-		public static CollectionDeleteRequestBuilder Delete(long id)
-		{
-			return new CollectionDeleteRequestBuilder(id);
-		}
-
 		public static CollectionListRequestBuilder List(CollectionFilter filter = null, FilterPager pager = null)
 		{
 			return new CollectionListRequestBuilder(filter, pager);
-		}
-
-		public static CollectionUpdateRequestBuilder Update(long id, Collection collection)
-		{
-			return new CollectionUpdateRequestBuilder(id, collection);
 		}
 	}
 }

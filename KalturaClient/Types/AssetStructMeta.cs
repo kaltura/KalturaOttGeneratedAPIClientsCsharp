@@ -47,8 +47,6 @@ namespace Kaltura.Types
 		public const string UPDATE_DATE = "updateDate";
 		public const string IS_INHERITED = "isInherited";
 		public const string IS_LOCATION_TAG = "isLocationTag";
-		public const string SUPPRESSED_ORDER = "suppressedOrder";
-		public const string ALIAS_NAME = "aliasName";
 		#endregion
 
 		#region Private Fields
@@ -61,8 +59,6 @@ namespace Kaltura.Types
 		private long _UpdateDate = long.MinValue;
 		private bool? _IsInherited = null;
 		private bool? _IsLocationTag = null;
-		private int _SuppressedOrder = Int32.MinValue;
-		private string _AliasName = null;
 		#endregion
 
 		#region Properties
@@ -183,32 +179,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsLocationTag");
 			}
 		}
-		/// <summary>
-		/// Use SuppressedOrderAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int SuppressedOrder
-		{
-			get { return _SuppressedOrder; }
-			set 
-			{ 
-				_SuppressedOrder = value;
-				OnPropertyChanged("SuppressedOrder");
-			}
-		}
-		/// <summary>
-		/// Use AliasNameAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string AliasName
-		{
-			get { return _AliasName; }
-			set 
-			{ 
-				_AliasName = value;
-				OnPropertyChanged("AliasName");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -254,14 +224,6 @@ namespace Kaltura.Types
 			{
 				this._IsLocationTag = ParseBool(node["isLocationTag"].Value<string>());
 			}
-			if(node["suppressedOrder"] != null)
-			{
-				this._SuppressedOrder = ParseInt(node["suppressedOrder"].Value<string>());
-			}
-			if(node["aliasName"] != null)
-			{
-				this._AliasName = node["aliasName"].Value<string>();
-			}
 		}
 		#endregion
 
@@ -280,8 +242,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			kparams.AddIfNotNull("isInherited", this._IsInherited);
 			kparams.AddIfNotNull("isLocationTag", this._IsLocationTag);
-			kparams.AddIfNotNull("suppressedOrder", this._SuppressedOrder);
-			kparams.AddIfNotNull("aliasName", this._AliasName);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -306,10 +266,6 @@ namespace Kaltura.Types
 					return "IsInherited";
 				case IS_LOCATION_TAG:
 					return "IsLocationTag";
-				case SUPPRESSED_ORDER:
-					return "SuppressedOrder";
-				case ALIAS_NAME:
-					return "AliasName";
 				default:
 					return base.getPropertyName(apiName);
 			}

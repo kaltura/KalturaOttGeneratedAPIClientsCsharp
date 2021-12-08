@@ -76,14 +76,10 @@ namespace Kaltura
 					return new ListResponse<Favorite>(jToken);
 				case "KalturaOTTUserListResponse":
 					return new ListResponse<OTTUser>(jToken);
-				case "KalturaPartnerListResponse":
-					return new ListResponse<Partner>(jToken);
 				case "KalturaSSOAdapterProfileListResponse":
 					return new ListResponse<SSOAdapterProfile>(jToken);
 				case "KalturaUserInterestListResponse":
 					return new ListResponse<UserInterest>(jToken);
-				case "KalturaUserSessionProfileListResponse":
-					return new ListResponse<UserSessionProfile>(jToken);
 				case "KalturaBulkUploadListResponse":
 					return new ListResponse<BulkUpload>(jToken);
 				case "KalturaSocialActionListResponse":
@@ -106,8 +102,6 @@ namespace Kaltura
 					return new ListResponse<DiscountDetails>(jToken);
 				case "KalturaPpvListResponse":
 					return new ListResponse<Ppv>(jToken);
-				case "KalturaPreviewModuleListResponse":
-					return new ListResponse<PreviewModule>(jToken);
 				case "KalturaPriceDetailsListResponse":
 					return new ListResponse<PriceDetails>(jToken);
 				case "KalturaPricePlanListResponse":
@@ -120,8 +114,6 @@ namespace Kaltura
 					return new ListResponse<Subscription>(jToken);
 				case "KalturaSubscriptionSetListResponse":
 					return new ListResponse<SubscriptionSet>(jToken);
-				case "KalturaUsageModuleListResponse":
-					return new ListResponse<UsageModule>(jToken);
 				case "KalturaPartnerConfigurationListResponse":
 					return new ListResponse<PartnerConfiguration>(jToken);
 				case "KalturaPersonalListListResponse":
@@ -144,8 +136,6 @@ namespace Kaltura
 					return new ListResponse<TopicNotification>(jToken);
 				case "KalturaTopicNotificationMessageListResponse":
 					return new ListResponse<TopicNotificationMessage>(jToken);
-				case "KalturaDurationListResponse":
-					return new ListResponse<Duration>(jToken);
 				case "KalturaGenericListResponse":
 					return new ListResponse<T>(jToken);
 				case "KalturaIntegerValueListResponse":
@@ -200,8 +190,6 @@ namespace Kaltura
 					return new ListResponse<Image>(jToken);
 				case "KalturaImageTypeListResponse":
 					return new ListResponse<ImageType>(jToken);
-				case "KalturaLabelListResponse":
-					return new ListResponse<Label>(jToken);
 				case "KalturaMediaFileListResponse":
 					return new ListResponse<MediaFile>(jToken);
 				case "KalturaMediaFileTypeListResponse":
@@ -214,8 +202,6 @@ namespace Kaltura
 					return new ListResponse<Tag>(jToken);
 				case "KalturaAssetHistoryListResponse":
 					return new ListResponse<AssetHistory>(jToken);
-				case "KalturaSearchPriorityGroupListResponse":
-					return new ListResponse<SearchPriorityGroup>(jToken);
 				case "KalturaHouseholdPaymentGatewayListResponse":
 					return new ListResponse<HouseholdPaymentGateway>(jToken);
 				case "KalturaHouseholdPaymentMethodListResponse":
@@ -296,8 +282,6 @@ namespace Kaltura
 					return new ListResponse<HouseholdCoupon>(jToken);
 				case "KalturaHouseholdSegmentListResponse":
 					return new ListResponse<HouseholdSegment>(jToken);
-				case "KalturaLineupChannelAssetListResponse":
-					return new ListResponse<LineupChannelAsset>(jToken);
 				case "KalturaPasswordPolicyListResponse":
 					return new ListResponse<PasswordPolicy>(jToken);
 				case "KalturaPermissionItemListResponse":

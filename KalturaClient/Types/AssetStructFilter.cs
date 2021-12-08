@@ -35,13 +35,12 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetStructFilter : BaseAssetStructFilter
+	public class AssetStructFilter : Filter
 	{
 		#region Constants
 		public const string ID_IN = "idIn";
 		public const string META_ID_EQUAL = "metaIdEqual";
 		public const string IS_PROTECTED_EQUAL = "isProtectedEqual";
-		public const string OBJECT_VIRTUAL_ASSET_INFO_TYPE_EQUAL = "objectVirtualAssetInfoTypeEqual";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -49,7 +48,6 @@ namespace Kaltura.Types
 		private string _IdIn = null;
 		private long _MetaIdEqual = long.MinValue;
 		private bool? _IsProtectedEqual = null;
-		private ObjectVirtualAssetInfoType _ObjectVirtualAssetInfoTypeEqual = null;
 		private AssetStructOrderBy _OrderBy = null;
 		#endregion
 
@@ -94,19 +92,6 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use ObjectVirtualAssetInfoTypeEqualAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public ObjectVirtualAssetInfoType ObjectVirtualAssetInfoTypeEqual
-		{
-			get { return _ObjectVirtualAssetInfoTypeEqual; }
-			set 
-			{ 
-				_ObjectVirtualAssetInfoTypeEqual = value;
-				OnPropertyChanged("ObjectVirtualAssetInfoTypeEqual");
-			}
-		}
-		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -140,10 +125,6 @@ namespace Kaltura.Types
 			{
 				this._IsProtectedEqual = ParseBool(node["isProtectedEqual"].Value<string>());
 			}
-			if(node["objectVirtualAssetInfoTypeEqual"] != null)
-			{
-				this._ObjectVirtualAssetInfoTypeEqual = (ObjectVirtualAssetInfoType)StringEnum.Parse(typeof(ObjectVirtualAssetInfoType), node["objectVirtualAssetInfoTypeEqual"].Value<string>());
-			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (AssetStructOrderBy)StringEnum.Parse(typeof(AssetStructOrderBy), node["orderBy"].Value<string>());
@@ -160,7 +141,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("idIn", this._IdIn);
 			kparams.AddIfNotNull("metaIdEqual", this._MetaIdEqual);
 			kparams.AddIfNotNull("isProtectedEqual", this._IsProtectedEqual);
-			kparams.AddIfNotNull("objectVirtualAssetInfoTypeEqual", this._ObjectVirtualAssetInfoTypeEqual);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -174,8 +154,6 @@ namespace Kaltura.Types
 					return "MetaIdEqual";
 				case IS_PROTECTED_EQUAL:
 					return "IsProtectedEqual";
-				case OBJECT_VIRTUAL_ASSET_INFO_TYPE_EQUAL:
-					return "ObjectVirtualAssetInfoTypeEqual";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

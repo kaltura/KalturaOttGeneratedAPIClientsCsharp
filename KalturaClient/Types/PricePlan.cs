@@ -58,7 +58,8 @@ namespace Kaltura.Types
 		[JsonProperty]
 		public bool? IsRenewable
 		{
-			set 
+			get { return _IsRenewable; }
+			private set 
 			{ 
 				_IsRenewable = value;
 				OnPropertyChanged("IsRenewable");
@@ -70,7 +71,8 @@ namespace Kaltura.Types
 		[JsonProperty]
 		public int RenewalsNumber
 		{
-			set 
+			get { return _RenewalsNumber; }
+			private set 
 			{ 
 				_RenewalsNumber = value;
 				OnPropertyChanged("RenewalsNumber");
@@ -82,7 +84,8 @@ namespace Kaltura.Types
 		[JsonProperty]
 		public long DiscountId
 		{
-			set 
+			get { return _DiscountId; }
+			private set 
 			{ 
 				_DiscountId = value;
 				OnPropertyChanged("DiscountId");
