@@ -214,8 +214,6 @@ namespace Kaltura
 					return new ListResponse<Tag>(jToken);
 				case "KalturaAssetHistoryListResponse":
 					return new ListResponse<AssetHistory>(jToken);
-				case "KalturaSearchPriorityGroupListResponse":
-					return new ListResponse<SearchPriorityGroup>(jToken);
 				case "KalturaHouseholdPaymentGatewayListResponse":
 					return new ListResponse<HouseholdPaymentGateway>(jToken);
 				case "KalturaHouseholdPaymentMethodListResponse":

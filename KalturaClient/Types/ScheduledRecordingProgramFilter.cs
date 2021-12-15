@@ -42,7 +42,6 @@ namespace Kaltura.Types
 		public const string CHANNELS_IN = "channelsIn";
 		public const string START_DATE_GREATER_THAN_OR_NULL = "startDateGreaterThanOrNull";
 		public const string END_DATE_LESS_THAN_OR_NULL = "endDateLessThanOrNull";
-		public const string SERIES_IDS_IN = "seriesIdsIn";
 		#endregion
 
 		#region Private Fields
@@ -50,7 +49,6 @@ namespace Kaltura.Types
 		private string _ChannelsIn = null;
 		private long _StartDateGreaterThanOrNull = long.MinValue;
 		private long _EndDateLessThanOrNull = long.MinValue;
-		private string _SeriesIdsIn = null;
 		#endregion
 
 		#region Properties
@@ -106,19 +104,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDateLessThanOrNull");
 			}
 		}
-		/// <summary>
-		/// Use SeriesIdsInAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string SeriesIdsIn
-		{
-			get { return _SeriesIdsIn; }
-			set 
-			{ 
-				_SeriesIdsIn = value;
-				OnPropertyChanged("SeriesIdsIn");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -144,10 +129,6 @@ namespace Kaltura.Types
 			{
 				this._EndDateLessThanOrNull = ParseLong(node["endDateLessThanOrNull"].Value<string>());
 			}
-			if(node["seriesIdsIn"] != null)
-			{
-				this._SeriesIdsIn = node["seriesIdsIn"].Value<string>();
-			}
 		}
 		#endregion
 
@@ -161,7 +142,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("channelsIn", this._ChannelsIn);
 			kparams.AddIfNotNull("startDateGreaterThanOrNull", this._StartDateGreaterThanOrNull);
 			kparams.AddIfNotNull("endDateLessThanOrNull", this._EndDateLessThanOrNull);
-			kparams.AddIfNotNull("seriesIdsIn", this._SeriesIdsIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -176,8 +156,6 @@ namespace Kaltura.Types
 					return "StartDateGreaterThanOrNull";
 				case END_DATE_LESS_THAN_OR_NULL:
 					return "EndDateLessThanOrNull";
-				case SERIES_IDS_IN:
-					return "SeriesIdsIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

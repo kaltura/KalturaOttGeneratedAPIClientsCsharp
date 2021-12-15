@@ -40,13 +40,11 @@ namespace Kaltura.Types
 		#region Constants
 		public const string RECORDING_ID = "recordingId";
 		public const string RECORDING_TYPE = "recordingType";
-		public const string VIEWABLE_UNTIL_DATE = "viewableUntilDate";
 		#endregion
 
 		#region Private Fields
 		private string _RecordingId = null;
 		private RecordingType _RecordingType = null;
-		private long _ViewableUntilDate = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -76,19 +74,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RecordingType");
 			}
 		}
-		/// <summary>
-		/// Use ViewableUntilDateAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long ViewableUntilDate
-		{
-			get { return _ViewableUntilDate; }
-			set 
-			{ 
-				_ViewableUntilDate = value;
-				OnPropertyChanged("ViewableUntilDate");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -106,10 +91,6 @@ namespace Kaltura.Types
 			{
 				this._RecordingType = (RecordingType)StringEnum.Parse(typeof(RecordingType), node["recordingType"].Value<string>());
 			}
-			if(node["viewableUntilDate"] != null)
-			{
-				this._ViewableUntilDate = ParseLong(node["viewableUntilDate"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -121,7 +102,6 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaRecordingAsset");
 			kparams.AddIfNotNull("recordingId", this._RecordingId);
 			kparams.AddIfNotNull("recordingType", this._RecordingType);
-			kparams.AddIfNotNull("viewableUntilDate", this._ViewableUntilDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -132,8 +112,6 @@ namespace Kaltura.Types
 					return "RecordingId";
 				case RECORDING_TYPE:
 					return "RecordingType";
-				case VIEWABLE_UNTIL_DATE:
-					return "ViewableUntilDate";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -30,10 +30,6 @@ namespace Kaltura.Enums
 	public sealed class CollectionOrderBy : StringEnum
 	{
 		public static readonly CollectionOrderBy NONE = new CollectionOrderBy("NONE");
-		public static readonly CollectionOrderBy NAME_ASC = new CollectionOrderBy("NAME_ASC");
-		public static readonly CollectionOrderBy NAME_DESC = new CollectionOrderBy("NAME_DESC");
-		public static readonly CollectionOrderBy UPDATE_DATE_ASC = new CollectionOrderBy("UPDATE_DATE_ASC");
-		public static readonly CollectionOrderBy UPDATE_DATE_DESC = new CollectionOrderBy("UPDATE_DATE_DESC");
 
 		private CollectionOrderBy(string name) : base(name) { }
 	}

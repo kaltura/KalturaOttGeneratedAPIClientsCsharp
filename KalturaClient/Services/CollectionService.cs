@@ -160,50 +160,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class CollectionUpdateRequestBuilder : RequestBuilder<Collection>
-	{
-		#region Constants
-		public const string ID = "id";
-		public const string COLLECTION = "collection";
-		#endregion
-
-		public long Id { get; set; }
-		public Collection Collection { get; set; }
-
-		public CollectionUpdateRequestBuilder()
-			: base("collection", "update")
-		{
-		}
-
-		public CollectionUpdateRequestBuilder(long id, Collection collection)
-			: this()
-		{
-			this.Id = id;
-			this.Collection = collection;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("collection"))
-				kparams.AddIfNotNull("collection", Collection);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<Collection>(result);
-		}
-	}
-
 
 	public class CollectionService
 	{
@@ -224,11 +180,6 @@ namespace Kaltura.Services
 		public static CollectionListRequestBuilder List(CollectionFilter filter = null, FilterPager pager = null)
 		{
 			return new CollectionListRequestBuilder(filter, pager);
-		}
-
-		public static CollectionUpdateRequestBuilder Update(long id, Collection collection)
-		{
-			return new CollectionUpdateRequestBuilder(id, collection);
 		}
 	}
 }
