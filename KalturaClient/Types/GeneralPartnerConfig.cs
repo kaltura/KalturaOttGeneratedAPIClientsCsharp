@@ -55,6 +55,7 @@ namespace Kaltura.Types
 		public const string FINISHED_PERCENT_THRESHOLD = "finishedPercentThreshold";
 		public const string SUSPENSION_PROFILE_INHERITANCE_TYPE = "suspensionProfileInheritanceType";
 		public const string ALLOW_DEVICE_MOBILITY = "allowDeviceMobility";
+		public const string ENABLE_MULTI_LCNS = "enableMultiLcns";
 		#endregion
 
 		#region Private Fields
@@ -75,6 +76,7 @@ namespace Kaltura.Types
 		private int _FinishedPercentThreshold = Int32.MinValue;
 		private SuspensionProfileInheritanceType _SuspensionProfileInheritanceType = null;
 		private bool? _AllowDeviceMobility = null;
+		private bool? _EnableMultiLcns = null;
 		#endregion
 
 		#region Properties
@@ -299,6 +301,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("AllowDeviceMobility");
 			}
 		}
+		/// <summary>
+		/// Use EnableMultiLcnsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? EnableMultiLcns
+		{
+			get { return _EnableMultiLcns; }
+			set 
+			{ 
+				_EnableMultiLcns = value;
+				OnPropertyChanged("EnableMultiLcns");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -376,6 +391,10 @@ namespace Kaltura.Types
 			{
 				this._AllowDeviceMobility = ParseBool(node["allowDeviceMobility"].Value<string>());
 			}
+			if(node["enableMultiLcns"] != null)
+			{
+				this._EnableMultiLcns = ParseBool(node["enableMultiLcns"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -402,6 +421,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("finishedPercentThreshold", this._FinishedPercentThreshold);
 			kparams.AddIfNotNull("suspensionProfileInheritanceType", this._SuspensionProfileInheritanceType);
 			kparams.AddIfNotNull("allowDeviceMobility", this._AllowDeviceMobility);
+			kparams.AddIfNotNull("enableMultiLcns", this._EnableMultiLcns);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -442,6 +462,8 @@ namespace Kaltura.Types
 					return "SuspensionProfileInheritanceType";
 				case ALLOW_DEVICE_MOBILITY:
 					return "AllowDeviceMobility";
+				case ENABLE_MULTI_LCNS:
+					return "EnableMultiLcns";
 				default:
 					return base.getPropertyName(apiName);
 			}
