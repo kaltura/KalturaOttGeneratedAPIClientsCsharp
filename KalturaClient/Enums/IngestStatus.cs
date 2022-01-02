@@ -27,15 +27,14 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class ObjectVirtualAssetInfoType : StringEnum
+	public sealed class IngestStatus : StringEnum
 	{
-		public static readonly ObjectVirtualAssetInfoType SUBSCRIPTION = new ObjectVirtualAssetInfoType("Subscription");
-		public static readonly ObjectVirtualAssetInfoType SEGMENT = new ObjectVirtualAssetInfoType("Segment");
-		public static readonly ObjectVirtualAssetInfoType CATEGORY = new ObjectVirtualAssetInfoType("Category");
-		public static readonly ObjectVirtualAssetInfoType TVOD = new ObjectVirtualAssetInfoType("Tvod");
-		public static readonly ObjectVirtualAssetInfoType BOXSET = new ObjectVirtualAssetInfoType("Boxset");
-		public static readonly ObjectVirtualAssetInfoType PAGO = new ObjectVirtualAssetInfoType("PAGO");
+		public static readonly IngestStatus TOTAL_FAILURE = new IngestStatus("TOTAL_FAILURE");
+		public static readonly IngestStatus PARTIAL_FAILURE = new IngestStatus("PARTIAL_FAILURE");
+		public static readonly IngestStatus WARNING = new IngestStatus("WARNING");
+		public static readonly IngestStatus IN_PROGRESS = new IngestStatus("IN_PROGRESS");
+		public static readonly IngestStatus SUCCESS = new IngestStatus("SUCCESS");
 
-		private ObjectVirtualAssetInfoType(string name) : base(name) { }
+		private IngestStatus(string name) : base(name) { }
 	}
 }

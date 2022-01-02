@@ -27,15 +27,13 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class ObjectVirtualAssetInfoType : StringEnum
+	public sealed class ProgramAssetGroupOfferOrderBy : StringEnum
 	{
-		public static readonly ObjectVirtualAssetInfoType SUBSCRIPTION = new ObjectVirtualAssetInfoType("Subscription");
-		public static readonly ObjectVirtualAssetInfoType SEGMENT = new ObjectVirtualAssetInfoType("Segment");
-		public static readonly ObjectVirtualAssetInfoType CATEGORY = new ObjectVirtualAssetInfoType("Category");
-		public static readonly ObjectVirtualAssetInfoType TVOD = new ObjectVirtualAssetInfoType("Tvod");
-		public static readonly ObjectVirtualAssetInfoType BOXSET = new ObjectVirtualAssetInfoType("Boxset");
-		public static readonly ObjectVirtualAssetInfoType PAGO = new ObjectVirtualAssetInfoType("PAGO");
+		public static readonly ProgramAssetGroupOfferOrderBy NAME_ASC = new ProgramAssetGroupOfferOrderBy("NAME_ASC");
+		public static readonly ProgramAssetGroupOfferOrderBy NAME_DESC = new ProgramAssetGroupOfferOrderBy("NAME_DESC");
+		public static readonly ProgramAssetGroupOfferOrderBy UPDATE_DATE_ASC = new ProgramAssetGroupOfferOrderBy("UPDATE_DATE_ASC");
+		public static readonly ProgramAssetGroupOfferOrderBy UPDATE_DATE_DESC = new ProgramAssetGroupOfferOrderBy("UPDATE_DATE_DESC");
 
-		private ObjectVirtualAssetInfoType(string name) : base(name) { }
+		private ProgramAssetGroupOfferOrderBy(string name) : base(name) { }
 	}
 }
