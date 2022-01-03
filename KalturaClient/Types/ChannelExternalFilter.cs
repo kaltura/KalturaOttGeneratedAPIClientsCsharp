@@ -67,21 +67,7 @@ namespace Kaltura.Types
 		/// Use UtcOffsetEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use UtcOffsetEqualAsDouble property instead")]
-		public float UtcOffsetEqual
-		{
-			get { return (float)_UtcOffsetEqual; }
-			set 
-			{ 
-				_UtcOffsetEqual = value;
-				OnPropertyChanged("UtcOffsetEqual");
-			}
-		}
-		///<summary>
-		///Use this property UtcOffsetEqualAsDouble instead of the float UtcOffsetEqual property version
-		///</summary>
-		[JsonProperty]
-		public double UtcOffsetEqualAsDouble
+		public double UtcOffsetEqual
 		{
 			get { return _UtcOffsetEqual; }
 			set 
