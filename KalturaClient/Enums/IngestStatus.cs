@@ -27,12 +27,14 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class DowngradePolicy : StringEnum
+	public sealed class IngestStatus : StringEnum
 	{
-		public static readonly DowngradePolicy LIFO = new DowngradePolicy("LIFO");
-		public static readonly DowngradePolicy FIFO = new DowngradePolicy("FIFO");
-		public static readonly DowngradePolicy ACTIVE_DATE = new DowngradePolicy("ACTIVE_DATE");
+		public static readonly IngestStatus TOTAL_FAILURE = new IngestStatus("TOTAL_FAILURE");
+		public static readonly IngestStatus PARTIAL_FAILURE = new IngestStatus("PARTIAL_FAILURE");
+		public static readonly IngestStatus WARNING = new IngestStatus("WARNING");
+		public static readonly IngestStatus IN_PROGRESS = new IngestStatus("IN_PROGRESS");
+		public static readonly IngestStatus SUCCESS = new IngestStatus("SUCCESS");
 
-		private DowngradePolicy(string name) : base(name) { }
+		private IngestStatus(string name) : base(name) { }
 	}
 }

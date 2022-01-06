@@ -35,67 +35,37 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetFilter : PersistedFilter
+	public class ChannelDynamicOrder : BaseChannelOrder
 	{
 		#region Constants
-		public const string DYNAMIC_ORDER_BY = "dynamicOrderBy";
-		public const string TRENDING_DAYS_EQUAL = "trendingDaysEqual";
-		public const string SHOULD_APPLY_PRIORITY_GROUPS_EQUAL = "shouldApplyPriorityGroupsEqual";
-		public new const string ORDER_BY = "orderBy";
+		public const string NAME = "name";
+		public const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private DynamicOrderBy _DynamicOrderBy;
-		private int _TrendingDaysEqual = Int32.MinValue;
-		private bool? _ShouldApplyPriorityGroupsEqual = null;
-		private AssetOrderBy _OrderBy = null;
+		private string _Name = null;
+		private MetaTagOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use DynamicOrderByAsDouble property instead
+		/// Use NameAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public DynamicOrderBy DynamicOrderBy
+		public string Name
 		{
-			get { return _DynamicOrderBy; }
+			get { return _Name; }
 			set 
 			{ 
-				_DynamicOrderBy = value;
-				OnPropertyChanged("DynamicOrderBy");
-			}
-		}
-		/// <summary>
-		/// Use TrendingDaysEqualAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int TrendingDaysEqual
-		{
-			get { return _TrendingDaysEqual; }
-			set 
-			{ 
-				_TrendingDaysEqual = value;
-				OnPropertyChanged("TrendingDaysEqual");
-			}
-		}
-		/// <summary>
-		/// Use ShouldApplyPriorityGroupsEqualAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public bool? ShouldApplyPriorityGroupsEqual
-		{
-			get { return _ShouldApplyPriorityGroupsEqual; }
-			set 
-			{ 
-				_ShouldApplyPriorityGroupsEqual = value;
-				OnPropertyChanged("ShouldApplyPriorityGroupsEqual");
+				_Name = value;
+				OnPropertyChanged("Name");
 			}
 		}
 		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public new AssetOrderBy OrderBy
+		public MetaTagOrderBy OrderBy
 		{
 			get { return _OrderBy; }
 			set 
@@ -107,27 +77,19 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public AssetFilter()
+		public ChannelDynamicOrder()
 		{
 		}
 
-		public AssetFilter(JToken node) : base(node)
+		public ChannelDynamicOrder(JToken node) : base(node)
 		{
-			if(node["dynamicOrderBy"] != null)
+			if(node["name"] != null)
 			{
-				this._DynamicOrderBy = ObjectFactory.Create<DynamicOrderBy>(node["dynamicOrderBy"]);
-			}
-			if(node["trendingDaysEqual"] != null)
-			{
-				this._TrendingDaysEqual = ParseInt(node["trendingDaysEqual"].Value<string>());
-			}
-			if(node["shouldApplyPriorityGroupsEqual"] != null)
-			{
-				this._ShouldApplyPriorityGroupsEqual = ParseBool(node["shouldApplyPriorityGroupsEqual"].Value<string>());
+				this._Name = node["name"].Value<string>();
 			}
 			if(node["orderBy"] != null)
 			{
-				this._OrderBy = (AssetOrderBy)StringEnum.Parse(typeof(AssetOrderBy), node["orderBy"].Value<string>());
+				this._OrderBy = (MetaTagOrderBy)StringEnum.Parse(typeof(MetaTagOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -137,10 +99,8 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetFilter");
-			kparams.AddIfNotNull("dynamicOrderBy", this._DynamicOrderBy);
-			kparams.AddIfNotNull("trendingDaysEqual", this._TrendingDaysEqual);
-			kparams.AddIfNotNull("shouldApplyPriorityGroupsEqual", this._ShouldApplyPriorityGroupsEqual);
+				kparams.AddReplace("objectType", "KalturaChannelDynamicOrder");
+			kparams.AddIfNotNull("name", this._Name);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -148,12 +108,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case DYNAMIC_ORDER_BY:
-					return "DynamicOrderBy";
-				case TRENDING_DAYS_EQUAL:
-					return "TrendingDaysEqual";
-				case SHOULD_APPLY_PRIORITY_GROUPS_EQUAL:
-					return "ShouldApplyPriorityGroupsEqual";
+				case NAME:
+					return "Name";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
