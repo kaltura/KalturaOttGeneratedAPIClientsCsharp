@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -45,6 +45,7 @@ namespace Kaltura.Types
 		public const string MAIN_CURRENCY = "mainCurrency";
 		public const string SECONDARY_CURRENCIES = "secondaryCurrencies";
 		public const string DOWNGRADE_POLICY = "downgradePolicy";
+		public const string DOWNGRADE_PRIORITY_FAMILY_IDS = "downgradePriorityFamilyIds";
 		public const string MAIL_SETTINGS = "mailSettings";
 		public const string DATE_FORMAT = "dateFormat";
 		public const string HOUSEHOLD_LIMITATION_MODULE = "householdLimitationModule";
@@ -55,6 +56,7 @@ namespace Kaltura.Types
 		public const string FINISHED_PERCENT_THRESHOLD = "finishedPercentThreshold";
 		public const string SUSPENSION_PROFILE_INHERITANCE_TYPE = "suspensionProfileInheritanceType";
 		public const string ALLOW_DEVICE_MOBILITY = "allowDeviceMobility";
+		public const string ENABLE_MULTI_LCNS = "enableMultiLcns";
 		#endregion
 
 		#region Private Fields
@@ -65,6 +67,7 @@ namespace Kaltura.Types
 		private int _MainCurrency = Int32.MinValue;
 		private string _SecondaryCurrencies = null;
 		private DowngradePolicy _DowngradePolicy = null;
+		private string _DowngradePriorityFamilyIds = null;
 		private string _MailSettings = null;
 		private string _DateFormat = null;
 		private int _HouseholdLimitationModule = Int32.MinValue;
@@ -75,6 +78,7 @@ namespace Kaltura.Types
 		private int _FinishedPercentThreshold = Int32.MinValue;
 		private SuspensionProfileInheritanceType _SuspensionProfileInheritanceType = null;
 		private bool? _AllowDeviceMobility = null;
+		private bool? _EnableMultiLcns = null;
 		#endregion
 
 		#region Properties
@@ -167,6 +171,19 @@ namespace Kaltura.Types
 			{ 
 				_DowngradePolicy = value;
 				OnPropertyChanged("DowngradePolicy");
+			}
+		}
+		/// <summary>
+		/// Use DowngradePriorityFamilyIdsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string DowngradePriorityFamilyIds
+		{
+			get { return _DowngradePriorityFamilyIds; }
+			set 
+			{ 
+				_DowngradePriorityFamilyIds = value;
+				OnPropertyChanged("DowngradePriorityFamilyIds");
 			}
 		}
 		/// <summary>
@@ -299,6 +316,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("AllowDeviceMobility");
 			}
 		}
+		/// <summary>
+		/// Use EnableMultiLcnsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? EnableMultiLcns
+		{
+			get { return _EnableMultiLcns; }
+			set 
+			{ 
+				_EnableMultiLcns = value;
+				OnPropertyChanged("EnableMultiLcns");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -335,6 +365,10 @@ namespace Kaltura.Types
 			if(node["downgradePolicy"] != null)
 			{
 				this._DowngradePolicy = (DowngradePolicy)StringEnum.Parse(typeof(DowngradePolicy), node["downgradePolicy"].Value<string>());
+			}
+			if(node["downgradePriorityFamilyIds"] != null)
+			{
+				this._DowngradePriorityFamilyIds = node["downgradePriorityFamilyIds"].Value<string>();
 			}
 			if(node["mailSettings"] != null)
 			{
@@ -376,6 +410,10 @@ namespace Kaltura.Types
 			{
 				this._AllowDeviceMobility = ParseBool(node["allowDeviceMobility"].Value<string>());
 			}
+			if(node["enableMultiLcns"] != null)
+			{
+				this._EnableMultiLcns = ParseBool(node["enableMultiLcns"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -392,6 +430,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("mainCurrency", this._MainCurrency);
 			kparams.AddIfNotNull("secondaryCurrencies", this._SecondaryCurrencies);
 			kparams.AddIfNotNull("downgradePolicy", this._DowngradePolicy);
+			kparams.AddIfNotNull("downgradePriorityFamilyIds", this._DowngradePriorityFamilyIds);
 			kparams.AddIfNotNull("mailSettings", this._MailSettings);
 			kparams.AddIfNotNull("dateFormat", this._DateFormat);
 			kparams.AddIfNotNull("householdLimitationModule", this._HouseholdLimitationModule);
@@ -402,6 +441,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("finishedPercentThreshold", this._FinishedPercentThreshold);
 			kparams.AddIfNotNull("suspensionProfileInheritanceType", this._SuspensionProfileInheritanceType);
 			kparams.AddIfNotNull("allowDeviceMobility", this._AllowDeviceMobility);
+			kparams.AddIfNotNull("enableMultiLcns", this._EnableMultiLcns);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -422,6 +462,8 @@ namespace Kaltura.Types
 					return "SecondaryCurrencies";
 				case DOWNGRADE_POLICY:
 					return "DowngradePolicy";
+				case DOWNGRADE_PRIORITY_FAMILY_IDS:
+					return "DowngradePriorityFamilyIds";
 				case MAIL_SETTINGS:
 					return "MailSettings";
 				case DATE_FORMAT:
@@ -442,6 +484,8 @@ namespace Kaltura.Types
 					return "SuspensionProfileInheritanceType";
 				case ALLOW_DEVICE_MOBILITY:
 					return "AllowDeviceMobility";
+				case ENABLE_MULTI_LCNS:
+					return "EnableMultiLcns";
 				default:
 					return base.getPropertyName(apiName);
 			}

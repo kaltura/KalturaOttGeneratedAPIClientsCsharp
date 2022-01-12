@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -52,6 +52,7 @@ namespace Kaltura.Types
 		public const string MAIL_SUBJECT = "mailSubject";
 		public const string INCLUDE_SMS = "includeSms";
 		public const string INCLUDE_IOT = "includeIot";
+		public const string INCLUDE_USER_INBOX = "includeUserInbox";
 		#endregion
 
 		#region Private Fields
@@ -69,6 +70,7 @@ namespace Kaltura.Types
 		private string _MailSubject = null;
 		private bool? _IncludeSms = null;
 		private bool? _IncludeIot = null;
+		private bool? _IncludeUserInbox = null;
 		#endregion
 
 		#region Properties
@@ -254,6 +256,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("IncludeIot");
 			}
 		}
+		/// <summary>
+		/// Use IncludeUserInboxAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IncludeUserInbox
+		{
+			get { return _IncludeUserInbox; }
+			set 
+			{ 
+				_IncludeUserInbox = value;
+				OnPropertyChanged("IncludeUserInbox");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -319,6 +334,10 @@ namespace Kaltura.Types
 			{
 				this._IncludeIot = ParseBool(node["includeIot"].Value<string>());
 			}
+			if(node["includeUserInbox"] != null)
+			{
+				this._IncludeUserInbox = ParseBool(node["includeUserInbox"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -342,6 +361,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("mailSubject", this._MailSubject);
 			kparams.AddIfNotNull("includeSms", this._IncludeSms);
 			kparams.AddIfNotNull("includeIot", this._IncludeIot);
+			kparams.AddIfNotNull("includeUserInbox", this._IncludeUserInbox);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -376,6 +396,8 @@ namespace Kaltura.Types
 					return "IncludeSms";
 				case INCLUDE_IOT:
 					return "IncludeIot";
+				case INCLUDE_USER_INBOX:
+					return "IncludeUserInbox";
 				default:
 					return base.getPropertyName(apiName);
 			}
