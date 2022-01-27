@@ -27,12 +27,17 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class DowngradePolicy : StringEnum
+	public sealed class ChannelFieldOrderByType : StringEnum
 	{
-		public static readonly DowngradePolicy LIFO = new DowngradePolicy("LIFO");
-		public static readonly DowngradePolicy FIFO = new DowngradePolicy("FIFO");
-		public static readonly DowngradePolicy ACTIVE_DATE = new DowngradePolicy("ACTIVE_DATE");
+		public static readonly ChannelFieldOrderByType NAME_ASC = new ChannelFieldOrderByType("NAME_ASC");
+		public static readonly ChannelFieldOrderByType NAME_DESC = new ChannelFieldOrderByType("NAME_DESC");
+		public static readonly ChannelFieldOrderByType START_DATE_DESC = new ChannelFieldOrderByType("START_DATE_DESC");
+		public static readonly ChannelFieldOrderByType START_DATE_ASC = new ChannelFieldOrderByType("START_DATE_ASC");
+		public static readonly ChannelFieldOrderByType CREATE_DATE_ASC = new ChannelFieldOrderByType("CREATE_DATE_ASC");
+		public static readonly ChannelFieldOrderByType CREATE_DATE_DESC = new ChannelFieldOrderByType("CREATE_DATE_DESC");
+		public static readonly ChannelFieldOrderByType RELEVANCY_DESC = new ChannelFieldOrderByType("RELEVANCY_DESC");
+		public static readonly ChannelFieldOrderByType ORDER_NUM = new ChannelFieldOrderByType("ORDER_NUM");
 
-		private DowngradePolicy(string name) : base(name) { }
+		private ChannelFieldOrderByType(string name) : base(name) { }
 	}
 }
