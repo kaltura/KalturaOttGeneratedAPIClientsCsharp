@@ -27,12 +27,10 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class DowngradePolicy : StringEnum
+	public sealed class AssetOrderByStatistics : StringEnum
 	{
-		public static readonly DowngradePolicy LIFO = new DowngradePolicy("LIFO");
-		public static readonly DowngradePolicy FIFO = new DowngradePolicy("FIFO");
-		public static readonly DowngradePolicy ACTIVE_DATE = new DowngradePolicy("ACTIVE_DATE");
+		public static readonly AssetOrderByStatistics VIEWS_DESC = new AssetOrderByStatistics("VIEWS_DESC");
 
-		private DowngradePolicy(string name) : base(name) { }
+		private AssetOrderByStatistics(string name) : base(name) { }
 	}
 }

@@ -162,6 +162,7 @@ namespace Kaltura
 		public static string SubscriptionSetDoesNotExist = "3060";
 		public static string PurchasePassedEntitlementFailed = "3079";
 		public static string PurchaseFailed = "3078";
+		public static string ProgramStartOverNotEnabled = "3087";
 		public static string MediaConcurrencyLimitation = "4000";
 		public static string ConcurrencyLimitation = "4001";
 		public static string BadSearchRequest = "4002";

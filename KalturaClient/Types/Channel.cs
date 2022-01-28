@@ -47,6 +47,7 @@ namespace Kaltura.Types
 		public const string OLD_DESCRIPTION = "oldDescription";
 		public const string IS_ACTIVE = "isActive";
 		public const string ORDER_BY = "orderBy";
+		public const string ORDERING_PARAMETERS_EQUAL = "orderingParametersEqual";
 		public const string CREATE_DATE = "createDate";
 		public const string UPDATE_DATE = "updateDate";
 		public const string SUPPORT_SEGMENT_BASED_ORDERING = "supportSegmentBasedOrdering";
@@ -65,6 +66,7 @@ namespace Kaltura.Types
 		private string _OldDescription = null;
 		private bool? _IsActive = null;
 		private ChannelOrder _OrderBy;
+		private IList<BaseChannelOrder> _OrderingParametersEqual;
 		private long _CreateDate = long.MinValue;
 		private long _UpdateDate = long.MinValue;
 		private bool? _SupportSegmentBasedOrdering = null;
@@ -189,6 +191,19 @@ namespace Kaltura.Types
 			{ 
 				_OrderBy = value;
 				OnPropertyChanged("OrderBy");
+			}
+		}
+		/// <summary>
+		/// Use OrderingParametersEqualAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public IList<BaseChannelOrder> OrderingParametersEqual
+		{
+			get { return _OrderingParametersEqual; }
+			set 
+			{ 
+				_OrderingParametersEqual = value;
+				OnPropertyChanged("OrderingParametersEqual");
 			}
 		}
 		/// <summary>
@@ -322,6 +337,14 @@ namespace Kaltura.Types
 			{
 				this._OrderBy = ObjectFactory.Create<ChannelOrder>(node["orderBy"]);
 			}
+			if(node["orderingParametersEqual"] != null)
+			{
+				this._OrderingParametersEqual = new List<BaseChannelOrder>();
+				foreach(var arrayNode in node["orderingParametersEqual"].Children())
+				{
+					this._OrderingParametersEqual.Add(ObjectFactory.Create<BaseChannelOrder>(arrayNode));
+				}
+			}
 			if(node["createDate"] != null)
 			{
 				this._CreateDate = ParseLong(node["createDate"].Value<string>());
@@ -372,6 +395,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("oldDescription", this._OldDescription);
 			kparams.AddIfNotNull("isActive", this._IsActive);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
+			kparams.AddIfNotNull("orderingParametersEqual", this._OrderingParametersEqual);
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			kparams.AddIfNotNull("supportSegmentBasedOrdering", this._SupportSegmentBasedOrdering);
@@ -402,6 +426,8 @@ namespace Kaltura.Types
 					return "IsActive";
 				case ORDER_BY:
 					return "OrderBy";
+				case ORDERING_PARAMETERS_EQUAL:
+					return "OrderingParametersEqual";
 				case CREATE_DATE:
 					return "CreateDate";
 				case UPDATE_DATE:

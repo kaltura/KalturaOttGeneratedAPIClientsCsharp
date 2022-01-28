@@ -27,12 +27,13 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class DowngradePolicy : StringEnum
+	public sealed class ChannelSlidingWindowOrderByType : StringEnum
 	{
-		public static readonly DowngradePolicy LIFO = new DowngradePolicy("LIFO");
-		public static readonly DowngradePolicy FIFO = new DowngradePolicy("FIFO");
-		public static readonly DowngradePolicy ACTIVE_DATE = new DowngradePolicy("ACTIVE_DATE");
+		public static readonly ChannelSlidingWindowOrderByType LIKES_DESC = new ChannelSlidingWindowOrderByType("LIKES_DESC");
+		public static readonly ChannelSlidingWindowOrderByType RATINGS_DESC = new ChannelSlidingWindowOrderByType("RATINGS_DESC");
+		public static readonly ChannelSlidingWindowOrderByType VOTES_DESC = new ChannelSlidingWindowOrderByType("VOTES_DESC");
+		public static readonly ChannelSlidingWindowOrderByType VIEWS_DESC = new ChannelSlidingWindowOrderByType("VIEWS_DESC");
 
-		private DowngradePolicy(string name) : base(name) { }
+		private ChannelSlidingWindowOrderByType(string name) : base(name) { }
 	}
 }

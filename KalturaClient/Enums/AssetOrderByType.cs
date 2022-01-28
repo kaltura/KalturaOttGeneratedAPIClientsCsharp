@@ -27,12 +27,19 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class DowngradePolicy : StringEnum
+	public sealed class AssetOrderByType : StringEnum
 	{
-		public static readonly DowngradePolicy LIFO = new DowngradePolicy("LIFO");
-		public static readonly DowngradePolicy FIFO = new DowngradePolicy("FIFO");
-		public static readonly DowngradePolicy ACTIVE_DATE = new DowngradePolicy("ACTIVE_DATE");
+		public static readonly AssetOrderByType RELEVANCY_DESC = new AssetOrderByType("RELEVANCY_DESC");
+		public static readonly AssetOrderByType NAME_ASC = new AssetOrderByType("NAME_ASC");
+		public static readonly AssetOrderByType NAME_DESC = new AssetOrderByType("NAME_DESC");
+		public static readonly AssetOrderByType RATINGS_DESC = new AssetOrderByType("RATINGS_DESC");
+		public static readonly AssetOrderByType VOTES_DESC = new AssetOrderByType("VOTES_DESC");
+		public static readonly AssetOrderByType START_DATE_DESC = new AssetOrderByType("START_DATE_DESC");
+		public static readonly AssetOrderByType START_DATE_ASC = new AssetOrderByType("START_DATE_ASC");
+		public static readonly AssetOrderByType LIKES_DESC = new AssetOrderByType("LIKES_DESC");
+		public static readonly AssetOrderByType CREATE_DATE_ASC = new AssetOrderByType("CREATE_DATE_ASC");
+		public static readonly AssetOrderByType CREATE_DATE_DESC = new AssetOrderByType("CREATE_DATE_DESC");
 
-		private DowngradePolicy(string name) : base(name) { }
+		private AssetOrderByType(string name) : base(name) { }
 	}
 }
