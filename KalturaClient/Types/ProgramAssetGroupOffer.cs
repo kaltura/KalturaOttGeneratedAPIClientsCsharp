@@ -35,47 +35,64 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Channel : BaseChannel
+	public class ProgramAssetGroupOffer : OTTObjectSupportNullable
 	{
 		#region Constants
+		public const string ID = "id";
 		public const string NAME = "name";
 		public const string MULTILINGUAL_NAME = "multilingualName";
-		public const string OLD_NAME = "oldName";
-		public const string SYSTEM_NAME = "systemName";
+		public const string PRICE_DETAILS_ID = "priceDetailsId";
+		public const string FILE_TYPES_IDS = "fileTypesIds";
+		public const string DISCOUNT_MODULE_ID = "discountModuleId";
+		public const string COUPONS_GROUP_ID = "couponsGroupId";
 		public const string DESCRIPTION = "description";
 		public const string MULTILINGUAL_DESCRIPTION = "multilingualDescription";
-		public const string OLD_DESCRIPTION = "oldDescription";
+		public const string VIRTUAL_ASSET_ID = "virtualAssetId";
 		public const string IS_ACTIVE = "isActive";
-		public const string ORDER_BY = "orderBy";
-		public const string ORDERING_PARAMETERS_EQUAL = "orderingParametersEqual";
 		public const string CREATE_DATE = "createDate";
 		public const string UPDATE_DATE = "updateDate";
-		public const string SUPPORT_SEGMENT_BASED_ORDERING = "supportSegmentBasedOrdering";
-		public const string ASSET_USER_RULE_ID = "assetUserRuleId";
-		public const string META_DATA = "metaData";
-		public const string VIRTUAL_ASSET_ID = "virtualAssetId";
+		public const string START_DATE = "startDate";
+		public const string END_DATE = "endDate";
+		public const string EXPIRY_DATE = "expiryDate";
+		public const string EXTERNAL_ID = "externalId";
+		public const string EXTERNAL_OFFER_ID = "externalOfferId";
 		#endregion
 
 		#region Private Fields
+		private long _Id = long.MinValue;
 		private string _Name = null;
 		private IList<TranslationToken> _MultilingualName;
-		private string _OldName = null;
-		private string _SystemName = null;
+		private long _PriceDetailsId = long.MinValue;
+		private string _FileTypesIds = null;
+		private long _DiscountModuleId = long.MinValue;
+		private long _CouponsGroupId = long.MinValue;
 		private string _Description = null;
 		private IList<TranslationToken> _MultilingualDescription;
-		private string _OldDescription = null;
+		private long _VirtualAssetId = long.MinValue;
 		private bool? _IsActive = null;
-		private ChannelOrder _OrderBy;
-		private IList<BaseChannelOrder> _OrderingParametersEqual;
 		private long _CreateDate = long.MinValue;
 		private long _UpdateDate = long.MinValue;
-		private bool? _SupportSegmentBasedOrdering = null;
-		private long _AssetUserRuleId = long.MinValue;
-		private IDictionary<string, StringValue> _MetaData;
-		private long _VirtualAssetId = long.MinValue;
+		private long _StartDate = long.MinValue;
+		private long _EndDate = long.MinValue;
+		private long _ExpiryDate = long.MinValue;
+		private string _ExternalId = null;
+		private string _ExternalOfferId = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use IdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long Id
+		{
+			get { return _Id; }
+			set 
+			{ 
+				_Id = value;
+				OnPropertyChanged("Id");
+			}
+		}
 		/// <summary>
 		/// Use NameAsDouble property instead
 		/// </summary>
@@ -103,29 +120,55 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use OldNameAsDouble property instead
+		/// Use PriceDetailsIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string OldName
+		public long PriceDetailsId
 		{
-			get { return _OldName; }
+			get { return _PriceDetailsId; }
 			set 
 			{ 
-				_OldName = value;
-				OnPropertyChanged("OldName");
+				_PriceDetailsId = value;
+				OnPropertyChanged("PriceDetailsId");
 			}
 		}
 		/// <summary>
-		/// Use SystemNameAsDouble property instead
+		/// Use FileTypesIdsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string SystemName
+		public string FileTypesIds
 		{
-			get { return _SystemName; }
+			get { return _FileTypesIds; }
 			set 
 			{ 
-				_SystemName = value;
-				OnPropertyChanged("SystemName");
+				_FileTypesIds = value;
+				OnPropertyChanged("FileTypesIds");
+			}
+		}
+		/// <summary>
+		/// Use DiscountModuleIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long DiscountModuleId
+		{
+			get { return _DiscountModuleId; }
+			set 
+			{ 
+				_DiscountModuleId = value;
+				OnPropertyChanged("DiscountModuleId");
+			}
+		}
+		/// <summary>
+		/// Use CouponsGroupIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long CouponsGroupId
+		{
+			get { return _CouponsGroupId; }
+			set 
+			{ 
+				_CouponsGroupId = value;
+				OnPropertyChanged("CouponsGroupId");
 			}
 		}
 		/// <summary>
@@ -155,16 +198,16 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use OldDescriptionAsDouble property instead
+		/// Use VirtualAssetIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string OldDescription
+		public long VirtualAssetId
 		{
-			get { return _OldDescription; }
-			set 
+			get { return _VirtualAssetId; }
+			private set 
 			{ 
-				_OldDescription = value;
-				OnPropertyChanged("OldDescription");
+				_VirtualAssetId = value;
+				OnPropertyChanged("VirtualAssetId");
 			}
 		}
 		/// <summary>
@@ -178,32 +221,6 @@ namespace Kaltura.Types
 			{ 
 				_IsActive = value;
 				OnPropertyChanged("IsActive");
-			}
-		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public ChannelOrder OrderBy
-		{
-			get { return _OrderBy; }
-			set 
-			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
-			}
-		}
-		/// <summary>
-		/// Use OrderingParametersEqualAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<BaseChannelOrder> OrderingParametersEqual
-		{
-			get { return _OrderingParametersEqual; }
-			set 
-			{ 
-				_OrderingParametersEqual = value;
-				OnPropertyChanged("OrderingParametersEqual");
 			}
 		}
 		/// <summary>
@@ -233,66 +250,83 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use SupportSegmentBasedOrderingAsDouble property instead
+		/// Use StartDateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? SupportSegmentBasedOrdering
+		public long StartDate
 		{
-			get { return _SupportSegmentBasedOrdering; }
+			get { return _StartDate; }
 			set 
 			{ 
-				_SupportSegmentBasedOrdering = value;
-				OnPropertyChanged("SupportSegmentBasedOrdering");
+				_StartDate = value;
+				OnPropertyChanged("StartDate");
 			}
 		}
 		/// <summary>
-		/// Use AssetUserRuleIdAsDouble property instead
+		/// Use EndDateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long AssetUserRuleId
+		public long EndDate
 		{
-			get { return _AssetUserRuleId; }
+			get { return _EndDate; }
 			set 
 			{ 
-				_AssetUserRuleId = value;
-				OnPropertyChanged("AssetUserRuleId");
+				_EndDate = value;
+				OnPropertyChanged("EndDate");
 			}
 		}
 		/// <summary>
-		/// Use MetaDataAsDouble property instead
+		/// Use ExpiryDateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, StringValue> MetaData
+		public long ExpiryDate
 		{
-			get { return _MetaData; }
+			get { return _ExpiryDate; }
 			set 
 			{ 
-				_MetaData = value;
-				OnPropertyChanged("MetaData");
+				_ExpiryDate = value;
+				OnPropertyChanged("ExpiryDate");
 			}
 		}
 		/// <summary>
-		/// Use VirtualAssetIdAsDouble property instead
+		/// Use ExternalIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long VirtualAssetId
+		public string ExternalId
 		{
-			get { return _VirtualAssetId; }
-			private set 
+			get { return _ExternalId; }
+			set 
 			{ 
-				_VirtualAssetId = value;
-				OnPropertyChanged("VirtualAssetId");
+				_ExternalId = value;
+				OnPropertyChanged("ExternalId");
+			}
+		}
+		/// <summary>
+		/// Use ExternalOfferIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string ExternalOfferId
+		{
+			get { return _ExternalOfferId; }
+			set 
+			{ 
+				_ExternalOfferId = value;
+				OnPropertyChanged("ExternalOfferId");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Channel()
+		public ProgramAssetGroupOffer()
 		{
 		}
 
-		public Channel(JToken node) : base(node)
+		public ProgramAssetGroupOffer(JToken node) : base(node)
 		{
+			if(node["id"] != null)
+			{
+				this._Id = ParseLong(node["id"].Value<string>());
+			}
 			if(node["name"] != null)
 			{
 				this._Name = node["name"].Value<string>();
@@ -305,13 +339,21 @@ namespace Kaltura.Types
 					this._MultilingualName.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
 				}
 			}
-			if(node["oldName"] != null)
+			if(node["priceDetailsId"] != null)
 			{
-				this._OldName = node["oldName"].Value<string>();
+				this._PriceDetailsId = ParseLong(node["priceDetailsId"].Value<string>());
 			}
-			if(node["systemName"] != null)
+			if(node["fileTypesIds"] != null)
 			{
-				this._SystemName = node["systemName"].Value<string>();
+				this._FileTypesIds = node["fileTypesIds"].Value<string>();
+			}
+			if(node["discountModuleId"] != null)
+			{
+				this._DiscountModuleId = ParseLong(node["discountModuleId"].Value<string>());
+			}
+			if(node["couponsGroupId"] != null)
+			{
+				this._CouponsGroupId = ParseLong(node["couponsGroupId"].Value<string>());
 			}
 			if(node["description"] != null)
 			{
@@ -325,25 +367,13 @@ namespace Kaltura.Types
 					this._MultilingualDescription.Add(ObjectFactory.Create<TranslationToken>(arrayNode));
 				}
 			}
-			if(node["oldDescription"] != null)
+			if(node["virtualAssetId"] != null)
 			{
-				this._OldDescription = node["oldDescription"].Value<string>();
+				this._VirtualAssetId = ParseLong(node["virtualAssetId"].Value<string>());
 			}
 			if(node["isActive"] != null)
 			{
 				this._IsActive = ParseBool(node["isActive"].Value<string>());
-			}
-			if(node["orderBy"] != null)
-			{
-				this._OrderBy = ObjectFactory.Create<ChannelOrder>(node["orderBy"]);
-			}
-			if(node["orderingParametersEqual"] != null)
-			{
-				this._OrderingParametersEqual = new List<BaseChannelOrder>();
-				foreach(var arrayNode in node["orderingParametersEqual"].Children())
-				{
-					this._OrderingParametersEqual.Add(ObjectFactory.Create<BaseChannelOrder>(arrayNode));
-				}
 			}
 			if(node["createDate"] != null)
 			{
@@ -353,29 +383,25 @@ namespace Kaltura.Types
 			{
 				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
 			}
-			if(node["supportSegmentBasedOrdering"] != null)
+			if(node["startDate"] != null)
 			{
-				this._SupportSegmentBasedOrdering = ParseBool(node["supportSegmentBasedOrdering"].Value<string>());
+				this._StartDate = ParseLong(node["startDate"].Value<string>());
 			}
-			if(node["assetUserRuleId"] != null)
+			if(node["endDate"] != null)
 			{
-				this._AssetUserRuleId = ParseLong(node["assetUserRuleId"].Value<string>());
+				this._EndDate = ParseLong(node["endDate"].Value<string>());
 			}
-			if(node["metaData"] != null)
+			if(node["expiryDate"] != null)
 			{
-				{
-					string key;
-					this._MetaData = new Dictionary<string, StringValue>();
-					foreach(var arrayNode in node["metaData"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._MetaData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
-					}
-				}
+				this._ExpiryDate = ParseLong(node["expiryDate"].Value<string>());
 			}
-			if(node["virtualAssetId"] != null)
+			if(node["externalId"] != null)
 			{
-				this._VirtualAssetId = ParseLong(node["virtualAssetId"].Value<string>());
+				this._ExternalId = node["externalId"].Value<string>();
+			}
+			if(node["externalOfferId"] != null)
+			{
+				this._ExternalOfferId = node["externalOfferId"].Value<string>();
 			}
 		}
 		#endregion
@@ -385,61 +411,67 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaChannel");
+				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOffer");
+			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("name", this._Name);
 			kparams.AddIfNotNull("multilingualName", this._MultilingualName);
-			kparams.AddIfNotNull("oldName", this._OldName);
-			kparams.AddIfNotNull("systemName", this._SystemName);
+			kparams.AddIfNotNull("priceDetailsId", this._PriceDetailsId);
+			kparams.AddIfNotNull("fileTypesIds", this._FileTypesIds);
+			kparams.AddIfNotNull("discountModuleId", this._DiscountModuleId);
+			kparams.AddIfNotNull("couponsGroupId", this._CouponsGroupId);
 			kparams.AddIfNotNull("description", this._Description);
 			kparams.AddIfNotNull("multilingualDescription", this._MultilingualDescription);
-			kparams.AddIfNotNull("oldDescription", this._OldDescription);
+			kparams.AddIfNotNull("virtualAssetId", this._VirtualAssetId);
 			kparams.AddIfNotNull("isActive", this._IsActive);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
-			kparams.AddIfNotNull("orderingParametersEqual", this._OrderingParametersEqual);
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
-			kparams.AddIfNotNull("supportSegmentBasedOrdering", this._SupportSegmentBasedOrdering);
-			kparams.AddIfNotNull("assetUserRuleId", this._AssetUserRuleId);
-			kparams.AddIfNotNull("metaData", this._MetaData);
-			kparams.AddIfNotNull("virtualAssetId", this._VirtualAssetId);
+			kparams.AddIfNotNull("startDate", this._StartDate);
+			kparams.AddIfNotNull("endDate", this._EndDate);
+			kparams.AddIfNotNull("expiryDate", this._ExpiryDate);
+			kparams.AddIfNotNull("externalId", this._ExternalId);
+			kparams.AddIfNotNull("externalOfferId", this._ExternalOfferId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
+				case ID:
+					return "Id";
 				case NAME:
 					return "Name";
 				case MULTILINGUAL_NAME:
 					return "MultilingualName";
-				case OLD_NAME:
-					return "OldName";
-				case SYSTEM_NAME:
-					return "SystemName";
+				case PRICE_DETAILS_ID:
+					return "PriceDetailsId";
+				case FILE_TYPES_IDS:
+					return "FileTypesIds";
+				case DISCOUNT_MODULE_ID:
+					return "DiscountModuleId";
+				case COUPONS_GROUP_ID:
+					return "CouponsGroupId";
 				case DESCRIPTION:
 					return "Description";
 				case MULTILINGUAL_DESCRIPTION:
 					return "MultilingualDescription";
-				case OLD_DESCRIPTION:
-					return "OldDescription";
+				case VIRTUAL_ASSET_ID:
+					return "VirtualAssetId";
 				case IS_ACTIVE:
 					return "IsActive";
-				case ORDER_BY:
-					return "OrderBy";
-				case ORDERING_PARAMETERS_EQUAL:
-					return "OrderingParametersEqual";
 				case CREATE_DATE:
 					return "CreateDate";
 				case UPDATE_DATE:
 					return "UpdateDate";
-				case SUPPORT_SEGMENT_BASED_ORDERING:
-					return "SupportSegmentBasedOrdering";
-				case ASSET_USER_RULE_ID:
-					return "AssetUserRuleId";
-				case META_DATA:
-					return "MetaData";
-				case VIRTUAL_ASSET_ID:
-					return "VirtualAssetId";
+				case START_DATE:
+					return "StartDate";
+				case END_DATE:
+					return "EndDate";
+				case EXPIRY_DATE:
+					return "ExpiryDate";
+				case EXTERNAL_ID:
+					return "ExternalId";
+				case EXTERNAL_OFFER_ID:
+					return "ExternalOfferId";
 				default:
 					return base.getPropertyName(apiName);
 			}

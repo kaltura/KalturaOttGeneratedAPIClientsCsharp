@@ -27,12 +27,13 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class DowngradePolicy : StringEnum
+	public sealed class ProgramAssetGroupOfferOrderBy : StringEnum
 	{
-		public static readonly DowngradePolicy LIFO = new DowngradePolicy("LIFO");
-		public static readonly DowngradePolicy FIFO = new DowngradePolicy("FIFO");
-		public static readonly DowngradePolicy ACTIVE_DATE = new DowngradePolicy("ACTIVE_DATE");
+		public static readonly ProgramAssetGroupOfferOrderBy NAME_ASC = new ProgramAssetGroupOfferOrderBy("NAME_ASC");
+		public static readonly ProgramAssetGroupOfferOrderBy NAME_DESC = new ProgramAssetGroupOfferOrderBy("NAME_DESC");
+		public static readonly ProgramAssetGroupOfferOrderBy UPDATE_DATE_ASC = new ProgramAssetGroupOfferOrderBy("UPDATE_DATE_ASC");
+		public static readonly ProgramAssetGroupOfferOrderBy UPDATE_DATE_DESC = new ProgramAssetGroupOfferOrderBy("UPDATE_DATE_DESC");
 
-		private DowngradePolicy(string name) : base(name) { }
+		private ProgramAssetGroupOfferOrderBy(string name) : base(name) { }
 	}
 }
