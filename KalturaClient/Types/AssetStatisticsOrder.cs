@@ -35,51 +35,19 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetFilter : PersistedFilter
+	public class AssetStatisticsOrder : BaseAssetOrder
 	{
 		#region Constants
-		public const string DYNAMIC_ORDER_BY = "dynamicOrderBy";
-		public const string ORDERING_PARAMETERS = "orderingParameters";
 		public const string TRENDING_DAYS_EQUAL = "trendingDaysEqual";
-		public const string SHOULD_APPLY_PRIORITY_GROUPS_EQUAL = "shouldApplyPriorityGroupsEqual";
-		public new const string ORDER_BY = "orderBy";
+		public const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private DynamicOrderBy _DynamicOrderBy;
-		private IList<BaseAssetOrder> _OrderingParameters;
 		private int _TrendingDaysEqual = Int32.MinValue;
-		private bool? _ShouldApplyPriorityGroupsEqual = null;
-		private AssetOrderBy _OrderBy = null;
+		private AssetOrderByStatistics _OrderBy = null;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use DynamicOrderByAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public DynamicOrderBy DynamicOrderBy
-		{
-			get { return _DynamicOrderBy; }
-			set 
-			{ 
-				_DynamicOrderBy = value;
-				OnPropertyChanged("DynamicOrderBy");
-			}
-		}
-		/// <summary>
-		/// Use OrderingParametersAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<BaseAssetOrder> OrderingParameters
-		{
-			get { return _OrderingParameters; }
-			set 
-			{ 
-				_OrderingParameters = value;
-				OnPropertyChanged("OrderingParameters");
-			}
-		}
 		/// <summary>
 		/// Use TrendingDaysEqualAsDouble property instead
 		/// </summary>
@@ -94,23 +62,10 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use ShouldApplyPriorityGroupsEqualAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public bool? ShouldApplyPriorityGroupsEqual
-		{
-			get { return _ShouldApplyPriorityGroupsEqual; }
-			set 
-			{ 
-				_ShouldApplyPriorityGroupsEqual = value;
-				OnPropertyChanged("ShouldApplyPriorityGroupsEqual");
-			}
-		}
-		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public new AssetOrderBy OrderBy
+		public AssetOrderByStatistics OrderBy
 		{
 			get { return _OrderBy; }
 			set 
@@ -122,35 +77,19 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public AssetFilter()
+		public AssetStatisticsOrder()
 		{
 		}
 
-		public AssetFilter(JToken node) : base(node)
+		public AssetStatisticsOrder(JToken node) : base(node)
 		{
-			if(node["dynamicOrderBy"] != null)
-			{
-				this._DynamicOrderBy = ObjectFactory.Create<DynamicOrderBy>(node["dynamicOrderBy"]);
-			}
-			if(node["orderingParameters"] != null)
-			{
-				this._OrderingParameters = new List<BaseAssetOrder>();
-				foreach(var arrayNode in node["orderingParameters"].Children())
-				{
-					this._OrderingParameters.Add(ObjectFactory.Create<BaseAssetOrder>(arrayNode));
-				}
-			}
 			if(node["trendingDaysEqual"] != null)
 			{
 				this._TrendingDaysEqual = ParseInt(node["trendingDaysEqual"].Value<string>());
 			}
-			if(node["shouldApplyPriorityGroupsEqual"] != null)
-			{
-				this._ShouldApplyPriorityGroupsEqual = ParseBool(node["shouldApplyPriorityGroupsEqual"].Value<string>());
-			}
 			if(node["orderBy"] != null)
 			{
-				this._OrderBy = (AssetOrderBy)StringEnum.Parse(typeof(AssetOrderBy), node["orderBy"].Value<string>());
+				this._OrderBy = (AssetOrderByStatistics)StringEnum.Parse(typeof(AssetOrderByStatistics), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -160,11 +99,8 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetFilter");
-			kparams.AddIfNotNull("dynamicOrderBy", this._DynamicOrderBy);
-			kparams.AddIfNotNull("orderingParameters", this._OrderingParameters);
+				kparams.AddReplace("objectType", "KalturaAssetStatisticsOrder");
 			kparams.AddIfNotNull("trendingDaysEqual", this._TrendingDaysEqual);
-			kparams.AddIfNotNull("shouldApplyPriorityGroupsEqual", this._ShouldApplyPriorityGroupsEqual);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -172,14 +108,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case DYNAMIC_ORDER_BY:
-					return "DynamicOrderBy";
-				case ORDERING_PARAMETERS:
-					return "OrderingParameters";
 				case TRENDING_DAYS_EQUAL:
 					return "TrendingDaysEqual";
-				case SHOULD_APPLY_PRIORITY_GROUPS_EQUAL:
-					return "ShouldApplyPriorityGroupsEqual";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

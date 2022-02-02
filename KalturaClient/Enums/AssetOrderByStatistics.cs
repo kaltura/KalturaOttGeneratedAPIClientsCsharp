@@ -27,15 +27,10 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class ObjectVirtualAssetInfoType : StringEnum
+	public sealed class AssetOrderByStatistics : StringEnum
 	{
-		public static readonly ObjectVirtualAssetInfoType SUBSCRIPTION = new ObjectVirtualAssetInfoType("Subscription");
-		public static readonly ObjectVirtualAssetInfoType SEGMENT = new ObjectVirtualAssetInfoType("Segment");
-		public static readonly ObjectVirtualAssetInfoType CATEGORY = new ObjectVirtualAssetInfoType("Category");
-		public static readonly ObjectVirtualAssetInfoType TVOD = new ObjectVirtualAssetInfoType("Tvod");
-		public static readonly ObjectVirtualAssetInfoType BOXSET = new ObjectVirtualAssetInfoType("Boxset");
-		public static readonly ObjectVirtualAssetInfoType PAGO = new ObjectVirtualAssetInfoType("PAGO");
+		public static readonly AssetOrderByStatistics VIEWS_DESC = new AssetOrderByStatistics("VIEWS_DESC");
 
-		private ObjectVirtualAssetInfoType(string name) : base(name) { }
+		private AssetOrderByStatistics(string name) : base(name) { }
 	}
 }

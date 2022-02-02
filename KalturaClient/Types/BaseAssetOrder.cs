@@ -25,17 +25,54 @@
 //
 // @ignore
 // ===================================================================================================
-namespace Kaltura.Enums
-{
-	public sealed class ObjectVirtualAssetInfoType : StringEnum
-	{
-		public static readonly ObjectVirtualAssetInfoType SUBSCRIPTION = new ObjectVirtualAssetInfoType("Subscription");
-		public static readonly ObjectVirtualAssetInfoType SEGMENT = new ObjectVirtualAssetInfoType("Segment");
-		public static readonly ObjectVirtualAssetInfoType CATEGORY = new ObjectVirtualAssetInfoType("Category");
-		public static readonly ObjectVirtualAssetInfoType TVOD = new ObjectVirtualAssetInfoType("Tvod");
-		public static readonly ObjectVirtualAssetInfoType BOXSET = new ObjectVirtualAssetInfoType("Boxset");
-		public static readonly ObjectVirtualAssetInfoType PAGO = new ObjectVirtualAssetInfoType("PAGO");
+using System;
+using System.Xml;
+using System.Collections.Generic;
+using Kaltura.Enums;
+using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-		private ObjectVirtualAssetInfoType(string name) : base(name) { }
+namespace Kaltura.Types
+{
+	public class BaseAssetOrder : ObjectBase
+	{
+		#region Constants
+		#endregion
+
+		#region Private Fields
+		#endregion
+
+		#region Properties
+		#endregion
+
+		#region CTor
+		public BaseAssetOrder()
+		{
+		}
+
+		public BaseAssetOrder(JToken node) : base(node)
+		{
+		}
+		#endregion
+
+		#region Methods
+		public override Params ToParams(bool includeObjectType = true)
+		{
+			Params kparams = base.ToParams(includeObjectType);
+			if (includeObjectType)
+				kparams.AddReplace("objectType", "KalturaBaseAssetOrder");
+			return kparams;
+		}
+		protected override string getPropertyName(string apiName)
+		{
+			switch(apiName)
+			{
+				default:
+					return base.getPropertyName(apiName);
+			}
+		}
+		#endregion
 	}
 }
+

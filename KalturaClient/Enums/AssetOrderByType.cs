@@ -27,15 +27,19 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class ObjectVirtualAssetInfoType : StringEnum
+	public sealed class AssetOrderByType : StringEnum
 	{
-		public static readonly ObjectVirtualAssetInfoType SUBSCRIPTION = new ObjectVirtualAssetInfoType("Subscription");
-		public static readonly ObjectVirtualAssetInfoType SEGMENT = new ObjectVirtualAssetInfoType("Segment");
-		public static readonly ObjectVirtualAssetInfoType CATEGORY = new ObjectVirtualAssetInfoType("Category");
-		public static readonly ObjectVirtualAssetInfoType TVOD = new ObjectVirtualAssetInfoType("Tvod");
-		public static readonly ObjectVirtualAssetInfoType BOXSET = new ObjectVirtualAssetInfoType("Boxset");
-		public static readonly ObjectVirtualAssetInfoType PAGO = new ObjectVirtualAssetInfoType("PAGO");
+		public static readonly AssetOrderByType RELEVANCY_DESC = new AssetOrderByType("RELEVANCY_DESC");
+		public static readonly AssetOrderByType NAME_ASC = new AssetOrderByType("NAME_ASC");
+		public static readonly AssetOrderByType NAME_DESC = new AssetOrderByType("NAME_DESC");
+		public static readonly AssetOrderByType RATINGS_DESC = new AssetOrderByType("RATINGS_DESC");
+		public static readonly AssetOrderByType VOTES_DESC = new AssetOrderByType("VOTES_DESC");
+		public static readonly AssetOrderByType START_DATE_DESC = new AssetOrderByType("START_DATE_DESC");
+		public static readonly AssetOrderByType START_DATE_ASC = new AssetOrderByType("START_DATE_ASC");
+		public static readonly AssetOrderByType LIKES_DESC = new AssetOrderByType("LIKES_DESC");
+		public static readonly AssetOrderByType CREATE_DATE_ASC = new AssetOrderByType("CREATE_DATE_ASC");
+		public static readonly AssetOrderByType CREATE_DATE_DESC = new AssetOrderByType("CREATE_DATE_DESC");
 
-		private ObjectVirtualAssetInfoType(string name) : base(name) { }
+		private AssetOrderByType(string name) : base(name) { }
 	}
 }
