@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -31,6 +31,7 @@ namespace Kaltura.Enums
 	{
 		public static readonly DowngradePolicy LIFO = new DowngradePolicy("LIFO");
 		public static readonly DowngradePolicy FIFO = new DowngradePolicy("FIFO");
+		public static readonly DowngradePolicy ACTIVE_DATE = new DowngradePolicy("ACTIVE_DATE");
 
 		private DowngradePolicy(string name) : base(name) { }
 	}

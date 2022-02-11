@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -39,13 +39,17 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string DYNAMIC_ORDER_BY = "dynamicOrderBy";
+		public const string ORDERING_PARAMETERS = "orderingParameters";
 		public const string TRENDING_DAYS_EQUAL = "trendingDaysEqual";
+		public const string SHOULD_APPLY_PRIORITY_GROUPS_EQUAL = "shouldApplyPriorityGroupsEqual";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
 		private DynamicOrderBy _DynamicOrderBy;
+		private IList<BaseAssetOrder> _OrderingParameters;
 		private int _TrendingDaysEqual = Int32.MinValue;
+		private bool? _ShouldApplyPriorityGroupsEqual = null;
 		private AssetOrderBy _OrderBy = null;
 		#endregion
 
@@ -64,6 +68,19 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use OrderingParametersAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public IList<BaseAssetOrder> OrderingParameters
+		{
+			get { return _OrderingParameters; }
+			set 
+			{ 
+				_OrderingParameters = value;
+				OnPropertyChanged("OrderingParameters");
+			}
+		}
+		/// <summary>
 		/// Use TrendingDaysEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -74,6 +91,19 @@ namespace Kaltura.Types
 			{ 
 				_TrendingDaysEqual = value;
 				OnPropertyChanged("TrendingDaysEqual");
+			}
+		}
+		/// <summary>
+		/// Use ShouldApplyPriorityGroupsEqualAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? ShouldApplyPriorityGroupsEqual
+		{
+			get { return _ShouldApplyPriorityGroupsEqual; }
+			set 
+			{ 
+				_ShouldApplyPriorityGroupsEqual = value;
+				OnPropertyChanged("ShouldApplyPriorityGroupsEqual");
 			}
 		}
 		/// <summary>
@@ -102,9 +132,21 @@ namespace Kaltura.Types
 			{
 				this._DynamicOrderBy = ObjectFactory.Create<DynamicOrderBy>(node["dynamicOrderBy"]);
 			}
+			if(node["orderingParameters"] != null)
+			{
+				this._OrderingParameters = new List<BaseAssetOrder>();
+				foreach(var arrayNode in node["orderingParameters"].Children())
+				{
+					this._OrderingParameters.Add(ObjectFactory.Create<BaseAssetOrder>(arrayNode));
+				}
+			}
 			if(node["trendingDaysEqual"] != null)
 			{
 				this._TrendingDaysEqual = ParseInt(node["trendingDaysEqual"].Value<string>());
+			}
+			if(node["shouldApplyPriorityGroupsEqual"] != null)
+			{
+				this._ShouldApplyPriorityGroupsEqual = ParseBool(node["shouldApplyPriorityGroupsEqual"].Value<string>());
 			}
 			if(node["orderBy"] != null)
 			{
@@ -120,7 +162,9 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaAssetFilter");
 			kparams.AddIfNotNull("dynamicOrderBy", this._DynamicOrderBy);
+			kparams.AddIfNotNull("orderingParameters", this._OrderingParameters);
 			kparams.AddIfNotNull("trendingDaysEqual", this._TrendingDaysEqual);
+			kparams.AddIfNotNull("shouldApplyPriorityGroupsEqual", this._ShouldApplyPriorityGroupsEqual);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -130,8 +174,12 @@ namespace Kaltura.Types
 			{
 				case DYNAMIC_ORDER_BY:
 					return "DynamicOrderBy";
+				case ORDERING_PARAMETERS:
+					return "OrderingParameters";
 				case TRENDING_DAYS_EQUAL:
 					return "TrendingDaysEqual";
+				case SHOULD_APPLY_PRIORITY_GROUPS_EQUAL:
+					return "ShouldApplyPriorityGroupsEqual";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

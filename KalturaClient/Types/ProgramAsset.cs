@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -47,6 +47,7 @@ namespace Kaltura.Types
 		public const string ENABLE_CATCH_UP = "enableCatchUp";
 		public const string ENABLE_START_OVER = "enableStartOver";
 		public const string ENABLE_TRICK_PLAY = "enableTrickPlay";
+		public const string EXTERNAL_OFFER_IDS = "externalOfferIds";
 		#endregion
 
 		#region Private Fields
@@ -59,6 +60,7 @@ namespace Kaltura.Types
 		private bool? _EnableCatchUp = null;
 		private bool? _EnableStartOver = null;
 		private bool? _EnableTrickPlay = null;
+		private string _ExternalOfferIds = null;
 		#endregion
 
 		#region Properties
@@ -179,6 +181,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("EnableTrickPlay");
 			}
 		}
+		/// <summary>
+		/// Use ExternalOfferIdsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string ExternalOfferIds
+		{
+			get { return _ExternalOfferIds; }
+			set 
+			{ 
+				_ExternalOfferIds = value;
+				OnPropertyChanged("ExternalOfferIds");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -224,6 +239,10 @@ namespace Kaltura.Types
 			{
 				this._EnableTrickPlay = ParseBool(node["enableTrickPlay"].Value<string>());
 			}
+			if(node["externalOfferIds"] != null)
+			{
+				this._ExternalOfferIds = node["externalOfferIds"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -242,6 +261,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("enableCatchUp", this._EnableCatchUp);
 			kparams.AddIfNotNull("enableStartOver", this._EnableStartOver);
 			kparams.AddIfNotNull("enableTrickPlay", this._EnableTrickPlay);
+			kparams.AddIfNotNull("externalOfferIds", this._ExternalOfferIds);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -266,6 +286,8 @@ namespace Kaltura.Types
 					return "EnableStartOver";
 				case ENABLE_TRICK_PLAY:
 					return "EnableTrickPlay";
+				case EXTERNAL_OFFER_IDS:
+					return "ExternalOfferIds";
 				default:
 					return base.getPropertyName(apiName);
 			}
