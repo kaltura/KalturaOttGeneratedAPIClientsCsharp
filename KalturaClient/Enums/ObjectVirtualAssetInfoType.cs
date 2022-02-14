@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -34,7 +34,6 @@ namespace Kaltura.Enums
 		public static readonly ObjectVirtualAssetInfoType CATEGORY = new ObjectVirtualAssetInfoType("Category");
 		public static readonly ObjectVirtualAssetInfoType TVOD = new ObjectVirtualAssetInfoType("Tvod");
 		public static readonly ObjectVirtualAssetInfoType BOXSET = new ObjectVirtualAssetInfoType("Boxset");
-		public static readonly ObjectVirtualAssetInfoType PAGO = new ObjectVirtualAssetInfoType("PAGO");
 
 		private ObjectVirtualAssetInfoType(string name) : base(name) { }
 	}

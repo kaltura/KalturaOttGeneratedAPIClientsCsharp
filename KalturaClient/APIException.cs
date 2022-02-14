@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -163,9 +163,6 @@ namespace Kaltura
 		public static string PurchasePassedEntitlementFailed = "3079";
 		public static string PurchaseFailed = "3078";
 		public static string ProgramStartOverNotEnabled = "3087";
-		public static string CollectionNotExist = "9039";
-		public static string ProgramAssetGroupOfferDoesNotExist = "9043";
-		public static string ExternalOfferIdAlreadyExists = "9044";
 		public static string MediaConcurrencyLimitation = "4000";
 		public static string ConcurrencyLimitation = "4001";
 		public static string BadSearchRequest = "4002";
