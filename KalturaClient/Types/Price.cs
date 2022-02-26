@@ -38,6 +38,7 @@ namespace Kaltura.Types
 	public class Price : ObjectBase
 	{
 		#region Constants
+		public const string CURRENCY_ID = "currencyId";
 		public const string AMOUNT = "amount";
 		public const string CURRENCY = "currency";
 		public const string CURRENCY_SIGN = "currencySign";
@@ -45,6 +46,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
+		private long _CurrencyId = long.MinValue;
 		private double _Amount = Double.MinValue;
 		private string _Currency = null;
 		private string _CurrencySign = null;
@@ -52,6 +54,19 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use CurrencyIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long CurrencyId
+		{
+			get { return _CurrencyId; }
+			private set 
+			{ 
+				_CurrencyId = value;
+				OnPropertyChanged("CurrencyId");
+			}
+		}
 		/// <summary>
 		/// Use AmountAsDouble property instead
 		/// </summary>
@@ -113,6 +128,10 @@ namespace Kaltura.Types
 
 		public Price(JToken node) : base(node)
 		{
+			if(node["currencyId"] != null)
+			{
+				this._CurrencyId = ParseLong(node["currencyId"].Value<string>());
+			}
 			if(node["amount"] != null)
 			{
 				this._Amount = ParseDouble(node["amount"].Value<string>());
@@ -138,6 +157,7 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaPrice");
+			kparams.AddIfNotNull("currencyId", this._CurrencyId);
 			kparams.AddIfNotNull("amount", this._Amount);
 			kparams.AddIfNotNull("currency", this._Currency);
 			kparams.AddIfNotNull("currencySign", this._CurrencySign);
@@ -148,6 +168,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
+				case CURRENCY_ID:
+					return "CurrencyId";
 				case AMOUNT:
 					return "Amount";
 				case CURRENCY:
