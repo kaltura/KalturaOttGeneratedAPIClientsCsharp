@@ -25,21 +25,54 @@
 //
 // @ignore
 // ===================================================================================================
-namespace Kaltura.Enums
-{
-	public sealed class AssetOrderByType : StringEnum
-	{
-		public static readonly AssetOrderByType RELEVANCY_DESC = new AssetOrderByType("RELEVANCY_DESC");
-		public static readonly AssetOrderByType NAME_ASC = new AssetOrderByType("NAME_ASC");
-		public static readonly AssetOrderByType NAME_DESC = new AssetOrderByType("NAME_DESC");
-		public static readonly AssetOrderByType RATINGS_DESC = new AssetOrderByType("RATINGS_DESC");
-		public static readonly AssetOrderByType VOTES_DESC = new AssetOrderByType("VOTES_DESC");
-		public static readonly AssetOrderByType START_DATE_DESC = new AssetOrderByType("START_DATE_DESC");
-		public static readonly AssetOrderByType START_DATE_ASC = new AssetOrderByType("START_DATE_ASC");
-		public static readonly AssetOrderByType LIKES_DESC = new AssetOrderByType("LIKES_DESC");
-		public static readonly AssetOrderByType CREATE_DATE_ASC = new AssetOrderByType("CREATE_DATE_ASC");
-		public static readonly AssetOrderByType CREATE_DATE_DESC = new AssetOrderByType("CREATE_DATE_DESC");
+using System;
+using System.Xml;
+using System.Collections.Generic;
+using Kaltura.Enums;
+using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-		private AssetOrderByType(string name) : base(name) { }
+namespace Kaltura.Types
+{
+	public class ProgramAssetGroupOfferPrice : ProductPrice
+	{
+		#region Constants
+		#endregion
+
+		#region Private Fields
+		#endregion
+
+		#region Properties
+		#endregion
+
+		#region CTor
+		public ProgramAssetGroupOfferPrice()
+		{
+		}
+
+		public ProgramAssetGroupOfferPrice(JToken node) : base(node)
+		{
+		}
+		#endregion
+
+		#region Methods
+		public override Params ToParams(bool includeObjectType = true)
+		{
+			Params kparams = base.ToParams(includeObjectType);
+			if (includeObjectType)
+				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOfferPrice");
+			return kparams;
+		}
+		protected override string getPropertyName(string apiName)
+		{
+			switch(apiName)
+			{
+				default:
+					return base.getPropertyName(apiName);
+			}
+		}
+		#endregion
 	}
 }
+

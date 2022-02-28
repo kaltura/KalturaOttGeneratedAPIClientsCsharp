@@ -35,62 +35,24 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetDynamicOrder : BaseAssetOrder
+	public class ProgramAssetGroupOfferEntitlement : Entitlement
 	{
 		#region Constants
-		public const string NAME = "name";
-		public const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private string _Name = null;
-		private MetaTagOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string Name
-		{
-			get { return _Name; }
-			set 
-			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
-			}
-		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public MetaTagOrderBy OrderBy
-		{
-			get { return _OrderBy; }
-			set 
-			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
-			}
-		}
 		#endregion
 
 		#region CTor
-		public AssetDynamicOrder()
+		public ProgramAssetGroupOfferEntitlement()
 		{
 		}
 
-		public AssetDynamicOrder(JToken node) : base(node)
+		public ProgramAssetGroupOfferEntitlement(JToken node) : base(node)
 		{
-			if(node["name"] != null)
-			{
-				this._Name = node["name"].Value<string>();
-			}
-			if(node["orderBy"] != null)
-			{
-				this._OrderBy = (MetaTagOrderBy)StringEnum.Parse(typeof(MetaTagOrderBy), node["orderBy"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -99,19 +61,13 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetDynamicOrder");
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOfferEntitlement");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case NAME:
-					return "Name";
-				case ORDER_BY:
-					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}

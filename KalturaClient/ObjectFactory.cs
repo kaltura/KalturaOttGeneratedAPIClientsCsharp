@@ -116,6 +116,8 @@ namespace Kaltura
 					return new ListResponse<ProductPrice>(jToken);
 				case "KalturaProductsPriceListResponse":
 					return new ListResponse<ProductPrice>(jToken);
+				case "KalturaProgramAssetGroupOfferListResponse":
+					return new ListResponse<ProgramAssetGroupOffer>(jToken);
 				case "KalturaSubscriptionListResponse":
 					return new ListResponse<Subscription>(jToken);
 				case "KalturaSubscriptionSetListResponse":

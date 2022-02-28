@@ -35,61 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetStatisticsOrder : BaseAssetOrder
+	public class ProgramAssetGroupOfferIdInFilter : ProgramAssetGroupOfferFilter
 	{
 		#region Constants
-		public const string TRENDING_DAYS_EQUAL = "trendingDaysEqual";
-		public const string ORDER_BY = "orderBy";
+		public const string ID_IN = "idIn";
 		#endregion
 
 		#region Private Fields
-		private int _TrendingDaysEqual = Int32.MinValue;
-		private AssetOrderByStatistics _OrderBy = null;
+		private string _IdIn = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use TrendingDaysEqualAsDouble property instead
+		/// Use IdInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int TrendingDaysEqual
+		public string IdIn
 		{
-			get { return _TrendingDaysEqual; }
+			get { return _IdIn; }
 			set 
 			{ 
-				_TrendingDaysEqual = value;
-				OnPropertyChanged("TrendingDaysEqual");
-			}
-		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public AssetOrderByStatistics OrderBy
-		{
-			get { return _OrderBy; }
-			set 
-			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
+				_IdIn = value;
+				OnPropertyChanged("IdIn");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AssetStatisticsOrder()
+		public ProgramAssetGroupOfferIdInFilter()
 		{
 		}
 
-		public AssetStatisticsOrder(JToken node) : base(node)
+		public ProgramAssetGroupOfferIdInFilter(JToken node) : base(node)
 		{
-			if(node["trendingDaysEqual"] != null)
+			if(node["idIn"] != null)
 			{
-				this._TrendingDaysEqual = ParseInt(node["trendingDaysEqual"].Value<string>());
-			}
-			if(node["orderBy"] != null)
-			{
-				this._OrderBy = (AssetOrderByStatistics)StringEnum.Parse(typeof(AssetOrderByStatistics), node["orderBy"].Value<string>());
+				this._IdIn = node["idIn"].Value<string>();
 			}
 		}
 		#endregion
@@ -99,19 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetStatisticsOrder");
-			kparams.AddIfNotNull("trendingDaysEqual", this._TrendingDaysEqual);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOfferIdInFilter");
+			kparams.AddIfNotNull("idIn", this._IdIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case TRENDING_DAYS_EQUAL:
-					return "TrendingDaysEqual";
-				case ORDER_BY:
-					return "OrderBy";
+				case ID_IN:
+					return "IdIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

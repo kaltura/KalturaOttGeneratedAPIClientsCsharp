@@ -27,10 +27,13 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class AssetOrderByStatistics : StringEnum
+	public sealed class ProgramAssetGroupOfferOrderBy : StringEnum
 	{
-		public static readonly AssetOrderByStatistics VIEWS_DESC = new AssetOrderByStatistics("VIEWS_DESC");
+		public static readonly ProgramAssetGroupOfferOrderBy NAME_ASC = new ProgramAssetGroupOfferOrderBy("NAME_ASC");
+		public static readonly ProgramAssetGroupOfferOrderBy NAME_DESC = new ProgramAssetGroupOfferOrderBy("NAME_DESC");
+		public static readonly ProgramAssetGroupOfferOrderBy UPDATE_DATE_ASC = new ProgramAssetGroupOfferOrderBy("UPDATE_DATE_ASC");
+		public static readonly ProgramAssetGroupOfferOrderBy UPDATE_DATE_DESC = new ProgramAssetGroupOfferOrderBy("UPDATE_DATE_DESC");
 
-		private AssetOrderByStatistics(string name) : base(name) { }
+		private ProgramAssetGroupOfferOrderBy(string name) : base(name) { }
 	}
 }
