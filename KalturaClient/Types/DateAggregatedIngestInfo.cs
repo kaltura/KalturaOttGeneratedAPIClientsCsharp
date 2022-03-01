@@ -35,61 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IngestStatusEpgConfiguration : ObjectBase
+	public class DateAggregatedIngestInfo : ObjectBase
 	{
 		#region Constants
-		public const string IS_SUPPORTED = "isSupported";
-		public const string RETAINING_PERIOD = "retainingPeriod";
+		public const string DATE = "date";
+		public const string AGGREGATED_ERRORS = "aggregatedErrors";
 		#endregion
 
 		#region Private Fields
-		private bool? _IsSupported = null;
-		private long _RetainingPeriod = long.MinValue;
+		private long _Date = long.MinValue;
+		private AggregatedIngestInfo _AggregatedErrors;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IsSupportedAsDouble property instead
+		/// Use DateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? IsSupported
+		public long Date
 		{
-			get { return _IsSupported; }
+			get { return _Date; }
 			set 
 			{ 
-				_IsSupported = value;
-				OnPropertyChanged("IsSupported");
+				_Date = value;
+				OnPropertyChanged("Date");
 			}
 		}
 		/// <summary>
-		/// Use RetainingPeriodAsDouble property instead
+		/// Use AggregatedErrorsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long RetainingPeriod
+		public AggregatedIngestInfo AggregatedErrors
 		{
-			get { return _RetainingPeriod; }
+			get { return _AggregatedErrors; }
 			set 
 			{ 
-				_RetainingPeriod = value;
-				OnPropertyChanged("RetainingPeriod");
+				_AggregatedErrors = value;
+				OnPropertyChanged("AggregatedErrors");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public IngestStatusEpgConfiguration()
+		public DateAggregatedIngestInfo()
 		{
 		}
 
-		public IngestStatusEpgConfiguration(JToken node) : base(node)
+		public DateAggregatedIngestInfo(JToken node) : base(node)
 		{
-			if(node["isSupported"] != null)
+			if(node["date"] != null)
 			{
-				this._IsSupported = ParseBool(node["isSupported"].Value<string>());
+				this._Date = ParseLong(node["date"].Value<string>());
 			}
-			if(node["retainingPeriod"] != null)
+			if(node["aggregatedErrors"] != null)
 			{
-				this._RetainingPeriod = ParseLong(node["retainingPeriod"].Value<string>());
+				this._AggregatedErrors = ObjectFactory.Create<AggregatedIngestInfo>(node["aggregatedErrors"]);
 			}
 		}
 		#endregion
@@ -99,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaIngestStatusEpgConfiguration");
-			kparams.AddIfNotNull("isSupported", this._IsSupported);
-			kparams.AddIfNotNull("retainingPeriod", this._RetainingPeriod);
+				kparams.AddReplace("objectType", "KalturaDateAggregatedIngestInfo");
+			kparams.AddIfNotNull("date", this._Date);
+			kparams.AddIfNotNull("aggregatedErrors", this._AggregatedErrors);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case IS_SUPPORTED:
-					return "IsSupported";
-				case RETAINING_PERIOD:
-					return "RetainingPeriod";
+				case DATE:
+					return "Date";
+				case AGGREGATED_ERRORS:
+					return "AggregatedErrors";
 				default:
 					return base.getPropertyName(apiName);
 			}

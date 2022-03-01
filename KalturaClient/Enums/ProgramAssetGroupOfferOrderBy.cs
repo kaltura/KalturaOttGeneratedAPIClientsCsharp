@@ -27,13 +27,13 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class TransactionType : StringEnum
+	public sealed class ProgramAssetGroupOfferOrderBy : StringEnum
 	{
-		public static readonly TransactionType PPV = new TransactionType("ppv");
-		public static readonly TransactionType SUBSCRIPTION = new TransactionType("subscription");
-		public static readonly TransactionType COLLECTION = new TransactionType("collection");
-		public static readonly TransactionType PROGRAMASSETGROUPOFFER = new TransactionType("programAssetGroupOffer");
+		public static readonly ProgramAssetGroupOfferOrderBy NAME_ASC = new ProgramAssetGroupOfferOrderBy("NAME_ASC");
+		public static readonly ProgramAssetGroupOfferOrderBy NAME_DESC = new ProgramAssetGroupOfferOrderBy("NAME_DESC");
+		public static readonly ProgramAssetGroupOfferOrderBy UPDATE_DATE_ASC = new ProgramAssetGroupOfferOrderBy("UPDATE_DATE_ASC");
+		public static readonly ProgramAssetGroupOfferOrderBy UPDATE_DATE_DESC = new ProgramAssetGroupOfferOrderBy("UPDATE_DATE_DESC");
 
-		private TransactionType(string name) : base(name) { }
+		private ProgramAssetGroupOfferOrderBy(string name) : base(name) { }
 	}
 }

@@ -27,13 +27,12 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class TransactionType : StringEnum
+	public sealed class IngestEpgProgramStatus : StringEnum
 	{
-		public static readonly TransactionType PPV = new TransactionType("ppv");
-		public static readonly TransactionType SUBSCRIPTION = new TransactionType("subscription");
-		public static readonly TransactionType COLLECTION = new TransactionType("collection");
-		public static readonly TransactionType PROGRAMASSETGROUPOFFER = new TransactionType("programAssetGroupOffer");
+		public static readonly IngestEpgProgramStatus FAILURE = new IngestEpgProgramStatus("FAILURE");
+		public static readonly IngestEpgProgramStatus WARNING = new IngestEpgProgramStatus("WARNING");
+		public static readonly IngestEpgProgramStatus SUCCESS = new IngestEpgProgramStatus("SUCCESS");
 
-		private TransactionType(string name) : base(name) { }
+		private IngestEpgProgramStatus(string name) : base(name) { }
 	}
 }

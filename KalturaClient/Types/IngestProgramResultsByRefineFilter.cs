@@ -35,61 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IngestStatusEpgConfiguration : ObjectBase
+	public class IngestProgramResultsByRefineFilter : IngestEpgProgramResultFilter
 	{
 		#region Constants
-		public const string IS_SUPPORTED = "isSupported";
-		public const string RETAINING_PERIOD = "retainingPeriod";
+		public const string INGEST_STATUS_IN = "ingestStatusIn";
+		public const string START_DATE_GREATER_THAN = "startDateGreaterThan";
+		public const string START_DATE_SMALLER_THAN = "startDateSmallerThan";
 		#endregion
 
 		#region Private Fields
-		private bool? _IsSupported = null;
-		private long _RetainingPeriod = long.MinValue;
+		private string _IngestStatusIn = null;
+		private long _StartDateGreaterThan = long.MinValue;
+		private long _StartDateSmallerThan = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IsSupportedAsDouble property instead
+		/// Use IngestStatusInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? IsSupported
+		public string IngestStatusIn
 		{
-			get { return _IsSupported; }
+			get { return _IngestStatusIn; }
 			set 
 			{ 
-				_IsSupported = value;
-				OnPropertyChanged("IsSupported");
+				_IngestStatusIn = value;
+				OnPropertyChanged("IngestStatusIn");
 			}
 		}
 		/// <summary>
-		/// Use RetainingPeriodAsDouble property instead
+		/// Use StartDateGreaterThanAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long RetainingPeriod
+		public long StartDateGreaterThan
 		{
-			get { return _RetainingPeriod; }
+			get { return _StartDateGreaterThan; }
 			set 
 			{ 
-				_RetainingPeriod = value;
-				OnPropertyChanged("RetainingPeriod");
+				_StartDateGreaterThan = value;
+				OnPropertyChanged("StartDateGreaterThan");
+			}
+		}
+		/// <summary>
+		/// Use StartDateSmallerThanAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long StartDateSmallerThan
+		{
+			get { return _StartDateSmallerThan; }
+			set 
+			{ 
+				_StartDateSmallerThan = value;
+				OnPropertyChanged("StartDateSmallerThan");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public IngestStatusEpgConfiguration()
+		public IngestProgramResultsByRefineFilter()
 		{
 		}
 
-		public IngestStatusEpgConfiguration(JToken node) : base(node)
+		public IngestProgramResultsByRefineFilter(JToken node) : base(node)
 		{
-			if(node["isSupported"] != null)
+			if(node["ingestStatusIn"] != null)
 			{
-				this._IsSupported = ParseBool(node["isSupported"].Value<string>());
+				this._IngestStatusIn = node["ingestStatusIn"].Value<string>();
 			}
-			if(node["retainingPeriod"] != null)
+			if(node["startDateGreaterThan"] != null)
 			{
-				this._RetainingPeriod = ParseLong(node["retainingPeriod"].Value<string>());
+				this._StartDateGreaterThan = ParseLong(node["startDateGreaterThan"].Value<string>());
+			}
+			if(node["startDateSmallerThan"] != null)
+			{
+				this._StartDateSmallerThan = ParseLong(node["startDateSmallerThan"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,19 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaIngestStatusEpgConfiguration");
-			kparams.AddIfNotNull("isSupported", this._IsSupported);
-			kparams.AddIfNotNull("retainingPeriod", this._RetainingPeriod);
+				kparams.AddReplace("objectType", "KalturaIngestProgramResultsByRefineFilter");
+			kparams.AddIfNotNull("ingestStatusIn", this._IngestStatusIn);
+			kparams.AddIfNotNull("startDateGreaterThan", this._StartDateGreaterThan);
+			kparams.AddIfNotNull("startDateSmallerThan", this._StartDateSmallerThan);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case IS_SUPPORTED:
-					return "IsSupported";
-				case RETAINING_PERIOD:
-					return "RetainingPeriod";
+				case INGEST_STATUS_IN:
+					return "IngestStatusIn";
+				case START_DATE_GREATER_THAN:
+					return "StartDateGreaterThan";
+				case START_DATE_SMALLER_THAN:
+					return "StartDateSmallerThan";
 				default:
 					return base.getPropertyName(apiName);
 			}

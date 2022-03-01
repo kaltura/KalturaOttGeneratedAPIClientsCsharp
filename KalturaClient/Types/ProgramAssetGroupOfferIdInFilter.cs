@@ -35,61 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IngestStatusEpgConfiguration : ObjectBase
+	public class ProgramAssetGroupOfferIdInFilter : ProgramAssetGroupOfferFilter
 	{
 		#region Constants
-		public const string IS_SUPPORTED = "isSupported";
-		public const string RETAINING_PERIOD = "retainingPeriod";
+		public const string ID_IN = "idIn";
 		#endregion
 
 		#region Private Fields
-		private bool? _IsSupported = null;
-		private long _RetainingPeriod = long.MinValue;
+		private string _IdIn = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IsSupportedAsDouble property instead
+		/// Use IdInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? IsSupported
+		public string IdIn
 		{
-			get { return _IsSupported; }
+			get { return _IdIn; }
 			set 
 			{ 
-				_IsSupported = value;
-				OnPropertyChanged("IsSupported");
-			}
-		}
-		/// <summary>
-		/// Use RetainingPeriodAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long RetainingPeriod
-		{
-			get { return _RetainingPeriod; }
-			set 
-			{ 
-				_RetainingPeriod = value;
-				OnPropertyChanged("RetainingPeriod");
+				_IdIn = value;
+				OnPropertyChanged("IdIn");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public IngestStatusEpgConfiguration()
+		public ProgramAssetGroupOfferIdInFilter()
 		{
 		}
 
-		public IngestStatusEpgConfiguration(JToken node) : base(node)
+		public ProgramAssetGroupOfferIdInFilter(JToken node) : base(node)
 		{
-			if(node["isSupported"] != null)
+			if(node["idIn"] != null)
 			{
-				this._IsSupported = ParseBool(node["isSupported"].Value<string>());
-			}
-			if(node["retainingPeriod"] != null)
-			{
-				this._RetainingPeriod = ParseLong(node["retainingPeriod"].Value<string>());
+				this._IdIn = node["idIn"].Value<string>();
 			}
 		}
 		#endregion
@@ -99,19 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaIngestStatusEpgConfiguration");
-			kparams.AddIfNotNull("isSupported", this._IsSupported);
-			kparams.AddIfNotNull("retainingPeriod", this._RetainingPeriod);
+				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOfferIdInFilter");
+			kparams.AddIfNotNull("idIn", this._IdIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case IS_SUPPORTED:
-					return "IsSupported";
-				case RETAINING_PERIOD:
-					return "RetainingPeriod";
+				case ID_IN:
+					return "IdIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

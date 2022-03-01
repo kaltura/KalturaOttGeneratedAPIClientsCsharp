@@ -163,6 +163,10 @@ namespace Kaltura
 		public static string PurchasePassedEntitlementFailed = "3079";
 		public static string PurchaseFailed = "3078";
 		public static string ProgramStartOverNotEnabled = "3087";
+		public static string CollectionNotExist = "9039";
+		public static string ProgramAssetGroupOfferDoesNotExist = "9043";
+		public static string ExternalOfferIdAlreadyExists = "9044";
+		public static string UnableToPurchaseProgramAssetGroupOfferPurchased = "3088";
 		public static string MediaConcurrencyLimitation = "4000";
 		public static string ConcurrencyLimitation = "4001";
 		public static string BadSearchRequest = "4002";

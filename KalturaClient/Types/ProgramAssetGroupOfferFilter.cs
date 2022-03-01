@@ -35,67 +35,37 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class EntitlementFilter : BaseEntitlementFilter
+	public class ProgramAssetGroupOfferFilter : Filter
 	{
 		#region Constants
-		public const string PRODUCT_TYPE_EQUAL = "productTypeEqual";
-		public const string ENTITY_REFERENCE_EQUAL = "entityReferenceEqual";
-		public const string IS_EXPIRED_EQUAL = "isExpiredEqual";
+		public const string ALSO_INACTIVE = "alsoInactive";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private TransactionType _ProductTypeEqual = null;
-		private EntityReferenceBy _EntityReferenceEqual = null;
-		private bool? _IsExpiredEqual = null;
-		private EntitlementOrderBy _OrderBy = null;
+		private bool? _AlsoInactive = null;
+		private ProgramAssetGroupOfferOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ProductTypeEqualAsDouble property instead
+		/// Use AlsoInactiveAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public TransactionType ProductTypeEqual
+		public bool? AlsoInactive
 		{
-			get { return _ProductTypeEqual; }
+			get { return _AlsoInactive; }
 			set 
 			{ 
-				_ProductTypeEqual = value;
-				OnPropertyChanged("ProductTypeEqual");
-			}
-		}
-		/// <summary>
-		/// Use EntityReferenceEqualAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public EntityReferenceBy EntityReferenceEqual
-		{
-			get { return _EntityReferenceEqual; }
-			set 
-			{ 
-				_EntityReferenceEqual = value;
-				OnPropertyChanged("EntityReferenceEqual");
-			}
-		}
-		/// <summary>
-		/// Use IsExpiredEqualAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public bool? IsExpiredEqual
-		{
-			get { return _IsExpiredEqual; }
-			set 
-			{ 
-				_IsExpiredEqual = value;
-				OnPropertyChanged("IsExpiredEqual");
+				_AlsoInactive = value;
+				OnPropertyChanged("AlsoInactive");
 			}
 		}
 		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public new EntitlementOrderBy OrderBy
+		public new ProgramAssetGroupOfferOrderBy OrderBy
 		{
 			get { return _OrderBy; }
 			set 
@@ -107,27 +77,19 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public EntitlementFilter()
+		public ProgramAssetGroupOfferFilter()
 		{
 		}
 
-		public EntitlementFilter(JToken node) : base(node)
+		public ProgramAssetGroupOfferFilter(JToken node) : base(node)
 		{
-			if(node["productTypeEqual"] != null)
+			if(node["alsoInactive"] != null)
 			{
-				this._ProductTypeEqual = (TransactionType)StringEnum.Parse(typeof(TransactionType), node["productTypeEqual"].Value<string>());
-			}
-			if(node["entityReferenceEqual"] != null)
-			{
-				this._EntityReferenceEqual = (EntityReferenceBy)StringEnum.Parse(typeof(EntityReferenceBy), node["entityReferenceEqual"].Value<string>());
-			}
-			if(node["isExpiredEqual"] != null)
-			{
-				this._IsExpiredEqual = ParseBool(node["isExpiredEqual"].Value<string>());
+				this._AlsoInactive = ParseBool(node["alsoInactive"].Value<string>());
 			}
 			if(node["orderBy"] != null)
 			{
-				this._OrderBy = (EntitlementOrderBy)StringEnum.Parse(typeof(EntitlementOrderBy), node["orderBy"].Value<string>());
+				this._OrderBy = (ProgramAssetGroupOfferOrderBy)StringEnum.Parse(typeof(ProgramAssetGroupOfferOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -137,10 +99,8 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaEntitlementFilter");
-			kparams.AddIfNotNull("productTypeEqual", this._ProductTypeEqual);
-			kparams.AddIfNotNull("entityReferenceEqual", this._EntityReferenceEqual);
-			kparams.AddIfNotNull("isExpiredEqual", this._IsExpiredEqual);
+				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOfferFilter");
+			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -148,12 +108,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case PRODUCT_TYPE_EQUAL:
-					return "ProductTypeEqual";
-				case ENTITY_REFERENCE_EQUAL:
-					return "EntityReferenceEqual";
-				case IS_EXPIRED_EQUAL:
-					return "IsExpiredEqual";
+				case ALSO_INACTIVE:
+					return "AlsoInactive";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
