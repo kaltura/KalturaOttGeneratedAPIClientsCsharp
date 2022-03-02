@@ -35,61 +35,88 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IngestStatusEpgConfiguration : ObjectBase
+	public class IngestEpgDetailsAggregation : ObjectBase
 	{
 		#region Constants
-		public const string IS_SUPPORTED = "isSupported";
-		public const string RETAINING_PERIOD = "retainingPeriod";
+		public const string LINEAR_CHANNELS = "linearChannels";
+		public const string DATES = "dates";
+		public const string ALL = "all";
 		#endregion
 
 		#region Private Fields
-		private bool? _IsSupported = null;
-		private long _RetainingPeriod = long.MinValue;
+		private IList<ChannelAggregatedIngestInfo> _LinearChannels;
+		private IList<DateAggregatedIngestInfo> _Dates;
+		private AggregatedIngestInfo _All;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IsSupportedAsDouble property instead
+		/// Use LinearChannelsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? IsSupported
+		public IList<ChannelAggregatedIngestInfo> LinearChannels
 		{
-			get { return _IsSupported; }
+			get { return _LinearChannels; }
 			set 
 			{ 
-				_IsSupported = value;
-				OnPropertyChanged("IsSupported");
+				_LinearChannels = value;
+				OnPropertyChanged("LinearChannels");
 			}
 		}
 		/// <summary>
-		/// Use RetainingPeriodAsDouble property instead
+		/// Use DatesAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long RetainingPeriod
+		public IList<DateAggregatedIngestInfo> Dates
 		{
-			get { return _RetainingPeriod; }
+			get { return _Dates; }
 			set 
 			{ 
-				_RetainingPeriod = value;
-				OnPropertyChanged("RetainingPeriod");
+				_Dates = value;
+				OnPropertyChanged("Dates");
+			}
+		}
+		/// <summary>
+		/// Use AllAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public AggregatedIngestInfo All
+		{
+			get { return _All; }
+			set 
+			{ 
+				_All = value;
+				OnPropertyChanged("All");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public IngestStatusEpgConfiguration()
+		public IngestEpgDetailsAggregation()
 		{
 		}
 
-		public IngestStatusEpgConfiguration(JToken node) : base(node)
+		public IngestEpgDetailsAggregation(JToken node) : base(node)
 		{
-			if(node["isSupported"] != null)
+			if(node["linearChannels"] != null)
 			{
-				this._IsSupported = ParseBool(node["isSupported"].Value<string>());
+				this._LinearChannels = new List<ChannelAggregatedIngestInfo>();
+				foreach(var arrayNode in node["linearChannels"].Children())
+				{
+					this._LinearChannels.Add(ObjectFactory.Create<ChannelAggregatedIngestInfo>(arrayNode));
+				}
 			}
-			if(node["retainingPeriod"] != null)
+			if(node["dates"] != null)
 			{
-				this._RetainingPeriod = ParseLong(node["retainingPeriod"].Value<string>());
+				this._Dates = new List<DateAggregatedIngestInfo>();
+				foreach(var arrayNode in node["dates"].Children())
+				{
+					this._Dates.Add(ObjectFactory.Create<DateAggregatedIngestInfo>(arrayNode));
+				}
+			}
+			if(node["all"] != null)
+			{
+				this._All = ObjectFactory.Create<AggregatedIngestInfo>(node["all"]);
 			}
 		}
 		#endregion
@@ -99,19 +126,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaIngestStatusEpgConfiguration");
-			kparams.AddIfNotNull("isSupported", this._IsSupported);
-			kparams.AddIfNotNull("retainingPeriod", this._RetainingPeriod);
+				kparams.AddReplace("objectType", "KalturaIngestEpgDetailsAggregation");
+			kparams.AddIfNotNull("linearChannels", this._LinearChannels);
+			kparams.AddIfNotNull("dates", this._Dates);
+			kparams.AddIfNotNull("all", this._All);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case IS_SUPPORTED:
-					return "IsSupported";
-				case RETAINING_PERIOD:
-					return "RetainingPeriod";
+				case LINEAR_CHANNELS:
+					return "LinearChannels";
+				case DATES:
+					return "Dates";
+				case ALL:
+					return "All";
 				default:
 					return base.getPropertyName(apiName);
 			}

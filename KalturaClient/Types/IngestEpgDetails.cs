@@ -35,61 +35,65 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IngestStatusEpgConfiguration : ObjectBase
+	public class IngestEpgDetails : IngestEpg
 	{
 		#region Constants
-		public const string IS_SUPPORTED = "isSupported";
-		public const string RETAINING_PERIOD = "retainingPeriod";
+		public const string ERRORS = "errors";
+		public const string AGGREGATIONS = "aggregations";
 		#endregion
 
 		#region Private Fields
-		private bool? _IsSupported = null;
-		private long _RetainingPeriod = long.MinValue;
+		private IList<EpgIngestErrorMessage> _Errors;
+		private IngestEpgDetailsAggregation _Aggregations;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IsSupportedAsDouble property instead
+		/// Use ErrorsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? IsSupported
+		public IList<EpgIngestErrorMessage> Errors
 		{
-			get { return _IsSupported; }
+			get { return _Errors; }
 			set 
 			{ 
-				_IsSupported = value;
-				OnPropertyChanged("IsSupported");
+				_Errors = value;
+				OnPropertyChanged("Errors");
 			}
 		}
 		/// <summary>
-		/// Use RetainingPeriodAsDouble property instead
+		/// Use AggregationsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long RetainingPeriod
+		public IngestEpgDetailsAggregation Aggregations
 		{
-			get { return _RetainingPeriod; }
+			get { return _Aggregations; }
 			set 
 			{ 
-				_RetainingPeriod = value;
-				OnPropertyChanged("RetainingPeriod");
+				_Aggregations = value;
+				OnPropertyChanged("Aggregations");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public IngestStatusEpgConfiguration()
+		public IngestEpgDetails()
 		{
 		}
 
-		public IngestStatusEpgConfiguration(JToken node) : base(node)
+		public IngestEpgDetails(JToken node) : base(node)
 		{
-			if(node["isSupported"] != null)
+			if(node["errors"] != null)
 			{
-				this._IsSupported = ParseBool(node["isSupported"].Value<string>());
+				this._Errors = new List<EpgIngestErrorMessage>();
+				foreach(var arrayNode in node["errors"].Children())
+				{
+					this._Errors.Add(ObjectFactory.Create<EpgIngestErrorMessage>(arrayNode));
+				}
 			}
-			if(node["retainingPeriod"] != null)
+			if(node["aggregations"] != null)
 			{
-				this._RetainingPeriod = ParseLong(node["retainingPeriod"].Value<string>());
+				this._Aggregations = ObjectFactory.Create<IngestEpgDetailsAggregation>(node["aggregations"]);
 			}
 		}
 		#endregion
@@ -99,19 +103,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaIngestStatusEpgConfiguration");
-			kparams.AddIfNotNull("isSupported", this._IsSupported);
-			kparams.AddIfNotNull("retainingPeriod", this._RetainingPeriod);
+				kparams.AddReplace("objectType", "KalturaIngestEpgDetails");
+			kparams.AddIfNotNull("errors", this._Errors);
+			kparams.AddIfNotNull("aggregations", this._Aggregations);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case IS_SUPPORTED:
-					return "IsSupported";
-				case RETAINING_PERIOD:
-					return "RetainingPeriod";
+				case ERRORS:
+					return "Errors";
+				case AGGREGATIONS:
+					return "Aggregations";
 				default:
 					return base.getPropertyName(apiName);
 			}

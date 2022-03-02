@@ -35,61 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IngestStatusEpgConfiguration : ObjectBase
+	public class ProgramAssetGroupOfferFilter : Filter
 	{
 		#region Constants
-		public const string IS_SUPPORTED = "isSupported";
-		public const string RETAINING_PERIOD = "retainingPeriod";
+		public const string ALSO_INACTIVE = "alsoInactive";
+		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private bool? _IsSupported = null;
-		private long _RetainingPeriod = long.MinValue;
+		private bool? _AlsoInactive = null;
+		private ProgramAssetGroupOfferOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IsSupportedAsDouble property instead
+		/// Use AlsoInactiveAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? IsSupported
+		public bool? AlsoInactive
 		{
-			get { return _IsSupported; }
+			get { return _AlsoInactive; }
 			set 
 			{ 
-				_IsSupported = value;
-				OnPropertyChanged("IsSupported");
+				_AlsoInactive = value;
+				OnPropertyChanged("AlsoInactive");
 			}
 		}
 		/// <summary>
-		/// Use RetainingPeriodAsDouble property instead
+		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long RetainingPeriod
+		public new ProgramAssetGroupOfferOrderBy OrderBy
 		{
-			get { return _RetainingPeriod; }
+			get { return _OrderBy; }
 			set 
 			{ 
-				_RetainingPeriod = value;
-				OnPropertyChanged("RetainingPeriod");
+				_OrderBy = value;
+				OnPropertyChanged("OrderBy");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public IngestStatusEpgConfiguration()
+		public ProgramAssetGroupOfferFilter()
 		{
 		}
 
-		public IngestStatusEpgConfiguration(JToken node) : base(node)
+		public ProgramAssetGroupOfferFilter(JToken node) : base(node)
 		{
-			if(node["isSupported"] != null)
+			if(node["alsoInactive"] != null)
 			{
-				this._IsSupported = ParseBool(node["isSupported"].Value<string>());
+				this._AlsoInactive = ParseBool(node["alsoInactive"].Value<string>());
 			}
-			if(node["retainingPeriod"] != null)
+			if(node["orderBy"] != null)
 			{
-				this._RetainingPeriod = ParseLong(node["retainingPeriod"].Value<string>());
+				this._OrderBy = (ProgramAssetGroupOfferOrderBy)StringEnum.Parse(typeof(ProgramAssetGroupOfferOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaIngestStatusEpgConfiguration");
-			kparams.AddIfNotNull("isSupported", this._IsSupported);
-			kparams.AddIfNotNull("retainingPeriod", this._RetainingPeriod);
+				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOfferFilter");
+			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
+			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case IS_SUPPORTED:
-					return "IsSupported";
-				case RETAINING_PERIOD:
-					return "RetainingPeriod";
+				case ALSO_INACTIVE:
+					return "AlsoInactive";
+				case ORDER_BY:
+					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -116,6 +116,8 @@ namespace Kaltura
 					return new ListResponse<ProductPrice>(jToken);
 				case "KalturaProductsPriceListResponse":
 					return new ListResponse<ProductPrice>(jToken);
+				case "KalturaProgramAssetGroupOfferListResponse":
+					return new ListResponse<ProgramAssetGroupOffer>(jToken);
 				case "KalturaSubscriptionListResponse":
 					return new ListResponse<Subscription>(jToken);
 				case "KalturaSubscriptionSetListResponse":
@@ -298,6 +300,8 @@ namespace Kaltura
 					return new ListResponse<HouseholdSegment>(jToken);
 				case "KalturaIngestStatusEpgListResponse":
 					return new ListResponse<IngestEpg>(jToken);
+				case "KalturaIngestStatusEpgProgramResultListResponse":
+					return new ListResponse<IngestEpgProgramResult>(jToken);
 				case "KalturaLineupChannelAssetListResponse":
 					return new ListResponse<LineupChannelAsset>(jToken);
 				case "KalturaPasswordPolicyListResponse":
