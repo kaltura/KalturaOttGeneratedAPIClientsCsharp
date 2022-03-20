@@ -44,7 +44,7 @@ namespace Kaltura.Types
 
 		#region Private Fields
 		private bool? _IsSupported = null;
-		private long _RetainingPeriod = long.MinValue;
+		private int _RetainingPeriod = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -65,7 +65,7 @@ namespace Kaltura.Types
 		/// Use RetainingPeriodAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long RetainingPeriod
+		public int RetainingPeriod
 		{
 			get { return _RetainingPeriod; }
 			set 
@@ -89,7 +89,7 @@ namespace Kaltura.Types
 			}
 			if(node["retainingPeriod"] != null)
 			{
-				this._RetainingPeriod = ParseLong(node["retainingPeriod"].Value<string>());
+				this._RetainingPeriod = ParseInt(node["retainingPeriod"].Value<string>());
 			}
 		}
 		#endregion
