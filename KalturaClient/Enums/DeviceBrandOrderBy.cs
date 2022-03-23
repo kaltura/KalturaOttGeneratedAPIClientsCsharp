@@ -25,54 +25,13 @@
 //
 // @ignore
 // ===================================================================================================
-using System;
-using System.Xml;
-using System.Collections.Generic;
-using Kaltura.Enums;
-using Kaltura.Request;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
-namespace Kaltura.Types
+namespace Kaltura.Enums
 {
-	public class CrudFilter : Filter
+	public sealed class DeviceBrandOrderBy : StringEnum
 	{
-		#region Constants
-		#endregion
+		public static readonly DeviceBrandOrderBy ID_ASC = new DeviceBrandOrderBy("ID_ASC");
+		public static readonly DeviceBrandOrderBy ID_DESC = new DeviceBrandOrderBy("ID_DESC");
 
-		#region Private Fields
-		#endregion
-
-		#region Properties
-		#endregion
-
-		#region CTor
-		public CrudFilter()
-		{
-		}
-
-		public CrudFilter(JToken node) : base(node)
-		{
-		}
-		#endregion
-
-		#region Methods
-		public override Params ToParams(bool includeObjectType = true)
-		{
-			Params kparams = base.ToParams(includeObjectType);
-			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaCrudFilter");
-			return kparams;
-		}
-		protected override string getPropertyName(string apiName)
-		{
-			switch(apiName)
-			{
-				default:
-					return base.getPropertyName(apiName);
-			}
-		}
-		#endregion
+		private DeviceBrandOrderBy(string name) : base(name) { }
 	}
 }
-

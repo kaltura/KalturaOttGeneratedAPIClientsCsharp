@@ -25,54 +25,13 @@
 //
 // @ignore
 // ===================================================================================================
-using System;
-using System.Xml;
-using System.Collections.Generic;
-using Kaltura.Enums;
-using Kaltura.Request;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
-namespace Kaltura.Types
+namespace Kaltura.Enums
 {
-	public class T : ObjectBase
+	public sealed class DeviceFamilyType : StringEnum
 	{
-		#region Constants
-		#endregion
+		public static readonly DeviceFamilyType SYSTEM = new DeviceFamilyType("System");
+		public static readonly DeviceFamilyType CUSTOM = new DeviceFamilyType("Custom");
 
-		#region Private Fields
-		#endregion
-
-		#region Properties
-		#endregion
-
-		#region CTor
-		public T()
-		{
-		}
-
-		public T(JToken node) : base(node)
-		{
-		}
-		#endregion
-
-		#region Methods
-		public override Params ToParams(bool includeObjectType = true)
-		{
-			Params kparams = base.ToParams(includeObjectType);
-			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaT");
-			return kparams;
-		}
-		protected override string getPropertyName(string apiName)
-		{
-			switch(apiName)
-			{
-				default:
-					return base.getPropertyName(apiName);
-			}
-		}
-		#endregion
+		private DeviceFamilyType(string name) : base(name) { }
 	}
 }
-

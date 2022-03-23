@@ -35,20 +35,22 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class EventNotificationFilter : Filter
+	public class DeviceBrandFilter : Filter
 	{
 		#region Constants
 		public const string ID_EQUAL = "idEqual";
-		public const string OBJECT_ID_EQUAL = "objectIdEqual";
-		public const string EVENT_OBJECT_TYPE_EQUAL = "eventObjectTypeEqual";
+		public const string DEVICE_FAMILY_ID_EQUAL = "deviceFamilyIdEqual";
+		public const string NAME_EQUAL = "nameEqual";
+		public const string TYPE_EQUAL = "typeEqual";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private string _IdEqual = null;
-		private long _ObjectIdEqual = long.MinValue;
-		private string _EventObjectTypeEqual = null;
-		private EventNotificationOrderBy _OrderBy = null;
+		private long _IdEqual = long.MinValue;
+		private long _DeviceFamilyIdEqual = long.MinValue;
+		private string _NameEqual = null;
+		private DeviceBrandType _TypeEqual = null;
+		private DeviceBrandOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
@@ -56,7 +58,7 @@ namespace Kaltura.Types
 		/// Use IdEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string IdEqual
+		public long IdEqual
 		{
 			get { return _IdEqual; }
 			set 
@@ -66,36 +68,49 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use ObjectIdEqualAsDouble property instead
+		/// Use DeviceFamilyIdEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long ObjectIdEqual
+		public long DeviceFamilyIdEqual
 		{
-			get { return _ObjectIdEqual; }
+			get { return _DeviceFamilyIdEqual; }
 			set 
 			{ 
-				_ObjectIdEqual = value;
-				OnPropertyChanged("ObjectIdEqual");
+				_DeviceFamilyIdEqual = value;
+				OnPropertyChanged("DeviceFamilyIdEqual");
 			}
 		}
 		/// <summary>
-		/// Use EventObjectTypeEqualAsDouble property instead
+		/// Use NameEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string EventObjectTypeEqual
+		public string NameEqual
 		{
-			get { return _EventObjectTypeEqual; }
+			get { return _NameEqual; }
 			set 
 			{ 
-				_EventObjectTypeEqual = value;
-				OnPropertyChanged("EventObjectTypeEqual");
+				_NameEqual = value;
+				OnPropertyChanged("NameEqual");
+			}
+		}
+		/// <summary>
+		/// Use TypeEqualAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public DeviceBrandType TypeEqual
+		{
+			get { return _TypeEqual; }
+			set 
+			{ 
+				_TypeEqual = value;
+				OnPropertyChanged("TypeEqual");
 			}
 		}
 		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public new EventNotificationOrderBy OrderBy
+		public new DeviceBrandOrderBy OrderBy
 		{
 			get { return _OrderBy; }
 			set 
@@ -107,27 +122,31 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public EventNotificationFilter()
+		public DeviceBrandFilter()
 		{
 		}
 
-		public EventNotificationFilter(JToken node) : base(node)
+		public DeviceBrandFilter(JToken node) : base(node)
 		{
 			if(node["idEqual"] != null)
 			{
-				this._IdEqual = node["idEqual"].Value<string>();
+				this._IdEqual = ParseLong(node["idEqual"].Value<string>());
 			}
-			if(node["objectIdEqual"] != null)
+			if(node["deviceFamilyIdEqual"] != null)
 			{
-				this._ObjectIdEqual = ParseLong(node["objectIdEqual"].Value<string>());
+				this._DeviceFamilyIdEqual = ParseLong(node["deviceFamilyIdEqual"].Value<string>());
 			}
-			if(node["eventObjectTypeEqual"] != null)
+			if(node["nameEqual"] != null)
 			{
-				this._EventObjectTypeEqual = node["eventObjectTypeEqual"].Value<string>();
+				this._NameEqual = node["nameEqual"].Value<string>();
+			}
+			if(node["typeEqual"] != null)
+			{
+				this._TypeEqual = (DeviceBrandType)StringEnum.Parse(typeof(DeviceBrandType), node["typeEqual"].Value<string>());
 			}
 			if(node["orderBy"] != null)
 			{
-				this._OrderBy = (EventNotificationOrderBy)StringEnum.Parse(typeof(EventNotificationOrderBy), node["orderBy"].Value<string>());
+				this._OrderBy = (DeviceBrandOrderBy)StringEnum.Parse(typeof(DeviceBrandOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -137,10 +156,11 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaEventNotificationFilter");
+				kparams.AddReplace("objectType", "KalturaDeviceBrandFilter");
 			kparams.AddIfNotNull("idEqual", this._IdEqual);
-			kparams.AddIfNotNull("objectIdEqual", this._ObjectIdEqual);
-			kparams.AddIfNotNull("eventObjectTypeEqual", this._EventObjectTypeEqual);
+			kparams.AddIfNotNull("deviceFamilyIdEqual", this._DeviceFamilyIdEqual);
+			kparams.AddIfNotNull("nameEqual", this._NameEqual);
+			kparams.AddIfNotNull("typeEqual", this._TypeEqual);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -150,10 +170,12 @@ namespace Kaltura.Types
 			{
 				case ID_EQUAL:
 					return "IdEqual";
-				case OBJECT_ID_EQUAL:
-					return "ObjectIdEqual";
-				case EVENT_OBJECT_TYPE_EQUAL:
-					return "EventObjectTypeEqual";
+				case DEVICE_FAMILY_ID_EQUAL:
+					return "DeviceFamilyIdEqual";
+				case NAME_EQUAL:
+					return "NameEqual";
+				case TYPE_EQUAL:
+					return "TypeEqual";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

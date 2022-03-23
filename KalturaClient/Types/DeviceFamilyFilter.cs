@@ -35,37 +35,67 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class PasswordPolicyFilter : Filter
+	public class DeviceFamilyFilter : Filter
 	{
 		#region Constants
-		public const string USER_ROLE_ID_IN = "userRoleIdIn";
+		public const string ID_EQUAL = "idEqual";
+		public const string NAME_EQUAL = "nameEqual";
+		public const string TYPE_EQUAL = "typeEqual";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private string _UserRoleIdIn = null;
-		private PasswordPolicyOrderBy _OrderBy = null;
+		private long _IdEqual = long.MinValue;
+		private string _NameEqual = null;
+		private DeviceFamilyType _TypeEqual = null;
+		private DeviceFamilyOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use UserRoleIdInAsDouble property instead
+		/// Use IdEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string UserRoleIdIn
+		public long IdEqual
 		{
-			get { return _UserRoleIdIn; }
+			get { return _IdEqual; }
 			set 
 			{ 
-				_UserRoleIdIn = value;
-				OnPropertyChanged("UserRoleIdIn");
+				_IdEqual = value;
+				OnPropertyChanged("IdEqual");
+			}
+		}
+		/// <summary>
+		/// Use NameEqualAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string NameEqual
+		{
+			get { return _NameEqual; }
+			set 
+			{ 
+				_NameEqual = value;
+				OnPropertyChanged("NameEqual");
+			}
+		}
+		/// <summary>
+		/// Use TypeEqualAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public DeviceFamilyType TypeEqual
+		{
+			get { return _TypeEqual; }
+			set 
+			{ 
+				_TypeEqual = value;
+				OnPropertyChanged("TypeEqual");
 			}
 		}
 		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public new PasswordPolicyOrderBy OrderBy
+		public new DeviceFamilyOrderBy OrderBy
 		{
 			get { return _OrderBy; }
 			set 
@@ -77,19 +107,27 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public PasswordPolicyFilter()
+		public DeviceFamilyFilter()
 		{
 		}
 
-		public PasswordPolicyFilter(JToken node) : base(node)
+		public DeviceFamilyFilter(JToken node) : base(node)
 		{
-			if(node["userRoleIdIn"] != null)
+			if(node["idEqual"] != null)
 			{
-				this._UserRoleIdIn = node["userRoleIdIn"].Value<string>();
+				this._IdEqual = ParseLong(node["idEqual"].Value<string>());
+			}
+			if(node["nameEqual"] != null)
+			{
+				this._NameEqual = node["nameEqual"].Value<string>();
+			}
+			if(node["typeEqual"] != null)
+			{
+				this._TypeEqual = (DeviceFamilyType)StringEnum.Parse(typeof(DeviceFamilyType), node["typeEqual"].Value<string>());
 			}
 			if(node["orderBy"] != null)
 			{
-				this._OrderBy = (PasswordPolicyOrderBy)StringEnum.Parse(typeof(PasswordPolicyOrderBy), node["orderBy"].Value<string>());
+				this._OrderBy = (DeviceFamilyOrderBy)StringEnum.Parse(typeof(DeviceFamilyOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,8 +137,10 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPasswordPolicyFilter");
-			kparams.AddIfNotNull("userRoleIdIn", this._UserRoleIdIn);
+				kparams.AddReplace("objectType", "KalturaDeviceFamilyFilter");
+			kparams.AddIfNotNull("idEqual", this._IdEqual);
+			kparams.AddIfNotNull("nameEqual", this._NameEqual);
+			kparams.AddIfNotNull("typeEqual", this._TypeEqual);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -108,8 +148,12 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case USER_ROLE_ID_IN:
-					return "UserRoleIdIn";
+				case ID_EQUAL:
+					return "IdEqual";
+				case NAME_EQUAL:
+					return "NameEqual";
+				case TYPE_EQUAL:
+					return "TypeEqual";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

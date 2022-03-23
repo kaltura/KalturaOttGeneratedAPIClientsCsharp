@@ -36,20 +36,74 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
+	public class DeviceFamilyAddRequestBuilder : RequestBuilder<DeviceFamily>
+	{
+		#region Constants
+		public const string DEVICE_FAMILY = "deviceFamily";
+		#endregion
+
+		public DeviceFamily DeviceFamily { get; set; }
+
+		public DeviceFamilyAddRequestBuilder()
+			: base("devicefamily", "add")
+		{
+		}
+
+		public DeviceFamilyAddRequestBuilder(DeviceFamily deviceFamily)
+			: this()
+		{
+			this.DeviceFamily = deviceFamily;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("deviceFamily"))
+				kparams.AddIfNotNull("deviceFamily", DeviceFamily);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<DeviceFamily>(result);
+		}
+	}
+
 	public class DeviceFamilyListRequestBuilder : RequestBuilder<ListResponse<DeviceFamily>>
 	{
 		#region Constants
+		public const string FILTER = "filter";
+		public const string PAGER = "pager";
 		#endregion
 
+		public DeviceFamilyFilter Filter { get; set; }
+		public FilterPager Pager { get; set; }
 
 		public DeviceFamilyListRequestBuilder()
 			: base("devicefamily", "list")
 		{
 		}
 
+		public DeviceFamilyListRequestBuilder(DeviceFamilyFilter filter, FilterPager pager)
+			: this()
+		{
+			this.Filter = filter;
+			this.Pager = pager;
+		}
+
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("filter"))
+				kparams.AddIfNotNull("filter", Filter);
+			if (!isMapped("pager"))
+				kparams.AddIfNotNull("pager", Pager);
 			return kparams;
 		}
 
@@ -65,6 +119,50 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class DeviceFamilyUpdateRequestBuilder : RequestBuilder<DeviceFamily>
+	{
+		#region Constants
+		public const string ID = "id";
+		public const string DEVICE_FAMILY = "deviceFamily";
+		#endregion
+
+		public long Id { get; set; }
+		public DeviceFamily DeviceFamily { get; set; }
+
+		public DeviceFamilyUpdateRequestBuilder()
+			: base("devicefamily", "update")
+		{
+		}
+
+		public DeviceFamilyUpdateRequestBuilder(long id, DeviceFamily deviceFamily)
+			: this()
+		{
+			this.Id = id;
+			this.DeviceFamily = deviceFamily;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("deviceFamily"))
+				kparams.AddIfNotNull("deviceFamily", DeviceFamily);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<DeviceFamily>(result);
+		}
+	}
+
 
 	public class DeviceFamilyService
 	{
@@ -72,9 +170,19 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static DeviceFamilyListRequestBuilder List()
+		public static DeviceFamilyAddRequestBuilder Add(DeviceFamily deviceFamily)
 		{
-			return new DeviceFamilyListRequestBuilder();
+			return new DeviceFamilyAddRequestBuilder(deviceFamily);
+		}
+
+		public static DeviceFamilyListRequestBuilder List(DeviceFamilyFilter filter = null, FilterPager pager = null)
+		{
+			return new DeviceFamilyListRequestBuilder(filter, pager);
+		}
+
+		public static DeviceFamilyUpdateRequestBuilder Update(long id, DeviceFamily deviceFamily)
+		{
+			return new DeviceFamilyUpdateRequestBuilder(id, deviceFamily);
 		}
 	}
 }

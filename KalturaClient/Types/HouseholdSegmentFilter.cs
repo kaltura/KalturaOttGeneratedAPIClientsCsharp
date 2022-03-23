@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class HouseholdSegmentFilter : CrudFilter
+	public class HouseholdSegmentFilter : Filter
 	{
 		#region Constants
 		public const string KSQL = "kSql";

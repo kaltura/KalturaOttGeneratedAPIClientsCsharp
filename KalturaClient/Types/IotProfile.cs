@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IotProfile : CrudObject
+	public class IotProfile : OTTObjectSupportNullable
 	{
 		#region Constants
 		public const string ADAPTER_URL = "adapterUrl";
