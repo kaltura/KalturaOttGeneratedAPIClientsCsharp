@@ -35,67 +35,37 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class EntitlementFilter : BaseEntitlementFilter
+	public class AssetPersonalMarkupSearchFilter : Filter
 	{
 		#region Constants
-		public const string PRODUCT_TYPE_EQUAL = "productTypeEqual";
-		public const string ENTITY_REFERENCE_EQUAL = "entityReferenceEqual";
-		public const string IS_EXPIRED_EQUAL = "isExpiredEqual";
+		public const string ASSETS_IN = "assetsIn";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private TransactionType _ProductTypeEqual = null;
-		private EntityReferenceBy _EntityReferenceEqual = null;
-		private bool? _IsExpiredEqual = null;
-		private EntitlementOrderBy _OrderBy = null;
+		private IList<SlimAsset> _AssetsIn;
+		private AssetPersonalMarkupSearchOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ProductTypeEqualAsDouble property instead
+		/// Use AssetsInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public TransactionType ProductTypeEqual
+		public IList<SlimAsset> AssetsIn
 		{
-			get { return _ProductTypeEqual; }
+			get { return _AssetsIn; }
 			set 
 			{ 
-				_ProductTypeEqual = value;
-				OnPropertyChanged("ProductTypeEqual");
-			}
-		}
-		/// <summary>
-		/// Use EntityReferenceEqualAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public EntityReferenceBy EntityReferenceEqual
-		{
-			get { return _EntityReferenceEqual; }
-			set 
-			{ 
-				_EntityReferenceEqual = value;
-				OnPropertyChanged("EntityReferenceEqual");
-			}
-		}
-		/// <summary>
-		/// Use IsExpiredEqualAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public bool? IsExpiredEqual
-		{
-			get { return _IsExpiredEqual; }
-			set 
-			{ 
-				_IsExpiredEqual = value;
-				OnPropertyChanged("IsExpiredEqual");
+				_AssetsIn = value;
+				OnPropertyChanged("AssetsIn");
 			}
 		}
 		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public new EntitlementOrderBy OrderBy
+		public new AssetPersonalMarkupSearchOrderBy OrderBy
 		{
 			get { return _OrderBy; }
 			set 
@@ -107,27 +77,23 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public EntitlementFilter()
+		public AssetPersonalMarkupSearchFilter()
 		{
 		}
 
-		public EntitlementFilter(JToken node) : base(node)
+		public AssetPersonalMarkupSearchFilter(JToken node) : base(node)
 		{
-			if(node["productTypeEqual"] != null)
+			if(node["assetsIn"] != null)
 			{
-				this._ProductTypeEqual = (TransactionType)StringEnum.Parse(typeof(TransactionType), node["productTypeEqual"].Value<string>());
-			}
-			if(node["entityReferenceEqual"] != null)
-			{
-				this._EntityReferenceEqual = (EntityReferenceBy)StringEnum.Parse(typeof(EntityReferenceBy), node["entityReferenceEqual"].Value<string>());
-			}
-			if(node["isExpiredEqual"] != null)
-			{
-				this._IsExpiredEqual = ParseBool(node["isExpiredEqual"].Value<string>());
+				this._AssetsIn = new List<SlimAsset>();
+				foreach(var arrayNode in node["assetsIn"].Children())
+				{
+					this._AssetsIn.Add(ObjectFactory.Create<SlimAsset>(arrayNode));
+				}
 			}
 			if(node["orderBy"] != null)
 			{
-				this._OrderBy = (EntitlementOrderBy)StringEnum.Parse(typeof(EntitlementOrderBy), node["orderBy"].Value<string>());
+				this._OrderBy = (AssetPersonalMarkupSearchOrderBy)StringEnum.Parse(typeof(AssetPersonalMarkupSearchOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -137,10 +103,8 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaEntitlementFilter");
-			kparams.AddIfNotNull("productTypeEqual", this._ProductTypeEqual);
-			kparams.AddIfNotNull("entityReferenceEqual", this._EntityReferenceEqual);
-			kparams.AddIfNotNull("isExpiredEqual", this._IsExpiredEqual);
+				kparams.AddReplace("objectType", "KalturaAssetPersonalMarkupSearchFilter");
+			kparams.AddIfNotNull("assetsIn", this._AssetsIn);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -148,12 +112,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case PRODUCT_TYPE_EQUAL:
-					return "ProductTypeEqual";
-				case ENTITY_REFERENCE_EQUAL:
-					return "EntityReferenceEqual";
-				case IS_EXPIRED_EQUAL:
-					return "IsExpiredEqual";
+				case ASSETS_IN:
+					return "AssetsIn";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
