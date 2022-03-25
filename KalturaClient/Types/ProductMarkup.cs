@@ -35,80 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class DeviceFamilyBase : ObjectBase
+	public class ProductMarkup : ObjectBase
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string NAME = "name";
-		public const string TYPE = "type";
+		public const string PRODUCT_ID = "productId";
+		public const string PRODUCT_TYPE = "productType";
+		public const string IS_ENTITLED = "isEntitled";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
-		private DeviceFamilyType _Type = null;
+		private long _ProductId = long.MinValue;
+		private TransactionType _ProductType = null;
+		private bool? _IsEntitled = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdAsDouble property instead
+		/// Use ProductIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long Id
+		public long ProductId
 		{
-			get { return _Id; }
-			set 
-			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
-			}
-		}
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string Name
-		{
-			get { return _Name; }
-			set 
-			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
-			}
-		}
-		/// <summary>
-		/// Use TypeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public DeviceFamilyType Type
-		{
-			get { return _Type; }
+			get { return _ProductId; }
 			private set 
 			{ 
-				_Type = value;
-				OnPropertyChanged("Type");
+				_ProductId = value;
+				OnPropertyChanged("ProductId");
+			}
+		}
+		/// <summary>
+		/// Use ProductTypeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public TransactionType ProductType
+		{
+			get { return _ProductType; }
+			private set 
+			{ 
+				_ProductType = value;
+				OnPropertyChanged("ProductType");
+			}
+		}
+		/// <summary>
+		/// Use IsEntitledAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IsEntitled
+		{
+			get { return _IsEntitled; }
+			private set 
+			{ 
+				_IsEntitled = value;
+				OnPropertyChanged("IsEntitled");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public DeviceFamilyBase()
+		public ProductMarkup()
 		{
 		}
 
-		public DeviceFamilyBase(JToken node) : base(node)
+		public ProductMarkup(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["productId"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._ProductId = ParseLong(node["productId"].Value<string>());
 			}
-			if(node["name"] != null)
+			if(node["productType"] != null)
 			{
-				this._Name = node["name"].Value<string>();
+				this._ProductType = (TransactionType)StringEnum.Parse(typeof(TransactionType), node["productType"].Value<string>());
 			}
-			if(node["type"] != null)
+			if(node["isEntitled"] != null)
 			{
-				this._Type = (DeviceFamilyType)StringEnum.Parse(typeof(DeviceFamilyType), node["type"].Value<string>());
+				this._IsEntitled = ParseBool(node["isEntitled"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,22 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaDeviceFamilyBase");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("type", this._Type);
+				kparams.AddReplace("objectType", "KalturaProductMarkup");
+			kparams.AddIfNotNull("productId", this._ProductId);
+			kparams.AddIfNotNull("productType", this._ProductType);
+			kparams.AddIfNotNull("isEntitled", this._IsEntitled);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case NAME:
-					return "Name";
-				case TYPE:
-					return "Type";
+				case PRODUCT_ID:
+					return "ProductId";
+				case PRODUCT_TYPE:
+					return "ProductType";
+				case IS_ENTITLED:
+					return "IsEntitled";
 				default:
 					return base.getPropertyName(apiName);
 			}

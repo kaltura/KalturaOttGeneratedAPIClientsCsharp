@@ -226,6 +226,8 @@ namespace Kaltura
 					return new ListResponse<PaymentGatewayProfile>(jToken);
 				case "KalturaPaymentMethodProfileListResponse":
 					return new ListResponse<PaymentMethodProfile>(jToken);
+				case "KalturaAssetPersonalMarkupListResponse":
+					return new ListResponse<AssetPersonalMarkup>(jToken);
 				case "KalturaAssetRuleListResponse":
 					return new ListResponse<AssetRule>(jToken);
 				case "KalturaAssetUserRuleListResponse":
