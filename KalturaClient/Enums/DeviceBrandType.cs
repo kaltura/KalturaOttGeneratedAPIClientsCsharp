@@ -27,12 +27,11 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class BundleType : StringEnum
+	public sealed class DeviceBrandType : StringEnum
 	{
-		public static readonly BundleType SUBSCRIPTION = new BundleType("subscription");
-		public static readonly BundleType COLLECTION = new BundleType("collection");
-		public static readonly BundleType PAGO = new BundleType("pago");
+		public static readonly DeviceBrandType SYSTEM = new DeviceBrandType("System");
+		public static readonly DeviceBrandType CUSTOM = new DeviceBrandType("Custom");
 
-		private BundleType(string name) : base(name) { }
+		private DeviceBrandType(string name) : base(name) { }
 	}
 }

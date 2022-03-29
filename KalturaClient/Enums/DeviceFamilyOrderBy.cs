@@ -27,12 +27,11 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class BundleType : StringEnum
+	public sealed class DeviceFamilyOrderBy : StringEnum
 	{
-		public static readonly BundleType SUBSCRIPTION = new BundleType("subscription");
-		public static readonly BundleType COLLECTION = new BundleType("collection");
-		public static readonly BundleType PAGO = new BundleType("pago");
+		public static readonly DeviceFamilyOrderBy ID_ASC = new DeviceFamilyOrderBy("ID_ASC");
+		public static readonly DeviceFamilyOrderBy ID_DESC = new DeviceFamilyOrderBy("ID_DESC");
 
-		private BundleType(string name) : base(name) { }
+		private DeviceFamilyOrderBy(string name) : base(name) { }
 	}
 }
