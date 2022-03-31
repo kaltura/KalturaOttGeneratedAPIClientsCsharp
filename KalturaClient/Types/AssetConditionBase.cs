@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class CrudObject : OTTObjectSupportNullable
+	public class AssetConditionBase : Condition
 	{
 		#region Constants
 		#endregion
@@ -47,11 +47,11 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public CrudObject()
+		public AssetConditionBase()
 		{
 		}
 
-		public CrudObject(JToken node) : base(node)
+		public AssetConditionBase(JToken node) : base(node)
 		{
 		}
 		#endregion
@@ -61,7 +61,7 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaCrudObject");
+				kparams.AddReplace("objectType", "KalturaAssetConditionBase");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)

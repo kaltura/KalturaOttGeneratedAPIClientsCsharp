@@ -75,26 +75,23 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class SmsAdapterProfileUpdateRequestBuilder : RequestBuilder<SmsAdapterProfile>
+	public class SmsAdapterProfileDeleteRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
 		public const string ID = "id";
-		public const string OBJECT_TO_UPDATE = "objectToUpdate";
 		#endregion
 
 		public long Id { get; set; }
-		public SmsAdapterProfile ObjectToUpdate { get; set; }
 
-		public SmsAdapterProfileUpdateRequestBuilder()
-			: base("smsadapterprofile", "update")
+		public SmsAdapterProfileDeleteRequestBuilder()
+			: base("smsadapterprofile", "delete")
 		{
 		}
 
-		public SmsAdapterProfileUpdateRequestBuilder(long id, SmsAdapterProfile objectToUpdate)
+		public SmsAdapterProfileDeleteRequestBuilder(long id)
 			: this()
 		{
 			this.Id = id;
-			this.ObjectToUpdate = objectToUpdate;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -102,8 +99,45 @@ namespace Kaltura.Services
 			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("id"))
 				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("objectToUpdate"))
-				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return null;
+		}
+	}
+
+	public class SmsAdapterProfileGenerateSharedSecretRequestBuilder : RequestBuilder<SmsAdapterProfile>
+	{
+		#region Constants
+		public const string SMS_ADAPTER_ID = "smsAdapterId";
+		#endregion
+
+		public int SmsAdapterId { get; set; }
+
+		public SmsAdapterProfileGenerateSharedSecretRequestBuilder()
+			: base("smsadapterprofile", "generateSharedSecret")
+		{
+		}
+
+		public SmsAdapterProfileGenerateSharedSecretRequestBuilder(int smsAdapterId)
+			: this()
+		{
+			this.SmsAdapterId = smsAdapterId;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("smsAdapterId"))
+				kparams.AddIfNotNull("smsAdapterId", SmsAdapterId);
 			return kparams;
 		}
 
@@ -197,23 +231,26 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class SmsAdapterProfileDeleteRequestBuilder : RequestBuilder<VoidResponse>
+	public class SmsAdapterProfileUpdateRequestBuilder : RequestBuilder<SmsAdapterProfile>
 	{
 		#region Constants
 		public const string ID = "id";
+		public const string OBJECT_TO_UPDATE = "objectToUpdate";
 		#endregion
 
 		public long Id { get; set; }
+		public SmsAdapterProfile ObjectToUpdate { get; set; }
 
-		public SmsAdapterProfileDeleteRequestBuilder()
-			: base("smsadapterprofile", "delete")
+		public SmsAdapterProfileUpdateRequestBuilder()
+			: base("smsadapterprofile", "update")
 		{
 		}
 
-		public SmsAdapterProfileDeleteRequestBuilder(long id)
+		public SmsAdapterProfileUpdateRequestBuilder(long id, SmsAdapterProfile objectToUpdate)
 			: this()
 		{
 			this.Id = id;
+			this.ObjectToUpdate = objectToUpdate;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -221,45 +258,8 @@ namespace Kaltura.Services
 			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("id"))
 				kparams.AddIfNotNull("id", Id);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return null;
-		}
-	}
-
-	public class SmsAdapterProfileGenerateSharedSecretRequestBuilder : RequestBuilder<SmsAdapterProfile>
-	{
-		#region Constants
-		public const string SMS_ADAPTER_ID = "smsAdapterId";
-		#endregion
-
-		public int SmsAdapterId { get; set; }
-
-		public SmsAdapterProfileGenerateSharedSecretRequestBuilder()
-			: base("smsadapterprofile", "generateSharedSecret")
-		{
-		}
-
-		public SmsAdapterProfileGenerateSharedSecretRequestBuilder(int smsAdapterId)
-			: this()
-		{
-			this.SmsAdapterId = smsAdapterId;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("smsAdapterId"))
-				kparams.AddIfNotNull("smsAdapterId", SmsAdapterId);
+			if (!isMapped("objectToUpdate"))
+				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
 			return kparams;
 		}
 
@@ -287,21 +287,6 @@ namespace Kaltura.Services
 			return new SmsAdapterProfileAddRequestBuilder(objectToAdd);
 		}
 
-		public static SmsAdapterProfileUpdateRequestBuilder Update(long id, SmsAdapterProfile objectToUpdate)
-		{
-			return new SmsAdapterProfileUpdateRequestBuilder(id, objectToUpdate);
-		}
-
-		public static SmsAdapterProfileGetRequestBuilder Get(long id)
-		{
-			return new SmsAdapterProfileGetRequestBuilder(id);
-		}
-
-		public static SmsAdapterProfileListRequestBuilder List(SmsAdapterProfileFilter filter)
-		{
-			return new SmsAdapterProfileListRequestBuilder(filter);
-		}
-
 		public static SmsAdapterProfileDeleteRequestBuilder Delete(long id)
 		{
 			return new SmsAdapterProfileDeleteRequestBuilder(id);
@@ -310,6 +295,21 @@ namespace Kaltura.Services
 		public static SmsAdapterProfileGenerateSharedSecretRequestBuilder GenerateSharedSecret(int smsAdapterId)
 		{
 			return new SmsAdapterProfileGenerateSharedSecretRequestBuilder(smsAdapterId);
+		}
+
+		public static SmsAdapterProfileGetRequestBuilder Get(long id)
+		{
+			return new SmsAdapterProfileGetRequestBuilder(id);
+		}
+
+		public static SmsAdapterProfileListRequestBuilder List(SmsAdapterProfileFilter filter = null)
+		{
+			return new SmsAdapterProfileListRequestBuilder(filter);
+		}
+
+		public static SmsAdapterProfileUpdateRequestBuilder Update(long id, SmsAdapterProfile objectToUpdate)
+		{
+			return new SmsAdapterProfileUpdateRequestBuilder(id, objectToUpdate);
 		}
 	}
 }

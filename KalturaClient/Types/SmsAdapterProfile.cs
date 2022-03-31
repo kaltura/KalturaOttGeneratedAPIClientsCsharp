@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class SmsAdapterProfile : CrudObject
+	public class SmsAdapterProfile : OTTObjectSupportNullable
 	{
 		#region Constants
 		public const string ID = "id";
