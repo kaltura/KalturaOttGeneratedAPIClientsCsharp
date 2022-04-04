@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -67,21 +67,7 @@ namespace Kaltura.Types
 		/// Use UtcOffsetEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use UtcOffsetEqualAsDouble property instead")]
-		public float UtcOffsetEqual
-		{
-			get { return (float)_UtcOffsetEqual; }
-			set 
-			{ 
-				_UtcOffsetEqual = value;
-				OnPropertyChanged("UtcOffsetEqual");
-			}
-		}
-		///<summary>
-		///Use this property UtcOffsetEqualAsDouble instead of the float UtcOffsetEqual property version
-		///</summary>
-		[JsonProperty]
-		public double UtcOffsetEqualAsDouble
+		public double UtcOffsetEqual
 		{
 			get { return _UtcOffsetEqual; }
 			set 

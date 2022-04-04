@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -54,21 +54,7 @@ namespace Kaltura.Types
 		/// Use NormalizedAvgScoreAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use NormalizedAvgScoreAsDouble property instead")]
-		public float NormalizedAvgScore
-		{
-			get { return (float)_NormalizedAvgScore; }
-			set 
-			{ 
-				_NormalizedAvgScore = value;
-				OnPropertyChanged("NormalizedAvgScore");
-			}
-		}
-		///<summary>
-		///Use this property NormalizedAvgScoreAsDouble instead of the float NormalizedAvgScore property version
-		///</summary>
-		[JsonProperty]
-		public double NormalizedAvgScoreAsDouble
+		public double NormalizedAvgScore
 		{
 			get { return _NormalizedAvgScore; }
 			set 
@@ -94,21 +80,7 @@ namespace Kaltura.Types
 		/// Use AvgScoreAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use AvgScoreAsDouble property instead")]
-		public float AvgScore
-		{
-			get { return (float)_AvgScore; }
-			set 
-			{ 
-				_AvgScore = value;
-				OnPropertyChanged("AvgScore");
-			}
-		}
-		///<summary>
-		///Use this property AvgScoreAsDouble instead of the float AvgScore property version
-		///</summary>
-		[JsonProperty]
-		public double AvgScoreAsDouble
+		public double AvgScore
 		{
 			get { return _AvgScore; }
 			set 

@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -101,21 +101,7 @@ namespace Kaltura.Types
 		/// Use AmountAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use AmountAsDouble property instead")]
-		public float Amount
-		{
-			get { return (float)_Amount; }
-			set 
-			{ 
-				_Amount = value;
-				OnPropertyChanged("Amount");
-			}
-		}
-		///<summary>
-		///Use this property AmountAsDouble instead of the float Amount property version
-		///</summary>
-		[JsonProperty]
-		public double AmountAsDouble
+		public double Amount
 		{
 			get { return _Amount; }
 			set 

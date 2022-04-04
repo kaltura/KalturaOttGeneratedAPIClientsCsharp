@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -69,21 +69,7 @@ namespace Kaltura.Types
 		/// Use PercentAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use PercentAsDouble property instead")]
-		public float Percent
-		{
-			get { return (float)_Percent; }
-			set 
-			{ 
-				_Percent = value;
-				OnPropertyChanged("Percent");
-			}
-		}
-		///<summary>
-		///Use this property PercentAsDouble instead of the float Percent property version
-		///</summary>
-		[JsonProperty]
-		public double PercentAsDouble
+		public double Percent
 		{
 			get { return _Percent; }
 			set 

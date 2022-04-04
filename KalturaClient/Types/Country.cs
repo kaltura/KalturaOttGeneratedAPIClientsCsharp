@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -157,21 +157,7 @@ namespace Kaltura.Types
 		/// Use VatPercentAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use VatPercentAsDouble property instead")]
-		public float VatPercent
-		{
-			get { return (float)_VatPercent; }
-			set 
-			{ 
-				_VatPercent = value;
-				OnPropertyChanged("VatPercent");
-			}
-		}
-		///<summary>
-		///Use this property VatPercentAsDouble instead of the float VatPercent property version
-		///</summary>
-		[JsonProperty]
-		public double VatPercentAsDouble
+		public double VatPercent
 		{
 			get { return _VatPercent; }
 			set 

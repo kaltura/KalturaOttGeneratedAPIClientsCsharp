@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -103,21 +103,7 @@ namespace Kaltura.Types
 		/// Use GteAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use GteAsDouble property instead")]
-		public float Gte
-		{
-			get { return (float)_Gte; }
-			set 
-			{ 
-				_Gte = value;
-				OnPropertyChanged("Gte");
-			}
-		}
-		///<summary>
-		///Use this property GteAsDouble instead of the float Gte property version
-		///</summary>
-		[JsonProperty]
-		public double GteAsDouble
+		public double Gte
 		{
 			get { return _Gte; }
 			set 
@@ -130,21 +116,7 @@ namespace Kaltura.Types
 		/// Use GtAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use GtAsDouble property instead")]
-		public float Gt
-		{
-			get { return (float)_Gt; }
-			set 
-			{ 
-				_Gt = value;
-				OnPropertyChanged("Gt");
-			}
-		}
-		///<summary>
-		///Use this property GtAsDouble instead of the float Gt property version
-		///</summary>
-		[JsonProperty]
-		public double GtAsDouble
+		public double Gt
 		{
 			get { return _Gt; }
 			set 
@@ -157,21 +129,7 @@ namespace Kaltura.Types
 		/// Use LteAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use LteAsDouble property instead")]
-		public float Lte
-		{
-			get { return (float)_Lte; }
-			set 
-			{ 
-				_Lte = value;
-				OnPropertyChanged("Lte");
-			}
-		}
-		///<summary>
-		///Use this property LteAsDouble instead of the float Lte property version
-		///</summary>
-		[JsonProperty]
-		public double LteAsDouble
+		public double Lte
 		{
 			get { return _Lte; }
 			set 
@@ -184,21 +142,7 @@ namespace Kaltura.Types
 		/// Use LtAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use LtAsDouble property instead")]
-		public float Lt
-		{
-			get { return (float)_Lt; }
-			set 
-			{ 
-				_Lt = value;
-				OnPropertyChanged("Lt");
-			}
-		}
-		///<summary>
-		///Use this property LtAsDouble instead of the float Lt property version
-		///</summary>
-		[JsonProperty]
-		public double LtAsDouble
+		public double Lt
 		{
 			get { return _Lt; }
 			set 
@@ -211,21 +155,7 @@ namespace Kaltura.Types
 		/// Use EqualsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		[Obsolete("Use EqualsAsDouble property instead")]
-		public float Equals
-		{
-			get { return (float)_Equals; }
-			set 
-			{ 
-				_Equals = value;
-				OnPropertyChanged("Equals");
-			}
-		}
-		///<summary>
-		///Use this property EqualsAsDouble instead of the float Equals property version
-		///</summary>
-		[JsonProperty]
-		public double EqualsAsDouble
+		public double Equals
 		{
 			get { return _Equals; }
 			set 
