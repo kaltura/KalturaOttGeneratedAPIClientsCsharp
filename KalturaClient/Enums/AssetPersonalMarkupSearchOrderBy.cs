@@ -27,13 +27,11 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class TransactionType : StringEnum
+	public sealed class AssetPersonalMarkupSearchOrderBy : StringEnum
 	{
-		public static readonly TransactionType PPV = new TransactionType("ppv");
-		public static readonly TransactionType SUBSCRIPTION = new TransactionType("subscription");
-		public static readonly TransactionType COLLECTION = new TransactionType("collection");
-		public static readonly TransactionType PROGRAMASSETGROUPOFFER = new TransactionType("programAssetGroupOffer");
+		public static readonly AssetPersonalMarkupSearchOrderBy NONE = new AssetPersonalMarkupSearchOrderBy("NONE");
+		public static readonly AssetPersonalMarkupSearchOrderBy REQUEST_ORDER = new AssetPersonalMarkupSearchOrderBy("REQUEST_ORDER");
 
-		private TransactionType(string name) : base(name) { }
+		private AssetPersonalMarkupSearchOrderBy(string name) : base(name) { }
 	}
 }
