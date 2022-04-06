@@ -35,62 +35,24 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IotProfile : OTTObjectSupportNullable
+	public class ProgramAssetGroupOfferEntitlement : Entitlement
 	{
 		#region Constants
-		public const string ADAPTER_URL = "adapterUrl";
-		public const string IOT_PROFILE_AWS = "iotProfileAws";
 		#endregion
 
 		#region Private Fields
-		private string _AdapterUrl = null;
-		private IotProfileAws _IotProfileAws;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use AdapterUrlAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string AdapterUrl
-		{
-			get { return _AdapterUrl; }
-			set 
-			{ 
-				_AdapterUrl = value;
-				OnPropertyChanged("AdapterUrl");
-			}
-		}
-		/// <summary>
-		/// Use IotProfileAwsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IotProfileAws IotProfileAws
-		{
-			get { return _IotProfileAws; }
-			set 
-			{ 
-				_IotProfileAws = value;
-				OnPropertyChanged("IotProfileAws");
-			}
-		}
 		#endregion
 
 		#region CTor
-		public IotProfile()
+		public ProgramAssetGroupOfferEntitlement()
 		{
 		}
 
-		public IotProfile(JToken node) : base(node)
+		public ProgramAssetGroupOfferEntitlement(JToken node) : base(node)
 		{
-			if(node["adapterUrl"] != null)
-			{
-				this._AdapterUrl = node["adapterUrl"].Value<string>();
-			}
-			if(node["iotProfileAws"] != null)
-			{
-				this._IotProfileAws = ObjectFactory.Create<IotProfileAws>(node["iotProfileAws"]);
-			}
 		}
 		#endregion
 
@@ -99,19 +61,13 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaIotProfile");
-			kparams.AddIfNotNull("adapterUrl", this._AdapterUrl);
-			kparams.AddIfNotNull("iotProfileAws", this._IotProfileAws);
+				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOfferEntitlement");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ADAPTER_URL:
-					return "AdapterUrl";
-				case IOT_PROFILE_AWS:
-					return "IotProfileAws";
 				default:
 					return base.getPropertyName(apiName);
 			}

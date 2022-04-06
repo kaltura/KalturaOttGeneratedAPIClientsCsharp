@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class EventNotificationFilter : CrudFilter
+	public class EventNotificationFilter : Filter
 	{
 		#region Constants
 		public const string ID_EQUAL = "idEqual";

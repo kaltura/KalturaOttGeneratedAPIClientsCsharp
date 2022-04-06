@@ -75,50 +75,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class CategoryItemUpdateRequestBuilder : RequestBuilder<CategoryItem>
-	{
-		#region Constants
-		public const string ID = "id";
-		public const string OBJECT_TO_UPDATE = "objectToUpdate";
-		#endregion
-
-		public long Id { get; set; }
-		public CategoryItem ObjectToUpdate { get; set; }
-
-		public CategoryItemUpdateRequestBuilder()
-			: base("categoryitem", "update")
-		{
-		}
-
-		public CategoryItemUpdateRequestBuilder(long id, CategoryItem objectToUpdate)
-			: this()
-		{
-			this.Id = id;
-			this.ObjectToUpdate = objectToUpdate;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("objectToUpdate"))
-				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<CategoryItem>(result);
-		}
-	}
-
 	public class CategoryItemDeleteRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
@@ -202,6 +158,50 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class CategoryItemUpdateRequestBuilder : RequestBuilder<CategoryItem>
+	{
+		#region Constants
+		public const string ID = "id";
+		public const string OBJECT_TO_UPDATE = "objectToUpdate";
+		#endregion
+
+		public long Id { get; set; }
+		public CategoryItem ObjectToUpdate { get; set; }
+
+		public CategoryItemUpdateRequestBuilder()
+			: base("categoryitem", "update")
+		{
+		}
+
+		public CategoryItemUpdateRequestBuilder(long id, CategoryItem objectToUpdate)
+			: this()
+		{
+			this.Id = id;
+			this.ObjectToUpdate = objectToUpdate;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("objectToUpdate"))
+				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<CategoryItem>(result);
+		}
+	}
+
 
 	public class CategoryItemService
 	{
@@ -214,11 +214,6 @@ namespace Kaltura.Services
 			return new CategoryItemAddRequestBuilder(objectToAdd);
 		}
 
-		public static CategoryItemUpdateRequestBuilder Update(long id, CategoryItem objectToUpdate)
-		{
-			return new CategoryItemUpdateRequestBuilder(id, objectToUpdate);
-		}
-
 		public static CategoryItemDeleteRequestBuilder Delete(long id)
 		{
 			return new CategoryItemDeleteRequestBuilder(id);
@@ -227,6 +222,11 @@ namespace Kaltura.Services
 		public static CategoryItemListRequestBuilder List(CategoryItemFilter filter = null, FilterPager pager = null)
 		{
 			return new CategoryItemListRequestBuilder(filter, pager);
+		}
+
+		public static CategoryItemUpdateRequestBuilder Update(long id, CategoryItem objectToUpdate)
+		{
+			return new CategoryItemUpdateRequestBuilder(id, objectToUpdate);
 		}
 	}
 }

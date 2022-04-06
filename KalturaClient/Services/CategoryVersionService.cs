@@ -75,35 +75,40 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class CategoryVersionUpdateRequestBuilder : RequestBuilder<CategoryVersion>
+	public class CategoryVersionCreateTreeRequestBuilder : RequestBuilder<CategoryVersion>
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string OBJECT_TO_UPDATE = "objectToUpdate";
+		public const string CATEGORY_ITEM_ID = "categoryItemId";
+		public const string NAME = "name";
+		public const string COMMENT = "comment";
 		#endregion
 
-		public long Id { get; set; }
-		public CategoryVersion ObjectToUpdate { get; set; }
+		public long CategoryItemId { get; set; }
+		public string Name { get; set; }
+		public string Comment { get; set; }
 
-		public CategoryVersionUpdateRequestBuilder()
-			: base("categoryversion", "update")
+		public CategoryVersionCreateTreeRequestBuilder()
+			: base("categoryversion", "createTree")
 		{
 		}
 
-		public CategoryVersionUpdateRequestBuilder(long id, CategoryVersion objectToUpdate)
+		public CategoryVersionCreateTreeRequestBuilder(long categoryItemId, string name, string comment)
 			: this()
 		{
-			this.Id = id;
-			this.ObjectToUpdate = objectToUpdate;
+			this.CategoryItemId = categoryItemId;
+			this.Name = name;
+			this.Comment = comment;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("objectToUpdate"))
-				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
+			if (!isMapped("categoryItemId"))
+				kparams.AddIfNotNull("categoryItemId", CategoryItemId);
+			if (!isMapped("name"))
+				kparams.AddIfNotNull("name", Name);
+			if (!isMapped("comment"))
+				kparams.AddIfNotNull("comment", Comment);
 			return kparams;
 		}
 
@@ -202,55 +207,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class CategoryVersionCreateTreeRequestBuilder : RequestBuilder<CategoryVersion>
-	{
-		#region Constants
-		public const string CATEGORY_ITEM_ID = "categoryItemId";
-		public const string NAME = "name";
-		public const string COMMENT = "comment";
-		#endregion
-
-		public long CategoryItemId { get; set; }
-		public string Name { get; set; }
-		public string Comment { get; set; }
-
-		public CategoryVersionCreateTreeRequestBuilder()
-			: base("categoryversion", "createTree")
-		{
-		}
-
-		public CategoryVersionCreateTreeRequestBuilder(long categoryItemId, string name, string comment)
-			: this()
-		{
-			this.CategoryItemId = categoryItemId;
-			this.Name = name;
-			this.Comment = comment;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("categoryItemId"))
-				kparams.AddIfNotNull("categoryItemId", CategoryItemId);
-			if (!isMapped("name"))
-				kparams.AddIfNotNull("name", Name);
-			if (!isMapped("comment"))
-				kparams.AddIfNotNull("comment", Comment);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<CategoryVersion>(result);
-		}
-	}
-
 	public class CategoryVersionSetDefaultRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
@@ -295,6 +251,50 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class CategoryVersionUpdateRequestBuilder : RequestBuilder<CategoryVersion>
+	{
+		#region Constants
+		public const string ID = "id";
+		public const string OBJECT_TO_UPDATE = "objectToUpdate";
+		#endregion
+
+		public long Id { get; set; }
+		public CategoryVersion ObjectToUpdate { get; set; }
+
+		public CategoryVersionUpdateRequestBuilder()
+			: base("categoryversion", "update")
+		{
+		}
+
+		public CategoryVersionUpdateRequestBuilder(long id, CategoryVersion objectToUpdate)
+			: this()
+		{
+			this.Id = id;
+			this.ObjectToUpdate = objectToUpdate;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("objectToUpdate"))
+				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<CategoryVersion>(result);
+		}
+	}
+
 
 	public class CategoryVersionService
 	{
@@ -307,9 +307,9 @@ namespace Kaltura.Services
 			return new CategoryVersionAddRequestBuilder(objectToAdd);
 		}
 
-		public static CategoryVersionUpdateRequestBuilder Update(long id, CategoryVersion objectToUpdate)
+		public static CategoryVersionCreateTreeRequestBuilder CreateTree(long categoryItemId, string name, string comment)
 		{
-			return new CategoryVersionUpdateRequestBuilder(id, objectToUpdate);
+			return new CategoryVersionCreateTreeRequestBuilder(categoryItemId, name, comment);
 		}
 
 		public static CategoryVersionDeleteRequestBuilder Delete(long id)
@@ -322,14 +322,14 @@ namespace Kaltura.Services
 			return new CategoryVersionListRequestBuilder(filter, pager);
 		}
 
-		public static CategoryVersionCreateTreeRequestBuilder CreateTree(long categoryItemId, string name, string comment)
-		{
-			return new CategoryVersionCreateTreeRequestBuilder(categoryItemId, name, comment);
-		}
-
 		public static CategoryVersionSetDefaultRequestBuilder SetDefault(long id, bool force = false)
 		{
 			return new CategoryVersionSetDefaultRequestBuilder(id, force);
+		}
+
+		public static CategoryVersionUpdateRequestBuilder Update(long id, CategoryVersion objectToUpdate)
+		{
+			return new CategoryVersionUpdateRequestBuilder(id, objectToUpdate);
 		}
 	}
 }

@@ -40,13 +40,15 @@ namespace Kaltura.Types
 		#region Constants
 		public const string ID = "id";
 		public const string NAME = "name";
-		public const string DEVICE_FAMILYID = "deviceFamilyid";
+		public const string DEVICE_FAMILY_ID = "deviceFamilyId";
+		public const string TYPE = "type";
 		#endregion
 
 		#region Private Fields
 		private long _Id = long.MinValue;
 		private string _Name = null;
-		private long _DeviceFamilyid = long.MinValue;
+		private long _DeviceFamilyId = long.MinValue;
+		private DeviceBrandType _Type = null;
 		#endregion
 
 		#region Properties
@@ -57,7 +59,7 @@ namespace Kaltura.Types
 		public long Id
 		{
 			get { return _Id; }
-			private set 
+			set 
 			{ 
 				_Id = value;
 				OnPropertyChanged("Id");
@@ -77,16 +79,29 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use DeviceFamilyidAsDouble property instead
+		/// Use DeviceFamilyIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long DeviceFamilyid
+		public long DeviceFamilyId
 		{
-			get { return _DeviceFamilyid; }
+			get { return _DeviceFamilyId; }
+			set 
+			{ 
+				_DeviceFamilyId = value;
+				OnPropertyChanged("DeviceFamilyId");
+			}
+		}
+		/// <summary>
+		/// Use TypeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public DeviceBrandType Type
+		{
+			get { return _Type; }
 			private set 
 			{ 
-				_DeviceFamilyid = value;
-				OnPropertyChanged("DeviceFamilyid");
+				_Type = value;
+				OnPropertyChanged("Type");
 			}
 		}
 		#endregion
@@ -106,9 +121,13 @@ namespace Kaltura.Types
 			{
 				this._Name = node["name"].Value<string>();
 			}
-			if(node["deviceFamilyid"] != null)
+			if(node["deviceFamilyId"] != null)
 			{
-				this._DeviceFamilyid = ParseLong(node["deviceFamilyid"].Value<string>());
+				this._DeviceFamilyId = ParseLong(node["deviceFamilyId"].Value<string>());
+			}
+			if(node["type"] != null)
+			{
+				this._Type = (DeviceBrandType)StringEnum.Parse(typeof(DeviceBrandType), node["type"].Value<string>());
 			}
 		}
 		#endregion
@@ -121,7 +140,8 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaDeviceBrand");
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("deviceFamilyid", this._DeviceFamilyid);
+			kparams.AddIfNotNull("deviceFamilyId", this._DeviceFamilyId);
+			kparams.AddIfNotNull("type", this._Type);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -132,8 +152,10 @@ namespace Kaltura.Types
 					return "Id";
 				case NAME:
 					return "Name";
-				case DEVICE_FAMILYID:
-					return "DeviceFamilyid";
+				case DEVICE_FAMILY_ID:
+					return "DeviceFamilyId";
+				case TYPE:
+					return "Type";
 				default:
 					return base.getPropertyName(apiName);
 			}

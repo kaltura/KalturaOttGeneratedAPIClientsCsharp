@@ -35,61 +35,84 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IotProfile : OTTObjectSupportNullable
+	public class AssetPersonalMarkup : ObjectBase
 	{
 		#region Constants
-		public const string ADAPTER_URL = "adapterUrl";
-		public const string IOT_PROFILE_AWS = "iotProfileAws";
+		public const string ASSET_ID = "assetId";
+		public const string ASSET_TYPE = "assetType";
+		public const string PRODUCTS = "products";
 		#endregion
 
 		#region Private Fields
-		private string _AdapterUrl = null;
-		private IotProfileAws _IotProfileAws;
+		private long _AssetId = long.MinValue;
+		private AssetType _AssetType = null;
+		private IList<ProductMarkup> _Products;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AdapterUrlAsDouble property instead
+		/// Use AssetIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string AdapterUrl
+		public long AssetId
 		{
-			get { return _AdapterUrl; }
-			set 
+			get { return _AssetId; }
+			private set 
 			{ 
-				_AdapterUrl = value;
-				OnPropertyChanged("AdapterUrl");
+				_AssetId = value;
+				OnPropertyChanged("AssetId");
 			}
 		}
 		/// <summary>
-		/// Use IotProfileAwsAsDouble property instead
+		/// Use AssetTypeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IotProfileAws IotProfileAws
+		public AssetType AssetType
 		{
-			get { return _IotProfileAws; }
+			get { return _AssetType; }
+			private set 
+			{ 
+				_AssetType = value;
+				OnPropertyChanged("AssetType");
+			}
+		}
+		/// <summary>
+		/// Use ProductsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public IList<ProductMarkup> Products
+		{
+			get { return _Products; }
 			set 
 			{ 
-				_IotProfileAws = value;
-				OnPropertyChanged("IotProfileAws");
+				_Products = value;
+				OnPropertyChanged("Products");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public IotProfile()
+		public AssetPersonalMarkup()
 		{
 		}
 
-		public IotProfile(JToken node) : base(node)
+		public AssetPersonalMarkup(JToken node) : base(node)
 		{
-			if(node["adapterUrl"] != null)
+			if(node["assetId"] != null)
 			{
-				this._AdapterUrl = node["adapterUrl"].Value<string>();
+				this._AssetId = ParseLong(node["assetId"].Value<string>());
 			}
-			if(node["iotProfileAws"] != null)
+			if(node["assetType"] != null)
 			{
-				this._IotProfileAws = ObjectFactory.Create<IotProfileAws>(node["iotProfileAws"]);
+				this._AssetType = (AssetType)StringEnum.Parse(typeof(AssetType), node["assetType"].Value<string>());
+			}
+			if(node["products"] != null)
+			{
+				this._Products = new List<ProductMarkup>();
+				foreach(var arrayNode in node["products"].Children())
+				{
+					this._Products.Add(ObjectFactory.Create<ProductMarkup>(arrayNode));
+				}
 			}
 		}
 		#endregion
@@ -99,19 +122,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaIotProfile");
-			kparams.AddIfNotNull("adapterUrl", this._AdapterUrl);
-			kparams.AddIfNotNull("iotProfileAws", this._IotProfileAws);
+				kparams.AddReplace("objectType", "KalturaAssetPersonalMarkup");
+			kparams.AddIfNotNull("assetId", this._AssetId);
+			kparams.AddIfNotNull("assetType", this._AssetType);
+			kparams.AddIfNotNull("products", this._Products);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ADAPTER_URL:
-					return "AdapterUrl";
-				case IOT_PROFILE_AWS:
-					return "IotProfileAws";
+				case ASSET_ID:
+					return "AssetId";
+				case ASSET_TYPE:
+					return "AssetType";
+				case PRODUCTS:
+					return "Products";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -35,24 +35,62 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class T : ObjectBase
+	public class IpV6RangeCondition : Condition
 	{
 		#region Constants
+		public const string FROM_IP = "fromIP";
+		public const string TO_IP = "toIP";
 		#endregion
 
 		#region Private Fields
+		private string _FromIP = null;
+		private string _ToIP = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use FromIPAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string FromIP
+		{
+			get { return _FromIP; }
+			set 
+			{ 
+				_FromIP = value;
+				OnPropertyChanged("FromIP");
+			}
+		}
+		/// <summary>
+		/// Use ToIPAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string ToIP
+		{
+			get { return _ToIP; }
+			set 
+			{ 
+				_ToIP = value;
+				OnPropertyChanged("ToIP");
+			}
+		}
 		#endregion
 
 		#region CTor
-		public T()
+		public IpV6RangeCondition()
 		{
 		}
 
-		public T(JToken node) : base(node)
+		public IpV6RangeCondition(JToken node) : base(node)
 		{
+			if(node["fromIP"] != null)
+			{
+				this._FromIP = node["fromIP"].Value<string>();
+			}
+			if(node["toIP"] != null)
+			{
+				this._ToIP = node["toIP"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -61,13 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaT");
+				kparams.AddReplace("objectType", "KalturaIpV6RangeCondition");
+			kparams.AddIfNotNull("fromIP", this._FromIP);
+			kparams.AddIfNotNull("toIP", this._ToIP);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
+				case FROM_IP:
+					return "FromIP";
+				case TO_IP:
+					return "ToIP";
 				default:
 					return base.getPropertyName(apiName);
 			}

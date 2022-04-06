@@ -35,61 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IotProfile : OTTObjectSupportNullable
+	public class ProductMarkup : ObjectBase
 	{
 		#region Constants
-		public const string ADAPTER_URL = "adapterUrl";
-		public const string IOT_PROFILE_AWS = "iotProfileAws";
+		public const string PRODUCT_ID = "productId";
+		public const string PRODUCT_TYPE = "productType";
+		public const string IS_ENTITLED = "isEntitled";
 		#endregion
 
 		#region Private Fields
-		private string _AdapterUrl = null;
-		private IotProfileAws _IotProfileAws;
+		private long _ProductId = long.MinValue;
+		private TransactionType _ProductType = null;
+		private bool? _IsEntitled = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AdapterUrlAsDouble property instead
+		/// Use ProductIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string AdapterUrl
+		public long ProductId
 		{
-			get { return _AdapterUrl; }
-			set 
+			get { return _ProductId; }
+			private set 
 			{ 
-				_AdapterUrl = value;
-				OnPropertyChanged("AdapterUrl");
+				_ProductId = value;
+				OnPropertyChanged("ProductId");
 			}
 		}
 		/// <summary>
-		/// Use IotProfileAwsAsDouble property instead
+		/// Use ProductTypeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IotProfileAws IotProfileAws
+		public TransactionType ProductType
 		{
-			get { return _IotProfileAws; }
-			set 
+			get { return _ProductType; }
+			private set 
 			{ 
-				_IotProfileAws = value;
-				OnPropertyChanged("IotProfileAws");
+				_ProductType = value;
+				OnPropertyChanged("ProductType");
+			}
+		}
+		/// <summary>
+		/// Use IsEntitledAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IsEntitled
+		{
+			get { return _IsEntitled; }
+			private set 
+			{ 
+				_IsEntitled = value;
+				OnPropertyChanged("IsEntitled");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public IotProfile()
+		public ProductMarkup()
 		{
 		}
 
-		public IotProfile(JToken node) : base(node)
+		public ProductMarkup(JToken node) : base(node)
 		{
-			if(node["adapterUrl"] != null)
+			if(node["productId"] != null)
 			{
-				this._AdapterUrl = node["adapterUrl"].Value<string>();
+				this._ProductId = ParseLong(node["productId"].Value<string>());
 			}
-			if(node["iotProfileAws"] != null)
+			if(node["productType"] != null)
 			{
-				this._IotProfileAws = ObjectFactory.Create<IotProfileAws>(node["iotProfileAws"]);
+				this._ProductType = (TransactionType)StringEnum.Parse(typeof(TransactionType), node["productType"].Value<string>());
+			}
+			if(node["isEntitled"] != null)
+			{
+				this._IsEntitled = ParseBool(node["isEntitled"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,19 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaIotProfile");
-			kparams.AddIfNotNull("adapterUrl", this._AdapterUrl);
-			kparams.AddIfNotNull("iotProfileAws", this._IotProfileAws);
+				kparams.AddReplace("objectType", "KalturaProductMarkup");
+			kparams.AddIfNotNull("productId", this._ProductId);
+			kparams.AddIfNotNull("productType", this._ProductType);
+			kparams.AddIfNotNull("isEntitled", this._IsEntitled);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ADAPTER_URL:
-					return "AdapterUrl";
-				case IOT_PROFILE_AWS:
-					return "IotProfileAws";
+				case PRODUCT_ID:
+					return "ProductId";
+				case PRODUCT_TYPE:
+					return "ProductType";
+				case IS_ENTITLED:
+					return "IsEntitled";
 				default:
 					return base.getPropertyName(apiName);
 			}
