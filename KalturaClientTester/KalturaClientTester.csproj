@@ -2,7 +2,7 @@
   <Import Project="..\netfx.props" />
 
   <PropertyGroup>
-    <Version>7.4.0.29851</Version>
+    <Version>7.4.0.29852</Version>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net45;netcoreapp2.0</TargetFrameworks>
     <AssemblyTitle>KalturaClientTester</AssemblyTitle>
