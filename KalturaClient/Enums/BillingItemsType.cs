@@ -35,6 +35,7 @@ namespace Kaltura.Enums
 		public static readonly BillingItemsType PRE_PAID = new BillingItemsType("pre_paid");
 		public static readonly BillingItemsType PRE_PAID_EXPIRED = new BillingItemsType("pre_paid_expired");
 		public static readonly BillingItemsType COLLECTION = new BillingItemsType("collection");
+		public static readonly BillingItemsType PROGRAM_ASSET_GROUP_OFFER = new BillingItemsType("program_asset_group_offer");
 
 		private BillingItemsType(string name) : base(name) { }
 	}

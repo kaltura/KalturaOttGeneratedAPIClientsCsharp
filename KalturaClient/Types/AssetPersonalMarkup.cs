@@ -35,24 +35,85 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class CrudFilter : Filter
+	public class AssetPersonalMarkup : ObjectBase
 	{
 		#region Constants
+		public const string ASSET_ID = "assetId";
+		public const string ASSET_TYPE = "assetType";
+		public const string PRODUCTS = "products";
 		#endregion
 
 		#region Private Fields
+		private long _AssetId = long.MinValue;
+		private AssetType _AssetType = null;
+		private IList<ProductMarkup> _Products;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use AssetIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long AssetId
+		{
+			get { return _AssetId; }
+			private set 
+			{ 
+				_AssetId = value;
+				OnPropertyChanged("AssetId");
+			}
+		}
+		/// <summary>
+		/// Use AssetTypeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public AssetType AssetType
+		{
+			get { return _AssetType; }
+			private set 
+			{ 
+				_AssetType = value;
+				OnPropertyChanged("AssetType");
+			}
+		}
+		/// <summary>
+		/// Use ProductsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public IList<ProductMarkup> Products
+		{
+			get { return _Products; }
+			set 
+			{ 
+				_Products = value;
+				OnPropertyChanged("Products");
+			}
+		}
 		#endregion
 
 		#region CTor
-		public CrudFilter()
+		public AssetPersonalMarkup()
 		{
 		}
 
-		public CrudFilter(JToken node) : base(node)
+		public AssetPersonalMarkup(JToken node) : base(node)
 		{
+			if(node["assetId"] != null)
+			{
+				this._AssetId = ParseLong(node["assetId"].Value<string>());
+			}
+			if(node["assetType"] != null)
+			{
+				this._AssetType = (AssetType)StringEnum.Parse(typeof(AssetType), node["assetType"].Value<string>());
+			}
+			if(node["products"] != null)
+			{
+				this._Products = new List<ProductMarkup>();
+				foreach(var arrayNode in node["products"].Children())
+				{
+					this._Products.Add(ObjectFactory.Create<ProductMarkup>(arrayNode));
+				}
+			}
 		}
 		#endregion
 
@@ -61,13 +122,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaCrudFilter");
+				kparams.AddReplace("objectType", "KalturaAssetPersonalMarkup");
+			kparams.AddIfNotNull("assetId", this._AssetId);
+			kparams.AddIfNotNull("assetType", this._AssetType);
+			kparams.AddIfNotNull("products", this._Products);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
+				case ASSET_ID:
+					return "AssetId";
+				case ASSET_TYPE:
+					return "AssetType";
+				case PRODUCTS:
+					return "Products";
 				default:
 					return base.getPropertyName(apiName);
 			}

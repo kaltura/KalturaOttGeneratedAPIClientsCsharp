@@ -35,67 +35,82 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class EntitlementFilter : BaseEntitlementFilter
+	public class DeviceBrandFilter : Filter
 	{
 		#region Constants
-		public const string PRODUCT_TYPE_EQUAL = "productTypeEqual";
-		public const string ENTITY_REFERENCE_EQUAL = "entityReferenceEqual";
-		public const string IS_EXPIRED_EQUAL = "isExpiredEqual";
+		public const string ID_EQUAL = "idEqual";
+		public const string DEVICE_FAMILY_ID_EQUAL = "deviceFamilyIdEqual";
+		public const string NAME_EQUAL = "nameEqual";
+		public const string TYPE_EQUAL = "typeEqual";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private TransactionType _ProductTypeEqual = null;
-		private EntityReferenceBy _EntityReferenceEqual = null;
-		private bool? _IsExpiredEqual = null;
-		private EntitlementOrderBy _OrderBy = null;
+		private long _IdEqual = long.MinValue;
+		private long _DeviceFamilyIdEqual = long.MinValue;
+		private string _NameEqual = null;
+		private DeviceBrandType _TypeEqual = null;
+		private DeviceBrandOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ProductTypeEqualAsDouble property instead
+		/// Use IdEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public TransactionType ProductTypeEqual
+		public long IdEqual
 		{
-			get { return _ProductTypeEqual; }
+			get { return _IdEqual; }
 			set 
 			{ 
-				_ProductTypeEqual = value;
-				OnPropertyChanged("ProductTypeEqual");
+				_IdEqual = value;
+				OnPropertyChanged("IdEqual");
 			}
 		}
 		/// <summary>
-		/// Use EntityReferenceEqualAsDouble property instead
+		/// Use DeviceFamilyIdEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public EntityReferenceBy EntityReferenceEqual
+		public long DeviceFamilyIdEqual
 		{
-			get { return _EntityReferenceEqual; }
+			get { return _DeviceFamilyIdEqual; }
 			set 
 			{ 
-				_EntityReferenceEqual = value;
-				OnPropertyChanged("EntityReferenceEqual");
+				_DeviceFamilyIdEqual = value;
+				OnPropertyChanged("DeviceFamilyIdEqual");
 			}
 		}
 		/// <summary>
-		/// Use IsExpiredEqualAsDouble property instead
+		/// Use NameEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? IsExpiredEqual
+		public string NameEqual
 		{
-			get { return _IsExpiredEqual; }
+			get { return _NameEqual; }
 			set 
 			{ 
-				_IsExpiredEqual = value;
-				OnPropertyChanged("IsExpiredEqual");
+				_NameEqual = value;
+				OnPropertyChanged("NameEqual");
+			}
+		}
+		/// <summary>
+		/// Use TypeEqualAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public DeviceBrandType TypeEqual
+		{
+			get { return _TypeEqual; }
+			set 
+			{ 
+				_TypeEqual = value;
+				OnPropertyChanged("TypeEqual");
 			}
 		}
 		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public new EntitlementOrderBy OrderBy
+		public new DeviceBrandOrderBy OrderBy
 		{
 			get { return _OrderBy; }
 			set 
@@ -107,27 +122,31 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public EntitlementFilter()
+		public DeviceBrandFilter()
 		{
 		}
 
-		public EntitlementFilter(JToken node) : base(node)
+		public DeviceBrandFilter(JToken node) : base(node)
 		{
-			if(node["productTypeEqual"] != null)
+			if(node["idEqual"] != null)
 			{
-				this._ProductTypeEqual = (TransactionType)StringEnum.Parse(typeof(TransactionType), node["productTypeEqual"].Value<string>());
+				this._IdEqual = ParseLong(node["idEqual"].Value<string>());
 			}
-			if(node["entityReferenceEqual"] != null)
+			if(node["deviceFamilyIdEqual"] != null)
 			{
-				this._EntityReferenceEqual = (EntityReferenceBy)StringEnum.Parse(typeof(EntityReferenceBy), node["entityReferenceEqual"].Value<string>());
+				this._DeviceFamilyIdEqual = ParseLong(node["deviceFamilyIdEqual"].Value<string>());
 			}
-			if(node["isExpiredEqual"] != null)
+			if(node["nameEqual"] != null)
 			{
-				this._IsExpiredEqual = ParseBool(node["isExpiredEqual"].Value<string>());
+				this._NameEqual = node["nameEqual"].Value<string>();
+			}
+			if(node["typeEqual"] != null)
+			{
+				this._TypeEqual = (DeviceBrandType)StringEnum.Parse(typeof(DeviceBrandType), node["typeEqual"].Value<string>());
 			}
 			if(node["orderBy"] != null)
 			{
-				this._OrderBy = (EntitlementOrderBy)StringEnum.Parse(typeof(EntitlementOrderBy), node["orderBy"].Value<string>());
+				this._OrderBy = (DeviceBrandOrderBy)StringEnum.Parse(typeof(DeviceBrandOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -137,10 +156,11 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaEntitlementFilter");
-			kparams.AddIfNotNull("productTypeEqual", this._ProductTypeEqual);
-			kparams.AddIfNotNull("entityReferenceEqual", this._EntityReferenceEqual);
-			kparams.AddIfNotNull("isExpiredEqual", this._IsExpiredEqual);
+				kparams.AddReplace("objectType", "KalturaDeviceBrandFilter");
+			kparams.AddIfNotNull("idEqual", this._IdEqual);
+			kparams.AddIfNotNull("deviceFamilyIdEqual", this._DeviceFamilyIdEqual);
+			kparams.AddIfNotNull("nameEqual", this._NameEqual);
+			kparams.AddIfNotNull("typeEqual", this._TypeEqual);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -148,12 +168,14 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case PRODUCT_TYPE_EQUAL:
-					return "ProductTypeEqual";
-				case ENTITY_REFERENCE_EQUAL:
-					return "EntityReferenceEqual";
-				case IS_EXPIRED_EQUAL:
-					return "IsExpiredEqual";
+				case ID_EQUAL:
+					return "IdEqual";
+				case DEVICE_FAMILY_ID_EQUAL:
+					return "DeviceFamilyIdEqual";
+				case NAME_EQUAL:
+					return "NameEqual";
+				case TYPE_EQUAL:
+					return "TypeEqual";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

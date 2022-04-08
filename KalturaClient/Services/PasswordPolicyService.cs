@@ -75,50 +75,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class PasswordPolicyUpdateRequestBuilder : RequestBuilder<PasswordPolicy>
-	{
-		#region Constants
-		public const string ID = "id";
-		public const string OBJECT_TO_UPDATE = "objectToUpdate";
-		#endregion
-
-		public long Id { get; set; }
-		public PasswordPolicy ObjectToUpdate { get; set; }
-
-		public PasswordPolicyUpdateRequestBuilder()
-			: base("passwordpolicy", "update")
-		{
-		}
-
-		public PasswordPolicyUpdateRequestBuilder(long id, PasswordPolicy objectToUpdate)
-			: this()
-		{
-			this.Id = id;
-			this.ObjectToUpdate = objectToUpdate;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("objectToUpdate"))
-				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<PasswordPolicy>(result);
-		}
-	}
-
 	public class PasswordPolicyDeleteRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
@@ -197,6 +153,50 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class PasswordPolicyUpdateRequestBuilder : RequestBuilder<PasswordPolicy>
+	{
+		#region Constants
+		public const string ID = "id";
+		public const string OBJECT_TO_UPDATE = "objectToUpdate";
+		#endregion
+
+		public long Id { get; set; }
+		public PasswordPolicy ObjectToUpdate { get; set; }
+
+		public PasswordPolicyUpdateRequestBuilder()
+			: base("passwordpolicy", "update")
+		{
+		}
+
+		public PasswordPolicyUpdateRequestBuilder(long id, PasswordPolicy objectToUpdate)
+			: this()
+		{
+			this.Id = id;
+			this.ObjectToUpdate = objectToUpdate;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("objectToUpdate"))
+				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<PasswordPolicy>(result);
+		}
+	}
+
 
 	public class PasswordPolicyService
 	{
@@ -209,11 +209,6 @@ namespace Kaltura.Services
 			return new PasswordPolicyAddRequestBuilder(objectToAdd);
 		}
 
-		public static PasswordPolicyUpdateRequestBuilder Update(long id, PasswordPolicy objectToUpdate)
-		{
-			return new PasswordPolicyUpdateRequestBuilder(id, objectToUpdate);
-		}
-
 		public static PasswordPolicyDeleteRequestBuilder Delete(long id)
 		{
 			return new PasswordPolicyDeleteRequestBuilder(id);
@@ -222,6 +217,11 @@ namespace Kaltura.Services
 		public static PasswordPolicyListRequestBuilder List(PasswordPolicyFilter filter = null)
 		{
 			return new PasswordPolicyListRequestBuilder(filter);
+		}
+
+		public static PasswordPolicyUpdateRequestBuilder Update(long id, PasswordPolicy objectToUpdate)
+		{
+			return new PasswordPolicyUpdateRequestBuilder(id, objectToUpdate);
 		}
 	}
 }

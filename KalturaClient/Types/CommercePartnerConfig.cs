@@ -40,11 +40,15 @@ namespace Kaltura.Types
 		#region Constants
 		public const string BOOKMARK_EVENT_THRESHOLDS = "bookmarkEventThresholds";
 		public const string KEEP_SUBSCRIPTION_ADD_ONS = "keepSubscriptionAddOns";
+		public const string PROGRAM_ASSET_ENTITLEMENT_PADDING_START = "programAssetEntitlementPaddingStart";
+		public const string PROGRAM_ASSET_ENTITLEMENT_PADDING_END = "programAssetEntitlementPaddingEnd";
 		#endregion
 
 		#region Private Fields
 		private IList<BookmarkEventThreshold> _BookmarkEventThresholds;
 		private bool? _KeepSubscriptionAddOns = null;
+		private int _ProgramAssetEntitlementPaddingStart = Int32.MinValue;
+		private int _ProgramAssetEntitlementPaddingEnd = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -74,6 +78,32 @@ namespace Kaltura.Types
 				OnPropertyChanged("KeepSubscriptionAddOns");
 			}
 		}
+		/// <summary>
+		/// Use ProgramAssetEntitlementPaddingStartAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int ProgramAssetEntitlementPaddingStart
+		{
+			get { return _ProgramAssetEntitlementPaddingStart; }
+			set 
+			{ 
+				_ProgramAssetEntitlementPaddingStart = value;
+				OnPropertyChanged("ProgramAssetEntitlementPaddingStart");
+			}
+		}
+		/// <summary>
+		/// Use ProgramAssetEntitlementPaddingEndAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int ProgramAssetEntitlementPaddingEnd
+		{
+			get { return _ProgramAssetEntitlementPaddingEnd; }
+			set 
+			{ 
+				_ProgramAssetEntitlementPaddingEnd = value;
+				OnPropertyChanged("ProgramAssetEntitlementPaddingEnd");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -95,6 +125,14 @@ namespace Kaltura.Types
 			{
 				this._KeepSubscriptionAddOns = ParseBool(node["keepSubscriptionAddOns"].Value<string>());
 			}
+			if(node["programAssetEntitlementPaddingStart"] != null)
+			{
+				this._ProgramAssetEntitlementPaddingStart = ParseInt(node["programAssetEntitlementPaddingStart"].Value<string>());
+			}
+			if(node["programAssetEntitlementPaddingEnd"] != null)
+			{
+				this._ProgramAssetEntitlementPaddingEnd = ParseInt(node["programAssetEntitlementPaddingEnd"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -106,6 +144,8 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaCommercePartnerConfig");
 			kparams.AddIfNotNull("bookmarkEventThresholds", this._BookmarkEventThresholds);
 			kparams.AddIfNotNull("keepSubscriptionAddOns", this._KeepSubscriptionAddOns);
+			kparams.AddIfNotNull("programAssetEntitlementPaddingStart", this._ProgramAssetEntitlementPaddingStart);
+			kparams.AddIfNotNull("programAssetEntitlementPaddingEnd", this._ProgramAssetEntitlementPaddingEnd);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -116,6 +156,10 @@ namespace Kaltura.Types
 					return "BookmarkEventThresholds";
 				case KEEP_SUBSCRIPTION_ADD_ONS:
 					return "KeepSubscriptionAddOns";
+				case PROGRAM_ASSET_ENTITLEMENT_PADDING_START:
+					return "ProgramAssetEntitlementPaddingStart";
+				case PROGRAM_ASSET_ENTITLEMENT_PADDING_END:
+					return "ProgramAssetEntitlementPaddingEnd";
 				default:
 					return base.getPropertyName(apiName);
 			}
