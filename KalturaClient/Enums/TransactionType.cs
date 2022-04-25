@@ -32,6 +32,7 @@ namespace Kaltura.Enums
 		public static readonly TransactionType PPV = new TransactionType("ppv");
 		public static readonly TransactionType SUBSCRIPTION = new TransactionType("subscription");
 		public static readonly TransactionType COLLECTION = new TransactionType("collection");
+		public static readonly TransactionType PROGRAMASSETGROUPOFFER = new TransactionType("programAssetGroupOffer");
 
 		private TransactionType(string name) : base(name) { }
 	}

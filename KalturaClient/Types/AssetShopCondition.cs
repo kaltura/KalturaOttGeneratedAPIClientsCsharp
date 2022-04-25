@@ -35,24 +35,43 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class T : ObjectBase
+	public class AssetShopCondition : AssetConditionBase
 	{
 		#region Constants
+		public const string VALUE = "value";
 		#endregion
 
 		#region Private Fields
+		private string _Value = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use ValueAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Value
+		{
+			get { return _Value; }
+			set 
+			{ 
+				_Value = value;
+				OnPropertyChanged("Value");
+			}
+		}
 		#endregion
 
 		#region CTor
-		public T()
+		public AssetShopCondition()
 		{
 		}
 
-		public T(JToken node) : base(node)
+		public AssetShopCondition(JToken node) : base(node)
 		{
+			if(node["value"] != null)
+			{
+				this._Value = node["value"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -61,13 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaT");
+				kparams.AddReplace("objectType", "KalturaAssetShopCondition");
+			kparams.AddIfNotNull("value", this._Value);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
+				case VALUE:
+					return "Value";
 				default:
 					return base.getPropertyName(apiName);
 			}

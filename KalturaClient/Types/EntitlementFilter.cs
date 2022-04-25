@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class EntitlementFilter : Filter
+	public class EntitlementFilter : BaseEntitlementFilter
 	{
 		#region Constants
 		public const string PRODUCT_TYPE_EQUAL = "productTypeEqual";
