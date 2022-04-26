@@ -27,13 +27,11 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class TransactionType : StringEnum
+	public sealed class DeviceFamilyOrderBy : StringEnum
 	{
-		public static readonly TransactionType PPV = new TransactionType("ppv");
-		public static readonly TransactionType SUBSCRIPTION = new TransactionType("subscription");
-		public static readonly TransactionType COLLECTION = new TransactionType("collection");
-		public static readonly TransactionType PROGRAMASSETGROUPOFFER = new TransactionType("programAssetGroupOffer");
+		public static readonly DeviceFamilyOrderBy ID_ASC = new DeviceFamilyOrderBy("ID_ASC");
+		public static readonly DeviceFamilyOrderBy ID_DESC = new DeviceFamilyOrderBy("ID_DESC");
 
-		private TransactionType(string name) : base(name) { }
+		private DeviceFamilyOrderBy(string name) : base(name) { }
 	}
 }

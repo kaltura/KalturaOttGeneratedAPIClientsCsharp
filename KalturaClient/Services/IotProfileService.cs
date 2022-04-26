@@ -75,6 +75,45 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class IotProfileGetRequestBuilder : RequestBuilder<IotProfile>
+	{
+		#region Constants
+		public const string ID = "id";
+		#endregion
+
+		public long Id { get; set; }
+
+		public IotProfileGetRequestBuilder()
+			: base("iotprofile", "get")
+		{
+		}
+
+		public IotProfileGetRequestBuilder(long id)
+			: this()
+		{
+			this.Id = id;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<IotProfile>(result);
+		}
+	}
+
 	public class IotProfileUpdateRequestBuilder : RequestBuilder<IotProfile>
 	{
 		#region Constants
@@ -119,45 +158,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class IotProfileGetRequestBuilder : RequestBuilder<IotProfile>
-	{
-		#region Constants
-		public const string ID = "id";
-		#endregion
-
-		public long Id { get; set; }
-
-		public IotProfileGetRequestBuilder()
-			: base("iotprofile", "get")
-		{
-		}
-
-		public IotProfileGetRequestBuilder(long id)
-			: this()
-		{
-			this.Id = id;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<IotProfile>(result);
-		}
-	}
-
 
 	public class IotProfileService
 	{
@@ -170,14 +170,14 @@ namespace Kaltura.Services
 			return new IotProfileAddRequestBuilder(objectToAdd);
 		}
 
-		public static IotProfileUpdateRequestBuilder Update(long id, IotProfile objectToUpdate)
-		{
-			return new IotProfileUpdateRequestBuilder(id, objectToUpdate);
-		}
-
 		public static IotProfileGetRequestBuilder Get(long id)
 		{
 			return new IotProfileGetRequestBuilder(id);
+		}
+
+		public static IotProfileUpdateRequestBuilder Update(long id, IotProfile objectToUpdate)
+		{
+			return new IotProfileUpdateRequestBuilder(id, objectToUpdate);
 		}
 	}
 }

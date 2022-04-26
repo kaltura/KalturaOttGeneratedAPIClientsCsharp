@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class DynamicList : CrudObject
+	public class DynamicList : OTTObjectSupportNullable
 	{
 		#region Constants
 		public const string ID = "id";

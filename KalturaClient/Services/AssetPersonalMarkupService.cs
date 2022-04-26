@@ -28,73 +28,63 @@
 using System;
 using System.Xml;
 using System.Collections.Generic;
-using Kaltura.Enums;
+using System.IO;
 using Kaltura.Request;
-using Newtonsoft.Json;
+using Kaltura.Types;
+using Kaltura.Enums;
 using Newtonsoft.Json.Linq;
 
-namespace Kaltura.Types
+namespace Kaltura.Services
 {
-	public class CategoryVersionFilter : Filter
+	public class AssetPersonalMarkupListRequestBuilder : RequestBuilder<ListResponse<AssetPersonalMarkup>>
 	{
 		#region Constants
-		public new const string ORDER_BY = "orderBy";
+		public const string FILTER = "filter";
 		#endregion
 
-		#region Private Fields
-		private CategoryVersionOrderBy _OrderBy = null;
-		#endregion
+		public AssetPersonalMarkupSearchFilter Filter { get; set; }
 
-		#region Properties
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public new CategoryVersionOrderBy OrderBy
-		{
-			get { return _OrderBy; }
-			set 
-			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
-			}
-		}
-		#endregion
-
-		#region CTor
-		public CategoryVersionFilter()
+		public AssetPersonalMarkupListRequestBuilder()
+			: base("assetpersonalmarkup", "list")
 		{
 		}
 
-		public CategoryVersionFilter(JToken node) : base(node)
+		public AssetPersonalMarkupListRequestBuilder(AssetPersonalMarkupSearchFilter filter)
+			: this()
 		{
-			if(node["orderBy"] != null)
-			{
-				this._OrderBy = (CategoryVersionOrderBy)StringEnum.Parse(typeof(CategoryVersionOrderBy), node["orderBy"].Value<string>());
-			}
+			this.Filter = filter;
 		}
-		#endregion
 
-		#region Methods
-		public override Params ToParams(bool includeObjectType = true)
+		public override Params getParameters(bool includeServiceAndAction)
 		{
-			Params kparams = base.ToParams(includeObjectType);
-			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaCategoryVersionFilter");
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("filter"))
+				kparams.AddIfNotNull("filter", Filter);
 			return kparams;
 		}
-		protected override string getPropertyName(string apiName)
+
+		public override Files getFiles()
 		{
-			switch(apiName)
-			{
-				case ORDER_BY:
-					return "OrderBy";
-				default:
-					return base.getPropertyName(apiName);
-			}
+			Files kfiles = base.getFiles();
+			return kfiles;
 		}
-		#endregion
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<ListResponse<AssetPersonalMarkup>>(result);
+		}
+	}
+
+
+	public class AssetPersonalMarkupService
+	{
+		private AssetPersonalMarkupService()
+		{
+		}
+
+		public static AssetPersonalMarkupListRequestBuilder List(AssetPersonalMarkupSearchFilter filter)
+		{
+			return new AssetPersonalMarkupListRequestBuilder(filter);
+		}
 	}
 }
-
