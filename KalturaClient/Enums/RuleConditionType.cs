@@ -49,6 +49,7 @@ namespace Kaltura.Enums
 		public static readonly RuleConditionType DYNAMIC_KEYS = new RuleConditionType("DYNAMIC_KEYS");
 		public static readonly RuleConditionType USER_SESSION_PROFILE = new RuleConditionType("USER_SESSION_PROFILE");
 		public static readonly RuleConditionType DEVICE_DYNAMIC_DATA = new RuleConditionType("DEVICE_DYNAMIC_DATA");
+		public static readonly RuleConditionType IP_V6_RANGE = new RuleConditionType("IP_V6_RANGE");
 		public static readonly RuleConditionType ASSET_SHOP = new RuleConditionType("ASSET_SHOP");
 
 		private RuleConditionType(string name) : base(name) { }

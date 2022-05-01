@@ -35,80 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class LiveToVodLinearAssetConfiguration : ObjectBase
+	public class IpV6RangeCondition : Condition
 	{
 		#region Constants
-		public const string LINEAR_ASSET_ID = "linearAssetId";
-		public const string IS_L2V_ENABLED = "isL2vEnabled";
-		public const string RETENTION_PERIOD_DAYS = "retentionPeriodDays";
+		public const string FROM_IP = "fromIP";
+		public const string TO_IP = "toIP";
 		#endregion
 
 		#region Private Fields
-		private long _LinearAssetId = long.MinValue;
-		private bool? _IsL2vEnabled = null;
-		private int _RetentionPeriodDays = Int32.MinValue;
+		private string _FromIP = null;
+		private string _ToIP = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use LinearAssetIdAsDouble property instead
+		/// Use FromIPAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long LinearAssetId
+		public string FromIP
 		{
-			get { return _LinearAssetId; }
+			get { return _FromIP; }
 			set 
 			{ 
-				_LinearAssetId = value;
-				OnPropertyChanged("LinearAssetId");
+				_FromIP = value;
+				OnPropertyChanged("FromIP");
 			}
 		}
 		/// <summary>
-		/// Use IsL2vEnabledAsDouble property instead
+		/// Use ToIPAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? IsL2vEnabled
+		public string ToIP
 		{
-			get { return _IsL2vEnabled; }
+			get { return _ToIP; }
 			set 
 			{ 
-				_IsL2vEnabled = value;
-				OnPropertyChanged("IsL2vEnabled");
-			}
-		}
-		/// <summary>
-		/// Use RetentionPeriodDaysAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int RetentionPeriodDays
-		{
-			get { return _RetentionPeriodDays; }
-			set 
-			{ 
-				_RetentionPeriodDays = value;
-				OnPropertyChanged("RetentionPeriodDays");
+				_ToIP = value;
+				OnPropertyChanged("ToIP");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public LiveToVodLinearAssetConfiguration()
+		public IpV6RangeCondition()
 		{
 		}
 
-		public LiveToVodLinearAssetConfiguration(JToken node) : base(node)
+		public IpV6RangeCondition(JToken node) : base(node)
 		{
-			if(node["linearAssetId"] != null)
+			if(node["fromIP"] != null)
 			{
-				this._LinearAssetId = ParseLong(node["linearAssetId"].Value<string>());
+				this._FromIP = node["fromIP"].Value<string>();
 			}
-			if(node["isL2vEnabled"] != null)
+			if(node["toIP"] != null)
 			{
-				this._IsL2vEnabled = ParseBool(node["isL2vEnabled"].Value<string>());
-			}
-			if(node["retentionPeriodDays"] != null)
-			{
-				this._RetentionPeriodDays = ParseInt(node["retentionPeriodDays"].Value<string>());
+				this._ToIP = node["toIP"].Value<string>();
 			}
 		}
 		#endregion
@@ -118,22 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaLiveToVodLinearAssetConfiguration");
-			kparams.AddIfNotNull("linearAssetId", this._LinearAssetId);
-			kparams.AddIfNotNull("isL2vEnabled", this._IsL2vEnabled);
-			kparams.AddIfNotNull("retentionPeriodDays", this._RetentionPeriodDays);
+				kparams.AddReplace("objectType", "KalturaIpV6RangeCondition");
+			kparams.AddIfNotNull("fromIP", this._FromIP);
+			kparams.AddIfNotNull("toIP", this._ToIP);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case LINEAR_ASSET_ID:
-					return "LinearAssetId";
-				case IS_L2V_ENABLED:
-					return "IsL2vEnabled";
-				case RETENTION_PERIOD_DAYS:
-					return "RetentionPeriodDays";
+				case FROM_IP:
+					return "FromIP";
+				case TO_IP:
+					return "ToIP";
 				default:
 					return base.getPropertyName(apiName);
 			}
