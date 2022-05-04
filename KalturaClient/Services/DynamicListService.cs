@@ -75,52 +75,47 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class DynamicListAddFromBulkUploadRequestBuilder : RequestBuilder<BulkUpload>
+	public class DynamicListUpdateRequestBuilder : RequestBuilder<DynamicList>
 	{
 		#region Constants
-		public const string FILE_DATA = "fileData";
-		public const string JOB_DATA = "jobData";
-		public const string BULK_UPLOAD_DATA = "bulkUploadData";
+		public const string ID = "id";
+		public const string OBJECT_TO_UPDATE = "objectToUpdate";
 		#endregion
 
-		public Stream FileData { get; set; }
-		public string FileData_FileName { get; set; }
-		public BulkUploadExcelJobData JobData { get; set; }
-		public BulkUploadDynamicListData BulkUploadData { get; set; }
+		public long Id { get; set; }
+		public DynamicList ObjectToUpdate { get; set; }
 
-		public DynamicListAddFromBulkUploadRequestBuilder()
-			: base("dynamiclist", "addFromBulkUpload")
+		public DynamicListUpdateRequestBuilder()
+			: base("dynamiclist", "update")
 		{
 		}
 
-		public DynamicListAddFromBulkUploadRequestBuilder(Stream fileData, BulkUploadExcelJobData jobData, BulkUploadDynamicListData bulkUploadData)
+		public DynamicListUpdateRequestBuilder(long id, DynamicList objectToUpdate)
 			: this()
 		{
-			this.FileData = fileData;
-			this.JobData = jobData;
-			this.BulkUploadData = bulkUploadData;
+			this.Id = id;
+			this.ObjectToUpdate = objectToUpdate;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("jobData"))
-				kparams.AddIfNotNull("jobData", JobData);
-			if (!isMapped("bulkUploadData"))
-				kparams.AddIfNotNull("bulkUploadData", BulkUploadData);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("objectToUpdate"))
+				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
 			return kparams;
 		}
 
 		public override Files getFiles()
 		{
 			Files kfiles = base.getFiles();
-			kfiles.Add("fileData", new FileData(FileData, FileData_FileName));
 			return kfiles;
 		}
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<BulkUpload>(result);
+			return ObjectFactory.Create<DynamicList>(result);
 		}
 	}
 
@@ -207,47 +202,52 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class DynamicListUpdateRequestBuilder : RequestBuilder<DynamicList>
+	public class DynamicListAddFromBulkUploadRequestBuilder : RequestBuilder<BulkUpload>
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string OBJECT_TO_UPDATE = "objectToUpdate";
+		public const string FILE_DATA = "fileData";
+		public const string JOB_DATA = "jobData";
+		public const string BULK_UPLOAD_DATA = "bulkUploadData";
 		#endregion
 
-		public long Id { get; set; }
-		public DynamicList ObjectToUpdate { get; set; }
+		public Stream FileData { get; set; }
+		public string FileData_FileName { get; set; }
+		public BulkUploadExcelJobData JobData { get; set; }
+		public BulkUploadDynamicListData BulkUploadData { get; set; }
 
-		public DynamicListUpdateRequestBuilder()
-			: base("dynamiclist", "update")
+		public DynamicListAddFromBulkUploadRequestBuilder()
+			: base("dynamiclist", "addFromBulkUpload")
 		{
 		}
 
-		public DynamicListUpdateRequestBuilder(long id, DynamicList objectToUpdate)
+		public DynamicListAddFromBulkUploadRequestBuilder(Stream fileData, BulkUploadExcelJobData jobData, BulkUploadDynamicListData bulkUploadData)
 			: this()
 		{
-			this.Id = id;
-			this.ObjectToUpdate = objectToUpdate;
+			this.FileData = fileData;
+			this.JobData = jobData;
+			this.BulkUploadData = bulkUploadData;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("objectToUpdate"))
-				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
+			if (!isMapped("jobData"))
+				kparams.AddIfNotNull("jobData", JobData);
+			if (!isMapped("bulkUploadData"))
+				kparams.AddIfNotNull("bulkUploadData", BulkUploadData);
 			return kparams;
 		}
 
 		public override Files getFiles()
 		{
 			Files kfiles = base.getFiles();
+			kfiles.Add("fileData", new FileData(FileData, FileData_FileName));
 			return kfiles;
 		}
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<DynamicList>(result);
+			return ObjectFactory.Create<BulkUpload>(result);
 		}
 	}
 
@@ -263,9 +263,9 @@ namespace Kaltura.Services
 			return new DynamicListAddRequestBuilder(objectToAdd);
 		}
 
-		public static DynamicListAddFromBulkUploadRequestBuilder AddFromBulkUpload(Stream fileData, BulkUploadExcelJobData jobData, BulkUploadDynamicListData bulkUploadData)
+		public static DynamicListUpdateRequestBuilder Update(long id, DynamicList objectToUpdate)
 		{
-			return new DynamicListAddFromBulkUploadRequestBuilder(fileData, jobData, bulkUploadData);
+			return new DynamicListUpdateRequestBuilder(id, objectToUpdate);
 		}
 
 		public static DynamicListDeleteRequestBuilder Delete(long id)
@@ -278,9 +278,9 @@ namespace Kaltura.Services
 			return new DynamicListListRequestBuilder(filter, pager);
 		}
 
-		public static DynamicListUpdateRequestBuilder Update(long id, DynamicList objectToUpdate)
+		public static DynamicListAddFromBulkUploadRequestBuilder AddFromBulkUpload(Stream fileData, BulkUploadExcelJobData jobData, BulkUploadDynamicListData bulkUploadData)
 		{
-			return new DynamicListUpdateRequestBuilder(id, objectToUpdate);
+			return new DynamicListAddFromBulkUploadRequestBuilder(fileData, jobData, bulkUploadData);
 		}
 	}
 }

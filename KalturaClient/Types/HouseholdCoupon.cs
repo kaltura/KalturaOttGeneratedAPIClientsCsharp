@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class HouseholdCoupon : OTTObjectSupportNullable
+	public class HouseholdCoupon : CrudObject
 	{
 		#region Constants
 		public const string CODE = "code";

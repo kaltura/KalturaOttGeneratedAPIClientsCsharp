@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Iot : OTTObjectSupportNullable
+	public class Iot : CrudObject
 	{
 		#region Constants
 		public const string UDID = "udid";

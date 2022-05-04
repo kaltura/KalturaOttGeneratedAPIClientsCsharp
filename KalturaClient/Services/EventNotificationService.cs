@@ -36,45 +36,6 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class EventNotificationListRequestBuilder : RequestBuilder<ListResponse<EventNotification>>
-	{
-		#region Constants
-		public const string FILTER = "filter";
-		#endregion
-
-		public EventNotificationFilter Filter { get; set; }
-
-		public EventNotificationListRequestBuilder()
-			: base("eventnotification", "list")
-		{
-		}
-
-		public EventNotificationListRequestBuilder(EventNotificationFilter filter)
-			: this()
-		{
-			this.Filter = filter;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("filter"))
-				kparams.AddIfNotNull("filter", Filter);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<ListResponse<EventNotification>>(result);
-		}
-	}
-
 	public class EventNotificationUpdateRequestBuilder : RequestBuilder<EventNotification>
 	{
 		#region Constants
@@ -119,6 +80,45 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class EventNotificationListRequestBuilder : RequestBuilder<ListResponse<EventNotification>>
+	{
+		#region Constants
+		public const string FILTER = "filter";
+		#endregion
+
+		public EventNotificationFilter Filter { get; set; }
+
+		public EventNotificationListRequestBuilder()
+			: base("eventnotification", "list")
+		{
+		}
+
+		public EventNotificationListRequestBuilder(EventNotificationFilter filter)
+			: this()
+		{
+			this.Filter = filter;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("filter"))
+				kparams.AddIfNotNull("filter", Filter);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<ListResponse<EventNotification>>(result);
+		}
+	}
+
 
 	public class EventNotificationService
 	{
@@ -126,14 +126,14 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static EventNotificationListRequestBuilder List(EventNotificationFilter filter)
-		{
-			return new EventNotificationListRequestBuilder(filter);
-		}
-
 		public static EventNotificationUpdateRequestBuilder Update(string id, EventNotification objectToUpdate)
 		{
 			return new EventNotificationUpdateRequestBuilder(id, objectToUpdate);
+		}
+
+		public static EventNotificationListRequestBuilder List(EventNotificationFilter filter)
+		{
+			return new EventNotificationListRequestBuilder(filter);
 		}
 	}
 }
