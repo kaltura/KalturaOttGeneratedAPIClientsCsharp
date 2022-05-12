@@ -75,7 +75,7 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class IotProfileGetRequestBuilder : RequestBuilder<IotProfile>
+	public class IotProfileDeleteRequestBuilder : RequestBuilder<IotProfile>
 	{
 		#region Constants
 		public const string ID = "id";
@@ -83,12 +83,12 @@ namespace Kaltura.Services
 
 		public long Id { get; set; }
 
-		public IotProfileGetRequestBuilder()
-			: base("iotprofile", "get")
+		public IotProfileDeleteRequestBuilder()
+			: base("iotprofile", "delete")
 		{
 		}
 
-		public IotProfileGetRequestBuilder(long id)
+		public IotProfileDeleteRequestBuilder(long id)
 			: this()
 		{
 			this.Id = id;
@@ -170,9 +170,9 @@ namespace Kaltura.Services
 			return new IotProfileAddRequestBuilder(objectToAdd);
 		}
 
-		public static IotProfileGetRequestBuilder Get(long id)
+		public static IotProfileDeleteRequestBuilder Delete(long id)
 		{
-			return new IotProfileGetRequestBuilder(id);
+			return new IotProfileDeleteRequestBuilder(id);
 		}
 
 		public static IotProfileUpdateRequestBuilder Update(long id, IotProfile objectToUpdate)
