@@ -505,6 +505,7 @@ namespace Kaltura
 		public static string WrongParentAssociation = "4076";
 		public static string MetaDoesNotBelongToParentAssetStruct = "4077";
 		public static string MetaIdsDuplication = "4079";
+		public static string CanNotRemoveMetaIdsForLiveToVod = "4118";
 		public static string AssetFilePPVNotExist = "4080";
 		public static string GroupDoesNotContainCurrency = "4081";
 		public static string NoValuesToUpdate = "4084";

@@ -40,12 +40,14 @@ namespace Kaltura.Types
 		#region Constants
 		public const string ATTACHED_USER_ID_EQUAL_CURRENT = "attachedUserIdEqualCurrent";
 		public const string ACTIONS_CONTAIN_TYPE = "actionsContainType";
+		public const string CONDITIONS_CONTAIN_TYPE = "conditionsContainType";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
 		private bool? _AttachedUserIdEqualCurrent = null;
 		private RuleActionType _ActionsContainType = null;
+		private RuleConditionType _ConditionsContainType = null;
 		private AssetUserRuleOrderBy _OrderBy = null;
 		#endregion
 
@@ -74,6 +76,19 @@ namespace Kaltura.Types
 			{ 
 				_ActionsContainType = value;
 				OnPropertyChanged("ActionsContainType");
+			}
+		}
+		/// <summary>
+		/// Use ConditionsContainTypeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public RuleConditionType ConditionsContainType
+		{
+			get { return _ConditionsContainType; }
+			set 
+			{ 
+				_ConditionsContainType = value;
+				OnPropertyChanged("ConditionsContainType");
 			}
 		}
 		/// <summary>
@@ -106,6 +121,10 @@ namespace Kaltura.Types
 			{
 				this._ActionsContainType = (RuleActionType)StringEnum.Parse(typeof(RuleActionType), node["actionsContainType"].Value<string>());
 			}
+			if(node["conditionsContainType"] != null)
+			{
+				this._ConditionsContainType = (RuleConditionType)StringEnum.Parse(typeof(RuleConditionType), node["conditionsContainType"].Value<string>());
+			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (AssetUserRuleOrderBy)StringEnum.Parse(typeof(AssetUserRuleOrderBy), node["orderBy"].Value<string>());
@@ -121,6 +140,7 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaAssetUserRuleFilter");
 			kparams.AddIfNotNull("attachedUserIdEqualCurrent", this._AttachedUserIdEqualCurrent);
 			kparams.AddIfNotNull("actionsContainType", this._ActionsContainType);
+			kparams.AddIfNotNull("conditionsContainType", this._ConditionsContainType);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -132,6 +152,8 @@ namespace Kaltura.Types
 					return "AttachedUserIdEqualCurrent";
 				case ACTIONS_CONTAIN_TYPE:
 					return "ActionsContainType";
+				case CONDITIONS_CONTAIN_TYPE:
+					return "ConditionsContainType";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

@@ -35,70 +35,24 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetUserRule : AssetRuleBase
+	public class AssetConditionBase : Condition
 	{
 		#region Constants
-		public const string CONDITIONS = "conditions";
-		public const string ACTIONS = "actions";
 		#endregion
 
 		#region Private Fields
-		private IList<AssetConditionBase> _Conditions;
-		private IList<AssetUserRuleAction> _Actions;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use ConditionsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<AssetConditionBase> Conditions
-		{
-			get { return _Conditions; }
-			set 
-			{ 
-				_Conditions = value;
-				OnPropertyChanged("Conditions");
-			}
-		}
-		/// <summary>
-		/// Use ActionsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<AssetUserRuleAction> Actions
-		{
-			get { return _Actions; }
-			set 
-			{ 
-				_Actions = value;
-				OnPropertyChanged("Actions");
-			}
-		}
 		#endregion
 
 		#region CTor
-		public AssetUserRule()
+		public AssetConditionBase()
 		{
 		}
 
-		public AssetUserRule(JToken node) : base(node)
+		public AssetConditionBase(JToken node) : base(node)
 		{
-			if(node["conditions"] != null)
-			{
-				this._Conditions = new List<AssetConditionBase>();
-				foreach(var arrayNode in node["conditions"].Children())
-				{
-					this._Conditions.Add(ObjectFactory.Create<AssetConditionBase>(arrayNode));
-				}
-			}
-			if(node["actions"] != null)
-			{
-				this._Actions = new List<AssetUserRuleAction>();
-				foreach(var arrayNode in node["actions"].Children())
-				{
-					this._Actions.Add(ObjectFactory.Create<AssetUserRuleAction>(arrayNode));
-				}
-			}
 		}
 		#endregion
 
@@ -107,19 +61,13 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetUserRule");
-			kparams.AddIfNotNull("conditions", this._Conditions);
-			kparams.AddIfNotNull("actions", this._Actions);
+				kparams.AddReplace("objectType", "KalturaAssetConditionBase");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case CONDITIONS:
-					return "Conditions";
-				case ACTIONS:
-					return "Actions";
 				default:
 					return base.getPropertyName(apiName);
 			}

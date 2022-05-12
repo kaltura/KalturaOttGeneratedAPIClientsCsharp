@@ -35,69 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetUserRule : AssetRuleBase
+	public class IpV6RangeCondition : Condition
 	{
 		#region Constants
-		public const string CONDITIONS = "conditions";
-		public const string ACTIONS = "actions";
+		public const string FROM_IP = "fromIP";
+		public const string TO_IP = "toIP";
 		#endregion
 
 		#region Private Fields
-		private IList<AssetConditionBase> _Conditions;
-		private IList<AssetUserRuleAction> _Actions;
+		private string _FromIP = null;
+		private string _ToIP = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ConditionsAsDouble property instead
+		/// Use FromIPAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<AssetConditionBase> Conditions
+		public string FromIP
 		{
-			get { return _Conditions; }
+			get { return _FromIP; }
 			set 
 			{ 
-				_Conditions = value;
-				OnPropertyChanged("Conditions");
+				_FromIP = value;
+				OnPropertyChanged("FromIP");
 			}
 		}
 		/// <summary>
-		/// Use ActionsAsDouble property instead
+		/// Use ToIPAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<AssetUserRuleAction> Actions
+		public string ToIP
 		{
-			get { return _Actions; }
+			get { return _ToIP; }
 			set 
 			{ 
-				_Actions = value;
-				OnPropertyChanged("Actions");
+				_ToIP = value;
+				OnPropertyChanged("ToIP");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AssetUserRule()
+		public IpV6RangeCondition()
 		{
 		}
 
-		public AssetUserRule(JToken node) : base(node)
+		public IpV6RangeCondition(JToken node) : base(node)
 		{
-			if(node["conditions"] != null)
+			if(node["fromIP"] != null)
 			{
-				this._Conditions = new List<AssetConditionBase>();
-				foreach(var arrayNode in node["conditions"].Children())
-				{
-					this._Conditions.Add(ObjectFactory.Create<AssetConditionBase>(arrayNode));
-				}
+				this._FromIP = node["fromIP"].Value<string>();
 			}
-			if(node["actions"] != null)
+			if(node["toIP"] != null)
 			{
-				this._Actions = new List<AssetUserRuleAction>();
-				foreach(var arrayNode in node["actions"].Children())
-				{
-					this._Actions.Add(ObjectFactory.Create<AssetUserRuleAction>(arrayNode));
-				}
+				this._ToIP = node["toIP"].Value<string>();
 			}
 		}
 		#endregion
@@ -107,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetUserRule");
-			kparams.AddIfNotNull("conditions", this._Conditions);
-			kparams.AddIfNotNull("actions", this._Actions);
+				kparams.AddReplace("objectType", "KalturaIpV6RangeCondition");
+			kparams.AddIfNotNull("fromIP", this._FromIP);
+			kparams.AddIfNotNull("toIP", this._ToIP);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case CONDITIONS:
-					return "Conditions";
-				case ACTIONS:
-					return "Actions";
+				case FROM_IP:
+					return "FromIP";
+				case TO_IP:
+					return "ToIP";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -35,69 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetUserRule : AssetRuleBase
+	public class AssetShopCondition : AssetConditionBase
 	{
 		#region Constants
-		public const string CONDITIONS = "conditions";
-		public const string ACTIONS = "actions";
+		public const string VALUE = "value";
 		#endregion
 
 		#region Private Fields
-		private IList<AssetConditionBase> _Conditions;
-		private IList<AssetUserRuleAction> _Actions;
+		private string _Value = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ConditionsAsDouble property instead
+		/// Use ValueAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<AssetConditionBase> Conditions
+		public string Value
 		{
-			get { return _Conditions; }
+			get { return _Value; }
 			set 
 			{ 
-				_Conditions = value;
-				OnPropertyChanged("Conditions");
-			}
-		}
-		/// <summary>
-		/// Use ActionsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<AssetUserRuleAction> Actions
-		{
-			get { return _Actions; }
-			set 
-			{ 
-				_Actions = value;
-				OnPropertyChanged("Actions");
+				_Value = value;
+				OnPropertyChanged("Value");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AssetUserRule()
+		public AssetShopCondition()
 		{
 		}
 
-		public AssetUserRule(JToken node) : base(node)
+		public AssetShopCondition(JToken node) : base(node)
 		{
-			if(node["conditions"] != null)
+			if(node["value"] != null)
 			{
-				this._Conditions = new List<AssetConditionBase>();
-				foreach(var arrayNode in node["conditions"].Children())
-				{
-					this._Conditions.Add(ObjectFactory.Create<AssetConditionBase>(arrayNode));
-				}
-			}
-			if(node["actions"] != null)
-			{
-				this._Actions = new List<AssetUserRuleAction>();
-				foreach(var arrayNode in node["actions"].Children())
-				{
-					this._Actions.Add(ObjectFactory.Create<AssetUserRuleAction>(arrayNode));
-				}
+				this._Value = node["value"].Value<string>();
 			}
 		}
 		#endregion
@@ -107,19 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetUserRule");
-			kparams.AddIfNotNull("conditions", this._Conditions);
-			kparams.AddIfNotNull("actions", this._Actions);
+				kparams.AddReplace("objectType", "KalturaAssetShopCondition");
+			kparams.AddIfNotNull("value", this._Value);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case CONDITIONS:
-					return "Conditions";
-				case ACTIONS:
-					return "Actions";
+				case VALUE:
+					return "Value";
 				default:
 					return base.getPropertyName(apiName);
 			}
