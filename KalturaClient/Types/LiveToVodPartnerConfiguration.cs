@@ -35,61 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IpV6RangeCondition : Condition
+	public class LiveToVodPartnerConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string FROM_IP = "fromIP";
-		public const string TO_IP = "toIP";
+		public const string IS_L2V_ENABLED = "isL2vEnabled";
+		public const string RETENTION_PERIOD_DAYS = "retentionPeriodDays";
+		public const string METADATA_CLASSIFIER = "metadataClassifier";
 		#endregion
 
 		#region Private Fields
-		private string _FromIP = null;
-		private string _ToIP = null;
+		private bool? _IsL2vEnabled = null;
+		private int _RetentionPeriodDays = Int32.MinValue;
+		private string _MetadataClassifier = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use FromIPAsDouble property instead
+		/// Use IsL2vEnabledAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string FromIP
+		public bool? IsL2vEnabled
 		{
-			get { return _FromIP; }
+			get { return _IsL2vEnabled; }
 			set 
 			{ 
-				_FromIP = value;
-				OnPropertyChanged("FromIP");
+				_IsL2vEnabled = value;
+				OnPropertyChanged("IsL2vEnabled");
 			}
 		}
 		/// <summary>
-		/// Use ToIPAsDouble property instead
+		/// Use RetentionPeriodDaysAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string ToIP
+		public int RetentionPeriodDays
 		{
-			get { return _ToIP; }
+			get { return _RetentionPeriodDays; }
 			set 
 			{ 
-				_ToIP = value;
-				OnPropertyChanged("ToIP");
+				_RetentionPeriodDays = value;
+				OnPropertyChanged("RetentionPeriodDays");
+			}
+		}
+		/// <summary>
+		/// Use MetadataClassifierAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string MetadataClassifier
+		{
+			get { return _MetadataClassifier; }
+			set 
+			{ 
+				_MetadataClassifier = value;
+				OnPropertyChanged("MetadataClassifier");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public IpV6RangeCondition()
+		public LiveToVodPartnerConfiguration()
 		{
 		}
 
-		public IpV6RangeCondition(JToken node) : base(node)
+		public LiveToVodPartnerConfiguration(JToken node) : base(node)
 		{
-			if(node["fromIP"] != null)
+			if(node["isL2vEnabled"] != null)
 			{
-				this._FromIP = node["fromIP"].Value<string>();
+				this._IsL2vEnabled = ParseBool(node["isL2vEnabled"].Value<string>());
 			}
-			if(node["toIP"] != null)
+			if(node["retentionPeriodDays"] != null)
 			{
-				this._ToIP = node["toIP"].Value<string>();
+				this._RetentionPeriodDays = ParseInt(node["retentionPeriodDays"].Value<string>());
+			}
+			if(node["metadataClassifier"] != null)
+			{
+				this._MetadataClassifier = node["metadataClassifier"].Value<string>();
 			}
 		}
 		#endregion
@@ -99,19 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaIpV6RangeCondition");
-			kparams.AddIfNotNull("fromIP", this._FromIP);
-			kparams.AddIfNotNull("toIP", this._ToIP);
+				kparams.AddReplace("objectType", "KalturaLiveToVodPartnerConfiguration");
+			kparams.AddIfNotNull("isL2vEnabled", this._IsL2vEnabled);
+			kparams.AddIfNotNull("retentionPeriodDays", this._RetentionPeriodDays);
+			kparams.AddIfNotNull("metadataClassifier", this._MetadataClassifier);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case FROM_IP:
-					return "FromIP";
-				case TO_IP:
-					return "ToIP";
+				case IS_L2V_ENABLED:
+					return "IsL2vEnabled";
+				case RETENTION_PERIOD_DAYS:
+					return "RetentionPeriodDays";
+				case METADATA_CLASSIFIER:
+					return "MetadataClassifier";
 				default:
 					return base.getPropertyName(apiName);
 			}

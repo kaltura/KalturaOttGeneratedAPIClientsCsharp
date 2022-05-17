@@ -35,42 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetShopCondition : AssetConditionBase
+	public class LiveToVodLinearAssetConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string VALUE = "value";
+		public const string LINEAR_ASSET_ID = "linearAssetId";
+		public const string IS_L2V_ENABLED = "isL2vEnabled";
+		public const string RETENTION_PERIOD_DAYS = "retentionPeriodDays";
 		#endregion
 
 		#region Private Fields
-		private string _Value = null;
+		private long _LinearAssetId = long.MinValue;
+		private bool? _IsL2vEnabled = null;
+		private int _RetentionPeriodDays = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ValueAsDouble property instead
+		/// Use LinearAssetIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string Value
+		public long LinearAssetId
 		{
-			get { return _Value; }
+			get { return _LinearAssetId; }
 			set 
 			{ 
-				_Value = value;
-				OnPropertyChanged("Value");
+				_LinearAssetId = value;
+				OnPropertyChanged("LinearAssetId");
+			}
+		}
+		/// <summary>
+		/// Use IsL2vEnabledAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IsL2vEnabled
+		{
+			get { return _IsL2vEnabled; }
+			set 
+			{ 
+				_IsL2vEnabled = value;
+				OnPropertyChanged("IsL2vEnabled");
+			}
+		}
+		/// <summary>
+		/// Use RetentionPeriodDaysAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int RetentionPeriodDays
+		{
+			get { return _RetentionPeriodDays; }
+			set 
+			{ 
+				_RetentionPeriodDays = value;
+				OnPropertyChanged("RetentionPeriodDays");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AssetShopCondition()
+		public LiveToVodLinearAssetConfiguration()
 		{
 		}
 
-		public AssetShopCondition(JToken node) : base(node)
+		public LiveToVodLinearAssetConfiguration(JToken node) : base(node)
 		{
-			if(node["value"] != null)
+			if(node["linearAssetId"] != null)
 			{
-				this._Value = node["value"].Value<string>();
+				this._LinearAssetId = ParseLong(node["linearAssetId"].Value<string>());
+			}
+			if(node["isL2vEnabled"] != null)
+			{
+				this._IsL2vEnabled = ParseBool(node["isL2vEnabled"].Value<string>());
+			}
+			if(node["retentionPeriodDays"] != null)
+			{
+				this._RetentionPeriodDays = ParseInt(node["retentionPeriodDays"].Value<string>());
 			}
 		}
 		#endregion
@@ -80,16 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAssetShopCondition");
-			kparams.AddIfNotNull("value", this._Value);
+				kparams.AddReplace("objectType", "KalturaLiveToVodLinearAssetConfiguration");
+			kparams.AddIfNotNull("linearAssetId", this._LinearAssetId);
+			kparams.AddIfNotNull("isL2vEnabled", this._IsL2vEnabled);
+			kparams.AddIfNotNull("retentionPeriodDays", this._RetentionPeriodDays);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case VALUE:
-					return "Value";
+				case LINEAR_ASSET_ID:
+					return "LinearAssetId";
+				case IS_L2V_ENABLED:
+					return "IsL2vEnabled";
+				case RETENTION_PERIOD_DAYS:
+					return "RetentionPeriodDays";
 				default:
 					return base.getPropertyName(apiName);
 			}
