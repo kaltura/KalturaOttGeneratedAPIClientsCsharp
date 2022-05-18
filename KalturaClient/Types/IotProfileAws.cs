@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IotProfileAws : OTTObjectSupportNullable
+	public class IotProfileAws : CrudObject
 	{
 		#region Constants
 		public const string IOT_END_POINT = "iotEndPoint";

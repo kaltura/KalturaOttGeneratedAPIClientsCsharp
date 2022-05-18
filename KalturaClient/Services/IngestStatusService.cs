@@ -36,45 +36,6 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class IngestStatusGetEpgDetailsRequestBuilder : RequestBuilder<IngestEpgDetails>
-	{
-		#region Constants
-		public const string INGEST_ID = "ingestId";
-		#endregion
-
-		public long IngestId { get; set; }
-
-		public IngestStatusGetEpgDetailsRequestBuilder()
-			: base("ingeststatus", "getEpgDetails")
-		{
-		}
-
-		public IngestStatusGetEpgDetailsRequestBuilder(long ingestId)
-			: this()
-		{
-			this.IngestId = ingestId;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("ingestId"))
-				kparams.AddIfNotNull("ingestId", IngestId);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<IngestEpgDetails>(result);
-		}
-	}
-
 	public class IngestStatusGetEpgListRequestBuilder : RequestBuilder<ListResponse<IngestEpg>>
 	{
 		#region Constants
@@ -121,55 +82,6 @@ namespace Kaltura.Services
 		public override object Deserialize(JToken result)
 		{
 			return ObjectFactory.Create<ListResponse<IngestEpg>>(result);
-		}
-	}
-
-	public class IngestStatusGetEpgProgramResultListRequestBuilder : RequestBuilder<ListResponse<IngestEpgProgramResult>>
-	{
-		#region Constants
-		public const string INGEST_ID = "ingestId";
-		public const string FILTER = "filter";
-		public const string PAGER = "pager";
-		#endregion
-
-		public long IngestId { get; set; }
-		public IngestEpgProgramResultFilter Filter { get; set; }
-		public FilterPager Pager { get; set; }
-
-		public IngestStatusGetEpgProgramResultListRequestBuilder()
-			: base("ingeststatus", "getEpgProgramResultList")
-		{
-		}
-
-		public IngestStatusGetEpgProgramResultListRequestBuilder(long ingestId, IngestEpgProgramResultFilter filter, FilterPager pager)
-			: this()
-		{
-			this.IngestId = ingestId;
-			this.Filter = filter;
-			this.Pager = pager;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("ingestId"))
-				kparams.AddIfNotNull("ingestId", IngestId);
-			if (!isMapped("filter"))
-				kparams.AddIfNotNull("filter", Filter);
-			if (!isMapped("pager"))
-				kparams.AddIfNotNull("pager", Pager);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<ListResponse<IngestEpgProgramResult>>(result);
 		}
 	}
 
@@ -248,19 +160,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static IngestStatusGetEpgDetailsRequestBuilder GetEpgDetails(long ingestId)
-		{
-			return new IngestStatusGetEpgDetailsRequestBuilder(ingestId);
-		}
-
 		public static IngestStatusGetEpgListRequestBuilder GetEpgList(IngestByIdsFilter idsFilter = null, IngestByCompoundFilter filter = null, FilterPager pager = null)
 		{
 			return new IngestStatusGetEpgListRequestBuilder(idsFilter, filter, pager);
-		}
-
-		public static IngestStatusGetEpgProgramResultListRequestBuilder GetEpgProgramResultList(long ingestId, IngestEpgProgramResultFilter filter = null, FilterPager pager = null)
-		{
-			return new IngestStatusGetEpgProgramResultListRequestBuilder(ingestId, filter, pager);
 		}
 
 		public static IngestStatusGetPartnerConfigurationRequestBuilder GetPartnerConfiguration()

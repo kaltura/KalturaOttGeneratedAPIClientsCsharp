@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class PasswordPolicyFilter : Filter
+	public class PasswordPolicyFilter : CrudFilter
 	{
 		#region Constants
 		public const string USER_ROLE_ID_IN = "userRoleIdIn";

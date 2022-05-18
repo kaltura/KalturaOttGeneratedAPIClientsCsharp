@@ -75,6 +75,50 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class CampaignUpdateRequestBuilder : RequestBuilder<Campaign>
+	{
+		#region Constants
+		public const string ID = "id";
+		public const string OBJECT_TO_UPDATE = "objectToUpdate";
+		#endregion
+
+		public long Id { get; set; }
+		public Campaign ObjectToUpdate { get; set; }
+
+		public CampaignUpdateRequestBuilder()
+			: base("campaign", "update")
+		{
+		}
+
+		public CampaignUpdateRequestBuilder(long id, Campaign objectToUpdate)
+			: this()
+		{
+			this.Id = id;
+			this.ObjectToUpdate = objectToUpdate;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("objectToUpdate"))
+				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<Campaign>(result);
+		}
+	}
+
 	public class CampaignDeleteRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
@@ -202,50 +246,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class CampaignUpdateRequestBuilder : RequestBuilder<Campaign>
-	{
-		#region Constants
-		public const string ID = "id";
-		public const string OBJECT_TO_UPDATE = "objectToUpdate";
-		#endregion
-
-		public long Id { get; set; }
-		public Campaign ObjectToUpdate { get; set; }
-
-		public CampaignUpdateRequestBuilder()
-			: base("campaign", "update")
-		{
-		}
-
-		public CampaignUpdateRequestBuilder(long id, Campaign objectToUpdate)
-			: this()
-		{
-			this.Id = id;
-			this.ObjectToUpdate = objectToUpdate;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("objectToUpdate"))
-				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<Campaign>(result);
-		}
-	}
-
 
 	public class CampaignService
 	{
@@ -256,6 +256,11 @@ namespace Kaltura.Services
 		public static CampaignAddRequestBuilder Add(Campaign objectToAdd)
 		{
 			return new CampaignAddRequestBuilder(objectToAdd);
+		}
+
+		public static CampaignUpdateRequestBuilder Update(long id, Campaign objectToUpdate)
+		{
+			return new CampaignUpdateRequestBuilder(id, objectToUpdate);
 		}
 
 		public static CampaignDeleteRequestBuilder Delete(long id)
@@ -271,11 +276,6 @@ namespace Kaltura.Services
 		public static CampaignSetStateRequestBuilder SetState(long campaignId, ObjectState newState)
 		{
 			return new CampaignSetStateRequestBuilder(campaignId, newState);
-		}
-
-		public static CampaignUpdateRequestBuilder Update(long id, Campaign objectToUpdate)
-		{
-			return new CampaignUpdateRequestBuilder(id, objectToUpdate);
 		}
 	}
 }

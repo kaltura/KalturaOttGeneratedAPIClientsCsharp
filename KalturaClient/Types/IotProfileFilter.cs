@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IotProfileFilter : Filter
+	public class IotProfileFilter : CrudFilter
 	{
 		#region Constants
 		public new const string ORDER_BY = "orderBy";

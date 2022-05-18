@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class CategoryVersion : OTTObjectSupportNullable
+	public class CategoryVersion : CrudObject
 	{
 		#region Constants
 		public const string ID = "id";

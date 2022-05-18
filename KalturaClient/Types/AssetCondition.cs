@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AssetCondition : AssetConditionBase
+	public class AssetCondition : Condition
 	{
 		#region Constants
 		public const string KSQL = "ksql";

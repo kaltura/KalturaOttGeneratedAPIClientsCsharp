@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class CategoryVersionFilter : Filter
+	public class CategoryVersionFilter : CrudFilter
 	{
 		#region Constants
 		public new const string ORDER_BY = "orderBy";

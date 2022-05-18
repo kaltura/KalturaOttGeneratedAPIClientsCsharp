@@ -45,7 +45,6 @@ namespace Kaltura.Enums
 		public static readonly PurchaseStatus INVALID_CURRENCY = new PurchaseStatus("invalid_currency");
 		public static readonly PurchaseStatus CURRENCY_NOT_DEFINED_ON_PRICE_CODE = new PurchaseStatus("currency_not_defined_on_price_code");
 		public static readonly PurchaseStatus PENDING_ENTITLEMENT = new PurchaseStatus("pending_entitlement");
-		public static readonly PurchaseStatus PROGRAM_ASSET_GROUP_OFFER_PURCHASED = new PurchaseStatus("program_asset_group_offer_purchased");
 
 		private PurchaseStatus(string name) : base(name) { }
 	}

@@ -43,7 +43,6 @@ namespace Kaltura.Types
 		public const string COLLECTION_ID_IN = "collectionIdIn";
 		public const string IS_LOWEST = "isLowest";
 		public const string COUPON_CODE_EQUAL = "couponCodeEqual";
-		public const string PROGRAM_ASSET_GROUP_OFFER_ID_IN = "programAssetGroupOfferIdIn";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -53,7 +52,6 @@ namespace Kaltura.Types
 		private string _CollectionIdIn = null;
 		private bool? _IsLowest = null;
 		private string _CouponCodeEqual = null;
-		private string _ProgramAssetGroupOfferIdIn = null;
 		private ProductPriceOrderBy _OrderBy = null;
 		#endregion
 
@@ -124,19 +122,6 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use ProgramAssetGroupOfferIdInAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string ProgramAssetGroupOfferIdIn
-		{
-			get { return _ProgramAssetGroupOfferIdIn; }
-			set 
-			{ 
-				_ProgramAssetGroupOfferIdIn = value;
-				OnPropertyChanged("ProgramAssetGroupOfferIdIn");
-			}
-		}
-		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -178,10 +163,6 @@ namespace Kaltura.Types
 			{
 				this._CouponCodeEqual = node["couponCodeEqual"].Value<string>();
 			}
-			if(node["programAssetGroupOfferIdIn"] != null)
-			{
-				this._ProgramAssetGroupOfferIdIn = node["programAssetGroupOfferIdIn"].Value<string>();
-			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (ProductPriceOrderBy)StringEnum.Parse(typeof(ProductPriceOrderBy), node["orderBy"].Value<string>());
@@ -200,7 +181,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("collectionIdIn", this._CollectionIdIn);
 			kparams.AddIfNotNull("isLowest", this._IsLowest);
 			kparams.AddIfNotNull("couponCodeEqual", this._CouponCodeEqual);
-			kparams.AddIfNotNull("programAssetGroupOfferIdIn", this._ProgramAssetGroupOfferIdIn);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -218,8 +198,6 @@ namespace Kaltura.Types
 					return "IsLowest";
 				case COUPON_CODE_EQUAL:
 					return "CouponCodeEqual";
-				case PROGRAM_ASSET_GROUP_OFFER_ID_IN:
-					return "ProgramAssetGroupOfferIdIn";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

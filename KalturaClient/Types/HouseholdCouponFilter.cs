@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class HouseholdCouponFilter : Filter
+	public class HouseholdCouponFilter : CrudFilter
 	{
 		#region Constants
 		public const string BUSINESS_MODULE_TYPE_EQUAL = "businessModuleTypeEqual";

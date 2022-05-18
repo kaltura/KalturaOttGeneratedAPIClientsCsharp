@@ -35,20 +35,22 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class DynamicList : CrudObject
+	public class SessionCharacteristic : ObjectBase
 	{
 		#region Constants
 		public const string ID = "id";
-		public const string CREATE_DATE = "createDate";
-		public const string UPDATE_DATE = "updateDate";
-		public const string NAME = "name";
+		public const string REGION_ID = "regionId";
+		public const string USER_SEGMENTS_IDS = "userSegmentsIds";
+		public const string USER_ROLES_IDS = "userRolesIds";
+		public const string USER_SESSION_PROFILES_IDS = "userSessionProfilesIds";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private long _CreateDate = long.MinValue;
-		private long _UpdateDate = long.MinValue;
-		private string _Name = null;
+		private string _Id = null;
+		private int _RegionId = Int32.MinValue;
+		private string _UserSegmentsIds = null;
+		private string _UserRolesIds = null;
+		private string _UserSessionProfilesIds = null;
 		#endregion
 
 		#region Properties
@@ -56,7 +58,7 @@ namespace Kaltura.Types
 		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long Id
+		public string Id
 		{
 			get { return _Id; }
 			private set 
@@ -66,68 +68,85 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use CreateDateAsDouble property instead
+		/// Use RegionIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long CreateDate
+		public int RegionId
 		{
-			get { return _CreateDate; }
+			get { return _RegionId; }
 			private set 
 			{ 
-				_CreateDate = value;
-				OnPropertyChanged("CreateDate");
+				_RegionId = value;
+				OnPropertyChanged("RegionId");
 			}
 		}
 		/// <summary>
-		/// Use UpdateDateAsDouble property instead
+		/// Use UserSegmentsIdsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long UpdateDate
+		public string UserSegmentsIds
 		{
-			get { return _UpdateDate; }
+			get { return _UserSegmentsIds; }
 			private set 
 			{ 
-				_UpdateDate = value;
-				OnPropertyChanged("UpdateDate");
+				_UserSegmentsIds = value;
+				OnPropertyChanged("UserSegmentsIds");
 			}
 		}
 		/// <summary>
-		/// Use NameAsDouble property instead
+		/// Use UserRolesIdsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string Name
+		public string UserRolesIds
 		{
-			get { return _Name; }
-			set 
+			get { return _UserRolesIds; }
+			private set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
+				_UserRolesIds = value;
+				OnPropertyChanged("UserRolesIds");
+			}
+		}
+		/// <summary>
+		/// Use UserSessionProfilesIdsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string UserSessionProfilesIds
+		{
+			get { return _UserSessionProfilesIds; }
+			private set 
+			{ 
+				_UserSessionProfilesIds = value;
+				OnPropertyChanged("UserSessionProfilesIds");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public DynamicList()
+		public SessionCharacteristic()
 		{
 		}
 
-		public DynamicList(JToken node) : base(node)
+		public SessionCharacteristic(JToken node) : base(node)
 		{
 			if(node["id"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._Id = node["id"].Value<string>();
 			}
-			if(node["createDate"] != null)
+			if(node["regionId"] != null)
 			{
-				this._CreateDate = ParseLong(node["createDate"].Value<string>());
+				this._RegionId = ParseInt(node["regionId"].Value<string>());
 			}
-			if(node["updateDate"] != null)
+			if(node["userSegmentsIds"] != null)
 			{
-				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
+				this._UserSegmentsIds = node["userSegmentsIds"].Value<string>();
 			}
-			if(node["name"] != null)
+			if(node["userRolesIds"] != null)
 			{
-				this._Name = node["name"].Value<string>();
+				this._UserRolesIds = node["userRolesIds"].Value<string>();
+			}
+			if(node["userSessionProfilesIds"] != null)
+			{
+				this._UserSessionProfilesIds = node["userSessionProfilesIds"].Value<string>();
 			}
 		}
 		#endregion
@@ -137,11 +156,12 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaDynamicList");
+				kparams.AddReplace("objectType", "KalturaSessionCharacteristic");
 			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("createDate", this._CreateDate);
-			kparams.AddIfNotNull("updateDate", this._UpdateDate);
-			kparams.AddIfNotNull("name", this._Name);
+			kparams.AddIfNotNull("regionId", this._RegionId);
+			kparams.AddIfNotNull("userSegmentsIds", this._UserSegmentsIds);
+			kparams.AddIfNotNull("userRolesIds", this._UserRolesIds);
+			kparams.AddIfNotNull("userSessionProfilesIds", this._UserSessionProfilesIds);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -150,12 +170,14 @@ namespace Kaltura.Types
 			{
 				case ID:
 					return "Id";
-				case CREATE_DATE:
-					return "CreateDate";
-				case UPDATE_DATE:
-					return "UpdateDate";
-				case NAME:
-					return "Name";
+				case REGION_ID:
+					return "RegionId";
+				case USER_SEGMENTS_IDS:
+					return "UserSegmentsIds";
+				case USER_ROLES_IDS:
+					return "UserRolesIds";
+				case USER_SESSION_PROFILES_IDS:
+					return "UserSessionProfilesIds";
 				default:
 					return base.getPropertyName(apiName);
 			}

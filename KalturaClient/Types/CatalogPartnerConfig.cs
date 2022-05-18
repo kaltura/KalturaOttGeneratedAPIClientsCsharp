@@ -42,7 +42,6 @@ namespace Kaltura.Types
 		public const string CATEGORY_MANAGEMENT = "categoryManagement";
 		public const string EPG_MULTILINGUAL_FALLBACK_SUPPORT = "epgMultilingualFallbackSupport";
 		public const string UPLOAD_EXPORT_DATALAKE = "uploadExportDatalake";
-		public const string SHOP_MARKER_META_ID = "shopMarkerMetaId";
 		#endregion
 
 		#region Private Fields
@@ -50,7 +49,6 @@ namespace Kaltura.Types
 		private CategoryManagement _CategoryManagement;
 		private bool? _EpgMultilingualFallbackSupport = null;
 		private bool? _UploadExportDatalake = null;
-		private long _ShopMarkerMetaId = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -106,19 +104,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UploadExportDatalake");
 			}
 		}
-		/// <summary>
-		/// Use ShopMarkerMetaIdAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long ShopMarkerMetaId
-		{
-			get { return _ShopMarkerMetaId; }
-			set 
-			{ 
-				_ShopMarkerMetaId = value;
-				OnPropertyChanged("ShopMarkerMetaId");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -144,10 +129,6 @@ namespace Kaltura.Types
 			{
 				this._UploadExportDatalake = ParseBool(node["uploadExportDatalake"].Value<string>());
 			}
-			if(node["shopMarkerMetaId"] != null)
-			{
-				this._ShopMarkerMetaId = ParseLong(node["shopMarkerMetaId"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -161,7 +142,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("categoryManagement", this._CategoryManagement);
 			kparams.AddIfNotNull("epgMultilingualFallbackSupport", this._EpgMultilingualFallbackSupport);
 			kparams.AddIfNotNull("uploadExportDatalake", this._UploadExportDatalake);
-			kparams.AddIfNotNull("shopMarkerMetaId", this._ShopMarkerMetaId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -176,8 +156,6 @@ namespace Kaltura.Types
 					return "EpgMultilingualFallbackSupport";
 				case UPLOAD_EXPORT_DATALAKE:
 					return "UploadExportDatalake";
-				case SHOP_MARKER_META_ID:
-					return "ShopMarkerMetaId";
 				default:
 					return base.getPropertyName(apiName);
 			}
