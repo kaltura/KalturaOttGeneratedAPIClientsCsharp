@@ -43,7 +43,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private IList<AssetConditionBase> _Conditions;
+		private IList<AssetCondition> _Conditions;
 		private IList<AssetUserRuleAction> _Actions;
 		#endregion
 
@@ -52,7 +52,7 @@ namespace Kaltura.Types
 		/// Use ConditionsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<AssetConditionBase> Conditions
+		public IList<AssetCondition> Conditions
 		{
 			get { return _Conditions; }
 			set 
@@ -85,10 +85,10 @@ namespace Kaltura.Types
 		{
 			if(node["conditions"] != null)
 			{
-				this._Conditions = new List<AssetConditionBase>();
+				this._Conditions = new List<AssetCondition>();
 				foreach(var arrayNode in node["conditions"].Children())
 				{
-					this._Conditions.Add(ObjectFactory.Create<AssetConditionBase>(arrayNode));
+					this._Conditions.Add(ObjectFactory.Create<AssetCondition>(arrayNode));
 				}
 			}
 			if(node["actions"] != null)
