@@ -42,8 +42,6 @@ namespace Kaltura.Types
 		public const string ENABLE_CATCH_UP_STATE = "enableCatchUpState";
 		public const string ENABLE_START_OVER_STATE = "enableStartOverState";
 		public const string BUFFER_CATCH_UP_SETTING = "bufferCatchUpSetting";
-		public const string PADDING_BEFORE_PROGRAM_STARTS = "paddingBeforeProgramStarts";
-		public const string PADDING_AFTER_PROGRAM_ENDS = "paddingAfterProgramEnds";
 		public const string BUFFER_TRICK_PLAY_SETTING = "bufferTrickPlaySetting";
 		public const string ENABLE_RECORDING_PLAYBACK_NON_ENTITLED_CHANNEL_STATE = "enableRecordingPlaybackNonEntitledChannelState";
 		public const string ENABLE_TRICK_PLAY_STATE = "enableTrickPlayState";
@@ -64,8 +62,6 @@ namespace Kaltura.Types
 		private TimeShiftedTvState _EnableCatchUpState = null;
 		private TimeShiftedTvState _EnableStartOverState = null;
 		private long _BufferCatchUpSetting = long.MinValue;
-		private long _PaddingBeforeProgramStarts = long.MinValue;
-		private long _PaddingAfterProgramEnds = long.MinValue;
 		private long _BufferTrickPlaySetting = long.MinValue;
 		private TimeShiftedTvState _EnableRecordingPlaybackNonEntitledChannelState = null;
 		private TimeShiftedTvState _EnableTrickPlayState = null;
@@ -132,32 +128,6 @@ namespace Kaltura.Types
 			{ 
 				_BufferCatchUpSetting = value;
 				OnPropertyChanged("BufferCatchUpSetting");
-			}
-		}
-		/// <summary>
-		/// Use PaddingBeforeProgramStartsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long PaddingBeforeProgramStarts
-		{
-			get { return _PaddingBeforeProgramStarts; }
-			set 
-			{ 
-				_PaddingBeforeProgramStarts = value;
-				OnPropertyChanged("PaddingBeforeProgramStarts");
-			}
-		}
-		/// <summary>
-		/// Use PaddingAfterProgramEndsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long PaddingAfterProgramEnds
-		{
-			get { return _PaddingAfterProgramEnds; }
-			set 
-			{ 
-				_PaddingAfterProgramEnds = value;
-				OnPropertyChanged("PaddingAfterProgramEnds");
 			}
 		}
 		/// <summary>
@@ -354,14 +324,6 @@ namespace Kaltura.Types
 			{
 				this._BufferCatchUpSetting = ParseLong(node["bufferCatchUpSetting"].Value<string>());
 			}
-			if(node["paddingBeforeProgramStarts"] != null)
-			{
-				this._PaddingBeforeProgramStarts = ParseLong(node["paddingBeforeProgramStarts"].Value<string>());
-			}
-			if(node["paddingAfterProgramEnds"] != null)
-			{
-				this._PaddingAfterProgramEnds = ParseLong(node["paddingAfterProgramEnds"].Value<string>());
-			}
 			if(node["bufferTrickPlaySetting"] != null)
 			{
 				this._BufferTrickPlaySetting = ParseLong(node["bufferTrickPlaySetting"].Value<string>());
@@ -427,8 +389,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("enableCatchUpState", this._EnableCatchUpState);
 			kparams.AddIfNotNull("enableStartOverState", this._EnableStartOverState);
 			kparams.AddIfNotNull("bufferCatchUpSetting", this._BufferCatchUpSetting);
-			kparams.AddIfNotNull("paddingBeforeProgramStarts", this._PaddingBeforeProgramStarts);
-			kparams.AddIfNotNull("paddingAfterProgramEnds", this._PaddingAfterProgramEnds);
 			kparams.AddIfNotNull("bufferTrickPlaySetting", this._BufferTrickPlaySetting);
 			kparams.AddIfNotNull("enableRecordingPlaybackNonEntitledChannelState", this._EnableRecordingPlaybackNonEntitledChannelState);
 			kparams.AddIfNotNull("enableTrickPlayState", this._EnableTrickPlayState);
@@ -456,10 +416,6 @@ namespace Kaltura.Types
 					return "EnableStartOverState";
 				case BUFFER_CATCH_UP_SETTING:
 					return "BufferCatchUpSetting";
-				case PADDING_BEFORE_PROGRAM_STARTS:
-					return "PaddingBeforeProgramStarts";
-				case PADDING_AFTER_PROGRAM_ENDS:
-					return "PaddingAfterProgramEnds";
 				case BUFFER_TRICK_PLAY_SETTING:
 					return "BufferTrickPlaySetting";
 				case ENABLE_RECORDING_PLAYBACK_NON_ENTITLED_CHANNEL_STATE:
