@@ -44,6 +44,7 @@ namespace Kaltura.Types
 		public const string GEO_BLOCK_RULE_ID = "geoBlockRuleId";
 		public const string STATUS = "status";
 		public const string INHERITANCE_POLICY = "inheritancePolicy";
+		public const string LIVE_TO_VOD = "liveToVod";
 		#endregion
 
 		#region Private Fields
@@ -53,6 +54,7 @@ namespace Kaltura.Types
 		private int _GeoBlockRuleId = Int32.MinValue;
 		private bool? _Status = null;
 		private AssetInheritancePolicy _InheritancePolicy = null;
+		private LiveToVodInfoAsset _LiveToVod;
 		#endregion
 
 		#region Properties
@@ -134,6 +136,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("InheritancePolicy");
 			}
 		}
+		/// <summary>
+		/// Use LiveToVodAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public LiveToVodInfoAsset LiveToVod
+		{
+			get { return _LiveToVod; }
+			set 
+			{ 
+				_LiveToVod = value;
+				OnPropertyChanged("LiveToVod");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -167,6 +182,10 @@ namespace Kaltura.Types
 			{
 				this._InheritancePolicy = (AssetInheritancePolicy)StringEnum.Parse(typeof(AssetInheritancePolicy), node["inheritancePolicy"].Value<string>());
 			}
+			if(node["liveToVod"] != null)
+			{
+				this._LiveToVod = ObjectFactory.Create<LiveToVodInfoAsset>(node["liveToVod"]);
+			}
 		}
 		#endregion
 
@@ -182,6 +201,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("geoBlockRuleId", this._GeoBlockRuleId);
 			kparams.AddIfNotNull("status", this._Status);
 			kparams.AddIfNotNull("inheritancePolicy", this._InheritancePolicy);
+			kparams.AddIfNotNull("liveToVod", this._LiveToVod);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -200,6 +220,8 @@ namespace Kaltura.Types
 					return "Status";
 				case INHERITANCE_POLICY:
 					return "InheritancePolicy";
+				case LIVE_TO_VOD:
+					return "LiveToVod";
 				default:
 					return base.getPropertyName(apiName);
 			}

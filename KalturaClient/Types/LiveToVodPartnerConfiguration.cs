@@ -35,99 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class DeviceBrand : ObjectBase
+	public class LiveToVodPartnerConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string NAME = "name";
-		public const string DEVICE_FAMILYID = "deviceFamilyid";
-		public const string TYPE = "type";
+		public const string IS_L2V_ENABLED = "isL2vEnabled";
+		public const string RETENTION_PERIOD_DAYS = "retentionPeriodDays";
+		public const string METADATA_CLASSIFIER = "metadataClassifier";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
-		private long _DeviceFamilyid = long.MinValue;
-		private DeviceBrandType _Type = null;
+		private bool? _IsL2vEnabled = null;
+		private int _RetentionPeriodDays = Int32.MinValue;
+		private string _MetadataClassifier = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdAsDouble property instead
+		/// Use IsL2vEnabledAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long Id
+		public bool? IsL2vEnabled
 		{
-			get { return _Id; }
+			get { return _IsL2vEnabled; }
 			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
+				_IsL2vEnabled = value;
+				OnPropertyChanged("IsL2vEnabled");
 			}
 		}
 		/// <summary>
-		/// Use NameAsDouble property instead
+		/// Use RetentionPeriodDaysAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string Name
+		public int RetentionPeriodDays
 		{
-			get { return _Name; }
+			get { return _RetentionPeriodDays; }
 			set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
+				_RetentionPeriodDays = value;
+				OnPropertyChanged("RetentionPeriodDays");
 			}
 		}
 		/// <summary>
-		/// Use DeviceFamilyidAsDouble property instead
+		/// Use MetadataClassifierAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long DeviceFamilyid
+		public string MetadataClassifier
 		{
-			get { return _DeviceFamilyid; }
+			get { return _MetadataClassifier; }
 			set 
 			{ 
-				_DeviceFamilyid = value;
-				OnPropertyChanged("DeviceFamilyid");
-			}
-		}
-		/// <summary>
-		/// Use TypeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public DeviceBrandType Type
-		{
-			get { return _Type; }
-			private set 
-			{ 
-				_Type = value;
-				OnPropertyChanged("Type");
+				_MetadataClassifier = value;
+				OnPropertyChanged("MetadataClassifier");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public DeviceBrand()
+		public LiveToVodPartnerConfiguration()
 		{
 		}
 
-		public DeviceBrand(JToken node) : base(node)
+		public LiveToVodPartnerConfiguration(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["isL2vEnabled"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._IsL2vEnabled = ParseBool(node["isL2vEnabled"].Value<string>());
 			}
-			if(node["name"] != null)
+			if(node["retentionPeriodDays"] != null)
 			{
-				this._Name = node["name"].Value<string>();
+				this._RetentionPeriodDays = ParseInt(node["retentionPeriodDays"].Value<string>());
 			}
-			if(node["deviceFamilyid"] != null)
+			if(node["metadataClassifier"] != null)
 			{
-				this._DeviceFamilyid = ParseLong(node["deviceFamilyid"].Value<string>());
-			}
-			if(node["type"] != null)
-			{
-				this._Type = (DeviceBrandType)StringEnum.Parse(typeof(DeviceBrandType), node["type"].Value<string>());
+				this._MetadataClassifier = node["metadataClassifier"].Value<string>();
 			}
 		}
 		#endregion
@@ -137,25 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaDeviceBrand");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("deviceFamilyid", this._DeviceFamilyid);
-			kparams.AddIfNotNull("type", this._Type);
+				kparams.AddReplace("objectType", "KalturaLiveToVodPartnerConfiguration");
+			kparams.AddIfNotNull("isL2vEnabled", this._IsL2vEnabled);
+			kparams.AddIfNotNull("retentionPeriodDays", this._RetentionPeriodDays);
+			kparams.AddIfNotNull("metadataClassifier", this._MetadataClassifier);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case NAME:
-					return "Name";
-				case DEVICE_FAMILYID:
-					return "DeviceFamilyid";
-				case TYPE:
-					return "Type";
+				case IS_L2V_ENABLED:
+					return "IsL2vEnabled";
+				case RETENTION_PERIOD_DAYS:
+					return "RetentionPeriodDays";
+				case METADATA_CLASSIFIER:
+					return "MetadataClassifier";
 				default:
 					return base.getPropertyName(apiName);
 			}
