@@ -35,99 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class DeviceBrand : ObjectBase
+	public class AssetPersonalSelection : ObjectBase
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string NAME = "name";
-		public const string DEVICE_FAMILYID = "deviceFamilyid";
-		public const string TYPE = "type";
+		public const string ASSET_ID = "assetId";
+		public const string ASSET_TYPE = "assetType";
+		public const string UPDATE_DATE = "updateDate";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
-		private long _DeviceFamilyid = long.MinValue;
-		private DeviceBrandType _Type = null;
+		private long _AssetId = long.MinValue;
+		private AssetType _AssetType = null;
+		private long _UpdateDate = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdAsDouble property instead
+		/// Use AssetIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long Id
+		public long AssetId
 		{
-			get { return _Id; }
-			set 
-			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
-			}
-		}
-		/// <summary>
-		/// Use NameAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string Name
-		{
-			get { return _Name; }
-			set 
-			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
-			}
-		}
-		/// <summary>
-		/// Use DeviceFamilyidAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long DeviceFamilyid
-		{
-			get { return _DeviceFamilyid; }
-			set 
-			{ 
-				_DeviceFamilyid = value;
-				OnPropertyChanged("DeviceFamilyid");
-			}
-		}
-		/// <summary>
-		/// Use TypeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public DeviceBrandType Type
-		{
-			get { return _Type; }
+			get { return _AssetId; }
 			private set 
 			{ 
-				_Type = value;
-				OnPropertyChanged("Type");
+				_AssetId = value;
+				OnPropertyChanged("AssetId");
+			}
+		}
+		/// <summary>
+		/// Use AssetTypeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public AssetType AssetType
+		{
+			get { return _AssetType; }
+			private set 
+			{ 
+				_AssetType = value;
+				OnPropertyChanged("AssetType");
+			}
+		}
+		/// <summary>
+		/// Use UpdateDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long UpdateDate
+		{
+			get { return _UpdateDate; }
+			private set 
+			{ 
+				_UpdateDate = value;
+				OnPropertyChanged("UpdateDate");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public DeviceBrand()
+		public AssetPersonalSelection()
 		{
 		}
 
-		public DeviceBrand(JToken node) : base(node)
+		public AssetPersonalSelection(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["assetId"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._AssetId = ParseLong(node["assetId"].Value<string>());
 			}
-			if(node["name"] != null)
+			if(node["assetType"] != null)
 			{
-				this._Name = node["name"].Value<string>();
+				this._AssetType = (AssetType)StringEnum.Parse(typeof(AssetType), node["assetType"].Value<string>());
 			}
-			if(node["deviceFamilyid"] != null)
+			if(node["updateDate"] != null)
 			{
-				this._DeviceFamilyid = ParseLong(node["deviceFamilyid"].Value<string>());
-			}
-			if(node["type"] != null)
-			{
-				this._Type = (DeviceBrandType)StringEnum.Parse(typeof(DeviceBrandType), node["type"].Value<string>());
+				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
 			}
 		}
 		#endregion
@@ -137,25 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaDeviceBrand");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("deviceFamilyid", this._DeviceFamilyid);
-			kparams.AddIfNotNull("type", this._Type);
+				kparams.AddReplace("objectType", "KalturaAssetPersonalSelection");
+			kparams.AddIfNotNull("assetId", this._AssetId);
+			kparams.AddIfNotNull("assetType", this._AssetType);
+			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case NAME:
-					return "Name";
-				case DEVICE_FAMILYID:
-					return "DeviceFamilyid";
-				case TYPE:
-					return "Type";
+				case ASSET_ID:
+					return "AssetId";
+				case ASSET_TYPE:
+					return "AssetType";
+				case UPDATE_DATE:
+					return "UpdateDate";
 				default:
 					return base.getPropertyName(apiName);
 			}

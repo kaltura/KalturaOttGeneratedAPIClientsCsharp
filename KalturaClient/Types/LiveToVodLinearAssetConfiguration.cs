@@ -35,99 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class DeviceBrand : ObjectBase
+	public class LiveToVodLinearAssetConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string NAME = "name";
-		public const string DEVICE_FAMILYID = "deviceFamilyid";
-		public const string TYPE = "type";
+		public const string LINEAR_ASSET_ID = "linearAssetId";
+		public const string IS_L2V_ENABLED = "isL2vEnabled";
+		public const string RETENTION_PERIOD_DAYS = "retentionPeriodDays";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
-		private long _DeviceFamilyid = long.MinValue;
-		private DeviceBrandType _Type = null;
+		private long _LinearAssetId = long.MinValue;
+		private bool? _IsL2vEnabled = null;
+		private int _RetentionPeriodDays = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdAsDouble property instead
+		/// Use LinearAssetIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long Id
+		public long LinearAssetId
 		{
-			get { return _Id; }
+			get { return _LinearAssetId; }
 			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
+				_LinearAssetId = value;
+				OnPropertyChanged("LinearAssetId");
 			}
 		}
 		/// <summary>
-		/// Use NameAsDouble property instead
+		/// Use IsL2vEnabledAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string Name
+		public bool? IsL2vEnabled
 		{
-			get { return _Name; }
+			get { return _IsL2vEnabled; }
 			set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
+				_IsL2vEnabled = value;
+				OnPropertyChanged("IsL2vEnabled");
 			}
 		}
 		/// <summary>
-		/// Use DeviceFamilyidAsDouble property instead
+		/// Use RetentionPeriodDaysAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long DeviceFamilyid
+		public int RetentionPeriodDays
 		{
-			get { return _DeviceFamilyid; }
+			get { return _RetentionPeriodDays; }
 			set 
 			{ 
-				_DeviceFamilyid = value;
-				OnPropertyChanged("DeviceFamilyid");
-			}
-		}
-		/// <summary>
-		/// Use TypeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public DeviceBrandType Type
-		{
-			get { return _Type; }
-			private set 
-			{ 
-				_Type = value;
-				OnPropertyChanged("Type");
+				_RetentionPeriodDays = value;
+				OnPropertyChanged("RetentionPeriodDays");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public DeviceBrand()
+		public LiveToVodLinearAssetConfiguration()
 		{
 		}
 
-		public DeviceBrand(JToken node) : base(node)
+		public LiveToVodLinearAssetConfiguration(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["linearAssetId"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._LinearAssetId = ParseLong(node["linearAssetId"].Value<string>());
 			}
-			if(node["name"] != null)
+			if(node["isL2vEnabled"] != null)
 			{
-				this._Name = node["name"].Value<string>();
+				this._IsL2vEnabled = ParseBool(node["isL2vEnabled"].Value<string>());
 			}
-			if(node["deviceFamilyid"] != null)
+			if(node["retentionPeriodDays"] != null)
 			{
-				this._DeviceFamilyid = ParseLong(node["deviceFamilyid"].Value<string>());
-			}
-			if(node["type"] != null)
-			{
-				this._Type = (DeviceBrandType)StringEnum.Parse(typeof(DeviceBrandType), node["type"].Value<string>());
+				this._RetentionPeriodDays = ParseInt(node["retentionPeriodDays"].Value<string>());
 			}
 		}
 		#endregion
@@ -137,25 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaDeviceBrand");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("deviceFamilyid", this._DeviceFamilyid);
-			kparams.AddIfNotNull("type", this._Type);
+				kparams.AddReplace("objectType", "KalturaLiveToVodLinearAssetConfiguration");
+			kparams.AddIfNotNull("linearAssetId", this._LinearAssetId);
+			kparams.AddIfNotNull("isL2vEnabled", this._IsL2vEnabled);
+			kparams.AddIfNotNull("retentionPeriodDays", this._RetentionPeriodDays);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case NAME:
-					return "Name";
-				case DEVICE_FAMILYID:
-					return "DeviceFamilyid";
-				case TYPE:
-					return "Type";
+				case LINEAR_ASSET_ID:
+					return "LinearAssetId";
+				case IS_L2V_ENABLED:
+					return "IsL2vEnabled";
+				case RETENTION_PERIOD_DAYS:
+					return "RetentionPeriodDays";
 				default:
 					return base.getPropertyName(apiName);
 			}

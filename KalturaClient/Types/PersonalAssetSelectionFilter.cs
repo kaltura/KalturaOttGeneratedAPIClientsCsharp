@@ -35,99 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class DeviceBrand : ObjectBase
+	public class PersonalAssetSelectionFilter : Filter
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string NAME = "name";
-		public const string DEVICE_FAMILYID = "deviceFamilyid";
-		public const string TYPE = "type";
+		public const string SLOT_NUMBER_EQUAL = "slotNumberEqual";
+		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private string _Name = null;
-		private long _DeviceFamilyid = long.MinValue;
-		private DeviceBrandType _Type = null;
+		private int _SlotNumberEqual = Int32.MinValue;
+		private PersonalAssetSelectionOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdAsDouble property instead
+		/// Use SlotNumberEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long Id
+		public int SlotNumberEqual
 		{
-			get { return _Id; }
+			get { return _SlotNumberEqual; }
 			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
+				_SlotNumberEqual = value;
+				OnPropertyChanged("SlotNumberEqual");
 			}
 		}
 		/// <summary>
-		/// Use NameAsDouble property instead
+		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string Name
+		public new PersonalAssetSelectionOrderBy OrderBy
 		{
-			get { return _Name; }
+			get { return _OrderBy; }
 			set 
 			{ 
-				_Name = value;
-				OnPropertyChanged("Name");
-			}
-		}
-		/// <summary>
-		/// Use DeviceFamilyidAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long DeviceFamilyid
-		{
-			get { return _DeviceFamilyid; }
-			set 
-			{ 
-				_DeviceFamilyid = value;
-				OnPropertyChanged("DeviceFamilyid");
-			}
-		}
-		/// <summary>
-		/// Use TypeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public DeviceBrandType Type
-		{
-			get { return _Type; }
-			private set 
-			{ 
-				_Type = value;
-				OnPropertyChanged("Type");
+				_OrderBy = value;
+				OnPropertyChanged("OrderBy");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public DeviceBrand()
+		public PersonalAssetSelectionFilter()
 		{
 		}
 
-		public DeviceBrand(JToken node) : base(node)
+		public PersonalAssetSelectionFilter(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["slotNumberEqual"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._SlotNumberEqual = ParseInt(node["slotNumberEqual"].Value<string>());
 			}
-			if(node["name"] != null)
+			if(node["orderBy"] != null)
 			{
-				this._Name = node["name"].Value<string>();
-			}
-			if(node["deviceFamilyid"] != null)
-			{
-				this._DeviceFamilyid = ParseLong(node["deviceFamilyid"].Value<string>());
-			}
-			if(node["type"] != null)
-			{
-				this._Type = (DeviceBrandType)StringEnum.Parse(typeof(DeviceBrandType), node["type"].Value<string>());
+				this._OrderBy = (PersonalAssetSelectionOrderBy)StringEnum.Parse(typeof(PersonalAssetSelectionOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -137,25 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaDeviceBrand");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("deviceFamilyid", this._DeviceFamilyid);
-			kparams.AddIfNotNull("type", this._Type);
+				kparams.AddReplace("objectType", "KalturaPersonalAssetSelectionFilter");
+			kparams.AddIfNotNull("slotNumberEqual", this._SlotNumberEqual);
+			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case NAME:
-					return "Name";
-				case DEVICE_FAMILYID:
-					return "DeviceFamilyid";
-				case TYPE:
-					return "Type";
+				case SLOT_NUMBER_EQUAL:
+					return "SlotNumberEqual";
+				case ORDER_BY:
+					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}
