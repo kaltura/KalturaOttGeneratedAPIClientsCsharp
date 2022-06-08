@@ -40,14 +40,14 @@ namespace Kaltura.Types
 		#region Constants
 		public const string ID = "id";
 		public const string NAME = "name";
-		public const string DEVICE_FAMILY_ID = "deviceFamilyId";
+		public const string DEVICE_FAMILYID = "deviceFamilyid";
 		public const string TYPE = "type";
 		#endregion
 
 		#region Private Fields
 		private long _Id = long.MinValue;
 		private string _Name = null;
-		private long _DeviceFamilyId = long.MinValue;
+		private long _DeviceFamilyid = long.MinValue;
 		private DeviceBrandType _Type = null;
 		#endregion
 
@@ -79,16 +79,16 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use DeviceFamilyIdAsDouble property instead
+		/// Use DeviceFamilyidAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long DeviceFamilyId
+		public long DeviceFamilyid
 		{
-			get { return _DeviceFamilyId; }
+			get { return _DeviceFamilyid; }
 			set 
 			{ 
-				_DeviceFamilyId = value;
-				OnPropertyChanged("DeviceFamilyId");
+				_DeviceFamilyid = value;
+				OnPropertyChanged("DeviceFamilyid");
 			}
 		}
 		/// <summary>
@@ -121,9 +121,9 @@ namespace Kaltura.Types
 			{
 				this._Name = node["name"].Value<string>();
 			}
-			if(node["deviceFamilyId"] != null)
+			if(node["deviceFamilyid"] != null)
 			{
-				this._DeviceFamilyId = ParseLong(node["deviceFamilyId"].Value<string>());
+				this._DeviceFamilyid = ParseLong(node["deviceFamilyid"].Value<string>());
 			}
 			if(node["type"] != null)
 			{
@@ -140,7 +140,7 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaDeviceBrand");
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("deviceFamilyId", this._DeviceFamilyId);
+			kparams.AddIfNotNull("deviceFamilyid", this._DeviceFamilyid);
 			kparams.AddIfNotNull("type", this._Type);
 			return kparams;
 		}
@@ -152,8 +152,8 @@ namespace Kaltura.Types
 					return "Id";
 				case NAME:
 					return "Name";
-				case DEVICE_FAMILY_ID:
-					return "DeviceFamilyId";
+				case DEVICE_FAMILYID:
+					return "DeviceFamilyid";
 				case TYPE:
 					return "Type";
 				default:

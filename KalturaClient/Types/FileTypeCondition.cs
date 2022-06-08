@@ -35,61 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Promotion : BasePromotion
+	public class FileTypeCondition : Condition
 	{
 		#region Constants
-		public const string DISCOUNT_MODULE_ID = "discountModuleId";
-		public const string NUMBER_OF_RECURRING = "numberOfRecurring";
+		public const string ID_IN = "idIn";
 		#endregion
 
 		#region Private Fields
-		private long _DiscountModuleId = long.MinValue;
-		private int _NumberOfRecurring = Int32.MinValue;
+		private string _IdIn = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use DiscountModuleIdAsDouble property instead
+		/// Use IdInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long DiscountModuleId
+		public string IdIn
 		{
-			get { return _DiscountModuleId; }
+			get { return _IdIn; }
 			set 
 			{ 
-				_DiscountModuleId = value;
-				OnPropertyChanged("DiscountModuleId");
-			}
-		}
-		/// <summary>
-		/// Use NumberOfRecurringAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int NumberOfRecurring
-		{
-			get { return _NumberOfRecurring; }
-			set 
-			{ 
-				_NumberOfRecurring = value;
-				OnPropertyChanged("NumberOfRecurring");
+				_IdIn = value;
+				OnPropertyChanged("IdIn");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Promotion()
+		public FileTypeCondition()
 		{
 		}
 
-		public Promotion(JToken node) : base(node)
+		public FileTypeCondition(JToken node) : base(node)
 		{
-			if(node["discountModuleId"] != null)
+			if(node["idIn"] != null)
 			{
-				this._DiscountModuleId = ParseLong(node["discountModuleId"].Value<string>());
-			}
-			if(node["numberOfRecurring"] != null)
-			{
-				this._NumberOfRecurring = ParseInt(node["numberOfRecurring"].Value<string>());
+				this._IdIn = node["idIn"].Value<string>();
 			}
 		}
 		#endregion
@@ -99,19 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPromotion");
-			kparams.AddIfNotNull("discountModuleId", this._DiscountModuleId);
-			kparams.AddIfNotNull("numberOfRecurring", this._NumberOfRecurring);
+				kparams.AddReplace("objectType", "KalturaFileTypeCondition");
+			kparams.AddIfNotNull("idIn", this._IdIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case DISCOUNT_MODULE_ID:
-					return "DiscountModuleId";
-				case NUMBER_OF_RECURRING:
-					return "NumberOfRecurring";
+				case ID_IN:
+					return "IdIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

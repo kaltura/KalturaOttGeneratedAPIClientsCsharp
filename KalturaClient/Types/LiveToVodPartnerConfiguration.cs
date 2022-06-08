@@ -35,61 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Promotion : BasePromotion
+	public class LiveToVodPartnerConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string DISCOUNT_MODULE_ID = "discountModuleId";
-		public const string NUMBER_OF_RECURRING = "numberOfRecurring";
+		public const string IS_L2V_ENABLED = "isL2vEnabled";
+		public const string RETENTION_PERIOD_DAYS = "retentionPeriodDays";
+		public const string METADATA_CLASSIFIER = "metadataClassifier";
 		#endregion
 
 		#region Private Fields
-		private long _DiscountModuleId = long.MinValue;
-		private int _NumberOfRecurring = Int32.MinValue;
+		private bool? _IsL2vEnabled = null;
+		private int _RetentionPeriodDays = Int32.MinValue;
+		private string _MetadataClassifier = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use DiscountModuleIdAsDouble property instead
+		/// Use IsL2vEnabledAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long DiscountModuleId
+		public bool? IsL2vEnabled
 		{
-			get { return _DiscountModuleId; }
+			get { return _IsL2vEnabled; }
 			set 
 			{ 
-				_DiscountModuleId = value;
-				OnPropertyChanged("DiscountModuleId");
+				_IsL2vEnabled = value;
+				OnPropertyChanged("IsL2vEnabled");
 			}
 		}
 		/// <summary>
-		/// Use NumberOfRecurringAsDouble property instead
+		/// Use RetentionPeriodDaysAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int NumberOfRecurring
+		public int RetentionPeriodDays
 		{
-			get { return _NumberOfRecurring; }
+			get { return _RetentionPeriodDays; }
 			set 
 			{ 
-				_NumberOfRecurring = value;
-				OnPropertyChanged("NumberOfRecurring");
+				_RetentionPeriodDays = value;
+				OnPropertyChanged("RetentionPeriodDays");
+			}
+		}
+		/// <summary>
+		/// Use MetadataClassifierAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string MetadataClassifier
+		{
+			get { return _MetadataClassifier; }
+			set 
+			{ 
+				_MetadataClassifier = value;
+				OnPropertyChanged("MetadataClassifier");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Promotion()
+		public LiveToVodPartnerConfiguration()
 		{
 		}
 
-		public Promotion(JToken node) : base(node)
+		public LiveToVodPartnerConfiguration(JToken node) : base(node)
 		{
-			if(node["discountModuleId"] != null)
+			if(node["isL2vEnabled"] != null)
 			{
-				this._DiscountModuleId = ParseLong(node["discountModuleId"].Value<string>());
+				this._IsL2vEnabled = ParseBool(node["isL2vEnabled"].Value<string>());
 			}
-			if(node["numberOfRecurring"] != null)
+			if(node["retentionPeriodDays"] != null)
 			{
-				this._NumberOfRecurring = ParseInt(node["numberOfRecurring"].Value<string>());
+				this._RetentionPeriodDays = ParseInt(node["retentionPeriodDays"].Value<string>());
+			}
+			if(node["metadataClassifier"] != null)
+			{
+				this._MetadataClassifier = node["metadataClassifier"].Value<string>();
 			}
 		}
 		#endregion
@@ -99,19 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPromotion");
-			kparams.AddIfNotNull("discountModuleId", this._DiscountModuleId);
-			kparams.AddIfNotNull("numberOfRecurring", this._NumberOfRecurring);
+				kparams.AddReplace("objectType", "KalturaLiveToVodPartnerConfiguration");
+			kparams.AddIfNotNull("isL2vEnabled", this._IsL2vEnabled);
+			kparams.AddIfNotNull("retentionPeriodDays", this._RetentionPeriodDays);
+			kparams.AddIfNotNull("metadataClassifier", this._MetadataClassifier);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case DISCOUNT_MODULE_ID:
-					return "DiscountModuleId";
-				case NUMBER_OF_RECURRING:
-					return "NumberOfRecurring";
+				case IS_L2V_ENABLED:
+					return "IsL2vEnabled";
+				case RETENTION_PERIOD_DAYS:
+					return "RetentionPeriodDays";
+				case METADATA_CLASSIFIER:
+					return "MetadataClassifier";
 				default:
 					return base.getPropertyName(apiName);
 			}

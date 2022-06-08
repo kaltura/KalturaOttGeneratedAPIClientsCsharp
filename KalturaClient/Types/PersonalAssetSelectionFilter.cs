@@ -35,61 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Promotion : BasePromotion
+	public class PersonalAssetSelectionFilter : Filter
 	{
 		#region Constants
-		public const string DISCOUNT_MODULE_ID = "discountModuleId";
-		public const string NUMBER_OF_RECURRING = "numberOfRecurring";
+		public const string SLOT_NUMBER_EQUAL = "slotNumberEqual";
+		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private long _DiscountModuleId = long.MinValue;
-		private int _NumberOfRecurring = Int32.MinValue;
+		private int _SlotNumberEqual = Int32.MinValue;
+		private PersonalAssetSelectionOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use DiscountModuleIdAsDouble property instead
+		/// Use SlotNumberEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long DiscountModuleId
+		public int SlotNumberEqual
 		{
-			get { return _DiscountModuleId; }
+			get { return _SlotNumberEqual; }
 			set 
 			{ 
-				_DiscountModuleId = value;
-				OnPropertyChanged("DiscountModuleId");
+				_SlotNumberEqual = value;
+				OnPropertyChanged("SlotNumberEqual");
 			}
 		}
 		/// <summary>
-		/// Use NumberOfRecurringAsDouble property instead
+		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int NumberOfRecurring
+		public new PersonalAssetSelectionOrderBy OrderBy
 		{
-			get { return _NumberOfRecurring; }
+			get { return _OrderBy; }
 			set 
 			{ 
-				_NumberOfRecurring = value;
-				OnPropertyChanged("NumberOfRecurring");
+				_OrderBy = value;
+				OnPropertyChanged("OrderBy");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Promotion()
+		public PersonalAssetSelectionFilter()
 		{
 		}
 
-		public Promotion(JToken node) : base(node)
+		public PersonalAssetSelectionFilter(JToken node) : base(node)
 		{
-			if(node["discountModuleId"] != null)
+			if(node["slotNumberEqual"] != null)
 			{
-				this._DiscountModuleId = ParseLong(node["discountModuleId"].Value<string>());
+				this._SlotNumberEqual = ParseInt(node["slotNumberEqual"].Value<string>());
 			}
-			if(node["numberOfRecurring"] != null)
+			if(node["orderBy"] != null)
 			{
-				this._NumberOfRecurring = ParseInt(node["numberOfRecurring"].Value<string>());
+				this._OrderBy = (PersonalAssetSelectionOrderBy)StringEnum.Parse(typeof(PersonalAssetSelectionOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPromotion");
-			kparams.AddIfNotNull("discountModuleId", this._DiscountModuleId);
-			kparams.AddIfNotNull("numberOfRecurring", this._NumberOfRecurring);
+				kparams.AddReplace("objectType", "KalturaPersonalAssetSelectionFilter");
+			kparams.AddIfNotNull("slotNumberEqual", this._SlotNumberEqual);
+			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case DISCOUNT_MODULE_ID:
-					return "DiscountModuleId";
-				case NUMBER_OF_RECURRING:
-					return "NumberOfRecurring";
+				case SLOT_NUMBER_EQUAL:
+					return "SlotNumberEqual";
+				case ORDER_BY:
+					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}
