@@ -35,15 +35,17 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Promotion : BasePromotion
+	public class Promotion : ObjectBase
 	{
 		#region Constants
 		public const string DISCOUNT_MODULE_ID = "discountModuleId";
+		public const string CONDITIONS = "conditions";
 		public const string NUMBER_OF_RECURRING = "numberOfRecurring";
 		#endregion
 
 		#region Private Fields
 		private long _DiscountModuleId = long.MinValue;
+		private IList<Condition> _Conditions;
 		private int _NumberOfRecurring = Int32.MinValue;
 		#endregion
 
@@ -59,6 +61,19 @@ namespace Kaltura.Types
 			{ 
 				_DiscountModuleId = value;
 				OnPropertyChanged("DiscountModuleId");
+			}
+		}
+		/// <summary>
+		/// Use ConditionsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public IList<Condition> Conditions
+		{
+			get { return _Conditions; }
+			set 
+			{ 
+				_Conditions = value;
+				OnPropertyChanged("Conditions");
 			}
 		}
 		/// <summary>
@@ -87,6 +102,14 @@ namespace Kaltura.Types
 			{
 				this._DiscountModuleId = ParseLong(node["discountModuleId"].Value<string>());
 			}
+			if(node["conditions"] != null)
+			{
+				this._Conditions = new List<Condition>();
+				foreach(var arrayNode in node["conditions"].Children())
+				{
+					this._Conditions.Add(ObjectFactory.Create<Condition>(arrayNode));
+				}
+			}
 			if(node["numberOfRecurring"] != null)
 			{
 				this._NumberOfRecurring = ParseInt(node["numberOfRecurring"].Value<string>());
@@ -101,6 +124,7 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaPromotion");
 			kparams.AddIfNotNull("discountModuleId", this._DiscountModuleId);
+			kparams.AddIfNotNull("conditions", this._Conditions);
 			kparams.AddIfNotNull("numberOfRecurring", this._NumberOfRecurring);
 			return kparams;
 		}
@@ -110,6 +134,8 @@ namespace Kaltura.Types
 			{
 				case DISCOUNT_MODULE_ID:
 					return "DiscountModuleId";
+				case CONDITIONS:
+					return "Conditions";
 				case NUMBER_OF_RECURRING:
 					return "NumberOfRecurring";
 				default:

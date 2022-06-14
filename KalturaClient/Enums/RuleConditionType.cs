@@ -51,8 +51,6 @@ namespace Kaltura.Enums
 		public static readonly RuleConditionType DEVICE_DYNAMIC_DATA = new RuleConditionType("DEVICE_DYNAMIC_DATA");
 		public static readonly RuleConditionType IP_V6_RANGE = new RuleConditionType("IP_V6_RANGE");
 		public static readonly RuleConditionType ASSET_SHOP = new RuleConditionType("ASSET_SHOP");
-		public static readonly RuleConditionType CHANNEL = new RuleConditionType("CHANNEL");
-		public static readonly RuleConditionType FILE_TYPE = new RuleConditionType("FILE_TYPE");
 
 		private RuleConditionType(string name) : base(name) { }
 	}

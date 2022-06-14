@@ -62,7 +62,7 @@ namespace Kaltura.Types
 		private string _SystemName = null;
 		private string _Description = null;
 		private ObjectState _State = null;
-		private BasePromotion _Promotion;
+		private Promotion _Promotion;
 		private string _Message = null;
 		private string _CollectionIdIn = null;
 		#endregion
@@ -189,7 +189,7 @@ namespace Kaltura.Types
 		/// Use PromotionAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public BasePromotion Promotion
+		public Promotion Promotion
 		{
 			get { return _Promotion; }
 			set 
@@ -271,7 +271,7 @@ namespace Kaltura.Types
 			}
 			if(node["promotion"] != null)
 			{
-				this._Promotion = ObjectFactory.Create<BasePromotion>(node["promotion"]);
+				this._Promotion = ObjectFactory.Create<Promotion>(node["promotion"]);
 			}
 			if(node["message"] != null)
 			{
