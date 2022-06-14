@@ -35,61 +35,46 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Promotion : BasePromotion
+	public class BasePromotion : ObjectBase
 	{
 		#region Constants
-		public const string DISCOUNT_MODULE_ID = "discountModuleId";
-		public const string NUMBER_OF_RECURRING = "numberOfRecurring";
+		public const string CONDITIONS = "conditions";
 		#endregion
 
 		#region Private Fields
-		private long _DiscountModuleId = long.MinValue;
-		private int _NumberOfRecurring = Int32.MinValue;
+		private IList<Condition> _Conditions;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use DiscountModuleIdAsDouble property instead
+		/// Use ConditionsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long DiscountModuleId
+		public IList<Condition> Conditions
 		{
-			get { return _DiscountModuleId; }
+			get { return _Conditions; }
 			set 
 			{ 
-				_DiscountModuleId = value;
-				OnPropertyChanged("DiscountModuleId");
-			}
-		}
-		/// <summary>
-		/// Use NumberOfRecurringAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int NumberOfRecurring
-		{
-			get { return _NumberOfRecurring; }
-			set 
-			{ 
-				_NumberOfRecurring = value;
-				OnPropertyChanged("NumberOfRecurring");
+				_Conditions = value;
+				OnPropertyChanged("Conditions");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Promotion()
+		public BasePromotion()
 		{
 		}
 
-		public Promotion(JToken node) : base(node)
+		public BasePromotion(JToken node) : base(node)
 		{
-			if(node["discountModuleId"] != null)
+			if(node["conditions"] != null)
 			{
-				this._DiscountModuleId = ParseLong(node["discountModuleId"].Value<string>());
-			}
-			if(node["numberOfRecurring"] != null)
-			{
-				this._NumberOfRecurring = ParseInt(node["numberOfRecurring"].Value<string>());
+				this._Conditions = new List<Condition>();
+				foreach(var arrayNode in node["conditions"].Children())
+				{
+					this._Conditions.Add(ObjectFactory.Create<Condition>(arrayNode));
+				}
 			}
 		}
 		#endregion
@@ -99,19 +84,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPromotion");
-			kparams.AddIfNotNull("discountModuleId", this._DiscountModuleId);
-			kparams.AddIfNotNull("numberOfRecurring", this._NumberOfRecurring);
+				kparams.AddReplace("objectType", "KalturaBasePromotion");
+			kparams.AddIfNotNull("conditions", this._Conditions);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case DISCOUNT_MODULE_ID:
-					return "DiscountModuleId";
-				case NUMBER_OF_RECURRING:
-					return "NumberOfRecurring";
+				case CONDITIONS:
+					return "Conditions";
 				default:
 					return base.getPropertyName(apiName);
 			}

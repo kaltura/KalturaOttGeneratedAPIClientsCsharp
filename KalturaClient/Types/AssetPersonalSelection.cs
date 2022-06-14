@@ -35,61 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Promotion : BasePromotion
+	public class AssetPersonalSelection : ObjectBase
 	{
 		#region Constants
-		public const string DISCOUNT_MODULE_ID = "discountModuleId";
-		public const string NUMBER_OF_RECURRING = "numberOfRecurring";
+		public const string ASSET_ID = "assetId";
+		public const string ASSET_TYPE = "assetType";
+		public const string UPDATE_DATE = "updateDate";
 		#endregion
 
 		#region Private Fields
-		private long _DiscountModuleId = long.MinValue;
-		private int _NumberOfRecurring = Int32.MinValue;
+		private long _AssetId = long.MinValue;
+		private AssetType _AssetType = null;
+		private long _UpdateDate = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use DiscountModuleIdAsDouble property instead
+		/// Use AssetIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long DiscountModuleId
+		public long AssetId
 		{
-			get { return _DiscountModuleId; }
-			set 
+			get { return _AssetId; }
+			private set 
 			{ 
-				_DiscountModuleId = value;
-				OnPropertyChanged("DiscountModuleId");
+				_AssetId = value;
+				OnPropertyChanged("AssetId");
 			}
 		}
 		/// <summary>
-		/// Use NumberOfRecurringAsDouble property instead
+		/// Use AssetTypeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int NumberOfRecurring
+		public AssetType AssetType
 		{
-			get { return _NumberOfRecurring; }
-			set 
+			get { return _AssetType; }
+			private set 
 			{ 
-				_NumberOfRecurring = value;
-				OnPropertyChanged("NumberOfRecurring");
+				_AssetType = value;
+				OnPropertyChanged("AssetType");
+			}
+		}
+		/// <summary>
+		/// Use UpdateDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long UpdateDate
+		{
+			get { return _UpdateDate; }
+			private set 
+			{ 
+				_UpdateDate = value;
+				OnPropertyChanged("UpdateDate");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Promotion()
+		public AssetPersonalSelection()
 		{
 		}
 
-		public Promotion(JToken node) : base(node)
+		public AssetPersonalSelection(JToken node) : base(node)
 		{
-			if(node["discountModuleId"] != null)
+			if(node["assetId"] != null)
 			{
-				this._DiscountModuleId = ParseLong(node["discountModuleId"].Value<string>());
+				this._AssetId = ParseLong(node["assetId"].Value<string>());
 			}
-			if(node["numberOfRecurring"] != null)
+			if(node["assetType"] != null)
 			{
-				this._NumberOfRecurring = ParseInt(node["numberOfRecurring"].Value<string>());
+				this._AssetType = (AssetType)StringEnum.Parse(typeof(AssetType), node["assetType"].Value<string>());
+			}
+			if(node["updateDate"] != null)
+			{
+				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,19 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPromotion");
-			kparams.AddIfNotNull("discountModuleId", this._DiscountModuleId);
-			kparams.AddIfNotNull("numberOfRecurring", this._NumberOfRecurring);
+				kparams.AddReplace("objectType", "KalturaAssetPersonalSelection");
+			kparams.AddIfNotNull("assetId", this._AssetId);
+			kparams.AddIfNotNull("assetType", this._AssetType);
+			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case DISCOUNT_MODULE_ID:
-					return "DiscountModuleId";
-				case NUMBER_OF_RECURRING:
-					return "NumberOfRecurring";
+				case ASSET_ID:
+					return "AssetId";
+				case ASSET_TYPE:
+					return "AssetType";
+				case UPDATE_DATE:
+					return "UpdateDate";
 				default:
 					return base.getPropertyName(apiName);
 			}

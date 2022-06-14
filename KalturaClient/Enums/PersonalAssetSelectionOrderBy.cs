@@ -27,15 +27,10 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class CampaignOrderBy : StringEnum
+	public sealed class PersonalAssetSelectionOrderBy : StringEnum
 	{
-		public static readonly CampaignOrderBy START_DATE_DESC = new CampaignOrderBy("START_DATE_DESC");
-		public static readonly CampaignOrderBy START_DATE_ASC = new CampaignOrderBy("START_DATE_ASC");
-		public static readonly CampaignOrderBy UPDATE_DATE_DESC = new CampaignOrderBy("UPDATE_DATE_DESC");
-		public static readonly CampaignOrderBy UPDATE_DATE_ASC = new CampaignOrderBy("UPDATE_DATE_ASC");
-		public static readonly CampaignOrderBy END_DATE_DESC = new CampaignOrderBy("END_DATE_DESC");
-		public static readonly CampaignOrderBy END_DATE_ASC = new CampaignOrderBy("END_DATE_ASC");
+		public static readonly PersonalAssetSelectionOrderBy ASSET_SELECTION_DATE_DESC = new PersonalAssetSelectionOrderBy("ASSET_SELECTION_DATE_DESC");
 
-		private CampaignOrderBy(string name) : base(name) { }
+		private PersonalAssetSelectionOrderBy(string name) : base(name) { }
 	}
 }

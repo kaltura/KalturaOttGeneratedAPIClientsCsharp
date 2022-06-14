@@ -35,61 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Promotion : BasePromotion
+	public class LiveToVodLinearAssetConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string DISCOUNT_MODULE_ID = "discountModuleId";
-		public const string NUMBER_OF_RECURRING = "numberOfRecurring";
+		public const string LINEAR_ASSET_ID = "linearAssetId";
+		public const string IS_L2V_ENABLED = "isL2vEnabled";
+		public const string RETENTION_PERIOD_DAYS = "retentionPeriodDays";
 		#endregion
 
 		#region Private Fields
-		private long _DiscountModuleId = long.MinValue;
-		private int _NumberOfRecurring = Int32.MinValue;
+		private long _LinearAssetId = long.MinValue;
+		private bool? _IsL2vEnabled = null;
+		private int _RetentionPeriodDays = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use DiscountModuleIdAsDouble property instead
+		/// Use LinearAssetIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long DiscountModuleId
+		public long LinearAssetId
 		{
-			get { return _DiscountModuleId; }
+			get { return _LinearAssetId; }
 			set 
 			{ 
-				_DiscountModuleId = value;
-				OnPropertyChanged("DiscountModuleId");
+				_LinearAssetId = value;
+				OnPropertyChanged("LinearAssetId");
 			}
 		}
 		/// <summary>
-		/// Use NumberOfRecurringAsDouble property instead
+		/// Use IsL2vEnabledAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int NumberOfRecurring
+		public bool? IsL2vEnabled
 		{
-			get { return _NumberOfRecurring; }
+			get { return _IsL2vEnabled; }
 			set 
 			{ 
-				_NumberOfRecurring = value;
-				OnPropertyChanged("NumberOfRecurring");
+				_IsL2vEnabled = value;
+				OnPropertyChanged("IsL2vEnabled");
+			}
+		}
+		/// <summary>
+		/// Use RetentionPeriodDaysAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int RetentionPeriodDays
+		{
+			get { return _RetentionPeriodDays; }
+			set 
+			{ 
+				_RetentionPeriodDays = value;
+				OnPropertyChanged("RetentionPeriodDays");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Promotion()
+		public LiveToVodLinearAssetConfiguration()
 		{
 		}
 
-		public Promotion(JToken node) : base(node)
+		public LiveToVodLinearAssetConfiguration(JToken node) : base(node)
 		{
-			if(node["discountModuleId"] != null)
+			if(node["linearAssetId"] != null)
 			{
-				this._DiscountModuleId = ParseLong(node["discountModuleId"].Value<string>());
+				this._LinearAssetId = ParseLong(node["linearAssetId"].Value<string>());
 			}
-			if(node["numberOfRecurring"] != null)
+			if(node["isL2vEnabled"] != null)
 			{
-				this._NumberOfRecurring = ParseInt(node["numberOfRecurring"].Value<string>());
+				this._IsL2vEnabled = ParseBool(node["isL2vEnabled"].Value<string>());
+			}
+			if(node["retentionPeriodDays"] != null)
+			{
+				this._RetentionPeriodDays = ParseInt(node["retentionPeriodDays"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,19 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaPromotion");
-			kparams.AddIfNotNull("discountModuleId", this._DiscountModuleId);
-			kparams.AddIfNotNull("numberOfRecurring", this._NumberOfRecurring);
+				kparams.AddReplace("objectType", "KalturaLiveToVodLinearAssetConfiguration");
+			kparams.AddIfNotNull("linearAssetId", this._LinearAssetId);
+			kparams.AddIfNotNull("isL2vEnabled", this._IsL2vEnabled);
+			kparams.AddIfNotNull("retentionPeriodDays", this._RetentionPeriodDays);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case DISCOUNT_MODULE_ID:
-					return "DiscountModuleId";
-				case NUMBER_OF_RECURRING:
-					return "NumberOfRecurring";
+				case LINEAR_ASSET_ID:
+					return "LinearAssetId";
+				case IS_L2V_ENABLED:
+					return "IsL2vEnabled";
+				case RETENTION_PERIOD_DAYS:
+					return "RetentionPeriodDays";
 				default:
 					return base.getPropertyName(apiName);
 			}

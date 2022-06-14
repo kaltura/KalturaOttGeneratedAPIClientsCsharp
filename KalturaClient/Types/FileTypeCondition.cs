@@ -25,17 +25,76 @@
 //
 // @ignore
 // ===================================================================================================
-namespace Kaltura.Enums
-{
-	public sealed class CampaignOrderBy : StringEnum
-	{
-		public static readonly CampaignOrderBy START_DATE_DESC = new CampaignOrderBy("START_DATE_DESC");
-		public static readonly CampaignOrderBy START_DATE_ASC = new CampaignOrderBy("START_DATE_ASC");
-		public static readonly CampaignOrderBy UPDATE_DATE_DESC = new CampaignOrderBy("UPDATE_DATE_DESC");
-		public static readonly CampaignOrderBy UPDATE_DATE_ASC = new CampaignOrderBy("UPDATE_DATE_ASC");
-		public static readonly CampaignOrderBy END_DATE_DESC = new CampaignOrderBy("END_DATE_DESC");
-		public static readonly CampaignOrderBy END_DATE_ASC = new CampaignOrderBy("END_DATE_ASC");
+using System;
+using System.Xml;
+using System.Collections.Generic;
+using Kaltura.Enums;
+using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-		private CampaignOrderBy(string name) : base(name) { }
+namespace Kaltura.Types
+{
+	public class FileTypeCondition : Condition
+	{
+		#region Constants
+		public const string ID_IN = "idIn";
+		#endregion
+
+		#region Private Fields
+		private string _IdIn = null;
+		#endregion
+
+		#region Properties
+		/// <summary>
+		/// Use IdInAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string IdIn
+		{
+			get { return _IdIn; }
+			set 
+			{ 
+				_IdIn = value;
+				OnPropertyChanged("IdIn");
+			}
+		}
+		#endregion
+
+		#region CTor
+		public FileTypeCondition()
+		{
+		}
+
+		public FileTypeCondition(JToken node) : base(node)
+		{
+			if(node["idIn"] != null)
+			{
+				this._IdIn = node["idIn"].Value<string>();
+			}
+		}
+		#endregion
+
+		#region Methods
+		public override Params ToParams(bool includeObjectType = true)
+		{
+			Params kparams = base.ToParams(includeObjectType);
+			if (includeObjectType)
+				kparams.AddReplace("objectType", "KalturaFileTypeCondition");
+			kparams.AddIfNotNull("idIn", this._IdIn);
+			return kparams;
+		}
+		protected override string getPropertyName(string apiName)
+		{
+			switch(apiName)
+			{
+				case ID_IN:
+					return "IdIn";
+				default:
+					return base.getPropertyName(apiName);
+			}
+		}
+		#endregion
 	}
 }
+
