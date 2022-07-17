@@ -81,6 +81,7 @@ namespace Kaltura.Types
 		[JsonProperty]
 		public string Name
 		{
+			get { return _Name; }
 			set 
 			{ 
 				_Name = value;
@@ -93,6 +94,7 @@ namespace Kaltura.Types
 		[JsonProperty]
 		public int MaxViewsNumber
 		{
+			get { return _MaxViewsNumber; }
 			set 
 			{ 
 				_MaxViewsNumber = value;
@@ -105,6 +107,7 @@ namespace Kaltura.Types
 		[JsonProperty]
 		public int ViewLifeCycle
 		{
+			get { return _ViewLifeCycle; }
 			set 
 			{ 
 				_ViewLifeCycle = value;
@@ -117,6 +120,7 @@ namespace Kaltura.Types
 		[JsonProperty]
 		public int FullLifeCycle
 		{
+			get { return _FullLifeCycle; }
 			set 
 			{ 
 				_FullLifeCycle = value;
