@@ -42,7 +42,6 @@ namespace Kaltura.Types
 		public const string EVICTION_POLICY = "evictionPolicy";
 		public const string CONCURRENCY_THRESHOLD_IN_SECONDS = "concurrencyThresholdInSeconds";
 		public const string REVOKE_ON_DEVICE_DELETE = "revokeOnDeviceDelete";
-		public const string EXCLUDE_FREE_CONTENT_FROM_CONCURRENCY = "excludeFreeContentFromConcurrency";
 		#endregion
 
 		#region Private Fields
@@ -50,7 +49,6 @@ namespace Kaltura.Types
 		private EvictionPolicyType _EvictionPolicy = null;
 		private long _ConcurrencyThresholdInSeconds = long.MinValue;
 		private bool? _RevokeOnDeviceDelete = null;
-		private bool? _ExcludeFreeContentFromConcurrency = null;
 		#endregion
 
 		#region Properties
@@ -106,19 +104,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("RevokeOnDeviceDelete");
 			}
 		}
-		/// <summary>
-		/// Use ExcludeFreeContentFromConcurrencyAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public bool? ExcludeFreeContentFromConcurrency
-		{
-			get { return _ExcludeFreeContentFromConcurrency; }
-			set 
-			{ 
-				_ExcludeFreeContentFromConcurrency = value;
-				OnPropertyChanged("ExcludeFreeContentFromConcurrency");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -144,10 +129,6 @@ namespace Kaltura.Types
 			{
 				this._RevokeOnDeviceDelete = ParseBool(node["revokeOnDeviceDelete"].Value<string>());
 			}
-			if(node["excludeFreeContentFromConcurrency"] != null)
-			{
-				this._ExcludeFreeContentFromConcurrency = ParseBool(node["excludeFreeContentFromConcurrency"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -161,7 +142,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("evictionPolicy", this._EvictionPolicy);
 			kparams.AddIfNotNull("concurrencyThresholdInSeconds", this._ConcurrencyThresholdInSeconds);
 			kparams.AddIfNotNull("revokeOnDeviceDelete", this._RevokeOnDeviceDelete);
-			kparams.AddIfNotNull("excludeFreeContentFromConcurrency", this._ExcludeFreeContentFromConcurrency);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -176,8 +156,6 @@ namespace Kaltura.Types
 					return "ConcurrencyThresholdInSeconds";
 				case REVOKE_ON_DEVICE_DELETE:
 					return "RevokeOnDeviceDelete";
-				case EXCLUDE_FREE_CONTENT_FROM_CONCURRENCY:
-					return "ExcludeFreeContentFromConcurrency";
 				default:
 					return base.getPropertyName(apiName);
 			}
