@@ -45,7 +45,6 @@ namespace Kaltura.Types
 		public const string PLAYER_DATA = "playerData";
 		public const string PROGRAM_ID = "programId";
 		public const string IS_REPORTING_MODE = "isReportingMode";
-		public const string CONTEXT = "context";
 		#endregion
 
 		#region Private Fields
@@ -56,7 +55,6 @@ namespace Kaltura.Types
 		private BookmarkPlayerData _PlayerData;
 		private long _ProgramId = long.MinValue;
 		private bool? _IsReportingMode = null;
-		private PlaybackContextType _Context = null;
 		#endregion
 
 		#region Properties
@@ -151,19 +149,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsReportingMode");
 			}
 		}
-		/// <summary>
-		/// Use ContextAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public PlaybackContextType Context
-		{
-			get { return _Context; }
-			set 
-			{ 
-				_Context = value;
-				OnPropertyChanged("Context");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -201,10 +186,6 @@ namespace Kaltura.Types
 			{
 				this._IsReportingMode = ParseBool(node["isReportingMode"].Value<string>());
 			}
-			if(node["context"] != null)
-			{
-				this._Context = (PlaybackContextType)StringEnum.Parse(typeof(PlaybackContextType), node["context"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -221,7 +202,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("playerData", this._PlayerData);
 			kparams.AddIfNotNull("programId", this._ProgramId);
 			kparams.AddIfNotNull("isReportingMode", this._IsReportingMode);
-			kparams.AddIfNotNull("context", this._Context);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -242,8 +222,6 @@ namespace Kaltura.Types
 					return "ProgramId";
 				case IS_REPORTING_MODE:
 					return "IsReportingMode";
-				case CONTEXT:
-					return "Context";
 				default:
 					return base.getPropertyName(apiName);
 			}
