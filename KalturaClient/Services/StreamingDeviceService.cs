@@ -39,12 +39,12 @@ namespace Kaltura.Services
 	public class StreamingDeviceBookPlaybackSessionRequestBuilder : RequestBuilder<bool>
 	{
 		#region Constants
-		public const string MEDIA_FILE_ID = "mediaFileId";
+		public const string FILE_ID = "fileId";
 		public const string ASSET_ID = "assetId";
 		public const string ASSET_TYPE = "assetType";
 		#endregion
 
-		public string MediaFileId { get; set; }
+		public string FileId { get; set; }
 		public string AssetId { get; set; }
 		public AssetType AssetType { get; set; }
 
@@ -53,10 +53,10 @@ namespace Kaltura.Services
 		{
 		}
 
-		public StreamingDeviceBookPlaybackSessionRequestBuilder(string mediaFileId, string assetId, AssetType assetType)
+		public StreamingDeviceBookPlaybackSessionRequestBuilder(string fileId, string assetId, AssetType assetType)
 			: this()
 		{
-			this.MediaFileId = mediaFileId;
+			this.FileId = fileId;
 			this.AssetId = assetId;
 			this.AssetType = assetType;
 		}
@@ -64,8 +64,8 @@ namespace Kaltura.Services
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("mediaFileId"))
-				kparams.AddIfNotNull("mediaFileId", MediaFileId);
+			if (!isMapped("fileId"))
+				kparams.AddIfNotNull("fileId", FileId);
 			if (!isMapped("assetId"))
 				kparams.AddIfNotNull("assetId", AssetId);
 			if (!isMapped("assetType"))
@@ -133,9 +133,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static StreamingDeviceBookPlaybackSessionRequestBuilder BookPlaybackSession(string mediaFileId, string assetId, AssetType assetType)
+		public static StreamingDeviceBookPlaybackSessionRequestBuilder BookPlaybackSession(string fileId, string assetId, AssetType assetType)
 		{
-			return new StreamingDeviceBookPlaybackSessionRequestBuilder(mediaFileId, assetId, assetType);
+			return new StreamingDeviceBookPlaybackSessionRequestBuilder(fileId, assetId, assetType);
 		}
 
 		public static StreamingDeviceListRequestBuilder List(StreamingDeviceFilter filter = null)
