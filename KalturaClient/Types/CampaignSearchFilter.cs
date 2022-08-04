@@ -42,6 +42,9 @@ namespace Kaltura.Types
 		public const string END_DATE_LESS_THAN_OR_EQUAL = "endDateLessThanOrEqual";
 		public const string STATE_EQUAL = "stateEqual";
 		public const string HAS_PROMOTION = "hasPromotion";
+		public const string NAME_EQUAL = "nameEqual";
+		public const string NAME_CONTAINS = "nameContains";
+		public const string STATE_IN = "stateIn";
 		#endregion
 
 		#region Private Fields
@@ -49,6 +52,9 @@ namespace Kaltura.Types
 		private long _EndDateLessThanOrEqual = long.MinValue;
 		private ObjectState _StateEqual = null;
 		private bool? _HasPromotion = null;
+		private string _NameEqual = null;
+		private string _NameContains = null;
+		private string _StateIn = null;
 		#endregion
 
 		#region Properties
@@ -104,6 +110,45 @@ namespace Kaltura.Types
 				OnPropertyChanged("HasPromotion");
 			}
 		}
+		/// <summary>
+		/// Use NameEqualAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string NameEqual
+		{
+			get { return _NameEqual; }
+			set 
+			{ 
+				_NameEqual = value;
+				OnPropertyChanged("NameEqual");
+			}
+		}
+		/// <summary>
+		/// Use NameContainsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string NameContains
+		{
+			get { return _NameContains; }
+			set 
+			{ 
+				_NameContains = value;
+				OnPropertyChanged("NameContains");
+			}
+		}
+		/// <summary>
+		/// Use StateInAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string StateIn
+		{
+			get { return _StateIn; }
+			set 
+			{ 
+				_StateIn = value;
+				OnPropertyChanged("StateIn");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -129,6 +174,18 @@ namespace Kaltura.Types
 			{
 				this._HasPromotion = ParseBool(node["hasPromotion"].Value<string>());
 			}
+			if(node["nameEqual"] != null)
+			{
+				this._NameEqual = node["nameEqual"].Value<string>();
+			}
+			if(node["nameContains"] != null)
+			{
+				this._NameContains = node["nameContains"].Value<string>();
+			}
+			if(node["stateIn"] != null)
+			{
+				this._StateIn = node["stateIn"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -142,6 +199,9 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("endDateLessThanOrEqual", this._EndDateLessThanOrEqual);
 			kparams.AddIfNotNull("stateEqual", this._StateEqual);
 			kparams.AddIfNotNull("hasPromotion", this._HasPromotion);
+			kparams.AddIfNotNull("nameEqual", this._NameEqual);
+			kparams.AddIfNotNull("nameContains", this._NameContains);
+			kparams.AddIfNotNull("stateIn", this._StateIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -156,6 +216,12 @@ namespace Kaltura.Types
 					return "StateEqual";
 				case HAS_PROMOTION:
 					return "HasPromotion";
+				case NAME_EQUAL:
+					return "NameEqual";
+				case NAME_CONTAINS:
+					return "NameContains";
+				case STATE_IN:
+					return "StateIn";
 				default:
 					return base.getPropertyName(apiName);
 			}
