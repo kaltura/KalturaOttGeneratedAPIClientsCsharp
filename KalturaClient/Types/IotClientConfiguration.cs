@@ -38,85 +38,205 @@ namespace Kaltura.Types
 	public class IotClientConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string ANNOUNCEMENT_TOPIC = "announcementTopic";
-		public const string CREDENTIALS_PROVIDER = "credentialsProvider";
-		public const string COGNITO_USER_POOL = "cognitoUserPool";
-		public const string JSON = "json";
+		public const string IDENTITY_POOL_ID = "identityPoolId";
+		public const string USER_POOL_ID = "userPoolId";
+		public const string AWS_REGION = "awsRegion";
+		public const string APP_CLIENT_ID = "appClientId";
+		public const string END_POINT = "endPoint";
+		public const string THING_NAME = "thingName";
+		public const string THING_ARN = "thingArn";
+		public const string THING_ID = "thingId";
+		public const string USERNAME = "username";
+		public const string PASSWORD = "password";
 		public const string TOPICS = "topics";
+		public const string STATUS = "status";
+		public const string MESSAGE = "message";
 		#endregion
 
 		#region Private Fields
-		private string _AnnouncementTopic = null;
-		private CredentialsProvider _CredentialsProvider;
-		private CognitoUserPool _CognitoUserPool;
-		private string _Json = null;
-		private string _Topics = null;
+		private string _IdentityPoolId = null;
+		private string _UserPoolId = null;
+		private string _AwsRegion = null;
+		private string _AppClientId = null;
+		private string _EndPoint = null;
+		private string _ThingName = null;
+		private string _ThingArn = null;
+		private string _ThingId = null;
+		private string _Username = null;
+		private string _Password = null;
+		private IList<StringValue> _Topics;
+		private string _Status = null;
+		private string _Message = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AnnouncementTopicAsDouble property instead
+		/// Use IdentityPoolIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string AnnouncementTopic
+		public string IdentityPoolId
 		{
-			get { return _AnnouncementTopic; }
+			get { return _IdentityPoolId; }
 			set 
 			{ 
-				_AnnouncementTopic = value;
-				OnPropertyChanged("AnnouncementTopic");
+				_IdentityPoolId = value;
+				OnPropertyChanged("IdentityPoolId");
 			}
 		}
 		/// <summary>
-		/// Use CredentialsProviderAsDouble property instead
+		/// Use UserPoolIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public CredentialsProvider CredentialsProvider
+		public string UserPoolId
 		{
-			get { return _CredentialsProvider; }
+			get { return _UserPoolId; }
 			set 
 			{ 
-				_CredentialsProvider = value;
-				OnPropertyChanged("CredentialsProvider");
+				_UserPoolId = value;
+				OnPropertyChanged("UserPoolId");
 			}
 		}
 		/// <summary>
-		/// Use CognitoUserPoolAsDouble property instead
+		/// Use AwsRegionAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public CognitoUserPool CognitoUserPool
+		public string AwsRegion
 		{
-			get { return _CognitoUserPool; }
+			get { return _AwsRegion; }
 			set 
 			{ 
-				_CognitoUserPool = value;
-				OnPropertyChanged("CognitoUserPool");
+				_AwsRegion = value;
+				OnPropertyChanged("AwsRegion");
 			}
 		}
 		/// <summary>
-		/// Use JsonAsDouble property instead
+		/// Use AppClientIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string Json
+		public string AppClientId
 		{
-			get { return _Json; }
+			get { return _AppClientId; }
 			set 
 			{ 
-				_Json = value;
-				OnPropertyChanged("Json");
+				_AppClientId = value;
+				OnPropertyChanged("AppClientId");
+			}
+		}
+		/// <summary>
+		/// Use EndPointAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string EndPoint
+		{
+			get { return _EndPoint; }
+			set 
+			{ 
+				_EndPoint = value;
+				OnPropertyChanged("EndPoint");
+			}
+		}
+		/// <summary>
+		/// Use ThingNameAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string ThingName
+		{
+			get { return _ThingName; }
+			set 
+			{ 
+				_ThingName = value;
+				OnPropertyChanged("ThingName");
+			}
+		}
+		/// <summary>
+		/// Use ThingArnAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string ThingArn
+		{
+			get { return _ThingArn; }
+			set 
+			{ 
+				_ThingArn = value;
+				OnPropertyChanged("ThingArn");
+			}
+		}
+		/// <summary>
+		/// Use ThingIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string ThingId
+		{
+			get { return _ThingId; }
+			set 
+			{ 
+				_ThingId = value;
+				OnPropertyChanged("ThingId");
+			}
+		}
+		/// <summary>
+		/// Use UsernameAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Username
+		{
+			get { return _Username; }
+			set 
+			{ 
+				_Username = value;
+				OnPropertyChanged("Username");
+			}
+		}
+		/// <summary>
+		/// Use PasswordAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Password
+		{
+			get { return _Password; }
+			set 
+			{ 
+				_Password = value;
+				OnPropertyChanged("Password");
 			}
 		}
 		/// <summary>
 		/// Use TopicsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string Topics
+		public IList<StringValue> Topics
 		{
 			get { return _Topics; }
 			set 
 			{ 
 				_Topics = value;
 				OnPropertyChanged("Topics");
+			}
+		}
+		/// <summary>
+		/// Use StatusAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Status
+		{
+			get { return _Status; }
+			set 
+			{ 
+				_Status = value;
+				OnPropertyChanged("Status");
+			}
+		}
+		/// <summary>
+		/// Use MessageAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Message
+		{
+			get { return _Message; }
+			set 
+			{ 
+				_Message = value;
+				OnPropertyChanged("Message");
 			}
 		}
 		#endregion
@@ -128,25 +248,61 @@ namespace Kaltura.Types
 
 		public IotClientConfiguration(JToken node) : base(node)
 		{
-			if(node["announcementTopic"] != null)
+			if(node["identityPoolId"] != null)
 			{
-				this._AnnouncementTopic = node["announcementTopic"].Value<string>();
+				this._IdentityPoolId = node["identityPoolId"].Value<string>();
 			}
-			if(node["credentialsProvider"] != null)
+			if(node["userPoolId"] != null)
 			{
-				this._CredentialsProvider = ObjectFactory.Create<CredentialsProvider>(node["credentialsProvider"]);
+				this._UserPoolId = node["userPoolId"].Value<string>();
 			}
-			if(node["cognitoUserPool"] != null)
+			if(node["awsRegion"] != null)
 			{
-				this._CognitoUserPool = ObjectFactory.Create<CognitoUserPool>(node["cognitoUserPool"]);
+				this._AwsRegion = node["awsRegion"].Value<string>();
 			}
-			if(node["json"] != null)
+			if(node["appClientId"] != null)
 			{
-				this._Json = node["json"].Value<string>();
+				this._AppClientId = node["appClientId"].Value<string>();
+			}
+			if(node["endPoint"] != null)
+			{
+				this._EndPoint = node["endPoint"].Value<string>();
+			}
+			if(node["thingName"] != null)
+			{
+				this._ThingName = node["thingName"].Value<string>();
+			}
+			if(node["thingArn"] != null)
+			{
+				this._ThingArn = node["thingArn"].Value<string>();
+			}
+			if(node["thingId"] != null)
+			{
+				this._ThingId = node["thingId"].Value<string>();
+			}
+			if(node["username"] != null)
+			{
+				this._Username = node["username"].Value<string>();
+			}
+			if(node["password"] != null)
+			{
+				this._Password = node["password"].Value<string>();
 			}
 			if(node["topics"] != null)
 			{
-				this._Topics = node["topics"].Value<string>();
+				this._Topics = new List<StringValue>();
+				foreach(var arrayNode in node["topics"].Children())
+				{
+					this._Topics.Add(ObjectFactory.Create<StringValue>(arrayNode));
+				}
+			}
+			if(node["status"] != null)
+			{
+				this._Status = node["status"].Value<string>();
+			}
+			if(node["message"] != null)
+			{
+				this._Message = node["message"].Value<string>();
 			}
 		}
 		#endregion
@@ -157,27 +313,51 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaIotClientConfiguration");
-			kparams.AddIfNotNull("announcementTopic", this._AnnouncementTopic);
-			kparams.AddIfNotNull("credentialsProvider", this._CredentialsProvider);
-			kparams.AddIfNotNull("cognitoUserPool", this._CognitoUserPool);
-			kparams.AddIfNotNull("json", this._Json);
+			kparams.AddIfNotNull("identityPoolId", this._IdentityPoolId);
+			kparams.AddIfNotNull("userPoolId", this._UserPoolId);
+			kparams.AddIfNotNull("awsRegion", this._AwsRegion);
+			kparams.AddIfNotNull("appClientId", this._AppClientId);
+			kparams.AddIfNotNull("endPoint", this._EndPoint);
+			kparams.AddIfNotNull("thingName", this._ThingName);
+			kparams.AddIfNotNull("thingArn", this._ThingArn);
+			kparams.AddIfNotNull("thingId", this._ThingId);
+			kparams.AddIfNotNull("username", this._Username);
+			kparams.AddIfNotNull("password", this._Password);
 			kparams.AddIfNotNull("topics", this._Topics);
+			kparams.AddIfNotNull("status", this._Status);
+			kparams.AddIfNotNull("message", this._Message);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ANNOUNCEMENT_TOPIC:
-					return "AnnouncementTopic";
-				case CREDENTIALS_PROVIDER:
-					return "CredentialsProvider";
-				case COGNITO_USER_POOL:
-					return "CognitoUserPool";
-				case JSON:
-					return "Json";
+				case IDENTITY_POOL_ID:
+					return "IdentityPoolId";
+				case USER_POOL_ID:
+					return "UserPoolId";
+				case AWS_REGION:
+					return "AwsRegion";
+				case APP_CLIENT_ID:
+					return "AppClientId";
+				case END_POINT:
+					return "EndPoint";
+				case THING_NAME:
+					return "ThingName";
+				case THING_ARN:
+					return "ThingArn";
+				case THING_ID:
+					return "ThingId";
+				case USERNAME:
+					return "Username";
+				case PASSWORD:
+					return "Password";
 				case TOPICS:
 					return "Topics";
+				case STATUS:
+					return "Status";
+				case MESSAGE:
+					return "Message";
 				default:
 					return base.getPropertyName(apiName);
 			}
