@@ -60,6 +60,8 @@ namespace Kaltura.Types
 		public const string CREATE_DATE = "createDate";
 		public const string UPDATE_DATE = "updateDate";
 		public const string VIRTUAL_ASSET_ID = "virtualAssetId";
+		public const string FILE_TYPES = "fileTypes";
+		public const string FILE_TYPES_IDS = "fileTypesIds";
 		#endregion
 
 		#region Private Fields
@@ -85,6 +87,8 @@ namespace Kaltura.Types
 		private long _CreateDate = long.MinValue;
 		private long _UpdateDate = long.MinValue;
 		private long _VirtualAssetId = long.MinValue;
+		private IList<IntegerValue> _FileTypes;
+		private string _FileTypesIds = null;
 		#endregion
 
 		#region Properties
@@ -374,6 +378,32 @@ namespace Kaltura.Types
 				OnPropertyChanged("VirtualAssetId");
 			}
 		}
+		/// <summary>
+		/// Use FileTypesAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public IList<IntegerValue> FileTypes
+		{
+			get { return _FileTypes; }
+			private set 
+			{ 
+				_FileTypes = value;
+				OnPropertyChanged("FileTypes");
+			}
+		}
+		/// <summary>
+		/// Use FileTypesIdsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string FileTypesIds
+		{
+			get { return _FileTypesIds; }
+			set 
+			{ 
+				_FileTypesIds = value;
+				OnPropertyChanged("FileTypesIds");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -495,6 +525,18 @@ namespace Kaltura.Types
 			{
 				this._VirtualAssetId = ParseLong(node["virtualAssetId"].Value<string>());
 			}
+			if(node["fileTypes"] != null)
+			{
+				this._FileTypes = new List<IntegerValue>();
+				foreach(var arrayNode in node["fileTypes"].Children())
+				{
+					this._FileTypes.Add(ObjectFactory.Create<IntegerValue>(arrayNode));
+				}
+			}
+			if(node["fileTypesIds"] != null)
+			{
+				this._FileTypesIds = node["fileTypesIds"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -526,6 +568,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			kparams.AddIfNotNull("virtualAssetId", this._VirtualAssetId);
+			kparams.AddIfNotNull("fileTypes", this._FileTypes);
+			kparams.AddIfNotNull("fileTypesIds", this._FileTypesIds);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -576,6 +620,10 @@ namespace Kaltura.Types
 					return "UpdateDate";
 				case VIRTUAL_ASSET_ID:
 					return "VirtualAssetId";
+				case FILE_TYPES:
+					return "FileTypes";
+				case FILE_TYPES_IDS:
+					return "FileTypesIds";
 				default:
 					return base.getPropertyName(apiName);
 			}
