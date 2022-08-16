@@ -27,15 +27,11 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class CampaignOrderBy : StringEnum
+	public sealed class BooleanOperator : StringEnum
 	{
-		public static readonly CampaignOrderBy START_DATE_DESC = new CampaignOrderBy("START_DATE_DESC");
-		public static readonly CampaignOrderBy START_DATE_ASC = new CampaignOrderBy("START_DATE_ASC");
-		public static readonly CampaignOrderBy UPDATE_DATE_DESC = new CampaignOrderBy("UPDATE_DATE_DESC");
-		public static readonly CampaignOrderBy UPDATE_DATE_ASC = new CampaignOrderBy("UPDATE_DATE_ASC");
-		public static readonly CampaignOrderBy END_DATE_DESC = new CampaignOrderBy("END_DATE_DESC");
-		public static readonly CampaignOrderBy END_DATE_ASC = new CampaignOrderBy("END_DATE_ASC");
+		public static readonly BooleanOperator AND = new BooleanOperator("And");
+		public static readonly BooleanOperator OR = new BooleanOperator("Or");
 
-		private CampaignOrderBy(string name) : base(name) { }
+		private BooleanOperator(string name) : base(name) { }
 	}
 }

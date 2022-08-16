@@ -40,11 +40,13 @@ namespace Kaltura.Types
 		#region Constants
 		public const string ID_IN = "idIn";
 		public const string KSQL = "kSql";
+		public const string NAME_CONTAIN = "nameContain";
 		#endregion
 
 		#region Private Fields
 		private string _IdIn = null;
 		private string _KSql = null;
+		private string _NameContain = null;
 		#endregion
 
 		#region Properties
@@ -74,6 +76,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("KSql");
 			}
 		}
+		/// <summary>
+		/// Use NameContainAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string NameContain
+		{
+			get { return _NameContain; }
+			set 
+			{ 
+				_NameContain = value;
+				OnPropertyChanged("NameContain");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -91,6 +106,10 @@ namespace Kaltura.Types
 			{
 				this._KSql = node["kSql"].Value<string>();
 			}
+			if(node["nameContain"] != null)
+			{
+				this._NameContain = node["nameContain"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -102,6 +121,7 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaSegmentationTypeFilter");
 			kparams.AddIfNotNull("idIn", this._IdIn);
 			kparams.AddIfNotNull("kSql", this._KSql);
+			kparams.AddIfNotNull("nameContain", this._NameContain);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -112,6 +132,8 @@ namespace Kaltura.Types
 					return "IdIn";
 				case KSQL:
 					return "KSql";
+				case NAME_CONTAIN:
+					return "NameContain";
 				default:
 					return base.getPropertyName(apiName);
 			}

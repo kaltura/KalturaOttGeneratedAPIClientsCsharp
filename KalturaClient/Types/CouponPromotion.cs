@@ -35,61 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class SegmentValueFilter : BaseSegmentationTypeFilter
+	public class CouponPromotion : BasePromotion
 	{
 		#region Constants
-		public const string ID_IN = "idIn";
-		public const string NAME_CONTAIN = "nameContain";
+		public const string COUPON_GROUP_ID = "couponGroupId";
 		#endregion
 
 		#region Private Fields
-		private string _IdIn = null;
-		private string _NameContain = null;
+		private long _CouponGroupId = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdInAsDouble property instead
+		/// Use CouponGroupIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string IdIn
+		public long CouponGroupId
 		{
-			get { return _IdIn; }
+			get { return _CouponGroupId; }
 			set 
 			{ 
-				_IdIn = value;
-				OnPropertyChanged("IdIn");
-			}
-		}
-		/// <summary>
-		/// Use NameContainAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string NameContain
-		{
-			get { return _NameContain; }
-			set 
-			{ 
-				_NameContain = value;
-				OnPropertyChanged("NameContain");
+				_CouponGroupId = value;
+				OnPropertyChanged("CouponGroupId");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public SegmentValueFilter()
+		public CouponPromotion()
 		{
 		}
 
-		public SegmentValueFilter(JToken node) : base(node)
+		public CouponPromotion(JToken node) : base(node)
 		{
-			if(node["idIn"] != null)
+			if(node["couponGroupId"] != null)
 			{
-				this._IdIn = node["idIn"].Value<string>();
-			}
-			if(node["nameContain"] != null)
-			{
-				this._NameContain = node["nameContain"].Value<string>();
+				this._CouponGroupId = ParseLong(node["couponGroupId"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,19 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaSegmentValueFilter");
-			kparams.AddIfNotNull("idIn", this._IdIn);
-			kparams.AddIfNotNull("nameContain", this._NameContain);
+				kparams.AddReplace("objectType", "KalturaCouponPromotion");
+			kparams.AddIfNotNull("couponGroupId", this._CouponGroupId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID_IN:
-					return "IdIn";
-				case NAME_CONTAIN:
-					return "NameContain";
+				case COUPON_GROUP_ID:
+					return "CouponGroupId";
 				default:
 					return base.getPropertyName(apiName);
 			}

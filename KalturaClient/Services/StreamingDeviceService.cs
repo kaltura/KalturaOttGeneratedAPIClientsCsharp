@@ -36,6 +36,57 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
+	public class StreamingDeviceBookPlaybackSessionRequestBuilder : RequestBuilder<bool>
+	{
+		#region Constants
+		public const string FILE_ID = "fileId";
+		public const string ASSET_ID = "assetId";
+		public const string ASSET_TYPE = "assetType";
+		#endregion
+
+		public string FileId { get; set; }
+		public string AssetId { get; set; }
+		public AssetType AssetType { get; set; }
+
+		public StreamingDeviceBookPlaybackSessionRequestBuilder()
+			: base("streamingdevice", "bookPlaybackSession")
+		{
+		}
+
+		public StreamingDeviceBookPlaybackSessionRequestBuilder(string fileId, string assetId, AssetType assetType)
+			: this()
+		{
+			this.FileId = fileId;
+			this.AssetId = assetId;
+			this.AssetType = assetType;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("fileId"))
+				kparams.AddIfNotNull("fileId", FileId);
+			if (!isMapped("assetId"))
+				kparams.AddIfNotNull("assetId", AssetId);
+			if (!isMapped("assetType"))
+				kparams.AddIfNotNull("assetType", AssetType);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
+				return true;
+			return false;
+		}
+	}
+
 	public class StreamingDeviceListRequestBuilder : RequestBuilder<ListResponse<StreamingDevice>>
 	{
 		#region Constants
@@ -80,6 +131,11 @@ namespace Kaltura.Services
 	{
 		private StreamingDeviceService()
 		{
+		}
+
+		public static StreamingDeviceBookPlaybackSessionRequestBuilder BookPlaybackSession(string fileId, string assetId, AssetType assetType)
+		{
+			return new StreamingDeviceBookPlaybackSessionRequestBuilder(fileId, assetId, assetType);
 		}
 
 		public static StreamingDeviceListRequestBuilder List(StreamingDeviceFilter filter = null)

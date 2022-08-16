@@ -35,61 +35,46 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class SegmentValueFilter : BaseSegmentationTypeFilter
+	public class BasePromotion : ObjectBase
 	{
 		#region Constants
-		public const string ID_IN = "idIn";
-		public const string NAME_CONTAIN = "nameContain";
+		public const string CONDITIONS = "conditions";
 		#endregion
 
 		#region Private Fields
-		private string _IdIn = null;
-		private string _NameContain = null;
+		private IList<Condition> _Conditions;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdInAsDouble property instead
+		/// Use ConditionsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string IdIn
+		public IList<Condition> Conditions
 		{
-			get { return _IdIn; }
+			get { return _Conditions; }
 			set 
 			{ 
-				_IdIn = value;
-				OnPropertyChanged("IdIn");
-			}
-		}
-		/// <summary>
-		/// Use NameContainAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string NameContain
-		{
-			get { return _NameContain; }
-			set 
-			{ 
-				_NameContain = value;
-				OnPropertyChanged("NameContain");
+				_Conditions = value;
+				OnPropertyChanged("Conditions");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public SegmentValueFilter()
+		public BasePromotion()
 		{
 		}
 
-		public SegmentValueFilter(JToken node) : base(node)
+		public BasePromotion(JToken node) : base(node)
 		{
-			if(node["idIn"] != null)
+			if(node["conditions"] != null)
 			{
-				this._IdIn = node["idIn"].Value<string>();
-			}
-			if(node["nameContain"] != null)
-			{
-				this._NameContain = node["nameContain"].Value<string>();
+				this._Conditions = new List<Condition>();
+				foreach(var arrayNode in node["conditions"].Children())
+				{
+					this._Conditions.Add(ObjectFactory.Create<Condition>(arrayNode));
+				}
 			}
 		}
 		#endregion
@@ -99,19 +84,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaSegmentValueFilter");
-			kparams.AddIfNotNull("idIn", this._IdIn);
-			kparams.AddIfNotNull("nameContain", this._NameContain);
+				kparams.AddReplace("objectType", "KalturaBasePromotion");
+			kparams.AddIfNotNull("conditions", this._Conditions);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID_IN:
-					return "IdIn";
-				case NAME_CONTAIN:
-					return "NameContain";
+				case CONDITIONS:
+					return "Conditions";
 				default:
 					return base.getPropertyName(apiName);
 			}
