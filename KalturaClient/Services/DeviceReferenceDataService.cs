@@ -75,6 +75,50 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class DeviceReferenceDataUpdateRequestBuilder : RequestBuilder<DeviceReferenceData>
+	{
+		#region Constants
+		public const string ID = "id";
+		public const string OBJECT_TO_UPDATE = "objectToUpdate";
+		#endregion
+
+		public long Id { get; set; }
+		public DeviceReferenceData ObjectToUpdate { get; set; }
+
+		public DeviceReferenceDataUpdateRequestBuilder()
+			: base("devicereferencedata", "update")
+		{
+		}
+
+		public DeviceReferenceDataUpdateRequestBuilder(long id, DeviceReferenceData objectToUpdate)
+			: this()
+		{
+			this.Id = id;
+			this.ObjectToUpdate = objectToUpdate;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("objectToUpdate"))
+				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<DeviceReferenceData>(result);
+		}
+	}
+
 	public class DeviceReferenceDataDeleteRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
@@ -158,50 +202,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class DeviceReferenceDataUpdateRequestBuilder : RequestBuilder<DeviceReferenceData>
-	{
-		#region Constants
-		public const string ID = "id";
-		public const string OBJECT_TO_UPDATE = "objectToUpdate";
-		#endregion
-
-		public long Id { get; set; }
-		public DeviceReferenceData ObjectToUpdate { get; set; }
-
-		public DeviceReferenceDataUpdateRequestBuilder()
-			: base("devicereferencedata", "update")
-		{
-		}
-
-		public DeviceReferenceDataUpdateRequestBuilder(long id, DeviceReferenceData objectToUpdate)
-			: this()
-		{
-			this.Id = id;
-			this.ObjectToUpdate = objectToUpdate;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("objectToUpdate"))
-				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<DeviceReferenceData>(result);
-		}
-	}
-
 
 	public class DeviceReferenceDataService
 	{
@@ -214,6 +214,11 @@ namespace Kaltura.Services
 			return new DeviceReferenceDataAddRequestBuilder(objectToAdd);
 		}
 
+		public static DeviceReferenceDataUpdateRequestBuilder Update(long id, DeviceReferenceData objectToUpdate)
+		{
+			return new DeviceReferenceDataUpdateRequestBuilder(id, objectToUpdate);
+		}
+
 		public static DeviceReferenceDataDeleteRequestBuilder Delete(long id)
 		{
 			return new DeviceReferenceDataDeleteRequestBuilder(id);
@@ -222,11 +227,6 @@ namespace Kaltura.Services
 		public static DeviceReferenceDataListRequestBuilder List(DeviceReferenceDataFilter filter, FilterPager pager = null)
 		{
 			return new DeviceReferenceDataListRequestBuilder(filter, pager);
-		}
-
-		public static DeviceReferenceDataUpdateRequestBuilder Update(long id, DeviceReferenceData objectToUpdate)
-		{
-			return new DeviceReferenceDataUpdateRequestBuilder(id, objectToUpdate);
 		}
 	}
 }

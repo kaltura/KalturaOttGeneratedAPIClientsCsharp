@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class HouseholdSegment : OTTObjectSupportNullable
+	public class HouseholdSegment : CrudObject
 	{
 		#region Constants
 		public const string SEGMENT_ID = "segmentId";

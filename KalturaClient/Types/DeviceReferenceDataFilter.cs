@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class DeviceReferenceDataFilter : Filter
+	public class DeviceReferenceDataFilter : CrudFilter
 	{
 		#region Constants
 		public const string ID_IN = "idIn";

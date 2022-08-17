@@ -40,13 +40,11 @@ namespace Kaltura.Types
 		#region Constants
 		public const string ID = "id";
 		public const string NAME = "name";
-		public const string TYPE = "type";
 		#endregion
 
 		#region Private Fields
 		private long _Id = long.MinValue;
 		private string _Name = null;
-		private DeviceFamilyType _Type = null;
 		#endregion
 
 		#region Properties
@@ -70,23 +68,10 @@ namespace Kaltura.Types
 		public string Name
 		{
 			get { return _Name; }
-			set 
+			private set 
 			{ 
 				_Name = value;
 				OnPropertyChanged("Name");
-			}
-		}
-		/// <summary>
-		/// Use TypeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public DeviceFamilyType Type
-		{
-			get { return _Type; }
-			private set 
-			{ 
-				_Type = value;
-				OnPropertyChanged("Type");
 			}
 		}
 		#endregion
@@ -106,10 +91,6 @@ namespace Kaltura.Types
 			{
 				this._Name = node["name"].Value<string>();
 			}
-			if(node["type"] != null)
-			{
-				this._Type = (DeviceFamilyType)StringEnum.Parse(typeof(DeviceFamilyType), node["type"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -121,7 +102,6 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaDeviceFamilyBase");
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("name", this._Name);
-			kparams.AddIfNotNull("type", this._Type);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -132,8 +112,6 @@ namespace Kaltura.Types
 					return "Id";
 				case NAME:
 					return "Name";
-				case TYPE:
-					return "Type";
 				default:
 					return base.getPropertyName(apiName);
 			}

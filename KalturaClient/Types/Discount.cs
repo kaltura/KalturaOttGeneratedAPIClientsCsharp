@@ -42,7 +42,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private double _Percentage = Double.MinValue;
+		private int _Percentage = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -50,7 +50,7 @@ namespace Kaltura.Types
 		/// Use PercentageAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public double Percentage
+		public int Percentage
 		{
 			get { return _Percentage; }
 			set 
@@ -70,7 +70,7 @@ namespace Kaltura.Types
 		{
 			if(node["percentage"] != null)
 			{
-				this._Percentage = ParseDouble(node["percentage"].Value<string>());
+				this._Percentage = ParseInt(node["percentage"].Value<string>());
 			}
 		}
 		#endregion

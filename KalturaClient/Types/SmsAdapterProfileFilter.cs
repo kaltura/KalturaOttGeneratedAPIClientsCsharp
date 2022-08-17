@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class SmsAdapterProfileFilter : Filter
+	public class SmsAdapterProfileFilter : CrudFilter
 	{
 		#region Constants
 		public new const string ORDER_BY = "orderBy";

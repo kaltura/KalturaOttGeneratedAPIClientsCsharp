@@ -454,45 +454,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class AssetListPersonalSelectionRequestBuilder : RequestBuilder<ListResponse<Asset>>
-	{
-		#region Constants
-		public const string FILTER = "filter";
-		#endregion
-
-		public PersonalAssetSelectionFilter Filter { get; set; }
-
-		public AssetListPersonalSelectionRequestBuilder()
-			: base("asset", "listPersonalSelection")
-		{
-		}
-
-		public AssetListPersonalSelectionRequestBuilder(PersonalAssetSelectionFilter filter)
-			: this()
-		{
-			this.Filter = filter;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("filter"))
-				kparams.AddIfNotNull("filter", Filter);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<ListResponse<Asset>>(result);
-		}
-	}
-
 	public class AssetRemoveMetasAndTagsRequestBuilder : RequestBuilder<bool>
 	{
 		#region Constants
@@ -638,11 +599,6 @@ namespace Kaltura.Services
 		public static AssetListRequestBuilder List(AssetFilter filter = null, FilterPager pager = null)
 		{
 			return new AssetListRequestBuilder(filter, pager);
-		}
-
-		public static AssetListPersonalSelectionRequestBuilder ListPersonalSelection(PersonalAssetSelectionFilter filter)
-		{
-			return new AssetListPersonalSelectionRequestBuilder(filter);
 		}
 
 		public static AssetRemoveMetasAndTagsRequestBuilder RemoveMetasAndTags(long id, AssetReferenceType assetReferenceType, string idIn)

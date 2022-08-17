@@ -36,74 +36,20 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class DeviceBrandAddRequestBuilder : RequestBuilder<DeviceBrand>
-	{
-		#region Constants
-		public const string DEVICE_BRAND = "deviceBrand";
-		#endregion
-
-		public DeviceBrand DeviceBrand { get; set; }
-
-		public DeviceBrandAddRequestBuilder()
-			: base("devicebrand", "add")
-		{
-		}
-
-		public DeviceBrandAddRequestBuilder(DeviceBrand deviceBrand)
-			: this()
-		{
-			this.DeviceBrand = deviceBrand;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("deviceBrand"))
-				kparams.AddIfNotNull("deviceBrand", DeviceBrand);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<DeviceBrand>(result);
-		}
-	}
-
 	public class DeviceBrandListRequestBuilder : RequestBuilder<ListResponse<DeviceBrand>>
 	{
 		#region Constants
-		public const string FILTER = "filter";
-		public const string PAGER = "pager";
 		#endregion
 
-		public DeviceBrandFilter Filter { get; set; }
-		public FilterPager Pager { get; set; }
 
 		public DeviceBrandListRequestBuilder()
 			: base("devicebrand", "list")
 		{
 		}
 
-		public DeviceBrandListRequestBuilder(DeviceBrandFilter filter, FilterPager pager)
-			: this()
-		{
-			this.Filter = filter;
-			this.Pager = pager;
-		}
-
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("filter"))
-				kparams.AddIfNotNull("filter", Filter);
-			if (!isMapped("pager"))
-				kparams.AddIfNotNull("pager", Pager);
 			return kparams;
 		}
 
@@ -119,50 +65,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class DeviceBrandUpdateRequestBuilder : RequestBuilder<DeviceBrand>
-	{
-		#region Constants
-		public const string ID = "id";
-		public const string DEVICE_BRAND = "deviceBrand";
-		#endregion
-
-		public long Id { get; set; }
-		public DeviceBrand DeviceBrand { get; set; }
-
-		public DeviceBrandUpdateRequestBuilder()
-			: base("devicebrand", "update")
-		{
-		}
-
-		public DeviceBrandUpdateRequestBuilder(long id, DeviceBrand deviceBrand)
-			: this()
-		{
-			this.Id = id;
-			this.DeviceBrand = deviceBrand;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("deviceBrand"))
-				kparams.AddIfNotNull("deviceBrand", DeviceBrand);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<DeviceBrand>(result);
-		}
-	}
-
 
 	public class DeviceBrandService
 	{
@@ -170,19 +72,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static DeviceBrandAddRequestBuilder Add(DeviceBrand deviceBrand)
+		public static DeviceBrandListRequestBuilder List()
 		{
-			return new DeviceBrandAddRequestBuilder(deviceBrand);
-		}
-
-		public static DeviceBrandListRequestBuilder List(DeviceBrandFilter filter = null, FilterPager pager = null)
-		{
-			return new DeviceBrandListRequestBuilder(filter, pager);
-		}
-
-		public static DeviceBrandUpdateRequestBuilder Update(long id, DeviceBrand deviceBrand)
-		{
-			return new DeviceBrandUpdateRequestBuilder(id, deviceBrand);
+			return new DeviceBrandListRequestBuilder();
 		}
 	}
 }
