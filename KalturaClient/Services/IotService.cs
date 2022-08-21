@@ -65,7 +65,7 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class IotRegisterRequestBuilder : RequestBuilder<Iot>
+	public class IotRegisterRequestBuilder : RequestBuilder<bool>
 	{
 		#region Constants
 		#endregion
@@ -90,7 +90,9 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<Iot>(result);
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
+				return true;
+			return false;
 		}
 	}
 
