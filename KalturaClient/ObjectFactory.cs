@@ -282,8 +282,6 @@ namespace Kaltura
 					return new ListResponse<IngestProfile>(jToken);
 				case "KalturaIotListResponse":
 					return new ListResponse<Iot>(jToken);
-				case "KalturaIotProfileListResponse":
-					return new ListResponse<IotProfile>(jToken);
 				case "KalturaLanguageListResponse":
 					return new ListResponse<Language>(jToken);
 				case "KalturaMediaConcurrencyRuleListResponse":

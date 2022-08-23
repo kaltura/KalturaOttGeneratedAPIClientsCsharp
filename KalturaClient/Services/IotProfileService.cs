@@ -36,30 +36,20 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class IotProfileAddRequestBuilder : RequestBuilder<IotProfile>
+	public class IotProfileAddRequestBuilder : RequestBuilder<bool>
 	{
 		#region Constants
-		public const string OBJECT_TO_ADD = "objectToAdd";
 		#endregion
 
-		public IotProfile ObjectToAdd { get; set; }
 
 		public IotProfileAddRequestBuilder()
 			: base("iotprofile", "add")
 		{
 		}
 
-		public IotProfileAddRequestBuilder(IotProfile objectToAdd)
-			: this()
-		{
-			this.ObjectToAdd = objectToAdd;
-		}
-
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("objectToAdd"))
-				kparams.AddIfNotNull("objectToAdd", ObjectToAdd);
 			return kparams;
 		}
 
@@ -71,90 +61,9 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<IotProfile>(result);
-		}
-	}
-
-	public class IotProfileGetRequestBuilder : RequestBuilder<IotProfile>
-	{
-		#region Constants
-		public const string ID = "id";
-		#endregion
-
-		public long Id { get; set; }
-
-		public IotProfileGetRequestBuilder()
-			: base("iotprofile", "get")
-		{
-		}
-
-		public IotProfileGetRequestBuilder(long id)
-			: this()
-		{
-			this.Id = id;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<IotProfile>(result);
-		}
-	}
-
-	public class IotProfileUpdateRequestBuilder : RequestBuilder<IotProfile>
-	{
-		#region Constants
-		public const string ID = "id";
-		public const string OBJECT_TO_UPDATE = "objectToUpdate";
-		#endregion
-
-		public long Id { get; set; }
-		public IotProfile ObjectToUpdate { get; set; }
-
-		public IotProfileUpdateRequestBuilder()
-			: base("iotprofile", "update")
-		{
-		}
-
-		public IotProfileUpdateRequestBuilder(long id, IotProfile objectToUpdate)
-			: this()
-		{
-			this.Id = id;
-			this.ObjectToUpdate = objectToUpdate;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			if (!isMapped("objectToUpdate"))
-				kparams.AddIfNotNull("objectToUpdate", ObjectToUpdate);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<IotProfile>(result);
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
+				return true;
+			return false;
 		}
 	}
 
@@ -165,19 +74,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static IotProfileAddRequestBuilder Add(IotProfile objectToAdd)
+		public static IotProfileAddRequestBuilder Add()
 		{
-			return new IotProfileAddRequestBuilder(objectToAdd);
-		}
-
-		public static IotProfileGetRequestBuilder Get(long id)
-		{
-			return new IotProfileGetRequestBuilder(id);
-		}
-
-		public static IotProfileUpdateRequestBuilder Update(long id, IotProfile objectToUpdate)
-		{
-			return new IotProfileUpdateRequestBuilder(id, objectToUpdate);
+			return new IotProfileAddRequestBuilder();
 		}
 	}
 }
