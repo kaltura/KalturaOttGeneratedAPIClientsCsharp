@@ -35,42 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BulkUploadObjectData : ObjectBase
+	public class CampaignSegmentFilter : CampaignSearchFilter
 	{
 		#region Constants
-		public const string ACTION = "action";
+		public const string SEGMENT_ID_IN = "segmentIdIn";
 		#endregion
 
 		#region Private Fields
-		private BulkUploadJobAction _Action = null;
+		private string _SegmentIdIn = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ActionAsDouble property instead
+		/// Use SegmentIdInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public BulkUploadJobAction Action
+		public string SegmentIdIn
 		{
-			get { return _Action; }
+			get { return _SegmentIdIn; }
 			set 
 			{ 
-				_Action = value;
-				OnPropertyChanged("Action");
+				_SegmentIdIn = value;
+				OnPropertyChanged("SegmentIdIn");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BulkUploadObjectData()
+		public CampaignSegmentFilter()
 		{
 		}
 
-		public BulkUploadObjectData(JToken node) : base(node)
+		public CampaignSegmentFilter(JToken node) : base(node)
 		{
-			if(node["action"] != null)
+			if(node["segmentIdIn"] != null)
 			{
-				this._Action = (BulkUploadJobAction)StringEnum.Parse(typeof(BulkUploadJobAction), node["action"].Value<string>());
+				this._SegmentIdIn = node["segmentIdIn"].Value<string>();
 			}
 		}
 		#endregion
@@ -80,16 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBulkUploadObjectData");
-			kparams.AddIfNotNull("action", this._Action);
+				kparams.AddReplace("objectType", "KalturaCampaignSegmentFilter");
+			kparams.AddIfNotNull("segmentIdIn", this._SegmentIdIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ACTION:
-					return "Action";
+				case SEGMENT_ID_IN:
+					return "SegmentIdIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

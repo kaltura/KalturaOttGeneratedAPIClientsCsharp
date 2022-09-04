@@ -35,42 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BulkUploadObjectData : ObjectBase
+	public class BaseBulkSegments : BulkUploadObjectData
 	{
 		#region Constants
-		public const string ACTION = "action";
+		public const string SEGMENT_ID = "segmentId";
 		#endregion
 
 		#region Private Fields
-		private BulkUploadJobAction _Action = null;
+		private long _SegmentId = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ActionAsDouble property instead
+		/// Use SegmentIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public BulkUploadJobAction Action
+		public long SegmentId
 		{
-			get { return _Action; }
+			get { return _SegmentId; }
 			set 
 			{ 
-				_Action = value;
-				OnPropertyChanged("Action");
+				_SegmentId = value;
+				OnPropertyChanged("SegmentId");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BulkUploadObjectData()
+		public BaseBulkSegments()
 		{
 		}
 
-		public BulkUploadObjectData(JToken node) : base(node)
+		public BaseBulkSegments(JToken node) : base(node)
 		{
-			if(node["action"] != null)
+			if(node["segmentId"] != null)
 			{
-				this._Action = (BulkUploadJobAction)StringEnum.Parse(typeof(BulkUploadJobAction), node["action"].Value<string>());
+				this._SegmentId = ParseLong(node["segmentId"].Value<string>());
 			}
 		}
 		#endregion
@@ -80,16 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBulkUploadObjectData");
-			kparams.AddIfNotNull("action", this._Action);
+				kparams.AddReplace("objectType", "KalturaBaseBulkSegments");
+			kparams.AddIfNotNull("segmentId", this._SegmentId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ACTION:
-					return "Action";
+				case SEGMENT_ID:
+					return "SegmentId";
 				default:
 					return base.getPropertyName(apiName);
 			}

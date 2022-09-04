@@ -27,14 +27,17 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class MonetizationType : StringEnum
+	public sealed class SegmentationTypeOrderBy : StringEnum
 	{
-		public static readonly MonetizationType PPV = new MonetizationType("ppv");
-		public static readonly MonetizationType SUBSCRIPTION = new MonetizationType("subscription");
-		public static readonly MonetizationType BOXSET = new MonetizationType("boxset");
-		public static readonly MonetizationType ANY = new MonetizationType("any");
-		public static readonly MonetizationType PPV_LIVE = new MonetizationType("ppv_live");
+		public static readonly SegmentationTypeOrderBy UPDATE_DATE_DESC = new SegmentationTypeOrderBy("UPDATE_DATE_DESC");
+		public static readonly SegmentationTypeOrderBy UPDATE_DATE_ASC = new SegmentationTypeOrderBy("UPDATE_DATE_ASC");
+		public static readonly SegmentationTypeOrderBy CREATE_DATE_DESC = new SegmentationTypeOrderBy("CREATE_DATE_DESC");
+		public static readonly SegmentationTypeOrderBy CREATE_DATE_ASC = new SegmentationTypeOrderBy("CREATE_DATE_ASC");
+		public static readonly SegmentationTypeOrderBy EXECUTE_DATE_DESC = new SegmentationTypeOrderBy("EXECUTE_DATE_DESC");
+		public static readonly SegmentationTypeOrderBy EXECUTE_DATE_ASC = new SegmentationTypeOrderBy("EXECUTE_DATE_ASC");
+		public static readonly SegmentationTypeOrderBy AFFECTED_USERS_DESC = new SegmentationTypeOrderBy("AFFECTED_USERS_DESC");
+		public static readonly SegmentationTypeOrderBy AFFECTED_USERS_ASC = new SegmentationTypeOrderBy("AFFECTED_USERS_ASC");
 
-		private MonetizationType(string name) : base(name) { }
+		private SegmentationTypeOrderBy(string name) : base(name) { }
 	}
 }
