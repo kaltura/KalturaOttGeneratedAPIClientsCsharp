@@ -37,6 +37,8 @@ namespace Kaltura.Enums
 		public static readonly SegmentationTypeOrderBy EXECUTE_DATE_ASC = new SegmentationTypeOrderBy("EXECUTE_DATE_ASC");
 		public static readonly SegmentationTypeOrderBy AFFECTED_USERS_DESC = new SegmentationTypeOrderBy("AFFECTED_USERS_DESC");
 		public static readonly SegmentationTypeOrderBy AFFECTED_USERS_ASC = new SegmentationTypeOrderBy("AFFECTED_USERS_ASC");
+		public static readonly SegmentationTypeOrderBy AFFECTED_HOUSEHOLDS_DESC = new SegmentationTypeOrderBy("AFFECTED_HOUSEHOLDS_DESC");
+		public static readonly SegmentationTypeOrderBy AFFECTED_HOUSEHOLDS_ASC = new SegmentationTypeOrderBy("AFFECTED_HOUSEHOLDS_ASC");
 
 		private SegmentationTypeOrderBy(string name) : base(name) { }
 	}
