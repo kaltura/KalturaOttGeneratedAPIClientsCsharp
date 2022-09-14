@@ -38,25 +38,25 @@ namespace Kaltura.Types
 	public class CampaignSegmentFilter : CampaignSearchFilter
 	{
 		#region Constants
-		public const string SEGMENT_ID_IN = "segmentIdIn";
+		public const string SEGMENT_ID_EQUAL = "segmentIdEqual";
 		#endregion
 
 		#region Private Fields
-		private string _SegmentIdIn = null;
+		private long _SegmentIdEqual = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use SegmentIdInAsDouble property instead
+		/// Use SegmentIdEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string SegmentIdIn
+		public long SegmentIdEqual
 		{
-			get { return _SegmentIdIn; }
+			get { return _SegmentIdEqual; }
 			set 
 			{ 
-				_SegmentIdIn = value;
-				OnPropertyChanged("SegmentIdIn");
+				_SegmentIdEqual = value;
+				OnPropertyChanged("SegmentIdEqual");
 			}
 		}
 		#endregion
@@ -68,9 +68,9 @@ namespace Kaltura.Types
 
 		public CampaignSegmentFilter(JToken node) : base(node)
 		{
-			if(node["segmentIdIn"] != null)
+			if(node["segmentIdEqual"] != null)
 			{
-				this._SegmentIdIn = node["segmentIdIn"].Value<string>();
+				this._SegmentIdEqual = ParseLong(node["segmentIdEqual"].Value<string>());
 			}
 		}
 		#endregion
@@ -81,15 +81,15 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaCampaignSegmentFilter");
-			kparams.AddIfNotNull("segmentIdIn", this._SegmentIdIn);
+			kparams.AddIfNotNull("segmentIdEqual", this._SegmentIdEqual);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SEGMENT_ID_IN:
-					return "SegmentIdIn";
+				case SEGMENT_ID_EQUAL:
+					return "SegmentIdEqual";
 				default:
 					return base.getPropertyName(apiName);
 			}
