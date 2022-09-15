@@ -66,7 +66,7 @@ namespace Kaltura.Types
 		private string _ThingId = null;
 		private string _Username = null;
 		private string _Password = null;
-		private IList<StringValue> _Topics;
+		private string _Topics = null;
 		private string _Status = null;
 		private string _Message = null;
 		#endregion
@@ -219,7 +219,7 @@ namespace Kaltura.Types
 		/// Use TopicsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<StringValue> Topics
+		public string Topics
 		{
 			get { return _Topics; }
 			set 
@@ -309,11 +309,7 @@ namespace Kaltura.Types
 			}
 			if(node["topics"] != null)
 			{
-				this._Topics = new List<StringValue>();
-				foreach(var arrayNode in node["topics"].Children())
-				{
-					this._Topics.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._Topics = node["topics"].Value<string>();
 			}
 			if(node["status"] != null)
 			{
