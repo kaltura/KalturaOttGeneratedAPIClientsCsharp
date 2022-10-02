@@ -336,6 +336,7 @@ namespace Kaltura
 		public static string DynamicSegmentsExceeded = "5091";
 		public static string DynamicSegmentPeriodExceeded = "5092";
 		public static string DynamicSegmentConditionsExceeded = "5093";
+		public static string NameMustBeUnique = "5094";
 		public static string IncorrectPrice = "6000";
 		public static string UnKnownPPVModule = "6001";
 		public static string ExpiredCard = "6002";
