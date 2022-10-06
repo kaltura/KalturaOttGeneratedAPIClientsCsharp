@@ -116,35 +116,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class SegmentationTypeGetPartnerConfigurationRequestBuilder : RequestBuilder<SegmentationPartnerConfiguration>
-	{
-		#region Constants
-		#endregion
-
-
-		public SegmentationTypeGetPartnerConfigurationRequestBuilder()
-			: base("segmentationtype", "getPartnerConfiguration")
-		{
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<SegmentationPartnerConfiguration>(result);
-		}
-	}
-
 	public class SegmentationTypeListRequestBuilder : RequestBuilder<ListResponse<SegmentationType>>
 	{
 		#region Constants
@@ -233,45 +204,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class SegmentationTypeUpdatePartnerConfigurationRequestBuilder : RequestBuilder<SegmentationPartnerConfiguration>
-	{
-		#region Constants
-		public const string CONFIGURATION = "configuration";
-		#endregion
-
-		public SegmentationPartnerConfiguration Configuration { get; set; }
-
-		public SegmentationTypeUpdatePartnerConfigurationRequestBuilder()
-			: base("segmentationtype", "updatePartnerConfiguration")
-		{
-		}
-
-		public SegmentationTypeUpdatePartnerConfigurationRequestBuilder(SegmentationPartnerConfiguration configuration)
-			: this()
-		{
-			this.Configuration = configuration;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("configuration"))
-				kparams.AddIfNotNull("configuration", Configuration);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<SegmentationPartnerConfiguration>(result);
-		}
-	}
-
 
 	public class SegmentationTypeService
 	{
@@ -289,11 +221,6 @@ namespace Kaltura.Services
 			return new SegmentationTypeDeleteRequestBuilder(id);
 		}
 
-		public static SegmentationTypeGetPartnerConfigurationRequestBuilder GetPartnerConfiguration()
-		{
-			return new SegmentationTypeGetPartnerConfigurationRequestBuilder();
-		}
-
 		public static SegmentationTypeListRequestBuilder List(BaseSegmentationTypeFilter filter = null, FilterPager pager = null)
 		{
 			return new SegmentationTypeListRequestBuilder(filter, pager);
@@ -302,11 +229,6 @@ namespace Kaltura.Services
 		public static SegmentationTypeUpdateRequestBuilder Update(long segmentationTypeId, SegmentationType segmentationType)
 		{
 			return new SegmentationTypeUpdateRequestBuilder(segmentationTypeId, segmentationType);
-		}
-
-		public static SegmentationTypeUpdatePartnerConfigurationRequestBuilder UpdatePartnerConfiguration(SegmentationPartnerConfiguration configuration)
-		{
-			return new SegmentationTypeUpdatePartnerConfigurationRequestBuilder(configuration);
 		}
 	}
 }

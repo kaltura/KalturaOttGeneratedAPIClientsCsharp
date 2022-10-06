@@ -38,27 +38,12 @@ namespace Kaltura.Types
 	public class BulkUploadObjectData : ObjectBase
 	{
 		#region Constants
-		public const string ACTION = "action";
 		#endregion
 
 		#region Private Fields
-		private BulkUploadJobAction _Action = null;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use ActionAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public BulkUploadJobAction Action
-		{
-			get { return _Action; }
-			set 
-			{ 
-				_Action = value;
-				OnPropertyChanged("Action");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -68,10 +53,6 @@ namespace Kaltura.Types
 
 		public BulkUploadObjectData(JToken node) : base(node)
 		{
-			if(node["action"] != null)
-			{
-				this._Action = (BulkUploadJobAction)StringEnum.Parse(typeof(BulkUploadJobAction), node["action"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -81,15 +62,12 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaBulkUploadObjectData");
-			kparams.AddIfNotNull("action", this._Action);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ACTION:
-					return "Action";
 				default:
 					return base.getPropertyName(apiName);
 			}
