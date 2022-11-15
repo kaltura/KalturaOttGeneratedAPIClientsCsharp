@@ -35,80 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class SingleSegmentValue : BaseSegmentValue
+	public class CampaignSegmentFilter : CampaignSearchFilter
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string AFFECTED_USERS = "affectedUsers";
-		public const string AFFECTED_HOUSEHOLDS = "affectedHouseholds";
+		public const string SEGMENT_ID_EQUAL = "segmentIdEqual";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private int _AffectedUsers = Int32.MinValue;
-		private int _AffectedHouseholds = Int32.MinValue;
+		private long _SegmentIdEqual = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdAsDouble property instead
+		/// Use SegmentIdEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long Id
+		public long SegmentIdEqual
 		{
-			get { return _Id; }
-			private set 
+			get { return _SegmentIdEqual; }
+			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
-			}
-		}
-		/// <summary>
-		/// Use AffectedUsersAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int AffectedUsers
-		{
-			get { return _AffectedUsers; }
-			private set 
-			{ 
-				_AffectedUsers = value;
-				OnPropertyChanged("AffectedUsers");
-			}
-		}
-		/// <summary>
-		/// Use AffectedHouseholdsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int AffectedHouseholds
-		{
-			get { return _AffectedHouseholds; }
-			private set 
-			{ 
-				_AffectedHouseholds = value;
-				OnPropertyChanged("AffectedHouseholds");
+				_SegmentIdEqual = value;
+				OnPropertyChanged("SegmentIdEqual");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public SingleSegmentValue()
+		public CampaignSegmentFilter()
 		{
 		}
 
-		public SingleSegmentValue(JToken node) : base(node)
+		public CampaignSegmentFilter(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["segmentIdEqual"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
-			}
-			if(node["affectedUsers"] != null)
-			{
-				this._AffectedUsers = ParseInt(node["affectedUsers"].Value<string>());
-			}
-			if(node["affectedHouseholds"] != null)
-			{
-				this._AffectedHouseholds = ParseInt(node["affectedHouseholds"].Value<string>());
+				this._SegmentIdEqual = ParseLong(node["segmentIdEqual"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,22 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaSingleSegmentValue");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("affectedUsers", this._AffectedUsers);
-			kparams.AddIfNotNull("affectedHouseholds", this._AffectedHouseholds);
+				kparams.AddReplace("objectType", "KalturaCampaignSegmentFilter");
+			kparams.AddIfNotNull("segmentIdEqual", this._SegmentIdEqual);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case AFFECTED_USERS:
-					return "AffectedUsers";
-				case AFFECTED_HOUSEHOLDS:
-					return "AffectedHouseholds";
+				case SEGMENT_ID_EQUAL:
+					return "SegmentIdEqual";
 				default:
 					return base.getPropertyName(apiName);
 			}
