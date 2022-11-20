@@ -39,10 +39,12 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string VALUE = "value";
+		public const string VALUES = "values";
 		#endregion
 
 		#region Private Fields
 		private string _Value = null;
+		private StringValueArray _Values;
 		#endregion
 
 		#region Properties
@@ -59,6 +61,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("Value");
 			}
 		}
+		/// <summary>
+		/// Use ValuesAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public StringValueArray Values
+		{
+			get { return _Values; }
+			set 
+			{ 
+				_Values = value;
+				OnPropertyChanged("Values");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -72,6 +87,10 @@ namespace Kaltura.Types
 			{
 				this._Value = node["value"].Value<string>();
 			}
+			if(node["values"] != null)
+			{
+				this._Values = ObjectFactory.Create<StringValueArray>(node["values"]);
+			}
 		}
 		#endregion
 
@@ -82,6 +101,7 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaAssetShopCondition");
 			kparams.AddIfNotNull("value", this._Value);
+			kparams.AddIfNotNull("values", this._Values);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -90,6 +110,8 @@ namespace Kaltura.Types
 			{
 				case VALUE:
 					return "Value";
+				case VALUES:
+					return "Values";
 				default:
 					return base.getPropertyName(apiName);
 			}

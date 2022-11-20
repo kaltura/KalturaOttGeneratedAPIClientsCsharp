@@ -44,6 +44,7 @@ namespace Kaltura.Types
 		public const string TYPE = "type";
 		public const string OPERATOR = "operator";
 		public const string BUSINESS_MODULE_ID_IN = "businessModuleIdIn";
+		public const string CURRENCY_CODE = "currencyCode";
 		#endregion
 
 		#region Private Fields
@@ -53,6 +54,7 @@ namespace Kaltura.Types
 		private MonetizationType _Type = null;
 		private MathemticalOperatorType _Operator = null;
 		private string _BusinessModuleIdIn = null;
+		private string _CurrencyCode = null;
 		#endregion
 
 		#region Properties
@@ -134,6 +136,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("BusinessModuleIdIn");
 			}
 		}
+		/// <summary>
+		/// Use CurrencyCodeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string CurrencyCode
+		{
+			get { return _CurrencyCode; }
+			set 
+			{ 
+				_CurrencyCode = value;
+				OnPropertyChanged("CurrencyCode");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -167,6 +182,10 @@ namespace Kaltura.Types
 			{
 				this._BusinessModuleIdIn = node["businessModuleIdIn"].Value<string>();
 			}
+			if(node["currencyCode"] != null)
+			{
+				this._CurrencyCode = node["currencyCode"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -182,6 +201,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("type", this._Type);
 			kparams.AddIfNotNull("operator", this._Operator);
 			kparams.AddIfNotNull("businessModuleIdIn", this._BusinessModuleIdIn);
+			kparams.AddIfNotNull("currencyCode", this._CurrencyCode);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -200,6 +220,8 @@ namespace Kaltura.Types
 					return "Operator";
 				case BUSINESS_MODULE_ID_IN:
 					return "BusinessModuleIdIn";
+				case CURRENCY_CODE:
+					return "CurrencyCode";
 				default:
 					return base.getPropertyName(apiName);
 			}
