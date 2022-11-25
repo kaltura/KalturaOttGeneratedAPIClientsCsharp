@@ -31,7 +31,7 @@ namespace Kaltura.Enums
 	{
 		public static readonly UnmatchedItemsPolicy OMIT = new UnmatchedItemsPolicy("Omit");
 		public static readonly UnmatchedItemsPolicy GROUP = new UnmatchedItemsPolicy("Group");
-		public static readonly UnmatchedItemsPolicy INCLUDE = new UnmatchedItemsPolicy("Include");
+		public static readonly UnmatchedItemsPolicy INCLUDEANDMERGE = new UnmatchedItemsPolicy("IncludeAndMerge");
 
 		private UnmatchedItemsPolicy(string name) : base(name) { }
 	}

@@ -46,6 +46,7 @@ namespace Kaltura.Types
 		public const string AUTO_REFRESH_APP_TOKEN = "autoRefreshAppToken";
 		public const string UPLOAD_TOKEN_EXPIRY_SECONDS = "uploadTokenExpirySeconds";
 		public const string APPTOKEN_USER_VALIDATION_DISABLED = "apptokenUserValidationDisabled";
+		public const string EPG_FEATURE_VERSION = "epgFeatureVersion";
 		#endregion
 
 		#region Private Fields
@@ -57,6 +58,7 @@ namespace Kaltura.Types
 		private bool? _AutoRefreshAppToken = null;
 		private int _UploadTokenExpirySeconds = Int32.MinValue;
 		private bool? _ApptokenUserValidationDisabled = null;
+		private int _EpgFeatureVersion = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -164,6 +166,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("ApptokenUserValidationDisabled");
 			}
 		}
+		/// <summary>
+		/// Use EpgFeatureVersionAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int EpgFeatureVersion
+		{
+			get { return _EpgFeatureVersion; }
+			set 
+			{ 
+				_EpgFeatureVersion = value;
+				OnPropertyChanged("EpgFeatureVersion");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -205,6 +220,10 @@ namespace Kaltura.Types
 			{
 				this._ApptokenUserValidationDisabled = ParseBool(node["apptokenUserValidationDisabled"].Value<string>());
 			}
+			if(node["epgFeatureVersion"] != null)
+			{
+				this._EpgFeatureVersion = ParseInt(node["epgFeatureVersion"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -222,6 +241,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("autoRefreshAppToken", this._AutoRefreshAppToken);
 			kparams.AddIfNotNull("uploadTokenExpirySeconds", this._UploadTokenExpirySeconds);
 			kparams.AddIfNotNull("apptokenUserValidationDisabled", this._ApptokenUserValidationDisabled);
+			kparams.AddIfNotNull("epgFeatureVersion", this._EpgFeatureVersion);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -244,6 +264,8 @@ namespace Kaltura.Types
 					return "UploadTokenExpirySeconds";
 				case APPTOKEN_USER_VALIDATION_DISABLED:
 					return "ApptokenUserValidationDisabled";
+				case EPG_FEATURE_VERSION:
+					return "EpgFeatureVersion";
 				default:
 					return base.getPropertyName(apiName);
 			}
