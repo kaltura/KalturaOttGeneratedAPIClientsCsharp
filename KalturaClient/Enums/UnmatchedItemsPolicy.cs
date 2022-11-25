@@ -29,9 +29,9 @@ namespace Kaltura.Enums
 {
 	public sealed class UnmatchedItemsPolicy : StringEnum
 	{
-		public static readonly UnmatchedItemsPolicy OMIT = new UnmatchedItemsPolicy("Omit");
-		public static readonly UnmatchedItemsPolicy GROUP = new UnmatchedItemsPolicy("Group");
-		public static readonly UnmatchedItemsPolicy INCLUDEANDMERGE = new UnmatchedItemsPolicy("IncludeAndMerge");
+		public static readonly UnmatchedItemsPolicy OMIT = new UnmatchedItemsPolicy("OMIT");
+		public static readonly UnmatchedItemsPolicy GROUP = new UnmatchedItemsPolicy("GROUP");
+		public static readonly UnmatchedItemsPolicy INCLUDE_AND_MERGE = new UnmatchedItemsPolicy("INCLUDE_AND_MERGE");
 
 		private UnmatchedItemsPolicy(string name) : base(name) { }
 	}
