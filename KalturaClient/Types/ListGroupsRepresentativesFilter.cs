@@ -35,36 +35,19 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class SegmentationTypeFilter : BaseSegmentationTypeFilter
+	public class ListGroupsRepresentativesFilter : Filter
 	{
 		#region Constants
-		public const string ID_IN = "idIn";
 		public const string KSQL = "kSql";
-		public const string NAME_CONTAIN = "nameContain";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private string _IdIn = null;
 		private string _KSql = null;
-		private string _NameContain = null;
-		private SegmentationTypeOrderBy _OrderBy = null;
+		private ListGroupsRepresentativesOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdInAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string IdIn
-		{
-			get { return _IdIn; }
-			set 
-			{ 
-				_IdIn = value;
-				OnPropertyChanged("IdIn");
-			}
-		}
 		/// <summary>
 		/// Use KSqlAsDouble property instead
 		/// </summary>
@@ -79,23 +62,10 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use NameContainAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string NameContain
-		{
-			get { return _NameContain; }
-			set 
-			{ 
-				_NameContain = value;
-				OnPropertyChanged("NameContain");
-			}
-		}
-		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public new SegmentationTypeOrderBy OrderBy
+		public new ListGroupsRepresentativesOrderBy OrderBy
 		{
 			get { return _OrderBy; }
 			set 
@@ -107,27 +77,19 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public SegmentationTypeFilter()
+		public ListGroupsRepresentativesFilter()
 		{
 		}
 
-		public SegmentationTypeFilter(JToken node) : base(node)
+		public ListGroupsRepresentativesFilter(JToken node) : base(node)
 		{
-			if(node["idIn"] != null)
-			{
-				this._IdIn = node["idIn"].Value<string>();
-			}
 			if(node["kSql"] != null)
 			{
 				this._KSql = node["kSql"].Value<string>();
 			}
-			if(node["nameContain"] != null)
-			{
-				this._NameContain = node["nameContain"].Value<string>();
-			}
 			if(node["orderBy"] != null)
 			{
-				this._OrderBy = (SegmentationTypeOrderBy)StringEnum.Parse(typeof(SegmentationTypeOrderBy), node["orderBy"].Value<string>());
+				this._OrderBy = (ListGroupsRepresentativesOrderBy)StringEnum.Parse(typeof(ListGroupsRepresentativesOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -137,10 +99,8 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaSegmentationTypeFilter");
-			kparams.AddIfNotNull("idIn", this._IdIn);
+				kparams.AddReplace("objectType", "KalturaListGroupsRepresentativesFilter");
 			kparams.AddIfNotNull("kSql", this._KSql);
-			kparams.AddIfNotNull("nameContain", this._NameContain);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -148,12 +108,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case ID_IN:
-					return "IdIn";
 				case KSQL:
 					return "KSql";
-				case NAME_CONTAIN:
-					return "NameContain";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

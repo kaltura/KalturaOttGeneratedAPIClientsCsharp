@@ -33,6 +33,7 @@ namespace Kaltura.Enums
 		public static readonly GroupByField SUPPRESSED = new GroupByField("suppressed");
 		public static readonly GroupByField CRID = new GroupByField("crid");
 		public static readonly GroupByField LINEAR_MEDIA_ID = new GroupByField("linear_media_id");
+		public static readonly GroupByField NAME = new GroupByField("name");
 
 		private GroupByField(string name) : base(name) { }
 	}

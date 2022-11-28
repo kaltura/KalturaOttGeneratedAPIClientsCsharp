@@ -27,14 +27,10 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class MonetizationType : StringEnum
+	public sealed class ListGroupsRepresentativesOrderBy : StringEnum
 	{
-		public static readonly MonetizationType PPV = new MonetizationType("ppv");
-		public static readonly MonetizationType SUBSCRIPTION = new MonetizationType("subscription");
-		public static readonly MonetizationType BOXSET = new MonetizationType("boxset");
-		public static readonly MonetizationType ANY = new MonetizationType("any");
-		public static readonly MonetizationType PPV_LIVE = new MonetizationType("ppv_live");
+		public static readonly ListGroupsRepresentativesOrderBy NONE = new ListGroupsRepresentativesOrderBy("None");
 
-		private MonetizationType(string name) : base(name) { }
+		private ListGroupsRepresentativesOrderBy(string name) : base(name) { }
 	}
 }
