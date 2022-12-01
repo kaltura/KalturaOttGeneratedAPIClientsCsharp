@@ -35,99 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class SegmentationTypeFilter : BaseSegmentationTypeFilter
+	public class SegmentationPartnerConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string ID_IN = "idIn";
-		public const string KSQL = "kSql";
-		public const string NAME_CONTAIN = "nameContain";
-		public new const string ORDER_BY = "orderBy";
+		public const string MAX_CALCULATED_PERIOD = "maxCalculatedPeriod";
+		public const string MAX_DYNAMIC_SEGMENTS = "maxDynamicSegments";
 		#endregion
 
 		#region Private Fields
-		private string _IdIn = null;
-		private string _KSql = null;
-		private string _NameContain = null;
-		private SegmentationTypeOrderBy _OrderBy = null;
+		private int _MaxCalculatedPeriod = Int32.MinValue;
+		private int _MaxDynamicSegments = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdInAsDouble property instead
+		/// Use MaxCalculatedPeriodAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string IdIn
+		public int MaxCalculatedPeriod
 		{
-			get { return _IdIn; }
+			get { return _MaxCalculatedPeriod; }
 			set 
 			{ 
-				_IdIn = value;
-				OnPropertyChanged("IdIn");
+				_MaxCalculatedPeriod = value;
+				OnPropertyChanged("MaxCalculatedPeriod");
 			}
 		}
 		/// <summary>
-		/// Use KSqlAsDouble property instead
+		/// Use MaxDynamicSegmentsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string KSql
+		public int MaxDynamicSegments
 		{
-			get { return _KSql; }
+			get { return _MaxDynamicSegments; }
 			set 
 			{ 
-				_KSql = value;
-				OnPropertyChanged("KSql");
-			}
-		}
-		/// <summary>
-		/// Use NameContainAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string NameContain
-		{
-			get { return _NameContain; }
-			set 
-			{ 
-				_NameContain = value;
-				OnPropertyChanged("NameContain");
-			}
-		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public new SegmentationTypeOrderBy OrderBy
-		{
-			get { return _OrderBy; }
-			set 
-			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
+				_MaxDynamicSegments = value;
+				OnPropertyChanged("MaxDynamicSegments");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public SegmentationTypeFilter()
+		public SegmentationPartnerConfiguration()
 		{
 		}
 
-		public SegmentationTypeFilter(JToken node) : base(node)
+		public SegmentationPartnerConfiguration(JToken node) : base(node)
 		{
-			if(node["idIn"] != null)
+			if(node["maxCalculatedPeriod"] != null)
 			{
-				this._IdIn = node["idIn"].Value<string>();
+				this._MaxCalculatedPeriod = ParseInt(node["maxCalculatedPeriod"].Value<string>());
 			}
-			if(node["kSql"] != null)
+			if(node["maxDynamicSegments"] != null)
 			{
-				this._KSql = node["kSql"].Value<string>();
-			}
-			if(node["nameContain"] != null)
-			{
-				this._NameContain = node["nameContain"].Value<string>();
-			}
-			if(node["orderBy"] != null)
-			{
-				this._OrderBy = (SegmentationTypeOrderBy)StringEnum.Parse(typeof(SegmentationTypeOrderBy), node["orderBy"].Value<string>());
+				this._MaxDynamicSegments = ParseInt(node["maxDynamicSegments"].Value<string>());
 			}
 		}
 		#endregion
@@ -137,25 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaSegmentationTypeFilter");
-			kparams.AddIfNotNull("idIn", this._IdIn);
-			kparams.AddIfNotNull("kSql", this._KSql);
-			kparams.AddIfNotNull("nameContain", this._NameContain);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+				kparams.AddReplace("objectType", "KalturaSegmentationPartnerConfiguration");
+			kparams.AddIfNotNull("maxCalculatedPeriod", this._MaxCalculatedPeriod);
+			kparams.AddIfNotNull("maxDynamicSegments", this._MaxDynamicSegments);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID_IN:
-					return "IdIn";
-				case KSQL:
-					return "KSql";
-				case NAME_CONTAIN:
-					return "NameContain";
-				case ORDER_BY:
-					return "OrderBy";
+				case MAX_CALCULATED_PERIOD:
+					return "MaxCalculatedPeriod";
+				case MAX_DYNAMIC_SEGMENTS:
+					return "MaxDynamicSegments";
 				default:
 					return base.getPropertyName(apiName);
 			}

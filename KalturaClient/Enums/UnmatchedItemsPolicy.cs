@@ -27,14 +27,12 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class MonetizationType : StringEnum
+	public sealed class UnmatchedItemsPolicy : StringEnum
 	{
-		public static readonly MonetizationType PPV = new MonetizationType("ppv");
-		public static readonly MonetizationType SUBSCRIPTION = new MonetizationType("subscription");
-		public static readonly MonetizationType BOXSET = new MonetizationType("boxset");
-		public static readonly MonetizationType ANY = new MonetizationType("any");
-		public static readonly MonetizationType PPV_LIVE = new MonetizationType("ppv_live");
+		public static readonly UnmatchedItemsPolicy OMIT = new UnmatchedItemsPolicy("OMIT");
+		public static readonly UnmatchedItemsPolicy GROUP = new UnmatchedItemsPolicy("GROUP");
+		public static readonly UnmatchedItemsPolicy INCLUDE_AND_MERGE = new UnmatchedItemsPolicy("INCLUDE_AND_MERGE");
 
-		private MonetizationType(string name) : base(name) { }
+		private UnmatchedItemsPolicy(string name) : base(name) { }
 	}
 }

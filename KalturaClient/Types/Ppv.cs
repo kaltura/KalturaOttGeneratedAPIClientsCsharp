@@ -59,6 +59,7 @@ namespace Kaltura.Types
 		public const string UPDATE_DATE = "updateDate";
 		public const string CREATE_DATE = "createDate";
 		public const string VIRTUAL_ASSET_ID = "virtualAssetId";
+		public const string ASSET_USER_RULE_ID = "assetUserRuleId";
 		#endregion
 
 		#region Private Fields
@@ -83,6 +84,7 @@ namespace Kaltura.Types
 		private long _UpdateDate = long.MinValue;
 		private long _CreateDate = long.MinValue;
 		private long _VirtualAssetId = long.MinValue;
+		private long _AssetUserRuleId = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -359,6 +361,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("VirtualAssetId");
 			}
 		}
+		/// <summary>
+		/// Use AssetUserRuleIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long AssetUserRuleId
+		{
+			get { return _AssetUserRuleId; }
+			set 
+			{ 
+				_AssetUserRuleId = value;
+				OnPropertyChanged("AssetUserRuleId");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -460,6 +475,10 @@ namespace Kaltura.Types
 			{
 				this._VirtualAssetId = ParseLong(node["virtualAssetId"].Value<string>());
 			}
+			if(node["assetUserRuleId"] != null)
+			{
+				this._AssetUserRuleId = ParseLong(node["assetUserRuleId"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -490,6 +509,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("virtualAssetId", this._VirtualAssetId);
+			kparams.AddIfNotNull("assetUserRuleId", this._AssetUserRuleId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -538,6 +558,8 @@ namespace Kaltura.Types
 					return "CreateDate";
 				case VIRTUAL_ASSET_ID:
 					return "VirtualAssetId";
+				case ASSET_USER_RULE_ID:
+					return "AssetUserRuleId";
 				default:
 					return base.getPropertyName(apiName);
 			}
