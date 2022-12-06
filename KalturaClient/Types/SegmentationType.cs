@@ -42,9 +42,12 @@ namespace Kaltura.Types
 		public const string NAME = "name";
 		public const string DESCRIPTION = "description";
 		public const string CONDITIONS = "conditions";
+		public const string CONDITIONS_OPERATOR = "conditionsOperator";
 		public const string ACTIONS = "actions";
 		public const string VALUE = "value";
 		public const string CREATE_DATE = "createDate";
+		public const string UPDATE_DATE = "updateDate";
+		public const string EXECUTE_DATE = "executeDate";
 		public const string VERSION = "version";
 		#endregion
 
@@ -53,9 +56,12 @@ namespace Kaltura.Types
 		private string _Name = null;
 		private string _Description = null;
 		private IList<BaseSegmentCondition> _Conditions;
+		private BooleanOperator _ConditionsOperator = null;
 		private IList<BaseSegmentAction> _Actions;
 		private BaseSegmentValue _Value;
 		private long _CreateDate = long.MinValue;
+		private long _UpdateDate = long.MinValue;
+		private long _ExecuteDate = long.MinValue;
 		private long _Version = long.MinValue;
 		#endregion
 
@@ -113,6 +119,19 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use ConditionsOperatorAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public BooleanOperator ConditionsOperator
+		{
+			get { return _ConditionsOperator; }
+			set 
+			{ 
+				_ConditionsOperator = value;
+				OnPropertyChanged("ConditionsOperator");
+			}
+		}
+		/// <summary>
 		/// Use ActionsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -149,6 +168,32 @@ namespace Kaltura.Types
 			{ 
 				_CreateDate = value;
 				OnPropertyChanged("CreateDate");
+			}
+		}
+		/// <summary>
+		/// Use UpdateDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long UpdateDate
+		{
+			get { return _UpdateDate; }
+			private set 
+			{ 
+				_UpdateDate = value;
+				OnPropertyChanged("UpdateDate");
+			}
+		}
+		/// <summary>
+		/// Use ExecuteDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long ExecuteDate
+		{
+			get { return _ExecuteDate; }
+			private set 
+			{ 
+				_ExecuteDate = value;
+				OnPropertyChanged("ExecuteDate");
 			}
 		}
 		/// <summary>
@@ -193,6 +238,10 @@ namespace Kaltura.Types
 					this._Conditions.Add(ObjectFactory.Create<BaseSegmentCondition>(arrayNode));
 				}
 			}
+			if(node["conditionsOperator"] != null)
+			{
+				this._ConditionsOperator = (BooleanOperator)StringEnum.Parse(typeof(BooleanOperator), node["conditionsOperator"].Value<string>());
+			}
 			if(node["actions"] != null)
 			{
 				this._Actions = new List<BaseSegmentAction>();
@@ -208,6 +257,14 @@ namespace Kaltura.Types
 			if(node["createDate"] != null)
 			{
 				this._CreateDate = ParseLong(node["createDate"].Value<string>());
+			}
+			if(node["updateDate"] != null)
+			{
+				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
+			}
+			if(node["executeDate"] != null)
+			{
+				this._ExecuteDate = ParseLong(node["executeDate"].Value<string>());
 			}
 			if(node["version"] != null)
 			{
@@ -226,9 +283,12 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("name", this._Name);
 			kparams.AddIfNotNull("description", this._Description);
 			kparams.AddIfNotNull("conditions", this._Conditions);
+			kparams.AddIfNotNull("conditionsOperator", this._ConditionsOperator);
 			kparams.AddIfNotNull("actions", this._Actions);
 			kparams.AddIfNotNull("value", this._Value);
 			kparams.AddIfNotNull("createDate", this._CreateDate);
+			kparams.AddIfNotNull("updateDate", this._UpdateDate);
+			kparams.AddIfNotNull("executeDate", this._ExecuteDate);
 			kparams.AddIfNotNull("version", this._Version);
 			return kparams;
 		}
@@ -244,12 +304,18 @@ namespace Kaltura.Types
 					return "Description";
 				case CONDITIONS:
 					return "Conditions";
+				case CONDITIONS_OPERATOR:
+					return "ConditionsOperator";
 				case ACTIONS:
 					return "Actions";
 				case VALUE:
 					return "Value";
 				case CREATE_DATE:
 					return "CreateDate";
+				case UPDATE_DATE:
+					return "UpdateDate";
+				case EXECUTE_DATE:
+					return "ExecuteDate";
 				case VERSION:
 					return "Version";
 				default:

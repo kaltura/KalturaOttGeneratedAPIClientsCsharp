@@ -46,6 +46,8 @@ namespace Kaltura.Types
 		public const string IS_PROTECTED = "isProtected";
 		public const string CREATE_DATE = "createDate";
 		public const string UPDATE_DATE = "updateDate";
+		public const string HOUSEHOLD_SPECIFIC_START_TIME_OFFSET = "householdSpecificStartTimeOffset";
+		public const string HOUSEHOLD_SPECIFIC_END_TIME_OFFSET = "householdSpecificEndTimeOffset";
 		#endregion
 
 		#region Private Fields
@@ -57,6 +59,8 @@ namespace Kaltura.Types
 		private bool? _IsProtected = null;
 		private long _CreateDate = long.MinValue;
 		private long _UpdateDate = long.MinValue;
+		private int _HouseholdSpecificStartTimeOffset = Int32.MinValue;
+		private int _HouseholdSpecificEndTimeOffset = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -164,6 +168,32 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
+		/// <summary>
+		/// Use HouseholdSpecificStartTimeOffsetAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int HouseholdSpecificStartTimeOffset
+		{
+			get { return _HouseholdSpecificStartTimeOffset; }
+			set 
+			{ 
+				_HouseholdSpecificStartTimeOffset = value;
+				OnPropertyChanged("HouseholdSpecificStartTimeOffset");
+			}
+		}
+		/// <summary>
+		/// Use HouseholdSpecificEndTimeOffsetAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int HouseholdSpecificEndTimeOffset
+		{
+			get { return _HouseholdSpecificEndTimeOffset; }
+			set 
+			{ 
+				_HouseholdSpecificEndTimeOffset = value;
+				OnPropertyChanged("HouseholdSpecificEndTimeOffset");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -205,6 +235,14 @@ namespace Kaltura.Types
 			{
 				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
 			}
+			if(node["householdSpecificStartTimeOffset"] != null)
+			{
+				this._HouseholdSpecificStartTimeOffset = ParseInt(node["householdSpecificStartTimeOffset"].Value<string>());
+			}
+			if(node["householdSpecificEndTimeOffset"] != null)
+			{
+				this._HouseholdSpecificEndTimeOffset = ParseInt(node["householdSpecificEndTimeOffset"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -222,6 +260,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("isProtected", this._IsProtected);
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
+			kparams.AddIfNotNull("householdSpecificStartTimeOffset", this._HouseholdSpecificStartTimeOffset);
+			kparams.AddIfNotNull("householdSpecificEndTimeOffset", this._HouseholdSpecificEndTimeOffset);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -244,6 +284,10 @@ namespace Kaltura.Types
 					return "CreateDate";
 				case UPDATE_DATE:
 					return "UpdateDate";
+				case HOUSEHOLD_SPECIFIC_START_TIME_OFFSET:
+					return "HouseholdSpecificStartTimeOffset";
+				case HOUSEHOLD_SPECIFIC_END_TIME_OFFSET:
+					return "HouseholdSpecificEndTimeOffset";
 				default:
 					return base.getPropertyName(apiName);
 			}

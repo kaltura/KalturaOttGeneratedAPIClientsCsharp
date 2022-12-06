@@ -320,6 +320,55 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class RecordingStopRequestBuilder : RequestBuilder<Recording>
+	{
+		#region Constants
+		public const string PROGRAM_ID = "programId";
+		public const string EPG_CHANNEL_ID = "epgChannelId";
+		public const string HOUSEHOLD_RECORDING_ID = "householdRecordingId";
+		#endregion
+
+		public long ProgramId { get; set; }
+		public long EpgChannelId { get; set; }
+		public long HouseholdRecordingId { get; set; }
+
+		public RecordingStopRequestBuilder()
+			: base("recording", "stop")
+		{
+		}
+
+		public RecordingStopRequestBuilder(long programId, long epgChannelId, long householdRecordingId)
+			: this()
+		{
+			this.ProgramId = programId;
+			this.EpgChannelId = epgChannelId;
+			this.HouseholdRecordingId = householdRecordingId;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("programId"))
+				kparams.AddIfNotNull("programId", ProgramId);
+			if (!isMapped("epgChannelId"))
+				kparams.AddIfNotNull("epgChannelId", EpgChannelId);
+			if (!isMapped("householdRecordingId"))
+				kparams.AddIfNotNull("householdRecordingId", HouseholdRecordingId);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<Recording>(result);
+		}
+	}
+
 	public class RecordingUpdateRequestBuilder : RequestBuilder<Recording>
 	{
 		#region Constants
@@ -404,6 +453,11 @@ namespace Kaltura.Services
 		public static RecordingProtectRequestBuilder Protect(long id)
 		{
 			return new RecordingProtectRequestBuilder(id);
+		}
+
+		public static RecordingStopRequestBuilder Stop(long programId, long epgChannelId, long householdRecordingId)
+		{
+			return new RecordingStopRequestBuilder(programId, epgChannelId, householdRecordingId);
 		}
 
 		public static RecordingUpdateRequestBuilder Update(long id, Recording recording)
