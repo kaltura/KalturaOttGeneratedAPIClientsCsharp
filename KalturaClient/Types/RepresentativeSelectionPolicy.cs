@@ -25,16 +25,54 @@
 //
 // @ignore
 // ===================================================================================================
-namespace Kaltura.Enums
-{
-	public sealed class GroupByField : StringEnum
-	{
-		public static readonly GroupByField MEDIA_TYPE_ID = new GroupByField("media_type_id");
-		public static readonly GroupByField SUPPRESSED = new GroupByField("suppressed");
-		public static readonly GroupByField CRID = new GroupByField("crid");
-		public static readonly GroupByField LINEAR_MEDIA_ID = new GroupByField("linear_media_id");
-		public static readonly GroupByField NAME = new GroupByField("name");
+using System;
+using System.Xml;
+using System.Collections.Generic;
+using Kaltura.Enums;
+using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-		private GroupByField(string name) : base(name) { }
+namespace Kaltura.Types
+{
+	public class RepresentativeSelectionPolicy : ObjectBase
+	{
+		#region Constants
+		#endregion
+
+		#region Private Fields
+		#endregion
+
+		#region Properties
+		#endregion
+
+		#region CTor
+		public RepresentativeSelectionPolicy()
+		{
+		}
+
+		public RepresentativeSelectionPolicy(JToken node) : base(node)
+		{
+		}
+		#endregion
+
+		#region Methods
+		public override Params ToParams(bool includeObjectType = true)
+		{
+			Params kparams = base.ToParams(includeObjectType);
+			if (includeObjectType)
+				kparams.AddReplace("objectType", "KalturaRepresentativeSelectionPolicy");
+			return kparams;
+		}
+		protected override string getPropertyName(string apiName)
+		{
+			switch(apiName)
+			{
+				default:
+					return base.getPropertyName(apiName);
+			}
+		}
+		#endregion
 	}
 }
+
