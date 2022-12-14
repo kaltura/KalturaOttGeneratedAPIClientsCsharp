@@ -63,6 +63,7 @@ namespace Kaltura.Types
 		public const string DEFAULT_QUOTA = "defaultQuota";
 		public const string PERSONALIZED_RECORDING = "personalizedRecording";
 		public const string MAX_RECORDING_CONCURRENCY = "maxRecordingConcurrency";
+		public const string MAX_CONCURRENCY_MARGIN = "maxConcurrencyMargin";
 		#endregion
 
 		#region Private Fields
@@ -91,6 +92,7 @@ namespace Kaltura.Types
 		private int _DefaultQuota = Int32.MinValue;
 		private bool? _PersonalizedRecording = null;
 		private int _MaxRecordingConcurrency = Int32.MinValue;
+		private int _MaxConcurrencyMargin = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -419,6 +421,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxRecordingConcurrency");
 			}
 		}
+		/// <summary>
+		/// Use MaxConcurrencyMarginAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int MaxConcurrencyMargin
+		{
+			get { return _MaxConcurrencyMargin; }
+			set 
+			{ 
+				_MaxConcurrencyMargin = value;
+				OnPropertyChanged("MaxConcurrencyMargin");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -528,6 +543,10 @@ namespace Kaltura.Types
 			{
 				this._MaxRecordingConcurrency = ParseInt(node["maxRecordingConcurrency"].Value<string>());
 			}
+			if(node["maxConcurrencyMargin"] != null)
+			{
+				this._MaxConcurrencyMargin = ParseInt(node["maxConcurrencyMargin"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -562,6 +581,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("defaultQuota", this._DefaultQuota);
 			kparams.AddIfNotNull("personalizedRecording", this._PersonalizedRecording);
 			kparams.AddIfNotNull("maxRecordingConcurrency", this._MaxRecordingConcurrency);
+			kparams.AddIfNotNull("maxConcurrencyMargin", this._MaxConcurrencyMargin);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -618,6 +638,8 @@ namespace Kaltura.Types
 					return "PersonalizedRecording";
 				case MAX_RECORDING_CONCURRENCY:
 					return "MaxRecordingConcurrency";
+				case MAX_CONCURRENCY_MARGIN:
+					return "MaxConcurrencyMargin";
 				default:
 					return base.getPropertyName(apiName);
 			}

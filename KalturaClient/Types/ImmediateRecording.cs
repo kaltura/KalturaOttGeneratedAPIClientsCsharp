@@ -40,11 +40,13 @@ namespace Kaltura.Types
 		#region Constants
 		public const string END_PADDING = "endPadding";
 		public const string ABSOLUTE_START = "absoluteStart";
+		public const string ABSOLUTE_END = "absoluteEnd";
 		#endregion
 
 		#region Private Fields
 		private int _EndPadding = Int32.MinValue;
 		private long _AbsoluteStart = long.MinValue;
+		private long _AbsoluteEnd = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -74,6 +76,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("AbsoluteStart");
 			}
 		}
+		/// <summary>
+		/// Use AbsoluteEndAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long AbsoluteEnd
+		{
+			get { return _AbsoluteEnd; }
+			set 
+			{ 
+				_AbsoluteEnd = value;
+				OnPropertyChanged("AbsoluteEnd");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -91,6 +106,10 @@ namespace Kaltura.Types
 			{
 				this._AbsoluteStart = ParseLong(node["absoluteStart"].Value<string>());
 			}
+			if(node["absoluteEnd"] != null)
+			{
+				this._AbsoluteEnd = ParseLong(node["absoluteEnd"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -102,6 +121,7 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaImmediateRecording");
 			kparams.AddIfNotNull("endPadding", this._EndPadding);
 			kparams.AddIfNotNull("absoluteStart", this._AbsoluteStart);
+			kparams.AddIfNotNull("absoluteEnd", this._AbsoluteEnd);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -112,6 +132,8 @@ namespace Kaltura.Types
 					return "EndPadding";
 				case ABSOLUTE_START:
 					return "AbsoluteStart";
+				case ABSOLUTE_END:
+					return "AbsoluteEnd";
 				default:
 					return base.getPropertyName(apiName);
 			}
