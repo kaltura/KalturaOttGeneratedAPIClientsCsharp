@@ -57,7 +57,7 @@ namespace Kaltura.Types
 		public int EndPadding
 		{
 			get { return _EndPadding; }
-			set 
+			private set 
 			{ 
 				_EndPadding = value;
 				OnPropertyChanged("EndPadding");
@@ -70,7 +70,7 @@ namespace Kaltura.Types
 		public long AbsoluteStart
 		{
 			get { return _AbsoluteStart; }
-			set 
+			private set 
 			{ 
 				_AbsoluteStart = value;
 				OnPropertyChanged("AbsoluteStart");
@@ -83,7 +83,7 @@ namespace Kaltura.Types
 		public long AbsoluteEnd
 		{
 			get { return _AbsoluteEnd; }
-			set 
+			private set 
 			{ 
 				_AbsoluteEnd = value;
 				OnPropertyChanged("AbsoluteEnd");
