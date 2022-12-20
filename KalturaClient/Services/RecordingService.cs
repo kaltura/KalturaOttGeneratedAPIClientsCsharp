@@ -237,6 +237,55 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class RecordingImmediateRecordRequestBuilder : RequestBuilder<ImmediateRecording>
+	{
+		#region Constants
+		public const string PROGRAM_ID = "programId";
+		public const string EPG_CHANNEL_ID = "epgChannelId";
+		public const string END_PADDING = "endPadding";
+		#endregion
+
+		public long ProgramId { get; set; }
+		public long EpgChannelId { get; set; }
+		public int EndPadding { get; set; }
+
+		public RecordingImmediateRecordRequestBuilder()
+			: base("recording", "immediateRecord")
+		{
+		}
+
+		public RecordingImmediateRecordRequestBuilder(long programId, long epgChannelId, int endPadding)
+			: this()
+		{
+			this.ProgramId = programId;
+			this.EpgChannelId = epgChannelId;
+			this.EndPadding = endPadding;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("programId"))
+				kparams.AddIfNotNull("programId", ProgramId);
+			if (!isMapped("epgChannelId"))
+				kparams.AddIfNotNull("epgChannelId", EpgChannelId);
+			if (!isMapped("endPadding"))
+				kparams.AddIfNotNull("endPadding", EndPadding);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<ImmediateRecording>(result);
+		}
+	}
+
 	public class RecordingListRequestBuilder : RequestBuilder<ListResponse<Recording>>
 	{
 		#region Constants
@@ -443,6 +492,11 @@ namespace Kaltura.Services
 		public static RecordingGetRequestBuilder Get(long id)
 		{
 			return new RecordingGetRequestBuilder(id);
+		}
+
+		public static RecordingImmediateRecordRequestBuilder ImmediateRecord(long programId, long epgChannelId, int endPadding)
+		{
+			return new RecordingImmediateRecordRequestBuilder(programId, epgChannelId, endPadding);
 		}
 
 		public static RecordingListRequestBuilder List(RecordingFilter filter = null, FilterPager pager = null)
