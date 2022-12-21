@@ -332,6 +332,11 @@ namespace Kaltura
 		public static string DeviceFamilyDoesNotExist = "5087";
 		public static string DeviceBrandIdAlreadyInUse = "5088";
 		public static string DeviceBrandDoesNotExist = "5089";
+		public static string CannotDeleteAttachedSegment = "5090";
+		public static string DynamicSegmentsExceeded = "5091";
+		public static string DynamicSegmentPeriodExceeded = "5092";
+		public static string DynamicSegmentConditionsExceeded = "5093";
+		public static string NameMustBeUnique = "5094";
 		public static string IncorrectPrice = "6000";
 		public static string UnKnownPPVModule = "6001";
 		public static string ExpiredCard = "6002";
@@ -673,6 +678,8 @@ namespace Kaltura
 		public static string ArgumentMaxItemsCrossed = "500088";
 		public static string ArgumentMatchPatternCrossed = "500090";
 		public static string ArgumentMinItemsCrossed = "500091";
+		public static string ArgumentMinPropertiesCrossed = "500093";
+		public static string ArgumentMaxPropertiesCrossed = "500094";
 		public static string HouseholdForbidden = "500028";
 		public static string SwitchingUsersIsNotAllowedForPartner = "50024";
 		public static string NotActiveAppToken = "50023";

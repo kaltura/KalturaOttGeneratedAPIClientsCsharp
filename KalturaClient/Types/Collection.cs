@@ -62,6 +62,7 @@ namespace Kaltura.Types
 		public const string VIRTUAL_ASSET_ID = "virtualAssetId";
 		public const string FILE_TYPES = "fileTypes";
 		public const string FILE_TYPES_IDS = "fileTypesIds";
+		public const string ASSET_USER_RULE_ID = "assetUserRuleId";
 		#endregion
 
 		#region Private Fields
@@ -89,6 +90,7 @@ namespace Kaltura.Types
 		private long _VirtualAssetId = long.MinValue;
 		private IList<IntegerValue> _FileTypes;
 		private string _FileTypesIds = null;
+		private long _AssetUserRuleId = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -404,6 +406,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("FileTypesIds");
 			}
 		}
+		/// <summary>
+		/// Use AssetUserRuleIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long AssetUserRuleId
+		{
+			get { return _AssetUserRuleId; }
+			set 
+			{ 
+				_AssetUserRuleId = value;
+				OnPropertyChanged("AssetUserRuleId");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -537,6 +552,10 @@ namespace Kaltura.Types
 			{
 				this._FileTypesIds = node["fileTypesIds"].Value<string>();
 			}
+			if(node["assetUserRuleId"] != null)
+			{
+				this._AssetUserRuleId = ParseLong(node["assetUserRuleId"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -570,6 +589,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("virtualAssetId", this._VirtualAssetId);
 			kparams.AddIfNotNull("fileTypes", this._FileTypes);
 			kparams.AddIfNotNull("fileTypesIds", this._FileTypesIds);
+			kparams.AddIfNotNull("assetUserRuleId", this._AssetUserRuleId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -624,6 +644,8 @@ namespace Kaltura.Types
 					return "FileTypes";
 				case FILE_TYPES_IDS:
 					return "FileTypesIds";
+				case ASSET_USER_RULE_ID:
+					return "AssetUserRuleId";
 				default:
 					return base.getPropertyName(apiName);
 			}
