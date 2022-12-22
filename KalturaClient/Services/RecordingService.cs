@@ -240,12 +240,12 @@ namespace Kaltura.Services
 	public class RecordingImmediateRecordRequestBuilder : RequestBuilder<ImmediateRecording>
 	{
 		#region Constants
-		public const string PROGRAM_ID = "programId";
+		public const string ASSET_ID = "assetId";
 		public const string EPG_CHANNEL_ID = "epgChannelId";
 		public const string END_PADDING = "endPadding";
 		#endregion
 
-		public long ProgramId { get; set; }
+		public long AssetId { get; set; }
 		public long EpgChannelId { get; set; }
 		public int EndPadding { get; set; }
 
@@ -254,10 +254,10 @@ namespace Kaltura.Services
 		{
 		}
 
-		public RecordingImmediateRecordRequestBuilder(long programId, long epgChannelId, int endPadding)
+		public RecordingImmediateRecordRequestBuilder(long assetId, long epgChannelId, int endPadding)
 			: this()
 		{
-			this.ProgramId = programId;
+			this.AssetId = assetId;
 			this.EpgChannelId = epgChannelId;
 			this.EndPadding = endPadding;
 		}
@@ -265,8 +265,8 @@ namespace Kaltura.Services
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("programId"))
-				kparams.AddIfNotNull("programId", ProgramId);
+			if (!isMapped("assetId"))
+				kparams.AddIfNotNull("assetId", AssetId);
 			if (!isMapped("epgChannelId"))
 				kparams.AddIfNotNull("epgChannelId", EpgChannelId);
 			if (!isMapped("endPadding"))
@@ -372,12 +372,12 @@ namespace Kaltura.Services
 	public class RecordingStopRequestBuilder : RequestBuilder<Recording>
 	{
 		#region Constants
-		public const string PROGRAM_ID = "programId";
+		public const string ASSET_ID = "assetId";
 		public const string EPG_CHANNEL_ID = "epgChannelId";
 		public const string HOUSEHOLD_RECORDING_ID = "householdRecordingId";
 		#endregion
 
-		public long ProgramId { get; set; }
+		public long AssetId { get; set; }
 		public long EpgChannelId { get; set; }
 		public long HouseholdRecordingId { get; set; }
 
@@ -386,10 +386,10 @@ namespace Kaltura.Services
 		{
 		}
 
-		public RecordingStopRequestBuilder(long programId, long epgChannelId, long householdRecordingId)
+		public RecordingStopRequestBuilder(long assetId, long epgChannelId, long householdRecordingId)
 			: this()
 		{
-			this.ProgramId = programId;
+			this.AssetId = assetId;
 			this.EpgChannelId = epgChannelId;
 			this.HouseholdRecordingId = householdRecordingId;
 		}
@@ -397,8 +397,8 @@ namespace Kaltura.Services
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("programId"))
-				kparams.AddIfNotNull("programId", ProgramId);
+			if (!isMapped("assetId"))
+				kparams.AddIfNotNull("assetId", AssetId);
 			if (!isMapped("epgChannelId"))
 				kparams.AddIfNotNull("epgChannelId", EpgChannelId);
 			if (!isMapped("householdRecordingId"))
@@ -494,9 +494,9 @@ namespace Kaltura.Services
 			return new RecordingGetRequestBuilder(id);
 		}
 
-		public static RecordingImmediateRecordRequestBuilder ImmediateRecord(long programId, long epgChannelId, int endPadding)
+		public static RecordingImmediateRecordRequestBuilder ImmediateRecord(long assetId, long epgChannelId, int endPadding)
 		{
-			return new RecordingImmediateRecordRequestBuilder(programId, epgChannelId, endPadding);
+			return new RecordingImmediateRecordRequestBuilder(assetId, epgChannelId, endPadding);
 		}
 
 		public static RecordingListRequestBuilder List(RecordingFilter filter = null, FilterPager pager = null)
@@ -509,9 +509,9 @@ namespace Kaltura.Services
 			return new RecordingProtectRequestBuilder(id);
 		}
 
-		public static RecordingStopRequestBuilder Stop(long programId, long epgChannelId, long householdRecordingId)
+		public static RecordingStopRequestBuilder Stop(long assetId, long epgChannelId, long householdRecordingId)
 		{
-			return new RecordingStopRequestBuilder(programId, epgChannelId, householdRecordingId);
+			return new RecordingStopRequestBuilder(assetId, epgChannelId, householdRecordingId);
 		}
 
 		public static RecordingUpdateRequestBuilder Update(long id, Recording recording)
