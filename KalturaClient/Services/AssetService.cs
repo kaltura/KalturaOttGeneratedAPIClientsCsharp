@@ -410,6 +410,70 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class AssetGroupRepresentativeListRequestBuilder : RequestBuilder<ListResponse<Asset>>
+	{
+		#region Constants
+		public const string GROUP_BY = "groupBy";
+		public const string UNMATCHED_ITEMS_POLICY = "unmatchedItemsPolicy";
+		public const string ORDER_BY = "orderBy";
+		public const string FILTER = "filter";
+		public const string SELECTION_POLICY = "selectionPolicy";
+		public const string PAGER = "pager";
+		#endregion
+
+		public AssetGroupBy GroupBy { get; set; }
+		public UnmatchedItemsPolicy UnmatchedItemsPolicy { get; set; }
+		public BaseAssetOrder OrderBy { get; set; }
+		public ListGroupsRepresentativesFilter Filter { get; set; }
+		public RepresentativeSelectionPolicy SelectionPolicy { get; set; }
+		public FilterPager Pager { get; set; }
+
+		public AssetGroupRepresentativeListRequestBuilder()
+			: base("asset", "groupRepresentativeList")
+		{
+		}
+
+		public AssetGroupRepresentativeListRequestBuilder(AssetGroupBy groupBy, UnmatchedItemsPolicy unmatchedItemsPolicy, BaseAssetOrder orderBy, ListGroupsRepresentativesFilter filter, RepresentativeSelectionPolicy selectionPolicy, FilterPager pager)
+			: this()
+		{
+			this.GroupBy = groupBy;
+			this.UnmatchedItemsPolicy = unmatchedItemsPolicy;
+			this.OrderBy = orderBy;
+			this.Filter = filter;
+			this.SelectionPolicy = selectionPolicy;
+			this.Pager = pager;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("groupBy"))
+				kparams.AddIfNotNull("groupBy", GroupBy);
+			if (!isMapped("unmatchedItemsPolicy"))
+				kparams.AddIfNotNull("unmatchedItemsPolicy", UnmatchedItemsPolicy);
+			if (!isMapped("orderBy"))
+				kparams.AddIfNotNull("orderBy", OrderBy);
+			if (!isMapped("filter"))
+				kparams.AddIfNotNull("filter", Filter);
+			if (!isMapped("selectionPolicy"))
+				kparams.AddIfNotNull("selectionPolicy", SelectionPolicy);
+			if (!isMapped("pager"))
+				kparams.AddIfNotNull("pager", Pager);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<ListResponse<Asset>>(result);
+		}
+	}
+
 	public class AssetListRequestBuilder : RequestBuilder<ListResponse<Asset>>
 	{
 		#region Constants
@@ -633,6 +697,11 @@ namespace Kaltura.Services
 		public static AssetGetPlaybackManifestRequestBuilder GetPlaybackManifest(string assetId, AssetType assetType, PlaybackContextOptions contextDataParams, string sourceType = null)
 		{
 			return new AssetGetPlaybackManifestRequestBuilder(assetId, assetType, contextDataParams, sourceType);
+		}
+
+		public static AssetGroupRepresentativeListRequestBuilder GroupRepresentativeList(AssetGroupBy groupBy, UnmatchedItemsPolicy unmatchedItemsPolicy, BaseAssetOrder orderBy = null, ListGroupsRepresentativesFilter filter = null, RepresentativeSelectionPolicy selectionPolicy = null, FilterPager pager = null)
+		{
+			return new AssetGroupRepresentativeListRequestBuilder(groupBy, unmatchedItemsPolicy, orderBy, filter, selectionPolicy, pager);
 		}
 
 		public static AssetListRequestBuilder List(AssetFilter filter = null, FilterPager pager = null)

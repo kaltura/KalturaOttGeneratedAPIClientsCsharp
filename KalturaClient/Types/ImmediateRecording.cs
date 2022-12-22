@@ -35,99 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class SegmentationTypeFilter : BaseSegmentationTypeFilter
+	public class ImmediateRecording : Recording
 	{
 		#region Constants
-		public const string ID_IN = "idIn";
-		public const string KSQL = "kSql";
-		public const string NAME_CONTAIN = "nameContain";
-		public new const string ORDER_BY = "orderBy";
+		public const string END_PADDING = "endPadding";
+		public const string ABSOLUTE_START = "absoluteStart";
+		public const string ABSOLUTE_END = "absoluteEnd";
 		#endregion
 
 		#region Private Fields
-		private string _IdIn = null;
-		private string _KSql = null;
-		private string _NameContain = null;
-		private SegmentationTypeOrderBy _OrderBy = null;
+		private int _EndPadding = Int32.MinValue;
+		private long _AbsoluteStart = long.MinValue;
+		private long _AbsoluteEnd = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdInAsDouble property instead
+		/// Use EndPaddingAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string IdIn
+		public int EndPadding
 		{
-			get { return _IdIn; }
-			set 
+			get { return _EndPadding; }
+			private set 
 			{ 
-				_IdIn = value;
-				OnPropertyChanged("IdIn");
+				_EndPadding = value;
+				OnPropertyChanged("EndPadding");
 			}
 		}
 		/// <summary>
-		/// Use KSqlAsDouble property instead
+		/// Use AbsoluteStartAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string KSql
+		public long AbsoluteStart
 		{
-			get { return _KSql; }
-			set 
+			get { return _AbsoluteStart; }
+			private set 
 			{ 
-				_KSql = value;
-				OnPropertyChanged("KSql");
+				_AbsoluteStart = value;
+				OnPropertyChanged("AbsoluteStart");
 			}
 		}
 		/// <summary>
-		/// Use NameContainAsDouble property instead
+		/// Use AbsoluteEndAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string NameContain
+		public long AbsoluteEnd
 		{
-			get { return _NameContain; }
-			set 
+			get { return _AbsoluteEnd; }
+			private set 
 			{ 
-				_NameContain = value;
-				OnPropertyChanged("NameContain");
-			}
-		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public new SegmentationTypeOrderBy OrderBy
-		{
-			get { return _OrderBy; }
-			set 
-			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
+				_AbsoluteEnd = value;
+				OnPropertyChanged("AbsoluteEnd");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public SegmentationTypeFilter()
+		public ImmediateRecording()
 		{
 		}
 
-		public SegmentationTypeFilter(JToken node) : base(node)
+		public ImmediateRecording(JToken node) : base(node)
 		{
-			if(node["idIn"] != null)
+			if(node["endPadding"] != null)
 			{
-				this._IdIn = node["idIn"].Value<string>();
+				this._EndPadding = ParseInt(node["endPadding"].Value<string>());
 			}
-			if(node["kSql"] != null)
+			if(node["absoluteStart"] != null)
 			{
-				this._KSql = node["kSql"].Value<string>();
+				this._AbsoluteStart = ParseLong(node["absoluteStart"].Value<string>());
 			}
-			if(node["nameContain"] != null)
+			if(node["absoluteEnd"] != null)
 			{
-				this._NameContain = node["nameContain"].Value<string>();
-			}
-			if(node["orderBy"] != null)
-			{
-				this._OrderBy = (SegmentationTypeOrderBy)StringEnum.Parse(typeof(SegmentationTypeOrderBy), node["orderBy"].Value<string>());
+				this._AbsoluteEnd = ParseLong(node["absoluteEnd"].Value<string>());
 			}
 		}
 		#endregion
@@ -137,25 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaSegmentationTypeFilter");
-			kparams.AddIfNotNull("idIn", this._IdIn);
-			kparams.AddIfNotNull("kSql", this._KSql);
-			kparams.AddIfNotNull("nameContain", this._NameContain);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+				kparams.AddReplace("objectType", "KalturaImmediateRecording");
+			kparams.AddIfNotNull("endPadding", this._EndPadding);
+			kparams.AddIfNotNull("absoluteStart", this._AbsoluteStart);
+			kparams.AddIfNotNull("absoluteEnd", this._AbsoluteEnd);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID_IN:
-					return "IdIn";
-				case KSQL:
-					return "KSql";
-				case NAME_CONTAIN:
-					return "NameContain";
-				case ORDER_BY:
-					return "OrderBy";
+				case END_PADDING:
+					return "EndPadding";
+				case ABSOLUTE_START:
+					return "AbsoluteStart";
+				case ABSOLUTE_END:
+					return "AbsoluteEnd";
 				default:
 					return base.getPropertyName(apiName);
 			}

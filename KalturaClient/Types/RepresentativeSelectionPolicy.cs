@@ -25,16 +25,54 @@
 //
 // @ignore
 // ===================================================================================================
-namespace Kaltura.Enums
-{
-	public sealed class MonetizationType : StringEnum
-	{
-		public static readonly MonetizationType PPV = new MonetizationType("ppv");
-		public static readonly MonetizationType SUBSCRIPTION = new MonetizationType("subscription");
-		public static readonly MonetizationType BOXSET = new MonetizationType("boxset");
-		public static readonly MonetizationType ANY = new MonetizationType("any");
-		public static readonly MonetizationType PPV_LIVE = new MonetizationType("ppv_live");
+using System;
+using System.Xml;
+using System.Collections.Generic;
+using Kaltura.Enums;
+using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-		private MonetizationType(string name) : base(name) { }
+namespace Kaltura.Types
+{
+	public class RepresentativeSelectionPolicy : ObjectBase
+	{
+		#region Constants
+		#endregion
+
+		#region Private Fields
+		#endregion
+
+		#region Properties
+		#endregion
+
+		#region CTor
+		public RepresentativeSelectionPolicy()
+		{
+		}
+
+		public RepresentativeSelectionPolicy(JToken node) : base(node)
+		{
+		}
+		#endregion
+
+		#region Methods
+		public override Params ToParams(bool includeObjectType = true)
+		{
+			Params kparams = base.ToParams(includeObjectType);
+			if (includeObjectType)
+				kparams.AddReplace("objectType", "KalturaRepresentativeSelectionPolicy");
+			return kparams;
+		}
+		protected override string getPropertyName(string apiName)
+		{
+			switch(apiName)
+			{
+				default:
+					return base.getPropertyName(apiName);
+			}
+		}
+		#endregion
 	}
 }
+

@@ -35,42 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class CouponFilter : Filter
+	public class TopRsp : RepresentativeSelectionPolicy
 	{
 		#region Constants
-		public const string COUPON_CODES_IN = "couponCodesIn";
+		public const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private string _CouponCodesIn = null;
+		private BaseAssetOrder _OrderBy;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use CouponCodesInAsDouble property instead
+		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string CouponCodesIn
+		public BaseAssetOrder OrderBy
 		{
-			get { return _CouponCodesIn; }
+			get { return _OrderBy; }
 			set 
 			{ 
-				_CouponCodesIn = value;
-				OnPropertyChanged("CouponCodesIn");
+				_OrderBy = value;
+				OnPropertyChanged("OrderBy");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public CouponFilter()
+		public TopRsp()
 		{
 		}
 
-		public CouponFilter(JToken node) : base(node)
+		public TopRsp(JToken node) : base(node)
 		{
-			if(node["couponCodesIn"] != null)
+			if(node["orderBy"] != null)
 			{
-				this._CouponCodesIn = node["couponCodesIn"].Value<string>();
+				this._OrderBy = ObjectFactory.Create<BaseAssetOrder>(node["orderBy"]);
 			}
 		}
 		#endregion
@@ -80,16 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaCouponFilter");
-			kparams.AddIfNotNull("couponCodesIn", this._CouponCodesIn);
+				kparams.AddReplace("objectType", "KalturaTopRsp");
+			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case COUPON_CODES_IN:
-					return "CouponCodesIn";
+				case ORDER_BY:
+					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}
