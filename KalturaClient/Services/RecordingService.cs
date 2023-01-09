@@ -243,26 +243,23 @@ namespace Kaltura.Services
 		public const string ASSET_ID = "assetId";
 		public const string EPG_CHANNEL_ID = "epgChannelId";
 		public const string END_PADDING = "endPadding";
-		public const string CRID = "crid";
 		#endregion
 
 		public long AssetId { get; set; }
 		public long EpgChannelId { get; set; }
 		public int EndPadding { get; set; }
-		public string Crid { get; set; }
 
 		public RecordingImmediateRecordRequestBuilder()
 			: base("recording", "immediateRecord")
 		{
 		}
 
-		public RecordingImmediateRecordRequestBuilder(long assetId, long epgChannelId, int endPadding, string crid)
+		public RecordingImmediateRecordRequestBuilder(long assetId, long epgChannelId, int endPadding)
 			: this()
 		{
 			this.AssetId = assetId;
 			this.EpgChannelId = epgChannelId;
 			this.EndPadding = endPadding;
-			this.Crid = crid;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -274,8 +271,6 @@ namespace Kaltura.Services
 				kparams.AddIfNotNull("epgChannelId", EpgChannelId);
 			if (!isMapped("endPadding"))
 				kparams.AddIfNotNull("endPadding", EndPadding);
-			if (!isMapped("crid"))
-				kparams.AddIfNotNull("crid", Crid);
 			return kparams;
 		}
 
@@ -499,9 +494,9 @@ namespace Kaltura.Services
 			return new RecordingGetRequestBuilder(id);
 		}
 
-		public static RecordingImmediateRecordRequestBuilder ImmediateRecord(long assetId, long epgChannelId, int endPadding, string crid = null)
+		public static RecordingImmediateRecordRequestBuilder ImmediateRecord(long assetId, long epgChannelId, int endPadding)
 		{
-			return new RecordingImmediateRecordRequestBuilder(assetId, epgChannelId, endPadding, crid);
+			return new RecordingImmediateRecordRequestBuilder(assetId, epgChannelId, endPadding);
 		}
 
 		public static RecordingListRequestBuilder List(RecordingFilter filter = null, FilterPager pager = null)
