@@ -171,6 +171,7 @@ namespace Kaltura
 		public static string InvalidCampaignEndDate = "9048";
 		public static string CanOnlyUpdatePaddingAfterRecordingBeforeRecordingEnd = "3089";
 		public static string CanOnlyUpdatePaddingBeforeRecordingBeforeRecordingStart = "3090";
+		public static string CanOnlyAddRecordingBeforeRecordingStart = "3091";
 		public static string MediaConcurrencyLimitation = "4000";
 		public static string ConcurrencyLimitation = "4001";
 		public static string BadSearchRequest = "4002";

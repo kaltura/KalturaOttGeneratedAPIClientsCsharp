@@ -57,7 +57,7 @@ namespace Kaltura.Types
 		public int EndPadding
 		{
 			get { return _EndPadding; }
-			private set 
+			set 
 			{ 
 				_EndPadding = value;
 				OnPropertyChanged("EndPadding");

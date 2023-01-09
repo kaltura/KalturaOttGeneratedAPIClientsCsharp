@@ -140,10 +140,10 @@ namespace Kaltura
 					return new ListResponse<EngagementAdapter>(jToken);
 				case "KalturaEngagementListResponse":
 					return new ListResponse<Engagement>(jToken);
-				case "KalturaInboxMessageListResponse":
-					return new ListResponse<InboxMessage>(jToken);
 				case "KalturaFollowTvSeriesListResponse":
 					return new ListResponse<FollowTvSeries>(jToken);
+				case "KalturaInboxMessageListResponse":
+					return new ListResponse<InboxMessage>(jToken);
 				case "KalturaPersonalFeedListResponse":
 					return new ListResponse<PersonalFeed>(jToken);
 				case "KalturaReminderListResponse":
