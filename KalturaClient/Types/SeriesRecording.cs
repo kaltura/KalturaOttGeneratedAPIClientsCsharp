@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -48,6 +48,8 @@ namespace Kaltura.Types
 		public const string UPDATE_DATE = "updateDate";
 		public const string EXCLUDED_SEASONS = "excludedSeasons";
 		public const string SERIES_RECORDING_OPTION = "seriesRecordingOption";
+		public const string HOUSEHOLD_SPECIFIC_SERIES_START_TIME_OFFSET = "householdSpecificSeriesStartTimeOffset";
+		public const string HOUSEHOLD_SPECIFIC_SERIES_END_TIME_OFFSET = "householdSpecificSeriesEndTimeOffset";
 		#endregion
 
 		#region Private Fields
@@ -61,6 +63,8 @@ namespace Kaltura.Types
 		private long _UpdateDate = long.MinValue;
 		private IList<IntegerValue> _ExcludedSeasons;
 		private SeriesRecordingOption _SeriesRecordingOption;
+		private int _HouseholdSpecificSeriesStartTimeOffset = Int32.MinValue;
+		private int _HouseholdSpecificSeriesEndTimeOffset = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -194,6 +198,32 @@ namespace Kaltura.Types
 				OnPropertyChanged("SeriesRecordingOption");
 			}
 		}
+		/// <summary>
+		/// Use HouseholdSpecificSeriesStartTimeOffsetAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int HouseholdSpecificSeriesStartTimeOffset
+		{
+			get { return _HouseholdSpecificSeriesStartTimeOffset; }
+			set 
+			{ 
+				_HouseholdSpecificSeriesStartTimeOffset = value;
+				OnPropertyChanged("HouseholdSpecificSeriesStartTimeOffset");
+			}
+		}
+		/// <summary>
+		/// Use HouseholdSpecificSeriesEndTimeOffsetAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int HouseholdSpecificSeriesEndTimeOffset
+		{
+			get { return _HouseholdSpecificSeriesEndTimeOffset; }
+			set 
+			{ 
+				_HouseholdSpecificSeriesEndTimeOffset = value;
+				OnPropertyChanged("HouseholdSpecificSeriesEndTimeOffset");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -247,6 +277,14 @@ namespace Kaltura.Types
 			{
 				this._SeriesRecordingOption = ObjectFactory.Create<SeriesRecordingOption>(node["seriesRecordingOption"]);
 			}
+			if(node["householdSpecificSeriesStartTimeOffset"] != null)
+			{
+				this._HouseholdSpecificSeriesStartTimeOffset = ParseInt(node["householdSpecificSeriesStartTimeOffset"].Value<string>());
+			}
+			if(node["householdSpecificSeriesEndTimeOffset"] != null)
+			{
+				this._HouseholdSpecificSeriesEndTimeOffset = ParseInt(node["householdSpecificSeriesEndTimeOffset"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -266,6 +304,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			kparams.AddIfNotNull("excludedSeasons", this._ExcludedSeasons);
 			kparams.AddIfNotNull("seriesRecordingOption", this._SeriesRecordingOption);
+			kparams.AddIfNotNull("householdSpecificSeriesStartTimeOffset", this._HouseholdSpecificSeriesStartTimeOffset);
+			kparams.AddIfNotNull("householdSpecificSeriesEndTimeOffset", this._HouseholdSpecificSeriesEndTimeOffset);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -292,6 +332,10 @@ namespace Kaltura.Types
 					return "ExcludedSeasons";
 				case SERIES_RECORDING_OPTION:
 					return "SeriesRecordingOption";
+				case HOUSEHOLD_SPECIFIC_SERIES_START_TIME_OFFSET:
+					return "HouseholdSpecificSeriesStartTimeOffset";
+				case HOUSEHOLD_SPECIFIC_SERIES_END_TIME_OFFSET:
+					return "HouseholdSpecificSeriesEndTimeOffset";
 				default:
 					return base.getPropertyName(apiName);
 			}
