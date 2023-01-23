@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -266,6 +266,7 @@ namespace Kaltura
 		public static string VideoCodecsDoesNotExist = "4115";
 		public static string AudioCodecsDoesNotExist = "4116";
 		public static string SearchPriorityGroupDoesNotExist = "4117";
+		public static string DynamicDataKeyDoesNotExist = "4120";
 		public static string NoPinDefined = "5001";
 		public static string PinMismatch = "5002";
 		public static string RuleNotExists = "5003";
