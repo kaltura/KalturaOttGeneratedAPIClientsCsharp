@@ -47,6 +47,7 @@ namespace Kaltura.Types
 		public const string CHANNEL_ID_EQUAL = "channelIdEqual";
 		public const string KSQL = "kSql";
 		public const string ALSO_INACTIVE = "alsoInactive";
+		public const string DEPENDENCY_TYPE_EQUAL = "dependencyTypeEqual";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -60,6 +61,7 @@ namespace Kaltura.Types
 		private long _ChannelIdEqual = long.MinValue;
 		private string _KSql = null;
 		private bool? _AlsoInactive = null;
+		private SubscriptionDependencyType _DependencyTypeEqual = null;
 		private SubscriptionOrderBy _OrderBy = null;
 		#endregion
 
@@ -182,6 +184,19 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use DependencyTypeEqualAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public SubscriptionDependencyType DependencyTypeEqual
+		{
+			get { return _DependencyTypeEqual; }
+			set 
+			{ 
+				_DependencyTypeEqual = value;
+				OnPropertyChanged("DependencyTypeEqual");
+			}
+		}
+		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -239,6 +254,10 @@ namespace Kaltura.Types
 			{
 				this._AlsoInactive = ParseBool(node["alsoInactive"].Value<string>());
 			}
+			if(node["dependencyTypeEqual"] != null)
+			{
+				this._DependencyTypeEqual = (SubscriptionDependencyType)StringEnum.Parse(typeof(SubscriptionDependencyType), node["dependencyTypeEqual"].Value<string>());
+			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (SubscriptionOrderBy)StringEnum.Parse(typeof(SubscriptionOrderBy), node["orderBy"].Value<string>());
@@ -261,6 +280,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("channelIdEqual", this._ChannelIdEqual);
 			kparams.AddIfNotNull("kSql", this._KSql);
 			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
+			kparams.AddIfNotNull("dependencyTypeEqual", this._DependencyTypeEqual);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -286,6 +306,8 @@ namespace Kaltura.Types
 					return "KSql";
 				case ALSO_INACTIVE:
 					return "AlsoInactive";
+				case DEPENDENCY_TYPE_EQUAL:
+					return "DependencyTypeEqual";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
