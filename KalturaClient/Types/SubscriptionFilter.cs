@@ -47,7 +47,7 @@ namespace Kaltura.Types
 		public const string CHANNEL_ID_EQUAL = "channelIdEqual";
 		public const string KSQL = "kSql";
 		public const string ALSO_INACTIVE = "alsoInactive";
-		public const string DEPENDENCY_TYPE_EQUAL = "dependencyTypeEqual";
+		public const string DEPENDENCY_TYPE_IN = "dependencyTypeIn";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -61,7 +61,7 @@ namespace Kaltura.Types
 		private long _ChannelIdEqual = long.MinValue;
 		private string _KSql = null;
 		private bool? _AlsoInactive = null;
-		private SubscriptionDependencyType _DependencyTypeEqual = null;
+		private string _DependencyTypeIn = null;
 		private SubscriptionOrderBy _OrderBy = null;
 		#endregion
 
@@ -184,16 +184,16 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use DependencyTypeEqualAsDouble property instead
+		/// Use DependencyTypeInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public SubscriptionDependencyType DependencyTypeEqual
+		public string DependencyTypeIn
 		{
-			get { return _DependencyTypeEqual; }
+			get { return _DependencyTypeIn; }
 			set 
 			{ 
-				_DependencyTypeEqual = value;
-				OnPropertyChanged("DependencyTypeEqual");
+				_DependencyTypeIn = value;
+				OnPropertyChanged("DependencyTypeIn");
 			}
 		}
 		/// <summary>
@@ -254,9 +254,9 @@ namespace Kaltura.Types
 			{
 				this._AlsoInactive = ParseBool(node["alsoInactive"].Value<string>());
 			}
-			if(node["dependencyTypeEqual"] != null)
+			if(node["dependencyTypeIn"] != null)
 			{
-				this._DependencyTypeEqual = (SubscriptionDependencyType)StringEnum.Parse(typeof(SubscriptionDependencyType), node["dependencyTypeEqual"].Value<string>());
+				this._DependencyTypeIn = node["dependencyTypeIn"].Value<string>();
 			}
 			if(node["orderBy"] != null)
 			{
@@ -280,7 +280,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("channelIdEqual", this._ChannelIdEqual);
 			kparams.AddIfNotNull("kSql", this._KSql);
 			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
-			kparams.AddIfNotNull("dependencyTypeEqual", this._DependencyTypeEqual);
+			kparams.AddIfNotNull("dependencyTypeIn", this._DependencyTypeIn);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -306,8 +306,8 @@ namespace Kaltura.Types
 					return "KSql";
 				case ALSO_INACTIVE:
 					return "AlsoInactive";
-				case DEPENDENCY_TYPE_EQUAL:
-					return "DependencyTypeEqual";
+				case DEPENDENCY_TYPE_IN:
+					return "DependencyTypeIn";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
