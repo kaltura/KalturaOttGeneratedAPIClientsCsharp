@@ -494,7 +494,7 @@ namespace Kaltura.Services
 			return new RecordingGetRequestBuilder(id);
 		}
 
-		public static RecordingImmediateRecordRequestBuilder ImmediateRecord(long assetId, long epgChannelId, int endPadding)
+		public static RecordingImmediateRecordRequestBuilder ImmediateRecord(long assetId, long epgChannelId, int endPadding = Int32.MinValue)
 		{
 			return new RecordingImmediateRecordRequestBuilder(assetId, epgChannelId, endPadding);
 		}
