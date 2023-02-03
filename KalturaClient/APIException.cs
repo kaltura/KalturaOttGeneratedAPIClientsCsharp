@@ -267,6 +267,7 @@ namespace Kaltura
 		public static string AudioCodecsDoesNotExist = "4116";
 		public static string SearchPriorityGroupDoesNotExist = "4117";
 		public static string DynamicDataKeyDoesNotExist = "4120";
+		public static string DynamicDataKeyValueDoesNotExist = "4121";
 		public static string NoPinDefined = "5001";
 		public static string PinMismatch = "5002";
 		public static string RuleNotExists = "5003";
