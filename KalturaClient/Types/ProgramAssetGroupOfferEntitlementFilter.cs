@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ProgramAssetGroupOfferEntitlementFilter : BaseEntitlementFilter
+	public class ProgramAssetGroupOfferEntitlementFilter : EntitlementFilter
 	{
 		#region Constants
 		#endregion
