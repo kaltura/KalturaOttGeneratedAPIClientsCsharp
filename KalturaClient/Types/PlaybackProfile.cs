@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -41,6 +41,7 @@ namespace Kaltura.Types
 		public const string ID = "id";
 		public const string NAME = "name";
 		public const string IS_ACTIVE = "isActive";
+		public const string ADAPTER_GRPC_ADDRESS = "adapterGrpcAddress";
 		public const string ADAPTER_URL = "adapterUrl";
 		public const string SETTINGS = "settings";
 		public const string SYSTEM_NAME = "systemName";
@@ -51,6 +52,7 @@ namespace Kaltura.Types
 		private int _Id = Int32.MinValue;
 		private string _Name = null;
 		private bool? _IsActive = null;
+		private string _AdapterGrpcAddress = null;
 		private string _AdapterUrl = null;
 		private string _Settings = null;
 		private string _SystemName = null;
@@ -95,6 +97,19 @@ namespace Kaltura.Types
 			{ 
 				_IsActive = value;
 				OnPropertyChanged("IsActive");
+			}
+		}
+		/// <summary>
+		/// Use AdapterGrpcAddressAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string AdapterGrpcAddress
+		{
+			get { return _AdapterGrpcAddress; }
+			set 
+			{ 
+				_AdapterGrpcAddress = value;
+				OnPropertyChanged("AdapterGrpcAddress");
 			}
 		}
 		/// <summary>
@@ -170,6 +185,10 @@ namespace Kaltura.Types
 			{
 				this._IsActive = ParseBool(node["isActive"].Value<string>());
 			}
+			if(node["adapterGrpcAddress"] != null)
+			{
+				this._AdapterGrpcAddress = node["adapterGrpcAddress"].Value<string>();
+			}
 			if(node["adapterUrl"] != null)
 			{
 				this._AdapterUrl = node["adapterUrl"].Value<string>();
@@ -198,6 +217,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("name", this._Name);
 			kparams.AddIfNotNull("isActive", this._IsActive);
+			kparams.AddIfNotNull("adapterGrpcAddress", this._AdapterGrpcAddress);
 			kparams.AddIfNotNull("adapterUrl", this._AdapterUrl);
 			kparams.AddIfNotNull("settings", this._Settings);
 			kparams.AddIfNotNull("systemName", this._SystemName);
@@ -214,6 +234,8 @@ namespace Kaltura.Types
 					return "Name";
 				case IS_ACTIVE:
 					return "IsActive";
+				case ADAPTER_GRPC_ADDRESS:
+					return "AdapterGrpcAddress";
 				case ADAPTER_URL:
 					return "AdapterUrl";
 				case SETTINGS:
