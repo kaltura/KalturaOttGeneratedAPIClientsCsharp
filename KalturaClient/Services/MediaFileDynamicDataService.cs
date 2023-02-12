@@ -177,7 +177,7 @@ namespace Kaltura.Services
 			return new MediaFileDynamicDataDeleteRequestBuilder(id);
 		}
 
-		public static MediaFileDynamicDataListRequestBuilder List(MediaFileDynamicDataFilter filter = null, FilterPager pager = null)
+		public static MediaFileDynamicDataListRequestBuilder List(MediaFileDynamicDataFilter filter, FilterPager pager = null)
 		{
 			return new MediaFileDynamicDataListRequestBuilder(filter, pager);
 		}

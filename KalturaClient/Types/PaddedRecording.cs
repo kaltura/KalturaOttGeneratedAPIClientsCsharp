@@ -35,24 +35,62 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ProgramAssetGroupOfferEntitlementFilter : EntitlementFilter
+	public class PaddedRecording : Recording
 	{
 		#region Constants
+		public const string START_PADDING = "startPadding";
+		public const string END_PADDING = "endPadding";
 		#endregion
 
 		#region Private Fields
+		private int _StartPadding = Int32.MinValue;
+		private int _EndPadding = Int32.MinValue;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use StartPaddingAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int StartPadding
+		{
+			get { return _StartPadding; }
+			set 
+			{ 
+				_StartPadding = value;
+				OnPropertyChanged("StartPadding");
+			}
+		}
+		/// <summary>
+		/// Use EndPaddingAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int EndPadding
+		{
+			get { return _EndPadding; }
+			set 
+			{ 
+				_EndPadding = value;
+				OnPropertyChanged("EndPadding");
+			}
+		}
 		#endregion
 
 		#region CTor
-		public ProgramAssetGroupOfferEntitlementFilter()
+		public PaddedRecording()
 		{
 		}
 
-		public ProgramAssetGroupOfferEntitlementFilter(JToken node) : base(node)
+		public PaddedRecording(JToken node) : base(node)
 		{
+			if(node["startPadding"] != null)
+			{
+				this._StartPadding = ParseInt(node["startPadding"].Value<string>());
+			}
+			if(node["endPadding"] != null)
+			{
+				this._EndPadding = ParseInt(node["endPadding"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -61,13 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOfferEntitlementFilter");
+				kparams.AddReplace("objectType", "KalturaPaddedRecording");
+			kparams.AddIfNotNull("startPadding", this._StartPadding);
+			kparams.AddIfNotNull("endPadding", this._EndPadding);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
+				case START_PADDING:
+					return "StartPadding";
+				case END_PADDING:
+					return "EndPadding";
 				default:
 					return base.getPropertyName(apiName);
 			}
