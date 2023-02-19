@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -61,6 +61,9 @@ namespace Kaltura.Types
 		public const string RECOVERY_GRACE_PERIOD = "recoveryGracePeriod";
 		public const string PRIVATE_COPY_ENABLED = "privateCopyEnabled";
 		public const string DEFAULT_QUOTA = "defaultQuota";
+		public const string PERSONALIZED_RECORDING = "personalizedRecording";
+		public const string MAX_RECORDING_CONCURRENCY = "maxRecordingConcurrency";
+		public const string MAX_CONCURRENCY_MARGIN = "maxConcurrencyMargin";
 		#endregion
 
 		#region Private Fields
@@ -87,6 +90,9 @@ namespace Kaltura.Types
 		private int _RecoveryGracePeriod = Int32.MinValue;
 		private bool? _PrivateCopyEnabled = null;
 		private int _DefaultQuota = Int32.MinValue;
+		private bool? _PersonalizedRecording = null;
+		private int _MaxRecordingConcurrency = Int32.MinValue;
+		private int _MaxConcurrencyMargin = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -389,6 +395,45 @@ namespace Kaltura.Types
 				OnPropertyChanged("DefaultQuota");
 			}
 		}
+		/// <summary>
+		/// Use PersonalizedRecordingAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? PersonalizedRecording
+		{
+			get { return _PersonalizedRecording; }
+			set 
+			{ 
+				_PersonalizedRecording = value;
+				OnPropertyChanged("PersonalizedRecording");
+			}
+		}
+		/// <summary>
+		/// Use MaxRecordingConcurrencyAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int MaxRecordingConcurrency
+		{
+			get { return _MaxRecordingConcurrency; }
+			set 
+			{ 
+				_MaxRecordingConcurrency = value;
+				OnPropertyChanged("MaxRecordingConcurrency");
+			}
+		}
+		/// <summary>
+		/// Use MaxConcurrencyMarginAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int MaxConcurrencyMargin
+		{
+			get { return _MaxConcurrencyMargin; }
+			set 
+			{ 
+				_MaxConcurrencyMargin = value;
+				OnPropertyChanged("MaxConcurrencyMargin");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -490,6 +535,18 @@ namespace Kaltura.Types
 			{
 				this._DefaultQuota = ParseInt(node["defaultQuota"].Value<string>());
 			}
+			if(node["personalizedRecording"] != null)
+			{
+				this._PersonalizedRecording = ParseBool(node["personalizedRecording"].Value<string>());
+			}
+			if(node["maxRecordingConcurrency"] != null)
+			{
+				this._MaxRecordingConcurrency = ParseInt(node["maxRecordingConcurrency"].Value<string>());
+			}
+			if(node["maxConcurrencyMargin"] != null)
+			{
+				this._MaxConcurrencyMargin = ParseInt(node["maxConcurrencyMargin"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -522,6 +579,9 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("recoveryGracePeriod", this._RecoveryGracePeriod);
 			kparams.AddIfNotNull("privateCopyEnabled", this._PrivateCopyEnabled);
 			kparams.AddIfNotNull("defaultQuota", this._DefaultQuota);
+			kparams.AddIfNotNull("personalizedRecording", this._PersonalizedRecording);
+			kparams.AddIfNotNull("maxRecordingConcurrency", this._MaxRecordingConcurrency);
+			kparams.AddIfNotNull("maxConcurrencyMargin", this._MaxConcurrencyMargin);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -574,6 +634,12 @@ namespace Kaltura.Types
 					return "PrivateCopyEnabled";
 				case DEFAULT_QUOTA:
 					return "DefaultQuota";
+				case PERSONALIZED_RECORDING:
+					return "PersonalizedRecording";
+				case MAX_RECORDING_CONCURRENCY:
+					return "MaxRecordingConcurrency";
+				case MAX_CONCURRENCY_MARGIN:
+					return "MaxConcurrencyMargin";
 				default:
 					return base.getPropertyName(apiName);
 			}
