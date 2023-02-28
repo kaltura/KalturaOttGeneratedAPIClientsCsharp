@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -49,6 +49,7 @@ namespace Kaltura.Types
 		public const string UPDATE_DATE = "updateDate";
 		public const string EXECUTE_DATE = "executeDate";
 		public const string VERSION = "version";
+		public const string ASSET_USER_RULE_ID = "assetUserRuleId";
 		#endregion
 
 		#region Private Fields
@@ -63,6 +64,7 @@ namespace Kaltura.Types
 		private long _UpdateDate = long.MinValue;
 		private long _ExecuteDate = long.MinValue;
 		private long _Version = long.MinValue;
+		private long _AssetUserRuleId = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -209,6 +211,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("Version");
 			}
 		}
+		/// <summary>
+		/// Use AssetUserRuleIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long AssetUserRuleId
+		{
+			get { return _AssetUserRuleId; }
+			set 
+			{ 
+				_AssetUserRuleId = value;
+				OnPropertyChanged("AssetUserRuleId");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -270,6 +285,10 @@ namespace Kaltura.Types
 			{
 				this._Version = ParseLong(node["version"].Value<string>());
 			}
+			if(node["assetUserRuleId"] != null)
+			{
+				this._AssetUserRuleId = ParseLong(node["assetUserRuleId"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -290,6 +309,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
 			kparams.AddIfNotNull("executeDate", this._ExecuteDate);
 			kparams.AddIfNotNull("version", this._Version);
+			kparams.AddIfNotNull("assetUserRuleId", this._AssetUserRuleId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -318,6 +338,8 @@ namespace Kaltura.Types
 					return "ExecuteDate";
 				case VERSION:
 					return "Version";
+				case ASSET_USER_RULE_ID:
+					return "AssetUserRuleId";
 				default:
 					return base.getPropertyName(apiName);
 			}

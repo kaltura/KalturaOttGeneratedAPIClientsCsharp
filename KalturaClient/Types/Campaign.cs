@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -50,6 +50,7 @@ namespace Kaltura.Types
 		public const string PROMOTION = "promotion";
 		public const string MESSAGE = "message";
 		public const string COLLECTION_ID_IN = "collectionIdIn";
+		public const string ASSET_USER_RULE_ID = "assetUserRuleId";
 		#endregion
 
 		#region Private Fields
@@ -65,6 +66,7 @@ namespace Kaltura.Types
 		private BasePromotion _Promotion;
 		private string _Message = null;
 		private string _CollectionIdIn = null;
+		private long _AssetUserRuleId = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -224,6 +226,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("CollectionIdIn");
 			}
 		}
+		/// <summary>
+		/// Use AssetUserRuleIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long AssetUserRuleId
+		{
+			get { return _AssetUserRuleId; }
+			set 
+			{ 
+				_AssetUserRuleId = value;
+				OnPropertyChanged("AssetUserRuleId");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -281,6 +296,10 @@ namespace Kaltura.Types
 			{
 				this._CollectionIdIn = node["collectionIdIn"].Value<string>();
 			}
+			if(node["assetUserRuleId"] != null)
+			{
+				this._AssetUserRuleId = ParseLong(node["assetUserRuleId"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -302,6 +321,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("promotion", this._Promotion);
 			kparams.AddIfNotNull("message", this._Message);
 			kparams.AddIfNotNull("collectionIdIn", this._CollectionIdIn);
+			kparams.AddIfNotNull("assetUserRuleId", this._AssetUserRuleId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -332,6 +352,8 @@ namespace Kaltura.Types
 					return "Message";
 				case COLLECTION_ID_IN:
 					return "CollectionIdIn";
+				case ASSET_USER_RULE_ID:
+					return "AssetUserRuleId";
 				default:
 					return base.getPropertyName(apiName);
 			}

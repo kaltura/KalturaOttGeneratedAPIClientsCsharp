@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -169,6 +169,12 @@ namespace Kaltura
 		public static string InvalidCampaignState = "9046";
 		public static string CampaignStateUpdateNotAllowed = "9047";
 		public static string InvalidCampaignEndDate = "9048";
+		public static string CanOnlyUpdatePaddingAfterRecordingBeforeRecordingEnd = "3089";
+		public static string CanOnlyUpdatePaddingBeforeRecordingBeforeRecordingStart = "3090";
+		public static string CanOnlyAddRecordingBeforeRecordingStart = "3091";
+		public static string CanOnlyCancelRecordingBeforeRecordingEnd = "3092";
+		public static string CanOnlyDeleteRecordingAfterRecordingEnd = "3093";
+		public static string RecordingExceededConcurrency = "3094";
 		public static string MediaConcurrencyLimitation = "4000";
 		public static string ConcurrencyLimitation = "4001";
 		public static string BadSearchRequest = "4002";
@@ -337,6 +343,7 @@ namespace Kaltura
 		public static string DynamicSegmentPeriodExceeded = "5092";
 		public static string DynamicSegmentConditionsExceeded = "5093";
 		public static string NameMustBeUnique = "5094";
+		public static string EntityIsNotAssociatedWithShop = "5095";
 		public static string IncorrectPrice = "6000";
 		public static string UnKnownPPVModule = "6001";
 		public static string ExpiredCard = "6002";
