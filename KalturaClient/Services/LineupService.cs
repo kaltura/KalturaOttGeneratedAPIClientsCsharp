@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -80,6 +80,50 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class LineupListRequestBuilder : RequestBuilder<ListResponse<LineupChannelAsset>>
+	{
+		#region Constants
+		public const string FILTER = "filter";
+		public const string PAGER = "pager";
+		#endregion
+
+		public LineupRegionalChannelFilter Filter { get; set; }
+		public FilterPager Pager { get; set; }
+
+		public LineupListRequestBuilder()
+			: base("lineup", "list")
+		{
+		}
+
+		public LineupListRequestBuilder(LineupRegionalChannelFilter filter, FilterPager pager)
+			: this()
+		{
+			this.Filter = filter;
+			this.Pager = pager;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("filter"))
+				kparams.AddIfNotNull("filter", Filter);
+			if (!isMapped("pager"))
+				kparams.AddIfNotNull("pager", Pager);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<ListResponse<LineupChannelAsset>>(result);
+		}
+	}
+
 	public class LineupSendUpdatedNotificationRequestBuilder : RequestBuilder<bool>
 	{
 		#region Constants
@@ -131,6 +175,11 @@ namespace Kaltura.Services
 		public static LineupGetRequestBuilder Get(int pageIndex, int pageSize)
 		{
 			return new LineupGetRequestBuilder(pageIndex, pageSize);
+		}
+
+		public static LineupListRequestBuilder List(LineupRegionalChannelFilter filter, FilterPager pager = null)
+		{
+			return new LineupListRequestBuilder(filter, pager);
 		}
 
 		public static LineupSendUpdatedNotificationRequestBuilder SendUpdatedNotification(string regionIds)
