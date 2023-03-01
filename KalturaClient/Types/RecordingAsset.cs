@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -41,12 +41,14 @@ namespace Kaltura.Types
 		public const string RECORDING_ID = "recordingId";
 		public const string RECORDING_TYPE = "recordingType";
 		public const string VIEWABLE_UNTIL_DATE = "viewableUntilDate";
+		public const string MULTI_RECORD = "multiRecord";
 		#endregion
 
 		#region Private Fields
 		private string _RecordingId = null;
 		private RecordingType _RecordingType = null;
 		private long _ViewableUntilDate = long.MinValue;
+		private bool? _MultiRecord = null;
 		#endregion
 
 		#region Properties
@@ -89,6 +91,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("ViewableUntilDate");
 			}
 		}
+		/// <summary>
+		/// Use MultiRecordAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? MultiRecord
+		{
+			get { return _MultiRecord; }
+			set 
+			{ 
+				_MultiRecord = value;
+				OnPropertyChanged("MultiRecord");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -110,6 +125,10 @@ namespace Kaltura.Types
 			{
 				this._ViewableUntilDate = ParseLong(node["viewableUntilDate"].Value<string>());
 			}
+			if(node["multiRecord"] != null)
+			{
+				this._MultiRecord = ParseBool(node["multiRecord"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -122,6 +141,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("recordingId", this._RecordingId);
 			kparams.AddIfNotNull("recordingType", this._RecordingType);
 			kparams.AddIfNotNull("viewableUntilDate", this._ViewableUntilDate);
+			kparams.AddIfNotNull("multiRecord", this._MultiRecord);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -134,6 +154,8 @@ namespace Kaltura.Types
 					return "RecordingType";
 				case VIEWABLE_UNTIL_DATE:
 					return "ViewableUntilDate";
+				case MULTI_RECORD:
+					return "MultiRecord";
 				default:
 					return base.getPropertyName(apiName);
 			}

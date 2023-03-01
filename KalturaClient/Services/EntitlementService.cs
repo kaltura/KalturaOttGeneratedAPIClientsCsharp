@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -385,7 +385,7 @@ namespace Kaltura.Services
 		public const string PAGER = "pager";
 		#endregion
 
-		public BaseEntitlementFilter Filter { get; set; }
+		public EntitlementFilter Filter { get; set; }
 		public FilterPager Pager { get; set; }
 
 		public EntitlementListRequestBuilder()
@@ -393,7 +393,7 @@ namespace Kaltura.Services
 		{
 		}
 
-		public EntitlementListRequestBuilder(BaseEntitlementFilter filter, FilterPager pager)
+		public EntitlementListRequestBuilder(EntitlementFilter filter, FilterPager pager)
 			: this()
 		{
 			this.Filter = filter;
@@ -564,7 +564,7 @@ namespace Kaltura.Services
 			return new EntitlementGrantRequestBuilder(productId, productType, history, contentId);
 		}
 
-		public static EntitlementListRequestBuilder List(BaseEntitlementFilter filter, FilterPager pager = null)
+		public static EntitlementListRequestBuilder List(EntitlementFilter filter, FilterPager pager = null)
 		{
 			return new EntitlementListRequestBuilder(filter, pager);
 		}
