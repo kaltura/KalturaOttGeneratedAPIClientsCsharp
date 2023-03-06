@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -42,6 +42,7 @@ namespace Kaltura.Types
 		public const string ASSET_APPLIED = "assetApplied";
 		public const string ACTIONS_CONTAIN_TYPE = "actionsContainType";
 		public const string ASSET_RULE_ID_EQUAL = "assetRuleIdEqual";
+		public const string NAME_CONTAINS = "nameContains";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -50,6 +51,7 @@ namespace Kaltura.Types
 		private SlimAsset _AssetApplied;
 		private RuleActionType _ActionsContainType = null;
 		private long _AssetRuleIdEqual = long.MinValue;
+		private string _NameContains = null;
 		private AssetRuleOrderBy _OrderBy = null;
 		#endregion
 
@@ -107,6 +109,19 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use NameContainsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string NameContains
+		{
+			get { return _NameContains; }
+			set 
+			{ 
+				_NameContains = value;
+				OnPropertyChanged("NameContains");
+			}
+		}
+		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -144,6 +159,10 @@ namespace Kaltura.Types
 			{
 				this._AssetRuleIdEqual = ParseLong(node["assetRuleIdEqual"].Value<string>());
 			}
+			if(node["nameContains"] != null)
+			{
+				this._NameContains = node["nameContains"].Value<string>();
+			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (AssetRuleOrderBy)StringEnum.Parse(typeof(AssetRuleOrderBy), node["orderBy"].Value<string>());
@@ -161,6 +180,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("assetApplied", this._AssetApplied);
 			kparams.AddIfNotNull("actionsContainType", this._ActionsContainType);
 			kparams.AddIfNotNull("assetRuleIdEqual", this._AssetRuleIdEqual);
+			kparams.AddIfNotNull("nameContains", this._NameContains);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -176,6 +196,8 @@ namespace Kaltura.Types
 					return "ActionsContainType";
 				case ASSET_RULE_ID_EQUAL:
 					return "AssetRuleIdEqual";
+				case NAME_CONTAINS:
+					return "NameContains";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
