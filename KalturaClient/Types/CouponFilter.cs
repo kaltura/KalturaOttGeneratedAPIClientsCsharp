@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -35,24 +35,43 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseEntitlementFilter : Filter
+	public class CouponFilter : Filter
 	{
 		#region Constants
+		public const string COUPON_CODES_IN = "couponCodesIn";
 		#endregion
 
 		#region Private Fields
+		private string _CouponCodesIn = null;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use CouponCodesInAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string CouponCodesIn
+		{
+			get { return _CouponCodesIn; }
+			set 
+			{ 
+				_CouponCodesIn = value;
+				OnPropertyChanged("CouponCodesIn");
+			}
+		}
 		#endregion
 
 		#region CTor
-		public BaseEntitlementFilter()
+		public CouponFilter()
 		{
 		}
 
-		public BaseEntitlementFilter(JToken node) : base(node)
+		public CouponFilter(JToken node) : base(node)
 		{
+			if(node["couponCodesIn"] != null)
+			{
+				this._CouponCodesIn = node["couponCodesIn"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -61,13 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseEntitlementFilter");
+				kparams.AddReplace("objectType", "KalturaCouponFilter");
+			kparams.AddIfNotNull("couponCodesIn", this._CouponCodesIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
+				case COUPON_CODES_IN:
+					return "CouponCodesIn";
 				default:
 					return base.getPropertyName(apiName);
 			}
