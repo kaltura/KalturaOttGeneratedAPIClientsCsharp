@@ -41,6 +41,7 @@ namespace Kaltura.Types
 		public const string ID_IN = "idIn";
 		public const string KSQL = "kSql";
 		public const string NAME_CONTAIN = "nameContain";
+		public const string ASSET_USER_RULE_ID_IN = "assetUserRuleIdIn";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -48,6 +49,7 @@ namespace Kaltura.Types
 		private string _IdIn = null;
 		private string _KSql = null;
 		private string _NameContain = null;
+		private string _AssetUserRuleIdIn = null;
 		private SegmentationTypeOrderBy _OrderBy = null;
 		#endregion
 
@@ -92,6 +94,19 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use AssetUserRuleIdInAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string AssetUserRuleIdIn
+		{
+			get { return _AssetUserRuleIdIn; }
+			set 
+			{ 
+				_AssetUserRuleIdIn = value;
+				OnPropertyChanged("AssetUserRuleIdIn");
+			}
+		}
+		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -125,6 +140,10 @@ namespace Kaltura.Types
 			{
 				this._NameContain = node["nameContain"].Value<string>();
 			}
+			if(node["assetUserRuleIdIn"] != null)
+			{
+				this._AssetUserRuleIdIn = node["assetUserRuleIdIn"].Value<string>();
+			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (SegmentationTypeOrderBy)StringEnum.Parse(typeof(SegmentationTypeOrderBy), node["orderBy"].Value<string>());
@@ -141,6 +160,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("idIn", this._IdIn);
 			kparams.AddIfNotNull("kSql", this._KSql);
 			kparams.AddIfNotNull("nameContain", this._NameContain);
+			kparams.AddIfNotNull("assetUserRuleIdIn", this._AssetUserRuleIdIn);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -154,6 +174,8 @@ namespace Kaltura.Types
 					return "KSql";
 				case NAME_CONTAIN:
 					return "NameContain";
+				case ASSET_USER_RULE_ID_IN:
+					return "AssetUserRuleIdIn";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
