@@ -272,6 +272,8 @@ namespace Kaltura
 		public static string VideoCodecsDoesNotExist = "4115";
 		public static string AudioCodecsDoesNotExist = "4116";
 		public static string SearchPriorityGroupDoesNotExist = "4117";
+		public static string DynamicDataKeyDoesNotExist = "4120";
+		public static string DynamicDataKeyValueDoesNotExist = "4121";
 		public static string NoPinDefined = "5001";
 		public static string PinMismatch = "5002";
 		public static string RuleNotExists = "5003";
@@ -651,13 +653,14 @@ namespace Kaltura
 		public static string ArgumentShouldContainMaxValueCrossed = "500059";
 		public static string ArgumentsCannotBeEmpty = "500056";
 		public static string ArgumentsConflictsEachOther = "500038";
+		public static string MultipleArgumentsConflictsEachOther = "500095";
 		public static string TimeInPast = "500039";
 		public static string ArgumentMaxLengthCrossed = "500045";
 		public static string ArgumentMinLengthCrossed = "500046";
 		public static string ArgumentMaxValueCrossed = "500047";
 		public static string ArgumentMinValueCrossed = "500048";
 		public static string ArgumentNotInPredefinedRange = "500092";
-		public static string ArgumentsConflictEachOther = "500061";
+		public static string ArgumentsValuesConflictEachOther = "500061";
 		public static string ArgumentsDuplicate = "500066";
 		public static string InvalidArgumentValue = "500067";
 		public static string DuplicateLanguageSent = "500069";

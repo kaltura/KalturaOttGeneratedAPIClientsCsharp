@@ -63,6 +63,7 @@ namespace Kaltura.Types
 		public const string OPL = "opl";
 		public const string BUSINESS_MODULE_DETAILS = "businessModuleDetails";
 		public const string LABELS = "labels";
+		public const string DYNAMIC_DATA = "dynamicData";
 		#endregion
 
 		#region Private Fields
@@ -91,6 +92,7 @@ namespace Kaltura.Types
 		private string _Opl = null;
 		private BusinessModuleDetails _BusinessModuleDetails;
 		private string _Labels = null;
+		private IDictionary<string, StringValueArray> _DynamicData;
 		#endregion
 
 		#region Properties
@@ -419,6 +421,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("Labels");
 			}
 		}
+		/// <summary>
+		/// Use DynamicDataAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public IDictionary<string, StringValueArray> DynamicData
+		{
+			get { return _DynamicData; }
+			set 
+			{ 
+				_DynamicData = value;
+				OnPropertyChanged("DynamicData");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -528,6 +543,18 @@ namespace Kaltura.Types
 			{
 				this._Labels = node["labels"].Value<string>();
 			}
+			if(node["dynamicData"] != null)
+			{
+				{
+					string key;
+					this._DynamicData = new Dictionary<string, StringValueArray>();
+					foreach(var arrayNode in node["dynamicData"].Children<JProperty>())
+					{
+						key = arrayNode.Name;
+						this._DynamicData[key] = ObjectFactory.Create<StringValueArray>(arrayNode.Value);
+					}
+				}
+			}
 		}
 		#endregion
 
@@ -562,6 +589,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("opl", this._Opl);
 			kparams.AddIfNotNull("businessModuleDetails", this._BusinessModuleDetails);
 			kparams.AddIfNotNull("labels", this._Labels);
+			kparams.AddIfNotNull("dynamicData", this._DynamicData);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -618,6 +646,8 @@ namespace Kaltura.Types
 					return "BusinessModuleDetails";
 				case LABELS:
 					return "Labels";
+				case DYNAMIC_DATA:
+					return "DynamicData";
 				default:
 					return base.getPropertyName(apiName);
 			}

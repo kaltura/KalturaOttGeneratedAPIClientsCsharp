@@ -230,6 +230,8 @@ namespace Kaltura
 					return new ListResponse<Label>(jToken);
 				case "KalturaLineupChannelAssetListResponse":
 					return new ListResponse<LineupChannelAsset>(jToken);
+				case "KalturaMediaFileDynamicDataListResponse":
+					return new ListResponse<MediaFileDynamicData>(jToken);
 				case "KalturaMediaFileListResponse":
 					return new ListResponse<MediaFile>(jToken);
 				case "KalturaMediaFileTypeListResponse":
