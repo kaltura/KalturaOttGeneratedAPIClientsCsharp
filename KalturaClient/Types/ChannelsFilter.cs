@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -43,6 +43,7 @@ namespace Kaltura.Types
 		public const string NAME_EQUAL = "nameEqual";
 		public const string NAME_STARTS_WITH = "nameStartsWith";
 		public const string ID_IN = "idIn";
+		public const string ASSET_USER_RULE_ID_IN = "assetUserRuleIdIn";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -52,6 +53,7 @@ namespace Kaltura.Types
 		private string _NameEqual = null;
 		private string _NameStartsWith = null;
 		private string _IdIn = null;
+		private string _AssetUserRuleIdIn = null;
 		private ChannelsOrderBy _OrderBy = null;
 		#endregion
 
@@ -122,6 +124,19 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use AssetUserRuleIdInAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string AssetUserRuleIdIn
+		{
+			get { return _AssetUserRuleIdIn; }
+			set 
+			{ 
+				_AssetUserRuleIdIn = value;
+				OnPropertyChanged("AssetUserRuleIdIn");
+			}
+		}
+		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -163,6 +178,10 @@ namespace Kaltura.Types
 			{
 				this._IdIn = node["idIn"].Value<string>();
 			}
+			if(node["assetUserRuleIdIn"] != null)
+			{
+				this._AssetUserRuleIdIn = node["assetUserRuleIdIn"].Value<string>();
+			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (ChannelsOrderBy)StringEnum.Parse(typeof(ChannelsOrderBy), node["orderBy"].Value<string>());
@@ -181,6 +200,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("nameEqual", this._NameEqual);
 			kparams.AddIfNotNull("nameStartsWith", this._NameStartsWith);
 			kparams.AddIfNotNull("idIn", this._IdIn);
+			kparams.AddIfNotNull("assetUserRuleIdIn", this._AssetUserRuleIdIn);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -198,6 +218,8 @@ namespace Kaltura.Types
 					return "NameStartsWith";
 				case ID_IN:
 					return "IdIn";
+				case ASSET_USER_RULE_ID_IN:
+					return "AssetUserRuleIdIn";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
