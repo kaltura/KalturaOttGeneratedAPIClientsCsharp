@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -39,11 +39,13 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string ALSO_INACTIVE = "alsoInactive";
+		public const string NAME_CONTAINS = "nameContains";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
 		private bool? _AlsoInactive = null;
+		private string _NameContains = null;
 		private ProgramAssetGroupOfferOrderBy _OrderBy = null;
 		#endregion
 
@@ -59,6 +61,19 @@ namespace Kaltura.Types
 			{ 
 				_AlsoInactive = value;
 				OnPropertyChanged("AlsoInactive");
+			}
+		}
+		/// <summary>
+		/// Use NameContainsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string NameContains
+		{
+			get { return _NameContains; }
+			set 
+			{ 
+				_NameContains = value;
+				OnPropertyChanged("NameContains");
 			}
 		}
 		/// <summary>
@@ -87,6 +102,10 @@ namespace Kaltura.Types
 			{
 				this._AlsoInactive = ParseBool(node["alsoInactive"].Value<string>());
 			}
+			if(node["nameContains"] != null)
+			{
+				this._NameContains = node["nameContains"].Value<string>();
+			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (ProgramAssetGroupOfferOrderBy)StringEnum.Parse(typeof(ProgramAssetGroupOfferOrderBy), node["orderBy"].Value<string>());
@@ -101,6 +120,7 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOfferFilter");
 			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
+			kparams.AddIfNotNull("nameContains", this._NameContains);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -110,6 +130,8 @@ namespace Kaltura.Types
 			{
 				case ALSO_INACTIVE:
 					return "AlsoInactive";
+				case NAME_CONTAINS:
+					return "NameContains";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

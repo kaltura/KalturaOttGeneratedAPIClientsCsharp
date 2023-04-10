@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -30,6 +30,8 @@ namespace Kaltura.Enums
 	public sealed class AssetRuleOrderBy : StringEnum
 	{
 		public static readonly AssetRuleOrderBy NONE = new AssetRuleOrderBy("NONE");
+		public static readonly AssetRuleOrderBy NAME_ASC = new AssetRuleOrderBy("NAME_ASC");
+		public static readonly AssetRuleOrderBy NAME_DESC = new AssetRuleOrderBy("NAME_DESC");
 
 		private AssetRuleOrderBy(string name) : base(name) { }
 	}

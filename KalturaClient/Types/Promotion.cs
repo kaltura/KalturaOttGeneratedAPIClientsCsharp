@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -40,11 +40,13 @@ namespace Kaltura.Types
 		#region Constants
 		public const string DISCOUNT_MODULE_ID = "discountModuleId";
 		public const string NUMBER_OF_RECURRING = "numberOfRecurring";
+		public const string MAX_DISCOUNT_USAGES = "maxDiscountUsages";
 		#endregion
 
 		#region Private Fields
 		private long _DiscountModuleId = long.MinValue;
 		private int _NumberOfRecurring = Int32.MinValue;
+		private int _MaxDiscountUsages = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -74,6 +76,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("NumberOfRecurring");
 			}
 		}
+		/// <summary>
+		/// Use MaxDiscountUsagesAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int MaxDiscountUsages
+		{
+			get { return _MaxDiscountUsages; }
+			set 
+			{ 
+				_MaxDiscountUsages = value;
+				OnPropertyChanged("MaxDiscountUsages");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -91,6 +106,10 @@ namespace Kaltura.Types
 			{
 				this._NumberOfRecurring = ParseInt(node["numberOfRecurring"].Value<string>());
 			}
+			if(node["maxDiscountUsages"] != null)
+			{
+				this._MaxDiscountUsages = ParseInt(node["maxDiscountUsages"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -102,6 +121,7 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaPromotion");
 			kparams.AddIfNotNull("discountModuleId", this._DiscountModuleId);
 			kparams.AddIfNotNull("numberOfRecurring", this._NumberOfRecurring);
+			kparams.AddIfNotNull("maxDiscountUsages", this._MaxDiscountUsages);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -112,6 +132,8 @@ namespace Kaltura.Types
 					return "DiscountModuleId";
 				case NUMBER_OF_RECURRING:
 					return "NumberOfRecurring";
+				case MAX_DISCOUNT_USAGES:
+					return "MaxDiscountUsages";
 				default:
 					return base.getPropertyName(apiName);
 			}
