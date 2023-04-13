@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -33,6 +33,7 @@ namespace Kaltura.Enums
 		public static readonly UserRoleProfile PARTNER = new UserRoleProfile("PARTNER");
 		public static readonly UserRoleProfile PROFILE = new UserRoleProfile("PROFILE");
 		public static readonly UserRoleProfile SYSTEM = new UserRoleProfile("SYSTEM");
+		public static readonly UserRoleProfile PERMISSION_EMBEDDED = new UserRoleProfile("PERMISSION_EMBEDDED");
 
 		private UserRoleProfile(string name) : base(name) { }
 	}

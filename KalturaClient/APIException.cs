@@ -8,7 +8,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -169,6 +169,12 @@ namespace Kaltura
 		public static string InvalidCampaignState = "9046";
 		public static string CampaignStateUpdateNotAllowed = "9047";
 		public static string InvalidCampaignEndDate = "9048";
+		public static string CanOnlyUpdatePaddingAfterRecordingBeforeRecordingEnd = "3089";
+		public static string CanOnlyUpdatePaddingBeforeRecordingBeforeRecordingStart = "3090";
+		public static string CanOnlyAddRecordingBeforeRecordingStart = "3091";
+		public static string CanOnlyCancelRecordingBeforeRecordingEnd = "3092";
+		public static string CanOnlyDeleteRecordingAfterRecordingEnd = "3093";
+		public static string RecordingExceededConcurrency = "3094";
 		public static string MediaConcurrencyLimitation = "4000";
 		public static string ConcurrencyLimitation = "4001";
 		public static string BadSearchRequest = "4002";
@@ -266,6 +272,8 @@ namespace Kaltura
 		public static string VideoCodecsDoesNotExist = "4115";
 		public static string AudioCodecsDoesNotExist = "4116";
 		public static string SearchPriorityGroupDoesNotExist = "4117";
+		public static string DynamicDataKeyDoesNotExist = "4120";
+		public static string DynamicDataKeyValueDoesNotExist = "4121";
 		public static string NoPinDefined = "5001";
 		public static string PinMismatch = "5002";
 		public static string RuleNotExists = "5003";
@@ -337,6 +345,7 @@ namespace Kaltura
 		public static string DynamicSegmentPeriodExceeded = "5092";
 		public static string DynamicSegmentConditionsExceeded = "5093";
 		public static string NameMustBeUnique = "5094";
+		public static string EntityIsNotAssociatedWithShop = "5095";
 		public static string IncorrectPrice = "6000";
 		public static string UnKnownPPVModule = "6001";
 		public static string ExpiredCard = "6002";
@@ -645,13 +654,14 @@ namespace Kaltura
 		public static string ArgumentShouldContainMaxValueCrossed = "500059";
 		public static string ArgumentsCannotBeEmpty = "500056";
 		public static string ArgumentsConflictsEachOther = "500038";
+		public static string MultipleArgumentsConflictsEachOther = "500095";
 		public static string TimeInPast = "500039";
 		public static string ArgumentMaxLengthCrossed = "500045";
 		public static string ArgumentMinLengthCrossed = "500046";
 		public static string ArgumentMaxValueCrossed = "500047";
 		public static string ArgumentMinValueCrossed = "500048";
 		public static string ArgumentNotInPredefinedRange = "500092";
-		public static string ArgumentsConflictEachOther = "500061";
+		public static string ArgumentsValuesConflictEachOther = "500061";
 		public static string ArgumentsDuplicate = "500066";
 		public static string InvalidArgumentValue = "500067";
 		public static string DuplicateLanguageSent = "500069";
