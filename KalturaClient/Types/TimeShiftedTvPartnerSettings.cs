@@ -64,6 +64,7 @@ namespace Kaltura.Types
 		public const string PERSONALIZED_RECORDING = "personalizedRecording";
 		public const string MAX_RECORDING_CONCURRENCY = "maxRecordingConcurrency";
 		public const string MAX_CONCURRENCY_MARGIN = "maxConcurrencyMargin";
+		public const string CDVR_MIGRATION_ENABLED = "cDvrMigrationEnabled";
 		#endregion
 
 		#region Private Fields
@@ -93,6 +94,7 @@ namespace Kaltura.Types
 		private bool? _PersonalizedRecording = null;
 		private int _MaxRecordingConcurrency = Int32.MinValue;
 		private int _MaxConcurrencyMargin = Int32.MinValue;
+		private bool? _CDvrMigrationEnabled = null;
 		#endregion
 
 		#region Properties
@@ -434,6 +436,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxConcurrencyMargin");
 			}
 		}
+		/// <summary>
+		/// Use CDvrMigrationEnabledAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? CDvrMigrationEnabled
+		{
+			get { return _CDvrMigrationEnabled; }
+			set 
+			{ 
+				_CDvrMigrationEnabled = value;
+				OnPropertyChanged("CDvrMigrationEnabled");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -547,6 +562,10 @@ namespace Kaltura.Types
 			{
 				this._MaxConcurrencyMargin = ParseInt(node["maxConcurrencyMargin"].Value<string>());
 			}
+			if(node["cDvrMigrationEnabled"] != null)
+			{
+				this._CDvrMigrationEnabled = ParseBool(node["cDvrMigrationEnabled"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -582,6 +601,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("personalizedRecording", this._PersonalizedRecording);
 			kparams.AddIfNotNull("maxRecordingConcurrency", this._MaxRecordingConcurrency);
 			kparams.AddIfNotNull("maxConcurrencyMargin", this._MaxConcurrencyMargin);
+			kparams.AddIfNotNull("cDvrMigrationEnabled", this._CDvrMigrationEnabled);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -640,6 +660,8 @@ namespace Kaltura.Types
 					return "MaxRecordingConcurrency";
 				case MAX_CONCURRENCY_MARGIN:
 					return "MaxConcurrencyMargin";
+				case CDVR_MIGRATION_ENABLED:
+					return "CDvrMigrationEnabled";
 				default:
 					return base.getPropertyName(apiName);
 			}
