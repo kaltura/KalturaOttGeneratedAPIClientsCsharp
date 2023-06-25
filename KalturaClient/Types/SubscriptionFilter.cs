@@ -48,6 +48,7 @@ namespace Kaltura.Types
 		public const string KSQL = "kSql";
 		public const string ALSO_INACTIVE = "alsoInactive";
 		public const string DEPENDENCY_TYPE_IN = "dependencyTypeIn";
+		public const string NAME_CONTAINS = "nameContains";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -62,6 +63,7 @@ namespace Kaltura.Types
 		private string _KSql = null;
 		private bool? _AlsoInactive = null;
 		private string _DependencyTypeIn = null;
+		private string _NameContains = null;
 		private SubscriptionOrderBy _OrderBy = null;
 		#endregion
 
@@ -197,6 +199,19 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use NameContainsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string NameContains
+		{
+			get { return _NameContains; }
+			set 
+			{ 
+				_NameContains = value;
+				OnPropertyChanged("NameContains");
+			}
+		}
+		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -258,6 +273,10 @@ namespace Kaltura.Types
 			{
 				this._DependencyTypeIn = node["dependencyTypeIn"].Value<string>();
 			}
+			if(node["nameContains"] != null)
+			{
+				this._NameContains = node["nameContains"].Value<string>();
+			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (SubscriptionOrderBy)StringEnum.Parse(typeof(SubscriptionOrderBy), node["orderBy"].Value<string>());
@@ -281,6 +300,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("kSql", this._KSql);
 			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
 			kparams.AddIfNotNull("dependencyTypeIn", this._DependencyTypeIn);
+			kparams.AddIfNotNull("nameContains", this._NameContains);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -308,6 +328,8 @@ namespace Kaltura.Types
 					return "AlsoInactive";
 				case DEPENDENCY_TYPE_IN:
 					return "DependencyTypeIn";
+				case NAME_CONTAINS:
+					return "NameContains";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
