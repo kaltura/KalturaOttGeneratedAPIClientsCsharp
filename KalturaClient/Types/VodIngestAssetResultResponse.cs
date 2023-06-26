@@ -35,61 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IngestStatusPartnerConfiguration : ObjectBase
+	public class VodIngestAssetResultResponse : ObjectBase
 	{
 		#region Constants
-		public const string EPG = "epg";
-		public const string VOD = "vod";
+		public const string RESULT = "result";
+		public const string AGGREGATIONS = "aggregations";
 		#endregion
 
 		#region Private Fields
-		private IngestStatusEpgConfiguration _Epg;
-		private IngestStatusVodConfiguration _Vod;
+		private ListResponse<VodIngestAssetResult> _Result;
+		private VodIngestAssetResultAggregation _Aggregations;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use EpgAsDouble property instead
+		/// Use ResultAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IngestStatusEpgConfiguration Epg
+		public ListResponse<VodIngestAssetResult> Result
 		{
-			get { return _Epg; }
+			get { return _Result; }
 			set 
 			{ 
-				_Epg = value;
-				OnPropertyChanged("Epg");
+				_Result = value;
+				OnPropertyChanged("Result");
 			}
 		}
 		/// <summary>
-		/// Use VodAsDouble property instead
+		/// Use AggregationsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IngestStatusVodConfiguration Vod
+		public VodIngestAssetResultAggregation Aggregations
 		{
-			get { return _Vod; }
+			get { return _Aggregations; }
 			set 
 			{ 
-				_Vod = value;
-				OnPropertyChanged("Vod");
+				_Aggregations = value;
+				OnPropertyChanged("Aggregations");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public IngestStatusPartnerConfiguration()
+		public VodIngestAssetResultResponse()
 		{
 		}
 
-		public IngestStatusPartnerConfiguration(JToken node) : base(node)
+		public VodIngestAssetResultResponse(JToken node) : base(node)
 		{
-			if(node["epg"] != null)
+			if(node["result"] != null)
 			{
-				this._Epg = ObjectFactory.Create<IngestStatusEpgConfiguration>(node["epg"]);
+				this._Result = ObjectFactory.Create<ListResponse<VodIngestAssetResult>>(node["result"]);
 			}
-			if(node["vod"] != null)
+			if(node["aggregations"] != null)
 			{
-				this._Vod = ObjectFactory.Create<IngestStatusVodConfiguration>(node["vod"]);
+				this._Aggregations = ObjectFactory.Create<VodIngestAssetResultAggregation>(node["aggregations"]);
 			}
 		}
 		#endregion
@@ -99,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaIngestStatusPartnerConfiguration");
-			kparams.AddIfNotNull("epg", this._Epg);
-			kparams.AddIfNotNull("vod", this._Vod);
+				kparams.AddReplace("objectType", "KalturaVodIngestAssetResultResponse");
+			kparams.AddIfNotNull("result", this._Result);
+			kparams.AddIfNotNull("aggregations", this._Aggregations);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case EPG:
-					return "Epg";
-				case VOD:
-					return "Vod";
+				case RESULT:
+					return "Result";
+				case AGGREGATIONS:
+					return "Aggregations";
 				default:
 					return base.getPropertyName(apiName);
 			}

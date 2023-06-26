@@ -35,61 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IngestStatusPartnerConfiguration : ObjectBase
+	public class VodIngestAssetResultErrorMessage : ObjectBase
 	{
 		#region Constants
-		public const string EPG = "epg";
-		public const string VOD = "vod";
+		public const string MESSAGE = "message";
+		public const string CODE = "code";
 		#endregion
 
 		#region Private Fields
-		private IngestStatusEpgConfiguration _Epg;
-		private IngestStatusVodConfiguration _Vod;
+		private string _Message = null;
+		private string _Code = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use EpgAsDouble property instead
+		/// Use MessageAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IngestStatusEpgConfiguration Epg
+		public string Message
 		{
-			get { return _Epg; }
+			get { return _Message; }
 			set 
 			{ 
-				_Epg = value;
-				OnPropertyChanged("Epg");
+				_Message = value;
+				OnPropertyChanged("Message");
 			}
 		}
 		/// <summary>
-		/// Use VodAsDouble property instead
+		/// Use CodeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IngestStatusVodConfiguration Vod
+		public string Code
 		{
-			get { return _Vod; }
+			get { return _Code; }
 			set 
 			{ 
-				_Vod = value;
-				OnPropertyChanged("Vod");
+				_Code = value;
+				OnPropertyChanged("Code");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public IngestStatusPartnerConfiguration()
+		public VodIngestAssetResultErrorMessage()
 		{
 		}
 
-		public IngestStatusPartnerConfiguration(JToken node) : base(node)
+		public VodIngestAssetResultErrorMessage(JToken node) : base(node)
 		{
-			if(node["epg"] != null)
+			if(node["message"] != null)
 			{
-				this._Epg = ObjectFactory.Create<IngestStatusEpgConfiguration>(node["epg"]);
+				this._Message = node["message"].Value<string>();
 			}
-			if(node["vod"] != null)
+			if(node["code"] != null)
 			{
-				this._Vod = ObjectFactory.Create<IngestStatusVodConfiguration>(node["vod"]);
+				this._Code = node["code"].Value<string>();
 			}
 		}
 		#endregion
@@ -99,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaIngestStatusPartnerConfiguration");
-			kparams.AddIfNotNull("epg", this._Epg);
-			kparams.AddIfNotNull("vod", this._Vod);
+				kparams.AddReplace("objectType", "KalturaVodIngestAssetResultErrorMessage");
+			kparams.AddIfNotNull("message", this._Message);
+			kparams.AddIfNotNull("code", this._Code);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case EPG:
-					return "Epg";
-				case VOD:
-					return "Vod";
+				case MESSAGE:
+					return "Message";
+				case CODE:
+					return "Code";
 				default:
 					return base.getPropertyName(apiName);
 			}

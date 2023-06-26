@@ -35,61 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class IngestStatusPartnerConfiguration : ObjectBase
+	public class IngestStatusVodConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string EPG = "epg";
-		public const string VOD = "vod";
+		public const string IS_SUPPORTED = "isSupported";
+		public const string RETAINING_PERIOD = "retainingPeriod";
 		#endregion
 
 		#region Private Fields
-		private IngestStatusEpgConfiguration _Epg;
-		private IngestStatusVodConfiguration _Vod;
+		private bool? _IsSupported = null;
+		private long _RetainingPeriod = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use EpgAsDouble property instead
+		/// Use IsSupportedAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IngestStatusEpgConfiguration Epg
+		public bool? IsSupported
 		{
-			get { return _Epg; }
+			get { return _IsSupported; }
 			set 
 			{ 
-				_Epg = value;
-				OnPropertyChanged("Epg");
+				_IsSupported = value;
+				OnPropertyChanged("IsSupported");
 			}
 		}
 		/// <summary>
-		/// Use VodAsDouble property instead
+		/// Use RetainingPeriodAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IngestStatusVodConfiguration Vod
+		public long RetainingPeriod
 		{
-			get { return _Vod; }
+			get { return _RetainingPeriod; }
 			set 
 			{ 
-				_Vod = value;
-				OnPropertyChanged("Vod");
+				_RetainingPeriod = value;
+				OnPropertyChanged("RetainingPeriod");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public IngestStatusPartnerConfiguration()
+		public IngestStatusVodConfiguration()
 		{
 		}
 
-		public IngestStatusPartnerConfiguration(JToken node) : base(node)
+		public IngestStatusVodConfiguration(JToken node) : base(node)
 		{
-			if(node["epg"] != null)
+			if(node["isSupported"] != null)
 			{
-				this._Epg = ObjectFactory.Create<IngestStatusEpgConfiguration>(node["epg"]);
+				this._IsSupported = ParseBool(node["isSupported"].Value<string>());
 			}
-			if(node["vod"] != null)
+			if(node["retainingPeriod"] != null)
 			{
-				this._Vod = ObjectFactory.Create<IngestStatusVodConfiguration>(node["vod"]);
+				this._RetainingPeriod = ParseLong(node["retainingPeriod"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaIngestStatusPartnerConfiguration");
-			kparams.AddIfNotNull("epg", this._Epg);
-			kparams.AddIfNotNull("vod", this._Vod);
+				kparams.AddReplace("objectType", "KalturaIngestStatusVodConfiguration");
+			kparams.AddIfNotNull("isSupported", this._IsSupported);
+			kparams.AddIfNotNull("retainingPeriod", this._RetainingPeriod);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case EPG:
-					return "Epg";
-				case VOD:
-					return "Vod";
+				case IS_SUPPORTED:
+					return "IsSupported";
+				case RETAINING_PERIOD:
+					return "RetainingPeriod";
 				default:
 					return base.getPropertyName(apiName);
 			}
