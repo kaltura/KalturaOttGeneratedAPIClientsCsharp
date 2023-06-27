@@ -27,14 +27,13 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class UserRoleProfile : StringEnum
+	public sealed class VodIngestAssetResultStatus : StringEnum
 	{
-		public static readonly UserRoleProfile USER = new UserRoleProfile("USER");
-		public static readonly UserRoleProfile PARTNER = new UserRoleProfile("PARTNER");
-		public static readonly UserRoleProfile PROFILE = new UserRoleProfile("PROFILE");
-		public static readonly UserRoleProfile SYSTEM = new UserRoleProfile("SYSTEM");
-		public static readonly UserRoleProfile PERMISSION_EMBEDDED = new UserRoleProfile("PERMISSION_EMBEDDED");
+		public static readonly VodIngestAssetResultStatus FAILURE = new VodIngestAssetResultStatus("FAILURE");
+		public static readonly VodIngestAssetResultStatus EXTERNAL_FAILURE = new VodIngestAssetResultStatus("EXTERNAL_FAILURE");
+		public static readonly VodIngestAssetResultStatus SUCCESS_WARNING = new VodIngestAssetResultStatus("SUCCESS_WARNING");
+		public static readonly VodIngestAssetResultStatus SUCCESS = new VodIngestAssetResultStatus("SUCCESS");
 
-		private UserRoleProfile(string name) : base(name) { }
+		private VodIngestAssetResultStatus(string name) : base(name) { }
 	}
 }

@@ -27,14 +27,17 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class UserRoleProfile : StringEnum
+	public sealed class VodIngestAssetResultOrderBy : StringEnum
 	{
-		public static readonly UserRoleProfile USER = new UserRoleProfile("USER");
-		public static readonly UserRoleProfile PARTNER = new UserRoleProfile("PARTNER");
-		public static readonly UserRoleProfile PROFILE = new UserRoleProfile("PROFILE");
-		public static readonly UserRoleProfile SYSTEM = new UserRoleProfile("SYSTEM");
-		public static readonly UserRoleProfile PERMISSION_EMBEDDED = new UserRoleProfile("PERMISSION_EMBEDDED");
+		public static readonly VodIngestAssetResultOrderBy FILE_NAME_ASC = new VodIngestAssetResultOrderBy("FILE_NAME_ASC");
+		public static readonly VodIngestAssetResultOrderBy FILE_NAME_DESC = new VodIngestAssetResultOrderBy("FILE_NAME_DESC");
+		public static readonly VodIngestAssetResultOrderBy ASSET_NAME_ASC = new VodIngestAssetResultOrderBy("ASSET_NAME_ASC");
+		public static readonly VodIngestAssetResultOrderBy ASSET_NAME_DESC = new VodIngestAssetResultOrderBy("ASSET_NAME_DESC");
+		public static readonly VodIngestAssetResultOrderBy INGEST_DATE_ASC = new VodIngestAssetResultOrderBy("INGEST_DATE_ASC");
+		public static readonly VodIngestAssetResultOrderBy INGEST_DATE_DESC = new VodIngestAssetResultOrderBy("INGEST_DATE_DESC");
+		public static readonly VodIngestAssetResultOrderBy STATUS_ASC = new VodIngestAssetResultOrderBy("STATUS_ASC");
+		public static readonly VodIngestAssetResultOrderBy STATUS_DESC = new VodIngestAssetResultOrderBy("STATUS_DESC");
 
-		private UserRoleProfile(string name) : base(name) { }
+		private VodIngestAssetResultOrderBy(string name) : base(name) { }
 	}
 }

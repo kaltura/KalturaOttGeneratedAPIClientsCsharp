@@ -41,12 +41,14 @@ namespace Kaltura.Types
 		public const string ID_EQUAL = "idEqual";
 		public const string UTC_OFFSET_EQUAL = "utcOffsetEqual";
 		public const string FREE_TEXT = "freeText";
+		public const string ALIAS = "alias";
 		#endregion
 
 		#region Private Fields
 		private int _IdEqual = Int32.MinValue;
 		private double _UtcOffsetEqual = Double.MinValue;
 		private string _FreeText = null;
+		private string _Alias = null;
 		#endregion
 
 		#region Properties
@@ -89,6 +91,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("FreeText");
 			}
 		}
+		/// <summary>
+		/// Use AliasAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Alias
+		{
+			get { return _Alias; }
+			set 
+			{ 
+				_Alias = value;
+				OnPropertyChanged("Alias");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -110,6 +125,10 @@ namespace Kaltura.Types
 			{
 				this._FreeText = node["freeText"].Value<string>();
 			}
+			if(node["alias"] != null)
+			{
+				this._Alias = node["alias"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -122,6 +141,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("idEqual", this._IdEqual);
 			kparams.AddIfNotNull("utcOffsetEqual", this._UtcOffsetEqual);
 			kparams.AddIfNotNull("freeText", this._FreeText);
+			kparams.AddIfNotNull("alias", this._Alias);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -134,6 +154,8 @@ namespace Kaltura.Types
 					return "UtcOffsetEqual";
 				case FREE_TEXT:
 					return "FreeText";
+				case ALIAS:
+					return "Alias";
 				default:
 					return base.getPropertyName(apiName);
 			}
