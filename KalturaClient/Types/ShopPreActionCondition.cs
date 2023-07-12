@@ -35,80 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ProgramAssetGroupOfferFilter : Filter
+	public class ShopPreActionCondition : BasePreActionCondition
 	{
 		#region Constants
-		public const string ALSO_INACTIVE = "alsoInactive";
-		public const string NAME_CONTAINS = "nameContains";
-		public new const string ORDER_BY = "orderBy";
+		public const string SHOP_ASSET_USER_RULE_ID = "shopAssetUserRuleId";
 		#endregion
 
 		#region Private Fields
-		private bool? _AlsoInactive = null;
-		private string _NameContains = null;
-		private ProgramAssetGroupOfferOrderBy _OrderBy = null;
+		private int _ShopAssetUserRuleId = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AlsoInactiveAsDouble property instead
+		/// Use ShopAssetUserRuleIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? AlsoInactive
+		public int ShopAssetUserRuleId
 		{
-			get { return _AlsoInactive; }
+			get { return _ShopAssetUserRuleId; }
 			set 
 			{ 
-				_AlsoInactive = value;
-				OnPropertyChanged("AlsoInactive");
-			}
-		}
-		/// <summary>
-		/// Use NameContainsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string NameContains
-		{
-			get { return _NameContains; }
-			set 
-			{ 
-				_NameContains = value;
-				OnPropertyChanged("NameContains");
-			}
-		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public new ProgramAssetGroupOfferOrderBy OrderBy
-		{
-			get { return _OrderBy; }
-			set 
-			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
+				_ShopAssetUserRuleId = value;
+				OnPropertyChanged("ShopAssetUserRuleId");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ProgramAssetGroupOfferFilter()
+		public ShopPreActionCondition()
 		{
 		}
 
-		public ProgramAssetGroupOfferFilter(JToken node) : base(node)
+		public ShopPreActionCondition(JToken node) : base(node)
 		{
-			if(node["alsoInactive"] != null)
+			if(node["shopAssetUserRuleId"] != null)
 			{
-				this._AlsoInactive = ParseBool(node["alsoInactive"].Value<string>());
-			}
-			if(node["nameContains"] != null)
-			{
-				this._NameContains = node["nameContains"].Value<string>();
-			}
-			if(node["orderBy"] != null)
-			{
-				this._OrderBy = (ProgramAssetGroupOfferOrderBy)StringEnum.Parse(typeof(ProgramAssetGroupOfferOrderBy), node["orderBy"].Value<string>());
+				this._ShopAssetUserRuleId = ParseInt(node["shopAssetUserRuleId"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,22 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOfferFilter");
-			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
-			kparams.AddIfNotNull("nameContains", this._NameContains);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+				kparams.AddReplace("objectType", "KalturaShopPreActionCondition");
+			kparams.AddIfNotNull("shopAssetUserRuleId", this._ShopAssetUserRuleId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ALSO_INACTIVE:
-					return "AlsoInactive";
-				case NAME_CONTAINS:
-					return "NameContains";
-				case ORDER_BY:
-					return "OrderBy";
+				case SHOP_ASSET_USER_RULE_ID:
+					return "ShopAssetUserRuleId";
 				default:
 					return base.getPropertyName(apiName);
 			}
