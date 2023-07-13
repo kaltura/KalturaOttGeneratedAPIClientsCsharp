@@ -35,61 +35,65 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class VodIngestAssetResultResponse : ObjectBase
+	public class VodIngestAssetResultList : ObjectBase
 	{
 		#region Constants
-		public const string RESULT = "result";
-		public const string AGGREGATIONS = "aggregations";
+		public const string OBJECTS = "objects";
+		public const string TOTAL_COUNT = "totalCount";
 		#endregion
 
 		#region Private Fields
-		private VodIngestAssetResultList _Result;
-		private VodIngestAssetResultAggregation _Aggregations;
+		private IList<VodIngestAssetResult> _Objects;
+		private int _TotalCount = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ResultAsDouble property instead
+		/// Use ObjectsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public VodIngestAssetResultList Result
+		public IList<VodIngestAssetResult> Objects
 		{
-			get { return _Result; }
+			get { return _Objects; }
 			set 
 			{ 
-				_Result = value;
-				OnPropertyChanged("Result");
+				_Objects = value;
+				OnPropertyChanged("Objects");
 			}
 		}
 		/// <summary>
-		/// Use AggregationsAsDouble property instead
+		/// Use TotalCountAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public VodIngestAssetResultAggregation Aggregations
+		public int TotalCount
 		{
-			get { return _Aggregations; }
+			get { return _TotalCount; }
 			set 
 			{ 
-				_Aggregations = value;
-				OnPropertyChanged("Aggregations");
+				_TotalCount = value;
+				OnPropertyChanged("TotalCount");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public VodIngestAssetResultResponse()
+		public VodIngestAssetResultList()
 		{
 		}
 
-		public VodIngestAssetResultResponse(JToken node) : base(node)
+		public VodIngestAssetResultList(JToken node) : base(node)
 		{
-			if(node["result"] != null)
+			if(node["objects"] != null)
 			{
-				this._Result = ObjectFactory.Create<VodIngestAssetResultList>(node["result"]);
+				this._Objects = new List<VodIngestAssetResult>();
+				foreach(var arrayNode in node["objects"].Children())
+				{
+					this._Objects.Add(ObjectFactory.Create<VodIngestAssetResult>(arrayNode));
+				}
 			}
-			if(node["aggregations"] != null)
+			if(node["totalCount"] != null)
 			{
-				this._Aggregations = ObjectFactory.Create<VodIngestAssetResultAggregation>(node["aggregations"]);
+				this._TotalCount = ParseInt(node["totalCount"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,19 +103,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaVodIngestAssetResultResponse");
-			kparams.AddIfNotNull("result", this._Result);
-			kparams.AddIfNotNull("aggregations", this._Aggregations);
+				kparams.AddReplace("objectType", "KalturaVodIngestAssetResultList");
+			kparams.AddIfNotNull("objects", this._Objects);
+			kparams.AddIfNotNull("totalCount", this._TotalCount);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case RESULT:
-					return "Result";
-				case AGGREGATIONS:
-					return "Aggregations";
+				case OBJECTS:
+					return "Objects";
+				case TOTAL_COUNT:
+					return "TotalCount";
 				default:
 					return base.getPropertyName(apiName);
 			}
