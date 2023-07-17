@@ -81,7 +81,6 @@ namespace Kaltura.Types
 		[JsonProperty]
 		public string Name
 		{
-			get { return _Name; }
 			set 
 			{ 
 				_Name = value;
@@ -94,7 +93,6 @@ namespace Kaltura.Types
 		[JsonProperty]
 		public int MaxViewsNumber
 		{
-			get { return _MaxViewsNumber; }
 			set 
 			{ 
 				_MaxViewsNumber = value;
