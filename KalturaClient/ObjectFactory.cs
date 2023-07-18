@@ -160,6 +160,8 @@ namespace Kaltura
 					return new ListResponse<IngestEpg>(jToken);
 				case "KalturaIngestStatusEpgProgramResultListResponse":
 					return new ListResponse<IngestEpgProgramResult>(jToken);
+				case "KalturaVodIngestAssetResultListResponse":
+					return new ListResponse<VodIngestAssetResult>(jToken);
 				case "KalturaDurationListResponse":
 					return new ListResponse<Duration>(jToken);
 				case "KalturaDynamicListListResponse":
