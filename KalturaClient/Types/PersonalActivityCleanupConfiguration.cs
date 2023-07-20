@@ -35,80 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ProgramAssetGroupOfferFilter : Filter
+	public class PersonalActivityCleanupConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string ALSO_INACTIVE = "alsoInactive";
-		public const string NAME_CONTAINS = "nameContains";
-		public new const string ORDER_BY = "orderBy";
+		public const string RETENTION_PERIOD_DAYS = "retentionPeriodDays";
 		#endregion
 
 		#region Private Fields
-		private bool? _AlsoInactive = null;
-		private string _NameContains = null;
-		private ProgramAssetGroupOfferOrderBy _OrderBy = null;
+		private long _RetentionPeriodDays = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AlsoInactiveAsDouble property instead
+		/// Use RetentionPeriodDaysAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? AlsoInactive
+		public long RetentionPeriodDays
 		{
-			get { return _AlsoInactive; }
+			get { return _RetentionPeriodDays; }
 			set 
 			{ 
-				_AlsoInactive = value;
-				OnPropertyChanged("AlsoInactive");
-			}
-		}
-		/// <summary>
-		/// Use NameContainsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string NameContains
-		{
-			get { return _NameContains; }
-			set 
-			{ 
-				_NameContains = value;
-				OnPropertyChanged("NameContains");
-			}
-		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public new ProgramAssetGroupOfferOrderBy OrderBy
-		{
-			get { return _OrderBy; }
-			set 
-			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
+				_RetentionPeriodDays = value;
+				OnPropertyChanged("RetentionPeriodDays");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ProgramAssetGroupOfferFilter()
+		public PersonalActivityCleanupConfiguration()
 		{
 		}
 
-		public ProgramAssetGroupOfferFilter(JToken node) : base(node)
+		public PersonalActivityCleanupConfiguration(JToken node) : base(node)
 		{
-			if(node["alsoInactive"] != null)
+			if(node["retentionPeriodDays"] != null)
 			{
-				this._AlsoInactive = ParseBool(node["alsoInactive"].Value<string>());
-			}
-			if(node["nameContains"] != null)
-			{
-				this._NameContains = node["nameContains"].Value<string>();
-			}
-			if(node["orderBy"] != null)
-			{
-				this._OrderBy = (ProgramAssetGroupOfferOrderBy)StringEnum.Parse(typeof(ProgramAssetGroupOfferOrderBy), node["orderBy"].Value<string>());
+				this._RetentionPeriodDays = ParseLong(node["retentionPeriodDays"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,22 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOfferFilter");
-			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
-			kparams.AddIfNotNull("nameContains", this._NameContains);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+				kparams.AddReplace("objectType", "KalturaPersonalActivityCleanupConfiguration");
+			kparams.AddIfNotNull("retentionPeriodDays", this._RetentionPeriodDays);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ALSO_INACTIVE:
-					return "AlsoInactive";
-				case NAME_CONTAINS:
-					return "NameContains";
-				case ORDER_BY:
-					return "OrderBy";
+				case RETENTION_PERIOD_DAYS:
+					return "RetentionPeriodDays";
 				default:
 					return base.getPropertyName(apiName);
 			}
