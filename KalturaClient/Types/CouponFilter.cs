@@ -35,80 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ImmediateRecording : Recording
+	public class CouponFilter : Filter
 	{
 		#region Constants
-		public const string END_PADDING = "endPadding";
-		public const string ABSOLUTE_START = "absoluteStart";
-		public const string ABSOLUTE_END = "absoluteEnd";
+		public const string COUPON_CODES_IN = "couponCodesIn";
 		#endregion
 
 		#region Private Fields
-		private int _EndPadding = Int32.MinValue;
-		private long _AbsoluteStart = long.MinValue;
-		private long _AbsoluteEnd = long.MinValue;
+		private string _CouponCodesIn = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use EndPaddingAsDouble property instead
+		/// Use CouponCodesInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int EndPadding
+		public string CouponCodesIn
 		{
-			get { return _EndPadding; }
+			get { return _CouponCodesIn; }
 			set 
 			{ 
-				_EndPadding = value;
-				OnPropertyChanged("EndPadding");
-			}
-		}
-		/// <summary>
-		/// Use AbsoluteStartAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long AbsoluteStart
-		{
-			get { return _AbsoluteStart; }
-			private set 
-			{ 
-				_AbsoluteStart = value;
-				OnPropertyChanged("AbsoluteStart");
-			}
-		}
-		/// <summary>
-		/// Use AbsoluteEndAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long AbsoluteEnd
-		{
-			get { return _AbsoluteEnd; }
-			private set 
-			{ 
-				_AbsoluteEnd = value;
-				OnPropertyChanged("AbsoluteEnd");
+				_CouponCodesIn = value;
+				OnPropertyChanged("CouponCodesIn");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ImmediateRecording()
+		public CouponFilter()
 		{
 		}
 
-		public ImmediateRecording(JToken node) : base(node)
+		public CouponFilter(JToken node) : base(node)
 		{
-			if(node["endPadding"] != null)
+			if(node["couponCodesIn"] != null)
 			{
-				this._EndPadding = ParseInt(node["endPadding"].Value<string>());
-			}
-			if(node["absoluteStart"] != null)
-			{
-				this._AbsoluteStart = ParseLong(node["absoluteStart"].Value<string>());
-			}
-			if(node["absoluteEnd"] != null)
-			{
-				this._AbsoluteEnd = ParseLong(node["absoluteEnd"].Value<string>());
+				this._CouponCodesIn = node["couponCodesIn"].Value<string>();
 			}
 		}
 		#endregion
@@ -118,22 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaImmediateRecording");
-			kparams.AddIfNotNull("endPadding", this._EndPadding);
-			kparams.AddIfNotNull("absoluteStart", this._AbsoluteStart);
-			kparams.AddIfNotNull("absoluteEnd", this._AbsoluteEnd);
+				kparams.AddReplace("objectType", "KalturaCouponFilter");
+			kparams.AddIfNotNull("couponCodesIn", this._CouponCodesIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case END_PADDING:
-					return "EndPadding";
-				case ABSOLUTE_START:
-					return "AbsoluteStart";
-				case ABSOLUTE_END:
-					return "AbsoluteEnd";
+				case COUPON_CODES_IN:
+					return "CouponCodesIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

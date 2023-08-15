@@ -42,7 +42,6 @@ namespace Kaltura.Types
 		public const string MEDIA_FILE_ID_EQUAL = "mediaFileIdEqual";
 		public const string COUPON_GROUP_ID_EQUAL = "couponGroupIdEqual";
 		public const string ALSO_INACTIVE = "alsoInactive";
-		public const string ASSET_USER_RULE_ID_IN = "assetUserRuleIdIn";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -51,7 +50,6 @@ namespace Kaltura.Types
 		private int _MediaFileIdEqual = Int32.MinValue;
 		private int _CouponGroupIdEqual = Int32.MinValue;
 		private bool? _AlsoInactive = null;
-		private string _AssetUserRuleIdIn = null;
 		private CollectionOrderBy _OrderBy = null;
 		#endregion
 
@@ -109,19 +107,6 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use AssetUserRuleIdInAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string AssetUserRuleIdIn
-		{
-			get { return _AssetUserRuleIdIn; }
-			set 
-			{ 
-				_AssetUserRuleIdIn = value;
-				OnPropertyChanged("AssetUserRuleIdIn");
-			}
-		}
-		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -159,10 +144,6 @@ namespace Kaltura.Types
 			{
 				this._AlsoInactive = ParseBool(node["alsoInactive"].Value<string>());
 			}
-			if(node["assetUserRuleIdIn"] != null)
-			{
-				this._AssetUserRuleIdIn = node["assetUserRuleIdIn"].Value<string>();
-			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (CollectionOrderBy)StringEnum.Parse(typeof(CollectionOrderBy), node["orderBy"].Value<string>());
@@ -180,7 +161,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("mediaFileIdEqual", this._MediaFileIdEqual);
 			kparams.AddIfNotNull("couponGroupIdEqual", this._CouponGroupIdEqual);
 			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
-			kparams.AddIfNotNull("assetUserRuleIdIn", this._AssetUserRuleIdIn);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -196,8 +176,6 @@ namespace Kaltura.Types
 					return "CouponGroupIdEqual";
 				case ALSO_INACTIVE:
 					return "AlsoInactive";
-				case ASSET_USER_RULE_ID_IN:
-					return "AssetUserRuleIdIn";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

@@ -237,50 +237,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class RecordingImmediateRecordRequestBuilder : RequestBuilder<ImmediateRecording>
-	{
-		#region Constants
-		public const string ASSET_ID = "assetId";
-		public const string END_PADDING = "endPadding";
-		#endregion
-
-		public long AssetId { get; set; }
-		public int EndPadding { get; set; }
-
-		public RecordingImmediateRecordRequestBuilder()
-			: base("recording", "immediateRecord")
-		{
-		}
-
-		public RecordingImmediateRecordRequestBuilder(long assetId, int endPadding)
-			: this()
-		{
-			this.AssetId = assetId;
-			this.EndPadding = endPadding;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("assetId"))
-				kparams.AddIfNotNull("assetId", AssetId);
-			if (!isMapped("endPadding"))
-				kparams.AddIfNotNull("endPadding", EndPadding);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<ImmediateRecording>(result);
-		}
-	}
-
 	public class RecordingListRequestBuilder : RequestBuilder<ListResponse<Recording>>
 	{
 		#region Constants
@@ -347,50 +303,6 @@ namespace Kaltura.Services
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<Recording>(result);
-		}
-	}
-
-	public class RecordingStopRequestBuilder : RequestBuilder<Recording>
-	{
-		#region Constants
-		public const string ASSET_ID = "assetId";
-		public const string ID = "id";
-		#endregion
-
-		public long AssetId { get; set; }
-		public long Id { get; set; }
-
-		public RecordingStopRequestBuilder()
-			: base("recording", "stop")
-		{
-		}
-
-		public RecordingStopRequestBuilder(long assetId, long id)
-			: this()
-		{
-			this.AssetId = assetId;
-			this.Id = id;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("assetId"))
-				kparams.AddIfNotNull("assetId", AssetId);
 			if (!isMapped("id"))
 				kparams.AddIfNotNull("id", Id);
 			return kparams;
@@ -484,11 +396,6 @@ namespace Kaltura.Services
 			return new RecordingGetRequestBuilder(id);
 		}
 
-		public static RecordingImmediateRecordRequestBuilder ImmediateRecord(long assetId, int endPadding = Int32.MinValue)
-		{
-			return new RecordingImmediateRecordRequestBuilder(assetId, endPadding);
-		}
-
 		public static RecordingListRequestBuilder List(RecordingFilter filter = null, FilterPager pager = null)
 		{
 			return new RecordingListRequestBuilder(filter, pager);
@@ -497,11 +404,6 @@ namespace Kaltura.Services
 		public static RecordingProtectRequestBuilder Protect(long id)
 		{
 			return new RecordingProtectRequestBuilder(id);
-		}
-
-		public static RecordingStopRequestBuilder Stop(long assetId, long id)
-		{
-			return new RecordingStopRequestBuilder(assetId, id);
 		}
 
 		public static RecordingUpdateRequestBuilder Update(long id, Recording recording)
