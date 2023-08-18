@@ -35,80 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ProgramAssetGroupOfferFilter : Filter
+	public class IngestStatusVodConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string ALSO_INACTIVE = "alsoInactive";
-		public const string NAME_CONTAINS = "nameContains";
-		public new const string ORDER_BY = "orderBy";
+		public const string IS_SUPPORTED = "isSupported";
+		public const string RETAINING_PERIOD = "retainingPeriod";
 		#endregion
 
 		#region Private Fields
-		private bool? _AlsoInactive = null;
-		private string _NameContains = null;
-		private ProgramAssetGroupOfferOrderBy _OrderBy = null;
+		private bool? _IsSupported = null;
+		private long _RetainingPeriod = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AlsoInactiveAsDouble property instead
+		/// Use IsSupportedAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? AlsoInactive
+		public bool? IsSupported
 		{
-			get { return _AlsoInactive; }
+			get { return _IsSupported; }
 			set 
 			{ 
-				_AlsoInactive = value;
-				OnPropertyChanged("AlsoInactive");
+				_IsSupported = value;
+				OnPropertyChanged("IsSupported");
 			}
 		}
 		/// <summary>
-		/// Use NameContainsAsDouble property instead
+		/// Use RetainingPeriodAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string NameContains
+		public long RetainingPeriod
 		{
-			get { return _NameContains; }
+			get { return _RetainingPeriod; }
 			set 
 			{ 
-				_NameContains = value;
-				OnPropertyChanged("NameContains");
-			}
-		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public new ProgramAssetGroupOfferOrderBy OrderBy
-		{
-			get { return _OrderBy; }
-			set 
-			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
+				_RetainingPeriod = value;
+				OnPropertyChanged("RetainingPeriod");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ProgramAssetGroupOfferFilter()
+		public IngestStatusVodConfiguration()
 		{
 		}
 
-		public ProgramAssetGroupOfferFilter(JToken node) : base(node)
+		public IngestStatusVodConfiguration(JToken node) : base(node)
 		{
-			if(node["alsoInactive"] != null)
+			if(node["isSupported"] != null)
 			{
-				this._AlsoInactive = ParseBool(node["alsoInactive"].Value<string>());
+				this._IsSupported = ParseBool(node["isSupported"].Value<string>());
 			}
-			if(node["nameContains"] != null)
+			if(node["retainingPeriod"] != null)
 			{
-				this._NameContains = node["nameContains"].Value<string>();
-			}
-			if(node["orderBy"] != null)
-			{
-				this._OrderBy = (ProgramAssetGroupOfferOrderBy)StringEnum.Parse(typeof(ProgramAssetGroupOfferOrderBy), node["orderBy"].Value<string>());
+				this._RetainingPeriod = ParseLong(node["retainingPeriod"].Value<string>());
 			}
 		}
 		#endregion
@@ -118,22 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOfferFilter");
-			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
-			kparams.AddIfNotNull("nameContains", this._NameContains);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+				kparams.AddReplace("objectType", "KalturaIngestStatusVodConfiguration");
+			kparams.AddIfNotNull("isSupported", this._IsSupported);
+			kparams.AddIfNotNull("retainingPeriod", this._RetainingPeriod);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ALSO_INACTIVE:
-					return "AlsoInactive";
-				case NAME_CONTAINS:
-					return "NameContains";
-				case ORDER_BY:
-					return "OrderBy";
+				case IS_SUPPORTED:
+					return "IsSupported";
+				case RETAINING_PERIOD:
+					return "RetainingPeriod";
 				default:
 					return base.getPropertyName(apiName);
 			}
