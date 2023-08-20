@@ -40,11 +40,15 @@ namespace Kaltura.Types
 		#region Constants
 		public const string START_PADDING = "startPadding";
 		public const string END_PADDING = "endPadding";
+		public const string START_PADDING_IS_PERSONAL = "startPaddingIsPersonal";
+		public const string END_PADDING_IS_PERSONAL = "endPaddingIsPersonal";
 		#endregion
 
 		#region Private Fields
 		private int _StartPadding = Int32.MinValue;
 		private int _EndPadding = Int32.MinValue;
+		private bool? _StartPaddingIsPersonal = null;
+		private bool? _EndPaddingIsPersonal = null;
 		#endregion
 
 		#region Properties
@@ -74,6 +78,32 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndPadding");
 			}
 		}
+		/// <summary>
+		/// Use StartPaddingIsPersonalAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? StartPaddingIsPersonal
+		{
+			get { return _StartPaddingIsPersonal; }
+			private set 
+			{ 
+				_StartPaddingIsPersonal = value;
+				OnPropertyChanged("StartPaddingIsPersonal");
+			}
+		}
+		/// <summary>
+		/// Use EndPaddingIsPersonalAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? EndPaddingIsPersonal
+		{
+			get { return _EndPaddingIsPersonal; }
+			private set 
+			{ 
+				_EndPaddingIsPersonal = value;
+				OnPropertyChanged("EndPaddingIsPersonal");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -91,6 +121,14 @@ namespace Kaltura.Types
 			{
 				this._EndPadding = ParseInt(node["endPadding"].Value<string>());
 			}
+			if(node["startPaddingIsPersonal"] != null)
+			{
+				this._StartPaddingIsPersonal = ParseBool(node["startPaddingIsPersonal"].Value<string>());
+			}
+			if(node["endPaddingIsPersonal"] != null)
+			{
+				this._EndPaddingIsPersonal = ParseBool(node["endPaddingIsPersonal"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -102,6 +140,8 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaPaddedRecording");
 			kparams.AddIfNotNull("startPadding", this._StartPadding);
 			kparams.AddIfNotNull("endPadding", this._EndPadding);
+			kparams.AddIfNotNull("startPaddingIsPersonal", this._StartPaddingIsPersonal);
+			kparams.AddIfNotNull("endPaddingIsPersonal", this._EndPaddingIsPersonal);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -112,6 +152,10 @@ namespace Kaltura.Types
 					return "StartPadding";
 				case END_PADDING:
 					return "EndPadding";
+				case START_PADDING_IS_PERSONAL:
+					return "StartPaddingIsPersonal";
+				case END_PADDING_IS_PERSONAL:
+					return "EndPaddingIsPersonal";
 				default:
 					return base.getPropertyName(apiName);
 			}
