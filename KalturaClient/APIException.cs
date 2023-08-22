@@ -175,6 +175,7 @@ namespace Kaltura
 		public static string CanOnlyCancelRecordingBeforeRecordingEnd = "3092";
 		public static string CanOnlyDeleteRecordingAfterRecordingEnd = "3093";
 		public static string RecordingExceededConcurrency = "3094";
+		public static string ExceedingAllowedImmediateRecordingAttempts = "3095";
 		public static string MediaConcurrencyLimitation = "4000";
 		public static string ConcurrencyLimitation = "4001";
 		public static string BadSearchRequest = "4002";
@@ -274,6 +275,11 @@ namespace Kaltura
 		public static string SearchPriorityGroupDoesNotExist = "4117";
 		public static string DynamicDataKeyDoesNotExist = "4120";
 		public static string DynamicDataKeyValueDoesNotExist = "4121";
+		public static string LiveAssetToProgramAssetMismatch = "4122";
+		public static string EpgStartDateToProgramAssetMismatch = "4123";
+		public static string EpgEndDateToProgramAssetMismatch = "4124";
+		public static string CridToProgramAssetMismatch = "4125";
+		public static string CannotImportRecordingWithinCatchUpBuffer = "4126";
 		public static string NoPinDefined = "5001";
 		public static string PinMismatch = "5002";
 		public static string RuleNotExists = "5003";
@@ -305,6 +311,8 @@ namespace Kaltura
 		public static string UserAlreadyAttachedToAssetUserRule = "5032";
 		public static string AssetUserRulesOperationsDisable = "5033";
 		public static string RoleDoesNotExists = "5038";
+		public static string EmbeddedPermissionRoleModificationNotAllowed = "5096";
+		public static string PersonalizedRecordingDisabled = "5098";
 		public static string FileDoesNotExists = "5040";
 		public static string FileAlreadyExists = "5041";
 		public static string ErrorSavingFile = "5042";
@@ -346,6 +354,7 @@ namespace Kaltura
 		public static string DynamicSegmentConditionsExceeded = "5093";
 		public static string NameMustBeUnique = "5094";
 		public static string EntityIsNotAssociatedWithShop = "5095";
+		public static string CannotDeleteSubRegionInUse = "5097";
 		public static string IncorrectPrice = "6000";
 		public static string UnKnownPPVModule = "6001";
 		public static string ExpiredCard = "6002";
@@ -696,6 +705,7 @@ namespace Kaltura
 		public static string InvalidAppTokenHash = "50022";
 		public static string ExpiredAppToken = "50021";
 		public static string GroupMissMatch = "500085";
+		public static string RateLimitExceeded = "500096";
 		public static string Error = "1";
 		public static string MissingConfiguration = "500006";
 		public static string NotFound = "500007";
