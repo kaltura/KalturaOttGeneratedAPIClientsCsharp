@@ -43,6 +43,7 @@ namespace Kaltura.Types
 		public const string COUPON_GROUP_ID_EQUAL = "couponGroupIdEqual";
 		public const string ALSO_INACTIVE = "alsoInactive";
 		public const string ASSET_USER_RULE_ID_IN = "assetUserRuleIdIn";
+		public const string NAME_CONTAINS = "nameContains";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -52,6 +53,7 @@ namespace Kaltura.Types
 		private int _CouponGroupIdEqual = Int32.MinValue;
 		private bool? _AlsoInactive = null;
 		private string _AssetUserRuleIdIn = null;
+		private string _NameContains = null;
 		private CollectionOrderBy _OrderBy = null;
 		#endregion
 
@@ -122,6 +124,19 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use NameContainsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string NameContains
+		{
+			get { return _NameContains; }
+			set 
+			{ 
+				_NameContains = value;
+				OnPropertyChanged("NameContains");
+			}
+		}
+		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -163,6 +178,10 @@ namespace Kaltura.Types
 			{
 				this._AssetUserRuleIdIn = node["assetUserRuleIdIn"].Value<string>();
 			}
+			if(node["nameContains"] != null)
+			{
+				this._NameContains = node["nameContains"].Value<string>();
+			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (CollectionOrderBy)StringEnum.Parse(typeof(CollectionOrderBy), node["orderBy"].Value<string>());
@@ -181,6 +200,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("couponGroupIdEqual", this._CouponGroupIdEqual);
 			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
 			kparams.AddIfNotNull("assetUserRuleIdIn", this._AssetUserRuleIdIn);
+			kparams.AddIfNotNull("nameContains", this._NameContains);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -198,6 +218,8 @@ namespace Kaltura.Types
 					return "AlsoInactive";
 				case ASSET_USER_RULE_ID_IN:
 					return "AssetUserRuleIdIn";
+				case NAME_CONTAINS:
+					return "NameContains";
 				case ORDER_BY:
 					return "OrderBy";
 				default:

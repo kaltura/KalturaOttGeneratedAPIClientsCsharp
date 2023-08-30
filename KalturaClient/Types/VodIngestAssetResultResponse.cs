@@ -35,80 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ProgramAssetGroupOfferFilter : Filter
+	public class VodIngestAssetResultResponse : ObjectBase
 	{
 		#region Constants
-		public const string ALSO_INACTIVE = "alsoInactive";
-		public const string NAME_CONTAINS = "nameContains";
-		public new const string ORDER_BY = "orderBy";
+		public const string RESULT = "result";
+		public const string AGGREGATIONS = "aggregations";
 		#endregion
 
 		#region Private Fields
-		private bool? _AlsoInactive = null;
-		private string _NameContains = null;
-		private ProgramAssetGroupOfferOrderBy _OrderBy = null;
+		private VodIngestAssetResultList _Result;
+		private VodIngestAssetResultAggregation _Aggregations;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AlsoInactiveAsDouble property instead
+		/// Use ResultAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? AlsoInactive
+		public VodIngestAssetResultList Result
 		{
-			get { return _AlsoInactive; }
+			get { return _Result; }
 			set 
 			{ 
-				_AlsoInactive = value;
-				OnPropertyChanged("AlsoInactive");
+				_Result = value;
+				OnPropertyChanged("Result");
 			}
 		}
 		/// <summary>
-		/// Use NameContainsAsDouble property instead
+		/// Use AggregationsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string NameContains
+		public VodIngestAssetResultAggregation Aggregations
 		{
-			get { return _NameContains; }
+			get { return _Aggregations; }
 			set 
 			{ 
-				_NameContains = value;
-				OnPropertyChanged("NameContains");
-			}
-		}
-		/// <summary>
-		/// Use OrderByAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public new ProgramAssetGroupOfferOrderBy OrderBy
-		{
-			get { return _OrderBy; }
-			set 
-			{ 
-				_OrderBy = value;
-				OnPropertyChanged("OrderBy");
+				_Aggregations = value;
+				OnPropertyChanged("Aggregations");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ProgramAssetGroupOfferFilter()
+		public VodIngestAssetResultResponse()
 		{
 		}
 
-		public ProgramAssetGroupOfferFilter(JToken node) : base(node)
+		public VodIngestAssetResultResponse(JToken node) : base(node)
 		{
-			if(node["alsoInactive"] != null)
+			if(node["result"] != null)
 			{
-				this._AlsoInactive = ParseBool(node["alsoInactive"].Value<string>());
+				this._Result = ObjectFactory.Create<VodIngestAssetResultList>(node["result"]);
 			}
-			if(node["nameContains"] != null)
+			if(node["aggregations"] != null)
 			{
-				this._NameContains = node["nameContains"].Value<string>();
-			}
-			if(node["orderBy"] != null)
-			{
-				this._OrderBy = (ProgramAssetGroupOfferOrderBy)StringEnum.Parse(typeof(ProgramAssetGroupOfferOrderBy), node["orderBy"].Value<string>());
+				this._Aggregations = ObjectFactory.Create<VodIngestAssetResultAggregation>(node["aggregations"]);
 			}
 		}
 		#endregion
@@ -118,22 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaProgramAssetGroupOfferFilter");
-			kparams.AddIfNotNull("alsoInactive", this._AlsoInactive);
-			kparams.AddIfNotNull("nameContains", this._NameContains);
-			kparams.AddIfNotNull("orderBy", this._OrderBy);
+				kparams.AddReplace("objectType", "KalturaVodIngestAssetResultResponse");
+			kparams.AddIfNotNull("result", this._Result);
+			kparams.AddIfNotNull("aggregations", this._Aggregations);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ALSO_INACTIVE:
-					return "AlsoInactive";
-				case NAME_CONTAINS:
-					return "NameContains";
-				case ORDER_BY:
-					return "OrderBy";
+				case RESULT:
+					return "Result";
+				case AGGREGATIONS:
+					return "Aggregations";
 				default:
 					return base.getPropertyName(apiName);
 			}
