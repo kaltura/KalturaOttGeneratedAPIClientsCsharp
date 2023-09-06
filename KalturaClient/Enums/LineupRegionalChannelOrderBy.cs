@@ -27,14 +27,13 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class UserRoleProfile : StringEnum
+	public sealed class LineupRegionalChannelOrderBy : StringEnum
 	{
-		public static readonly UserRoleProfile USER = new UserRoleProfile("USER");
-		public static readonly UserRoleProfile PARTNER = new UserRoleProfile("PARTNER");
-		public static readonly UserRoleProfile PROFILE = new UserRoleProfile("PROFILE");
-		public static readonly UserRoleProfile SYSTEM = new UserRoleProfile("SYSTEM");
-		public static readonly UserRoleProfile PERMISSION_EMBEDDED = new UserRoleProfile("PERMISSION_EMBEDDED");
+		public static readonly LineupRegionalChannelOrderBy LCN_ASC = new LineupRegionalChannelOrderBy("LCN_ASC");
+		public static readonly LineupRegionalChannelOrderBy LCN_DESC = new LineupRegionalChannelOrderBy("LCN_DESC");
+		public static readonly LineupRegionalChannelOrderBy NAME_ASC = new LineupRegionalChannelOrderBy("NAME_ASC");
+		public static readonly LineupRegionalChannelOrderBy NAME_DESC = new LineupRegionalChannelOrderBy("NAME_DESC");
 
-		private UserRoleProfile(string name) : base(name) { }
+		private LineupRegionalChannelOrderBy(string name) : base(name) { }
 	}
 }
