@@ -280,6 +280,7 @@ namespace Kaltura
 		public static string EpgEndDateToProgramAssetMismatch = "4124";
 		public static string CridToProgramAssetMismatch = "4125";
 		public static string CannotImportRecordingWithinCatchUpBuffer = "4126";
+		public static string CollectionTooBigForGrouping = "4127";
 		public static string NoPinDefined = "5001";
 		public static string PinMismatch = "5002";
 		public static string RuleNotExists = "5003";
