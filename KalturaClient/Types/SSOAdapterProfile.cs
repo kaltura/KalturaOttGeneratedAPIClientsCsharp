@@ -45,6 +45,7 @@ namespace Kaltura.Types
 		public const string SETTINGS = "settings";
 		public const string EXTERNAL_IDENTIFIER = "externalIdentifier";
 		public const string SHARED_SECRET = "sharedSecret";
+		public const string ADAPTER_GRPC_ADDRESS = "adapterGrpcAddress";
 		#endregion
 
 		#region Private Fields
@@ -55,6 +56,7 @@ namespace Kaltura.Types
 		private IDictionary<string, StringValue> _Settings;
 		private string _ExternalIdentifier = null;
 		private string _SharedSecret = null;
+		private string _AdapterGrpcAddress = null;
 		#endregion
 
 		#region Properties
@@ -149,6 +151,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("SharedSecret");
 			}
 		}
+		/// <summary>
+		/// Use AdapterGrpcAddressAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string AdapterGrpcAddress
+		{
+			get { return _AdapterGrpcAddress; }
+			set 
+			{ 
+				_AdapterGrpcAddress = value;
+				OnPropertyChanged("AdapterGrpcAddress");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -194,6 +209,10 @@ namespace Kaltura.Types
 			{
 				this._SharedSecret = node["sharedSecret"].Value<string>();
 			}
+			if(node["adapterGrpcAddress"] != null)
+			{
+				this._AdapterGrpcAddress = node["adapterGrpcAddress"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -210,6 +229,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("settings", this._Settings);
 			kparams.AddIfNotNull("externalIdentifier", this._ExternalIdentifier);
 			kparams.AddIfNotNull("sharedSecret", this._SharedSecret);
+			kparams.AddIfNotNull("adapterGrpcAddress", this._AdapterGrpcAddress);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -230,6 +250,8 @@ namespace Kaltura.Types
 					return "ExternalIdentifier";
 				case SHARED_SECRET:
 					return "SharedSecret";
+				case ADAPTER_GRPC_ADDRESS:
+					return "AdapterGrpcAddress";
 				default:
 					return base.getPropertyName(apiName);
 			}

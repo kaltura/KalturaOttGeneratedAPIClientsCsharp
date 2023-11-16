@@ -106,6 +106,8 @@ namespace Kaltura
 					return new ListResponse<AssetFilePpv>(jToken);
 				case "KalturaCollectionListResponse":
 					return new ListResponse<Collection>(jToken);
+				case "KalturaCouponFilesLinks":
+					return new ListResponse<StringValue>(jToken);
 				case "KalturaCouponListResponse":
 					return new ListResponse<Coupon>(jToken);
 				case "KalturaCouponsGroupListResponse":
