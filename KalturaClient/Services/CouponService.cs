@@ -75,7 +75,7 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class CouponGetFilesLinksRequestBuilder : RequestBuilder<ListResponse<StringValue>>
+	public class CouponGetFilesLinksRequestBuilder : RequestBuilder<CouponFilesLinks>
 	{
 		#region Constants
 		public const string COUPONS_GROUP_ID = "couponsGroupId";
@@ -110,7 +110,7 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<ListResponse<StringValue>>(result);
+			return ObjectFactory.Create<CouponFilesLinks>(result);
 		}
 	}
 
