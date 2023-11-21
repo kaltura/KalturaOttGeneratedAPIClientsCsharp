@@ -43,7 +43,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private VodIngestAssetResultList _Result;
+		private ListResponse<VodIngestAssetResult> _Result;
 		private VodIngestAssetResultAggregation _Aggregations;
 		#endregion
 
@@ -52,7 +52,7 @@ namespace Kaltura.Types
 		/// Use ResultAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public VodIngestAssetResultList Result
+		public ListResponse<VodIngestAssetResult> Result
 		{
 			get { return _Result; }
 			set 
@@ -85,7 +85,7 @@ namespace Kaltura.Types
 		{
 			if(node["result"] != null)
 			{
-				this._Result = ObjectFactory.Create<VodIngestAssetResultList>(node["result"]);
+				this._Result = ObjectFactory.Create<ListResponse<VodIngestAssetResult>>(node["result"]);
 			}
 			if(node["aggregations"] != null)
 			{
