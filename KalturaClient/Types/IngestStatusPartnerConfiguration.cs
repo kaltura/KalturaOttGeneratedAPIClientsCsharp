@@ -39,12 +39,10 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string EPG = "epg";
-		public const string VOD = "vod";
 		#endregion
 
 		#region Private Fields
 		private IngestStatusEpgConfiguration _Epg;
-		private IngestStatusVodConfiguration _Vod;
 		#endregion
 
 		#region Properties
@@ -61,19 +59,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Epg");
 			}
 		}
-		/// <summary>
-		/// Use VodAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IngestStatusVodConfiguration Vod
-		{
-			get { return _Vod; }
-			set 
-			{ 
-				_Vod = value;
-				OnPropertyChanged("Vod");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -87,10 +72,6 @@ namespace Kaltura.Types
 			{
 				this._Epg = ObjectFactory.Create<IngestStatusEpgConfiguration>(node["epg"]);
 			}
-			if(node["vod"] != null)
-			{
-				this._Vod = ObjectFactory.Create<IngestStatusVodConfiguration>(node["vod"]);
-			}
 		}
 		#endregion
 
@@ -101,7 +82,6 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaIngestStatusPartnerConfiguration");
 			kparams.AddIfNotNull("epg", this._Epg);
-			kparams.AddIfNotNull("vod", this._Vod);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -110,8 +90,6 @@ namespace Kaltura.Types
 			{
 				case EPG:
 					return "Epg";
-				case VOD:
-					return "Vod";
 				default:
 					return base.getPropertyName(apiName);
 			}

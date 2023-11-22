@@ -35,65 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class VodIngestAssetResultList : ObjectBase
+	public class CouponFilter : Filter
 	{
 		#region Constants
-		public const string OBJECTS = "objects";
-		public const string TOTAL_COUNT = "totalCount";
+		public const string COUPON_CODES_IN = "couponCodesIn";
 		#endregion
 
 		#region Private Fields
-		private IList<VodIngestAssetResult> _Objects;
-		private int _TotalCount = Int32.MinValue;
+		private string _CouponCodesIn = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ObjectsAsDouble property instead
+		/// Use CouponCodesInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<VodIngestAssetResult> Objects
+		public string CouponCodesIn
 		{
-			get { return _Objects; }
+			get { return _CouponCodesIn; }
 			set 
 			{ 
-				_Objects = value;
-				OnPropertyChanged("Objects");
-			}
-		}
-		/// <summary>
-		/// Use TotalCountAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int TotalCount
-		{
-			get { return _TotalCount; }
-			set 
-			{ 
-				_TotalCount = value;
-				OnPropertyChanged("TotalCount");
+				_CouponCodesIn = value;
+				OnPropertyChanged("CouponCodesIn");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public VodIngestAssetResultList()
+		public CouponFilter()
 		{
 		}
 
-		public VodIngestAssetResultList(JToken node) : base(node)
+		public CouponFilter(JToken node) : base(node)
 		{
-			if(node["objects"] != null)
+			if(node["couponCodesIn"] != null)
 			{
-				this._Objects = new List<VodIngestAssetResult>();
-				foreach(var arrayNode in node["objects"].Children())
-				{
-					this._Objects.Add(ObjectFactory.Create<VodIngestAssetResult>(arrayNode));
-				}
-			}
-			if(node["totalCount"] != null)
-			{
-				this._TotalCount = ParseInt(node["totalCount"].Value<string>());
+				this._CouponCodesIn = node["couponCodesIn"].Value<string>();
 			}
 		}
 		#endregion
@@ -103,19 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaVodIngestAssetResultList");
-			kparams.AddIfNotNull("objects", this._Objects);
-			kparams.AddIfNotNull("totalCount", this._TotalCount);
+				kparams.AddReplace("objectType", "KalturaCouponFilter");
+			kparams.AddIfNotNull("couponCodesIn", this._CouponCodesIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case OBJECTS:
-					return "Objects";
-				case TOTAL_COUNT:
-					return "TotalCount";
+				case COUPON_CODES_IN:
+					return "CouponCodesIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

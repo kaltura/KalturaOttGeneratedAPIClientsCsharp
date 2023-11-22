@@ -50,7 +50,6 @@ namespace Kaltura.Types
 		public const string QUALITY = "quality";
 		public const string VIDEO_CODECS = "videoCodecs";
 		public const string AUDIO_CODECS = "audioCodecs";
-		public const string DYNAMIC_DATA_KEYS = "dynamicDataKeys";
 		#endregion
 
 		#region Private Fields
@@ -66,7 +65,6 @@ namespace Kaltura.Types
 		private MediaFileTypeQuality _Quality = null;
 		private string _VideoCodecs = null;
 		private string _AudioCodecs = null;
-		private string _DynamicDataKeys = null;
 		#endregion
 
 		#region Properties
@@ -226,19 +224,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("AudioCodecs");
 			}
 		}
-		/// <summary>
-		/// Use DynamicDataKeysAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string DynamicDataKeys
-		{
-			get { return _DynamicDataKeys; }
-			set 
-			{ 
-				_DynamicDataKeys = value;
-				OnPropertyChanged("DynamicDataKeys");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -296,10 +281,6 @@ namespace Kaltura.Types
 			{
 				this._AudioCodecs = node["audioCodecs"].Value<string>();
 			}
-			if(node["dynamicDataKeys"] != null)
-			{
-				this._DynamicDataKeys = node["dynamicDataKeys"].Value<string>();
-			}
 		}
 		#endregion
 
@@ -321,7 +302,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("quality", this._Quality);
 			kparams.AddIfNotNull("videoCodecs", this._VideoCodecs);
 			kparams.AddIfNotNull("audioCodecs", this._AudioCodecs);
-			kparams.AddIfNotNull("dynamicDataKeys", this._DynamicDataKeys);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -352,8 +332,6 @@ namespace Kaltura.Types
 					return "VideoCodecs";
 				case AUDIO_CODECS:
 					return "AudioCodecs";
-				case DYNAMIC_DATA_KEYS:
-					return "DynamicDataKeys";
 				default:
 					return base.getPropertyName(apiName);
 			}

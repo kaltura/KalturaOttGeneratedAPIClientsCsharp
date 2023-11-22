@@ -140,10 +140,10 @@ namespace Kaltura
 					return new ListResponse<EngagementAdapter>(jToken);
 				case "KalturaEngagementListResponse":
 					return new ListResponse<Engagement>(jToken);
-				case "KalturaFollowTvSeriesListResponse":
-					return new ListResponse<FollowTvSeries>(jToken);
 				case "KalturaInboxMessageListResponse":
 					return new ListResponse<InboxMessage>(jToken);
+				case "KalturaFollowTvSeriesListResponse":
+					return new ListResponse<FollowTvSeries>(jToken);
 				case "KalturaPersonalFeedListResponse":
 					return new ListResponse<PersonalFeed>(jToken);
 				case "KalturaReminderListResponse":
@@ -230,8 +230,6 @@ namespace Kaltura
 					return new ListResponse<Label>(jToken);
 				case "KalturaLineupChannelAssetListResponse":
 					return new ListResponse<LineupChannelAsset>(jToken);
-				case "KalturaMediaFileDynamicDataListResponse":
-					return new ListResponse<MediaFileDynamicData>(jToken);
 				case "KalturaMediaFileListResponse":
 					return new ListResponse<MediaFile>(jToken);
 				case "KalturaMediaFileTypeListResponse":
