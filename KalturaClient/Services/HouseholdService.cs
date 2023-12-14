@@ -155,6 +155,35 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class HouseholdGetPartnerConfigurationRequestBuilder : RequestBuilder<HouseholdPartnerConfiguration>
+	{
+		#region Constants
+		#endregion
+
+
+		public HouseholdGetPartnerConfigurationRequestBuilder()
+			: base("household", "getPartnerConfiguration")
+		{
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<HouseholdPartnerConfiguration>(result);
+		}
+	}
+
 	public class HouseholdListRequestBuilder : RequestBuilder<ListResponse<Household>>
 	{
 		#region Constants
@@ -310,6 +339,45 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class HouseholdRetryDeleteRequestBuilder : RequestBuilder<VoidResponse>
+	{
+		#region Constants
+		public const string REQUEST = "request";
+		#endregion
+
+		public RetryDeleteRequest Request { get; set; }
+
+		public HouseholdRetryDeleteRequestBuilder()
+			: base("household", "retryDelete")
+		{
+		}
+
+		public HouseholdRetryDeleteRequestBuilder(RetryDeleteRequest request)
+			: this()
+		{
+			this.Request = request;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("request"))
+				kparams.AddIfNotNull("request", Request);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return null;
+		}
+	}
+
 	public class HouseholdSuspendRequestBuilder : RequestBuilder<bool>
 	{
 		#region Constants
@@ -390,6 +458,45 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class HouseholdUpdatePartnerConfigurationRequestBuilder : RequestBuilder<VoidResponse>
+	{
+		#region Constants
+		public const string CONFIGURATION = "configuration";
+		#endregion
+
+		public HouseholdPartnerConfiguration Configuration { get; set; }
+
+		public HouseholdUpdatePartnerConfigurationRequestBuilder()
+			: base("household", "updatePartnerConfiguration")
+		{
+		}
+
+		public HouseholdUpdatePartnerConfigurationRequestBuilder(HouseholdPartnerConfiguration configuration)
+			: this()
+		{
+			this.Configuration = configuration;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("configuration"))
+				kparams.AddIfNotNull("configuration", Configuration);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return null;
+		}
+	}
+
 
 	public class HouseholdService
 	{
@@ -412,6 +519,11 @@ namespace Kaltura.Services
 			return new HouseholdGetRequestBuilder(id);
 		}
 
+		public static HouseholdGetPartnerConfigurationRequestBuilder GetPartnerConfiguration()
+		{
+			return new HouseholdGetPartnerConfigurationRequestBuilder();
+		}
+
 		public static HouseholdListRequestBuilder List(HouseholdFilter filter, FilterPager pager = null)
 		{
 			return new HouseholdListRequestBuilder(filter, pager);
@@ -432,6 +544,11 @@ namespace Kaltura.Services
 			return new HouseholdResumeRequestBuilder();
 		}
 
+		public static HouseholdRetryDeleteRequestBuilder RetryDelete(RetryDeleteRequest request)
+		{
+			return new HouseholdRetryDeleteRequestBuilder(request);
+		}
+
 		public static HouseholdSuspendRequestBuilder Suspend(int roleId = Int32.MinValue)
 		{
 			return new HouseholdSuspendRequestBuilder(roleId);
@@ -440,6 +557,11 @@ namespace Kaltura.Services
 		public static HouseholdUpdateRequestBuilder Update(Household household)
 		{
 			return new HouseholdUpdateRequestBuilder(household);
+		}
+
+		public static HouseholdUpdatePartnerConfigurationRequestBuilder UpdatePartnerConfiguration(HouseholdPartnerConfiguration configuration)
+		{
+			return new HouseholdUpdatePartnerConfigurationRequestBuilder(configuration);
 		}
 	}
 }
