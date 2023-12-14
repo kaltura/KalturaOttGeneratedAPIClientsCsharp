@@ -634,6 +634,7 @@ namespace Kaltura
 		public static string FailedToSetRouteRefreshToken = "13009";
 		public static string FailedToSetAllRoutingActions = "13010";
 		public static string CanaryDeploymentConfigurationIsDisabledOnTheEnvironment = "13011";
+		public static string AmazonS3Error = "13500";
 		public static string BadRequest = "500003";
 		public static string InvalidVersion = "500057";
 		public static string ServiceForbidden = "500004";
