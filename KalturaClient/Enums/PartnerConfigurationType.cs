@@ -44,6 +44,7 @@ namespace Kaltura.Enums
 		public static readonly PartnerConfigurationType BASE = new PartnerConfigurationType("Base");
 		public static readonly PartnerConfigurationType CUSTOMFIELDS = new PartnerConfigurationType("CustomFields");
 		public static readonly PartnerConfigurationType DEFAULTPARENTALSETTINGS = new PartnerConfigurationType("DefaultParentalSettings");
+		public static readonly PartnerConfigurationType CLOUDUPLOADSETTINGS = new PartnerConfigurationType("CloudUploadSettings");
 
 		private PartnerConfigurationType(string name) : base(name) { }
 	}

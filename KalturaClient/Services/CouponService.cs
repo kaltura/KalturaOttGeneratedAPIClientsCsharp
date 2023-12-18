@@ -75,6 +75,45 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class CouponGetFilesLinksRequestBuilder : RequestBuilder<CouponFilesLinks>
+	{
+		#region Constants
+		public const string COUPONS_GROUP_ID = "couponsGroupId";
+		#endregion
+
+		public long CouponsGroupId { get; set; }
+
+		public CouponGetFilesLinksRequestBuilder()
+			: base("coupon", "getFilesLinks")
+		{
+		}
+
+		public CouponGetFilesLinksRequestBuilder(long couponsGroupId)
+			: this()
+		{
+			this.CouponsGroupId = couponsGroupId;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("couponsGroupId"))
+				kparams.AddIfNotNull("couponsGroupId", CouponsGroupId);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<CouponFilesLinks>(result);
+		}
+	}
+
 
 	public class CouponService
 	{
@@ -85,6 +124,11 @@ namespace Kaltura.Services
 		public static CouponGetRequestBuilder Get(string code)
 		{
 			return new CouponGetRequestBuilder(code);
+		}
+
+		public static CouponGetFilesLinksRequestBuilder GetFilesLinks(long couponsGroupId)
+		{
+			return new CouponGetFilesLinksRequestBuilder(couponsGroupId);
 		}
 	}
 }
