@@ -33,7 +33,6 @@ namespace Kaltura.Enums
 		public static readonly UserRoleProfile PARTNER = new UserRoleProfile("PARTNER");
 		public static readonly UserRoleProfile PROFILE = new UserRoleProfile("PROFILE");
 		public static readonly UserRoleProfile SYSTEM = new UserRoleProfile("SYSTEM");
-		public static readonly UserRoleProfile PERMISSION_EMBEDDED = new UserRoleProfile("PERMISSION_EMBEDDED");
 
 		private UserRoleProfile(string name) : base(name) { }
 	}

@@ -38,27 +38,12 @@ namespace Kaltura.Types
 	public class FilterAction : AssetRuleAction
 	{
 		#region Constants
-		public const string PRE_ACTION_CONDITION = "preActionCondition";
 		#endregion
 
 		#region Private Fields
-		private BasePreActionCondition _PreActionCondition;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use PreActionConditionAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public BasePreActionCondition PreActionCondition
-		{
-			get { return _PreActionCondition; }
-			set 
-			{ 
-				_PreActionCondition = value;
-				OnPropertyChanged("PreActionCondition");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -68,10 +53,6 @@ namespace Kaltura.Types
 
 		public FilterAction(JToken node) : base(node)
 		{
-			if(node["preActionCondition"] != null)
-			{
-				this._PreActionCondition = ObjectFactory.Create<BasePreActionCondition>(node["preActionCondition"]);
-			}
 		}
 		#endregion
 
@@ -81,15 +62,12 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaFilterAction");
-			kparams.AddIfNotNull("preActionCondition", this._PreActionCondition);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case PRE_ACTION_CONDITION:
-					return "PreActionCondition";
 				default:
 					return base.getPropertyName(apiName);
 			}
