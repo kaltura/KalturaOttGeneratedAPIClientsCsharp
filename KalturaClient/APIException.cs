@@ -280,6 +280,8 @@ namespace Kaltura
 		public static string EpgEndDateToProgramAssetMismatch = "4124";
 		public static string CridToProgramAssetMismatch = "4125";
 		public static string CannotImportRecordingWithinCatchUpBuffer = "4126";
+		public static string CollectionTooBigForGrouping = "4127";
+		public static string SubscriptionSetTypeMismatch = "3096";
 		public static string NoPinDefined = "5001";
 		public static string PinMismatch = "5002";
 		public static string RuleNotExists = "5003";
@@ -633,6 +635,7 @@ namespace Kaltura
 		public static string FailedToSetRouteRefreshToken = "13009";
 		public static string FailedToSetAllRoutingActions = "13010";
 		public static string CanaryDeploymentConfigurationIsDisabledOnTheEnvironment = "13011";
+		public static string AmazonS3Error = "13500";
 		public static string BadRequest = "500003";
 		public static string InvalidVersion = "500057";
 		public static string ServiceForbidden = "500004";
