@@ -382,45 +382,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class HouseholdDeviceRetryDeleteRequestBuilder : RequestBuilder<VoidResponse>
-	{
-		#region Constants
-		public const string REQUEST = "request";
-		#endregion
-
-		public RetryDeleteRequest Request { get; set; }
-
-		public HouseholdDeviceRetryDeleteRequestBuilder()
-			: base("householddevice", "retryDelete")
-		{
-		}
-
-		public HouseholdDeviceRetryDeleteRequestBuilder(RetryDeleteRequest request)
-			: this()
-		{
-			this.Request = request;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("request"))
-				kparams.AddIfNotNull("request", Request);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return null;
-		}
-	}
-
 	public class HouseholdDeviceUpdateRequestBuilder : RequestBuilder<HouseholdDevice>
 	{
 		#region Constants
@@ -605,11 +566,6 @@ namespace Kaltura.Services
 		public static HouseholdDeviceLoginWithPinRequestBuilder LoginWithPin(int partnerId, string pin, string udid = null, IDictionary<string, StringValue> extraParams = null)
 		{
 			return new HouseholdDeviceLoginWithPinRequestBuilder(partnerId, pin, udid, extraParams);
-		}
-
-		public static HouseholdDeviceRetryDeleteRequestBuilder RetryDelete(RetryDeleteRequest request)
-		{
-			return new HouseholdDeviceRetryDeleteRequestBuilder(request);
 		}
 
 		public static HouseholdDeviceUpdateRequestBuilder Update(string udid, HouseholdDevice device)
