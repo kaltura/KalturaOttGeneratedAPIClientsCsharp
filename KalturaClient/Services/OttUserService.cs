@@ -644,45 +644,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class OttUserRetryDeleteRequestBuilder : RequestBuilder<VoidResponse>
-	{
-		#region Constants
-		public const string REQUEST = "request";
-		#endregion
-
-		public RetryDeleteRequest Request { get; set; }
-
-		public OttUserRetryDeleteRequestBuilder()
-			: base("ottuser", "retryDelete")
-		{
-		}
-
-		public OttUserRetryDeleteRequestBuilder(RetryDeleteRequest request)
-			: this()
-		{
-			this.Request = request;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("request"))
-				kparams.AddIfNotNull("request", Request);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return null;
-		}
-	}
-
 	public class OttUserSetInitialPasswordRequestBuilder : RequestBuilder<OTTUser>
 	{
 		#region Constants
@@ -1034,11 +995,6 @@ namespace Kaltura.Services
 		public static OttUserResetPasswordRequestBuilder ResetPassword(int partnerId, string username, string templateName = null)
 		{
 			return new OttUserResetPasswordRequestBuilder(partnerId, username, templateName);
-		}
-
-		public static OttUserRetryDeleteRequestBuilder RetryDelete(RetryDeleteRequest request)
-		{
-			return new OttUserRetryDeleteRequestBuilder(request);
 		}
 
 		public static OttUserSetInitialPasswordRequestBuilder SetInitialPassword(int partnerId, string token, string password)
