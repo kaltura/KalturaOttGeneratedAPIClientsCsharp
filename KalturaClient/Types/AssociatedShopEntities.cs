@@ -35,61 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class UsageModuleFilter : Filter
+	public class AssociatedShopEntities : ObjectBase
 	{
 		#region Constants
-		public const string ID_EQUAL = "idEqual";
-		public const string ASSOCIATED_SHOP_ENTITIES = "associatedShopEntities";
+		public const string ASSET_USER_RULE_ID_IN = "assetUserRuleIdIn";
+		public const string INCLUDE_NULL_ASSET_USER_RULE_ID = "includeNullAssetUserRuleId";
 		#endregion
 
 		#region Private Fields
-		private int _IdEqual = Int32.MinValue;
-		private AssociatedShopEntities _AssociatedShopEntities;
+		private string _AssetUserRuleIdIn = null;
+		private bool? _IncludeNullAssetUserRuleId = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdEqualAsDouble property instead
+		/// Use AssetUserRuleIdInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int IdEqual
+		public string AssetUserRuleIdIn
 		{
-			get { return _IdEqual; }
+			get { return _AssetUserRuleIdIn; }
 			set 
 			{ 
-				_IdEqual = value;
-				OnPropertyChanged("IdEqual");
+				_AssetUserRuleIdIn = value;
+				OnPropertyChanged("AssetUserRuleIdIn");
 			}
 		}
 		/// <summary>
-		/// Use AssociatedShopEntitiesAsDouble property instead
+		/// Use IncludeNullAssetUserRuleIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public AssociatedShopEntities AssociatedShopEntities
+		public bool? IncludeNullAssetUserRuleId
 		{
-			get { return _AssociatedShopEntities; }
+			get { return _IncludeNullAssetUserRuleId; }
 			set 
 			{ 
-				_AssociatedShopEntities = value;
-				OnPropertyChanged("AssociatedShopEntities");
+				_IncludeNullAssetUserRuleId = value;
+				OnPropertyChanged("IncludeNullAssetUserRuleId");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public UsageModuleFilter()
+		public AssociatedShopEntities()
 		{
 		}
 
-		public UsageModuleFilter(JToken node) : base(node)
+		public AssociatedShopEntities(JToken node) : base(node)
 		{
-			if(node["idEqual"] != null)
+			if(node["assetUserRuleIdIn"] != null)
 			{
-				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
+				this._AssetUserRuleIdIn = node["assetUserRuleIdIn"].Value<string>();
 			}
-			if(node["associatedShopEntities"] != null)
+			if(node["includeNullAssetUserRuleId"] != null)
 			{
-				this._AssociatedShopEntities = ObjectFactory.Create<AssociatedShopEntities>(node["associatedShopEntities"]);
+				this._IncludeNullAssetUserRuleId = ParseBool(node["includeNullAssetUserRuleId"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaUsageModuleFilter");
-			kparams.AddIfNotNull("idEqual", this._IdEqual);
-			kparams.AddIfNotNull("associatedShopEntities", this._AssociatedShopEntities);
+				kparams.AddReplace("objectType", "KalturaAssociatedShopEntities");
+			kparams.AddIfNotNull("assetUserRuleIdIn", this._AssetUserRuleIdIn);
+			kparams.AddIfNotNull("includeNullAssetUserRuleId", this._IncludeNullAssetUserRuleId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID_EQUAL:
-					return "IdEqual";
-				case ASSOCIATED_SHOP_ENTITIES:
-					return "AssociatedShopEntities";
+				case ASSET_USER_RULE_ID_IN:
+					return "AssetUserRuleIdIn";
+				case INCLUDE_NULL_ASSET_USER_RULE_ID:
+					return "IncludeNullAssetUserRuleId";
 				default:
 					return base.getPropertyName(apiName);
 			}
