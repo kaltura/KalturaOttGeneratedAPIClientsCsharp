@@ -202,50 +202,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class IngestStatusGetVodAssetResultRequestBuilder : RequestBuilder<VodIngestAssetResultResponse>
-	{
-		#region Constants
-		public const string FILTER = "filter";
-		public const string PAGER = "pager";
-		#endregion
-
-		public VodIngestAssetResultFilter Filter { get; set; }
-		public FilterPager Pager { get; set; }
-
-		public IngestStatusGetVodAssetResultRequestBuilder()
-			: base("ingeststatus", "getVodAssetResult")
-		{
-		}
-
-		public IngestStatusGetVodAssetResultRequestBuilder(VodIngestAssetResultFilter filter, FilterPager pager)
-			: this()
-		{
-			this.Filter = filter;
-			this.Pager = pager;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("filter"))
-				kparams.AddIfNotNull("filter", Filter);
-			if (!isMapped("pager"))
-				kparams.AddIfNotNull("pager", Pager);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<VodIngestAssetResultResponse>(result);
-		}
-	}
-
 	public class IngestStatusUpdatePartnerConfigurationRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
@@ -310,11 +266,6 @@ namespace Kaltura.Services
 		public static IngestStatusGetPartnerConfigurationRequestBuilder GetPartnerConfiguration()
 		{
 			return new IngestStatusGetPartnerConfigurationRequestBuilder();
-		}
-
-		public static IngestStatusGetVodAssetResultRequestBuilder GetVodAssetResult(VodIngestAssetResultFilter filter = null, FilterPager pager = null)
-		{
-			return new IngestStatusGetVodAssetResultRequestBuilder(filter, pager);
 		}
 
 		public static IngestStatusUpdatePartnerConfigurationRequestBuilder UpdatePartnerConfiguration(IngestStatusPartnerConfiguration config)

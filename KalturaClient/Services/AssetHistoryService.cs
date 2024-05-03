@@ -79,28 +79,19 @@ namespace Kaltura.Services
 	{
 		#region Constants
 		public const string ASSET_ID = "assetId";
-		public const string SERIES_ID_ARGUMENTS = "seriesIdArguments";
-		public const string NOT_WATCHED_RETURN_STRATEGY = "notWatchedReturnStrategy";
-		public const string WATCHED_ALL_RETURN_STRATEGY = "watchedAllReturnStrategy";
 		#endregion
 
 		public long AssetId { get; set; }
-		public SeriesIdArguments SeriesIdArguments { get; set; }
-		public NotWatchedReturnStrategy NotWatchedReturnStrategy { get; set; }
-		public WatchedAllReturnStrategy WatchedAllReturnStrategy { get; set; }
 
 		public AssetHistoryGetNextEpisodeRequestBuilder()
 			: base("assethistory", "getNextEpisode")
 		{
 		}
 
-		public AssetHistoryGetNextEpisodeRequestBuilder(long assetId, SeriesIdArguments seriesIdArguments, NotWatchedReturnStrategy notWatchedReturnStrategy, WatchedAllReturnStrategy watchedAllReturnStrategy)
+		public AssetHistoryGetNextEpisodeRequestBuilder(long assetId)
 			: this()
 		{
 			this.AssetId = assetId;
-			this.SeriesIdArguments = seriesIdArguments;
-			this.NotWatchedReturnStrategy = notWatchedReturnStrategy;
-			this.WatchedAllReturnStrategy = watchedAllReturnStrategy;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -108,12 +99,6 @@ namespace Kaltura.Services
 			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("assetId"))
 				kparams.AddIfNotNull("assetId", AssetId);
-			if (!isMapped("seriesIdArguments"))
-				kparams.AddIfNotNull("seriesIdArguments", SeriesIdArguments);
-			if (!isMapped("notWatchedReturnStrategy"))
-				kparams.AddIfNotNull("notWatchedReturnStrategy", NotWatchedReturnStrategy);
-			if (!isMapped("watchedAllReturnStrategy"))
-				kparams.AddIfNotNull("watchedAllReturnStrategy", WatchedAllReturnStrategy);
 			return kparams;
 		}
 
@@ -185,9 +170,9 @@ namespace Kaltura.Services
 			return new AssetHistoryCleanRequestBuilder(filter);
 		}
 
-		public static AssetHistoryGetNextEpisodeRequestBuilder GetNextEpisode(long assetId = long.MinValue, SeriesIdArguments seriesIdArguments = null, NotWatchedReturnStrategy notWatchedReturnStrategy = null, WatchedAllReturnStrategy watchedAllReturnStrategy = null)
+		public static AssetHistoryGetNextEpisodeRequestBuilder GetNextEpisode(long assetId)
 		{
-			return new AssetHistoryGetNextEpisodeRequestBuilder(assetId, seriesIdArguments, notWatchedReturnStrategy, watchedAllReturnStrategy);
+			return new AssetHistoryGetNextEpisodeRequestBuilder(assetId);
 		}
 
 		public static AssetHistoryListRequestBuilder List(AssetHistoryFilter filter = null, FilterPager pager = null)

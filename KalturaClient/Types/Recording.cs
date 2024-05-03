@@ -46,7 +46,6 @@ namespace Kaltura.Types
 		public const string IS_PROTECTED = "isProtected";
 		public const string CREATE_DATE = "createDate";
 		public const string UPDATE_DATE = "updateDate";
-		public const string DURATION = "duration";
 		#endregion
 
 		#region Private Fields
@@ -58,7 +57,6 @@ namespace Kaltura.Types
 		private bool? _IsProtected = null;
 		private long _CreateDate = long.MinValue;
 		private long _UpdateDate = long.MinValue;
-		private long _Duration = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -166,19 +164,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
-		/// <summary>
-		/// Use DurationAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long Duration
-		{
-			get { return _Duration; }
-			private set 
-			{ 
-				_Duration = value;
-				OnPropertyChanged("Duration");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -220,10 +205,6 @@ namespace Kaltura.Types
 			{
 				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
 			}
-			if(node["duration"] != null)
-			{
-				this._Duration = ParseLong(node["duration"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -241,7 +222,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("isProtected", this._IsProtected);
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
-			kparams.AddIfNotNull("duration", this._Duration);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -264,8 +244,6 @@ namespace Kaltura.Types
 					return "CreateDate";
 				case UPDATE_DATE:
 					return "UpdateDate";
-				case DURATION:
-					return "Duration";
 				default:
 					return base.getPropertyName(apiName);
 			}

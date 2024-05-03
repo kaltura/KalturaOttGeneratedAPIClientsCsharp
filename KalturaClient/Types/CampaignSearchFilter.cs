@@ -45,7 +45,6 @@ namespace Kaltura.Types
 		public const string NAME_EQUAL = "nameEqual";
 		public const string NAME_CONTAINS = "nameContains";
 		public const string STATE_IN = "stateIn";
-		public const string ASSET_USER_RULE_ID_IN = "assetUserRuleIdIn";
 		#endregion
 
 		#region Private Fields
@@ -56,7 +55,6 @@ namespace Kaltura.Types
 		private string _NameEqual = null;
 		private string _NameContains = null;
 		private string _StateIn = null;
-		private string _AssetUserRuleIdIn = null;
 		#endregion
 
 		#region Properties
@@ -151,19 +149,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("StateIn");
 			}
 		}
-		/// <summary>
-		/// Use AssetUserRuleIdInAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string AssetUserRuleIdIn
-		{
-			get { return _AssetUserRuleIdIn; }
-			set 
-			{ 
-				_AssetUserRuleIdIn = value;
-				OnPropertyChanged("AssetUserRuleIdIn");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -201,10 +186,6 @@ namespace Kaltura.Types
 			{
 				this._StateIn = node["stateIn"].Value<string>();
 			}
-			if(node["assetUserRuleIdIn"] != null)
-			{
-				this._AssetUserRuleIdIn = node["assetUserRuleIdIn"].Value<string>();
-			}
 		}
 		#endregion
 
@@ -221,7 +202,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("nameEqual", this._NameEqual);
 			kparams.AddIfNotNull("nameContains", this._NameContains);
 			kparams.AddIfNotNull("stateIn", this._StateIn);
-			kparams.AddIfNotNull("assetUserRuleIdIn", this._AssetUserRuleIdIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -242,8 +222,6 @@ namespace Kaltura.Types
 					return "NameContains";
 				case STATE_IN:
 					return "StateIn";
-				case ASSET_USER_RULE_ID_IN:
-					return "AssetUserRuleIdIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

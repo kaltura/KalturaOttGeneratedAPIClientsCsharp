@@ -30,8 +30,6 @@ namespace Kaltura.Enums
 	public sealed class AssetRuleOrderBy : StringEnum
 	{
 		public static readonly AssetRuleOrderBy NONE = new AssetRuleOrderBy("NONE");
-		public static readonly AssetRuleOrderBy NAME_ASC = new AssetRuleOrderBy("NAME_ASC");
-		public static readonly AssetRuleOrderBy NAME_DESC = new AssetRuleOrderBy("NAME_DESC");
 
 		private AssetRuleOrderBy(string name) : base(name) { }
 	}
