@@ -35,61 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class UsageModuleFilter : Filter
+	public class LiveAssetHasRecordingsFilter : AssetFilter
 	{
 		#region Constants
-		public const string ID_EQUAL = "idEqual";
-		public const string ASSOCIATED_SHOP_ENTITIES = "associatedShopEntities";
+		public const string LIVE_ASSET_ID_EQUAL = "liveAssetIdEqual";
 		#endregion
 
 		#region Private Fields
-		private int _IdEqual = Int32.MinValue;
-		private AssociatedShopEntities _AssociatedShopEntities;
+		private long _LiveAssetIdEqual = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdEqualAsDouble property instead
+		/// Use LiveAssetIdEqualAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int IdEqual
+		public long LiveAssetIdEqual
 		{
-			get { return _IdEqual; }
+			get { return _LiveAssetIdEqual; }
 			set 
 			{ 
-				_IdEqual = value;
-				OnPropertyChanged("IdEqual");
-			}
-		}
-		/// <summary>
-		/// Use AssociatedShopEntitiesAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public AssociatedShopEntities AssociatedShopEntities
-		{
-			get { return _AssociatedShopEntities; }
-			set 
-			{ 
-				_AssociatedShopEntities = value;
-				OnPropertyChanged("AssociatedShopEntities");
+				_LiveAssetIdEqual = value;
+				OnPropertyChanged("LiveAssetIdEqual");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public UsageModuleFilter()
+		public LiveAssetHasRecordingsFilter()
 		{
 		}
 
-		public UsageModuleFilter(JToken node) : base(node)
+		public LiveAssetHasRecordingsFilter(JToken node) : base(node)
 		{
-			if(node["idEqual"] != null)
+			if(node["liveAssetIdEqual"] != null)
 			{
-				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
-			}
-			if(node["associatedShopEntities"] != null)
-			{
-				this._AssociatedShopEntities = ObjectFactory.Create<AssociatedShopEntities>(node["associatedShopEntities"]);
+				this._LiveAssetIdEqual = ParseLong(node["liveAssetIdEqual"].Value<string>());
 			}
 		}
 		#endregion
@@ -99,19 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaUsageModuleFilter");
-			kparams.AddIfNotNull("idEqual", this._IdEqual);
-			kparams.AddIfNotNull("associatedShopEntities", this._AssociatedShopEntities);
+				kparams.AddReplace("objectType", "KalturaLiveAssetHasRecordingsFilter");
+			kparams.AddIfNotNull("liveAssetIdEqual", this._LiveAssetIdEqual);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID_EQUAL:
-					return "IdEqual";
-				case ASSOCIATED_SHOP_ENTITIES:
-					return "AssociatedShopEntities";
+				case LIVE_ASSET_ID_EQUAL:
+					return "LiveAssetIdEqual";
 				default:
 					return base.getPropertyName(apiName);
 			}
