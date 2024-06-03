@@ -38,52 +38,26 @@ namespace Kaltura.Types
 	public class MonetizationCondition : BaseSegmentCondition
 	{
 		#region Constants
-		public const string MIN_VALUE = "minValue";
-		public const string MAX_VALUE = "maxValue";
 		public const string DAYS = "days";
 		public const string TYPE = "type";
 		public const string OPERATOR = "operator";
 		public const string BUSINESS_MODULE_ID_IN = "businessModuleIdIn";
 		public const string CURRENCY_CODE = "currencyCode";
+		public const string MIN_VALUE = "minValue";
+		public const string MAX_VALUE = "maxValue";
 		#endregion
 
 		#region Private Fields
-		private int _MinValue = Int32.MinValue;
-		private int _MaxValue = Int32.MinValue;
 		private int _Days = Int32.MinValue;
 		private MonetizationType _Type = null;
 		private MathemticalOperatorType _Operator = null;
 		private string _BusinessModuleIdIn = null;
 		private string _CurrencyCode = null;
+		private int _MinValue = Int32.MinValue;
+		private int _MaxValue = Int32.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use MinValueAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int MinValue
-		{
-			get { return _MinValue; }
-			set 
-			{ 
-				_MinValue = value;
-				OnPropertyChanged("MinValue");
-			}
-		}
-		/// <summary>
-		/// Use MaxValueAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int MaxValue
-		{
-			get { return _MaxValue; }
-			set 
-			{ 
-				_MaxValue = value;
-				OnPropertyChanged("MaxValue");
-			}
-		}
 		/// <summary>
 		/// Use DaysAsDouble property instead
 		/// </summary>
@@ -149,6 +123,32 @@ namespace Kaltura.Types
 				OnPropertyChanged("CurrencyCode");
 			}
 		}
+		/// <summary>
+		/// Use MinValueAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int MinValue
+		{
+			get { return _MinValue; }
+			set 
+			{ 
+				_MinValue = value;
+				OnPropertyChanged("MinValue");
+			}
+		}
+		/// <summary>
+		/// Use MaxValueAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int MaxValue
+		{
+			get { return _MaxValue; }
+			set 
+			{ 
+				_MaxValue = value;
+				OnPropertyChanged("MaxValue");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -158,14 +158,6 @@ namespace Kaltura.Types
 
 		public MonetizationCondition(JToken node) : base(node)
 		{
-			if(node["minValue"] != null)
-			{
-				this._MinValue = ParseInt(node["minValue"].Value<string>());
-			}
-			if(node["maxValue"] != null)
-			{
-				this._MaxValue = ParseInt(node["maxValue"].Value<string>());
-			}
 			if(node["days"] != null)
 			{
 				this._Days = ParseInt(node["days"].Value<string>());
@@ -186,6 +178,14 @@ namespace Kaltura.Types
 			{
 				this._CurrencyCode = node["currencyCode"].Value<string>();
 			}
+			if(node["minValue"] != null)
+			{
+				this._MinValue = ParseInt(node["minValue"].Value<string>());
+			}
+			if(node["maxValue"] != null)
+			{
+				this._MaxValue = ParseInt(node["maxValue"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -195,23 +195,19 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaMonetizationCondition");
-			kparams.AddIfNotNull("minValue", this._MinValue);
-			kparams.AddIfNotNull("maxValue", this._MaxValue);
 			kparams.AddIfNotNull("days", this._Days);
 			kparams.AddIfNotNull("type", this._Type);
 			kparams.AddIfNotNull("operator", this._Operator);
 			kparams.AddIfNotNull("businessModuleIdIn", this._BusinessModuleIdIn);
 			kparams.AddIfNotNull("currencyCode", this._CurrencyCode);
+			kparams.AddIfNotNull("minValue", this._MinValue);
+			kparams.AddIfNotNull("maxValue", this._MaxValue);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case MIN_VALUE:
-					return "MinValue";
-				case MAX_VALUE:
-					return "MaxValue";
 				case DAYS:
 					return "Days";
 				case TYPE:
@@ -222,6 +218,10 @@ namespace Kaltura.Types
 					return "BusinessModuleIdIn";
 				case CURRENCY_CODE:
 					return "CurrencyCode";
+				case MIN_VALUE:
+					return "MinValue";
+				case MAX_VALUE:
+					return "MaxValue";
 				default:
 					return base.getPropertyName(apiName);
 			}
