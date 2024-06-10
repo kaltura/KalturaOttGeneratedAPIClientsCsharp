@@ -35,61 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class UsageModuleFilter : Filter
+	public class TopSubscriptionEntitledOrFreeRsp : RepresentativeSelectionPolicy
 	{
 		#region Constants
-		public const string ID_EQUAL = "idEqual";
-		public const string ASSOCIATED_SHOP_ENTITIES = "associatedShopEntities";
+		public const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private int _IdEqual = Int32.MinValue;
-		private AssociatedShopEntities _AssociatedShopEntities;
+		private BaseAssetOrder _OrderBy;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdEqualAsDouble property instead
+		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int IdEqual
+		public BaseAssetOrder OrderBy
 		{
-			get { return _IdEqual; }
+			get { return _OrderBy; }
 			set 
 			{ 
-				_IdEqual = value;
-				OnPropertyChanged("IdEqual");
-			}
-		}
-		/// <summary>
-		/// Use AssociatedShopEntitiesAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public AssociatedShopEntities AssociatedShopEntities
-		{
-			get { return _AssociatedShopEntities; }
-			set 
-			{ 
-				_AssociatedShopEntities = value;
-				OnPropertyChanged("AssociatedShopEntities");
+				_OrderBy = value;
+				OnPropertyChanged("OrderBy");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public UsageModuleFilter()
+		public TopSubscriptionEntitledOrFreeRsp()
 		{
 		}
 
-		public UsageModuleFilter(JToken node) : base(node)
+		public TopSubscriptionEntitledOrFreeRsp(JToken node) : base(node)
 		{
-			if(node["idEqual"] != null)
+			if(node["orderBy"] != null)
 			{
-				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
-			}
-			if(node["associatedShopEntities"] != null)
-			{
-				this._AssociatedShopEntities = ObjectFactory.Create<AssociatedShopEntities>(node["associatedShopEntities"]);
+				this._OrderBy = ObjectFactory.Create<BaseAssetOrder>(node["orderBy"]);
 			}
 		}
 		#endregion
@@ -99,19 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaUsageModuleFilter");
-			kparams.AddIfNotNull("idEqual", this._IdEqual);
-			kparams.AddIfNotNull("associatedShopEntities", this._AssociatedShopEntities);
+				kparams.AddReplace("objectType", "KalturaTopSubscriptionEntitledOrFreeRsp");
+			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID_EQUAL:
-					return "IdEqual";
-				case ASSOCIATED_SHOP_ENTITIES:
-					return "AssociatedShopEntities";
+				case ORDER_BY:
+					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}
