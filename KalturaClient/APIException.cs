@@ -176,6 +176,8 @@ namespace Kaltura
 		public static string CanOnlyDeleteRecordingAfterRecordingEnd = "3093";
 		public static string RecordingExceededConcurrency = "3094";
 		public static string ExceedingAllowedImmediateRecordingAttempts = "3095";
+		public static string SubscriptionSetTypeMismatch = "3096";
+		public static string PurchaseIsAlreadyInProgress = "3097";
 		public static string MediaConcurrencyLimitation = "4000";
 		public static string ConcurrencyLimitation = "4001";
 		public static string BadSearchRequest = "4002";
@@ -281,7 +283,8 @@ namespace Kaltura
 		public static string CridToProgramAssetMismatch = "4125";
 		public static string CannotImportRecordingWithinCatchUpBuffer = "4126";
 		public static string CollectionTooBigForGrouping = "4127";
-		public static string SubscriptionSetTypeMismatch = "3096";
+		public static string EnumerationTagInvalidValue = "4128";
+		public static string InvalidFlexiblePricePlan = "9049";
 		public static string NoPinDefined = "5001";
 		public static string PinMismatch = "5002";
 		public static string RuleNotExists = "5003";
@@ -298,7 +301,6 @@ namespace Kaltura
 		public static string ConflictedParams = "5014";
 		public static string PurchaseSettingsTypeInvalid = "5015";
 		public static string ExportTaskNotFound = "5016";
-		public static string ExportNotificationUrlRequired = "5017";
 		public static string ExportFrequencyMinValue = "5018";
 		public static string AliasMustBeUnique = "5019";
 		public static string AliasRequired = "5020";
