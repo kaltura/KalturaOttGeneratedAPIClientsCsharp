@@ -38,6 +38,10 @@ namespace Kaltura.Types
 	public class SubscriptionEntitlement : Entitlement
 	{
 		#region Constants
+		public const string NEXT_RENEWAL_DATE = "nextRenewalDate";
+		public const string IS_RENEWABLE_FOR_PURCHASE = "isRenewableForPurchase";
+		public const string IS_RENEWABLE = "isRenewable";
+		public const string IS_IN_GRACE_PERIOD = "isInGracePeriod";
 		public const string PAYMENT_GATEWAY_ID = "paymentGatewayId";
 		public const string PAYMENT_METHOD_ID = "paymentMethodId";
 		public const string SCHEDULED_SUBSCRIPTION_ID = "scheduledSubscriptionId";
@@ -48,6 +52,10 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
+		private long _NextRenewalDate = long.MinValue;
+		private bool? _IsRenewableForPurchase = null;
+		private bool? _IsRenewable = null;
+		private bool? _IsInGracePeriod = null;
 		private int _PaymentGatewayId = Int32.MinValue;
 		private int _PaymentMethodId = Int32.MinValue;
 		private long _ScheduledSubscriptionId = long.MinValue;
@@ -58,6 +66,58 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use NextRenewalDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long NextRenewalDate
+		{
+			get { return _NextRenewalDate; }
+			private set 
+			{ 
+				_NextRenewalDate = value;
+				OnPropertyChanged("NextRenewalDate");
+			}
+		}
+		/// <summary>
+		/// Use IsRenewableForPurchaseAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IsRenewableForPurchase
+		{
+			get { return _IsRenewableForPurchase; }
+			private set 
+			{ 
+				_IsRenewableForPurchase = value;
+				OnPropertyChanged("IsRenewableForPurchase");
+			}
+		}
+		/// <summary>
+		/// Use IsRenewableAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IsRenewable
+		{
+			get { return _IsRenewable; }
+			private set 
+			{ 
+				_IsRenewable = value;
+				OnPropertyChanged("IsRenewable");
+			}
+		}
+		/// <summary>
+		/// Use IsInGracePeriodAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IsInGracePeriod
+		{
+			get { return _IsInGracePeriod; }
+			private set 
+			{ 
+				_IsInGracePeriod = value;
+				OnPropertyChanged("IsInGracePeriod");
+			}
+		}
 		/// <summary>
 		/// Use PaymentGatewayIdAsDouble property instead
 		/// </summary>
@@ -158,6 +218,22 @@ namespace Kaltura.Types
 
 		public SubscriptionEntitlement(JToken node) : base(node)
 		{
+			if(node["nextRenewalDate"] != null)
+			{
+				this._NextRenewalDate = ParseLong(node["nextRenewalDate"].Value<string>());
+			}
+			if(node["isRenewableForPurchase"] != null)
+			{
+				this._IsRenewableForPurchase = ParseBool(node["isRenewableForPurchase"].Value<string>());
+			}
+			if(node["isRenewable"] != null)
+			{
+				this._IsRenewable = ParseBool(node["isRenewable"].Value<string>());
+			}
+			if(node["isInGracePeriod"] != null)
+			{
+				this._IsInGracePeriod = ParseBool(node["isInGracePeriod"].Value<string>());
+			}
 			if(node["paymentGatewayId"] != null)
 			{
 				this._PaymentGatewayId = ParseInt(node["paymentGatewayId"].Value<string>());
@@ -195,6 +271,10 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaSubscriptionEntitlement");
+			kparams.AddIfNotNull("nextRenewalDate", this._NextRenewalDate);
+			kparams.AddIfNotNull("isRenewableForPurchase", this._IsRenewableForPurchase);
+			kparams.AddIfNotNull("isRenewable", this._IsRenewable);
+			kparams.AddIfNotNull("isInGracePeriod", this._IsInGracePeriod);
 			kparams.AddIfNotNull("paymentGatewayId", this._PaymentGatewayId);
 			kparams.AddIfNotNull("paymentMethodId", this._PaymentMethodId);
 			kparams.AddIfNotNull("scheduledSubscriptionId", this._ScheduledSubscriptionId);
@@ -208,6 +288,14 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
+				case NEXT_RENEWAL_DATE:
+					return "NextRenewalDate";
+				case IS_RENEWABLE_FOR_PURCHASE:
+					return "IsRenewableForPurchase";
+				case IS_RENEWABLE:
+					return "IsRenewable";
+				case IS_IN_GRACE_PERIOD:
+					return "IsInGracePeriod";
 				case PAYMENT_GATEWAY_ID:
 					return "PaymentGatewayId";
 				case PAYMENT_METHOD_ID:
