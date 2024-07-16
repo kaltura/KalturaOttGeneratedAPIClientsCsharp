@@ -43,6 +43,7 @@ namespace Kaltura.Types
 		public const string CONCURRENT_LIMIT = "concurrentLimit";
 		public const string IS_DEFAULT_DEVICE_LIMIT = "isDefaultDeviceLimit";
 		public const string IS_DEFAULT_CONCURRENT_LIMIT = "isDefaultConcurrentLimit";
+		public const string IS_DEFAULT_FREQUENCY_LIMIT = "isDefaultFrequencyLimit";
 		#endregion
 
 		#region Private Fields
@@ -51,6 +52,7 @@ namespace Kaltura.Types
 		private int _ConcurrentLimit = Int32.MinValue;
 		private bool? _IsDefaultDeviceLimit = null;
 		private bool? _IsDefaultConcurrentLimit = null;
+		private bool? _IsDefaultFrequencyLimit = null;
 		#endregion
 
 		#region Properties
@@ -119,6 +121,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsDefaultConcurrentLimit");
 			}
 		}
+		/// <summary>
+		/// Use IsDefaultFrequencyLimitAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IsDefaultFrequencyLimit
+		{
+			get { return _IsDefaultFrequencyLimit; }
+			private set 
+			{ 
+				_IsDefaultFrequencyLimit = value;
+				OnPropertyChanged("IsDefaultFrequencyLimit");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -148,6 +163,10 @@ namespace Kaltura.Types
 			{
 				this._IsDefaultConcurrentLimit = ParseBool(node["isDefaultConcurrentLimit"].Value<string>());
 			}
+			if(node["isDefaultFrequencyLimit"] != null)
+			{
+				this._IsDefaultFrequencyLimit = ParseBool(node["isDefaultFrequencyLimit"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -162,6 +181,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("concurrentLimit", this._ConcurrentLimit);
 			kparams.AddIfNotNull("isDefaultDeviceLimit", this._IsDefaultDeviceLimit);
 			kparams.AddIfNotNull("isDefaultConcurrentLimit", this._IsDefaultConcurrentLimit);
+			kparams.AddIfNotNull("isDefaultFrequencyLimit", this._IsDefaultFrequencyLimit);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -178,6 +198,8 @@ namespace Kaltura.Types
 					return "IsDefaultDeviceLimit";
 				case IS_DEFAULT_CONCURRENT_LIMIT:
 					return "IsDefaultConcurrentLimit";
+				case IS_DEFAULT_FREQUENCY_LIMIT:
+					return "IsDefaultFrequencyLimit";
 				default:
 					return base.getPropertyName(apiName);
 			}
