@@ -35,88 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class RegionalChannel : ObjectBase
+	public class AssociatedShopEntities : ObjectBase
 	{
 		#region Constants
-		public const string LINEAR_CHANNEL_ID = "linearChannelId";
-		public const string CHANNEL_NUMBER = "channelNumber";
-		public const string DYNAMIC_DATA = "dynamicData";
+		public const string ASSET_USER_RULE_ID_IN = "assetUserRuleIdIn";
+		public const string INCLUDE_NULL_ASSET_USER_RULE_ID = "includeNullAssetUserRuleId";
 		#endregion
 
 		#region Private Fields
-		private int _LinearChannelId = Int32.MinValue;
-		private int _ChannelNumber = Int32.MinValue;
-		private IDictionary<string, StringValue> _DynamicData;
+		private string _AssetUserRuleIdIn = null;
+		private bool? _IncludeNullAssetUserRuleId = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use LinearChannelIdAsDouble property instead
+		/// Use AssetUserRuleIdInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int LinearChannelId
+		public string AssetUserRuleIdIn
 		{
-			get { return _LinearChannelId; }
+			get { return _AssetUserRuleIdIn; }
 			set 
 			{ 
-				_LinearChannelId = value;
-				OnPropertyChanged("LinearChannelId");
+				_AssetUserRuleIdIn = value;
+				OnPropertyChanged("AssetUserRuleIdIn");
 			}
 		}
 		/// <summary>
-		/// Use ChannelNumberAsDouble property instead
+		/// Use IncludeNullAssetUserRuleIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int ChannelNumber
+		public bool? IncludeNullAssetUserRuleId
 		{
-			get { return _ChannelNumber; }
+			get { return _IncludeNullAssetUserRuleId; }
 			set 
 			{ 
-				_ChannelNumber = value;
-				OnPropertyChanged("ChannelNumber");
-			}
-		}
-		/// <summary>
-		/// Use DynamicDataAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IDictionary<string, StringValue> DynamicData
-		{
-			get { return _DynamicData; }
-			set 
-			{ 
-				_DynamicData = value;
-				OnPropertyChanged("DynamicData");
+				_IncludeNullAssetUserRuleId = value;
+				OnPropertyChanged("IncludeNullAssetUserRuleId");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public RegionalChannel()
+		public AssociatedShopEntities()
 		{
 		}
 
-		public RegionalChannel(JToken node) : base(node)
+		public AssociatedShopEntities(JToken node) : base(node)
 		{
-			if(node["linearChannelId"] != null)
+			if(node["assetUserRuleIdIn"] != null)
 			{
-				this._LinearChannelId = ParseInt(node["linearChannelId"].Value<string>());
+				this._AssetUserRuleIdIn = node["assetUserRuleIdIn"].Value<string>();
 			}
-			if(node["channelNumber"] != null)
+			if(node["includeNullAssetUserRuleId"] != null)
 			{
-				this._ChannelNumber = ParseInt(node["channelNumber"].Value<string>());
-			}
-			if(node["dynamicData"] != null)
-			{
-				{
-					string key;
-					this._DynamicData = new Dictionary<string, StringValue>();
-					foreach(var arrayNode in node["dynamicData"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._DynamicData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
-					}
-				}
+				this._IncludeNullAssetUserRuleId = ParseBool(node["includeNullAssetUserRuleId"].Value<string>());
 			}
 		}
 		#endregion
@@ -126,22 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRegionalChannel");
-			kparams.AddIfNotNull("linearChannelId", this._LinearChannelId);
-			kparams.AddIfNotNull("channelNumber", this._ChannelNumber);
-			kparams.AddIfNotNull("dynamicData", this._DynamicData);
+				kparams.AddReplace("objectType", "KalturaAssociatedShopEntities");
+			kparams.AddIfNotNull("assetUserRuleIdIn", this._AssetUserRuleIdIn);
+			kparams.AddIfNotNull("includeNullAssetUserRuleId", this._IncludeNullAssetUserRuleId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case LINEAR_CHANNEL_ID:
-					return "LinearChannelId";
-				case CHANNEL_NUMBER:
-					return "ChannelNumber";
-				case DYNAMIC_DATA:
-					return "DynamicData";
+				case ASSET_USER_RULE_ID_IN:
+					return "AssetUserRuleIdIn";
+				case INCLUDE_NULL_ASSET_USER_RULE_ID:
+					return "IncludeNullAssetUserRuleId";
 				default:
 					return base.getPropertyName(apiName);
 			}
