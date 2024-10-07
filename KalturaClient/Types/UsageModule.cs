@@ -47,6 +47,7 @@ namespace Kaltura.Types
 		public const string WAIVER_PERIOD = "waiverPeriod";
 		public const string IS_WAIVER_ENABLED = "isWaiverEnabled";
 		public const string IS_OFFLINE_PLAYBACK = "isOfflinePlayback";
+		public const string ASSET_USER_RULE_ID = "assetUserRuleId";
 		#endregion
 
 		#region Private Fields
@@ -59,6 +60,7 @@ namespace Kaltura.Types
 		private int _WaiverPeriod = Int32.MinValue;
 		private bool? _IsWaiverEnabled = null;
 		private bool? _IsOfflinePlayback = null;
+		private long _AssetUserRuleId = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -179,6 +181,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("IsOfflinePlayback");
 			}
 		}
+		/// <summary>
+		/// Use AssetUserRuleIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long AssetUserRuleId
+		{
+			get { return _AssetUserRuleId; }
+			set 
+			{ 
+				_AssetUserRuleId = value;
+				OnPropertyChanged("AssetUserRuleId");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -224,6 +239,10 @@ namespace Kaltura.Types
 			{
 				this._IsOfflinePlayback = ParseBool(node["isOfflinePlayback"].Value<string>());
 			}
+			if(node["assetUserRuleId"] != null)
+			{
+				this._AssetUserRuleId = ParseLong(node["assetUserRuleId"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -242,6 +261,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("waiverPeriod", this._WaiverPeriod);
 			kparams.AddIfNotNull("isWaiverEnabled", this._IsWaiverEnabled);
 			kparams.AddIfNotNull("isOfflinePlayback", this._IsOfflinePlayback);
+			kparams.AddIfNotNull("assetUserRuleId", this._AssetUserRuleId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -266,6 +286,8 @@ namespace Kaltura.Types
 					return "IsWaiverEnabled";
 				case IS_OFFLINE_PLAYBACK:
 					return "IsOfflinePlayback";
+				case ASSET_USER_RULE_ID:
+					return "AssetUserRuleId";
 				default:
 					return base.getPropertyName(apiName);
 			}
