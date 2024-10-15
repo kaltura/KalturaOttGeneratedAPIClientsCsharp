@@ -58,6 +58,7 @@ namespace Kaltura.Types
 		public const string MEDIA_ID = "mediaId";
 		public const string PRORITY_IN_ORDER = "prorityInOrder";
 		public const string PRICE_PLAN_IDS = "pricePlanIds";
+		public const string FLEXIBLE_PRICE_PLAN_ID = "flexiblePricePlanId";
 		public const string PREVIEW_MODULE = "previewModule";
 		public const string PREVIEW_MODULE_ID = "previewModuleId";
 		public const string HOUSEHOLD_LIMITATIONS_ID = "householdLimitationsId";
@@ -103,6 +104,7 @@ namespace Kaltura.Types
 		private int _MediaId = Int32.MinValue;
 		private long _ProrityInOrder = long.MinValue;
 		private string _PricePlanIds = null;
+		private long _FlexiblePricePlanId = long.MinValue;
 		private PreviewModule _PreviewModule;
 		private long _PreviewModuleId = long.MinValue;
 		private int _HouseholdLimitationsId = Int32.MinValue;
@@ -386,6 +388,19 @@ namespace Kaltura.Types
 			{ 
 				_PricePlanIds = value;
 				OnPropertyChanged("PricePlanIds");
+			}
+		}
+		/// <summary>
+		/// Use FlexiblePricePlanIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long FlexiblePricePlanId
+		{
+			get { return _FlexiblePricePlanId; }
+			set 
+			{ 
+				_FlexiblePricePlanId = value;
+				OnPropertyChanged("FlexiblePricePlanId");
 			}
 		}
 		/// <summary>
@@ -779,6 +794,10 @@ namespace Kaltura.Types
 			{
 				this._PricePlanIds = node["pricePlanIds"].Value<string>();
 			}
+			if(node["flexiblePricePlanId"] != null)
+			{
+				this._FlexiblePricePlanId = ParseLong(node["flexiblePricePlanId"].Value<string>());
+			}
 			if(node["previewModule"] != null)
 			{
 				this._PreviewModule = ObjectFactory.Create<PreviewModule>(node["previewModule"]);
@@ -916,6 +935,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("mediaId", this._MediaId);
 			kparams.AddIfNotNull("prorityInOrder", this._ProrityInOrder);
 			kparams.AddIfNotNull("pricePlanIds", this._PricePlanIds);
+			kparams.AddIfNotNull("flexiblePricePlanId", this._FlexiblePricePlanId);
 			kparams.AddIfNotNull("previewModule", this._PreviewModule);
 			kparams.AddIfNotNull("previewModuleId", this._PreviewModuleId);
 			kparams.AddIfNotNull("householdLimitationsId", this._HouseholdLimitationsId);
@@ -984,6 +1004,8 @@ namespace Kaltura.Types
 					return "ProrityInOrder";
 				case PRICE_PLAN_IDS:
 					return "PricePlanIds";
+				case FLEXIBLE_PRICE_PLAN_ID:
+					return "FlexiblePricePlanId";
 				case PREVIEW_MODULE:
 					return "PreviewModule";
 				case PREVIEW_MODULE_ID:
