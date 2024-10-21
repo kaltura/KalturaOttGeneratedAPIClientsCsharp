@@ -35,88 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class RegionalChannel : ObjectBase
+	public class SeriesInfo : ObjectBase
 	{
 		#region Constants
-		public const string LINEAR_CHANNEL_ID = "linearChannelId";
-		public const string CHANNEL_NUMBER = "channelNumber";
-		public const string DYNAMIC_DATA = "dynamicData";
+		public const string SERIES_ID_METADATA_NAME = "seriesIdMetadataName";
+		public const string SERIES_TYPE_ID = "seriesTypeId";
+		public const string EPISODE_TYPE_ID = "episodeTypeId";
 		#endregion
 
 		#region Private Fields
-		private int _LinearChannelId = Int32.MinValue;
-		private int _ChannelNumber = Int32.MinValue;
-		private IDictionary<string, StringValue> _DynamicData;
+		private string _SeriesIdMetadataName = null;
+		private long _SeriesTypeId = long.MinValue;
+		private long _EpisodeTypeId = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use LinearChannelIdAsDouble property instead
+		/// Use SeriesIdMetadataNameAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int LinearChannelId
+		public string SeriesIdMetadataName
 		{
-			get { return _LinearChannelId; }
+			get { return _SeriesIdMetadataName; }
 			set 
 			{ 
-				_LinearChannelId = value;
-				OnPropertyChanged("LinearChannelId");
+				_SeriesIdMetadataName = value;
+				OnPropertyChanged("SeriesIdMetadataName");
 			}
 		}
 		/// <summary>
-		/// Use ChannelNumberAsDouble property instead
+		/// Use SeriesTypeIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int ChannelNumber
+		public long SeriesTypeId
 		{
-			get { return _ChannelNumber; }
+			get { return _SeriesTypeId; }
 			set 
 			{ 
-				_ChannelNumber = value;
-				OnPropertyChanged("ChannelNumber");
+				_SeriesTypeId = value;
+				OnPropertyChanged("SeriesTypeId");
 			}
 		}
 		/// <summary>
-		/// Use DynamicDataAsDouble property instead
+		/// Use EpisodeTypeIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, StringValue> DynamicData
+		public long EpisodeTypeId
 		{
-			get { return _DynamicData; }
+			get { return _EpisodeTypeId; }
 			set 
 			{ 
-				_DynamicData = value;
-				OnPropertyChanged("DynamicData");
+				_EpisodeTypeId = value;
+				OnPropertyChanged("EpisodeTypeId");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public RegionalChannel()
+		public SeriesInfo()
 		{
 		}
 
-		public RegionalChannel(JToken node) : base(node)
+		public SeriesInfo(JToken node) : base(node)
 		{
-			if(node["linearChannelId"] != null)
+			if(node["seriesIdMetadataName"] != null)
 			{
-				this._LinearChannelId = ParseInt(node["linearChannelId"].Value<string>());
+				this._SeriesIdMetadataName = node["seriesIdMetadataName"].Value<string>();
 			}
-			if(node["channelNumber"] != null)
+			if(node["seriesTypeId"] != null)
 			{
-				this._ChannelNumber = ParseInt(node["channelNumber"].Value<string>());
+				this._SeriesTypeId = ParseLong(node["seriesTypeId"].Value<string>());
 			}
-			if(node["dynamicData"] != null)
+			if(node["episodeTypeId"] != null)
 			{
-				{
-					string key;
-					this._DynamicData = new Dictionary<string, StringValue>();
-					foreach(var arrayNode in node["dynamicData"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._DynamicData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
-					}
-				}
+				this._EpisodeTypeId = ParseLong(node["episodeTypeId"].Value<string>());
 			}
 		}
 		#endregion
@@ -126,22 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRegionalChannel");
-			kparams.AddIfNotNull("linearChannelId", this._LinearChannelId);
-			kparams.AddIfNotNull("channelNumber", this._ChannelNumber);
-			kparams.AddIfNotNull("dynamicData", this._DynamicData);
+				kparams.AddReplace("objectType", "KalturaSeriesInfo");
+			kparams.AddIfNotNull("seriesIdMetadataName", this._SeriesIdMetadataName);
+			kparams.AddIfNotNull("seriesTypeId", this._SeriesTypeId);
+			kparams.AddIfNotNull("episodeTypeId", this._EpisodeTypeId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case LINEAR_CHANNEL_ID:
-					return "LinearChannelId";
-				case CHANNEL_NUMBER:
-					return "ChannelNumber";
-				case DYNAMIC_DATA:
-					return "DynamicData";
+				case SERIES_ID_METADATA_NAME:
+					return "SeriesIdMetadataName";
+				case SERIES_TYPE_ID:
+					return "SeriesTypeId";
+				case EPISODE_TYPE_ID:
+					return "EpisodeTypeId";
 				default:
 					return base.getPropertyName(apiName);
 			}

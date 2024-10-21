@@ -102,6 +102,8 @@ namespace Kaltura
 					return new ListResponse<SegmentationType>(jToken);
 				case "KalturaUserSegmentListResponse":
 					return new ListResponse<UserSegment>(jToken);
+				case "KalturaWatchBasedRecommendationsProfileListResponse":
+					return new ListResponse<WatchBasedRecommendationsProfile>(jToken);
 				case "KalturaAssetFilePpvListResponse":
 					return new ListResponse<AssetFilePpv>(jToken);
 				case "KalturaCollectionListResponse":
