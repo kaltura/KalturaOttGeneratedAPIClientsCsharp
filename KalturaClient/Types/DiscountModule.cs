@@ -42,6 +42,7 @@ namespace Kaltura.Types
 		public const string PERCENT = "percent";
 		public const string START_DATE = "startDate";
 		public const string END_DATE = "endDate";
+		public const string ASSET_USER_RULE_ID = "assetUserRuleId";
 		#endregion
 
 		#region Private Fields
@@ -49,6 +50,7 @@ namespace Kaltura.Types
 		private double _Percent = Double.MinValue;
 		private long _StartDate = long.MinValue;
 		private long _EndDate = long.MinValue;
+		private long _AssetUserRuleId = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -104,6 +106,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
+		/// <summary>
+		/// Use AssetUserRuleIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long AssetUserRuleId
+		{
+			get { return _AssetUserRuleId; }
+			set 
+			{ 
+				_AssetUserRuleId = value;
+				OnPropertyChanged("AssetUserRuleId");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -129,6 +144,10 @@ namespace Kaltura.Types
 			{
 				this._EndDate = ParseLong(node["endDate"].Value<string>());
 			}
+			if(node["assetUserRuleId"] != null)
+			{
+				this._AssetUserRuleId = ParseLong(node["assetUserRuleId"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -142,6 +161,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("percent", this._Percent);
 			kparams.AddIfNotNull("startDate", this._StartDate);
 			kparams.AddIfNotNull("endDate", this._EndDate);
+			kparams.AddIfNotNull("assetUserRuleId", this._AssetUserRuleId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -156,6 +176,8 @@ namespace Kaltura.Types
 					return "StartDate";
 				case END_DATE:
 					return "EndDate";
+				case ASSET_USER_RULE_ID:
+					return "AssetUserRuleId";
 				default:
 					return base.getPropertyName(apiName);
 			}
