@@ -80,6 +80,37 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class LineupInvalidateRequestBuilder : RequestBuilder<bool>
+	{
+		#region Constants
+		#endregion
+
+
+		public LineupInvalidateRequestBuilder()
+			: base("lineup", "invalidate")
+		{
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
+				return true;
+			return false;
+		}
+	}
+
 	public class LineupListRequestBuilder : RequestBuilder<ListResponse<LineupChannelAsset>>
 	{
 		#region Constants
@@ -175,6 +206,11 @@ namespace Kaltura.Services
 		public static LineupGetRequestBuilder Get(int pageIndex, int pageSize)
 		{
 			return new LineupGetRequestBuilder(pageIndex, pageSize);
+		}
+
+		public static LineupInvalidateRequestBuilder Invalidate()
+		{
+			return new LineupInvalidateRequestBuilder();
 		}
 
 		public static LineupListRequestBuilder List(LineupRegionalChannelFilter filter, FilterPager pager = null)

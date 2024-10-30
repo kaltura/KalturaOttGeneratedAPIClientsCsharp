@@ -129,21 +129,24 @@ namespace Kaltura.Services
 		#region Constants
 		public const string VERSION_ID = "versionId";
 		public const string DEVICE_FAMILY_ID = "deviceFamilyId";
+		public const string FILTER = "filter";
 		#endregion
 
 		public long VersionId { get; set; }
 		public int DeviceFamilyId { get; set; }
+		public bool Filter { get; set; }
 
 		public CategoryTreeGetByVersionRequestBuilder()
 			: base("categorytree", "getByVersion")
 		{
 		}
 
-		public CategoryTreeGetByVersionRequestBuilder(long versionId, int deviceFamilyId)
+		public CategoryTreeGetByVersionRequestBuilder(long versionId, int deviceFamilyId, bool filter)
 			: this()
 		{
 			this.VersionId = versionId;
 			this.DeviceFamilyId = deviceFamilyId;
+			this.Filter = filter;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -153,6 +156,8 @@ namespace Kaltura.Services
 				kparams.AddIfNotNull("versionId", VersionId);
 			if (!isMapped("deviceFamilyId"))
 				kparams.AddIfNotNull("deviceFamilyId", DeviceFamilyId);
+			if (!isMapped("filter"))
+				kparams.AddIfNotNull("filter", Filter);
 			return kparams;
 		}
 
@@ -185,9 +190,9 @@ namespace Kaltura.Services
 			return new CategoryTreeGetRequestBuilder(categoryItemId, filter);
 		}
 
-		public static CategoryTreeGetByVersionRequestBuilder GetByVersion(long versionId = long.MinValue, int deviceFamilyId = Int32.MinValue)
+		public static CategoryTreeGetByVersionRequestBuilder GetByVersion(long versionId = long.MinValue, int deviceFamilyId = Int32.MinValue, bool filter = false)
 		{
-			return new CategoryTreeGetByVersionRequestBuilder(versionId, deviceFamilyId);
+			return new CategoryTreeGetByVersionRequestBuilder(versionId, deviceFamilyId, filter);
 		}
 	}
 }
