@@ -39,10 +39,12 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string ID_EQUAL = "idEqual";
+		public const string ASSOCIATED_SHOP_ENTITIES = "associatedShopEntities";
 		#endregion
 
 		#region Private Fields
 		private int _IdEqual = Int32.MinValue;
+		private AssociatedShopEntities _AssociatedShopEntities;
 		#endregion
 
 		#region Properties
@@ -59,6 +61,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("IdEqual");
 			}
 		}
+		/// <summary>
+		/// Use AssociatedShopEntitiesAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public AssociatedShopEntities AssociatedShopEntities
+		{
+			get { return _AssociatedShopEntities; }
+			set 
+			{ 
+				_AssociatedShopEntities = value;
+				OnPropertyChanged("AssociatedShopEntities");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -72,6 +87,10 @@ namespace Kaltura.Types
 			{
 				this._IdEqual = ParseInt(node["idEqual"].Value<string>());
 			}
+			if(node["associatedShopEntities"] != null)
+			{
+				this._AssociatedShopEntities = ObjectFactory.Create<AssociatedShopEntities>(node["associatedShopEntities"]);
+			}
 		}
 		#endregion
 
@@ -82,6 +101,7 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaUsageModuleFilter");
 			kparams.AddIfNotNull("idEqual", this._IdEqual);
+			kparams.AddIfNotNull("associatedShopEntities", this._AssociatedShopEntities);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -90,6 +110,8 @@ namespace Kaltura.Types
 			{
 				case ID_EQUAL:
 					return "IdEqual";
+				case ASSOCIATED_SHOP_ENTITIES:
+					return "AssociatedShopEntities";
 				default:
 					return base.getPropertyName(apiName);
 			}

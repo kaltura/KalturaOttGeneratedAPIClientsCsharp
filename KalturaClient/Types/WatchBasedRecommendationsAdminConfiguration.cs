@@ -35,88 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class RegionalChannel : ObjectBase
+	public class WatchBasedRecommendationsAdminConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string LINEAR_CHANNEL_ID = "linearChannelId";
-		public const string CHANNEL_NUMBER = "channelNumber";
-		public const string DYNAMIC_DATA = "dynamicData";
+		public const string MAX_PROFILES = "maxProfiles";
+		public const string ACTIVE_USER_DURATION_DAYS = "activeUserDurationDays";
+		public const string RECOMMENDATIONS_CACHING_TIME_DAYS = "recommendationsCachingTimeDays";
 		#endregion
 
 		#region Private Fields
-		private int _LinearChannelId = Int32.MinValue;
-		private int _ChannelNumber = Int32.MinValue;
-		private IDictionary<string, StringValue> _DynamicData;
+		private int _MaxProfiles = Int32.MinValue;
+		private int _ActiveUserDurationDays = Int32.MinValue;
+		private int _RecommendationsCachingTimeDays = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use LinearChannelIdAsDouble property instead
+		/// Use MaxProfilesAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int LinearChannelId
+		public int MaxProfiles
 		{
-			get { return _LinearChannelId; }
+			get { return _MaxProfiles; }
 			set 
 			{ 
-				_LinearChannelId = value;
-				OnPropertyChanged("LinearChannelId");
+				_MaxProfiles = value;
+				OnPropertyChanged("MaxProfiles");
 			}
 		}
 		/// <summary>
-		/// Use ChannelNumberAsDouble property instead
+		/// Use ActiveUserDurationDaysAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int ChannelNumber
+		public int ActiveUserDurationDays
 		{
-			get { return _ChannelNumber; }
+			get { return _ActiveUserDurationDays; }
 			set 
 			{ 
-				_ChannelNumber = value;
-				OnPropertyChanged("ChannelNumber");
+				_ActiveUserDurationDays = value;
+				OnPropertyChanged("ActiveUserDurationDays");
 			}
 		}
 		/// <summary>
-		/// Use DynamicDataAsDouble property instead
+		/// Use RecommendationsCachingTimeDaysAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, StringValue> DynamicData
+		public int RecommendationsCachingTimeDays
 		{
-			get { return _DynamicData; }
+			get { return _RecommendationsCachingTimeDays; }
 			set 
 			{ 
-				_DynamicData = value;
-				OnPropertyChanged("DynamicData");
+				_RecommendationsCachingTimeDays = value;
+				OnPropertyChanged("RecommendationsCachingTimeDays");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public RegionalChannel()
+		public WatchBasedRecommendationsAdminConfiguration()
 		{
 		}
 
-		public RegionalChannel(JToken node) : base(node)
+		public WatchBasedRecommendationsAdminConfiguration(JToken node) : base(node)
 		{
-			if(node["linearChannelId"] != null)
+			if(node["maxProfiles"] != null)
 			{
-				this._LinearChannelId = ParseInt(node["linearChannelId"].Value<string>());
+				this._MaxProfiles = ParseInt(node["maxProfiles"].Value<string>());
 			}
-			if(node["channelNumber"] != null)
+			if(node["activeUserDurationDays"] != null)
 			{
-				this._ChannelNumber = ParseInt(node["channelNumber"].Value<string>());
+				this._ActiveUserDurationDays = ParseInt(node["activeUserDurationDays"].Value<string>());
 			}
-			if(node["dynamicData"] != null)
+			if(node["recommendationsCachingTimeDays"] != null)
 			{
-				{
-					string key;
-					this._DynamicData = new Dictionary<string, StringValue>();
-					foreach(var arrayNode in node["dynamicData"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._DynamicData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
-					}
-				}
+				this._RecommendationsCachingTimeDays = ParseInt(node["recommendationsCachingTimeDays"].Value<string>());
 			}
 		}
 		#endregion
@@ -126,22 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRegionalChannel");
-			kparams.AddIfNotNull("linearChannelId", this._LinearChannelId);
-			kparams.AddIfNotNull("channelNumber", this._ChannelNumber);
-			kparams.AddIfNotNull("dynamicData", this._DynamicData);
+				kparams.AddReplace("objectType", "KalturaWatchBasedRecommendationsAdminConfiguration");
+			kparams.AddIfNotNull("maxProfiles", this._MaxProfiles);
+			kparams.AddIfNotNull("activeUserDurationDays", this._ActiveUserDurationDays);
+			kparams.AddIfNotNull("recommendationsCachingTimeDays", this._RecommendationsCachingTimeDays);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case LINEAR_CHANNEL_ID:
-					return "LinearChannelId";
-				case CHANNEL_NUMBER:
-					return "ChannelNumber";
-				case DYNAMIC_DATA:
-					return "DynamicData";
+				case MAX_PROFILES:
+					return "MaxProfiles";
+				case ACTIVE_USER_DURATION_DAYS:
+					return "ActiveUserDurationDays";
+				case RECOMMENDATIONS_CACHING_TIME_DAYS:
+					return "RecommendationsCachingTimeDays";
 				default:
 					return base.getPropertyName(apiName);
 			}

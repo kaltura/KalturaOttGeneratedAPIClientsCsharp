@@ -36,35 +36,30 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class LineupGetRequestBuilder : RequestBuilder<ListResponse<LineupChannelAsset>>
+	public class WatchBasedRecommendationsProfileAddRequestBuilder : RequestBuilder<WatchBasedRecommendationsProfile>
 	{
 		#region Constants
-		public const string PAGE_INDEX = "pageIndex";
-		public const string PAGE_SIZE = "pageSize";
+		public const string PROFILE = "profile";
 		#endregion
 
-		public int PageIndex { get; set; }
-		public int PageSize { get; set; }
+		public WatchBasedRecommendationsProfile Profile { get; set; }
 
-		public LineupGetRequestBuilder()
-			: base("lineup", "get")
+		public WatchBasedRecommendationsProfileAddRequestBuilder()
+			: base("watchbasedrecommendationsprofile", "add")
 		{
 		}
 
-		public LineupGetRequestBuilder(int pageIndex, int pageSize)
+		public WatchBasedRecommendationsProfileAddRequestBuilder(WatchBasedRecommendationsProfile profile)
 			: this()
 		{
-			this.PageIndex = pageIndex;
-			this.PageSize = pageSize;
+			this.Profile = profile;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("pageIndex"))
-				kparams.AddIfNotNull("pageIndex", PageIndex);
-			if (!isMapped("pageSize"))
-				kparams.AddIfNotNull("pageSize", PageSize);
+			if (!isMapped("profile"))
+				kparams.AddIfNotNull("profile", Profile);
 			return kparams;
 		}
 
@@ -76,24 +71,34 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<ListResponse<LineupChannelAsset>>(result);
+			return ObjectFactory.Create<WatchBasedRecommendationsProfile>(result);
 		}
 	}
 
-	public class LineupInvalidateRequestBuilder : RequestBuilder<bool>
+	public class WatchBasedRecommendationsProfileDeleteRequestBuilder : RequestBuilder<VoidResponse>
 	{
 		#region Constants
+		public const string ID = "id";
 		#endregion
 
+		public long Id { get; set; }
 
-		public LineupInvalidateRequestBuilder()
-			: base("lineup", "invalidate")
+		public WatchBasedRecommendationsProfileDeleteRequestBuilder()
+			: base("watchbasedrecommendationsprofile", "delete")
 		{
+		}
+
+		public WatchBasedRecommendationsProfileDeleteRequestBuilder(long id)
+			: this()
+		{
+			this.Id = id;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
 			return kparams;
 		}
 
@@ -105,32 +110,27 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
-				return true;
-			return false;
+			return null;
 		}
 	}
 
-	public class LineupListRequestBuilder : RequestBuilder<ListResponse<LineupChannelAsset>>
+	public class WatchBasedRecommendationsProfileListRequestBuilder : RequestBuilder<ListResponse<WatchBasedRecommendationsProfile>>
 	{
 		#region Constants
 		public const string FILTER = "filter";
-		public const string PAGER = "pager";
 		#endregion
 
-		public LineupRegionalChannelFilter Filter { get; set; }
-		public FilterPager Pager { get; set; }
+		public WatchBasedRecommendationsProfileFilter Filter { get; set; }
 
-		public LineupListRequestBuilder()
-			: base("lineup", "list")
+		public WatchBasedRecommendationsProfileListRequestBuilder()
+			: base("watchbasedrecommendationsprofile", "list")
 		{
 		}
 
-		public LineupListRequestBuilder(LineupRegionalChannelFilter filter, FilterPager pager)
+		public WatchBasedRecommendationsProfileListRequestBuilder(WatchBasedRecommendationsProfileFilter filter)
 			: this()
 		{
 			this.Filter = filter;
-			this.Pager = pager;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -138,8 +138,6 @@ namespace Kaltura.Services
 			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("filter"))
 				kparams.AddIfNotNull("filter", Filter);
-			if (!isMapped("pager"))
-				kparams.AddIfNotNull("pager", Pager);
 			return kparams;
 		}
 
@@ -151,34 +149,39 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<ListResponse<LineupChannelAsset>>(result);
+			return ObjectFactory.Create<ListResponse<WatchBasedRecommendationsProfile>>(result);
 		}
 	}
 
-	public class LineupSendUpdatedNotificationRequestBuilder : RequestBuilder<bool>
+	public class WatchBasedRecommendationsProfileUpdateRequestBuilder : RequestBuilder<WatchBasedRecommendationsProfile>
 	{
 		#region Constants
-		public const string REGION_IDS = "regionIds";
+		public const string ID = "id";
+		public const string PROFILE = "profile";
 		#endregion
 
-		public string RegionIds { get; set; }
+		public long Id { get; set; }
+		public WatchBasedRecommendationsProfile Profile { get; set; }
 
-		public LineupSendUpdatedNotificationRequestBuilder()
-			: base("lineup", "sendUpdatedNotification")
+		public WatchBasedRecommendationsProfileUpdateRequestBuilder()
+			: base("watchbasedrecommendationsprofile", "update")
 		{
 		}
 
-		public LineupSendUpdatedNotificationRequestBuilder(string regionIds)
+		public WatchBasedRecommendationsProfileUpdateRequestBuilder(long id, WatchBasedRecommendationsProfile profile)
 			: this()
 		{
-			this.RegionIds = regionIds;
+			this.Id = id;
+			this.Profile = profile;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("regionIds"))
-				kparams.AddIfNotNull("regionIds", RegionIds);
+			if (!isMapped("id"))
+				kparams.AddIfNotNull("id", Id);
+			if (!isMapped("profile"))
+				kparams.AddIfNotNull("profile", Profile);
 			return kparams;
 		}
 
@@ -190,37 +193,35 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
-				return true;
-			return false;
+			return ObjectFactory.Create<WatchBasedRecommendationsProfile>(result);
 		}
 	}
 
 
-	public class LineupService
+	public class WatchBasedRecommendationsProfileService
 	{
-		private LineupService()
+		private WatchBasedRecommendationsProfileService()
 		{
 		}
 
-		public static LineupGetRequestBuilder Get(int pageIndex, int pageSize)
+		public static WatchBasedRecommendationsProfileAddRequestBuilder Add(WatchBasedRecommendationsProfile profile)
 		{
-			return new LineupGetRequestBuilder(pageIndex, pageSize);
+			return new WatchBasedRecommendationsProfileAddRequestBuilder(profile);
 		}
 
-		public static LineupInvalidateRequestBuilder Invalidate()
+		public static WatchBasedRecommendationsProfileDeleteRequestBuilder Delete(long id)
 		{
-			return new LineupInvalidateRequestBuilder();
+			return new WatchBasedRecommendationsProfileDeleteRequestBuilder(id);
 		}
 
-		public static LineupListRequestBuilder List(LineupRegionalChannelFilter filter, FilterPager pager = null)
+		public static WatchBasedRecommendationsProfileListRequestBuilder List(WatchBasedRecommendationsProfileFilter filter = null)
 		{
-			return new LineupListRequestBuilder(filter, pager);
+			return new WatchBasedRecommendationsProfileListRequestBuilder(filter);
 		}
 
-		public static LineupSendUpdatedNotificationRequestBuilder SendUpdatedNotification(string regionIds)
+		public static WatchBasedRecommendationsProfileUpdateRequestBuilder Update(long id, WatchBasedRecommendationsProfile profile)
 		{
-			return new LineupSendUpdatedNotificationRequestBuilder(regionIds);
+			return new WatchBasedRecommendationsProfileUpdateRequestBuilder(id, profile);
 		}
 	}
 }
