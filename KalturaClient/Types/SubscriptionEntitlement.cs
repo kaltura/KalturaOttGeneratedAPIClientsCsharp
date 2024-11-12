@@ -48,6 +48,7 @@ namespace Kaltura.Types
 		public const string UNIFIED_PAYMENT_ID = "unifiedPaymentId";
 		public const string IS_SUSPENDED = "isSuspended";
 		public const string PRICE_DETAILS = "priceDetails";
+		public const string IS_FLEXIBLE_PRICE_PLAN = "isFlexiblePricePlan";
 		#endregion
 
 		#region Private Fields
@@ -61,6 +62,7 @@ namespace Kaltura.Types
 		private long _UnifiedPaymentId = long.MinValue;
 		private bool? _IsSuspended = null;
 		private EntitlementPriceDetails _PriceDetails;
+		private bool? _IsFlexiblePricePlan = null;
 		#endregion
 
 		#region Properties
@@ -194,6 +196,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("PriceDetails");
 			}
 		}
+		/// <summary>
+		/// Use IsFlexiblePricePlanAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IsFlexiblePricePlan
+		{
+			get { return _IsFlexiblePricePlan; }
+			private set 
+			{ 
+				_IsFlexiblePricePlan = value;
+				OnPropertyChanged("IsFlexiblePricePlan");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -243,6 +258,10 @@ namespace Kaltura.Types
 			{
 				this._PriceDetails = ObjectFactory.Create<EntitlementPriceDetails>(node["priceDetails"]);
 			}
+			if(node["isFlexiblePricePlan"] != null)
+			{
+				this._IsFlexiblePricePlan = ParseBool(node["isFlexiblePricePlan"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -262,6 +281,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("unifiedPaymentId", this._UnifiedPaymentId);
 			kparams.AddIfNotNull("isSuspended", this._IsSuspended);
 			kparams.AddIfNotNull("priceDetails", this._PriceDetails);
+			kparams.AddIfNotNull("isFlexiblePricePlan", this._IsFlexiblePricePlan);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -288,6 +308,8 @@ namespace Kaltura.Types
 					return "IsSuspended";
 				case PRICE_DETAILS:
 					return "PriceDetails";
+				case IS_FLEXIBLE_PRICE_PLAN:
+					return "IsFlexiblePricePlan";
 				default:
 					return base.getPropertyName(apiName);
 			}

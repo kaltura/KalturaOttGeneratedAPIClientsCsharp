@@ -35,88 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class RegionChannelNumber : ObjectBase
+	public class ResendMfaTokenResponse : ObjectBase
 	{
 		#region Constants
-		public const string REGION_ID = "regionId";
-		public const string CHANNEL_NUMBER = "channelNumber";
-		public const string DYNAMIC_DATA = "dynamicData";
+		public const string RESULT = "result";
 		#endregion
 
 		#region Private Fields
-		private int _RegionId = Int32.MinValue;
-		private int _ChannelNumber = Int32.MinValue;
-		private IDictionary<string, StringValue> _DynamicData;
+		private bool? _Result = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use RegionIdAsDouble property instead
+		/// Use ResultAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int RegionId
+		public bool? Result
 		{
-			get { return _RegionId; }
+			get { return _Result; }
 			set 
 			{ 
-				_RegionId = value;
-				OnPropertyChanged("RegionId");
-			}
-		}
-		/// <summary>
-		/// Use ChannelNumberAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public int ChannelNumber
-		{
-			get { return _ChannelNumber; }
-			set 
-			{ 
-				_ChannelNumber = value;
-				OnPropertyChanged("ChannelNumber");
-			}
-		}
-		/// <summary>
-		/// Use DynamicDataAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IDictionary<string, StringValue> DynamicData
-		{
-			get { return _DynamicData; }
-			set 
-			{ 
-				_DynamicData = value;
-				OnPropertyChanged("DynamicData");
+				_Result = value;
+				OnPropertyChanged("Result");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public RegionChannelNumber()
+		public ResendMfaTokenResponse()
 		{
 		}
 
-		public RegionChannelNumber(JToken node) : base(node)
+		public ResendMfaTokenResponse(JToken node) : base(node)
 		{
-			if(node["regionId"] != null)
+			if(node["result"] != null)
 			{
-				this._RegionId = ParseInt(node["regionId"].Value<string>());
-			}
-			if(node["channelNumber"] != null)
-			{
-				this._ChannelNumber = ParseInt(node["channelNumber"].Value<string>());
-			}
-			if(node["dynamicData"] != null)
-			{
-				{
-					string key;
-					this._DynamicData = new Dictionary<string, StringValue>();
-					foreach(var arrayNode in node["dynamicData"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._DynamicData[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
-					}
-				}
+				this._Result = ParseBool(node["result"].Value<string>());
 			}
 		}
 		#endregion
@@ -126,22 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaRegionChannelNumber");
-			kparams.AddIfNotNull("regionId", this._RegionId);
-			kparams.AddIfNotNull("channelNumber", this._ChannelNumber);
-			kparams.AddIfNotNull("dynamicData", this._DynamicData);
+				kparams.AddReplace("objectType", "KalturaResendMfaTokenResponse");
+			kparams.AddIfNotNull("result", this._Result);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case REGION_ID:
-					return "RegionId";
-				case CHANNEL_NUMBER:
-					return "ChannelNumber";
-				case DYNAMIC_DATA:
-					return "DynamicData";
+				case RESULT:
+					return "Result";
 				default:
 					return base.getPropertyName(apiName);
 			}
