@@ -48,6 +48,7 @@ namespace Kaltura.Types
 		public const string SESSION_USER_ID = "sessionUserId";
 		public const string CREATE_DATE = "createDate";
 		public const string UPDATE_DATE = "updateDate";
+		public const string REGION_ID = "regionId";
 		#endregion
 
 		#region Private Fields
@@ -61,6 +62,7 @@ namespace Kaltura.Types
 		private string _SessionUserId = null;
 		private long _CreateDate = long.MinValue;
 		private long _UpdateDate = long.MinValue;
+		private int _RegionId = Int32.MinValue;
 		#endregion
 
 		#region Properties
@@ -194,6 +196,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("UpdateDate");
 			}
 		}
+		/// <summary>
+		/// Use RegionIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int RegionId
+		{
+			get { return _RegionId; }
+			private set 
+			{ 
+				_RegionId = value;
+				OnPropertyChanged("RegionId");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -243,6 +258,10 @@ namespace Kaltura.Types
 			{
 				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
 			}
+			if(node["regionId"] != null)
+			{
+				this._RegionId = ParseInt(node["regionId"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -262,6 +281,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("sessionUserId", this._SessionUserId);
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
+			kparams.AddIfNotNull("regionId", this._RegionId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -288,6 +308,8 @@ namespace Kaltura.Types
 					return "CreateDate";
 				case UPDATE_DATE:
 					return "UpdateDate";
+				case REGION_ID:
+					return "RegionId";
 				default:
 					return base.getPropertyName(apiName);
 			}

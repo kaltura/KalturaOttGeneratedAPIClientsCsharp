@@ -64,6 +64,7 @@ namespace Kaltura.Types
 		public const string PERSONALIZED_RECORDING = "personalizedRecording";
 		public const string MAX_RECORDING_CONCURRENCY = "maxRecordingConcurrency";
 		public const string MAX_CONCURRENCY_MARGIN = "maxConcurrencyMargin";
+		public const string SHOULD_ROUND_STOP_RECORDINGS_BY_SECONDS = "shouldRoundStopRecordingsBySeconds";
 		#endregion
 
 		#region Private Fields
@@ -93,6 +94,7 @@ namespace Kaltura.Types
 		private bool? _PersonalizedRecording = null;
 		private int _MaxRecordingConcurrency = Int32.MinValue;
 		private int _MaxConcurrencyMargin = Int32.MinValue;
+		private bool? _ShouldRoundStopRecordingsBySeconds = null;
 		#endregion
 
 		#region Properties
@@ -434,6 +436,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxConcurrencyMargin");
 			}
 		}
+		/// <summary>
+		/// Use ShouldRoundStopRecordingsBySecondsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? ShouldRoundStopRecordingsBySeconds
+		{
+			get { return _ShouldRoundStopRecordingsBySeconds; }
+			set 
+			{ 
+				_ShouldRoundStopRecordingsBySeconds = value;
+				OnPropertyChanged("ShouldRoundStopRecordingsBySeconds");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -547,6 +562,10 @@ namespace Kaltura.Types
 			{
 				this._MaxConcurrencyMargin = ParseInt(node["maxConcurrencyMargin"].Value<string>());
 			}
+			if(node["shouldRoundStopRecordingsBySeconds"] != null)
+			{
+				this._ShouldRoundStopRecordingsBySeconds = ParseBool(node["shouldRoundStopRecordingsBySeconds"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -582,6 +601,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("personalizedRecording", this._PersonalizedRecording);
 			kparams.AddIfNotNull("maxRecordingConcurrency", this._MaxRecordingConcurrency);
 			kparams.AddIfNotNull("maxConcurrencyMargin", this._MaxConcurrencyMargin);
+			kparams.AddIfNotNull("shouldRoundStopRecordingsBySeconds", this._ShouldRoundStopRecordingsBySeconds);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -640,6 +660,8 @@ namespace Kaltura.Types
 					return "MaxRecordingConcurrency";
 				case MAX_CONCURRENCY_MARGIN:
 					return "MaxConcurrencyMargin";
+				case SHOULD_ROUND_STOP_RECORDINGS_BY_SECONDS:
+					return "ShouldRoundStopRecordingsBySeconds";
 				default:
 					return base.getPropertyName(apiName);
 			}
