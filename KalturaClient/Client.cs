@@ -36,7 +36,7 @@ namespace Kaltura
 		public Client(Configuration config) : base(config)
 		{
 				ApiVersion = "10.7.0.0";
-				ClientTag = "dotnet:24-11-27";
+				ClientTag = "dotnet:24-11-28";
 		}
 	
 		#region Properties
