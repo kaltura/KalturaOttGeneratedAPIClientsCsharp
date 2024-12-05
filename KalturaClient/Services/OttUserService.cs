@@ -498,6 +498,70 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class OttUserMfaLoginRequestBuilder : RequestBuilder<LoginResponse>
+	{
+		#region Constants
+		public new const string PARTNER_ID = "partnerId";
+		public const string TOKEN = "token";
+		public const string USERNAME = "username";
+		public const string PASSWORD = "password";
+		public const string EXTRA_PARAMS = "extraParams";
+		public const string UDID = "udid";
+		#endregion
+
+		public new int PartnerId { get; set; }
+		public string Token { get; set; }
+		public string Username { get; set; }
+		public string Password { get; set; }
+		public IDictionary<string, StringValue> ExtraParams { get; set; }
+		public string Udid { get; set; }
+
+		public OttUserMfaLoginRequestBuilder()
+			: base("ottuser", "mfaLogin")
+		{
+		}
+
+		public OttUserMfaLoginRequestBuilder(int partnerId, string token, string username, string password, IDictionary<string, StringValue> extraParams, string udid)
+			: this()
+		{
+			this.PartnerId = partnerId;
+			this.Token = token;
+			this.Username = username;
+			this.Password = password;
+			this.ExtraParams = extraParams;
+			this.Udid = udid;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("partnerId"))
+				kparams.AddIfNotNull("partnerId", PartnerId);
+			if (!isMapped("token"))
+				kparams.AddIfNotNull("token", Token);
+			if (!isMapped("username"))
+				kparams.AddIfNotNull("username", Username);
+			if (!isMapped("password"))
+				kparams.AddIfNotNull("password", Password);
+			if (!isMapped("extraParams"))
+				kparams.AddIfNotNull("extraParams", ExtraParams);
+			if (!isMapped("udid"))
+				kparams.AddIfNotNull("udid", Udid);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<LoginResponse>(result);
+		}
+	}
+
 	public class OttUserRegisterRequestBuilder : RequestBuilder<OTTUser>
 	{
 		#region Constants
@@ -590,6 +654,60 @@ namespace Kaltura.Services
 			if (result.Value<string>().Equals("1") || result.Value<string>().ToLower().Equals("true"))
 				return true;
 			return false;
+		}
+	}
+
+	public class OttUserResendMfaTokenRequestBuilder : RequestBuilder<ResendMfaTokenResponse>
+	{
+		#region Constants
+		public new const string PARTNER_ID = "partnerId";
+		public const string USERNAME = "username";
+		public const string PASSWORD = "password";
+		public const string EXTRA_PARAMS = "extraParams";
+		#endregion
+
+		public new int PartnerId { get; set; }
+		public string Username { get; set; }
+		public string Password { get; set; }
+		public IDictionary<string, StringValue> ExtraParams { get; set; }
+
+		public OttUserResendMfaTokenRequestBuilder()
+			: base("ottuser", "resendMfaToken")
+		{
+		}
+
+		public OttUserResendMfaTokenRequestBuilder(int partnerId, string username, string password, IDictionary<string, StringValue> extraParams)
+			: this()
+		{
+			this.PartnerId = partnerId;
+			this.Username = username;
+			this.Password = password;
+			this.ExtraParams = extraParams;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("partnerId"))
+				kparams.AddIfNotNull("partnerId", PartnerId);
+			if (!isMapped("username"))
+				kparams.AddIfNotNull("username", Username);
+			if (!isMapped("password"))
+				kparams.AddIfNotNull("password", Password);
+			if (!isMapped("extraParams"))
+				kparams.AddIfNotNull("extraParams", ExtraParams);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<ResendMfaTokenResponse>(result);
 		}
 	}
 
@@ -1021,6 +1139,11 @@ namespace Kaltura.Services
 			return new OttUserLogoutRequestBuilder(adapterData);
 		}
 
+		public static OttUserMfaLoginRequestBuilder MfaLogin(int partnerId, string token, string username = null, string password = null, IDictionary<string, StringValue> extraParams = null, string udid = null)
+		{
+			return new OttUserMfaLoginRequestBuilder(partnerId, token, username, password, extraParams, udid);
+		}
+
 		public static OttUserRegisterRequestBuilder Register(int partnerId, OTTUser user, string password)
 		{
 			return new OttUserRegisterRequestBuilder(partnerId, user, password);
@@ -1029,6 +1152,11 @@ namespace Kaltura.Services
 		public static OttUserResendActivationTokenRequestBuilder ResendActivationToken(int partnerId, string username)
 		{
 			return new OttUserResendActivationTokenRequestBuilder(partnerId, username);
+		}
+
+		public static OttUserResendMfaTokenRequestBuilder ResendMfaToken(int partnerId, string username = null, string password = null, IDictionary<string, StringValue> extraParams = null)
+		{
+			return new OttUserResendMfaTokenRequestBuilder(partnerId, username, password, extraParams);
 		}
 
 		public static OttUserResetPasswordRequestBuilder ResetPassword(int partnerId, string username, string templateName = null)
