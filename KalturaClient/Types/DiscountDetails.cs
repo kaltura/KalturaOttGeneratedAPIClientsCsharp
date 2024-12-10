@@ -45,6 +45,7 @@ namespace Kaltura.Types
 		public const string END_DATE = "endDate";
 		public const string WHEN_ALGO_TIMES = "whenAlgoTimes";
 		public const string WHEN_ALGO_TYPE = "whenAlgoType";
+		public const string ASSET_USER_RULE_ID = "assetUserRuleId";
 		#endregion
 
 		#region Private Fields
@@ -55,6 +56,7 @@ namespace Kaltura.Types
 		private long _EndDate = long.MinValue;
 		private int _WhenAlgoTimes = Int32.MinValue;
 		private int _WhenAlgoType = Int32.MinValue;
+		private long _AssetUserRuleId = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -149,6 +151,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("WhenAlgoType");
 			}
 		}
+		/// <summary>
+		/// Use AssetUserRuleIdAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long AssetUserRuleId
+		{
+			get { return _AssetUserRuleId; }
+			set 
+			{ 
+				_AssetUserRuleId = value;
+				OnPropertyChanged("AssetUserRuleId");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -190,6 +205,10 @@ namespace Kaltura.Types
 			{
 				this._WhenAlgoType = ParseInt(node["whenAlgoType"].Value<string>());
 			}
+			if(node["assetUserRuleId"] != null)
+			{
+				this._AssetUserRuleId = ParseLong(node["assetUserRuleId"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -206,6 +225,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("endDate", this._EndDate);
 			kparams.AddIfNotNull("whenAlgoTimes", this._WhenAlgoTimes);
 			kparams.AddIfNotNull("whenAlgoType", this._WhenAlgoType);
+			kparams.AddIfNotNull("assetUserRuleId", this._AssetUserRuleId);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -226,6 +246,8 @@ namespace Kaltura.Types
 					return "WhenAlgoTimes";
 				case WHEN_ALGO_TYPE:
 					return "WhenAlgoType";
+				case ASSET_USER_RULE_ID:
+					return "AssetUserRuleId";
 				default:
 					return base.getPropertyName(apiName);
 			}
