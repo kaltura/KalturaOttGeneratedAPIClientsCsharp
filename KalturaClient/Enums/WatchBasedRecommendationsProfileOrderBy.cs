@@ -27,11 +27,10 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class ImageStatus : StringEnum
+	public sealed class WatchBasedRecommendationsProfileOrderBy : StringEnum
 	{
-		public static readonly ImageStatus PENDING = new ImageStatus("PENDING");
-		public static readonly ImageStatus READY = new ImageStatus("READY");
+		public static readonly WatchBasedRecommendationsProfileOrderBy NONE = new WatchBasedRecommendationsProfileOrderBy("NONE");
 
-		private ImageStatus(string name) : base(name) { }
+		private WatchBasedRecommendationsProfileOrderBy(string name) : base(name) { }
 	}
 }

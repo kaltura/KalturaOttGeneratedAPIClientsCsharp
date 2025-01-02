@@ -27,11 +27,11 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class ImageStatus : StringEnum
+	public sealed class TokenDeliveryMethod : StringEnum
 	{
-		public static readonly ImageStatus PENDING = new ImageStatus("PENDING");
-		public static readonly ImageStatus READY = new ImageStatus("READY");
+		public static readonly TokenDeliveryMethod EMAIL = new TokenDeliveryMethod("Email");
+		public static readonly TokenDeliveryMethod SSO = new TokenDeliveryMethod("Sso");
 
-		private ImageStatus(string name) : base(name) { }
+		private TokenDeliveryMethod(string name) : base(name) { }
 	}
 }
