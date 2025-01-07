@@ -31,7 +31,6 @@ namespace Kaltura.Enums
 	{
 		public static readonly ImageStatus PENDING = new ImageStatus("PENDING");
 		public static readonly ImageStatus READY = new ImageStatus("READY");
-		public static readonly ImageStatus FAILED = new ImageStatus("FAILED");
 
 		private ImageStatus(string name) : base(name) { }
 	}
