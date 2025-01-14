@@ -39,13 +39,13 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string IS_ENABLED = "isEnabled";
-		public const string META_FIELD_NAME_MAP = "metaFieldNameMap";
+		public const string ASSET_STRUCT_META_NAME_MAP = "assetStructMetaNameMap";
 		public const string VECTORIZED_META_IDS = "vectorizedMetaIds";
 		#endregion
 
 		#region Private Fields
 		private bool? _IsEnabled = null;
-		private IDictionary<string, StringValue> _MetaFieldNameMap;
+		private IDictionary<string, MetaFieldNameMap> _AssetStructMetaNameMap;
 		private string _VectorizedMetaIds = null;
 		#endregion
 
@@ -64,16 +64,16 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use MetaFieldNameMapAsDouble property instead
+		/// Use AssetStructMetaNameMapAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, StringValue> MetaFieldNameMap
+		public IDictionary<string, MetaFieldNameMap> AssetStructMetaNameMap
 		{
-			get { return _MetaFieldNameMap; }
+			get { return _AssetStructMetaNameMap; }
 			set 
 			{ 
-				_MetaFieldNameMap = value;
-				OnPropertyChanged("MetaFieldNameMap");
+				_AssetStructMetaNameMap = value;
+				OnPropertyChanged("AssetStructMetaNameMap");
 			}
 		}
 		/// <summary>
@@ -102,15 +102,15 @@ namespace Kaltura.Types
 			{
 				this._IsEnabled = ParseBool(node["isEnabled"].Value<string>());
 			}
-			if(node["metaFieldNameMap"] != null)
+			if(node["assetStructMetaNameMap"] != null)
 			{
 				{
 					string key;
-					this._MetaFieldNameMap = new Dictionary<string, StringValue>();
-					foreach(var arrayNode in node["metaFieldNameMap"].Children<JProperty>())
+					this._AssetStructMetaNameMap = new Dictionary<string, MetaFieldNameMap>();
+					foreach(var arrayNode in node["assetStructMetaNameMap"].Children<JProperty>())
 					{
 						key = arrayNode.Name;
-						this._MetaFieldNameMap[key] = ObjectFactory.Create<StringValue>(arrayNode.Value);
+						this._AssetStructMetaNameMap[key] = ObjectFactory.Create<MetaFieldNameMap>(arrayNode.Value);
 					}
 				}
 			}
@@ -128,7 +128,7 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
 			kparams.AddIfNotNull("isEnabled", this._IsEnabled);
-			kparams.AddIfNotNull("metaFieldNameMap", this._MetaFieldNameMap);
+			kparams.AddIfNotNull("assetStructMetaNameMap", this._AssetStructMetaNameMap);
 			kparams.AddIfNotNull("vectorizedMetaIds", this._VectorizedMetaIds);
 			return kparams;
 		}
@@ -138,8 +138,8 @@ namespace Kaltura.Types
 			{
 				case IS_ENABLED:
 					return "IsEnabled";
-				case META_FIELD_NAME_MAP:
-					return "MetaFieldNameMap";
+				case ASSET_STRUCT_META_NAME_MAP:
+					return "AssetStructMetaNameMap";
 				case VECTORIZED_META_IDS:
 					return "VectorizedMetaIds";
 				default:

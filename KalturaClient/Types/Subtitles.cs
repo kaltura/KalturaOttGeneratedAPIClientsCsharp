@@ -113,7 +113,7 @@ namespace Kaltura.Types
 		public string SubtitlesLanguage
 		{
 			get { return _SubtitlesLanguage; }
-			private set 
+			set 
 			{ 
 				_SubtitlesLanguage = value;
 				OnPropertyChanged("SubtitlesLanguage");
