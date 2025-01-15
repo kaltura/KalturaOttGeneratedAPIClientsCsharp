@@ -302,6 +302,60 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class AssetGetBulkPlaybackContextRequestBuilder : RequestBuilder<BulkPlaybackContext>
+	{
+		#region Constants
+		public const string FILE_TYPES = "fileTypes";
+		public const string STREAMER_TYPE = "streamerType";
+		public const string CONTEXT = "context";
+		public const string URL_TYPE = "urlType";
+		#endregion
+
+		public IList<KeyValue> FileTypes { get; set; }
+		public string StreamerType { get; set; }
+		public PlaybackContextType Context { get; set; }
+		public UrlType UrlType { get; set; }
+
+		public AssetGetBulkPlaybackContextRequestBuilder()
+			: base("asset", "getBulkPlaybackContext")
+		{
+		}
+
+		public AssetGetBulkPlaybackContextRequestBuilder(IList<KeyValue> fileTypes, string streamerType, PlaybackContextType context, UrlType urlType)
+			: this()
+		{
+			this.FileTypes = fileTypes;
+			this.StreamerType = streamerType;
+			this.Context = context;
+			this.UrlType = urlType;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("fileTypes"))
+				kparams.AddIfNotNull("fileTypes", FileTypes);
+			if (!isMapped("streamerType"))
+				kparams.AddIfNotNull("streamerType", StreamerType);
+			if (!isMapped("context"))
+				kparams.AddIfNotNull("context", Context);
+			if (!isMapped("urlType"))
+				kparams.AddIfNotNull("urlType", UrlType);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<BulkPlaybackContext>(result);
+		}
+	}
+
 	public class AssetGetPlaybackContextRequestBuilder : RequestBuilder<PlaybackContext>
 	{
 		#region Constants
@@ -726,6 +780,11 @@ namespace Kaltura.Services
 		public static AssetGetAdsContextRequestBuilder GetAdsContext(string assetId, AssetType assetType, PlaybackContextOptions contextDataParams)
 		{
 			return new AssetGetAdsContextRequestBuilder(assetId, assetType, contextDataParams);
+		}
+
+		public static AssetGetBulkPlaybackContextRequestBuilder GetBulkPlaybackContext(IList<KeyValue> fileTypes, string streamerType, PlaybackContextType context, UrlType urlType)
+		{
+			return new AssetGetBulkPlaybackContextRequestBuilder(fileTypes, streamerType, context, urlType);
 		}
 
 		public static AssetGetPlaybackContextRequestBuilder GetPlaybackContext(string assetId, AssetType assetType, PlaybackContextOptions contextDataParams, string sourceType = null)
