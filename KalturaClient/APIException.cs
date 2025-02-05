@@ -287,6 +287,9 @@ namespace Kaltura
 		public static string CollectionTooBigForGrouping = "4127";
 		public static string EnumerationTagInvalidValue = "4128";
 		public static string RecurringFlexiblePricePlan = "9049";
+		public static string ExternalAssetNotFound = "4129";
+		public static string AlreadyProcessed = "4130";
+		public static string JobNotFound = "4131";
 		public static string NoPinDefined = "5001";
 		public static string PinMismatch = "5002";
 		public static string RuleNotExists = "5003";

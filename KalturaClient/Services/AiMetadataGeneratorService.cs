@@ -163,6 +163,35 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class AiMetadataGeneratorGetMetadataFieldDefinitionsRequestBuilder : RequestBuilder<MetaFieldNameMap>
+	{
+		#region Constants
+		#endregion
+
+
+		public AiMetadataGeneratorGetMetadataFieldDefinitionsRequestBuilder()
+			: base("aimetadatagenerator", "getMetadataFieldDefinitions")
+		{
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<MetaFieldNameMap>(result);
+		}
+	}
+
 	public class AiMetadataGeneratorGetPartnerConfigurationRequestBuilder : RequestBuilder<AiMetadataGeneratorConfiguration>
 	{
 		#region Constants
@@ -192,7 +221,7 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class AiMetadataGeneratorSetPartnerConfigurationRequestBuilder : RequestBuilder<AiMetadataGeneratorConfiguration>
+	public class AiMetadataGeneratorUpdatePartnerConfigurationRequestBuilder : RequestBuilder<AiMetadataGeneratorConfiguration>
 	{
 		#region Constants
 		public const string CONFIGURATION = "configuration";
@@ -200,12 +229,12 @@ namespace Kaltura.Services
 
 		public AiMetadataGeneratorConfiguration Configuration { get; set; }
 
-		public AiMetadataGeneratorSetPartnerConfigurationRequestBuilder()
-			: base("aimetadatagenerator", "setPartnerConfiguration")
+		public AiMetadataGeneratorUpdatePartnerConfigurationRequestBuilder()
+			: base("aimetadatagenerator", "updatePartnerConfiguration")
 		{
 		}
 
-		public AiMetadataGeneratorSetPartnerConfigurationRequestBuilder(AiMetadataGeneratorConfiguration configuration)
+		public AiMetadataGeneratorUpdatePartnerConfigurationRequestBuilder(AiMetadataGeneratorConfiguration configuration)
 			: this()
 		{
 			this.Configuration = configuration;
@@ -253,14 +282,19 @@ namespace Kaltura.Services
 			return new AiMetadataGeneratorGetGenerateMetadataJobRequestBuilder(id);
 		}
 
+		public static AiMetadataGeneratorGetMetadataFieldDefinitionsRequestBuilder GetMetadataFieldDefinitions()
+		{
+			return new AiMetadataGeneratorGetMetadataFieldDefinitionsRequestBuilder();
+		}
+
 		public static AiMetadataGeneratorGetPartnerConfigurationRequestBuilder GetPartnerConfiguration()
 		{
 			return new AiMetadataGeneratorGetPartnerConfigurationRequestBuilder();
 		}
 
-		public static AiMetadataGeneratorSetPartnerConfigurationRequestBuilder SetPartnerConfiguration(AiMetadataGeneratorConfiguration configuration)
+		public static AiMetadataGeneratorUpdatePartnerConfigurationRequestBuilder UpdatePartnerConfiguration(AiMetadataGeneratorConfiguration configuration)
 		{
-			return new AiMetadataGeneratorSetPartnerConfigurationRequestBuilder(configuration);
+			return new AiMetadataGeneratorUpdatePartnerConfigurationRequestBuilder(configuration);
 		}
 	}
 }
