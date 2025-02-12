@@ -40,13 +40,13 @@ namespace Kaltura.Types
 		#region Constants
 		public const string IS_ENABLED = "isEnabled";
 		public const string ASSET_STRUCT_META_NAME_MAP = "assetStructMetaNameMap";
-		public const string VECTORIZED_META_IDS = "vectorizedMetaIds";
+		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
 		#endregion
 
 		#region Private Fields
 		private bool? _IsEnabled = null;
 		private IDictionary<string, MetaFieldNameMap> _AssetStructMetaNameMap;
-		private string _VectorizedMetaIds = null;
+		private IList<StringValue> _SupportedLanguages;
 		#endregion
 
 		#region Properties
@@ -77,16 +77,16 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use VectorizedMetaIdsAsDouble property instead
+		/// Use SupportedLanguagesAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string VectorizedMetaIds
+		public IList<StringValue> SupportedLanguages
 		{
-			get { return _VectorizedMetaIds; }
-			set 
+			get { return _SupportedLanguages; }
+			private set 
 			{ 
-				_VectorizedMetaIds = value;
-				OnPropertyChanged("VectorizedMetaIds");
+				_SupportedLanguages = value;
+				OnPropertyChanged("SupportedLanguages");
 			}
 		}
 		#endregion
@@ -114,9 +114,13 @@ namespace Kaltura.Types
 					}
 				}
 			}
-			if(node["vectorizedMetaIds"] != null)
+			if(node["supportedLanguages"] != null)
 			{
-				this._VectorizedMetaIds = node["vectorizedMetaIds"].Value<string>();
+				this._SupportedLanguages = new List<StringValue>();
+				foreach(var arrayNode in node["supportedLanguages"].Children())
+				{
+					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
+				}
 			}
 		}
 		#endregion
@@ -129,7 +133,7 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
 			kparams.AddIfNotNull("isEnabled", this._IsEnabled);
 			kparams.AddIfNotNull("assetStructMetaNameMap", this._AssetStructMetaNameMap);
-			kparams.AddIfNotNull("vectorizedMetaIds", this._VectorizedMetaIds);
+			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -140,8 +144,8 @@ namespace Kaltura.Types
 					return "IsEnabled";
 				case ASSET_STRUCT_META_NAME_MAP:
 					return "AssetStructMetaNameMap";
-				case VECTORIZED_META_IDS:
-					return "VectorizedMetaIds";
+				case SUPPORTED_LANGUAGES:
+					return "SupportedLanguages";
 				default:
 					return base.getPropertyName(apiName);
 			}

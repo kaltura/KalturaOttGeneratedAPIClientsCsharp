@@ -41,24 +41,21 @@ namespace Kaltura.Services
 		#region Constants
 		public const string SUBTITLES_FILE_ID = "subtitlesFileId";
 		public const string EXTERNAL_ASSET_IDS = "externalAssetIds";
-		public const string TARGET_DISPLAY_LANGUAGE = "targetDisplayLanguage";
 		#endregion
 
 		public long SubtitlesFileId { get; set; }
 		public IList<StringValue> ExternalAssetIds { get; set; }
-		public string TargetDisplayLanguage { get; set; }
 
 		public AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder()
 			: base("aimetadatagenerator", "generateMetadataBySubtitles")
 		{
 		}
 
-		public AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(long subtitlesFileId, IList<StringValue> externalAssetIds, string targetDisplayLanguage)
+		public AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(long subtitlesFileId, IList<StringValue> externalAssetIds)
 			: this()
 		{
 			this.SubtitlesFileId = subtitlesFileId;
 			this.ExternalAssetIds = externalAssetIds;
-			this.TargetDisplayLanguage = targetDisplayLanguage;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -68,8 +65,6 @@ namespace Kaltura.Services
 				kparams.AddIfNotNull("subtitlesFileId", SubtitlesFileId);
 			if (!isMapped("externalAssetIds"))
 				kparams.AddIfNotNull("externalAssetIds", ExternalAssetIds);
-			if (!isMapped("targetDisplayLanguage"))
-				kparams.AddIfNotNull("targetDisplayLanguage", TargetDisplayLanguage);
 			return kparams;
 		}
 
@@ -267,9 +262,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder GenerateMetadataBySubtitles(long subtitlesFileId, IList<StringValue> externalAssetIds, string targetDisplayLanguage)
+		public static AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder GenerateMetadataBySubtitles(long subtitlesFileId, IList<StringValue> externalAssetIds)
 		{
-			return new AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(subtitlesFileId, externalAssetIds, targetDisplayLanguage);
+			return new AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(subtitlesFileId, externalAssetIds);
 		}
 
 		public static AiMetadataGeneratorGetGeneratedMetadataRequestBuilder GetGeneratedMetadata(long jobId)
