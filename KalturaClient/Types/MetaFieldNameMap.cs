@@ -39,20 +39,24 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string GENRE = "genre";
+		public const string SUB_GENRE = "subGenre";
 		public const string SENTIMENT = "sentiment";
-		public const string SHORT_DESCRIPTION = "shortDescription";
-		public const string LONG_DESCRIPTION = "longDescription";
+		public const string SUGGESTED_TITLE = "suggestedTitle";
+		public const string DESCRIPTION = "description";
 		public const string ONE_LINER = "oneLiner";
 		public const string KEYWORDS = "keywords";
+		public const string SENSITIVE_CONTENT = "sensitiveContent";
 		#endregion
 
 		#region Private Fields
 		private string _Genre = null;
+		private string _SubGenre = null;
 		private string _Sentiment = null;
-		private string _ShortDescription = null;
-		private string _LongDescription = null;
+		private string _SuggestedTitle = null;
+		private string _Description = null;
 		private string _OneLiner = null;
 		private string _Keywords = null;
+		private string _SensitiveContent = null;
 		#endregion
 
 		#region Properties
@@ -70,6 +74,19 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use SubGenreAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string SubGenre
+		{
+			get { return _SubGenre; }
+			set 
+			{ 
+				_SubGenre = value;
+				OnPropertyChanged("SubGenre");
+			}
+		}
+		/// <summary>
 		/// Use SentimentAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -83,29 +100,29 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use ShortDescriptionAsDouble property instead
+		/// Use SuggestedTitleAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string ShortDescription
+		public string SuggestedTitle
 		{
-			get { return _ShortDescription; }
+			get { return _SuggestedTitle; }
 			set 
 			{ 
-				_ShortDescription = value;
-				OnPropertyChanged("ShortDescription");
+				_SuggestedTitle = value;
+				OnPropertyChanged("SuggestedTitle");
 			}
 		}
 		/// <summary>
-		/// Use LongDescriptionAsDouble property instead
+		/// Use DescriptionAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string LongDescription
+		public string Description
 		{
-			get { return _LongDescription; }
+			get { return _Description; }
 			set 
 			{ 
-				_LongDescription = value;
-				OnPropertyChanged("LongDescription");
+				_Description = value;
+				OnPropertyChanged("Description");
 			}
 		}
 		/// <summary>
@@ -134,6 +151,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("Keywords");
 			}
 		}
+		/// <summary>
+		/// Use SensitiveContentAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string SensitiveContent
+		{
+			get { return _SensitiveContent; }
+			set 
+			{ 
+				_SensitiveContent = value;
+				OnPropertyChanged("SensitiveContent");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -147,17 +177,21 @@ namespace Kaltura.Types
 			{
 				this._Genre = node["genre"].Value<string>();
 			}
+			if(node["subGenre"] != null)
+			{
+				this._SubGenre = node["subGenre"].Value<string>();
+			}
 			if(node["sentiment"] != null)
 			{
 				this._Sentiment = node["sentiment"].Value<string>();
 			}
-			if(node["shortDescription"] != null)
+			if(node["suggestedTitle"] != null)
 			{
-				this._ShortDescription = node["shortDescription"].Value<string>();
+				this._SuggestedTitle = node["suggestedTitle"].Value<string>();
 			}
-			if(node["longDescription"] != null)
+			if(node["description"] != null)
 			{
-				this._LongDescription = node["longDescription"].Value<string>();
+				this._Description = node["description"].Value<string>();
 			}
 			if(node["oneLiner"] != null)
 			{
@@ -166,6 +200,10 @@ namespace Kaltura.Types
 			if(node["keywords"] != null)
 			{
 				this._Keywords = node["keywords"].Value<string>();
+			}
+			if(node["sensitiveContent"] != null)
+			{
+				this._SensitiveContent = node["sensitiveContent"].Value<string>();
 			}
 		}
 		#endregion
@@ -177,11 +215,13 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaMetaFieldNameMap");
 			kparams.AddIfNotNull("genre", this._Genre);
+			kparams.AddIfNotNull("subGenre", this._SubGenre);
 			kparams.AddIfNotNull("sentiment", this._Sentiment);
-			kparams.AddIfNotNull("shortDescription", this._ShortDescription);
-			kparams.AddIfNotNull("longDescription", this._LongDescription);
+			kparams.AddIfNotNull("suggestedTitle", this._SuggestedTitle);
+			kparams.AddIfNotNull("description", this._Description);
 			kparams.AddIfNotNull("oneLiner", this._OneLiner);
 			kparams.AddIfNotNull("keywords", this._Keywords);
+			kparams.AddIfNotNull("sensitiveContent", this._SensitiveContent);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -190,16 +230,20 @@ namespace Kaltura.Types
 			{
 				case GENRE:
 					return "Genre";
+				case SUB_GENRE:
+					return "SubGenre";
 				case SENTIMENT:
 					return "Sentiment";
-				case SHORT_DESCRIPTION:
-					return "ShortDescription";
-				case LONG_DESCRIPTION:
-					return "LongDescription";
+				case SUGGESTED_TITLE:
+					return "SuggestedTitle";
+				case DESCRIPTION:
+					return "Description";
 				case ONE_LINER:
 					return "OneLiner";
 				case KEYWORDS:
 					return "Keywords";
+				case SENSITIVE_CONTENT:
+					return "SensitiveContent";
 				default:
 					return base.getPropertyName(apiName);
 			}
