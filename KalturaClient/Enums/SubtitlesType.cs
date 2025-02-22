@@ -29,9 +29,9 @@ namespace Kaltura.Enums
 {
 	public sealed class SubtitlesType : StringEnum
 	{
+		public static readonly SubtitlesType TEXT = new SubtitlesType("Text");
 		public static readonly SubtitlesType SRT = new SubtitlesType("SRT");
-		public static readonly SubtitlesType WEBTTV = new SubtitlesType("WebTTV");
-		public static readonly SubtitlesType TEXT_ONLY = new SubtitlesType("Text_Only");
+		public static readonly SubtitlesType WEBVTT = new SubtitlesType("WebVTT");
 
 		private SubtitlesType(string name) : base(name) { }
 	}

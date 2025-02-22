@@ -41,16 +41,16 @@ namespace Kaltura.Types
 		public const string ID = "id";
 		public const string CREATE_DATE = "createDate";
 		public const string FILE_NAME = "fileName";
-		public const string SUBTITLES_TYPE = "subtitlesType";
-		public const string SUBTITLES_LANGUAGE = "subtitlesLanguage";
+		public const string TYPE = "type";
+		public const string LANGUAGE = "language";
 		#endregion
 
 		#region Private Fields
 		private long _Id = long.MinValue;
 		private long _CreateDate = long.MinValue;
 		private string _FileName = null;
-		private SubtitlesType _SubtitlesType = null;
-		private string _SubtitlesLanguage = null;
+		private SubtitlesType _Type = null;
+		private string _Language = null;
 		#endregion
 
 		#region Properties
@@ -94,29 +94,29 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use SubtitlesTypeAsDouble property instead
+		/// Use TypeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public SubtitlesType SubtitlesType
+		public SubtitlesType Type
 		{
-			get { return _SubtitlesType; }
+			get { return _Type; }
 			set 
 			{ 
-				_SubtitlesType = value;
-				OnPropertyChanged("SubtitlesType");
+				_Type = value;
+				OnPropertyChanged("Type");
 			}
 		}
 		/// <summary>
-		/// Use SubtitlesLanguageAsDouble property instead
+		/// Use LanguageAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string SubtitlesLanguage
+		public string Language
 		{
-			get { return _SubtitlesLanguage; }
+			get { return _Language; }
 			set 
 			{ 
-				_SubtitlesLanguage = value;
-				OnPropertyChanged("SubtitlesLanguage");
+				_Language = value;
+				OnPropertyChanged("Language");
 			}
 		}
 		#endregion
@@ -140,13 +140,13 @@ namespace Kaltura.Types
 			{
 				this._FileName = node["fileName"].Value<string>();
 			}
-			if(node["subtitlesType"] != null)
+			if(node["type"] != null)
 			{
-				this._SubtitlesType = (SubtitlesType)StringEnum.Parse(typeof(SubtitlesType), node["subtitlesType"].Value<string>());
+				this._Type = (SubtitlesType)StringEnum.Parse(typeof(SubtitlesType), node["type"].Value<string>());
 			}
-			if(node["subtitlesLanguage"] != null)
+			if(node["language"] != null)
 			{
-				this._SubtitlesLanguage = node["subtitlesLanguage"].Value<string>();
+				this._Language = node["language"].Value<string>();
 			}
 		}
 		#endregion
@@ -160,8 +160,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("fileName", this._FileName);
-			kparams.AddIfNotNull("subtitlesType", this._SubtitlesType);
-			kparams.AddIfNotNull("subtitlesLanguage", this._SubtitlesLanguage);
+			kparams.AddIfNotNull("type", this._Type);
+			kparams.AddIfNotNull("language", this._Language);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -174,10 +174,10 @@ namespace Kaltura.Types
 					return "CreateDate";
 				case FILE_NAME:
 					return "FileName";
-				case SUBTITLES_TYPE:
-					return "SubtitlesType";
-				case SUBTITLES_LANGUAGE:
-					return "SubtitlesLanguage";
+				case TYPE:
+					return "Type";
+				case LANGUAGE:
+					return "Language";
 				default:
 					return base.getPropertyName(apiName);
 			}

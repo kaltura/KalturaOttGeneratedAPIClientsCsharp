@@ -123,23 +123,23 @@ namespace Kaltura.Services
 	{
 		#region Constants
 		public const string SUBTITLES = "subtitles";
-		public const string FILE = "file";
+		public const string FILE_DATA = "fileData";
 		#endregion
 
 		public Subtitles Subtitles { get; set; }
-		public Stream File { get; set; }
-		public string File_FileName { get; set; }
+		public Stream FileData { get; set; }
+		public string FileData_FileName { get; set; }
 
 		public SubtitlesUploadFileRequestBuilder()
 			: base("subtitles", "uploadFile")
 		{
 		}
 
-		public SubtitlesUploadFileRequestBuilder(Subtitles subtitles, Stream file)
+		public SubtitlesUploadFileRequestBuilder(Subtitles subtitles, Stream fileData)
 			: this()
 		{
 			this.Subtitles = subtitles;
-			this.File = file;
+			this.FileData = fileData;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -153,7 +153,7 @@ namespace Kaltura.Services
 		public override Files getFiles()
 		{
 			Files kfiles = base.getFiles();
-			kfiles.Add("file", new FileData(File, File_FileName));
+			kfiles.Add("fileData", new FileData(FileData, FileData_FileName));
 			return kfiles;
 		}
 
@@ -180,9 +180,9 @@ namespace Kaltura.Services
 			return new SubtitlesListRequestBuilder(filter, pager);
 		}
 
-		public static SubtitlesUploadFileRequestBuilder UploadFile(Subtitles subtitles, Stream file)
+		public static SubtitlesUploadFileRequestBuilder UploadFile(Subtitles subtitles, Stream fileData)
 		{
-			return new SubtitlesUploadFileRequestBuilder(subtitles, file);
+			return new SubtitlesUploadFileRequestBuilder(subtitles, fileData);
 		}
 	}
 }
