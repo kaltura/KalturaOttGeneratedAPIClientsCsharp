@@ -262,7 +262,7 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder GenerateMetadataBySubtitles(long subtitlesFileId, IList<StringValue> externalAssetIds)
+		public static AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder GenerateMetadataBySubtitles(long subtitlesFileId, IList<StringValue> externalAssetIds = null)
 		{
 			return new AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(subtitlesFileId, externalAssetIds);
 		}

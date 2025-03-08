@@ -41,7 +41,6 @@ namespace Kaltura.Types
 		public const string ID = "id";
 		public const string CREATE_DATE = "createDate";
 		public const string FILE_NAME = "fileName";
-		public const string TYPE = "type";
 		public const string LANGUAGE = "language";
 		#endregion
 
@@ -49,7 +48,6 @@ namespace Kaltura.Types
 		private long _Id = long.MinValue;
 		private long _CreateDate = long.MinValue;
 		private string _FileName = null;
-		private SubtitlesType _Type = null;
 		private string _Language = null;
 		#endregion
 
@@ -94,19 +92,6 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use TypeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public SubtitlesType Type
-		{
-			get { return _Type; }
-			set 
-			{ 
-				_Type = value;
-				OnPropertyChanged("Type");
-			}
-		}
-		/// <summary>
 		/// Use LanguageAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -140,10 +125,6 @@ namespace Kaltura.Types
 			{
 				this._FileName = node["fileName"].Value<string>();
 			}
-			if(node["type"] != null)
-			{
-				this._Type = (SubtitlesType)StringEnum.Parse(typeof(SubtitlesType), node["type"].Value<string>());
-			}
 			if(node["language"] != null)
 			{
 				this._Language = node["language"].Value<string>();
@@ -160,7 +141,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("fileName", this._FileName);
-			kparams.AddIfNotNull("type", this._Type);
 			kparams.AddIfNotNull("language", this._Language);
 			return kparams;
 		}
@@ -174,8 +154,6 @@ namespace Kaltura.Types
 					return "CreateDate";
 				case FILE_NAME:
 					return "FileName";
-				case TYPE:
-					return "Type";
 				case LANGUAGE:
 					return "Language";
 				default:
