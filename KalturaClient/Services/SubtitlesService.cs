@@ -36,89 +36,6 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class SubtitlesGetRequestBuilder : RequestBuilder<Subtitles>
-	{
-		#region Constants
-		public const string ID = "id";
-		#endregion
-
-		public long Id { get; set; }
-
-		public SubtitlesGetRequestBuilder()
-			: base("subtitles", "get")
-		{
-		}
-
-		public SubtitlesGetRequestBuilder(long id)
-			: this()
-		{
-			this.Id = id;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("id"))
-				kparams.AddIfNotNull("id", Id);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<Subtitles>(result);
-		}
-	}
-
-	public class SubtitlesListRequestBuilder : RequestBuilder<ListResponse<Subtitles>>
-	{
-		#region Constants
-		public const string FILTER = "filter";
-		public const string PAGER = "pager";
-		#endregion
-
-		public SubtitlesFilter Filter { get; set; }
-		public FilterPager Pager { get; set; }
-
-		public SubtitlesListRequestBuilder()
-			: base("subtitles", "list")
-		{
-		}
-
-		public SubtitlesListRequestBuilder(SubtitlesFilter filter, FilterPager pager)
-			: this()
-		{
-			this.Filter = filter;
-			this.Pager = pager;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("filter"))
-				kparams.AddIfNotNull("filter", Filter);
-			if (!isMapped("pager"))
-				kparams.AddIfNotNull("pager", Pager);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<ListResponse<Subtitles>>(result);
-		}
-	}
-
 	public class SubtitlesUploadFileRequestBuilder : RequestBuilder<Subtitles>
 	{
 		#region Constants
@@ -126,7 +43,7 @@ namespace Kaltura.Services
 		public const string FILE_DATA = "fileData";
 		#endregion
 
-		public Subtitles Subtitles { get; set; }
+		public UploadSubtitles Subtitles { get; set; }
 		public Stream FileData { get; set; }
 		public string FileData_FileName { get; set; }
 
@@ -135,7 +52,7 @@ namespace Kaltura.Services
 		{
 		}
 
-		public SubtitlesUploadFileRequestBuilder(Subtitles subtitles, Stream fileData)
+		public SubtitlesUploadFileRequestBuilder(UploadSubtitles subtitles, Stream fileData)
 			: this()
 		{
 			this.Subtitles = subtitles;
@@ -170,17 +87,7 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static SubtitlesGetRequestBuilder Get(long id)
-		{
-			return new SubtitlesGetRequestBuilder(id);
-		}
-
-		public static SubtitlesListRequestBuilder List(SubtitlesFilter filter, FilterPager pager)
-		{
-			return new SubtitlesListRequestBuilder(filter, pager);
-		}
-
-		public static SubtitlesUploadFileRequestBuilder UploadFile(Subtitles subtitles, Stream fileData)
+		public static SubtitlesUploadFileRequestBuilder UploadFile(UploadSubtitles subtitles, Stream fileData)
 		{
 			return new SubtitlesUploadFileRequestBuilder(subtitles, fileData);
 		}

@@ -35,51 +35,19 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class Subtitles : ObjectBase
+	public class UploadSubtitles : ObjectBase
 	{
 		#region Constants
-		public const string ID = "id";
-		public const string CREATE_DATE = "createDate";
 		public const string FILE_NAME = "fileName";
-		public const string DETECTED_TYPE = "detectedType";
-		public const string DETECTED_LANGUAGE = "detectedLanguage";
+		public const string CONTENT = "content";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
-		private long _CreateDate = long.MinValue;
 		private string _FileName = null;
-		private SubtitlesType _DetectedType = null;
-		private string _DetectedLanguage = null;
+		private string _Content = null;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use IdAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long Id
-		{
-			get { return _Id; }
-			private set 
-			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
-			}
-		}
-		/// <summary>
-		/// Use CreateDateAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public long CreateDate
-		{
-			get { return _CreateDate; }
-			private set 
-			{ 
-				_CreateDate = value;
-				OnPropertyChanged("CreateDate");
-			}
-		}
 		/// <summary>
 		/// Use FileNameAsDouble property instead
 		/// </summary>
@@ -94,59 +62,34 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use DetectedTypeAsDouble property instead
+		/// Use ContentAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public SubtitlesType DetectedType
+		public string Content
 		{
-			get { return _DetectedType; }
+			get { return _Content; }
 			set 
 			{ 
-				_DetectedType = value;
-				OnPropertyChanged("DetectedType");
-			}
-		}
-		/// <summary>
-		/// Use DetectedLanguageAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string DetectedLanguage
-		{
-			get { return _DetectedLanguage; }
-			set 
-			{ 
-				_DetectedLanguage = value;
-				OnPropertyChanged("DetectedLanguage");
+				_Content = value;
+				OnPropertyChanged("Content");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public Subtitles()
+		public UploadSubtitles()
 		{
 		}
 
-		public Subtitles(JToken node) : base(node)
+		public UploadSubtitles(JToken node) : base(node)
 		{
-			if(node["id"] != null)
-			{
-				this._Id = ParseLong(node["id"].Value<string>());
-			}
-			if(node["createDate"] != null)
-			{
-				this._CreateDate = ParseLong(node["createDate"].Value<string>());
-			}
 			if(node["fileName"] != null)
 			{
 				this._FileName = node["fileName"].Value<string>();
 			}
-			if(node["detectedType"] != null)
+			if(node["content"] != null)
 			{
-				this._DetectedType = (SubtitlesType)StringEnum.Parse(typeof(SubtitlesType), node["detectedType"].Value<string>());
-			}
-			if(node["detectedLanguage"] != null)
-			{
-				this._DetectedLanguage = node["detectedLanguage"].Value<string>();
+				this._Content = node["content"].Value<string>();
 			}
 		}
 		#endregion
@@ -156,28 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaSubtitles");
-			kparams.AddIfNotNull("id", this._Id);
-			kparams.AddIfNotNull("createDate", this._CreateDate);
+				kparams.AddReplace("objectType", "KalturaUploadSubtitles");
 			kparams.AddIfNotNull("fileName", this._FileName);
-			kparams.AddIfNotNull("detectedType", this._DetectedType);
-			kparams.AddIfNotNull("detectedLanguage", this._DetectedLanguage);
+			kparams.AddIfNotNull("content", this._Content);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
-				case CREATE_DATE:
-					return "CreateDate";
 				case FILE_NAME:
 					return "FileName";
-				case DETECTED_TYPE:
-					return "DetectedType";
-				case DETECTED_LANGUAGE:
-					return "DetectedLanguage";
+				case CONTENT:
+					return "Content";
 				default:
 					return base.getPropertyName(apiName);
 			}
