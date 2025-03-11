@@ -45,8 +45,8 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private int _Id = Int32.MinValue;
-		private int _CreateDate = Int32.MinValue;
+		private long _Id = long.MinValue;
+		private long _CreateDate = long.MinValue;
 		private int _UserId = Int32.MinValue;
 		private string _Message = null;
 		#endregion
@@ -56,7 +56,7 @@ namespace Kaltura.Types
 		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int Id
+		public long Id
 		{
 			get { return _Id; }
 			private set 
@@ -69,7 +69,7 @@ namespace Kaltura.Types
 		/// Use CreateDateAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int CreateDate
+		public long CreateDate
 		{
 			get { return _CreateDate; }
 			private set 
@@ -115,11 +115,11 @@ namespace Kaltura.Types
 		{
 			if(node["id"] != null)
 			{
-				this._Id = ParseInt(node["id"].Value<string>());
+				this._Id = ParseLong(node["id"].Value<string>());
 			}
 			if(node["createDate"] != null)
 			{
-				this._CreateDate = ParseInt(node["createDate"].Value<string>());
+				this._CreateDate = ParseLong(node["createDate"].Value<string>());
 			}
 			if(node["userId"] != null)
 			{

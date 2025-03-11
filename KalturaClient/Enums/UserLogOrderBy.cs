@@ -29,7 +29,7 @@ namespace Kaltura.Enums
 {
 	public sealed class UserLogOrderBy : StringEnum
 	{
-		public static readonly UserLogOrderBy NONE = new UserLogOrderBy("NONE");
+		public static readonly UserLogOrderBy CREATE_DATE_DESC = new UserLogOrderBy("CREATE_DATE_DESC");
 
 		private UserLogOrderBy(string name) : base(name) { }
 	}
