@@ -35,45 +35,49 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ManualChannel : Channel
+	public class GenerateMetadataResult : ObjectBase
 	{
 		#region Constants
-		public const string ASSETS = "assets";
+		public const string ENRICHED_METADATA = "enrichedMetadata";
 		#endregion
 
 		#region Private Fields
-		private IList<ManualCollectionAsset> _Assets;
+		private IDictionary<string, TranslationToken> _EnrichedMetadata;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetsAsDouble property instead
+		/// Use EnrichedMetadataAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<ManualCollectionAsset> Assets
+		public IDictionary<string, TranslationToken> EnrichedMetadata
 		{
-			get { return _Assets; }
+			get { return _EnrichedMetadata; }
 			set 
 			{ 
-				_Assets = value;
-				OnPropertyChanged("Assets");
+				_EnrichedMetadata = value;
+				OnPropertyChanged("EnrichedMetadata");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ManualChannel()
+		public GenerateMetadataResult()
 		{
 		}
 
-		public ManualChannel(JToken node) : base(node)
+		public GenerateMetadataResult(JToken node) : base(node)
 		{
-			if(node["assets"] != null)
+			if(node["enrichedMetadata"] != null)
 			{
-				this._Assets = new List<ManualCollectionAsset>();
-				foreach(var arrayNode in node["assets"].Children())
 				{
-					this._Assets.Add(ObjectFactory.Create<ManualCollectionAsset>(arrayNode));
+					string key;
+					this._EnrichedMetadata = new Dictionary<string, TranslationToken>();
+					foreach(var arrayNode in node["enrichedMetadata"].Children<JProperty>())
+					{
+						key = arrayNode.Name;
+						this._EnrichedMetadata[key] = ObjectFactory.Create<TranslationToken>(arrayNode.Value);
+					}
 				}
 			}
 		}
@@ -84,16 +88,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaManualChannel");
-			kparams.AddIfNotNull("assets", this._Assets);
+				kparams.AddReplace("objectType", "KalturaGenerateMetadataResult");
+			kparams.AddIfNotNull("enrichedMetadata", this._EnrichedMetadata);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSETS:
-					return "Assets";
+				case ENRICHED_METADATA:
+					return "EnrichedMetadata";
 				default:
 					return base.getPropertyName(apiName);
 			}

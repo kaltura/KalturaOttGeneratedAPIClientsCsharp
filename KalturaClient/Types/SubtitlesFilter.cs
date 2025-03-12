@@ -35,46 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ManualChannel : Channel
+	public class SubtitlesFilter : Filter
 	{
 		#region Constants
-		public const string ASSETS = "assets";
+		public const string ID_IN = "idIn";
+		public const string FILE_NAME_CONTAINS = "fileNameContains";
 		#endregion
 
 		#region Private Fields
-		private IList<ManualCollectionAsset> _Assets;
+		private string _IdIn = null;
+		private string _FileNameContains = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetsAsDouble property instead
+		/// Use IdInAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<ManualCollectionAsset> Assets
+		public string IdIn
 		{
-			get { return _Assets; }
+			get { return _IdIn; }
 			set 
 			{ 
-				_Assets = value;
-				OnPropertyChanged("Assets");
+				_IdIn = value;
+				OnPropertyChanged("IdIn");
+			}
+		}
+		/// <summary>
+		/// Use FileNameContainsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string FileNameContains
+		{
+			get { return _FileNameContains; }
+			set 
+			{ 
+				_FileNameContains = value;
+				OnPropertyChanged("FileNameContains");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ManualChannel()
+		public SubtitlesFilter()
 		{
 		}
 
-		public ManualChannel(JToken node) : base(node)
+		public SubtitlesFilter(JToken node) : base(node)
 		{
-			if(node["assets"] != null)
+			if(node["idIn"] != null)
 			{
-				this._Assets = new List<ManualCollectionAsset>();
-				foreach(var arrayNode in node["assets"].Children())
-				{
-					this._Assets.Add(ObjectFactory.Create<ManualCollectionAsset>(arrayNode));
-				}
+				this._IdIn = node["idIn"].Value<string>();
+			}
+			if(node["fileNameContains"] != null)
+			{
+				this._FileNameContains = node["fileNameContains"].Value<string>();
 			}
 		}
 		#endregion
@@ -84,16 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaManualChannel");
-			kparams.AddIfNotNull("assets", this._Assets);
+				kparams.AddReplace("objectType", "KalturaSubtitlesFilter");
+			kparams.AddIfNotNull("idIn", this._IdIn);
+			kparams.AddIfNotNull("fileNameContains", this._FileNameContains);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSETS:
-					return "Assets";
+				case ID_IN:
+					return "IdIn";
+				case FILE_NAME_CONTAINS:
+					return "FileNameContains";
 				default:
 					return base.getPropertyName(apiName);
 			}

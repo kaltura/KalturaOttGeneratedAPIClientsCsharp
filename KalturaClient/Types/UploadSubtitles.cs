@@ -35,46 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class ManualChannel : Channel
+	public class UploadSubtitles : ObjectBase
 	{
 		#region Constants
-		public const string ASSETS = "assets";
+		public const string FILE_NAME = "fileName";
 		#endregion
 
 		#region Private Fields
-		private IList<ManualCollectionAsset> _Assets;
+		private string _FileName = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetsAsDouble property instead
+		/// Use FileNameAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<ManualCollectionAsset> Assets
+		public string FileName
 		{
-			get { return _Assets; }
+			get { return _FileName; }
 			set 
 			{ 
-				_Assets = value;
-				OnPropertyChanged("Assets");
+				_FileName = value;
+				OnPropertyChanged("FileName");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public ManualChannel()
+		public UploadSubtitles()
 		{
 		}
 
-		public ManualChannel(JToken node) : base(node)
+		public UploadSubtitles(JToken node) : base(node)
 		{
-			if(node["assets"] != null)
+			if(node["fileName"] != null)
 			{
-				this._Assets = new List<ManualCollectionAsset>();
-				foreach(var arrayNode in node["assets"].Children())
-				{
-					this._Assets.Add(ObjectFactory.Create<ManualCollectionAsset>(arrayNode));
-				}
+				this._FileName = node["fileName"].Value<string>();
 			}
 		}
 		#endregion
@@ -84,16 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaManualChannel");
-			kparams.AddIfNotNull("assets", this._Assets);
+				kparams.AddReplace("objectType", "KalturaUploadSubtitles");
+			kparams.AddIfNotNull("fileName", this._FileName);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSETS:
-					return "Assets";
+				case FILE_NAME:
+					return "FileName";
 				default:
 					return base.getPropertyName(apiName);
 			}
