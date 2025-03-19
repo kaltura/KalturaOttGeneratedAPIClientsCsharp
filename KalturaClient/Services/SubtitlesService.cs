@@ -28,77 +28,68 @@
 using System;
 using System.Xml;
 using System.Collections.Generic;
-using Kaltura.Enums;
+using System.IO;
 using Kaltura.Request;
-using Newtonsoft.Json;
+using Kaltura.Types;
+using Kaltura.Enums;
 using Newtonsoft.Json.Linq;
 
-namespace Kaltura.Types
+namespace Kaltura.Services
 {
-	public class ManualChannel : Channel
+	public class SubtitlesUploadFileRequestBuilder : RequestBuilder<Subtitles>
 	{
 		#region Constants
-		public const string ASSETS = "assets";
+		public const string SUBTITLES = "subtitles";
+		public const string FILE_DATA = "fileData";
 		#endregion
 
-		#region Private Fields
-		private IList<ManualCollectionAsset> _Assets;
-		#endregion
+		public UploadSubtitles Subtitles { get; set; }
+		public Stream FileData { get; set; }
+		public string FileData_FileName { get; set; }
 
-		#region Properties
-		/// <summary>
-		/// Use AssetsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<ManualCollectionAsset> Assets
-		{
-			get { return _Assets; }
-			set 
-			{ 
-				_Assets = value;
-				OnPropertyChanged("Assets");
-			}
-		}
-		#endregion
-
-		#region CTor
-		public ManualChannel()
+		public SubtitlesUploadFileRequestBuilder()
+			: base("subtitles", "uploadFile")
 		{
 		}
 
-		public ManualChannel(JToken node) : base(node)
+		public SubtitlesUploadFileRequestBuilder(UploadSubtitles subtitles, Stream fileData)
+			: this()
 		{
-			if(node["assets"] != null)
-			{
-				this._Assets = new List<ManualCollectionAsset>();
-				foreach(var arrayNode in node["assets"].Children())
-				{
-					this._Assets.Add(ObjectFactory.Create<ManualCollectionAsset>(arrayNode));
-				}
-			}
+			this.Subtitles = subtitles;
+			this.FileData = fileData;
 		}
-		#endregion
 
-		#region Methods
-		public override Params ToParams(bool includeObjectType = true)
+		public override Params getParameters(bool includeServiceAndAction)
 		{
-			Params kparams = base.ToParams(includeObjectType);
-			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaManualChannel");
-			kparams.AddIfNotNull("assets", this._Assets);
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("subtitles"))
+				kparams.AddIfNotNull("subtitles", Subtitles);
 			return kparams;
 		}
-		protected override string getPropertyName(string apiName)
+
+		public override Files getFiles()
 		{
-			switch(apiName)
-			{
-				case ASSETS:
-					return "Assets";
-				default:
-					return base.getPropertyName(apiName);
-			}
+			Files kfiles = base.getFiles();
+			kfiles.Add("fileData", new FileData(FileData, FileData_FileName));
+			return kfiles;
 		}
-		#endregion
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<Subtitles>(result);
+		}
+	}
+
+
+	public class SubtitlesService
+	{
+		private SubtitlesService()
+		{
+		}
+
+		public static SubtitlesUploadFileRequestBuilder UploadFile(UploadSubtitles subtitles, Stream fileData)
+		{
+			return new SubtitlesUploadFileRequestBuilder(subtitles, fileData);
+		}
 	}
 }
-

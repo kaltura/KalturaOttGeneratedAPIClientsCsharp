@@ -87,7 +87,7 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static UserLogListRequestBuilder List(UserLogFilter filter = null, FilterPager pager = null)
+		public static UserLogListRequestBuilder List(UserLogFilter filter, FilterPager pager = null)
 		{
 			return new UserLogListRequestBuilder(filter, pager);
 		}
