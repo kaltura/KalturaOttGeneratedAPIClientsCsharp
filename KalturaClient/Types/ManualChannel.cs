@@ -38,14 +38,29 @@ namespace Kaltura.Types
 	public class ManualChannel : Channel
 	{
 		#region Constants
+		public const string MEDIA_IDS = "mediaIds";
 		public const string ASSETS = "assets";
 		#endregion
 
 		#region Private Fields
+		private string _MediaIds = null;
 		private IList<ManualCollectionAsset> _Assets;
 		#endregion
 
 		#region Properties
+		/// <summary>
+		/// Use MediaIdsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string MediaIds
+		{
+			get { return _MediaIds; }
+			set 
+			{ 
+				_MediaIds = value;
+				OnPropertyChanged("MediaIds");
+			}
+		}
 		/// <summary>
 		/// Use AssetsAsDouble property instead
 		/// </summary>
@@ -68,6 +83,10 @@ namespace Kaltura.Types
 
 		public ManualChannel(JToken node) : base(node)
 		{
+			if(node["mediaIds"] != null)
+			{
+				this._MediaIds = node["mediaIds"].Value<string>();
+			}
 			if(node["assets"] != null)
 			{
 				this._Assets = new List<ManualCollectionAsset>();
@@ -85,6 +104,7 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaManualChannel");
+			kparams.AddIfNotNull("mediaIds", this._MediaIds);
 			kparams.AddIfNotNull("assets", this._Assets);
 			return kparams;
 		}
@@ -92,6 +112,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
+				case MEDIA_IDS:
+					return "MediaIds";
 				case ASSETS:
 					return "Assets";
 				default:
