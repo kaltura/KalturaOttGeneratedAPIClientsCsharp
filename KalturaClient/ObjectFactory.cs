@@ -90,6 +90,8 @@ namespace Kaltura
 					return new ListResponse<UserSessionProfile>(jToken);
 				case "KalturaBulkUploadListResponse":
 					return new ListResponse<BulkUpload>(jToken);
+				case "KalturaSubtitlesListResponse":
+					return new ListResponse<Subtitles>(jToken);
 				case "KalturaSocialActionListResponse":
 					return new ListResponse<SocialAction>(jToken);
 				case "KalturaSocialCommentListResponse":
