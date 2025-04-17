@@ -652,45 +652,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class AssetWatchBasedRecommendationsListRequestBuilder : RequestBuilder<ListResponse<Asset>>
-	{
-		#region Constants
-		public const string PROFILE_ID = "profileId";
-		#endregion
-
-		public long ProfileId { get; set; }
-
-		public AssetWatchBasedRecommendationsListRequestBuilder()
-			: base("asset", "watchBasedRecommendationsList")
-		{
-		}
-
-		public AssetWatchBasedRecommendationsListRequestBuilder(long profileId)
-			: this()
-		{
-			this.ProfileId = profileId;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("profileId"))
-				kparams.AddIfNotNull("profileId", ProfileId);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<ListResponse<Asset>>(result);
-		}
-	}
-
 
 	public class AssetService
 	{
@@ -761,11 +722,6 @@ namespace Kaltura.Services
 		public static AssetUpdateRequestBuilder Update(long id, Asset asset)
 		{
 			return new AssetUpdateRequestBuilder(id, asset);
-		}
-
-		public static AssetWatchBasedRecommendationsListRequestBuilder WatchBasedRecommendationsList(long profileId)
-		{
-			return new AssetWatchBasedRecommendationsListRequestBuilder(profileId);
 		}
 	}
 }
