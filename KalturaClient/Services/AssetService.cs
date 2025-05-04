@@ -608,6 +608,55 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class AssetSemanticSearchRequestBuilder : RequestBuilder<ListResponse<Asset>>
+	{
+		#region Constants
+		public const string QUERY = "query";
+		public const string REFINE_QUERY = "refineQuery";
+		public const string SIZE = "size";
+		#endregion
+
+		public string Query { get; set; }
+		public bool RefineQuery { get; set; }
+		public int Size { get; set; }
+
+		public AssetSemanticSearchRequestBuilder()
+			: base("asset", "semanticSearch")
+		{
+		}
+
+		public AssetSemanticSearchRequestBuilder(string query, bool refineQuery, int size)
+			: this()
+		{
+			this.Query = query;
+			this.RefineQuery = refineQuery;
+			this.Size = size;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("query"))
+				kparams.AddIfNotNull("query", Query);
+			if (!isMapped("refineQuery"))
+				kparams.AddIfNotNull("refineQuery", RefineQuery);
+			if (!isMapped("size"))
+				kparams.AddIfNotNull("size", Size);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<ListResponse<Asset>>(result);
+		}
+	}
+
 	public class AssetUpdateRequestBuilder : RequestBuilder<Asset>
 	{
 		#region Constants
@@ -756,6 +805,11 @@ namespace Kaltura.Services
 		public static AssetRemoveMetasAndTagsRequestBuilder RemoveMetasAndTags(long id, AssetReferenceType assetReferenceType, string idIn)
 		{
 			return new AssetRemoveMetasAndTagsRequestBuilder(id, assetReferenceType, idIn);
+		}
+
+		public static AssetSemanticSearchRequestBuilder SemanticSearch(string query, bool refineQuery = false, int size = 10)
+		{
+			return new AssetSemanticSearchRequestBuilder(query, refineQuery, size);
 		}
 
 		public static AssetUpdateRequestBuilder Update(long id, Asset asset)
