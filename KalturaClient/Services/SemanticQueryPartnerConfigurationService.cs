@@ -36,30 +36,20 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class SemanticQueryGenerateRequestBuilder : RequestBuilder<SemanticQuery>
+	public class SemanticQueryPartnerConfigurationGetRequestBuilder : RequestBuilder<SemanticQueryPartnerConfiguration>
 	{
 		#region Constants
-		public const string QUERY = "query";
 		#endregion
 
-		public GenerateSemanticQuery Query { get; set; }
 
-		public SemanticQueryGenerateRequestBuilder()
-			: base("semanticquery", "generate")
+		public SemanticQueryPartnerConfigurationGetRequestBuilder()
+			: base("semanticquerypartnerconfiguration", "get")
 		{
-		}
-
-		public SemanticQueryGenerateRequestBuilder(GenerateSemanticQuery query)
-			: this()
-		{
-			this.Query = query;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("query"))
-				kparams.AddIfNotNull("query", Query);
 			return kparams;
 		}
 
@@ -71,20 +61,64 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<SemanticQuery>(result);
+			return ObjectFactory.Create<SemanticQueryPartnerConfiguration>(result);
+		}
+	}
+
+	public class SemanticQueryPartnerConfigurationUpdateRequestBuilder : RequestBuilder<SemanticQueryPartnerConfiguration>
+	{
+		#region Constants
+		public const string CONFIGURATION = "configuration";
+		#endregion
+
+		public SemanticQueryPartnerConfiguration Configuration { get; set; }
+
+		public SemanticQueryPartnerConfigurationUpdateRequestBuilder()
+			: base("semanticquerypartnerconfiguration", "update")
+		{
+		}
+
+		public SemanticQueryPartnerConfigurationUpdateRequestBuilder(SemanticQueryPartnerConfiguration configuration)
+			: this()
+		{
+			this.Configuration = configuration;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("configuration"))
+				kparams.AddIfNotNull("configuration", Configuration);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<SemanticQueryPartnerConfiguration>(result);
 		}
 	}
 
 
-	public class SemanticQueryService
+	public class SemanticQueryPartnerConfigurationService
 	{
-		private SemanticQueryService()
+		private SemanticQueryPartnerConfigurationService()
 		{
 		}
 
-		public static SemanticQueryGenerateRequestBuilder Generate(GenerateSemanticQuery query)
+		public static SemanticQueryPartnerConfigurationGetRequestBuilder Get()
 		{
-			return new SemanticQueryGenerateRequestBuilder(query);
+			return new SemanticQueryPartnerConfigurationGetRequestBuilder();
+		}
+
+		public static SemanticQueryPartnerConfigurationUpdateRequestBuilder Update(SemanticQueryPartnerConfiguration configuration)
+		{
+			return new SemanticQueryPartnerConfigurationUpdateRequestBuilder(configuration);
 		}
 	}
 }
