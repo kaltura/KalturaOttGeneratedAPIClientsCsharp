@@ -38,25 +38,25 @@ namespace Kaltura.Types
 	public class GenerateSemanticQuery : ObjectBase
 	{
 		#region Constants
-		public const string QUERY = "query";
+		public const string TEXT = "text";
 		#endregion
 
 		#region Private Fields
-		private string _Query = null;
+		private string _Text = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use QueryAsDouble property instead
+		/// Use TextAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string Query
+		public string Text
 		{
-			get { return _Query; }
+			get { return _Text; }
 			set 
 			{ 
-				_Query = value;
-				OnPropertyChanged("Query");
+				_Text = value;
+				OnPropertyChanged("Text");
 			}
 		}
 		#endregion
@@ -68,9 +68,9 @@ namespace Kaltura.Types
 
 		public GenerateSemanticQuery(JToken node) : base(node)
 		{
-			if(node["query"] != null)
+			if(node["text"] != null)
 			{
-				this._Query = node["query"].Value<string>();
+				this._Text = node["text"].Value<string>();
 			}
 		}
 		#endregion
@@ -81,15 +81,15 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaGenerateSemanticQuery");
-			kparams.AddIfNotNull("query", this._Query);
+			kparams.AddIfNotNull("text", this._Text);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case QUERY:
-					return "Query";
+				case TEXT:
+					return "Text";
 				default:
 					return base.getPropertyName(apiName);
 			}
