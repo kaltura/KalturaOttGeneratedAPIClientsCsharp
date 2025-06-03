@@ -90,6 +90,8 @@ namespace Kaltura
 					return new ListResponse<UserSessionProfile>(jToken);
 				case "KalturaBulkUploadListResponse":
 					return new ListResponse<BulkUpload>(jToken);
+				case "KalturaSubtitlesListResponse":
+					return new ListResponse<Subtitles>(jToken);
 				case "KalturaSocialActionListResponse":
 					return new ListResponse<SocialAction>(jToken);
 				case "KalturaSocialCommentListResponse":
@@ -162,6 +164,8 @@ namespace Kaltura
 					return new ListResponse<IngestEpg>(jToken);
 				case "KalturaIngestStatusEpgProgramResultListResponse":
 					return new ListResponse<IngestEpgProgramResult>(jToken);
+				case "KalturaUserLogListResponse":
+					return new ListResponse<UserLog>(jToken);
 				case "KalturaDurationListResponse":
 					return new ListResponse<Duration>(jToken);
 				case "KalturaDynamicListListResponse":
