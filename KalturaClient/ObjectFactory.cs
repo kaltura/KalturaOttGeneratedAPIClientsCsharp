@@ -70,8 +70,8 @@ namespace Kaltura
 			string className = jToken["objectType"].Value<string>();
 			switch (className)
 			{
-				case "KalturaAnnouncementListResponse":
-					return new ListResponse<Announcement>(jToken);
+				case "KalturaAssetListResponse":
+					return new ListResponse<Asset>(jToken);
 				case "KalturaDeviceReferenceDataListResponse":
 					return new ListResponse<DeviceReferenceData>(jToken);
 				case "KalturaFavoriteListResponse":
@@ -140,6 +140,8 @@ namespace Kaltura
 					return new ListResponse<PartnerConfiguration>(jToken);
 				case "KalturaPersonalListListResponse":
 					return new ListResponse<PersonalList>(jToken);
+				case "KalturaAnnouncementListResponse":
+					return new ListResponse<Announcement>(jToken);
 				case "KalturaEngagementAdapterListResponse":
 					return new ListResponse<EngagementAdapter>(jToken);
 				case "KalturaEngagementListResponse":
@@ -212,8 +214,6 @@ namespace Kaltura
 					return new ListResponse<AssetsCount>(jToken);
 				case "KalturaAssetHistoryListResponse":
 					return new ListResponse<AssetHistory>(jToken);
-				case "KalturaAssetListResponse":
-					return new ListResponse<Asset>(jToken);
 				case "KalturaAssetStatisticsListResponse":
 					return new ListResponse<AssetStatistics>(jToken);
 				case "KalturaAssetStructListResponse":

@@ -42,26 +42,26 @@ namespace Kaltura.Services
 		public const string TREE_ID = "treeId";
 		public const string PREVIOUS_QUESTION_ID = "previousQuestionId";
 		public const string ANSWER_ID = "answerId";
-		public const string TOP_QUESTION = "topQuestion";
+		public const string TOP_QUESTION_ID = "topQuestionId";
 		#endregion
 
 		public string TreeId { get; set; }
 		public string PreviousQuestionId { get; set; }
 		public string AnswerId { get; set; }
-		public string TopQuestion { get; set; }
+		public string TopQuestionId { get; set; }
 
 		public AiRecommendationTreeGetNextNodeAndRecommendationRequestBuilder()
 			: base("airecommendationtree", "getNextNodeAndRecommendation")
 		{
 		}
 
-		public AiRecommendationTreeGetNextNodeAndRecommendationRequestBuilder(string treeId, string previousQuestionId, string answerId, string topQuestion)
+		public AiRecommendationTreeGetNextNodeAndRecommendationRequestBuilder(string treeId, string previousQuestionId, string answerId, string topQuestionId)
 			: this()
 		{
 			this.TreeId = treeId;
 			this.PreviousQuestionId = previousQuestionId;
 			this.AnswerId = answerId;
-			this.TopQuestion = topQuestion;
+			this.TopQuestionId = topQuestionId;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -73,8 +73,8 @@ namespace Kaltura.Services
 				kparams.AddIfNotNull("previousQuestionId", PreviousQuestionId);
 			if (!isMapped("answerId"))
 				kparams.AddIfNotNull("answerId", AnswerId);
-			if (!isMapped("topQuestion"))
-				kparams.AddIfNotNull("topQuestion", TopQuestion);
+			if (!isMapped("topQuestionId"))
+				kparams.AddIfNotNull("topQuestionId", TopQuestionId);
 			return kparams;
 		}
 
@@ -214,9 +214,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static AiRecommendationTreeGetNextNodeAndRecommendationRequestBuilder GetNextNodeAndRecommendation(string treeId = null, string previousQuestionId = null, string answerId = null, string topQuestion = null)
+		public static AiRecommendationTreeGetNextNodeAndRecommendationRequestBuilder GetNextNodeAndRecommendation(string treeId = null, string previousQuestionId = null, string answerId = null, string topQuestionId = null)
 		{
-			return new AiRecommendationTreeGetNextNodeAndRecommendationRequestBuilder(treeId, previousQuestionId, answerId, topQuestion);
+			return new AiRecommendationTreeGetNextNodeAndRecommendationRequestBuilder(treeId, previousQuestionId, answerId, topQuestionId);
 		}
 
 		public static AiRecommendationTreeGetPartnerConfigRequestBuilder GetPartnerConfig()

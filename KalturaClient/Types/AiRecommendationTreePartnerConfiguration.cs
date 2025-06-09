@@ -51,7 +51,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private IList<StringValue> _ActiveMetadataTypes;
+		private IDictionary<string, IntegerValue> _ActiveMetadataTypes;
 		private int _TopLevelQuestions = Int32.MinValue;
 		private int _AnswersPerQuestion = Int32.MinValue;
 		private int _Levels = Int32.MinValue;
@@ -68,7 +68,7 @@ namespace Kaltura.Types
 		/// Use ActiveMetadataTypesAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<StringValue> ActiveMetadataTypes
+		public IDictionary<string, IntegerValue> ActiveMetadataTypes
 		{
 			get { return _ActiveMetadataTypes; }
 			set 
@@ -205,10 +205,14 @@ namespace Kaltura.Types
 		{
 			if(node["activeMetadataTypes"] != null)
 			{
-				this._ActiveMetadataTypes = new List<StringValue>();
-				foreach(var arrayNode in node["activeMetadataTypes"].Children())
 				{
-					this._ActiveMetadataTypes.Add(ObjectFactory.Create<StringValue>(arrayNode));
+					string key;
+					this._ActiveMetadataTypes = new Dictionary<string, IntegerValue>();
+					foreach(var arrayNode in node["activeMetadataTypes"].Children<JProperty>())
+					{
+						key = arrayNode.Name;
+						this._ActiveMetadataTypes[key] = ObjectFactory.Create<IntegerValue>(arrayNode.Value);
+					}
 				}
 			}
 			if(node["topLevelQuestions"] != null)

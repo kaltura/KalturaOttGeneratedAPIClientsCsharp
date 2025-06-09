@@ -39,14 +39,12 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string TITLE = "title";
-		public const string SEARCH_QUERY = "searchQuery";
-		public const string ASSET_IDS = "assetIds";
+		public const string ASSETS = "assets";
 		#endregion
 
 		#region Private Fields
 		private string _Title = null;
-		private string _SearchQuery = null;
-		private IList<StringValue> _AssetIds;
+		private ListResponse<Asset> _Assets;
 		#endregion
 
 		#region Properties
@@ -64,29 +62,16 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use SearchQueryAsDouble property instead
+		/// Use AssetsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string SearchQuery
+		public ListResponse<Asset> Assets
 		{
-			get { return _SearchQuery; }
+			get { return _Assets; }
 			set 
 			{ 
-				_SearchQuery = value;
-				OnPropertyChanged("SearchQuery");
-			}
-		}
-		/// <summary>
-		/// Use AssetIdsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<StringValue> AssetIds
-		{
-			get { return _AssetIds; }
-			set 
-			{ 
-				_AssetIds = value;
-				OnPropertyChanged("AssetIds");
+				_Assets = value;
+				OnPropertyChanged("Assets");
 			}
 		}
 		#endregion
@@ -102,17 +87,9 @@ namespace Kaltura.Types
 			{
 				this._Title = node["title"].Value<string>();
 			}
-			if(node["searchQuery"] != null)
+			if(node["assets"] != null)
 			{
-				this._SearchQuery = node["searchQuery"].Value<string>();
-			}
-			if(node["assetIds"] != null)
-			{
-				this._AssetIds = new List<StringValue>();
-				foreach(var arrayNode in node["assetIds"].Children())
-				{
-					this._AssetIds.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._Assets = ObjectFactory.Create<ListResponse<Asset>>(node["assets"]);
 			}
 		}
 		#endregion
@@ -124,8 +101,7 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaTreeRecommendations");
 			kparams.AddIfNotNull("title", this._Title);
-			kparams.AddIfNotNull("searchQuery", this._SearchQuery);
-			kparams.AddIfNotNull("assetIds", this._AssetIds);
+			kparams.AddIfNotNull("assets", this._Assets);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -134,10 +110,8 @@ namespace Kaltura.Types
 			{
 				case TITLE:
 					return "Title";
-				case SEARCH_QUERY:
-					return "SearchQuery";
-				case ASSET_IDS:
-					return "AssetIds";
+				case ASSETS:
+					return "Assets";
 				default:
 					return base.getPropertyName(apiName);
 			}
