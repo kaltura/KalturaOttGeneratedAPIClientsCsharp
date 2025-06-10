@@ -70,8 +70,8 @@ namespace Kaltura
 			string className = jToken["objectType"].Value<string>();
 			switch (className)
 			{
-				case "KalturaAnnouncementListResponse":
-					return new ListResponse<Announcement>(jToken);
+				case "KalturaAssetListResponse":
+					return new ListResponse<Asset>(jToken);
 				case "KalturaDeviceReferenceDataListResponse":
 					return new ListResponse<DeviceReferenceData>(jToken);
 				case "KalturaFavoriteListResponse":
@@ -90,6 +90,8 @@ namespace Kaltura
 					return new ListResponse<UserSessionProfile>(jToken);
 				case "KalturaBulkUploadListResponse":
 					return new ListResponse<BulkUpload>(jToken);
+				case "KalturaSubtitlesListResponse":
+					return new ListResponse<Subtitles>(jToken);
 				case "KalturaSocialActionListResponse":
 					return new ListResponse<SocialAction>(jToken);
 				case "KalturaSocialCommentListResponse":
@@ -138,6 +140,8 @@ namespace Kaltura
 					return new ListResponse<PartnerConfiguration>(jToken);
 				case "KalturaPersonalListListResponse":
 					return new ListResponse<PersonalList>(jToken);
+				case "KalturaAnnouncementListResponse":
+					return new ListResponse<Announcement>(jToken);
 				case "KalturaEngagementAdapterListResponse":
 					return new ListResponse<EngagementAdapter>(jToken);
 				case "KalturaEngagementListResponse":
@@ -162,6 +166,8 @@ namespace Kaltura
 					return new ListResponse<IngestEpg>(jToken);
 				case "KalturaIngestStatusEpgProgramResultListResponse":
 					return new ListResponse<IngestEpgProgramResult>(jToken);
+				case "KalturaUserLogListResponse":
+					return new ListResponse<UserLog>(jToken);
 				case "KalturaDurationListResponse":
 					return new ListResponse<Duration>(jToken);
 				case "KalturaDynamicListListResponse":
@@ -208,8 +214,6 @@ namespace Kaltura
 					return new ListResponse<AssetsCount>(jToken);
 				case "KalturaAssetHistoryListResponse":
 					return new ListResponse<AssetHistory>(jToken);
-				case "KalturaAssetListResponse":
-					return new ListResponse<Asset>(jToken);
 				case "KalturaAssetStatisticsListResponse":
 					return new ListResponse<AssetStatistics>(jToken);
 				case "KalturaAssetStructListResponse":
