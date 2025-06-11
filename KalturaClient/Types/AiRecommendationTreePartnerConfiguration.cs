@@ -42,11 +42,8 @@ namespace Kaltura.Types
 		public const string TOP_LEVEL_QUESTIONS = "topLevelQuestions";
 		public const string ANSWERS_PER_QUESTION = "answersPerQuestion";
 		public const string LEVELS = "levels";
-		public const string SPECIAL_ANSWERS = "specialAnswers";
 		public const string NUM_OF_RECOMMENDED_ASSETS = "numOfRecommendedAssets";
-		public const string REMOVE_WATCHED_RECOMMENDATIONS = "removeWatchedRecommendations";
 		public const string TREE_GENERATION_FREQUENCY = "treeGenerationFrequency";
-		public const string MODEL_ID = "modelId";
 		public const string ACTIVE_TREE_ID = "activeTreeId";
 		#endregion
 
@@ -55,11 +52,8 @@ namespace Kaltura.Types
 		private int _TopLevelQuestions = Int32.MinValue;
 		private int _AnswersPerQuestion = Int32.MinValue;
 		private int _Levels = Int32.MinValue;
-		private bool? _SpecialAnswers = null;
 		private int _NumOfRecommendedAssets = Int32.MinValue;
-		private bool? _RemoveWatchedRecommendations = null;
 		private string _TreeGenerationFrequency = null;
-		private string _ModelId = null;
 		private string _ActiveTreeId = null;
 		#endregion
 
@@ -117,19 +111,6 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use SpecialAnswersAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public bool? SpecialAnswers
-		{
-			get { return _SpecialAnswers; }
-			set 
-			{ 
-				_SpecialAnswers = value;
-				OnPropertyChanged("SpecialAnswers");
-			}
-		}
-		/// <summary>
 		/// Use NumOfRecommendedAssetsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -143,19 +124,6 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use RemoveWatchedRecommendationsAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public bool? RemoveWatchedRecommendations
-		{
-			get { return _RemoveWatchedRecommendations; }
-			set 
-			{ 
-				_RemoveWatchedRecommendations = value;
-				OnPropertyChanged("RemoveWatchedRecommendations");
-			}
-		}
-		/// <summary>
 		/// Use TreeGenerationFrequencyAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -166,19 +134,6 @@ namespace Kaltura.Types
 			{ 
 				_TreeGenerationFrequency = value;
 				OnPropertyChanged("TreeGenerationFrequency");
-			}
-		}
-		/// <summary>
-		/// Use ModelIdAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string ModelId
-		{
-			get { return _ModelId; }
-			set 
-			{ 
-				_ModelId = value;
-				OnPropertyChanged("ModelId");
 			}
 		}
 		/// <summary>
@@ -227,25 +182,13 @@ namespace Kaltura.Types
 			{
 				this._Levels = ParseInt(node["levels"].Value<string>());
 			}
-			if(node["specialAnswers"] != null)
-			{
-				this._SpecialAnswers = ParseBool(node["specialAnswers"].Value<string>());
-			}
 			if(node["numOfRecommendedAssets"] != null)
 			{
 				this._NumOfRecommendedAssets = ParseInt(node["numOfRecommendedAssets"].Value<string>());
 			}
-			if(node["removeWatchedRecommendations"] != null)
-			{
-				this._RemoveWatchedRecommendations = ParseBool(node["removeWatchedRecommendations"].Value<string>());
-			}
 			if(node["treeGenerationFrequency"] != null)
 			{
 				this._TreeGenerationFrequency = node["treeGenerationFrequency"].Value<string>();
-			}
-			if(node["modelId"] != null)
-			{
-				this._ModelId = node["modelId"].Value<string>();
 			}
 			if(node["activeTreeId"] != null)
 			{
@@ -264,11 +207,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("topLevelQuestions", this._TopLevelQuestions);
 			kparams.AddIfNotNull("answersPerQuestion", this._AnswersPerQuestion);
 			kparams.AddIfNotNull("levels", this._Levels);
-			kparams.AddIfNotNull("specialAnswers", this._SpecialAnswers);
 			kparams.AddIfNotNull("numOfRecommendedAssets", this._NumOfRecommendedAssets);
-			kparams.AddIfNotNull("removeWatchedRecommendations", this._RemoveWatchedRecommendations);
 			kparams.AddIfNotNull("treeGenerationFrequency", this._TreeGenerationFrequency);
-			kparams.AddIfNotNull("modelId", this._ModelId);
 			kparams.AddIfNotNull("activeTreeId", this._ActiveTreeId);
 			return kparams;
 		}
@@ -284,16 +224,10 @@ namespace Kaltura.Types
 					return "AnswersPerQuestion";
 				case LEVELS:
 					return "Levels";
-				case SPECIAL_ANSWERS:
-					return "SpecialAnswers";
 				case NUM_OF_RECOMMENDED_ASSETS:
 					return "NumOfRecommendedAssets";
-				case REMOVE_WATCHED_RECOMMENDATIONS:
-					return "RemoveWatchedRecommendations";
 				case TREE_GENERATION_FREQUENCY:
 					return "TreeGenerationFrequency";
-				case MODEL_ID:
-					return "ModelId";
 				case ACTIVE_TREE_ID:
 					return "ActiveTreeId";
 				default:
