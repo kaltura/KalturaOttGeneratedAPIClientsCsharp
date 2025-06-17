@@ -44,7 +44,7 @@ namespace Kaltura.Types
 
 		#region Private Fields
 		private string _Title = null;
-		private ListResponse<Asset> _Assets;
+		private IList<Asset> _Assets;
 		#endregion
 
 		#region Properties
@@ -65,7 +65,7 @@ namespace Kaltura.Types
 		/// Use AssetsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ListResponse<Asset> Assets
+		public IList<Asset> Assets
 		{
 			get { return _Assets; }
 			set 
@@ -89,7 +89,11 @@ namespace Kaltura.Types
 			}
 			if(node["assets"] != null)
 			{
-				this._Assets = ObjectFactory.Create<ListResponse<Asset>>(node["assets"]);
+				this._Assets = new List<Asset>();
+				foreach(var arrayNode in node["assets"].Children())
+				{
+					this._Assets.Add(ObjectFactory.Create<Asset>(arrayNode));
+				}
 			}
 		}
 		#endregion
