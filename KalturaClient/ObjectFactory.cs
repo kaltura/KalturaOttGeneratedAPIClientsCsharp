@@ -196,6 +196,8 @@ namespace Kaltura
 					return new ListResponse<Configurations>(jToken);
 				case "KalturaBillingTransactionListResponse":
 					return new ListResponse<BillingTransaction>(jToken);
+				case "KalturaBulkPlaybackContextResponse":
+					return new ListResponse<BulkResponseObject>(jToken);
 				case "KalturaCDVRAdapterProfileListResponse":
 					return new ListResponse<CDVRAdapterProfile>(jToken);
 				case "KalturaEntitlementListResponse":
@@ -320,6 +322,8 @@ namespace Kaltura
 					return new ListResponse<UserAssetRule>(jToken);
 				case "KalturaUserRoleListResponse":
 					return new ListResponse<UserRole>(jToken);
+				case "KalturaGeoBlockRuleListResponse":
+					return new ListResponse<GeoBlockRule>(jToken);
 				case "KalturaEpgListResponse":
 					return new ListResponse<Epg>(jToken);
 			}
