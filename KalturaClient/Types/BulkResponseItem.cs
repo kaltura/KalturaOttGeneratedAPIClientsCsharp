@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BulkResponseObject : ObjectBase
+	public class BulkResponseItem : ObjectBase
 	{
 		#region Constants
 		public const string IS_SUCCESS = "isSuccess";
@@ -62,11 +62,11 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public BulkResponseObject()
+		public BulkResponseItem()
 		{
 		}
 
-		public BulkResponseObject(JToken node) : base(node)
+		public BulkResponseItem(JToken node) : base(node)
 		{
 			if(node["isSuccess"] != null)
 			{
@@ -80,7 +80,7 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBulkResponseObject");
+				kparams.AddReplace("objectType", "KalturaBulkResponseItem");
 			kparams.AddIfNotNull("isSuccess", this._IsSuccess);
 			return kparams;
 		}

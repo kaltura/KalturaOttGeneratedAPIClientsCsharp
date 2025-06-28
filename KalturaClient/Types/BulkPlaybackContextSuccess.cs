@@ -35,7 +35,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BulkPlaybackContextSuccess : BulkResponseObject
+	public class BulkPlaybackContextSuccess : BulkResponseItem
 	{
 		#region Constants
 		public const string PLAYBACK_CONTEXT = "playbackContext";
