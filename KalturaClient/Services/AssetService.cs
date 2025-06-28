@@ -124,7 +124,7 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class AssetBulkGetPlaybackContextRequestBuilder : RequestBuilder<ListResponse<BulkResponseItem>>
+	public class AssetBulkGetPlaybackContextRequestBuilder : RequestBuilder<BulkPlaybackContextResponse>
 	{
 		#region Constants
 		public const string REQUEST = "request";
@@ -159,7 +159,7 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<ListResponse<BulkResponseItem>>(result);
+			return ObjectFactory.Create<BulkPlaybackContextResponse>(result);
 		}
 	}
 

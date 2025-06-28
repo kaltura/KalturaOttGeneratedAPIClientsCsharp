@@ -196,8 +196,6 @@ namespace Kaltura
 					return new ListResponse<Configurations>(jToken);
 				case "KalturaBillingTransactionListResponse":
 					return new ListResponse<BillingTransaction>(jToken);
-				case "KalturaBulkPlaybackContextResponse":
-					return new ListResponse<BulkResponseItem>(jToken);
 				case "KalturaCDVRAdapterProfileListResponse":
 					return new ListResponse<CDVRAdapterProfile>(jToken);
 				case "KalturaEntitlementListResponse":
