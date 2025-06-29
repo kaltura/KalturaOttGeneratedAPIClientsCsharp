@@ -38,27 +38,27 @@ namespace Kaltura.Types
 	public class BulkPlaybackContextResponse : ObjectBase
 	{
 		#region Constants
-		public const string OBJECTS = "objects";
+		public const string ITEMS = "items";
 		public const string TOTAL_COUNT = "totalCount";
 		#endregion
 
 		#region Private Fields
-		private IList<BulkResponseItem> _Objects;
+		private IList<BulkResponseItem> _Items;
 		private int _TotalCount = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ObjectsAsDouble property instead
+		/// Use ItemsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<BulkResponseItem> Objects
+		public IList<BulkResponseItem> Items
 		{
-			get { return _Objects; }
+			get { return _Items; }
 			set 
 			{ 
-				_Objects = value;
-				OnPropertyChanged("Objects");
+				_Items = value;
+				OnPropertyChanged("Items");
 			}
 		}
 		/// <summary>
@@ -83,12 +83,12 @@ namespace Kaltura.Types
 
 		public BulkPlaybackContextResponse(JToken node) : base(node)
 		{
-			if(node["objects"] != null)
+			if(node["items"] != null)
 			{
-				this._Objects = new List<BulkResponseItem>();
-				foreach(var arrayNode in node["objects"].Children())
+				this._Items = new List<BulkResponseItem>();
+				foreach(var arrayNode in node["items"].Children())
 				{
-					this._Objects.Add(ObjectFactory.Create<BulkResponseItem>(arrayNode));
+					this._Items.Add(ObjectFactory.Create<BulkResponseItem>(arrayNode));
 				}
 			}
 			if(node["totalCount"] != null)
@@ -104,7 +104,7 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaBulkPlaybackContextResponse");
-			kparams.AddIfNotNull("objects", this._Objects);
+			kparams.AddIfNotNull("items", this._Items);
 			kparams.AddIfNotNull("totalCount", this._TotalCount);
 			return kparams;
 		}
@@ -112,8 +112,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case OBJECTS:
-					return "Objects";
+				case ITEMS:
+					return "Items";
 				case TOTAL_COUNT:
 					return "TotalCount";
 				default:
