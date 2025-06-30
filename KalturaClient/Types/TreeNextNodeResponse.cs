@@ -39,12 +39,14 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string QUESTION = "question";
+		public const string TOTAL_LEVEL_QUESTIONS = "totalLevelQuestions";
 		public const string ANSWERS = "answers";
 		public const string RECOMMENDATIONS = "recommendations";
 		#endregion
 
 		#region Private Fields
 		private TreeQuestion _Question;
+		private int _TotalLevelQuestions = Int32.MinValue;
 		private IList<TreeAnswer> _Answers;
 		private TreeRecommendations _Recommendations;
 		#endregion
@@ -61,6 +63,19 @@ namespace Kaltura.Types
 			{ 
 				_Question = value;
 				OnPropertyChanged("Question");
+			}
+		}
+		/// <summary>
+		/// Use TotalLevelQuestionsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int TotalLevelQuestions
+		{
+			get { return _TotalLevelQuestions; }
+			set 
+			{ 
+				_TotalLevelQuestions = value;
+				OnPropertyChanged("TotalLevelQuestions");
 			}
 		}
 		/// <summary>
@@ -102,6 +117,10 @@ namespace Kaltura.Types
 			{
 				this._Question = ObjectFactory.Create<TreeQuestion>(node["question"]);
 			}
+			if(node["totalLevelQuestions"] != null)
+			{
+				this._TotalLevelQuestions = ParseInt(node["totalLevelQuestions"].Value<string>());
+			}
 			if(node["answers"] != null)
 			{
 				this._Answers = new List<TreeAnswer>();
@@ -124,6 +143,7 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaTreeNextNodeResponse");
 			kparams.AddIfNotNull("question", this._Question);
+			kparams.AddIfNotNull("totalLevelQuestions", this._TotalLevelQuestions);
 			kparams.AddIfNotNull("answers", this._Answers);
 			kparams.AddIfNotNull("recommendations", this._Recommendations);
 			return kparams;
@@ -134,6 +154,8 @@ namespace Kaltura.Types
 			{
 				case QUESTION:
 					return "Question";
+				case TOTAL_LEVEL_QUESTIONS:
+					return "TotalLevelQuestions";
 				case ANSWERS:
 					return "Answers";
 				case RECOMMENDATIONS:

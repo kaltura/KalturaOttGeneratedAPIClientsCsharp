@@ -42,6 +42,7 @@ namespace Kaltura.Types
 		public const string TOP_LEVEL_QUESTIONS = "topLevelQuestions";
 		public const string ANSWERS_PER_QUESTION = "answersPerQuestion";
 		public const string LEVELS = "levels";
+		public const string SPECIAL_ANSWERS = "specialAnswers";
 		public const string NUM_OF_RECOMMENDED_ASSETS = "numOfRecommendedAssets";
 		public const string TREE_GENERATION_FREQUENCY = "treeGenerationFrequency";
 		public const string ACTIVE_TREE_ID = "activeTreeId";
@@ -52,6 +53,7 @@ namespace Kaltura.Types
 		private int _TopLevelQuestions = Int32.MinValue;
 		private int _AnswersPerQuestion = Int32.MinValue;
 		private int _Levels = Int32.MinValue;
+		private bool? _SpecialAnswers = null;
 		private int _NumOfRecommendedAssets = Int32.MinValue;
 		private string _TreeGenerationFrequency = null;
 		private string _ActiveTreeId = null;
@@ -108,6 +110,19 @@ namespace Kaltura.Types
 			{ 
 				_Levels = value;
 				OnPropertyChanged("Levels");
+			}
+		}
+		/// <summary>
+		/// Use SpecialAnswersAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? SpecialAnswers
+		{
+			get { return _SpecialAnswers; }
+			set 
+			{ 
+				_SpecialAnswers = value;
+				OnPropertyChanged("SpecialAnswers");
 			}
 		}
 		/// <summary>
@@ -182,6 +197,10 @@ namespace Kaltura.Types
 			{
 				this._Levels = ParseInt(node["levels"].Value<string>());
 			}
+			if(node["specialAnswers"] != null)
+			{
+				this._SpecialAnswers = ParseBool(node["specialAnswers"].Value<string>());
+			}
 			if(node["numOfRecommendedAssets"] != null)
 			{
 				this._NumOfRecommendedAssets = ParseInt(node["numOfRecommendedAssets"].Value<string>());
@@ -207,6 +226,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("topLevelQuestions", this._TopLevelQuestions);
 			kparams.AddIfNotNull("answersPerQuestion", this._AnswersPerQuestion);
 			kparams.AddIfNotNull("levels", this._Levels);
+			kparams.AddIfNotNull("specialAnswers", this._SpecialAnswers);
 			kparams.AddIfNotNull("numOfRecommendedAssets", this._NumOfRecommendedAssets);
 			kparams.AddIfNotNull("treeGenerationFrequency", this._TreeGenerationFrequency);
 			kparams.AddIfNotNull("activeTreeId", this._ActiveTreeId);
@@ -224,6 +244,8 @@ namespace Kaltura.Types
 					return "AnswersPerQuestion";
 				case LEVELS:
 					return "Levels";
+				case SPECIAL_ANSWERS:
+					return "SpecialAnswers";
 				case NUM_OF_RECOMMENDED_ASSETS:
 					return "NumOfRecommendedAssets";
 				case TREE_GENERATION_FREQUENCY:

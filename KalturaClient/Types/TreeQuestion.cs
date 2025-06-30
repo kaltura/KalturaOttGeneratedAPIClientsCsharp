@@ -41,14 +41,12 @@ namespace Kaltura.Types
 		public const string QUESTION_ID = "questionId";
 		public const string TEXT = "text";
 		public const string LEVEL = "level";
-		public const string METADATA_TYPES = "metadataTypes";
 		#endregion
 
 		#region Private Fields
 		private string _QuestionId = null;
 		private string _Text = null;
 		private int _Level = Int32.MinValue;
-		private IList<StringValue> _MetadataTypes;
 		#endregion
 
 		#region Properties
@@ -91,19 +89,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Level");
 			}
 		}
-		/// <summary>
-		/// Use MetadataTypesAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<StringValue> MetadataTypes
-		{
-			get { return _MetadataTypes; }
-			set 
-			{ 
-				_MetadataTypes = value;
-				OnPropertyChanged("MetadataTypes");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -125,14 +110,6 @@ namespace Kaltura.Types
 			{
 				this._Level = ParseInt(node["level"].Value<string>());
 			}
-			if(node["metadataTypes"] != null)
-			{
-				this._MetadataTypes = new List<StringValue>();
-				foreach(var arrayNode in node["metadataTypes"].Children())
-				{
-					this._MetadataTypes.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
-			}
 		}
 		#endregion
 
@@ -145,7 +122,6 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("questionId", this._QuestionId);
 			kparams.AddIfNotNull("text", this._Text);
 			kparams.AddIfNotNull("level", this._Level);
-			kparams.AddIfNotNull("metadataTypes", this._MetadataTypes);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -158,8 +134,6 @@ namespace Kaltura.Types
 					return "Text";
 				case LEVEL:
 					return "Level";
-				case METADATA_TYPES:
-					return "MetadataTypes";
 				default:
 					return base.getPropertyName(apiName);
 			}

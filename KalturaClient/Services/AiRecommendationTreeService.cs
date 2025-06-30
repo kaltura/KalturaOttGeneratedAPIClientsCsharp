@@ -40,13 +40,11 @@ namespace Kaltura.Services
 	{
 		#region Constants
 		public const string TREE_ID = "treeId";
-		public const string PREVIOUS_QUESTION_ID = "previousQuestionId";
 		public const string ANSWER_ID = "answerId";
 		public const string TOP_QUESTION_ID = "topQuestionId";
 		#endregion
 
 		public string TreeId { get; set; }
-		public string PreviousQuestionId { get; set; }
 		public string AnswerId { get; set; }
 		public string TopQuestionId { get; set; }
 
@@ -55,11 +53,10 @@ namespace Kaltura.Services
 		{
 		}
 
-		public AiRecommendationTreeGetNextNodeAndRecommendationRequestBuilder(string treeId, string previousQuestionId, string answerId, string topQuestionId)
+		public AiRecommendationTreeGetNextNodeAndRecommendationRequestBuilder(string treeId, string answerId, string topQuestionId)
 			: this()
 		{
 			this.TreeId = treeId;
-			this.PreviousQuestionId = previousQuestionId;
 			this.AnswerId = answerId;
 			this.TopQuestionId = topQuestionId;
 		}
@@ -69,8 +66,6 @@ namespace Kaltura.Services
 			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("treeId"))
 				kparams.AddIfNotNull("treeId", TreeId);
-			if (!isMapped("previousQuestionId"))
-				kparams.AddIfNotNull("previousQuestionId", PreviousQuestionId);
 			if (!isMapped("answerId"))
 				kparams.AddIfNotNull("answerId", AnswerId);
 			if (!isMapped("topQuestionId"))
@@ -123,12 +118,12 @@ namespace Kaltura.Services
 	{
 		#region Constants
 		public const string NATURAL_TEXT_QUERY = "naturalTextQuery";
-		public const string PREVIOUS_QUESTION_ID = "previousQuestionId";
+		public const string QUESTION_ID = "questionId";
 		public const string TREE_ID = "treeId";
 		#endregion
 
 		public string NaturalTextQuery { get; set; }
-		public string PreviousQuestionId { get; set; }
+		public string QuestionId { get; set; }
 		public string TreeId { get; set; }
 
 		public AiRecommendationTreeGetRecommendationWithNaturalTextRequestBuilder()
@@ -136,11 +131,11 @@ namespace Kaltura.Services
 		{
 		}
 
-		public AiRecommendationTreeGetRecommendationWithNaturalTextRequestBuilder(string naturalTextQuery, string previousQuestionId, string treeId)
+		public AiRecommendationTreeGetRecommendationWithNaturalTextRequestBuilder(string naturalTextQuery, string questionId, string treeId)
 			: this()
 		{
 			this.NaturalTextQuery = naturalTextQuery;
-			this.PreviousQuestionId = previousQuestionId;
+			this.QuestionId = questionId;
 			this.TreeId = treeId;
 		}
 
@@ -149,8 +144,8 @@ namespace Kaltura.Services
 			Params kparams = base.getParameters(includeServiceAndAction);
 			if (!isMapped("naturalTextQuery"))
 				kparams.AddIfNotNull("naturalTextQuery", NaturalTextQuery);
-			if (!isMapped("previousQuestionId"))
-				kparams.AddIfNotNull("previousQuestionId", PreviousQuestionId);
+			if (!isMapped("questionId"))
+				kparams.AddIfNotNull("questionId", QuestionId);
 			if (!isMapped("treeId"))
 				kparams.AddIfNotNull("treeId", TreeId);
 			return kparams;
@@ -214,9 +209,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static AiRecommendationTreeGetNextNodeAndRecommendationRequestBuilder GetNextNodeAndRecommendation(string treeId = null, string previousQuestionId = null, string answerId = null, string topQuestionId = null)
+		public static AiRecommendationTreeGetNextNodeAndRecommendationRequestBuilder GetNextNodeAndRecommendation(string treeId = null, string answerId = null, string topQuestionId = null)
 		{
-			return new AiRecommendationTreeGetNextNodeAndRecommendationRequestBuilder(treeId, previousQuestionId, answerId, topQuestionId);
+			return new AiRecommendationTreeGetNextNodeAndRecommendationRequestBuilder(treeId, answerId, topQuestionId);
 		}
 
 		public static AiRecommendationTreeGetPartnerConfigRequestBuilder GetPartnerConfig()
@@ -224,9 +219,9 @@ namespace Kaltura.Services
 			return new AiRecommendationTreeGetPartnerConfigRequestBuilder();
 		}
 
-		public static AiRecommendationTreeGetRecommendationWithNaturalTextRequestBuilder GetRecommendationWithNaturalText(string naturalTextQuery, string previousQuestionId = null, string treeId = null)
+		public static AiRecommendationTreeGetRecommendationWithNaturalTextRequestBuilder GetRecommendationWithNaturalText(string naturalTextQuery, string questionId = null, string treeId = null)
 		{
-			return new AiRecommendationTreeGetRecommendationWithNaturalTextRequestBuilder(naturalTextQuery, previousQuestionId, treeId);
+			return new AiRecommendationTreeGetRecommendationWithNaturalTextRequestBuilder(naturalTextQuery, questionId, treeId);
 		}
 
 		public static AiRecommendationTreeUpsertPartnerConfigRequestBuilder UpsertPartnerConfig(AiRecommendationTreePartnerConfiguration configuration)

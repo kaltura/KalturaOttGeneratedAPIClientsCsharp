@@ -40,17 +40,11 @@ namespace Kaltura.Types
 		#region Constants
 		public const string ANSWER_ID = "answerId";
 		public const string TEXT = "text";
-		public const string HAS_NEXT_QUESTION = "hasNextQuestion";
-		public const string IS_SPECIAL = "isSpecial";
-		public const string SPECIAL_TYPE = "specialType";
 		#endregion
 
 		#region Private Fields
 		private string _AnswerId = null;
 		private string _Text = null;
-		private bool? _HasNextQuestion = null;
-		private bool? _IsSpecial = null;
-		private string _SpecialType = null;
 		#endregion
 
 		#region Properties
@@ -80,45 +74,6 @@ namespace Kaltura.Types
 				OnPropertyChanged("Text");
 			}
 		}
-		/// <summary>
-		/// Use HasNextQuestionAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public bool? HasNextQuestion
-		{
-			get { return _HasNextQuestion; }
-			set 
-			{ 
-				_HasNextQuestion = value;
-				OnPropertyChanged("HasNextQuestion");
-			}
-		}
-		/// <summary>
-		/// Use IsSpecialAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public bool? IsSpecial
-		{
-			get { return _IsSpecial; }
-			set 
-			{ 
-				_IsSpecial = value;
-				OnPropertyChanged("IsSpecial");
-			}
-		}
-		/// <summary>
-		/// Use SpecialTypeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string SpecialType
-		{
-			get { return _SpecialType; }
-			set 
-			{ 
-				_SpecialType = value;
-				OnPropertyChanged("SpecialType");
-			}
-		}
 		#endregion
 
 		#region CTor
@@ -136,18 +91,6 @@ namespace Kaltura.Types
 			{
 				this._Text = node["text"].Value<string>();
 			}
-			if(node["hasNextQuestion"] != null)
-			{
-				this._HasNextQuestion = ParseBool(node["hasNextQuestion"].Value<string>());
-			}
-			if(node["isSpecial"] != null)
-			{
-				this._IsSpecial = ParseBool(node["isSpecial"].Value<string>());
-			}
-			if(node["specialType"] != null)
-			{
-				this._SpecialType = node["specialType"].Value<string>();
-			}
 		}
 		#endregion
 
@@ -159,9 +102,6 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaTreeAnswer");
 			kparams.AddIfNotNull("answerId", this._AnswerId);
 			kparams.AddIfNotNull("text", this._Text);
-			kparams.AddIfNotNull("hasNextQuestion", this._HasNextQuestion);
-			kparams.AddIfNotNull("isSpecial", this._IsSpecial);
-			kparams.AddIfNotNull("specialType", this._SpecialType);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -172,12 +112,6 @@ namespace Kaltura.Types
 					return "AnswerId";
 				case TEXT:
 					return "Text";
-				case HAS_NEXT_QUESTION:
-					return "HasNextQuestion";
-				case IS_SPECIAL:
-					return "IsSpecial";
-				case SPECIAL_TYPE:
-					return "SpecialType";
 				default:
 					return base.getPropertyName(apiName);
 			}
