@@ -290,6 +290,7 @@ namespace Kaltura
 		public static string ExternalAssetNotFound = "4129";
 		public static string AlreadyProcessed = "4130";
 		public static string JobNotFound = "4131";
+		public static string TreeGenerationFrequencyTooHigh = "4132";
 		public static string NoPinDefined = "5001";
 		public static string PinMismatch = "5002";
 		public static string RuleNotExists = "5003";
