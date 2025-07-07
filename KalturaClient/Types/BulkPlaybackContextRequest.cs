@@ -35,72 +35,45 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class BulkPlaybackContextRequest : ObjectBase
 	{
 		#region Constants
-		public const string ASSET_STRUCT_META_NAME_MAP = "assetStructMetaNameMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string PLAYBACK_CONTEXT_PARAM_SETS = "playbackContextParamSets";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetaFieldNameMap> _AssetStructMetaNameMap;
-		private IList<StringValue> _SupportedLanguages;
+		private IList<GetPlaybackContextParams> _PlaybackContextParamSets;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructMetaNameMapAsDouble property instead
+		/// Use PlaybackContextParamSetsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetaFieldNameMap> AssetStructMetaNameMap
+		public IList<GetPlaybackContextParams> PlaybackContextParamSets
 		{
-			get { return _AssetStructMetaNameMap; }
+			get { return _PlaybackContextParamSets; }
 			set 
 			{ 
-				_AssetStructMetaNameMap = value;
-				OnPropertyChanged("AssetStructMetaNameMap");
-			}
-		}
-		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
-		{
-			get { return _SupportedLanguages; }
-			private set 
-			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_PlaybackContextParamSets = value;
+				OnPropertyChanged("PlaybackContextParamSets");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public BulkPlaybackContextRequest()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public BulkPlaybackContextRequest(JToken node) : base(node)
 		{
-			if(node["assetStructMetaNameMap"] != null)
+			if(node["playbackContextParamSets"] != null)
 			{
+				this._PlaybackContextParamSets = new List<GetPlaybackContextParams>();
+				foreach(var arrayNode in node["playbackContextParamSets"].Children())
 				{
-					string key;
-					this._AssetStructMetaNameMap = new Dictionary<string, MetaFieldNameMap>();
-					foreach(var arrayNode in node["assetStructMetaNameMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructMetaNameMap[key] = ObjectFactory.Create<MetaFieldNameMap>(arrayNode.Value);
-					}
-				}
-			}
-			if(node["supportedLanguages"] != null)
-			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
+					this._PlaybackContextParamSets.Add(ObjectFactory.Create<GetPlaybackContextParams>(arrayNode));
 				}
 			}
 		}
@@ -111,19 +84,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructMetaNameMap", this._AssetStructMetaNameMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaBulkPlaybackContextRequest");
+			kparams.AddIfNotNull("playbackContextParamSets", this._PlaybackContextParamSets);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_META_NAME_MAP:
-					return "AssetStructMetaNameMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case PLAYBACK_CONTEXT_PARAM_SETS:
+					return "PlaybackContextParamSets";
 				default:
 					return base.getPropertyName(apiName);
 			}

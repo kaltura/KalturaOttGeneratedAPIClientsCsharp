@@ -35,73 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class BulkResponseItem : ObjectBase
 	{
 		#region Constants
-		public const string ASSET_STRUCT_META_NAME_MAP = "assetStructMetaNameMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string IS_SUCCESS = "isSuccess";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetaFieldNameMap> _AssetStructMetaNameMap;
-		private IList<StringValue> _SupportedLanguages;
+		private bool? _IsSuccess = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructMetaNameMapAsDouble property instead
+		/// Use IsSuccessAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetaFieldNameMap> AssetStructMetaNameMap
+		public bool? IsSuccess
 		{
-			get { return _AssetStructMetaNameMap; }
+			get { return _IsSuccess; }
 			set 
 			{ 
-				_AssetStructMetaNameMap = value;
-				OnPropertyChanged("AssetStructMetaNameMap");
-			}
-		}
-		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
-		{
-			get { return _SupportedLanguages; }
-			private set 
-			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_IsSuccess = value;
+				OnPropertyChanged("IsSuccess");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public BulkResponseItem()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public BulkResponseItem(JToken node) : base(node)
 		{
-			if(node["assetStructMetaNameMap"] != null)
+			if(node["isSuccess"] != null)
 			{
-				{
-					string key;
-					this._AssetStructMetaNameMap = new Dictionary<string, MetaFieldNameMap>();
-					foreach(var arrayNode in node["assetStructMetaNameMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructMetaNameMap[key] = ObjectFactory.Create<MetaFieldNameMap>(arrayNode.Value);
-					}
-				}
-			}
-			if(node["supportedLanguages"] != null)
-			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._IsSuccess = ParseBool(node["isSuccess"].Value<string>());
 			}
 		}
 		#endregion
@@ -111,19 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructMetaNameMap", this._AssetStructMetaNameMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaBulkResponseItem");
+			kparams.AddIfNotNull("isSuccess", this._IsSuccess);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_META_NAME_MAP:
-					return "AssetStructMetaNameMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case IS_SUCCESS:
+					return "IsSuccess";
 				default:
 					return base.getPropertyName(apiName);
 			}
