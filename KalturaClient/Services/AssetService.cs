@@ -124,6 +124,45 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class AssetBulkGetPlaybackContextRequestBuilder : RequestBuilder<BulkPlaybackContextResponse>
+	{
+		#region Constants
+		public const string REQUEST = "request";
+		#endregion
+
+		public BulkPlaybackContextRequest Request { get; set; }
+
+		public AssetBulkGetPlaybackContextRequestBuilder()
+			: base("asset", "bulkGetPlaybackContext")
+		{
+		}
+
+		public AssetBulkGetPlaybackContextRequestBuilder(BulkPlaybackContextRequest request)
+			: this()
+		{
+			this.Request = request;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("request"))
+				kparams.AddIfNotNull("request", Request);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<BulkPlaybackContextResponse>(result);
+		}
+	}
+
 	public class AssetCountRequestBuilder : RequestBuilder<AssetCount>
 	{
 		#region Constants
@@ -755,6 +794,11 @@ namespace Kaltura.Services
 		public static AssetAddFromBulkUploadRequestBuilder AddFromBulkUpload(Stream fileData, BulkUploadJobData bulkUploadJobData, BulkUploadAssetData bulkUploadAssetData)
 		{
 			return new AssetAddFromBulkUploadRequestBuilder(fileData, bulkUploadJobData, bulkUploadAssetData);
+		}
+
+		public static AssetBulkGetPlaybackContextRequestBuilder BulkGetPlaybackContext(BulkPlaybackContextRequest request)
+		{
+			return new AssetBulkGetPlaybackContextRequestBuilder(request);
 		}
 
 		public static AssetCountRequestBuilder Count(SearchAssetFilter filter = null)
