@@ -35,73 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class TreeQuestion : ObjectBase
 	{
 		#region Constants
-		public const string ASSET_STRUCT_META_NAME_MAP = "assetStructMetaNameMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string QUESTION_ID = "questionId";
+		public const string TEXT = "text";
+		public const string LEVEL = "level";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetaFieldNameMap> _AssetStructMetaNameMap;
-		private IList<StringValue> _SupportedLanguages;
+		private string _QuestionId = null;
+		private string _Text = null;
+		private int _Level = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructMetaNameMapAsDouble property instead
+		/// Use QuestionIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetaFieldNameMap> AssetStructMetaNameMap
+		public string QuestionId
 		{
-			get { return _AssetStructMetaNameMap; }
+			get { return _QuestionId; }
 			set 
 			{ 
-				_AssetStructMetaNameMap = value;
-				OnPropertyChanged("AssetStructMetaNameMap");
+				_QuestionId = value;
+				OnPropertyChanged("QuestionId");
 			}
 		}
 		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
+		/// Use TextAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
+		public string Text
 		{
-			get { return _SupportedLanguages; }
-			private set 
+			get { return _Text; }
+			set 
 			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_Text = value;
+				OnPropertyChanged("Text");
+			}
+		}
+		/// <summary>
+		/// Use LevelAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int Level
+		{
+			get { return _Level; }
+			set 
+			{ 
+				_Level = value;
+				OnPropertyChanged("Level");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public TreeQuestion()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public TreeQuestion(JToken node) : base(node)
 		{
-			if(node["assetStructMetaNameMap"] != null)
+			if(node["questionId"] != null)
 			{
-				{
-					string key;
-					this._AssetStructMetaNameMap = new Dictionary<string, MetaFieldNameMap>();
-					foreach(var arrayNode in node["assetStructMetaNameMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructMetaNameMap[key] = ObjectFactory.Create<MetaFieldNameMap>(arrayNode.Value);
-					}
-				}
+				this._QuestionId = node["questionId"].Value<string>();
 			}
-			if(node["supportedLanguages"] != null)
+			if(node["text"] != null)
 			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._Text = node["text"].Value<string>();
+			}
+			if(node["level"] != null)
+			{
+				this._Level = ParseInt(node["level"].Value<string>());
 			}
 		}
 		#endregion
@@ -111,19 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructMetaNameMap", this._AssetStructMetaNameMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaTreeQuestion");
+			kparams.AddIfNotNull("questionId", this._QuestionId);
+			kparams.AddIfNotNull("text", this._Text);
+			kparams.AddIfNotNull("level", this._Level);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_META_NAME_MAP:
-					return "AssetStructMetaNameMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case QUESTION_ID:
+					return "QuestionId";
+				case TEXT:
+					return "Text";
+				case LEVEL:
+					return "Level";
 				default:
 					return base.getPropertyName(apiName);
 			}

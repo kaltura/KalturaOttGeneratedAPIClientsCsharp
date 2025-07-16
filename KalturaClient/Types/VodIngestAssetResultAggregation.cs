@@ -44,6 +44,10 @@ namespace Kaltura.Types
 		public const string SUCCESS_COUNT = "successCount";
 		public const string EXTERNAL_FAILURE_COUNT = "externalFailureCount";
 		public const string SUCCESS_WITH_WARNING_COUNT = "successWithWarningCount";
+		public const string AVERAGE_TOTAL_PROCESSING_DURATION = "averageTotalProcessingDuration";
+		public const string AVERAGE_TOTAL_ACTIVE_PROCESSING_DURATION = "averageTotalActiveProcessingDuration";
+		public const string P95TOTAL_PROCESSING_DURATION = "p95TotalProcessingDuration";
+		public const string P95TOTAL_ACTIVE_PROCESSING_DURATION = "p95TotalActiveProcessingDuration";
 		#endregion
 
 		#region Private Fields
@@ -53,6 +57,10 @@ namespace Kaltura.Types
 		private int _SuccessCount = Int32.MinValue;
 		private int _ExternalFailureCount = Int32.MinValue;
 		private int _SuccessWithWarningCount = Int32.MinValue;
+		private long _AverageTotalProcessingDuration = long.MinValue;
+		private long _AverageTotalActiveProcessingDuration = long.MinValue;
+		private long _P95TotalProcessingDuration = long.MinValue;
+		private long _P95TotalActiveProcessingDuration = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -134,6 +142,58 @@ namespace Kaltura.Types
 				OnPropertyChanged("SuccessWithWarningCount");
 			}
 		}
+		/// <summary>
+		/// Use AverageTotalProcessingDurationAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long AverageTotalProcessingDuration
+		{
+			get { return _AverageTotalProcessingDuration; }
+			set 
+			{ 
+				_AverageTotalProcessingDuration = value;
+				OnPropertyChanged("AverageTotalProcessingDuration");
+			}
+		}
+		/// <summary>
+		/// Use AverageTotalActiveProcessingDurationAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long AverageTotalActiveProcessingDuration
+		{
+			get { return _AverageTotalActiveProcessingDuration; }
+			set 
+			{ 
+				_AverageTotalActiveProcessingDuration = value;
+				OnPropertyChanged("AverageTotalActiveProcessingDuration");
+			}
+		}
+		/// <summary>
+		/// Use P95TotalProcessingDurationAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long P95TotalProcessingDuration
+		{
+			get { return _P95TotalProcessingDuration; }
+			set 
+			{ 
+				_P95TotalProcessingDuration = value;
+				OnPropertyChanged("P95TotalProcessingDuration");
+			}
+		}
+		/// <summary>
+		/// Use P95TotalActiveProcessingDurationAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long P95TotalActiveProcessingDuration
+		{
+			get { return _P95TotalActiveProcessingDuration; }
+			set 
+			{ 
+				_P95TotalActiveProcessingDuration = value;
+				OnPropertyChanged("P95TotalActiveProcessingDuration");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -167,6 +227,22 @@ namespace Kaltura.Types
 			{
 				this._SuccessWithWarningCount = ParseInt(node["successWithWarningCount"].Value<string>());
 			}
+			if(node["averageTotalProcessingDuration"] != null)
+			{
+				this._AverageTotalProcessingDuration = ParseLong(node["averageTotalProcessingDuration"].Value<string>());
+			}
+			if(node["averageTotalActiveProcessingDuration"] != null)
+			{
+				this._AverageTotalActiveProcessingDuration = ParseLong(node["averageTotalActiveProcessingDuration"].Value<string>());
+			}
+			if(node["p95TotalProcessingDuration"] != null)
+			{
+				this._P95TotalProcessingDuration = ParseLong(node["p95TotalProcessingDuration"].Value<string>());
+			}
+			if(node["p95TotalActiveProcessingDuration"] != null)
+			{
+				this._P95TotalActiveProcessingDuration = ParseLong(node["p95TotalActiveProcessingDuration"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -182,6 +258,10 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("successCount", this._SuccessCount);
 			kparams.AddIfNotNull("externalFailureCount", this._ExternalFailureCount);
 			kparams.AddIfNotNull("successWithWarningCount", this._SuccessWithWarningCount);
+			kparams.AddIfNotNull("averageTotalProcessingDuration", this._AverageTotalProcessingDuration);
+			kparams.AddIfNotNull("averageTotalActiveProcessingDuration", this._AverageTotalActiveProcessingDuration);
+			kparams.AddIfNotNull("p95TotalProcessingDuration", this._P95TotalProcessingDuration);
+			kparams.AddIfNotNull("p95TotalActiveProcessingDuration", this._P95TotalActiveProcessingDuration);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -200,6 +280,14 @@ namespace Kaltura.Types
 					return "ExternalFailureCount";
 				case SUCCESS_WITH_WARNING_COUNT:
 					return "SuccessWithWarningCount";
+				case AVERAGE_TOTAL_PROCESSING_DURATION:
+					return "AverageTotalProcessingDuration";
+				case AVERAGE_TOTAL_ACTIVE_PROCESSING_DURATION:
+					return "AverageTotalActiveProcessingDuration";
+				case P95TOTAL_PROCESSING_DURATION:
+					return "P95TotalProcessingDuration";
+				case P95TOTAL_ACTIVE_PROCESSING_DURATION:
+					return "P95TotalActiveProcessingDuration";
 				default:
 					return base.getPropertyName(apiName);
 			}
