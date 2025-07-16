@@ -35,72 +35,64 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class GenerateMetadataBySubtitles : ObjectBase
 	{
 		#region Constants
-		public const string ASSET_STRUCT_META_NAME_MAP = "assetStructMetaNameMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string ID = "id";
+		public const string EXTERNAL_ASSET_IDS = "externalAssetIds";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetaFieldNameMap> _AssetStructMetaNameMap;
-		private IList<StringValue> _SupportedLanguages;
+		private long _Id = long.MinValue;
+		private IList<StringValue> _ExternalAssetIds;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructMetaNameMapAsDouble property instead
+		/// Use IdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetaFieldNameMap> AssetStructMetaNameMap
+		public long Id
 		{
-			get { return _AssetStructMetaNameMap; }
+			get { return _Id; }
 			set 
 			{ 
-				_AssetStructMetaNameMap = value;
-				OnPropertyChanged("AssetStructMetaNameMap");
+				_Id = value;
+				OnPropertyChanged("Id");
 			}
 		}
 		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
+		/// Use ExternalAssetIdsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
+		public IList<StringValue> ExternalAssetIds
 		{
-			get { return _SupportedLanguages; }
-			private set 
+			get { return _ExternalAssetIds; }
+			set 
 			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_ExternalAssetIds = value;
+				OnPropertyChanged("ExternalAssetIds");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public GenerateMetadataBySubtitles()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public GenerateMetadataBySubtitles(JToken node) : base(node)
 		{
-			if(node["assetStructMetaNameMap"] != null)
+			if(node["id"] != null)
 			{
-				{
-					string key;
-					this._AssetStructMetaNameMap = new Dictionary<string, MetaFieldNameMap>();
-					foreach(var arrayNode in node["assetStructMetaNameMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructMetaNameMap[key] = ObjectFactory.Create<MetaFieldNameMap>(arrayNode.Value);
-					}
-				}
+				this._Id = ParseLong(node["id"].Value<string>());
 			}
-			if(node["supportedLanguages"] != null)
+			if(node["externalAssetIds"] != null)
 			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
+				this._ExternalAssetIds = new List<StringValue>();
+				foreach(var arrayNode in node["externalAssetIds"].Children())
 				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
+					this._ExternalAssetIds.Add(ObjectFactory.Create<StringValue>(arrayNode));
 				}
 			}
 		}
@@ -111,19 +103,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructMetaNameMap", this._AssetStructMetaNameMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaGenerateMetadataBySubtitles");
+			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("externalAssetIds", this._ExternalAssetIds);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_META_NAME_MAP:
-					return "AssetStructMetaNameMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case ID:
+					return "Id";
+				case EXTERNAL_ASSET_IDS:
+					return "ExternalAssetIds";
 				default:
 					return base.getPropertyName(apiName);
 			}
