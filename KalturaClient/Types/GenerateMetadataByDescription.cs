@@ -42,7 +42,7 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private StringValue _ExternalAssetId;
+		private string _ExternalAssetId = null;
 		#endregion
 
 		#region Properties
@@ -50,7 +50,7 @@ namespace Kaltura.Types
 		/// Use ExternalAssetIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public StringValue ExternalAssetId
+		public string ExternalAssetId
 		{
 			get { return _ExternalAssetId; }
 			set 
@@ -70,7 +70,7 @@ namespace Kaltura.Types
 		{
 			if(node["externalAssetId"] != null)
 			{
-				this._ExternalAssetId = ObjectFactory.Create<StringValue>(node["externalAssetId"]);
+				this._ExternalAssetId = node["externalAssetId"].Value<string>();
 			}
 		}
 		#endregion
