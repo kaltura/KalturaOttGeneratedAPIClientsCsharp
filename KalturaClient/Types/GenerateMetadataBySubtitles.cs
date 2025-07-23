@@ -38,27 +38,27 @@ namespace Kaltura.Types
 	public class GenerateMetadataBySubtitles : ObjectBase
 	{
 		#region Constants
-		public const string ID = "id";
+		public const string SUBTITLES_FILE_ID = "subtitlesFileId";
 		public const string EXTERNAL_ASSET_IDS = "externalAssetIds";
 		#endregion
 
 		#region Private Fields
-		private long _Id = long.MinValue;
+		private long _SubtitlesFileId = long.MinValue;
 		private IList<StringValue> _ExternalAssetIds;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use IdAsDouble property instead
+		/// Use SubtitlesFileIdAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long Id
+		public long SubtitlesFileId
 		{
-			get { return _Id; }
+			get { return _SubtitlesFileId; }
 			set 
 			{ 
-				_Id = value;
-				OnPropertyChanged("Id");
+				_SubtitlesFileId = value;
+				OnPropertyChanged("SubtitlesFileId");
 			}
 		}
 		/// <summary>
@@ -83,9 +83,9 @@ namespace Kaltura.Types
 
 		public GenerateMetadataBySubtitles(JToken node) : base(node)
 		{
-			if(node["id"] != null)
+			if(node["subtitlesFileId"] != null)
 			{
-				this._Id = ParseLong(node["id"].Value<string>());
+				this._SubtitlesFileId = ParseLong(node["subtitlesFileId"].Value<string>());
 			}
 			if(node["externalAssetIds"] != null)
 			{
@@ -104,7 +104,7 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaGenerateMetadataBySubtitles");
-			kparams.AddIfNotNull("id", this._Id);
+			kparams.AddIfNotNull("subtitlesFileId", this._SubtitlesFileId);
 			kparams.AddIfNotNull("externalAssetIds", this._ExternalAssetIds);
 			return kparams;
 		}
@@ -112,8 +112,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case ID:
-					return "Id";
+				case SUBTITLES_FILE_ID:
+					return "SubtitlesFileId";
 				case EXTERNAL_ASSET_IDS:
 					return "ExternalAssetIds";
 				default:
