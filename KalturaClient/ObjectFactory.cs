@@ -320,6 +320,8 @@ namespace Kaltura
 					return new ListResponse<UserAssetRule>(jToken);
 				case "KalturaUserRoleListResponse":
 					return new ListResponse<UserRole>(jToken);
+				case "KalturaGeoBlockRuleListResponse":
+					return new ListResponse<GeoBlockRule>(jToken);
 				case "KalturaEpgListResponse":
 					return new ListResponse<Epg>(jToken);
 			}
