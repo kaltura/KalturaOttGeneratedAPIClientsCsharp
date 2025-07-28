@@ -36,35 +36,30 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder : RequestBuilder<GenerateMetadataBySubtitlesJob>
+	public class AiMetadataGeneratorGenerateMetadataByDescriptionRequestBuilder : RequestBuilder<GenerateMetadataJob>
 	{
 		#region Constants
-		public const string SUBTITLES_FILE_ID = "subtitlesFileId";
-		public const string EXTERNAL_ASSET_IDS = "externalAssetIds";
+		public const string GENERATE_METADATA_BY_DESCRIPTION = "generateMetadataByDescription";
 		#endregion
 
-		public long SubtitlesFileId { get; set; }
-		public IList<StringValue> ExternalAssetIds { get; set; }
+		public GenerateMetadataByDescription GenerateMetadataByDescription { get; set; }
 
-		public AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder()
-			: base("aimetadatagenerator", "generateMetadataBySubtitles")
+		public AiMetadataGeneratorGenerateMetadataByDescriptionRequestBuilder()
+			: base("aimetadatagenerator", "generateMetadataByDescription")
 		{
 		}
 
-		public AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(long subtitlesFileId, IList<StringValue> externalAssetIds)
+		public AiMetadataGeneratorGenerateMetadataByDescriptionRequestBuilder(GenerateMetadataByDescription generateMetadataByDescription)
 			: this()
 		{
-			this.SubtitlesFileId = subtitlesFileId;
-			this.ExternalAssetIds = externalAssetIds;
+			this.GenerateMetadataByDescription = generateMetadataByDescription;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("subtitlesFileId"))
-				kparams.AddIfNotNull("subtitlesFileId", SubtitlesFileId);
-			if (!isMapped("externalAssetIds"))
-				kparams.AddIfNotNull("externalAssetIds", ExternalAssetIds);
+			if (!isMapped("generateMetadataByDescription"))
+				kparams.AddIfNotNull("generateMetadataByDescription", GenerateMetadataByDescription);
 			return kparams;
 		}
 
@@ -76,7 +71,46 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<GenerateMetadataBySubtitlesJob>(result);
+			return ObjectFactory.Create<GenerateMetadataJob>(result);
+		}
+	}
+
+	public class AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder : RequestBuilder<GenerateMetadataJob>
+	{
+		#region Constants
+		public const string GENERATE_METADATA_BY_SUBTITLES = "generateMetadataBySubtitles";
+		#endregion
+
+		public GenerateMetadataBySubtitles GenerateMetadataBySubtitles { get; set; }
+
+		public AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder()
+			: base("aimetadatagenerator", "generateMetadataBySubtitles")
+		{
+		}
+
+		public AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(GenerateMetadataBySubtitles generateMetadataBySubtitles)
+			: this()
+		{
+			this.GenerateMetadataBySubtitles = generateMetadataBySubtitles;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("generateMetadataBySubtitles"))
+				kparams.AddIfNotNull("generateMetadataBySubtitles", GenerateMetadataBySubtitles);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<GenerateMetadataJob>(result);
 		}
 	}
 
@@ -119,7 +153,7 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class AiMetadataGeneratorGetGenerateMetadataJobRequestBuilder : RequestBuilder<GenerateMetadataBySubtitlesJob>
+	public class AiMetadataGeneratorGetGenerateMetadataJobRequestBuilder : RequestBuilder<GenerateMetadataJob>
 	{
 		#region Constants
 		public const string ID = "id";
@@ -154,7 +188,7 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<GenerateMetadataBySubtitlesJob>(result);
+			return ObjectFactory.Create<GenerateMetadataJob>(result);
 		}
 	}
 
@@ -262,9 +296,14 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder GenerateMetadataBySubtitles(long subtitlesFileId, IList<StringValue> externalAssetIds = null)
+		public static AiMetadataGeneratorGenerateMetadataByDescriptionRequestBuilder GenerateMetadataByDescription(GenerateMetadataByDescription generateMetadataByDescription)
 		{
-			return new AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(subtitlesFileId, externalAssetIds);
+			return new AiMetadataGeneratorGenerateMetadataByDescriptionRequestBuilder(generateMetadataByDescription);
+		}
+
+		public static AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder GenerateMetadataBySubtitles(GenerateMetadataBySubtitles generateMetadataBySubtitles)
+		{
+			return new AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(generateMetadataBySubtitles);
 		}
 
 		public static AiMetadataGeneratorGetGeneratedMetadataRequestBuilder GetGeneratedMetadata(long jobId)
