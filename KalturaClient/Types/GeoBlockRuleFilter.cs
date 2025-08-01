@@ -35,73 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class GeoBlockRuleFilter : Filter
 	{
 		#region Constants
-		public const string ASSET_STRUCT_META_NAME_MAP = "assetStructMetaNameMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public new const string ORDER_BY = "orderBy";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetaFieldNameMap> _AssetStructMetaNameMap;
-		private IList<StringValue> _SupportedLanguages;
+		private GeoBlockRuleOrderBy _OrderBy = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructMetaNameMapAsDouble property instead
+		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetaFieldNameMap> AssetStructMetaNameMap
+		public new GeoBlockRuleOrderBy OrderBy
 		{
-			get { return _AssetStructMetaNameMap; }
+			get { return _OrderBy; }
 			set 
 			{ 
-				_AssetStructMetaNameMap = value;
-				OnPropertyChanged("AssetStructMetaNameMap");
-			}
-		}
-		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
-		{
-			get { return _SupportedLanguages; }
-			private set 
-			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_OrderBy = value;
+				OnPropertyChanged("OrderBy");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public GeoBlockRuleFilter()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public GeoBlockRuleFilter(JToken node) : base(node)
 		{
-			if(node["assetStructMetaNameMap"] != null)
+			if(node["orderBy"] != null)
 			{
-				{
-					string key;
-					this._AssetStructMetaNameMap = new Dictionary<string, MetaFieldNameMap>();
-					foreach(var arrayNode in node["assetStructMetaNameMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructMetaNameMap[key] = ObjectFactory.Create<MetaFieldNameMap>(arrayNode.Value);
-					}
-				}
-			}
-			if(node["supportedLanguages"] != null)
-			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._OrderBy = (GeoBlockRuleOrderBy)StringEnum.Parse(typeof(GeoBlockRuleOrderBy), node["orderBy"].Value<string>());
 			}
 		}
 		#endregion
@@ -111,19 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructMetaNameMap", this._AssetStructMetaNameMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaGeoBlockRuleFilter");
+			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_META_NAME_MAP:
-					return "AssetStructMetaNameMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case ORDER_BY:
+					return "OrderBy";
 				default:
 					return base.getPropertyName(apiName);
 			}
