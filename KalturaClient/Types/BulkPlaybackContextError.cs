@@ -35,72 +35,83 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class BulkPlaybackContextError : BulkResponseItem
 	{
 		#region Constants
-		public const string ASSET_STRUCT_META_NAME_MAP = "assetStructMetaNameMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string CODE = "code";
+		public const string MESSAGE = "message";
+		public const string ARGS = "args";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetaFieldNameMap> _AssetStructMetaNameMap;
-		private IList<StringValue> _SupportedLanguages;
+		private string _Code = null;
+		private string _Message = null;
+		private IList<ApiExceptionArg> _Args;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructMetaNameMapAsDouble property instead
+		/// Use CodeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetaFieldNameMap> AssetStructMetaNameMap
+		public string Code
 		{
-			get { return _AssetStructMetaNameMap; }
+			get { return _Code; }
 			set 
 			{ 
-				_AssetStructMetaNameMap = value;
-				OnPropertyChanged("AssetStructMetaNameMap");
+				_Code = value;
+				OnPropertyChanged("Code");
 			}
 		}
 		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
+		/// Use MessageAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
+		public string Message
 		{
-			get { return _SupportedLanguages; }
-			private set 
+			get { return _Message; }
+			set 
 			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_Message = value;
+				OnPropertyChanged("Message");
+			}
+		}
+		/// <summary>
+		/// Use ArgsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public IList<ApiExceptionArg> Args
+		{
+			get { return _Args; }
+			set 
+			{ 
+				_Args = value;
+				OnPropertyChanged("Args");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public BulkPlaybackContextError()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public BulkPlaybackContextError(JToken node) : base(node)
 		{
-			if(node["assetStructMetaNameMap"] != null)
+			if(node["code"] != null)
 			{
-				{
-					string key;
-					this._AssetStructMetaNameMap = new Dictionary<string, MetaFieldNameMap>();
-					foreach(var arrayNode in node["assetStructMetaNameMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructMetaNameMap[key] = ObjectFactory.Create<MetaFieldNameMap>(arrayNode.Value);
-					}
-				}
+				this._Code = node["code"].Value<string>();
 			}
-			if(node["supportedLanguages"] != null)
+			if(node["message"] != null)
 			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
+				this._Message = node["message"].Value<string>();
+			}
+			if(node["args"] != null)
+			{
+				this._Args = new List<ApiExceptionArg>();
+				foreach(var arrayNode in node["args"].Children())
 				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
+					this._Args.Add(ObjectFactory.Create<ApiExceptionArg>(arrayNode));
 				}
 			}
 		}
@@ -111,19 +122,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructMetaNameMap", this._AssetStructMetaNameMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaBulkPlaybackContextError");
+			kparams.AddIfNotNull("code", this._Code);
+			kparams.AddIfNotNull("message", this._Message);
+			kparams.AddIfNotNull("args", this._Args);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_META_NAME_MAP:
-					return "AssetStructMetaNameMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case CODE:
+					return "Code";
+				case MESSAGE:
+					return "Message";
+				case ARGS:
+					return "Args";
 				default:
 					return base.getPropertyName(apiName);
 			}
