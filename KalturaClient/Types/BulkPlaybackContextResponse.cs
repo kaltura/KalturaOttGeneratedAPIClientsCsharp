@@ -35,73 +35,65 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class BulkPlaybackContextResponse : ObjectBase
 	{
 		#region Constants
-		public const string ASSET_STRUCT_META_NAME_MAP = "assetStructMetaNameMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string ITEMS = "items";
+		public const string TOTAL_COUNT = "totalCount";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetaFieldNameMap> _AssetStructMetaNameMap;
-		private IList<StringValue> _SupportedLanguages;
+		private IList<BulkResponseItem> _Items;
+		private int _TotalCount = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructMetaNameMapAsDouble property instead
+		/// Use ItemsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetaFieldNameMap> AssetStructMetaNameMap
+		public IList<BulkResponseItem> Items
 		{
-			get { return _AssetStructMetaNameMap; }
+			get { return _Items; }
 			set 
 			{ 
-				_AssetStructMetaNameMap = value;
-				OnPropertyChanged("AssetStructMetaNameMap");
+				_Items = value;
+				OnPropertyChanged("Items");
 			}
 		}
 		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
+		/// Use TotalCountAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
+		public int TotalCount
 		{
-			get { return _SupportedLanguages; }
-			private set 
+			get { return _TotalCount; }
+			set 
 			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_TotalCount = value;
+				OnPropertyChanged("TotalCount");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public BulkPlaybackContextResponse()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public BulkPlaybackContextResponse(JToken node) : base(node)
 		{
-			if(node["assetStructMetaNameMap"] != null)
+			if(node["items"] != null)
 			{
+				this._Items = new List<BulkResponseItem>();
+				foreach(var arrayNode in node["items"].Children())
 				{
-					string key;
-					this._AssetStructMetaNameMap = new Dictionary<string, MetaFieldNameMap>();
-					foreach(var arrayNode in node["assetStructMetaNameMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructMetaNameMap[key] = ObjectFactory.Create<MetaFieldNameMap>(arrayNode.Value);
-					}
+					this._Items.Add(ObjectFactory.Create<BulkResponseItem>(arrayNode));
 				}
 			}
-			if(node["supportedLanguages"] != null)
+			if(node["totalCount"] != null)
 			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._TotalCount = ParseInt(node["totalCount"].Value<string>());
 			}
 		}
 		#endregion
@@ -111,19 +103,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructMetaNameMap", this._AssetStructMetaNameMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaBulkPlaybackContextResponse");
+			kparams.AddIfNotNull("items", this._Items);
+			kparams.AddIfNotNull("totalCount", this._TotalCount);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_META_NAME_MAP:
-					return "AssetStructMetaNameMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case ITEMS:
+					return "Items";
+				case TOTAL_COUNT:
+					return "TotalCount";
 				default:
 					return base.getPropertyName(apiName);
 			}

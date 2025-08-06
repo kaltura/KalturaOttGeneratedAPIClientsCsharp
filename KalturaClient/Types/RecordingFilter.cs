@@ -39,6 +39,7 @@ namespace Kaltura.Types
 	{
 		#region Constants
 		public const string STATUS_IN = "statusIn";
+		public const string ASSET_ID_IN = "assetIdIn";
 		public const string EXTERNAL_RECORDING_ID_IN = "externalRecordingIdIn";
 		public const string KSQL = "kSql";
 		public new const string ORDER_BY = "orderBy";
@@ -46,6 +47,7 @@ namespace Kaltura.Types
 
 		#region Private Fields
 		private string _StatusIn = null;
+		private string _AssetIdIn = null;
 		private string _ExternalRecordingIdIn = null;
 		private string _KSql = null;
 		private RecordingOrderBy _OrderBy = null;
@@ -63,6 +65,19 @@ namespace Kaltura.Types
 			{ 
 				_StatusIn = value;
 				OnPropertyChanged("StatusIn");
+			}
+		}
+		/// <summary>
+		/// Use AssetIdInAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string AssetIdIn
+		{
+			get { return _AssetIdIn; }
+			set 
+			{ 
+				_AssetIdIn = value;
+				OnPropertyChanged("AssetIdIn");
 			}
 		}
 		/// <summary>
@@ -117,6 +132,10 @@ namespace Kaltura.Types
 			{
 				this._StatusIn = node["statusIn"].Value<string>();
 			}
+			if(node["assetIdIn"] != null)
+			{
+				this._AssetIdIn = node["assetIdIn"].Value<string>();
+			}
 			if(node["externalRecordingIdIn"] != null)
 			{
 				this._ExternalRecordingIdIn = node["externalRecordingIdIn"].Value<string>();
@@ -139,6 +158,7 @@ namespace Kaltura.Types
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaRecordingFilter");
 			kparams.AddIfNotNull("statusIn", this._StatusIn);
+			kparams.AddIfNotNull("assetIdIn", this._AssetIdIn);
 			kparams.AddIfNotNull("externalRecordingIdIn", this._ExternalRecordingIdIn);
 			kparams.AddIfNotNull("kSql", this._KSql);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
@@ -150,6 +170,8 @@ namespace Kaltura.Types
 			{
 				case STATUS_IN:
 					return "StatusIn";
+				case ASSET_ID_IN:
+					return "AssetIdIn";
 				case EXTERNAL_RECORDING_ID_IN:
 					return "ExternalRecordingIdIn";
 				case KSQL:

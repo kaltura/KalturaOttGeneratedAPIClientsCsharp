@@ -46,6 +46,9 @@ namespace Kaltura.Types
 		public const string VOD_TYPE_SYSTEM_NAME = "vodTypeSystemName";
 		public const string ERRORS = "errors";
 		public const string WARNINGS = "warnings";
+		public const string FILE_UPLOAD_DATE = "fileUploadDate";
+		public const string PROCESSING_START_DATE = "processingStartDate";
+		public const string PROCESSING_COMPLETION_DATE = "processingCompletionDate";
 		#endregion
 
 		#region Private Fields
@@ -57,6 +60,9 @@ namespace Kaltura.Types
 		private string _VodTypeSystemName = null;
 		private IList<VodIngestAssetResultErrorMessage> _Errors;
 		private IList<VodIngestAssetResultErrorMessage> _Warnings;
+		private long _FileUploadDate = long.MinValue;
+		private long _ProcessingStartDate = long.MinValue;
+		private long _ProcessingCompletionDate = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -164,6 +170,45 @@ namespace Kaltura.Types
 				OnPropertyChanged("Warnings");
 			}
 		}
+		/// <summary>
+		/// Use FileUploadDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long FileUploadDate
+		{
+			get { return _FileUploadDate; }
+			set 
+			{ 
+				_FileUploadDate = value;
+				OnPropertyChanged("FileUploadDate");
+			}
+		}
+		/// <summary>
+		/// Use ProcessingStartDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long ProcessingStartDate
+		{
+			get { return _ProcessingStartDate; }
+			set 
+			{ 
+				_ProcessingStartDate = value;
+				OnPropertyChanged("ProcessingStartDate");
+			}
+		}
+		/// <summary>
+		/// Use ProcessingCompletionDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long ProcessingCompletionDate
+		{
+			get { return _ProcessingCompletionDate; }
+			set 
+			{ 
+				_ProcessingCompletionDate = value;
+				OnPropertyChanged("ProcessingCompletionDate");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -213,6 +258,18 @@ namespace Kaltura.Types
 					this._Warnings.Add(ObjectFactory.Create<VodIngestAssetResultErrorMessage>(arrayNode));
 				}
 			}
+			if(node["fileUploadDate"] != null)
+			{
+				this._FileUploadDate = ParseLong(node["fileUploadDate"].Value<string>());
+			}
+			if(node["processingStartDate"] != null)
+			{
+				this._ProcessingStartDate = ParseLong(node["processingStartDate"].Value<string>());
+			}
+			if(node["processingCompletionDate"] != null)
+			{
+				this._ProcessingCompletionDate = ParseLong(node["processingCompletionDate"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -230,6 +287,9 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("vodTypeSystemName", this._VodTypeSystemName);
 			kparams.AddIfNotNull("errors", this._Errors);
 			kparams.AddIfNotNull("warnings", this._Warnings);
+			kparams.AddIfNotNull("fileUploadDate", this._FileUploadDate);
+			kparams.AddIfNotNull("processingStartDate", this._ProcessingStartDate);
+			kparams.AddIfNotNull("processingCompletionDate", this._ProcessingCompletionDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -252,6 +312,12 @@ namespace Kaltura.Types
 					return "Errors";
 				case WARNINGS:
 					return "Warnings";
+				case FILE_UPLOAD_DATE:
+					return "FileUploadDate";
+				case PROCESSING_START_DATE:
+					return "ProcessingStartDate";
+				case PROCESSING_COMPLETION_DATE:
+					return "ProcessingCompletionDate";
 				default:
 					return base.getPropertyName(apiName);
 			}
