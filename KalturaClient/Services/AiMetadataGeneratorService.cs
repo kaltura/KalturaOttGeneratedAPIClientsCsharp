@@ -36,69 +36,35 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Services
 {
-	public class AiMetadataGeneratorGenerateMetadataByDescriptionRequestBuilder : RequestBuilder<GenerateMetadataJob>
+	public class AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder : RequestBuilder<GenerateMetadataBySubtitlesJob>
 	{
 		#region Constants
-		public const string GENERATE_METADATA_BY_DESCRIPTION = "generateMetadataByDescription";
+		public const string SUBTITLES_FILE_ID = "subtitlesFileId";
+		public const string EXTERNAL_ASSET_IDS = "externalAssetIds";
 		#endregion
 
-		public GenerateMetadataByDescription GenerateMetadataByDescription { get; set; }
-
-		public AiMetadataGeneratorGenerateMetadataByDescriptionRequestBuilder()
-			: base("aimetadatagenerator", "generateMetadataByDescription")
-		{
-		}
-
-		public AiMetadataGeneratorGenerateMetadataByDescriptionRequestBuilder(GenerateMetadataByDescription generateMetadataByDescription)
-			: this()
-		{
-			this.GenerateMetadataByDescription = generateMetadataByDescription;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("generateMetadataByDescription"))
-				kparams.AddIfNotNull("generateMetadataByDescription", GenerateMetadataByDescription);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<GenerateMetadataJob>(result);
-		}
-	}
-
-	public class AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder : RequestBuilder<GenerateMetadataJob>
-	{
-		#region Constants
-		public const string GENERATE_METADATA_BY_SUBTITLES = "generateMetadataBySubtitles";
-		#endregion
-
-		public GenerateMetadataBySubtitles GenerateMetadataBySubtitles { get; set; }
+		public long SubtitlesFileId { get; set; }
+		public IList<StringValue> ExternalAssetIds { get; set; }
 
 		public AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder()
 			: base("aimetadatagenerator", "generateMetadataBySubtitles")
 		{
 		}
 
-		public AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(GenerateMetadataBySubtitles generateMetadataBySubtitles)
+		public AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(long subtitlesFileId, IList<StringValue> externalAssetIds)
 			: this()
 		{
-			this.GenerateMetadataBySubtitles = generateMetadataBySubtitles;
+			this.SubtitlesFileId = subtitlesFileId;
+			this.ExternalAssetIds = externalAssetIds;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("generateMetadataBySubtitles"))
-				kparams.AddIfNotNull("generateMetadataBySubtitles", GenerateMetadataBySubtitles);
+			if (!isMapped("subtitlesFileId"))
+				kparams.AddIfNotNull("subtitlesFileId", SubtitlesFileId);
+			if (!isMapped("externalAssetIds"))
+				kparams.AddIfNotNull("externalAssetIds", ExternalAssetIds);
 			return kparams;
 		}
 
@@ -110,7 +76,7 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<GenerateMetadataJob>(result);
+			return ObjectFactory.Create<GenerateMetadataBySubtitlesJob>(result);
 		}
 	}
 
@@ -153,7 +119,7 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class AiMetadataGeneratorGetGenerateMetadataJobRequestBuilder : RequestBuilder<GenerateMetadataJob>
+	public class AiMetadataGeneratorGetGenerateMetadataJobRequestBuilder : RequestBuilder<GenerateMetadataBySubtitlesJob>
 	{
 		#region Constants
 		public const string ID = "id";
@@ -188,7 +154,7 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return ObjectFactory.Create<GenerateMetadataJob>(result);
+			return ObjectFactory.Create<GenerateMetadataBySubtitlesJob>(result);
 		}
 	}
 
@@ -296,14 +262,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static AiMetadataGeneratorGenerateMetadataByDescriptionRequestBuilder GenerateMetadataByDescription(GenerateMetadataByDescription generateMetadataByDescription)
+		public static AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder GenerateMetadataBySubtitles(long subtitlesFileId, IList<StringValue> externalAssetIds = null)
 		{
-			return new AiMetadataGeneratorGenerateMetadataByDescriptionRequestBuilder(generateMetadataByDescription);
-		}
-
-		public static AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder GenerateMetadataBySubtitles(GenerateMetadataBySubtitles generateMetadataBySubtitles)
-		{
-			return new AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(generateMetadataBySubtitles);
+			return new AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(subtitlesFileId, externalAssetIds);
 		}
 
 		public static AiMetadataGeneratorGetGeneratedMetadataRequestBuilder GetGeneratedMetadata(long jobId)
