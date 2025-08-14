@@ -35,13 +35,13 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class GenerateMetadataJob : ObjectBase
+	public class GenerateMetadataBySubtitlesJob : ObjectBase
 	{
 		#region Constants
 		public const string ID = "id";
 		public const string CREATE_DATE = "createDate";
 		public const string UPDATE_DATE = "updateDate";
-		public const string SOURCE_NAME = "sourceName";
+		public const string FILE_NAME = "fileName";
 		public const string STATUS = "status";
 		public const string ERROR_MESSAGE = "errorMessage";
 		#endregion
@@ -50,7 +50,7 @@ namespace Kaltura.Types
 		private long _Id = long.MinValue;
 		private long _CreateDate = long.MinValue;
 		private long _UpdateDate = long.MinValue;
-		private string _SourceName = null;
+		private string _FileName = null;
 		private GenerateMetadataStatus _Status = null;
 		private string _ErrorMessage = null;
 		#endregion
@@ -96,16 +96,16 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use SourceNameAsDouble property instead
+		/// Use FileNameAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string SourceName
+		public string FileName
 		{
-			get { return _SourceName; }
+			get { return _FileName; }
 			private set 
 			{ 
-				_SourceName = value;
-				OnPropertyChanged("SourceName");
+				_FileName = value;
+				OnPropertyChanged("FileName");
 			}
 		}
 		/// <summary>
@@ -137,11 +137,11 @@ namespace Kaltura.Types
 		#endregion
 
 		#region CTor
-		public GenerateMetadataJob()
+		public GenerateMetadataBySubtitlesJob()
 		{
 		}
 
-		public GenerateMetadataJob(JToken node) : base(node)
+		public GenerateMetadataBySubtitlesJob(JToken node) : base(node)
 		{
 			if(node["id"] != null)
 			{
@@ -155,9 +155,9 @@ namespace Kaltura.Types
 			{
 				this._UpdateDate = ParseLong(node["updateDate"].Value<string>());
 			}
-			if(node["sourceName"] != null)
+			if(node["fileName"] != null)
 			{
-				this._SourceName = node["sourceName"].Value<string>();
+				this._FileName = node["fileName"].Value<string>();
 			}
 			if(node["status"] != null)
 			{
@@ -175,11 +175,11 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaGenerateMetadataJob");
+				kparams.AddReplace("objectType", "KalturaGenerateMetadataBySubtitlesJob");
 			kparams.AddIfNotNull("id", this._Id);
 			kparams.AddIfNotNull("createDate", this._CreateDate);
 			kparams.AddIfNotNull("updateDate", this._UpdateDate);
-			kparams.AddIfNotNull("sourceName", this._SourceName);
+			kparams.AddIfNotNull("fileName", this._FileName);
 			kparams.AddIfNotNull("status", this._Status);
 			kparams.AddIfNotNull("errorMessage", this._ErrorMessage);
 			return kparams;
@@ -194,8 +194,8 @@ namespace Kaltura.Types
 					return "CreateDate";
 				case UPDATE_DATE:
 					return "UpdateDate";
-				case SOURCE_NAME:
-					return "SourceName";
+				case FILE_NAME:
+					return "FileName";
 				case STATUS:
 					return "Status";
 				case ERROR_MESSAGE:
