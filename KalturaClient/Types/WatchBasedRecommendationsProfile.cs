@@ -49,6 +49,8 @@ namespace Kaltura.Types
 		public const string MAX_PLAYBACKS = "maxPlaybacks";
 		public const string ALLOWED_RECOMMENDATIONS_KSQL = "allowedRecommendationsKsql";
 		public const string PLAYBACK_INTERESTS_CALCULATION_PERIOD_DAYS = "playbackInterestsCalculationPeriodDays";
+		public const string ANALYZE_CATCH_UPS = "analyzeCatchUps";
+		public const string ANALYZE_LINEAR_EVENTS = "analyzeLinearEvents";
 		public const string USER_INTEREST_PLAY_THRESHOLD_FOR_EVENT_IN_MINUTES = "userInterestPlayThresholdForEventInMinutes";
 		public const string MAXIMUM_EVENTS_PER_SESSION = "maximumEventsPerSession";
 		#endregion
@@ -65,6 +67,8 @@ namespace Kaltura.Types
 		private int _MaxPlaybacks = Int32.MinValue;
 		private string _AllowedRecommendationsKsql = null;
 		private int _PlaybackInterestsCalculationPeriodDays = Int32.MinValue;
+		private bool? _AnalyzeCatchUps = null;
+		private bool? _AnalyzeLinearEvents = null;
 		private int _UserInterestPlayThresholdForEventInMinutes = Int32.MinValue;
 		private int _MaximumEventsPerSession = Int32.MinValue;
 		#endregion
@@ -214,6 +218,32 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use AnalyzeCatchUpsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? AnalyzeCatchUps
+		{
+			get { return _AnalyzeCatchUps; }
+			set 
+			{ 
+				_AnalyzeCatchUps = value;
+				OnPropertyChanged("AnalyzeCatchUps");
+			}
+		}
+		/// <summary>
+		/// Use AnalyzeLinearEventsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? AnalyzeLinearEvents
+		{
+			get { return _AnalyzeLinearEvents; }
+			set 
+			{ 
+				_AnalyzeLinearEvents = value;
+				OnPropertyChanged("AnalyzeLinearEvents");
+			}
+		}
+		/// <summary>
 		/// Use UserInterestPlayThresholdForEventInMinutesAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -292,6 +322,14 @@ namespace Kaltura.Types
 			{
 				this._PlaybackInterestsCalculationPeriodDays = ParseInt(node["playbackInterestsCalculationPeriodDays"].Value<string>());
 			}
+			if(node["analyzeCatchUps"] != null)
+			{
+				this._AnalyzeCatchUps = ParseBool(node["analyzeCatchUps"].Value<string>());
+			}
+			if(node["analyzeLinearEvents"] != null)
+			{
+				this._AnalyzeLinearEvents = ParseBool(node["analyzeLinearEvents"].Value<string>());
+			}
 			if(node["userInterestPlayThresholdForEventInMinutes"] != null)
 			{
 				this._UserInterestPlayThresholdForEventInMinutes = ParseInt(node["userInterestPlayThresholdForEventInMinutes"].Value<string>());
@@ -320,6 +358,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("maxPlaybacks", this._MaxPlaybacks);
 			kparams.AddIfNotNull("allowedRecommendationsKsql", this._AllowedRecommendationsKsql);
 			kparams.AddIfNotNull("playbackInterestsCalculationPeriodDays", this._PlaybackInterestsCalculationPeriodDays);
+			kparams.AddIfNotNull("analyzeCatchUps", this._AnalyzeCatchUps);
+			kparams.AddIfNotNull("analyzeLinearEvents", this._AnalyzeLinearEvents);
 			kparams.AddIfNotNull("userInterestPlayThresholdForEventInMinutes", this._UserInterestPlayThresholdForEventInMinutes);
 			kparams.AddIfNotNull("maximumEventsPerSession", this._MaximumEventsPerSession);
 			return kparams;
@@ -350,6 +390,10 @@ namespace Kaltura.Types
 					return "AllowedRecommendationsKsql";
 				case PLAYBACK_INTERESTS_CALCULATION_PERIOD_DAYS:
 					return "PlaybackInterestsCalculationPeriodDays";
+				case ANALYZE_CATCH_UPS:
+					return "AnalyzeCatchUps";
+				case ANALYZE_LINEAR_EVENTS:
+					return "AnalyzeLinearEvents";
 				case USER_INTEREST_PLAY_THRESHOLD_FOR_EVENT_IN_MINUTES:
 					return "UserInterestPlayThresholdForEventInMinutes";
 				case MAXIMUM_EVENTS_PER_SESSION:
