@@ -90,8 +90,6 @@ namespace Kaltura
 					return new ListResponse<UserSessionProfile>(jToken);
 				case "KalturaBulkUploadListResponse":
 					return new ListResponse<BulkUpload>(jToken);
-				case "KalturaSubtitlesListResponse":
-					return new ListResponse<Subtitles>(jToken);
 				case "KalturaSocialActionListResponse":
 					return new ListResponse<SocialAction>(jToken);
 				case "KalturaSocialCommentListResponse":
@@ -104,8 +102,6 @@ namespace Kaltura
 					return new ListResponse<SegmentationType>(jToken);
 				case "KalturaUserSegmentListResponse":
 					return new ListResponse<UserSegment>(jToken);
-				case "KalturaWatchBasedRecommendationsProfileListResponse":
-					return new ListResponse<WatchBasedRecommendationsProfile>(jToken);
 				case "KalturaAssetFilePpvListResponse":
 					return new ListResponse<AssetFilePpv>(jToken);
 				case "KalturaCollectionListResponse":
@@ -164,8 +160,6 @@ namespace Kaltura
 					return new ListResponse<IngestEpg>(jToken);
 				case "KalturaIngestStatusEpgProgramResultListResponse":
 					return new ListResponse<IngestEpgProgramResult>(jToken);
-				case "KalturaUserLogListResponse":
-					return new ListResponse<UserLog>(jToken);
 				case "KalturaDurationListResponse":
 					return new ListResponse<Duration>(jToken);
 				case "KalturaDynamicListListResponse":
@@ -320,8 +314,6 @@ namespace Kaltura
 					return new ListResponse<UserAssetRule>(jToken);
 				case "KalturaUserRoleListResponse":
 					return new ListResponse<UserRole>(jToken);
-				case "KalturaGeoBlockRuleListResponse":
-					return new ListResponse<GeoBlockRule>(jToken);
 				case "KalturaEpgListResponse":
 					return new ListResponse<Epg>(jToken);
 			}

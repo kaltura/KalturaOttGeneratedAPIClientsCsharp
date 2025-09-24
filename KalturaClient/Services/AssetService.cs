@@ -124,45 +124,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class AssetBulkGetPlaybackContextRequestBuilder : RequestBuilder<BulkPlaybackContextResponse>
-	{
-		#region Constants
-		public const string REQUEST = "request";
-		#endregion
-
-		public BulkPlaybackContextRequest Request { get; set; }
-
-		public AssetBulkGetPlaybackContextRequestBuilder()
-			: base("asset", "bulkGetPlaybackContext")
-		{
-		}
-
-		public AssetBulkGetPlaybackContextRequestBuilder(BulkPlaybackContextRequest request)
-			: this()
-		{
-			this.Request = request;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("request"))
-				kparams.AddIfNotNull("request", Request);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<BulkPlaybackContextResponse>(result);
-		}
-	}
-
 	public class AssetCountRequestBuilder : RequestBuilder<AssetCount>
 	{
 		#region Constants
@@ -647,55 +608,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class AssetSemanticSearchRequestBuilder : RequestBuilder<ListResponse<Asset>>
-	{
-		#region Constants
-		public const string QUERY = "query";
-		public const string REFINE_QUERY = "refineQuery";
-		public const string SIZE = "size";
-		#endregion
-
-		public string Query { get; set; }
-		public bool RefineQuery { get; set; }
-		public int Size { get; set; }
-
-		public AssetSemanticSearchRequestBuilder()
-			: base("asset", "semanticSearch")
-		{
-		}
-
-		public AssetSemanticSearchRequestBuilder(string query, bool refineQuery, int size)
-			: this()
-		{
-			this.Query = query;
-			this.RefineQuery = refineQuery;
-			this.Size = size;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("query"))
-				kparams.AddIfNotNull("query", Query);
-			if (!isMapped("refineQuery"))
-				kparams.AddIfNotNull("refineQuery", RefineQuery);
-			if (!isMapped("size"))
-				kparams.AddIfNotNull("size", Size);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<ListResponse<Asset>>(result);
-		}
-	}
-
 	public class AssetUpdateRequestBuilder : RequestBuilder<Asset>
 	{
 		#region Constants
@@ -740,45 +652,6 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class AssetWatchBasedRecommendationsListRequestBuilder : RequestBuilder<ListResponse<Asset>>
-	{
-		#region Constants
-		public const string PROFILE_ID = "profileId";
-		#endregion
-
-		public long ProfileId { get; set; }
-
-		public AssetWatchBasedRecommendationsListRequestBuilder()
-			: base("asset", "watchBasedRecommendationsList")
-		{
-		}
-
-		public AssetWatchBasedRecommendationsListRequestBuilder(long profileId)
-			: this()
-		{
-			this.ProfileId = profileId;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("profileId"))
-				kparams.AddIfNotNull("profileId", ProfileId);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<ListResponse<Asset>>(result);
-		}
-	}
-
 
 	public class AssetService
 	{
@@ -794,11 +667,6 @@ namespace Kaltura.Services
 		public static AssetAddFromBulkUploadRequestBuilder AddFromBulkUpload(Stream fileData, BulkUploadJobData bulkUploadJobData, BulkUploadAssetData bulkUploadAssetData)
 		{
 			return new AssetAddFromBulkUploadRequestBuilder(fileData, bulkUploadJobData, bulkUploadAssetData);
-		}
-
-		public static AssetBulkGetPlaybackContextRequestBuilder BulkGetPlaybackContext(BulkPlaybackContextRequest request)
-		{
-			return new AssetBulkGetPlaybackContextRequestBuilder(request);
 		}
 
 		public static AssetCountRequestBuilder Count(SearchAssetFilter filter = null)
@@ -851,19 +719,9 @@ namespace Kaltura.Services
 			return new AssetRemoveMetasAndTagsRequestBuilder(id, assetReferenceType, idIn);
 		}
 
-		public static AssetSemanticSearchRequestBuilder SemanticSearch(string query, bool refineQuery = false, int size = 10)
-		{
-			return new AssetSemanticSearchRequestBuilder(query, refineQuery, size);
-		}
-
 		public static AssetUpdateRequestBuilder Update(long id, Asset asset)
 		{
 			return new AssetUpdateRequestBuilder(id, asset);
-		}
-
-		public static AssetWatchBasedRecommendationsListRequestBuilder WatchBasedRecommendationsList(long profileId)
-		{
-			return new AssetWatchBasedRecommendationsListRequestBuilder(profileId);
 		}
 	}
 }
