@@ -696,6 +696,60 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class AssetUnifiedSemanticSearchRequestBuilder : RequestBuilder<ListResponse<Asset>>
+	{
+		#region Constants
+		public const string QUERY = "query";
+		public const string SEARCH_SCOPES = "searchScopes";
+		public const string REFINE_QUERY = "refineQuery";
+		public const string SIZE = "size";
+		#endregion
+
+		public string Query { get; set; }
+		public IList<SearchScope> SearchScopes { get; set; }
+		public bool RefineQuery { get; set; }
+		public int Size { get; set; }
+
+		public AssetUnifiedSemanticSearchRequestBuilder()
+			: base("asset", "unifiedSemanticSearch")
+		{
+		}
+
+		public AssetUnifiedSemanticSearchRequestBuilder(string query, IList<SearchScope> searchScopes, bool refineQuery, int size)
+			: this()
+		{
+			this.Query = query;
+			this.SearchScopes = searchScopes;
+			this.RefineQuery = refineQuery;
+			this.Size = size;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("query"))
+				kparams.AddIfNotNull("query", Query);
+			if (!isMapped("searchScopes"))
+				kparams.AddIfNotNull("searchScopes", SearchScopes);
+			if (!isMapped("refineQuery"))
+				kparams.AddIfNotNull("refineQuery", RefineQuery);
+			if (!isMapped("size"))
+				kparams.AddIfNotNull("size", Size);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<ListResponse<Asset>>(result);
+		}
+	}
+
 	public class AssetUpdateRequestBuilder : RequestBuilder<Asset>
 	{
 		#region Constants
@@ -854,6 +908,11 @@ namespace Kaltura.Services
 		public static AssetSemanticSearchRequestBuilder SemanticSearch(string query, bool refineQuery = false, int size = 10)
 		{
 			return new AssetSemanticSearchRequestBuilder(query, refineQuery, size);
+		}
+
+		public static AssetUnifiedSemanticSearchRequestBuilder UnifiedSemanticSearch(string query, IList<SearchScope> searchScopes, bool refineQuery = false, int size = 10)
+		{
+			return new AssetUnifiedSemanticSearchRequestBuilder(query, searchScopes, refineQuery, size);
 		}
 
 		public static AssetUpdateRequestBuilder Update(long id, Asset asset)

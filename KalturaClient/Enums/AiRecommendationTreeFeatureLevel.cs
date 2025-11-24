@@ -27,16 +27,11 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class ConditionOperator : StringEnum
+	public sealed class AiRecommendationTreeFeatureLevel : StringEnum
 	{
-		public static readonly ConditionOperator UNKNOWN = new ConditionOperator("Unknown");
-		public static readonly ConditionOperator EQUAL = new ConditionOperator("Equal");
-		public static readonly ConditionOperator NOTEQUAL = new ConditionOperator("NotEqual");
-		public static readonly ConditionOperator GREATERTHAN = new ConditionOperator("GreaterThan");
-		public static readonly ConditionOperator LESSTHAN = new ConditionOperator("LessThan");
-		public static readonly ConditionOperator GREATERTHANOREQUAL = new ConditionOperator("GreaterThanOrEqual");
-		public static readonly ConditionOperator LESSTHANOREQUAL = new ConditionOperator("LessThanOrEqual");
+		public static readonly AiRecommendationTreeFeatureLevel BASIC = new AiRecommendationTreeFeatureLevel("Basic");
+		public static readonly AiRecommendationTreeFeatureLevel PREMIUM = new AiRecommendationTreeFeatureLevel("Premium");
 
-		private ConditionOperator(string name) : base(name) { }
+		private AiRecommendationTreeFeatureLevel(string name) : base(name) { }
 	}
 }

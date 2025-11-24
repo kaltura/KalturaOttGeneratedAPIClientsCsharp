@@ -27,16 +27,12 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class ConditionOperator : StringEnum
+	public sealed class GenerateMetadataJobType : StringEnum
 	{
-		public static readonly ConditionOperator UNKNOWN = new ConditionOperator("Unknown");
-		public static readonly ConditionOperator EQUAL = new ConditionOperator("Equal");
-		public static readonly ConditionOperator NOTEQUAL = new ConditionOperator("NotEqual");
-		public static readonly ConditionOperator GREATERTHAN = new ConditionOperator("GreaterThan");
-		public static readonly ConditionOperator LESSTHAN = new ConditionOperator("LessThan");
-		public static readonly ConditionOperator GREATERTHANOREQUAL = new ConditionOperator("GreaterThanOrEqual");
-		public static readonly ConditionOperator LESSTHANOREQUAL = new ConditionOperator("LessThanOrEqual");
+		public static readonly GenerateMetadataJobType VODBYDESCRIPTION = new GenerateMetadataJobType("VodByDescription");
+		public static readonly GenerateMetadataJobType VODBYSUBTITLES = new GenerateMetadataJobType("VodBySubtitles");
+		public static readonly GenerateMetadataJobType PROGRAMBYDESCRIPTION = new GenerateMetadataJobType("ProgramByDescription");
 
-		private ConditionOperator(string name) : base(name) { }
+		private GenerateMetadataJobType(string name) : base(name) { }
 	}
 }

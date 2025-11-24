@@ -27,16 +27,12 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class ConditionOperator : StringEnum
+	public sealed class SearchType : StringEnum
 	{
-		public static readonly ConditionOperator UNKNOWN = new ConditionOperator("Unknown");
-		public static readonly ConditionOperator EQUAL = new ConditionOperator("Equal");
-		public static readonly ConditionOperator NOTEQUAL = new ConditionOperator("NotEqual");
-		public static readonly ConditionOperator GREATERTHAN = new ConditionOperator("GreaterThan");
-		public static readonly ConditionOperator LESSTHAN = new ConditionOperator("LessThan");
-		public static readonly ConditionOperator GREATERTHANOREQUAL = new ConditionOperator("GreaterThanOrEqual");
-		public static readonly ConditionOperator LESSTHANOREQUAL = new ConditionOperator("LessThanOrEqual");
+		public static readonly SearchType UNKNOWN = new SearchType("Unknown");
+		public static readonly SearchType ASSET = new SearchType("Asset");
+		public static readonly SearchType PROGRAM = new SearchType("Program");
 
-		private ConditionOperator(string name) : base(name) { }
+		private SearchType(string name) : base(name) { }
 	}
 }
