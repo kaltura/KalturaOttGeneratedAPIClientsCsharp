@@ -650,66 +650,17 @@ namespace Kaltura.Services
 	public class AssetSemanticSearchRequestBuilder : RequestBuilder<ListResponse<Asset>>
 	{
 		#region Constants
-		public const string QUERY = "query";
-		public const string REFINE_QUERY = "refineQuery";
-		public const string SIZE = "size";
+		public const string SEARCH_PARAMS = "searchParams";
 		#endregion
 
-		public string Query { get; set; }
-		public bool RefineQuery { get; set; }
-		public int Size { get; set; }
+		public SemanticSearchParams SearchParams { get; set; }
 
 		public AssetSemanticSearchRequestBuilder()
 			: base("asset", "semanticSearch")
 		{
 		}
 
-		public AssetSemanticSearchRequestBuilder(string query, bool refineQuery, int size)
-			: this()
-		{
-			this.Query = query;
-			this.RefineQuery = refineQuery;
-			this.Size = size;
-		}
-
-		public override Params getParameters(bool includeServiceAndAction)
-		{
-			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("query"))
-				kparams.AddIfNotNull("query", Query);
-			if (!isMapped("refineQuery"))
-				kparams.AddIfNotNull("refineQuery", RefineQuery);
-			if (!isMapped("size"))
-				kparams.AddIfNotNull("size", Size);
-			return kparams;
-		}
-
-		public override Files getFiles()
-		{
-			Files kfiles = base.getFiles();
-			return kfiles;
-		}
-
-		public override object Deserialize(JToken result)
-		{
-			return ObjectFactory.Create<ListResponse<Asset>>(result);
-		}
-	}
-
-	public class AssetUnifiedSemanticSearchRequestBuilder : RequestBuilder<ListResponse<Asset>>
-	{
-		#region Constants
-		public const string SEARCH_PARAMS = "searchParams";
-		#endregion
-
-		public SemanticSearchParams SearchParams { get; set; }
-
-		public AssetUnifiedSemanticSearchRequestBuilder()
-			: base("asset", "unifiedSemanticSearch")
-		{
-		}
-
-		public AssetUnifiedSemanticSearchRequestBuilder(SemanticSearchParams searchParams)
+		public AssetSemanticSearchRequestBuilder(SemanticSearchParams searchParams)
 			: this()
 		{
 			this.SearchParams = searchParams;
@@ -890,14 +841,9 @@ namespace Kaltura.Services
 			return new AssetRemoveMetasAndTagsRequestBuilder(id, assetReferenceType, idIn);
 		}
 
-		public static AssetSemanticSearchRequestBuilder SemanticSearch(string query, bool refineQuery = false, int size = 10)
+		public static AssetSemanticSearchRequestBuilder SemanticSearch(SemanticSearchParams searchParams)
 		{
-			return new AssetSemanticSearchRequestBuilder(query, refineQuery, size);
-		}
-
-		public static AssetUnifiedSemanticSearchRequestBuilder UnifiedSemanticSearch(SemanticSearchParams searchParams)
-		{
-			return new AssetUnifiedSemanticSearchRequestBuilder(searchParams);
+			return new AssetSemanticSearchRequestBuilder(searchParams);
 		}
 
 		public static AssetUpdateRequestBuilder Update(long id, Asset asset)
