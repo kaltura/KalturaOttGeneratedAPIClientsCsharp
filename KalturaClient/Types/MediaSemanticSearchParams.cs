@@ -25,14 +25,54 @@
 //
 // @ignore
 // ===================================================================================================
-namespace Kaltura.Enums
-{
-	public sealed class SearchType : StringEnum
-	{
-		public static readonly SearchType UNKNOWN = new SearchType("Unknown");
-		public static readonly SearchType ASSET = new SearchType("Asset");
-		public static readonly SearchType PROGRAM = new SearchType("Program");
+using System;
+using System.Xml;
+using System.Collections.Generic;
+using Kaltura.Enums;
+using Kaltura.Request;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-		private SearchType(string name) : base(name) { }
+namespace Kaltura.Types
+{
+	public class MediaSemanticSearchParams : ObjectBase
+	{
+		#region Constants
+		#endregion
+
+		#region Private Fields
+		#endregion
+
+		#region Properties
+		#endregion
+
+		#region CTor
+		public MediaSemanticSearchParams()
+		{
+		}
+
+		public MediaSemanticSearchParams(JToken node) : base(node)
+		{
+		}
+		#endregion
+
+		#region Methods
+		public override Params ToParams(bool includeObjectType = true)
+		{
+			Params kparams = base.ToParams(includeObjectType);
+			if (includeObjectType)
+				kparams.AddReplace("objectType", "KalturaMediaSemanticSearchParams");
+			return kparams;
+		}
+		protected override string getPropertyName(string apiName)
+		{
+			switch(apiName)
+			{
+				default:
+					return base.getPropertyName(apiName);
+			}
+		}
+		#endregion
 	}
 }
+

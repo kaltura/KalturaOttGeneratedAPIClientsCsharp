@@ -35,65 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class SearchScope : ObjectBase
+	public class ProgramSemanticSearchParams : ObjectBase
 	{
 		#region Constants
-		public const string TYPE = "type";
-		public const string FILTERS = "filters";
+		public const string ENDS_AFTER = "endsAfter";
+		public const string EXPIRES_AFTER = "expiresAfter";
 		#endregion
 
 		#region Private Fields
-		private SearchType _Type = null;
-		private IList<SearchCondition> _Filters;
+		private long _EndsAfter = long.MinValue;
+		private long _ExpiresAfter = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use TypeAsDouble property instead
+		/// Use EndsAfterAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public SearchType Type
+		public long EndsAfter
 		{
-			get { return _Type; }
+			get { return _EndsAfter; }
 			set 
 			{ 
-				_Type = value;
-				OnPropertyChanged("Type");
+				_EndsAfter = value;
+				OnPropertyChanged("EndsAfter");
 			}
 		}
 		/// <summary>
-		/// Use FiltersAsDouble property instead
+		/// Use ExpiresAfterAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<SearchCondition> Filters
+		public long ExpiresAfter
 		{
-			get { return _Filters; }
+			get { return _ExpiresAfter; }
 			set 
 			{ 
-				_Filters = value;
-				OnPropertyChanged("Filters");
+				_ExpiresAfter = value;
+				OnPropertyChanged("ExpiresAfter");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public SearchScope()
+		public ProgramSemanticSearchParams()
 		{
 		}
 
-		public SearchScope(JToken node) : base(node)
+		public ProgramSemanticSearchParams(JToken node) : base(node)
 		{
-			if(node["type"] != null)
+			if(node["endsAfter"] != null)
 			{
-				this._Type = (SearchType)StringEnum.Parse(typeof(SearchType), node["type"].Value<string>());
+				this._EndsAfter = ParseLong(node["endsAfter"].Value<string>());
 			}
-			if(node["filters"] != null)
+			if(node["expiresAfter"] != null)
 			{
-				this._Filters = new List<SearchCondition>();
-				foreach(var arrayNode in node["filters"].Children())
-				{
-					this._Filters.Add(ObjectFactory.Create<SearchCondition>(arrayNode));
-				}
+				this._ExpiresAfter = ParseLong(node["expiresAfter"].Value<string>());
 			}
 		}
 		#endregion
@@ -103,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaSearchScope");
-			kparams.AddIfNotNull("type", this._Type);
-			kparams.AddIfNotNull("filters", this._Filters);
+				kparams.AddReplace("objectType", "KalturaProgramSemanticSearchParams");
+			kparams.AddIfNotNull("endsAfter", this._EndsAfter);
+			kparams.AddIfNotNull("expiresAfter", this._ExpiresAfter);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case TYPE:
-					return "Type";
-				case FILTERS:
-					return "Filters";
+				case ENDS_AFTER:
+					return "EndsAfter";
+				case EXPIRES_AFTER:
+					return "ExpiresAfter";
 				default:
 					return base.getPropertyName(apiName);
 			}

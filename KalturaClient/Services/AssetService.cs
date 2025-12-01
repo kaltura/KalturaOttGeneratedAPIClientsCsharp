@@ -699,42 +699,27 @@ namespace Kaltura.Services
 	public class AssetUnifiedSemanticSearchRequestBuilder : RequestBuilder<ListResponse<Asset>>
 	{
 		#region Constants
-		public const string QUERY = "query";
-		public const string SEARCH_SCOPES = "searchScopes";
-		public const string REFINE_QUERY = "refineQuery";
-		public const string SIZE = "size";
+		public const string SEARCH_PARAMS = "searchParams";
 		#endregion
 
-		public string Query { get; set; }
-		public IList<SearchScope> SearchScopes { get; set; }
-		public bool RefineQuery { get; set; }
-		public int Size { get; set; }
+		public SemanticSearchParams SearchParams { get; set; }
 
 		public AssetUnifiedSemanticSearchRequestBuilder()
 			: base("asset", "unifiedSemanticSearch")
 		{
 		}
 
-		public AssetUnifiedSemanticSearchRequestBuilder(string query, IList<SearchScope> searchScopes, bool refineQuery, int size)
+		public AssetUnifiedSemanticSearchRequestBuilder(SemanticSearchParams searchParams)
 			: this()
 		{
-			this.Query = query;
-			this.SearchScopes = searchScopes;
-			this.RefineQuery = refineQuery;
-			this.Size = size;
+			this.SearchParams = searchParams;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
 		{
 			Params kparams = base.getParameters(includeServiceAndAction);
-			if (!isMapped("query"))
-				kparams.AddIfNotNull("query", Query);
-			if (!isMapped("searchScopes"))
-				kparams.AddIfNotNull("searchScopes", SearchScopes);
-			if (!isMapped("refineQuery"))
-				kparams.AddIfNotNull("refineQuery", RefineQuery);
-			if (!isMapped("size"))
-				kparams.AddIfNotNull("size", Size);
+			if (!isMapped("searchParams"))
+				kparams.AddIfNotNull("searchParams", SearchParams);
 			return kparams;
 		}
 
@@ -910,9 +895,9 @@ namespace Kaltura.Services
 			return new AssetSemanticSearchRequestBuilder(query, refineQuery, size);
 		}
 
-		public static AssetUnifiedSemanticSearchRequestBuilder UnifiedSemanticSearch(string query, IList<SearchScope> searchScopes, bool refineQuery = false, int size = 10)
+		public static AssetUnifiedSemanticSearchRequestBuilder UnifiedSemanticSearch(SemanticSearchParams searchParams)
 		{
-			return new AssetUnifiedSemanticSearchRequestBuilder(query, searchScopes, refineQuery, size);
+			return new AssetUnifiedSemanticSearchRequestBuilder(searchParams);
 		}
 
 		public static AssetUpdateRequestBuilder Update(long id, Asset asset)
