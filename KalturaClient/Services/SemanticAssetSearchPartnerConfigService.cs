@@ -94,7 +94,7 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class SemanticAssetSearchPartnerConfigGetProgramSearchableAttributesRequestBuilder : RequestBuilder<string>
+	public class SemanticAssetSearchPartnerConfigGetProgramSearchableAttributesRequestBuilder : RequestBuilder<ProgramSearchableAttributes>
 	{
 		#region Constants
 		#endregion
@@ -119,7 +119,7 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return result.Value<string>();
+			return ObjectFactory.Create<ProgramSearchableAttributes>(result);
 		}
 	}
 
@@ -240,20 +240,20 @@ namespace Kaltura.Services
 		}
 	}
 
-	public class SemanticAssetSearchPartnerConfigUpsertProgramSearchableAttributesRequestBuilder : RequestBuilder<string>
+	public class SemanticAssetSearchPartnerConfigUpsertProgramSearchableAttributesRequestBuilder : RequestBuilder<ProgramSearchableAttributes>
 	{
 		#region Constants
 		public const string PROGRAM_ATTRIBUTES = "programAttributes";
 		#endregion
 
-		public string ProgramAttributes { get; set; }
+		public ProgramSearchableAttributes ProgramAttributes { get; set; }
 
 		public SemanticAssetSearchPartnerConfigUpsertProgramSearchableAttributesRequestBuilder()
 			: base("semanticassetsearchpartnerconfig", "upsertProgramSearchableAttributes")
 		{
 		}
 
-		public SemanticAssetSearchPartnerConfigUpsertProgramSearchableAttributesRequestBuilder(string programAttributes)
+		public SemanticAssetSearchPartnerConfigUpsertProgramSearchableAttributesRequestBuilder(ProgramSearchableAttributes programAttributes)
 			: this()
 		{
 			this.ProgramAttributes = programAttributes;
@@ -275,7 +275,7 @@ namespace Kaltura.Services
 
 		public override object Deserialize(JToken result)
 		{
-			return result.Value<string>();
+			return ObjectFactory.Create<ProgramSearchableAttributes>(result);
 		}
 	}
 
@@ -355,7 +355,7 @@ namespace Kaltura.Services
 			return new SemanticAssetSearchPartnerConfigUpsertProgramFilteringConditionRequestBuilder(filteringCondition);
 		}
 
-		public static SemanticAssetSearchPartnerConfigUpsertProgramSearchableAttributesRequestBuilder UpsertProgramSearchableAttributes(string programAttributes)
+		public static SemanticAssetSearchPartnerConfigUpsertProgramSearchableAttributesRequestBuilder UpsertProgramSearchableAttributes(ProgramSearchableAttributes programAttributes)
 		{
 			return new SemanticAssetSearchPartnerConfigUpsertProgramSearchableAttributesRequestBuilder(programAttributes);
 		}
