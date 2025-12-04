@@ -38,27 +38,27 @@ namespace Kaltura.Types
 	public class ProgramSemanticSearchParams : ObjectBase
 	{
 		#region Constants
-		public const string ENDS_AFTER = "endsAfter";
+		public const string ENDS_BEFORE = "endsBefore";
 		public const string EXPIRES_AFTER = "expiresAfter";
 		#endregion
 
 		#region Private Fields
-		private long _EndsAfter = long.MinValue;
+		private long _EndsBefore = long.MinValue;
 		private long _ExpiresAfter = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use EndsAfterAsDouble property instead
+		/// Use EndsBeforeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public long EndsAfter
+		public long EndsBefore
 		{
-			get { return _EndsAfter; }
+			get { return _EndsBefore; }
 			set 
 			{ 
-				_EndsAfter = value;
-				OnPropertyChanged("EndsAfter");
+				_EndsBefore = value;
+				OnPropertyChanged("EndsBefore");
 			}
 		}
 		/// <summary>
@@ -83,9 +83,9 @@ namespace Kaltura.Types
 
 		public ProgramSemanticSearchParams(JToken node) : base(node)
 		{
-			if(node["endsAfter"] != null)
+			if(node["endsBefore"] != null)
 			{
-				this._EndsAfter = ParseLong(node["endsAfter"].Value<string>());
+				this._EndsBefore = ParseLong(node["endsBefore"].Value<string>());
 			}
 			if(node["expiresAfter"] != null)
 			{
@@ -100,7 +100,7 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaProgramSemanticSearchParams");
-			kparams.AddIfNotNull("endsAfter", this._EndsAfter);
+			kparams.AddIfNotNull("endsBefore", this._EndsBefore);
 			kparams.AddIfNotNull("expiresAfter", this._ExpiresAfter);
 			return kparams;
 		}
@@ -108,8 +108,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case ENDS_AFTER:
-					return "EndsAfter";
+				case ENDS_BEFORE:
+					return "EndsBefore";
 				case EXPIRES_AFTER:
 					return "ExpiresAfter";
 				default:
