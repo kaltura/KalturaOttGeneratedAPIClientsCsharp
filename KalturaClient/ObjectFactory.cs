@@ -214,6 +214,8 @@ namespace Kaltura
 					return new ListResponse<AssetHistory>(jToken);
 				case "KalturaAssetListResponse":
 					return new ListResponse<Asset>(jToken);
+				case "KalturaExternalAssetListResponse":
+					return new ListResponse<Asset>(jToken);
 				case "KalturaAssetStatisticsListResponse":
 					return new ListResponse<AssetStatistics>(jToken);
 				case "KalturaAssetStructListResponse":
