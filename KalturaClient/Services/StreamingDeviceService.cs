@@ -42,23 +42,26 @@ namespace Kaltura.Services
 		public const string FILE_ID = "fileId";
 		public const string ASSET_ID = "assetId";
 		public const string ASSET_TYPE = "assetType";
+		public const string EXTERNAL_RECORDING_PROGRAM_ID = "externalRecordingProgramId";
 		#endregion
 
 		public string FileId { get; set; }
 		public string AssetId { get; set; }
 		public AssetType AssetType { get; set; }
+		public long ExternalRecordingProgramId { get; set; }
 
 		public StreamingDeviceBookPlaybackSessionRequestBuilder()
 			: base("streamingdevice", "bookPlaybackSession")
 		{
 		}
 
-		public StreamingDeviceBookPlaybackSessionRequestBuilder(string fileId, string assetId, AssetType assetType)
+		public StreamingDeviceBookPlaybackSessionRequestBuilder(string fileId, string assetId, AssetType assetType, long externalRecordingProgramId)
 			: this()
 		{
 			this.FileId = fileId;
 			this.AssetId = assetId;
 			this.AssetType = assetType;
+			this.ExternalRecordingProgramId = externalRecordingProgramId;
 		}
 
 		public override Params getParameters(bool includeServiceAndAction)
@@ -70,6 +73,8 @@ namespace Kaltura.Services
 				kparams.AddIfNotNull("assetId", AssetId);
 			if (!isMapped("assetType"))
 				kparams.AddIfNotNull("assetType", AssetType);
+			if (!isMapped("externalRecordingProgramId"))
+				kparams.AddIfNotNull("externalRecordingProgramId", ExternalRecordingProgramId);
 			return kparams;
 		}
 
@@ -133,9 +138,9 @@ namespace Kaltura.Services
 		{
 		}
 
-		public static StreamingDeviceBookPlaybackSessionRequestBuilder BookPlaybackSession(string fileId, string assetId, AssetType assetType)
+		public static StreamingDeviceBookPlaybackSessionRequestBuilder BookPlaybackSession(string fileId, string assetId, AssetType assetType, long externalRecordingProgramId = long.MinValue)
 		{
-			return new StreamingDeviceBookPlaybackSessionRequestBuilder(fileId, assetId, assetType);
+			return new StreamingDeviceBookPlaybackSessionRequestBuilder(fileId, assetId, assetType, externalRecordingProgramId);
 		}
 
 		public static StreamingDeviceListRequestBuilder List(StreamingDeviceFilter filter = null)
