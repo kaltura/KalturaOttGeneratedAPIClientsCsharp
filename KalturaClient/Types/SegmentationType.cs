@@ -50,6 +50,7 @@ namespace Kaltura.Types
 		public const string EXECUTE_DATE = "executeDate";
 		public const string VERSION = "version";
 		public const string ASSET_USER_RULE_ID = "assetUserRuleId";
+		public const string SCOPE = "scope";
 		#endregion
 
 		#region Private Fields
@@ -65,6 +66,7 @@ namespace Kaltura.Types
 		private long _ExecuteDate = long.MinValue;
 		private long _Version = long.MinValue;
 		private long _AssetUserRuleId = long.MinValue;
+		private ConditionLevel _Scope = null;
 		#endregion
 
 		#region Properties
@@ -224,6 +226,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("AssetUserRuleId");
 			}
 		}
+		/// <summary>
+		/// Use ScopeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public ConditionLevel Scope
+		{
+			get { return _Scope; }
+			set 
+			{ 
+				_Scope = value;
+				OnPropertyChanged("Scope");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -289,6 +304,10 @@ namespace Kaltura.Types
 			{
 				this._AssetUserRuleId = ParseLong(node["assetUserRuleId"].Value<string>());
 			}
+			if(node["scope"] != null)
+			{
+				this._Scope = (ConditionLevel)StringEnum.Parse(typeof(ConditionLevel), node["scope"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -310,6 +329,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("executeDate", this._ExecuteDate);
 			kparams.AddIfNotNull("version", this._Version);
 			kparams.AddIfNotNull("assetUserRuleId", this._AssetUserRuleId);
+			kparams.AddIfNotNull("scope", this._Scope);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -340,6 +360,8 @@ namespace Kaltura.Types
 					return "Version";
 				case ASSET_USER_RULE_ID:
 					return "AssetUserRuleId";
+				case SCOPE:
+					return "Scope";
 				default:
 					return base.getPropertyName(apiName);
 			}

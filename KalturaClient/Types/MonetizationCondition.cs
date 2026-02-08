@@ -38,63 +38,39 @@ namespace Kaltura.Types
 	public class MonetizationCondition : BaseSegmentCondition
 	{
 		#region Constants
-		public const string DAYS = "days";
-		public const string TYPE = "type";
-		public const string OPERATOR = "operator";
+		public const string LEVEL = "level";
 		public const string BUSINESS_MODULE_ID_IN = "businessModuleIdIn";
 		public const string CURRENCY_CODE = "currencyCode";
-		public const string MIN_VALUE = "minValue";
+		public const string DAYS = "days";
 		public const string MAX_VALUE = "maxValue";
+		public const string MIN_VALUE = "minValue";
+		public const string OPERATOR = "operator";
+		public const string TYPE = "type";
 		#endregion
 
 		#region Private Fields
-		private int _Days = Int32.MinValue;
-		private MonetizationType _Type = null;
-		private MathemticalOperatorType _Operator = null;
+		private ConditionLevel _Level = null;
 		private string _BusinessModuleIdIn = null;
 		private string _CurrencyCode = null;
-		private int _MinValue = Int32.MinValue;
+		private int _Days = Int32.MinValue;
 		private int _MaxValue = Int32.MinValue;
+		private int _MinValue = Int32.MinValue;
+		private MathemticalOperatorType _Operator = null;
+		private MonetizationType _Type = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use DaysAsDouble property instead
+		/// Use LevelAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int Days
+		public ConditionLevel Level
 		{
-			get { return _Days; }
+			get { return _Level; }
 			set 
 			{ 
-				_Days = value;
-				OnPropertyChanged("Days");
-			}
-		}
-		/// <summary>
-		/// Use TypeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public MonetizationType Type
-		{
-			get { return _Type; }
-			set 
-			{ 
-				_Type = value;
-				OnPropertyChanged("Type");
-			}
-		}
-		/// <summary>
-		/// Use OperatorAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public MathemticalOperatorType Operator
-		{
-			get { return _Operator; }
-			set 
-			{ 
-				_Operator = value;
-				OnPropertyChanged("Operator");
+				_Level = value;
+				OnPropertyChanged("Level");
 			}
 		}
 		/// <summary>
@@ -124,16 +100,16 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use MinValueAsDouble property instead
+		/// Use DaysAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public int MinValue
+		public int Days
 		{
-			get { return _MinValue; }
+			get { return _Days; }
 			set 
 			{ 
-				_MinValue = value;
-				OnPropertyChanged("MinValue");
+				_Days = value;
+				OnPropertyChanged("Days");
 			}
 		}
 		/// <summary>
@@ -149,6 +125,45 @@ namespace Kaltura.Types
 				OnPropertyChanged("MaxValue");
 			}
 		}
+		/// <summary>
+		/// Use MinValueAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int MinValue
+		{
+			get { return _MinValue; }
+			set 
+			{ 
+				_MinValue = value;
+				OnPropertyChanged("MinValue");
+			}
+		}
+		/// <summary>
+		/// Use OperatorAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public MathemticalOperatorType Operator
+		{
+			get { return _Operator; }
+			set 
+			{ 
+				_Operator = value;
+				OnPropertyChanged("Operator");
+			}
+		}
+		/// <summary>
+		/// Use TypeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public MonetizationType Type
+		{
+			get { return _Type; }
+			set 
+			{ 
+				_Type = value;
+				OnPropertyChanged("Type");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -158,17 +173,9 @@ namespace Kaltura.Types
 
 		public MonetizationCondition(JToken node) : base(node)
 		{
-			if(node["days"] != null)
+			if(node["level"] != null)
 			{
-				this._Days = ParseInt(node["days"].Value<string>());
-			}
-			if(node["type"] != null)
-			{
-				this._Type = (MonetizationType)StringEnum.Parse(typeof(MonetizationType), node["type"].Value<string>());
-			}
-			if(node["operator"] != null)
-			{
-				this._Operator = (MathemticalOperatorType)StringEnum.Parse(typeof(MathemticalOperatorType), node["operator"].Value<string>());
+				this._Level = (ConditionLevel)StringEnum.Parse(typeof(ConditionLevel), node["level"].Value<string>());
 			}
 			if(node["businessModuleIdIn"] != null)
 			{
@@ -178,13 +185,25 @@ namespace Kaltura.Types
 			{
 				this._CurrencyCode = node["currencyCode"].Value<string>();
 			}
-			if(node["minValue"] != null)
+			if(node["days"] != null)
 			{
-				this._MinValue = ParseInt(node["minValue"].Value<string>());
+				this._Days = ParseInt(node["days"].Value<string>());
 			}
 			if(node["maxValue"] != null)
 			{
 				this._MaxValue = ParseInt(node["maxValue"].Value<string>());
+			}
+			if(node["minValue"] != null)
+			{
+				this._MinValue = ParseInt(node["minValue"].Value<string>());
+			}
+			if(node["operator"] != null)
+			{
+				this._Operator = (MathemticalOperatorType)StringEnum.Parse(typeof(MathemticalOperatorType), node["operator"].Value<string>());
+			}
+			if(node["type"] != null)
+			{
+				this._Type = (MonetizationType)StringEnum.Parse(typeof(MonetizationType), node["type"].Value<string>());
 			}
 		}
 		#endregion
@@ -195,33 +214,36 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaMonetizationCondition");
-			kparams.AddIfNotNull("days", this._Days);
-			kparams.AddIfNotNull("type", this._Type);
-			kparams.AddIfNotNull("operator", this._Operator);
+			kparams.AddIfNotNull("level", this._Level);
 			kparams.AddIfNotNull("businessModuleIdIn", this._BusinessModuleIdIn);
 			kparams.AddIfNotNull("currencyCode", this._CurrencyCode);
-			kparams.AddIfNotNull("minValue", this._MinValue);
+			kparams.AddIfNotNull("days", this._Days);
 			kparams.AddIfNotNull("maxValue", this._MaxValue);
+			kparams.AddIfNotNull("minValue", this._MinValue);
+			kparams.AddIfNotNull("operator", this._Operator);
+			kparams.AddIfNotNull("type", this._Type);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case DAYS:
-					return "Days";
-				case TYPE:
-					return "Type";
-				case OPERATOR:
-					return "Operator";
+				case LEVEL:
+					return "Level";
 				case BUSINESS_MODULE_ID_IN:
 					return "BusinessModuleIdIn";
 				case CURRENCY_CODE:
 					return "CurrencyCode";
-				case MIN_VALUE:
-					return "MinValue";
+				case DAYS:
+					return "Days";
 				case MAX_VALUE:
 					return "MaxValue";
+				case MIN_VALUE:
+					return "MinValue";
+				case OPERATOR:
+					return "Operator";
+				case TYPE:
+					return "Type";
 				default:
 					return base.getPropertyName(apiName);
 			}

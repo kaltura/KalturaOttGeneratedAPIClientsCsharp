@@ -35,73 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class SubtitleLanguageConstraint : BaseAttributeConstraint
 	{
 		#region Constants
-		public const string ASSET_STRUCT_CONFIG_MAP = "assetStructConfigMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string LANGUAGE_CODES = "languageCodes";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetadataFieldConfigurationMap> _AssetStructConfigMap;
-		private IList<StringValue> _SupportedLanguages;
+		private string _LanguageCodes = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructConfigMapAsDouble property instead
+		/// Use LanguageCodesAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetadataFieldConfigurationMap> AssetStructConfigMap
+		public string LanguageCodes
 		{
-			get { return _AssetStructConfigMap; }
+			get { return _LanguageCodes; }
 			set 
 			{ 
-				_AssetStructConfigMap = value;
-				OnPropertyChanged("AssetStructConfigMap");
-			}
-		}
-		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
-		{
-			get { return _SupportedLanguages; }
-			private set 
-			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_LanguageCodes = value;
+				OnPropertyChanged("LanguageCodes");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public SubtitleLanguageConstraint()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public SubtitleLanguageConstraint(JToken node) : base(node)
 		{
-			if(node["assetStructConfigMap"] != null)
+			if(node["languageCodes"] != null)
 			{
-				{
-					string key;
-					this._AssetStructConfigMap = new Dictionary<string, MetadataFieldConfigurationMap>();
-					foreach(var arrayNode in node["assetStructConfigMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructConfigMap[key] = ObjectFactory.Create<MetadataFieldConfigurationMap>(arrayNode.Value);
-					}
-				}
-			}
-			if(node["supportedLanguages"] != null)
-			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._LanguageCodes = node["languageCodes"].Value<string>();
 			}
 		}
 		#endregion
@@ -111,19 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructConfigMap", this._AssetStructConfigMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaSubtitleLanguageConstraint");
+			kparams.AddIfNotNull("languageCodes", this._LanguageCodes);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_CONFIG_MAP:
-					return "AssetStructConfigMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case LANGUAGE_CODES:
+					return "LanguageCodes";
 				default:
 					return base.getPropertyName(apiName);
 			}

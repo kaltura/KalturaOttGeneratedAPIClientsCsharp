@@ -35,73 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class CollectionPurchasedCondition : BaseSegmentCondition
 	{
 		#region Constants
-		public const string ASSET_STRUCT_CONFIG_MAP = "assetStructConfigMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string LEVEL = "level";
+		public const string COLLECTION_ID_EQUALS = "collectionIdEquals";
+		public const string DAYS = "days";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetadataFieldConfigurationMap> _AssetStructConfigMap;
-		private IList<StringValue> _SupportedLanguages;
+		private ConditionLevel _Level = null;
+		private long _CollectionIdEquals = long.MinValue;
+		private int _Days = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructConfigMapAsDouble property instead
+		/// Use LevelAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetadataFieldConfigurationMap> AssetStructConfigMap
+		public ConditionLevel Level
 		{
-			get { return _AssetStructConfigMap; }
+			get { return _Level; }
 			set 
 			{ 
-				_AssetStructConfigMap = value;
-				OnPropertyChanged("AssetStructConfigMap");
+				_Level = value;
+				OnPropertyChanged("Level");
 			}
 		}
 		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
+		/// Use CollectionIdEqualsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
+		public long CollectionIdEquals
 		{
-			get { return _SupportedLanguages; }
-			private set 
+			get { return _CollectionIdEquals; }
+			set 
 			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_CollectionIdEquals = value;
+				OnPropertyChanged("CollectionIdEquals");
+			}
+		}
+		/// <summary>
+		/// Use DaysAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int Days
+		{
+			get { return _Days; }
+			set 
+			{ 
+				_Days = value;
+				OnPropertyChanged("Days");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public CollectionPurchasedCondition()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public CollectionPurchasedCondition(JToken node) : base(node)
 		{
-			if(node["assetStructConfigMap"] != null)
+			if(node["level"] != null)
 			{
-				{
-					string key;
-					this._AssetStructConfigMap = new Dictionary<string, MetadataFieldConfigurationMap>();
-					foreach(var arrayNode in node["assetStructConfigMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructConfigMap[key] = ObjectFactory.Create<MetadataFieldConfigurationMap>(arrayNode.Value);
-					}
-				}
+				this._Level = (ConditionLevel)StringEnum.Parse(typeof(ConditionLevel), node["level"].Value<string>());
 			}
-			if(node["supportedLanguages"] != null)
+			if(node["collectionIdEquals"] != null)
 			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._CollectionIdEquals = ParseLong(node["collectionIdEquals"].Value<string>());
+			}
+			if(node["days"] != null)
+			{
+				this._Days = ParseInt(node["days"].Value<string>());
 			}
 		}
 		#endregion
@@ -111,19 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructConfigMap", this._AssetStructConfigMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaCollectionPurchasedCondition");
+			kparams.AddIfNotNull("level", this._Level);
+			kparams.AddIfNotNull("collectionIdEquals", this._CollectionIdEquals);
+			kparams.AddIfNotNull("days", this._Days);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_CONFIG_MAP:
-					return "AssetStructConfigMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case LEVEL:
+					return "Level";
+				case COLLECTION_ID_EQUALS:
+					return "CollectionIdEquals";
+				case DAYS:
+					return "Days";
 				default:
 					return base.getPropertyName(apiName);
 			}

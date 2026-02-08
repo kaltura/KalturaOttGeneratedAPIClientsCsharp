@@ -35,73 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class ViewTimeConstraint : ObjectBase
 	{
 		#region Constants
-		public const string ASSET_STRUCT_CONFIG_MAP = "assetStructConfigMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string START_TIME = "startTime";
+		public const string END_TIME = "endTime";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetadataFieldConfigurationMap> _AssetStructConfigMap;
-		private IList<StringValue> _SupportedLanguages;
+		private string _StartTime = null;
+		private string _EndTime = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructConfigMapAsDouble property instead
+		/// Use StartTimeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetadataFieldConfigurationMap> AssetStructConfigMap
+		public string StartTime
 		{
-			get { return _AssetStructConfigMap; }
+			get { return _StartTime; }
 			set 
 			{ 
-				_AssetStructConfigMap = value;
-				OnPropertyChanged("AssetStructConfigMap");
+				_StartTime = value;
+				OnPropertyChanged("StartTime");
 			}
 		}
 		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
+		/// Use EndTimeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
+		public string EndTime
 		{
-			get { return _SupportedLanguages; }
-			private set 
+			get { return _EndTime; }
+			set 
 			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_EndTime = value;
+				OnPropertyChanged("EndTime");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public ViewTimeConstraint()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public ViewTimeConstraint(JToken node) : base(node)
 		{
-			if(node["assetStructConfigMap"] != null)
+			if(node["startTime"] != null)
 			{
-				{
-					string key;
-					this._AssetStructConfigMap = new Dictionary<string, MetadataFieldConfigurationMap>();
-					foreach(var arrayNode in node["assetStructConfigMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructConfigMap[key] = ObjectFactory.Create<MetadataFieldConfigurationMap>(arrayNode.Value);
-					}
-				}
+				this._StartTime = node["startTime"].Value<string>();
 			}
-			if(node["supportedLanguages"] != null)
+			if(node["endTime"] != null)
 			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._EndTime = node["endTime"].Value<string>();
 			}
 		}
 		#endregion
@@ -111,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructConfigMap", this._AssetStructConfigMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaViewTimeConstraint");
+			kparams.AddIfNotNull("startTime", this._StartTime);
+			kparams.AddIfNotNull("endTime", this._EndTime);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_CONFIG_MAP:
-					return "AssetStructConfigMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case START_TIME:
+					return "StartTime";
+				case END_TIME:
+					return "EndTime";
 				default:
 					return base.getPropertyName(apiName);
 			}
