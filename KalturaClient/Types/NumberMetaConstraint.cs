@@ -44,9 +44,9 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private string _Equals = null;
-		private string _GreaterThan = null;
-		private string _SmallerThan = null;
+		private long _Equals = long.MinValue;
+		private long _GreaterThan = long.MinValue;
+		private long _SmallerThan = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -54,7 +54,7 @@ namespace Kaltura.Types
 		/// Use EqualsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string Equals
+		public long Equals
 		{
 			get { return _Equals; }
 			set 
@@ -67,7 +67,7 @@ namespace Kaltura.Types
 		/// Use GreaterThanAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string GreaterThan
+		public long GreaterThan
 		{
 			get { return _GreaterThan; }
 			set 
@@ -80,7 +80,7 @@ namespace Kaltura.Types
 		/// Use SmallerThanAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public string SmallerThan
+		public long SmallerThan
 		{
 			get { return _SmallerThan; }
 			set 
@@ -100,15 +100,15 @@ namespace Kaltura.Types
 		{
 			if(node["equals"] != null)
 			{
-				this._Equals = node["equals"].Value<string>();
+				this._Equals = ParseLong(node["equals"].Value<string>());
 			}
 			if(node["greaterThan"] != null)
 			{
-				this._GreaterThan = node["greaterThan"].Value<string>();
+				this._GreaterThan = ParseLong(node["greaterThan"].Value<string>());
 			}
 			if(node["smallerThan"] != null)
 			{
-				this._SmallerThan = node["smallerThan"].Value<string>();
+				this._SmallerThan = ParseLong(node["smallerThan"].Value<string>());
 			}
 		}
 		#endregion

@@ -40,11 +40,13 @@ namespace Kaltura.Types
 		#region Constants
 		public const string CONTAINS = "contains";
 		public const string EQUALS = "equals";
+		public const string ATTRIBUTE_TYPE = "attributeType";
 		#endregion
 
 		#region Private Fields
 		private string _Contains = null;
 		private string _Equals = null;
+		private string _AttributeType = null;
 		#endregion
 
 		#region Properties
@@ -74,6 +76,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("Equals");
 			}
 		}
+		/// <summary>
+		/// Use AttributeTypeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string AttributeType
+		{
+			get { return _AttributeType; }
+			set 
+			{ 
+				_AttributeType = value;
+				OnPropertyChanged("AttributeType");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -91,6 +106,10 @@ namespace Kaltura.Types
 			{
 				this._Equals = node["equals"].Value<string>();
 			}
+			if(node["attributeType"] != null)
+			{
+				this._AttributeType = node["attributeType"].Value<string>();
+			}
 		}
 		#endregion
 
@@ -102,6 +121,7 @@ namespace Kaltura.Types
 				kparams.AddReplace("objectType", "KalturaTextMetaConstraint");
 			kparams.AddIfNotNull("contains", this._Contains);
 			kparams.AddIfNotNull("equals", this._Equals);
+			kparams.AddIfNotNull("attributeType", this._AttributeType);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -112,6 +132,8 @@ namespace Kaltura.Types
 					return "Contains";
 				case EQUALS:
 					return "Equals";
+				case ATTRIBUTE_TYPE:
+					return "AttributeType";
 				default:
 					return base.getPropertyName(apiName);
 			}

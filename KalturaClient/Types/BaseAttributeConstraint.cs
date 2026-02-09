@@ -38,29 +38,14 @@ namespace Kaltura.Types
 	public class BaseAttributeConstraint : ObjectBase
 	{
 		#region Constants
-		public const string ATTRIBUTE_TYPE = "attributeType";
 		public const string KEY = "key";
 		#endregion
 
 		#region Private Fields
-		private string _AttributeType = null;
 		private string _Key = null;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use AttributeTypeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public string AttributeType
-		{
-			get { return _AttributeType; }
-			set 
-			{ 
-				_AttributeType = value;
-				OnPropertyChanged("AttributeType");
-			}
-		}
 		/// <summary>
 		/// Use KeyAsDouble property instead
 		/// </summary>
@@ -83,10 +68,6 @@ namespace Kaltura.Types
 
 		public BaseAttributeConstraint(JToken node) : base(node)
 		{
-			if(node["attributeType"] != null)
-			{
-				this._AttributeType = node["attributeType"].Value<string>();
-			}
 			if(node["key"] != null)
 			{
 				this._Key = node["key"].Value<string>();
@@ -100,7 +81,6 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaBaseAttributeConstraint");
-			kparams.AddIfNotNull("attributeType", this._AttributeType);
 			kparams.AddIfNotNull("key", this._Key);
 			return kparams;
 		}
@@ -108,8 +88,6 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case ATTRIBUTE_TYPE:
-					return "AttributeType";
 				case KEY:
 					return "Key";
 				default:

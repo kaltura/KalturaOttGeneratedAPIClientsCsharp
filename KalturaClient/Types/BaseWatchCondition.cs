@@ -53,7 +53,7 @@ namespace Kaltura.Types
 		private int _EvaluationDays = Int32.MinValue;
 		private string _DeviceFamilyIn = null;
 		private ViewTimeConstraint _ViewTimeConstraint;
-		private LogicalOperator _ConstraintsOperator = null;
+		private BooleanOperator _ConstraintsOperator = null;
 		private IList<BaseAttributeConstraint> _ConstraintAttributes;
 		#endregion
 
@@ -127,7 +127,7 @@ namespace Kaltura.Types
 		/// Use ConstraintsOperatorAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public LogicalOperator ConstraintsOperator
+		public BooleanOperator ConstraintsOperator
 		{
 			get { return _ConstraintsOperator; }
 			set 
@@ -180,7 +180,7 @@ namespace Kaltura.Types
 			}
 			if(node["constraintsOperator"] != null)
 			{
-				this._ConstraintsOperator = (LogicalOperator)StringEnum.Parse(typeof(LogicalOperator), node["constraintsOperator"].Value<string>());
+				this._ConstraintsOperator = (BooleanOperator)StringEnum.Parse(typeof(BooleanOperator), node["constraintsOperator"].Value<string>());
 			}
 			if(node["constraintAttributes"] != null)
 			{
