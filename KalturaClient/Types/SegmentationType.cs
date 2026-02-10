@@ -66,7 +66,7 @@ namespace Kaltura.Types
 		private long _ExecuteDate = long.MinValue;
 		private long _Version = long.MinValue;
 		private long _AssetUserRuleId = long.MinValue;
-		private ConditionLevel _Scope = null;
+		private ConditionScope _Scope = null;
 		#endregion
 
 		#region Properties
@@ -230,7 +230,7 @@ namespace Kaltura.Types
 		/// Use ScopeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ConditionLevel Scope
+		public ConditionScope Scope
 		{
 			get { return _Scope; }
 			set 
@@ -306,7 +306,7 @@ namespace Kaltura.Types
 			}
 			if(node["scope"] != null)
 			{
-				this._Scope = (ConditionLevel)StringEnum.Parse(typeof(ConditionLevel), node["scope"].Value<string>());
+				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
 			}
 		}
 		#endregion

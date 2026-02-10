@@ -27,11 +27,11 @@
 // ===================================================================================================
 namespace Kaltura.Enums
 {
-	public sealed class ConditionLevel : StringEnum
+	public sealed class ConditionScope : StringEnum
 	{
-		public static readonly ConditionLevel USER = new ConditionLevel("USER");
-		public static readonly ConditionLevel HOUSEHOLD = new ConditionLevel("HOUSEHOLD");
+		public static readonly ConditionScope USER = new ConditionScope("USER");
+		public static readonly ConditionScope HOUSEHOLD = new ConditionScope("HOUSEHOLD");
 
-		private ConditionLevel(string name) : base(name) { }
+		private ConditionScope(string name) : base(name) { }
 	}
 }

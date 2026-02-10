@@ -38,33 +38,18 @@ namespace Kaltura.Types
 	public class TvodPurchasedCondition : BaseSegmentCondition
 	{
 		#region Constants
-		public const string LEVEL = "level";
 		public const string PPV_ID_EQUALS = "ppvIdEquals";
 		public const string MEDIA_ID_EQUALS = "mediaIdEquals";
 		public const string DAYS = "days";
 		#endregion
 
 		#region Private Fields
-		private ConditionLevel _Level = null;
 		private long _PpvIdEquals = long.MinValue;
 		private long _MediaIdEquals = long.MinValue;
 		private int _Days = Int32.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use LevelAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public ConditionLevel Level
-		{
-			get { return _Level; }
-			set 
-			{ 
-				_Level = value;
-				OnPropertyChanged("Level");
-			}
-		}
 		/// <summary>
 		/// Use PpvIdEqualsAsDouble property instead
 		/// </summary>
@@ -113,10 +98,6 @@ namespace Kaltura.Types
 
 		public TvodPurchasedCondition(JToken node) : base(node)
 		{
-			if(node["level"] != null)
-			{
-				this._Level = (ConditionLevel)StringEnum.Parse(typeof(ConditionLevel), node["level"].Value<string>());
-			}
 			if(node["ppvIdEquals"] != null)
 			{
 				this._PpvIdEquals = ParseLong(node["ppvIdEquals"].Value<string>());
@@ -138,7 +119,6 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaTvodPurchasedCondition");
-			kparams.AddIfNotNull("level", this._Level);
 			kparams.AddIfNotNull("ppvIdEquals", this._PpvIdEquals);
 			kparams.AddIfNotNull("mediaIdEquals", this._MediaIdEquals);
 			kparams.AddIfNotNull("days", this._Days);
@@ -148,8 +128,6 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case LEVEL:
-					return "Level";
 				case PPV_ID_EQUALS:
 					return "PpvIdEquals";
 				case MEDIA_ID_EQUALS:

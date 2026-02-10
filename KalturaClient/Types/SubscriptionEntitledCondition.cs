@@ -38,29 +38,14 @@ namespace Kaltura.Types
 	public class SubscriptionEntitledCondition : BaseSegmentCondition
 	{
 		#region Constants
-		public const string LEVEL = "level";
 		public const string SUBSCRIPTION_ID_EQUALS = "subscriptionIdEquals";
 		#endregion
 
 		#region Private Fields
-		private ConditionLevel _Level = null;
 		private long _SubscriptionIdEquals = long.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use LevelAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public ConditionLevel Level
-		{
-			get { return _Level; }
-			set 
-			{ 
-				_Level = value;
-				OnPropertyChanged("Level");
-			}
-		}
 		/// <summary>
 		/// Use SubscriptionIdEqualsAsDouble property instead
 		/// </summary>
@@ -83,10 +68,6 @@ namespace Kaltura.Types
 
 		public SubscriptionEntitledCondition(JToken node) : base(node)
 		{
-			if(node["level"] != null)
-			{
-				this._Level = (ConditionLevel)StringEnum.Parse(typeof(ConditionLevel), node["level"].Value<string>());
-			}
 			if(node["subscriptionIdEquals"] != null)
 			{
 				this._SubscriptionIdEquals = ParseLong(node["subscriptionIdEquals"].Value<string>());
@@ -100,7 +81,6 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaSubscriptionEntitledCondition");
-			kparams.AddIfNotNull("level", this._Level);
 			kparams.AddIfNotNull("subscriptionIdEquals", this._SubscriptionIdEquals);
 			return kparams;
 		}
@@ -108,8 +88,6 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case LEVEL:
-					return "Level";
 				case SUBSCRIPTION_ID_EQUALS:
 					return "SubscriptionIdEquals";
 				default:

@@ -38,7 +38,6 @@ namespace Kaltura.Types
 	public class BaseWatchCondition : BaseSegmentCondition
 	{
 		#region Constants
-		public const string LEVEL = "level";
 		public const string CONTENT_FILTER = "contentFilter";
 		public const string EVALUATION_DAYS = "evaluationDays";
 		public const string DEVICE_FAMILY_IN = "deviceFamilyIn";
@@ -48,7 +47,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Private Fields
-		private ConditionLevel _Level = null;
 		private ContentTypeSelector _ContentFilter;
 		private int _EvaluationDays = Int32.MinValue;
 		private string _DeviceFamilyIn = null;
@@ -58,19 +56,6 @@ namespace Kaltura.Types
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use LevelAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public ConditionLevel Level
-		{
-			get { return _Level; }
-			set 
-			{ 
-				_Level = value;
-				OnPropertyChanged("Level");
-			}
-		}
 		/// <summary>
 		/// Use ContentFilterAsDouble property instead
 		/// </summary>
@@ -158,10 +143,6 @@ namespace Kaltura.Types
 
 		public BaseWatchCondition(JToken node) : base(node)
 		{
-			if(node["level"] != null)
-			{
-				this._Level = (ConditionLevel)StringEnum.Parse(typeof(ConditionLevel), node["level"].Value<string>());
-			}
 			if(node["contentFilter"] != null)
 			{
 				this._ContentFilter = ObjectFactory.Create<ContentTypeSelector>(node["contentFilter"]);
@@ -199,7 +180,6 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaBaseWatchCondition");
-			kparams.AddIfNotNull("level", this._Level);
 			kparams.AddIfNotNull("contentFilter", this._ContentFilter);
 			kparams.AddIfNotNull("evaluationDays", this._EvaluationDays);
 			kparams.AddIfNotNull("deviceFamilyIn", this._DeviceFamilyIn);
@@ -212,8 +192,6 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case LEVEL:
-					return "Level";
 				case CONTENT_FILTER:
 					return "ContentFilter";
 				case EVALUATION_DAYS:

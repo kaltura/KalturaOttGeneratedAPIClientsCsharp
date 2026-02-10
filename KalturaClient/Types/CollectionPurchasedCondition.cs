@@ -38,31 +38,16 @@ namespace Kaltura.Types
 	public class CollectionPurchasedCondition : BaseSegmentCondition
 	{
 		#region Constants
-		public const string LEVEL = "level";
 		public const string COLLECTION_ID_EQUALS = "collectionIdEquals";
 		public const string DAYS = "days";
 		#endregion
 
 		#region Private Fields
-		private ConditionLevel _Level = null;
 		private long _CollectionIdEquals = long.MinValue;
 		private int _Days = Int32.MinValue;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use LevelAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public ConditionLevel Level
-		{
-			get { return _Level; }
-			set 
-			{ 
-				_Level = value;
-				OnPropertyChanged("Level");
-			}
-		}
 		/// <summary>
 		/// Use CollectionIdEqualsAsDouble property instead
 		/// </summary>
@@ -98,10 +83,6 @@ namespace Kaltura.Types
 
 		public CollectionPurchasedCondition(JToken node) : base(node)
 		{
-			if(node["level"] != null)
-			{
-				this._Level = (ConditionLevel)StringEnum.Parse(typeof(ConditionLevel), node["level"].Value<string>());
-			}
 			if(node["collectionIdEquals"] != null)
 			{
 				this._CollectionIdEquals = ParseLong(node["collectionIdEquals"].Value<string>());
@@ -119,7 +100,6 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaCollectionPurchasedCondition");
-			kparams.AddIfNotNull("level", this._Level);
 			kparams.AddIfNotNull("collectionIdEquals", this._CollectionIdEquals);
 			kparams.AddIfNotNull("days", this._Days);
 			return kparams;
@@ -128,8 +108,6 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case LEVEL:
-					return "Level";
 				case COLLECTION_ID_EQUALS:
 					return "CollectionIdEquals";
 				case DAYS:
