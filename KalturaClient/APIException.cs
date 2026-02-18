@@ -181,6 +181,7 @@ namespace Kaltura
 		public static string SubscriptionSetTypeMismatch = "3096";
 		public static string PurchaseIsAlreadyInProgress = "3097";
 		public static string RecordingAssetIdMismatch = "3098";
+		public static string ProgramInThePast = "3099";
 		public static string MediaConcurrencyLimitation = "4000";
 		public static string ConcurrencyLimitation = "4001";
 		public static string BadSearchRequest = "4002";
@@ -368,7 +369,6 @@ namespace Kaltura
 		public static string EntityIsNotAssociatedWithShop = "5095";
 		public static string CannotDeleteSubRegionInUse = "5097";
 		public static string FileEncodingDifferentFromExpected = "5099";
-		public static string InvalidArgumentValue = "5047";
 		public static string TooManyGeoBlockRules = "5100";
 		public static string IncorrectPrice = "6000";
 		public static string UnKnownPPVModule = "6001";
