@@ -35,73 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class ProgramSemanticSearchParams : ObjectBase
 	{
 		#region Constants
-		public const string ASSET_STRUCT_CONFIG_MAP = "assetStructConfigMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string ENDS_BEFORE = "endsBefore";
+		public const string EXPIRES_AFTER = "expiresAfter";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetadataFieldConfigurationMap> _AssetStructConfigMap;
-		private IList<StringValue> _SupportedLanguages;
+		private long _EndsBefore = long.MinValue;
+		private long _ExpiresAfter = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructConfigMapAsDouble property instead
+		/// Use EndsBeforeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetadataFieldConfigurationMap> AssetStructConfigMap
+		public long EndsBefore
 		{
-			get { return _AssetStructConfigMap; }
+			get { return _EndsBefore; }
 			set 
 			{ 
-				_AssetStructConfigMap = value;
-				OnPropertyChanged("AssetStructConfigMap");
+				_EndsBefore = value;
+				OnPropertyChanged("EndsBefore");
 			}
 		}
 		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
+		/// Use ExpiresAfterAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
+		public long ExpiresAfter
 		{
-			get { return _SupportedLanguages; }
-			private set 
+			get { return _ExpiresAfter; }
+			set 
 			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_ExpiresAfter = value;
+				OnPropertyChanged("ExpiresAfter");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public ProgramSemanticSearchParams()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public ProgramSemanticSearchParams(JToken node) : base(node)
 		{
-			if(node["assetStructConfigMap"] != null)
+			if(node["endsBefore"] != null)
 			{
-				{
-					string key;
-					this._AssetStructConfigMap = new Dictionary<string, MetadataFieldConfigurationMap>();
-					foreach(var arrayNode in node["assetStructConfigMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructConfigMap[key] = ObjectFactory.Create<MetadataFieldConfigurationMap>(arrayNode.Value);
-					}
-				}
+				this._EndsBefore = ParseLong(node["endsBefore"].Value<string>());
 			}
-			if(node["supportedLanguages"] != null)
+			if(node["expiresAfter"] != null)
 			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._ExpiresAfter = ParseLong(node["expiresAfter"].Value<string>());
 			}
 		}
 		#endregion
@@ -111,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructConfigMap", this._AssetStructConfigMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaProgramSemanticSearchParams");
+			kparams.AddIfNotNull("endsBefore", this._EndsBefore);
+			kparams.AddIfNotNull("expiresAfter", this._ExpiresAfter);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_CONFIG_MAP:
-					return "AssetStructConfigMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case ENDS_BEFORE:
+					return "EndsBefore";
+				case EXPIRES_AFTER:
+					return "ExpiresAfter";
 				default:
 					return base.getPropertyName(apiName);
 			}
