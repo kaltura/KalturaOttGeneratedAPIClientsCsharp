@@ -35,42 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseSegmentCondition : ObjectBase
+	public class NumberMetaConstraint : BaseAttributeConstraint
 	{
 		#region Constants
-		public const string SCOPE = "scope";
+		public const string EQUALS = "equals";
+		public const string GREATER_THAN = "greaterThan";
+		public const string SMALLER_THAN = "smallerThan";
 		#endregion
 
 		#region Private Fields
-		private ConditionScope _Scope = null;
+		private long _Equals = long.MinValue;
+		private long _GreaterThan = long.MinValue;
+		private long _SmallerThan = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ScopeAsDouble property instead
+		/// Use EqualsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ConditionScope Scope
+		public long Equals
 		{
-			get { return _Scope; }
+			get { return _Equals; }
 			set 
 			{ 
-				_Scope = value;
-				OnPropertyChanged("Scope");
+				_Equals = value;
+				OnPropertyChanged("Equals");
+			}
+		}
+		/// <summary>
+		/// Use GreaterThanAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long GreaterThan
+		{
+			get { return _GreaterThan; }
+			set 
+			{ 
+				_GreaterThan = value;
+				OnPropertyChanged("GreaterThan");
+			}
+		}
+		/// <summary>
+		/// Use SmallerThanAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long SmallerThan
+		{
+			get { return _SmallerThan; }
+			set 
+			{ 
+				_SmallerThan = value;
+				OnPropertyChanged("SmallerThan");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseSegmentCondition()
+		public NumberMetaConstraint()
 		{
 		}
 
-		public BaseSegmentCondition(JToken node) : base(node)
+		public NumberMetaConstraint(JToken node) : base(node)
 		{
-			if(node["scope"] != null)
+			if(node["equals"] != null)
 			{
-				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
+				this._Equals = ParseLong(node["equals"].Value<string>());
+			}
+			if(node["greaterThan"] != null)
+			{
+				this._GreaterThan = ParseLong(node["greaterThan"].Value<string>());
+			}
+			if(node["smallerThan"] != null)
+			{
+				this._SmallerThan = ParseLong(node["smallerThan"].Value<string>());
 			}
 		}
 		#endregion
@@ -80,16 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseSegmentCondition");
-			kparams.AddIfNotNull("scope", this._Scope);
+				kparams.AddReplace("objectType", "KalturaNumberMetaConstraint");
+			kparams.AddIfNotNull("equals", this._Equals);
+			kparams.AddIfNotNull("greaterThan", this._GreaterThan);
+			kparams.AddIfNotNull("smallerThan", this._SmallerThan);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SCOPE:
-					return "Scope";
+				case EQUALS:
+					return "Equals";
+				case GREATER_THAN:
+					return "GreaterThan";
+				case SMALLER_THAN:
+					return "SmallerThan";
 				default:
 					return base.getPropertyName(apiName);
 			}

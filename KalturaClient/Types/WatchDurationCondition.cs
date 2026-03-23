@@ -35,42 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseSegmentCondition : ObjectBase
+	public class WatchDurationCondition : BaseWatchCondition
 	{
 		#region Constants
-		public const string SCOPE = "scope";
+		public const string MIN_DURATION_HOURS = "minDurationHours";
+		public const string MAX_DURATION_HOURS = "maxDurationHours";
 		#endregion
 
 		#region Private Fields
-		private ConditionScope _Scope = null;
+		private int _MinDurationHours = Int32.MinValue;
+		private int _MaxDurationHours = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ScopeAsDouble property instead
+		/// Use MinDurationHoursAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ConditionScope Scope
+		public int MinDurationHours
 		{
-			get { return _Scope; }
+			get { return _MinDurationHours; }
 			set 
 			{ 
-				_Scope = value;
-				OnPropertyChanged("Scope");
+				_MinDurationHours = value;
+				OnPropertyChanged("MinDurationHours");
+			}
+		}
+		/// <summary>
+		/// Use MaxDurationHoursAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int MaxDurationHours
+		{
+			get { return _MaxDurationHours; }
+			set 
+			{ 
+				_MaxDurationHours = value;
+				OnPropertyChanged("MaxDurationHours");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseSegmentCondition()
+		public WatchDurationCondition()
 		{
 		}
 
-		public BaseSegmentCondition(JToken node) : base(node)
+		public WatchDurationCondition(JToken node) : base(node)
 		{
-			if(node["scope"] != null)
+			if(node["minDurationHours"] != null)
 			{
-				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
+				this._MinDurationHours = ParseInt(node["minDurationHours"].Value<string>());
+			}
+			if(node["maxDurationHours"] != null)
+			{
+				this._MaxDurationHours = ParseInt(node["maxDurationHours"].Value<string>());
 			}
 		}
 		#endregion
@@ -80,16 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseSegmentCondition");
-			kparams.AddIfNotNull("scope", this._Scope);
+				kparams.AddReplace("objectType", "KalturaWatchDurationCondition");
+			kparams.AddIfNotNull("minDurationHours", this._MinDurationHours);
+			kparams.AddIfNotNull("maxDurationHours", this._MaxDurationHours);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SCOPE:
-					return "Scope";
+				case MIN_DURATION_HOURS:
+					return "MinDurationHours";
+				case MAX_DURATION_HOURS:
+					return "MaxDurationHours";
 				default:
 					return base.getPropertyName(apiName);
 			}

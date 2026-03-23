@@ -35,42 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseSegmentCondition : ObjectBase
+	public class EntitlementConstraint : BaseAttributeConstraint
 	{
 		#region Constants
-		public const string SCOPE = "scope";
+		public const string PRODUCT_IDS = "productIds";
 		#endregion
 
 		#region Private Fields
-		private ConditionScope _Scope = null;
+		private string _ProductIds = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ScopeAsDouble property instead
+		/// Use ProductIdsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ConditionScope Scope
+		public string ProductIds
 		{
-			get { return _Scope; }
+			get { return _ProductIds; }
 			set 
 			{ 
-				_Scope = value;
-				OnPropertyChanged("Scope");
+				_ProductIds = value;
+				OnPropertyChanged("ProductIds");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseSegmentCondition()
+		public EntitlementConstraint()
 		{
 		}
 
-		public BaseSegmentCondition(JToken node) : base(node)
+		public EntitlementConstraint(JToken node) : base(node)
 		{
-			if(node["scope"] != null)
+			if(node["productIds"] != null)
 			{
-				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
+				this._ProductIds = node["productIds"].Value<string>();
 			}
 		}
 		#endregion
@@ -80,16 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseSegmentCondition");
-			kparams.AddIfNotNull("scope", this._Scope);
+				kparams.AddReplace("objectType", "KalturaEntitlementConstraint");
+			kparams.AddIfNotNull("productIds", this._ProductIds);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SCOPE:
-					return "Scope";
+				case PRODUCT_IDS:
+					return "ProductIds";
 				default:
 					return base.getPropertyName(apiName);
 			}

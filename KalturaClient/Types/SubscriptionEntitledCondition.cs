@@ -35,42 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseSegmentCondition : ObjectBase
+	public class SubscriptionEntitledCondition : BaseSegmentCondition
 	{
 		#region Constants
-		public const string SCOPE = "scope";
+		public const string SUBSCRIPTION_ID_EQUALS = "subscriptionIdEquals";
 		#endregion
 
 		#region Private Fields
-		private ConditionScope _Scope = null;
+		private long _SubscriptionIdEquals = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ScopeAsDouble property instead
+		/// Use SubscriptionIdEqualsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ConditionScope Scope
+		public long SubscriptionIdEquals
 		{
-			get { return _Scope; }
+			get { return _SubscriptionIdEquals; }
 			set 
 			{ 
-				_Scope = value;
-				OnPropertyChanged("Scope");
+				_SubscriptionIdEquals = value;
+				OnPropertyChanged("SubscriptionIdEquals");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseSegmentCondition()
+		public SubscriptionEntitledCondition()
 		{
 		}
 
-		public BaseSegmentCondition(JToken node) : base(node)
+		public SubscriptionEntitledCondition(JToken node) : base(node)
 		{
-			if(node["scope"] != null)
+			if(node["subscriptionIdEquals"] != null)
 			{
-				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
+				this._SubscriptionIdEquals = ParseLong(node["subscriptionIdEquals"].Value<string>());
 			}
 		}
 		#endregion
@@ -80,16 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseSegmentCondition");
-			kparams.AddIfNotNull("scope", this._Scope);
+				kparams.AddReplace("objectType", "KalturaSubscriptionEntitledCondition");
+			kparams.AddIfNotNull("subscriptionIdEquals", this._SubscriptionIdEquals);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SCOPE:
-					return "Scope";
+				case SUBSCRIPTION_ID_EQUALS:
+					return "SubscriptionIdEquals";
 				default:
 					return base.getPropertyName(apiName);
 			}

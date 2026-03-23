@@ -35,42 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseSegmentCondition : ObjectBase
+	public class ContentTypeSelector : ObjectBase
 	{
 		#region Constants
-		public const string SCOPE = "scope";
+		public const string INCLUDE_RECORDINGS = "includeRecordings";
+		public const string INCLUDE_PROGRAMS = "includePrograms";
+		public const string MEDIA_TYPE_ID_IN = "mediaTypeIdIn";
 		#endregion
 
 		#region Private Fields
-		private ConditionScope _Scope = null;
+		private bool? _IncludeRecordings = null;
+		private bool? _IncludePrograms = null;
+		private string _MediaTypeIdIn = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ScopeAsDouble property instead
+		/// Use IncludeRecordingsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ConditionScope Scope
+		public bool? IncludeRecordings
 		{
-			get { return _Scope; }
+			get { return _IncludeRecordings; }
 			set 
 			{ 
-				_Scope = value;
-				OnPropertyChanged("Scope");
+				_IncludeRecordings = value;
+				OnPropertyChanged("IncludeRecordings");
+			}
+		}
+		/// <summary>
+		/// Use IncludeProgramsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IncludePrograms
+		{
+			get { return _IncludePrograms; }
+			set 
+			{ 
+				_IncludePrograms = value;
+				OnPropertyChanged("IncludePrograms");
+			}
+		}
+		/// <summary>
+		/// Use MediaTypeIdInAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string MediaTypeIdIn
+		{
+			get { return _MediaTypeIdIn; }
+			set 
+			{ 
+				_MediaTypeIdIn = value;
+				OnPropertyChanged("MediaTypeIdIn");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseSegmentCondition()
+		public ContentTypeSelector()
 		{
 		}
 
-		public BaseSegmentCondition(JToken node) : base(node)
+		public ContentTypeSelector(JToken node) : base(node)
 		{
-			if(node["scope"] != null)
+			if(node["includeRecordings"] != null)
 			{
-				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
+				this._IncludeRecordings = ParseBool(node["includeRecordings"].Value<string>());
+			}
+			if(node["includePrograms"] != null)
+			{
+				this._IncludePrograms = ParseBool(node["includePrograms"].Value<string>());
+			}
+			if(node["mediaTypeIdIn"] != null)
+			{
+				this._MediaTypeIdIn = node["mediaTypeIdIn"].Value<string>();
 			}
 		}
 		#endregion
@@ -80,16 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseSegmentCondition");
-			kparams.AddIfNotNull("scope", this._Scope);
+				kparams.AddReplace("objectType", "KalturaContentTypeSelector");
+			kparams.AddIfNotNull("includeRecordings", this._IncludeRecordings);
+			kparams.AddIfNotNull("includePrograms", this._IncludePrograms);
+			kparams.AddIfNotNull("mediaTypeIdIn", this._MediaTypeIdIn);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SCOPE:
-					return "Scope";
+				case INCLUDE_RECORDINGS:
+					return "IncludeRecordings";
+				case INCLUDE_PROGRAMS:
+					return "IncludePrograms";
+				case MEDIA_TYPE_ID_IN:
+					return "MediaTypeIdIn";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -35,42 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseSegmentCondition : ObjectBase
+	public class ViewTimeConstraint : ObjectBase
 	{
 		#region Constants
-		public const string SCOPE = "scope";
+		public const string START_TIME = "startTime";
+		public const string END_TIME = "endTime";
 		#endregion
 
 		#region Private Fields
-		private ConditionScope _Scope = null;
+		private string _StartTime = null;
+		private string _EndTime = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ScopeAsDouble property instead
+		/// Use StartTimeAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ConditionScope Scope
+		public string StartTime
 		{
-			get { return _Scope; }
+			get { return _StartTime; }
 			set 
 			{ 
-				_Scope = value;
-				OnPropertyChanged("Scope");
+				_StartTime = value;
+				OnPropertyChanged("StartTime");
+			}
+		}
+		/// <summary>
+		/// Use EndTimeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string EndTime
+		{
+			get { return _EndTime; }
+			set 
+			{ 
+				_EndTime = value;
+				OnPropertyChanged("EndTime");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseSegmentCondition()
+		public ViewTimeConstraint()
 		{
 		}
 
-		public BaseSegmentCondition(JToken node) : base(node)
+		public ViewTimeConstraint(JToken node) : base(node)
 		{
-			if(node["scope"] != null)
+			if(node["startTime"] != null)
 			{
-				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
+				this._StartTime = node["startTime"].Value<string>();
+			}
+			if(node["endTime"] != null)
+			{
+				this._EndTime = node["endTime"].Value<string>();
 			}
 		}
 		#endregion
@@ -80,16 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseSegmentCondition");
-			kparams.AddIfNotNull("scope", this._Scope);
+				kparams.AddReplace("objectType", "KalturaViewTimeConstraint");
+			kparams.AddIfNotNull("startTime", this._StartTime);
+			kparams.AddIfNotNull("endTime", this._EndTime);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SCOPE:
-					return "Scope";
+				case START_TIME:
+					return "StartTime";
+				case END_TIME:
+					return "EndTime";
 				default:
 					return base.getPropertyName(apiName);
 			}

@@ -35,42 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseSegmentCondition : ObjectBase
+	public class BaseAttributeConstraint : ObjectBase
 	{
 		#region Constants
-		public const string SCOPE = "scope";
+		public const string KEY = "key";
 		#endregion
 
 		#region Private Fields
-		private ConditionScope _Scope = null;
+		private string _Key = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ScopeAsDouble property instead
+		/// Use KeyAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ConditionScope Scope
+		public string Key
 		{
-			get { return _Scope; }
+			get { return _Key; }
 			set 
 			{ 
-				_Scope = value;
-				OnPropertyChanged("Scope");
+				_Key = value;
+				OnPropertyChanged("Key");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseSegmentCondition()
+		public BaseAttributeConstraint()
 		{
 		}
 
-		public BaseSegmentCondition(JToken node) : base(node)
+		public BaseAttributeConstraint(JToken node) : base(node)
 		{
-			if(node["scope"] != null)
+			if(node["key"] != null)
 			{
-				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
+				this._Key = node["key"].Value<string>();
 			}
 		}
 		#endregion
@@ -80,16 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseSegmentCondition");
-			kparams.AddIfNotNull("scope", this._Scope);
+				kparams.AddReplace("objectType", "KalturaBaseAttributeConstraint");
+			kparams.AddIfNotNull("key", this._Key);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SCOPE:
-					return "Scope";
+				case KEY:
+					return "Key";
 				default:
 					return base.getPropertyName(apiName);
 			}

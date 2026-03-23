@@ -35,42 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseSegmentCondition : ObjectBase
+	public class CollectionPurchasedCondition : BaseSegmentCondition
 	{
 		#region Constants
-		public const string SCOPE = "scope";
+		public const string COLLECTION_ID_EQUALS = "collectionIdEquals";
+		public const string DAYS = "days";
 		#endregion
 
 		#region Private Fields
-		private ConditionScope _Scope = null;
+		private long _CollectionIdEquals = long.MinValue;
+		private int _Days = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ScopeAsDouble property instead
+		/// Use CollectionIdEqualsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ConditionScope Scope
+		public long CollectionIdEquals
 		{
-			get { return _Scope; }
+			get { return _CollectionIdEquals; }
 			set 
 			{ 
-				_Scope = value;
-				OnPropertyChanged("Scope");
+				_CollectionIdEquals = value;
+				OnPropertyChanged("CollectionIdEquals");
+			}
+		}
+		/// <summary>
+		/// Use DaysAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int Days
+		{
+			get { return _Days; }
+			set 
+			{ 
+				_Days = value;
+				OnPropertyChanged("Days");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseSegmentCondition()
+		public CollectionPurchasedCondition()
 		{
 		}
 
-		public BaseSegmentCondition(JToken node) : base(node)
+		public CollectionPurchasedCondition(JToken node) : base(node)
 		{
-			if(node["scope"] != null)
+			if(node["collectionIdEquals"] != null)
 			{
-				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
+				this._CollectionIdEquals = ParseLong(node["collectionIdEquals"].Value<string>());
+			}
+			if(node["days"] != null)
+			{
+				this._Days = ParseInt(node["days"].Value<string>());
 			}
 		}
 		#endregion
@@ -80,16 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseSegmentCondition");
-			kparams.AddIfNotNull("scope", this._Scope);
+				kparams.AddReplace("objectType", "KalturaCollectionPurchasedCondition");
+			kparams.AddIfNotNull("collectionIdEquals", this._CollectionIdEquals);
+			kparams.AddIfNotNull("days", this._Days);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SCOPE:
-					return "Scope";
+				case COLLECTION_ID_EQUALS:
+					return "CollectionIdEquals";
+				case DAYS:
+					return "Days";
 				default:
 					return base.getPropertyName(apiName);
 			}

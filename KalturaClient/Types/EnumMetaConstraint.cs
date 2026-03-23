@@ -35,42 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseSegmentCondition : ObjectBase
+	public class EnumMetaConstraint : BaseAttributeConstraint
 	{
 		#region Constants
-		public const string SCOPE = "scope";
+		public const string ONE_OF = "oneOf";
 		#endregion
 
 		#region Private Fields
-		private ConditionScope _Scope = null;
+		private string _OneOf = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ScopeAsDouble property instead
+		/// Use OneOfAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ConditionScope Scope
+		public string OneOf
 		{
-			get { return _Scope; }
+			get { return _OneOf; }
 			set 
 			{ 
-				_Scope = value;
-				OnPropertyChanged("Scope");
+				_OneOf = value;
+				OnPropertyChanged("OneOf");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseSegmentCondition()
+		public EnumMetaConstraint()
 		{
 		}
 
-		public BaseSegmentCondition(JToken node) : base(node)
+		public EnumMetaConstraint(JToken node) : base(node)
 		{
-			if(node["scope"] != null)
+			if(node["oneOf"] != null)
 			{
-				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
+				this._OneOf = node["oneOf"].Value<string>();
 			}
 		}
 		#endregion
@@ -80,16 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseSegmentCondition");
-			kparams.AddIfNotNull("scope", this._Scope);
+				kparams.AddReplace("objectType", "KalturaEnumMetaConstraint");
+			kparams.AddIfNotNull("oneOf", this._OneOf);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SCOPE:
-					return "Scope";
+				case ONE_OF:
+					return "OneOf";
 				default:
 					return base.getPropertyName(apiName);
 			}

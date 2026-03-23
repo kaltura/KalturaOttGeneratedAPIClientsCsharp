@@ -371,6 +371,10 @@ namespace Kaltura
 		public static string FileEncodingDifferentFromExpected = "5099";
 		public static string InvalidArgumentValue = "5047";
 		public static string TooManyGeoBlockRules = "5100";
+		public static string MaxConstraintAttributesExceeded = "5101";
+		public static string AttributeTypeKeyMismatch = "5102";
+		public static string SegmentationTypeLevelMismatch = "5103";
+		public static string PartnerTopicsValidationFailed = "5104";
 		public static string IncorrectPrice = "6000";
 		public static string UnKnownPPVModule = "6001";
 		public static string ExpiredCard = "6002";

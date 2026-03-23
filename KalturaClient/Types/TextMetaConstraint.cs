@@ -35,42 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseSegmentCondition : ObjectBase
+	public class TextMetaConstraint : BaseAttributeConstraint
 	{
 		#region Constants
-		public const string SCOPE = "scope";
+		public const string CONTAINS = "contains";
+		public const string EQUALS = "equals";
 		#endregion
 
 		#region Private Fields
-		private ConditionScope _Scope = null;
+		private string _Contains = null;
+		private string _Equals = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ScopeAsDouble property instead
+		/// Use ContainsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ConditionScope Scope
+		public string Contains
 		{
-			get { return _Scope; }
+			get { return _Contains; }
 			set 
 			{ 
-				_Scope = value;
-				OnPropertyChanged("Scope");
+				_Contains = value;
+				OnPropertyChanged("Contains");
+			}
+		}
+		/// <summary>
+		/// Use EqualsAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public string Equals
+		{
+			get { return _Equals; }
+			set 
+			{ 
+				_Equals = value;
+				OnPropertyChanged("Equals");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseSegmentCondition()
+		public TextMetaConstraint()
 		{
 		}
 
-		public BaseSegmentCondition(JToken node) : base(node)
+		public TextMetaConstraint(JToken node) : base(node)
 		{
-			if(node["scope"] != null)
+			if(node["contains"] != null)
 			{
-				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
+				this._Contains = node["contains"].Value<string>();
+			}
+			if(node["equals"] != null)
+			{
+				this._Equals = node["equals"].Value<string>();
 			}
 		}
 		#endregion
@@ -80,16 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseSegmentCondition");
-			kparams.AddIfNotNull("scope", this._Scope);
+				kparams.AddReplace("objectType", "KalturaTextMetaConstraint");
+			kparams.AddIfNotNull("contains", this._Contains);
+			kparams.AddIfNotNull("equals", this._Equals);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SCOPE:
-					return "Scope";
+				case CONTAINS:
+					return "Contains";
+				case EQUALS:
+					return "Equals";
 				default:
 					return base.getPropertyName(apiName);
 			}

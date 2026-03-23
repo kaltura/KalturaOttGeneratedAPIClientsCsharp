@@ -35,42 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseSegmentCondition : ObjectBase
+	public class WatchCountCondition : BaseWatchCondition
 	{
 		#region Constants
-		public const string SCOPE = "scope";
+		public const string MIN_COUNT = "minCount";
+		public const string MAX_COUNT = "maxCount";
 		#endregion
 
 		#region Private Fields
-		private ConditionScope _Scope = null;
+		private int _MinCount = Int32.MinValue;
+		private int _MaxCount = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ScopeAsDouble property instead
+		/// Use MinCountAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ConditionScope Scope
+		public int MinCount
 		{
-			get { return _Scope; }
+			get { return _MinCount; }
 			set 
 			{ 
-				_Scope = value;
-				OnPropertyChanged("Scope");
+				_MinCount = value;
+				OnPropertyChanged("MinCount");
+			}
+		}
+		/// <summary>
+		/// Use MaxCountAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int MaxCount
+		{
+			get { return _MaxCount; }
+			set 
+			{ 
+				_MaxCount = value;
+				OnPropertyChanged("MaxCount");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseSegmentCondition()
+		public WatchCountCondition()
 		{
 		}
 
-		public BaseSegmentCondition(JToken node) : base(node)
+		public WatchCountCondition(JToken node) : base(node)
 		{
-			if(node["scope"] != null)
+			if(node["minCount"] != null)
 			{
-				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
+				this._MinCount = ParseInt(node["minCount"].Value<string>());
+			}
+			if(node["maxCount"] != null)
+			{
+				this._MaxCount = ParseInt(node["maxCount"].Value<string>());
 			}
 		}
 		#endregion
@@ -80,16 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseSegmentCondition");
-			kparams.AddIfNotNull("scope", this._Scope);
+				kparams.AddReplace("objectType", "KalturaWatchCountCondition");
+			kparams.AddIfNotNull("minCount", this._MinCount);
+			kparams.AddIfNotNull("maxCount", this._MaxCount);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SCOPE:
-					return "Scope";
+				case MIN_COUNT:
+					return "MinCount";
+				case MAX_COUNT:
+					return "MaxCount";
 				default:
 					return base.getPropertyName(apiName);
 			}

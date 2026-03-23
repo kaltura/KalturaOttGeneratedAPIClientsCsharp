@@ -35,42 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseSegmentCondition : ObjectBase
+	public class AudioLanguageConstraint : BaseAttributeConstraint
 	{
 		#region Constants
-		public const string SCOPE = "scope";
+		public const string LANGUAGE_CODES = "languageCodes";
 		#endregion
 
 		#region Private Fields
-		private ConditionScope _Scope = null;
+		private string _LanguageCodes = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use ScopeAsDouble property instead
+		/// Use LanguageCodesAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public ConditionScope Scope
+		public string LanguageCodes
 		{
-			get { return _Scope; }
+			get { return _LanguageCodes; }
 			set 
 			{ 
-				_Scope = value;
-				OnPropertyChanged("Scope");
+				_LanguageCodes = value;
+				OnPropertyChanged("LanguageCodes");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public BaseSegmentCondition()
+		public AudioLanguageConstraint()
 		{
 		}
 
-		public BaseSegmentCondition(JToken node) : base(node)
+		public AudioLanguageConstraint(JToken node) : base(node)
 		{
-			if(node["scope"] != null)
+			if(node["languageCodes"] != null)
 			{
-				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
+				this._LanguageCodes = node["languageCodes"].Value<string>();
 			}
 		}
 		#endregion
@@ -80,16 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseSegmentCondition");
-			kparams.AddIfNotNull("scope", this._Scope);
+				kparams.AddReplace("objectType", "KalturaAudioLanguageConstraint");
+			kparams.AddIfNotNull("languageCodes", this._LanguageCodes);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SCOPE:
-					return "Scope";
+				case LANGUAGE_CODES:
+					return "LanguageCodes";
 				default:
 					return base.getPropertyName(apiName);
 			}
