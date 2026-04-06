@@ -35,43 +35,24 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class BaseSegmentCondition : ObjectBase
+	public class MediaSemanticSearchParams : ObjectBase
 	{
 		#region Constants
-		public const string SCOPE = "scope";
 		#endregion
 
 		#region Private Fields
-		private ConditionScope _Scope = null;
 		#endregion
 
 		#region Properties
-		/// <summary>
-		/// Use ScopeAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public ConditionScope Scope
-		{
-			get { return _Scope; }
-			set 
-			{ 
-				_Scope = value;
-				OnPropertyChanged("Scope");
-			}
-		}
 		#endregion
 
 		#region CTor
-		public BaseSegmentCondition()
+		public MediaSemanticSearchParams()
 		{
 		}
 
-		public BaseSegmentCondition(JToken node) : base(node)
+		public MediaSemanticSearchParams(JToken node) : base(node)
 		{
-			if(node["scope"] != null)
-			{
-				this._Scope = (ConditionScope)StringEnum.Parse(typeof(ConditionScope), node["scope"].Value<string>());
-			}
 		}
 		#endregion
 
@@ -80,16 +61,13 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaBaseSegmentCondition");
-			kparams.AddIfNotNull("scope", this._Scope);
+				kparams.AddReplace("objectType", "KalturaMediaSemanticSearchParams");
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case SCOPE:
-					return "Scope";
 				default:
 					return base.getPropertyName(apiName);
 			}
