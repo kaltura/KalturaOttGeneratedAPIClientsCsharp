@@ -35,73 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class WatchDurationCondition : BaseWatchCondition
 	{
 		#region Constants
-		public const string ASSET_STRUCT_CONFIG_MAP = "assetStructConfigMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string MIN_DURATION_HOURS = "minDurationHours";
+		public const string MAX_DURATION_HOURS = "maxDurationHours";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetadataFieldConfigurationMap> _AssetStructConfigMap;
-		private IList<StringValue> _SupportedLanguages;
+		private int _MinDurationHours = Int32.MinValue;
+		private int _MaxDurationHours = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructConfigMapAsDouble property instead
+		/// Use MinDurationHoursAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetadataFieldConfigurationMap> AssetStructConfigMap
+		public int MinDurationHours
 		{
-			get { return _AssetStructConfigMap; }
+			get { return _MinDurationHours; }
 			set 
 			{ 
-				_AssetStructConfigMap = value;
-				OnPropertyChanged("AssetStructConfigMap");
+				_MinDurationHours = value;
+				OnPropertyChanged("MinDurationHours");
 			}
 		}
 		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
+		/// Use MaxDurationHoursAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
+		public int MaxDurationHours
 		{
-			get { return _SupportedLanguages; }
-			private set 
+			get { return _MaxDurationHours; }
+			set 
 			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_MaxDurationHours = value;
+				OnPropertyChanged("MaxDurationHours");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public WatchDurationCondition()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public WatchDurationCondition(JToken node) : base(node)
 		{
-			if(node["assetStructConfigMap"] != null)
+			if(node["minDurationHours"] != null)
 			{
-				{
-					string key;
-					this._AssetStructConfigMap = new Dictionary<string, MetadataFieldConfigurationMap>();
-					foreach(var arrayNode in node["assetStructConfigMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructConfigMap[key] = ObjectFactory.Create<MetadataFieldConfigurationMap>(arrayNode.Value);
-					}
-				}
+				this._MinDurationHours = ParseInt(node["minDurationHours"].Value<string>());
 			}
-			if(node["supportedLanguages"] != null)
+			if(node["maxDurationHours"] != null)
 			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._MaxDurationHours = ParseInt(node["maxDurationHours"].Value<string>());
 			}
 		}
 		#endregion
@@ -111,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructConfigMap", this._AssetStructConfigMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaWatchDurationCondition");
+			kparams.AddIfNotNull("minDurationHours", this._MinDurationHours);
+			kparams.AddIfNotNull("maxDurationHours", this._MaxDurationHours);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_CONFIG_MAP:
-					return "AssetStructConfigMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case MIN_DURATION_HOURS:
+					return "MinDurationHours";
+				case MAX_DURATION_HOURS:
+					return "MaxDurationHours";
 				default:
 					return base.getPropertyName(apiName);
 			}
