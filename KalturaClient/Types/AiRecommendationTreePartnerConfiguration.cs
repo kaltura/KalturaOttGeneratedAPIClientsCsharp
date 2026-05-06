@@ -46,6 +46,7 @@ namespace Kaltura.Types
 		public const string NUM_OF_RECOMMENDED_ASSETS = "numOfRecommendedAssets";
 		public const string TREE_GENERATION_FREQUENCY = "treeGenerationFrequency";
 		public const string ACTIVE_TREE_ID = "activeTreeId";
+		public const string FEATURE_TYPE = "featureType";
 		#endregion
 
 		#region Private Fields
@@ -57,6 +58,7 @@ namespace Kaltura.Types
 		private int _NumOfRecommendedAssets = Int32.MinValue;
 		private string _TreeGenerationFrequency = null;
 		private string _ActiveTreeId = null;
+		private AiRecommendationTreeFeatureLevel _FeatureType = null;
 		#endregion
 
 		#region Properties
@@ -164,6 +166,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("ActiveTreeId");
 			}
 		}
+		/// <summary>
+		/// Use FeatureTypeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public AiRecommendationTreeFeatureLevel FeatureType
+		{
+			get { return _FeatureType; }
+			private set 
+			{ 
+				_FeatureType = value;
+				OnPropertyChanged("FeatureType");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -213,6 +228,10 @@ namespace Kaltura.Types
 			{
 				this._ActiveTreeId = node["activeTreeId"].Value<string>();
 			}
+			if(node["featureType"] != null)
+			{
+				this._FeatureType = (AiRecommendationTreeFeatureLevel)StringEnum.Parse(typeof(AiRecommendationTreeFeatureLevel), node["featureType"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -230,6 +249,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("numOfRecommendedAssets", this._NumOfRecommendedAssets);
 			kparams.AddIfNotNull("treeGenerationFrequency", this._TreeGenerationFrequency);
 			kparams.AddIfNotNull("activeTreeId", this._ActiveTreeId);
+			kparams.AddIfNotNull("featureType", this._FeatureType);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -252,6 +272,8 @@ namespace Kaltura.Types
 					return "TreeGenerationFrequency";
 				case ACTIVE_TREE_ID:
 					return "ActiveTreeId";
+				case FEATURE_TYPE:
+					return "FeatureType";
 				default:
 					return base.getPropertyName(apiName);
 			}
