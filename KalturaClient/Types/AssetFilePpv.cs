@@ -42,6 +42,8 @@ namespace Kaltura.Types
 		public const string PPV_MODULE_ID = "ppvModuleId";
 		public const string START_DATE = "startDate";
 		public const string END_DATE = "endDate";
+		public const string PURCHASE_START_DATE = "purchaseStartDate";
+		public const string PURCHASE_END_DATE = "purchaseEndDate";
 		#endregion
 
 		#region Private Fields
@@ -49,6 +51,8 @@ namespace Kaltura.Types
 		private long _PpvModuleId = long.MinValue;
 		private long _StartDate = long.MinValue;
 		private long _EndDate = long.MinValue;
+		private long _PurchaseStartDate = long.MinValue;
+		private long _PurchaseEndDate = long.MinValue;
 		#endregion
 
 		#region Properties
@@ -104,6 +108,32 @@ namespace Kaltura.Types
 				OnPropertyChanged("EndDate");
 			}
 		}
+		/// <summary>
+		/// Use PurchaseStartDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long PurchaseStartDate
+		{
+			get { return _PurchaseStartDate; }
+			set 
+			{ 
+				_PurchaseStartDate = value;
+				OnPropertyChanged("PurchaseStartDate");
+			}
+		}
+		/// <summary>
+		/// Use PurchaseEndDateAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long PurchaseEndDate
+		{
+			get { return _PurchaseEndDate; }
+			set 
+			{ 
+				_PurchaseEndDate = value;
+				OnPropertyChanged("PurchaseEndDate");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -129,6 +159,14 @@ namespace Kaltura.Types
 			{
 				this._EndDate = ParseLong(node["endDate"].Value<string>());
 			}
+			if(node["purchaseStartDate"] != null)
+			{
+				this._PurchaseStartDate = ParseLong(node["purchaseStartDate"].Value<string>());
+			}
+			if(node["purchaseEndDate"] != null)
+			{
+				this._PurchaseEndDate = ParseLong(node["purchaseEndDate"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -142,6 +180,8 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("ppvModuleId", this._PpvModuleId);
 			kparams.AddIfNotNull("startDate", this._StartDate);
 			kparams.AddIfNotNull("endDate", this._EndDate);
+			kparams.AddIfNotNull("purchaseStartDate", this._PurchaseStartDate);
+			kparams.AddIfNotNull("purchaseEndDate", this._PurchaseEndDate);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -156,6 +196,10 @@ namespace Kaltura.Types
 					return "StartDate";
 				case END_DATE:
 					return "EndDate";
+				case PURCHASE_START_DATE:
+					return "PurchaseStartDate";
+				case PURCHASE_END_DATE:
+					return "PurchaseEndDate";
 				default:
 					return base.getPropertyName(apiName);
 			}
