@@ -42,6 +42,7 @@ namespace Kaltura.Types
 		public const string ASSET_ID_IN = "assetIdIn";
 		public const string EXTERNAL_RECORDING_ID_IN = "externalRecordingIdIn";
 		public const string KSQL = "kSql";
+		public const string CONTENT_FILTERING_ENFORCED = "contentFilteringEnforced";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -50,6 +51,7 @@ namespace Kaltura.Types
 		private string _AssetIdIn = null;
 		private string _ExternalRecordingIdIn = null;
 		private string _KSql = null;
+		private bool? _ContentFilteringEnforced = null;
 		private RecordingOrderBy _OrderBy = null;
 		#endregion
 
@@ -107,6 +109,19 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use ContentFilteringEnforcedAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? ContentFilteringEnforced
+		{
+			get { return _ContentFilteringEnforced; }
+			set 
+			{ 
+				_ContentFilteringEnforced = value;
+				OnPropertyChanged("ContentFilteringEnforced");
+			}
+		}
+		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -144,6 +159,10 @@ namespace Kaltura.Types
 			{
 				this._KSql = node["kSql"].Value<string>();
 			}
+			if(node["contentFilteringEnforced"] != null)
+			{
+				this._ContentFilteringEnforced = ParseBool(node["contentFilteringEnforced"].Value<string>());
+			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (RecordingOrderBy)StringEnum.Parse(typeof(RecordingOrderBy), node["orderBy"].Value<string>());
@@ -161,6 +180,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("assetIdIn", this._AssetIdIn);
 			kparams.AddIfNotNull("externalRecordingIdIn", this._ExternalRecordingIdIn);
 			kparams.AddIfNotNull("kSql", this._KSql);
+			kparams.AddIfNotNull("contentFilteringEnforced", this._ContentFilteringEnforced);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -176,6 +196,8 @@ namespace Kaltura.Types
 					return "ExternalRecordingIdIn";
 				case KSQL:
 					return "KSql";
+				case CONTENT_FILTERING_ENFORCED:
+					return "ContentFilteringEnforced";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
