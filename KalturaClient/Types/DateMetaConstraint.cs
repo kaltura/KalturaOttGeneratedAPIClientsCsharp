@@ -35,73 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class DateMetaConstraint : BaseAttributeConstraint
 	{
 		#region Constants
-		public const string ASSET_STRUCT_CONFIG_MAP = "assetStructConfigMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string EQUALS = "equals";
+		public const string GREATER_THAN = "greaterThan";
+		public const string SMALLER_THAN = "smallerThan";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetadataFieldConfigurationMap> _AssetStructConfigMap;
-		private IList<StringValue> _SupportedLanguages;
+		private long _Equals = long.MinValue;
+		private long _GreaterThan = long.MinValue;
+		private long _SmallerThan = long.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructConfigMapAsDouble property instead
+		/// Use EqualsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetadataFieldConfigurationMap> AssetStructConfigMap
+		public long Equals
 		{
-			get { return _AssetStructConfigMap; }
+			get { return _Equals; }
 			set 
 			{ 
-				_AssetStructConfigMap = value;
-				OnPropertyChanged("AssetStructConfigMap");
+				_Equals = value;
+				OnPropertyChanged("Equals");
 			}
 		}
 		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
+		/// Use GreaterThanAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
+		public long GreaterThan
 		{
-			get { return _SupportedLanguages; }
-			private set 
+			get { return _GreaterThan; }
+			set 
 			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_GreaterThan = value;
+				OnPropertyChanged("GreaterThan");
+			}
+		}
+		/// <summary>
+		/// Use SmallerThanAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public long SmallerThan
+		{
+			get { return _SmallerThan; }
+			set 
+			{ 
+				_SmallerThan = value;
+				OnPropertyChanged("SmallerThan");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public DateMetaConstraint()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public DateMetaConstraint(JToken node) : base(node)
 		{
-			if(node["assetStructConfigMap"] != null)
+			if(node["equals"] != null)
 			{
-				{
-					string key;
-					this._AssetStructConfigMap = new Dictionary<string, MetadataFieldConfigurationMap>();
-					foreach(var arrayNode in node["assetStructConfigMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructConfigMap[key] = ObjectFactory.Create<MetadataFieldConfigurationMap>(arrayNode.Value);
-					}
-				}
+				this._Equals = ParseLong(node["equals"].Value<string>());
 			}
-			if(node["supportedLanguages"] != null)
+			if(node["greaterThan"] != null)
 			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._GreaterThan = ParseLong(node["greaterThan"].Value<string>());
+			}
+			if(node["smallerThan"] != null)
+			{
+				this._SmallerThan = ParseLong(node["smallerThan"].Value<string>());
 			}
 		}
 		#endregion
@@ -111,19 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructConfigMap", this._AssetStructConfigMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaDateMetaConstraint");
+			kparams.AddIfNotNull("equals", this._Equals);
+			kparams.AddIfNotNull("greaterThan", this._GreaterThan);
+			kparams.AddIfNotNull("smallerThan", this._SmallerThan);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_CONFIG_MAP:
-					return "AssetStructConfigMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case EQUALS:
+					return "Equals";
+				case GREATER_THAN:
+					return "GreaterThan";
+				case SMALLER_THAN:
+					return "SmallerThan";
 				default:
 					return base.getPropertyName(apiName);
 			}
