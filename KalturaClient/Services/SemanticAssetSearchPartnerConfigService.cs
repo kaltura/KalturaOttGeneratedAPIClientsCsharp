@@ -65,6 +65,64 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class SemanticAssetSearchPartnerConfigGetProgramFilteringConditionRequestBuilder : RequestBuilder<FilteringCondition>
+	{
+		#region Constants
+		#endregion
+
+
+		public SemanticAssetSearchPartnerConfigGetProgramFilteringConditionRequestBuilder()
+			: base("semanticassetsearchpartnerconfig", "getProgramFilteringCondition")
+		{
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<FilteringCondition>(result);
+		}
+	}
+
+	public class SemanticAssetSearchPartnerConfigGetProgramSearchableAttributesRequestBuilder : RequestBuilder<ProgramSearchableAttributes>
+	{
+		#region Constants
+		#endregion
+
+
+		public SemanticAssetSearchPartnerConfigGetProgramSearchableAttributesRequestBuilder()
+			: base("semanticassetsearchpartnerconfig", "getProgramSearchableAttributes")
+		{
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<ProgramSearchableAttributes>(result);
+		}
+	}
+
 	public class SemanticAssetSearchPartnerConfigGetSearchableAttributesRequestBuilder : RequestBuilder<SearchableAttributes>
 	{
 		#region Constants
@@ -143,6 +201,84 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class SemanticAssetSearchPartnerConfigUpsertProgramFilteringConditionRequestBuilder : RequestBuilder<FilteringCondition>
+	{
+		#region Constants
+		public const string FILTERING_CONDITION = "filteringCondition";
+		#endregion
+
+		public FilteringCondition FilteringCondition { get; set; }
+
+		public SemanticAssetSearchPartnerConfigUpsertProgramFilteringConditionRequestBuilder()
+			: base("semanticassetsearchpartnerconfig", "upsertProgramFilteringCondition")
+		{
+		}
+
+		public SemanticAssetSearchPartnerConfigUpsertProgramFilteringConditionRequestBuilder(FilteringCondition filteringCondition)
+			: this()
+		{
+			this.FilteringCondition = filteringCondition;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("filteringCondition"))
+				kparams.AddIfNotNull("filteringCondition", FilteringCondition);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<FilteringCondition>(result);
+		}
+	}
+
+	public class SemanticAssetSearchPartnerConfigUpsertProgramSearchableAttributesRequestBuilder : RequestBuilder<ProgramSearchableAttributes>
+	{
+		#region Constants
+		public const string PROGRAM_ATTRIBUTES = "programAttributes";
+		#endregion
+
+		public ProgramSearchableAttributes ProgramAttributes { get; set; }
+
+		public SemanticAssetSearchPartnerConfigUpsertProgramSearchableAttributesRequestBuilder()
+			: base("semanticassetsearchpartnerconfig", "upsertProgramSearchableAttributes")
+		{
+		}
+
+		public SemanticAssetSearchPartnerConfigUpsertProgramSearchableAttributesRequestBuilder(ProgramSearchableAttributes programAttributes)
+			: this()
+		{
+			this.ProgramAttributes = programAttributes;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("programAttributes"))
+				kparams.AddIfNotNull("programAttributes", ProgramAttributes);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<ProgramSearchableAttributes>(result);
+		}
+	}
+
 	public class SemanticAssetSearchPartnerConfigUpsertSearchableAttributesRequestBuilder : RequestBuilder<SearchableAttributes>
 	{
 		#region Constants
@@ -194,6 +330,16 @@ namespace Kaltura.Services
 			return new SemanticAssetSearchPartnerConfigGetFilteringConditionRequestBuilder();
 		}
 
+		public static SemanticAssetSearchPartnerConfigGetProgramFilteringConditionRequestBuilder GetProgramFilteringCondition()
+		{
+			return new SemanticAssetSearchPartnerConfigGetProgramFilteringConditionRequestBuilder();
+		}
+
+		public static SemanticAssetSearchPartnerConfigGetProgramSearchableAttributesRequestBuilder GetProgramSearchableAttributes()
+		{
+			return new SemanticAssetSearchPartnerConfigGetProgramSearchableAttributesRequestBuilder();
+		}
+
 		public static SemanticAssetSearchPartnerConfigGetSearchableAttributesRequestBuilder GetSearchableAttributes(int assetStructId)
 		{
 			return new SemanticAssetSearchPartnerConfigGetSearchableAttributesRequestBuilder(assetStructId);
@@ -202,6 +348,16 @@ namespace Kaltura.Services
 		public static SemanticAssetSearchPartnerConfigUpsertFilteringConditionRequestBuilder UpsertFilteringCondition(FilteringCondition filteringCondition)
 		{
 			return new SemanticAssetSearchPartnerConfigUpsertFilteringConditionRequestBuilder(filteringCondition);
+		}
+
+		public static SemanticAssetSearchPartnerConfigUpsertProgramFilteringConditionRequestBuilder UpsertProgramFilteringCondition(FilteringCondition filteringCondition)
+		{
+			return new SemanticAssetSearchPartnerConfigUpsertProgramFilteringConditionRequestBuilder(filteringCondition);
+		}
+
+		public static SemanticAssetSearchPartnerConfigUpsertProgramSearchableAttributesRequestBuilder UpsertProgramSearchableAttributes(ProgramSearchableAttributes programAttributes)
+		{
+			return new SemanticAssetSearchPartnerConfigUpsertProgramSearchableAttributesRequestBuilder(programAttributes);
 		}
 
 		public static SemanticAssetSearchPartnerConfigUpsertSearchableAttributesRequestBuilder UpsertSearchableAttributes(SearchableAttributes attributes)

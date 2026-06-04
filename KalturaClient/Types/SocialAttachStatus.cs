@@ -35,73 +35,42 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class SocialAttachStatus : ObjectBase
 	{
 		#region Constants
-		public const string ASSET_STRUCT_CONFIG_MAP = "assetStructConfigMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string ATTACHED = "attached";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetadataFieldConfigurationMap> _AssetStructConfigMap;
-		private IList<StringValue> _SupportedLanguages;
+		private bool? _Attached = null;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructConfigMapAsDouble property instead
+		/// Use AttachedAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetadataFieldConfigurationMap> AssetStructConfigMap
+		public bool? Attached
 		{
-			get { return _AssetStructConfigMap; }
-			set 
-			{ 
-				_AssetStructConfigMap = value;
-				OnPropertyChanged("AssetStructConfigMap");
-			}
-		}
-		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
-		/// </summary>
-		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
-		{
-			get { return _SupportedLanguages; }
+			get { return _Attached; }
 			private set 
 			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_Attached = value;
+				OnPropertyChanged("Attached");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public SocialAttachStatus()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public SocialAttachStatus(JToken node) : base(node)
 		{
-			if(node["assetStructConfigMap"] != null)
+			if(node["attached"] != null)
 			{
-				{
-					string key;
-					this._AssetStructConfigMap = new Dictionary<string, MetadataFieldConfigurationMap>();
-					foreach(var arrayNode in node["assetStructConfigMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructConfigMap[key] = ObjectFactory.Create<MetadataFieldConfigurationMap>(arrayNode.Value);
-					}
-				}
-			}
-			if(node["supportedLanguages"] != null)
-			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._Attached = ParseBool(node["attached"].Value<string>());
 			}
 		}
 		#endregion
@@ -111,19 +80,16 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructConfigMap", this._AssetStructConfigMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaSocialAttachStatus");
+			kparams.AddIfNotNull("attached", this._Attached);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_CONFIG_MAP:
-					return "AssetStructConfigMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case ATTACHED:
+					return "Attached";
 				default:
 					return base.getPropertyName(apiName);
 			}

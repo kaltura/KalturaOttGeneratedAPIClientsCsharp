@@ -181,6 +181,7 @@ namespace Kaltura
 		public static string SubscriptionSetTypeMismatch = "3096";
 		public static string PurchaseIsAlreadyInProgress = "3097";
 		public static string RecordingAssetIdMismatch = "3098";
+		public static string ProgramInThePast = "3099";
 		public static string MediaConcurrencyLimitation = "4000";
 		public static string ConcurrencyLimitation = "4001";
 		public static string BadSearchRequest = "4002";
@@ -425,6 +426,9 @@ namespace Kaltura
 		public static string Conflict = "7000";
 		public static string MinFriendsLimitation = "7001";
 		public static string InvalidParameters = "7010";
+		public static string SocialIdpUserAlreadyAttached = "7018";
+		public static string SocialIdpUserIsNotAttached = "7019";
+		public static string SocialIdpTokenInvalid = "7020";
 		public static string NoNotificationSettingsSent = "8000";
 		public static string PushNotificationFalse = "8001";
 		public static string NoNotificationPartnerSettings = "8002";
