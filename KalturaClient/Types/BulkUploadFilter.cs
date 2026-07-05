@@ -42,6 +42,7 @@ namespace Kaltura.Types
 		public const string CREATE_DATE_GREATER_THAN_OR_EQUAL = "createDateGreaterThanOrEqual";
 		public const string UPLOADED_BY_USER_ID_EQUAL_CURRENT = "uploadedByUserIdEqualCurrent";
 		public const string STATUS_IN = "statusIn";
+		public const string INCLUDE_RESULTS_EQUAL = "includeResultsEqual";
 		public new const string ORDER_BY = "orderBy";
 		#endregion
 
@@ -50,6 +51,7 @@ namespace Kaltura.Types
 		private long _CreateDateGreaterThanOrEqual = long.MinValue;
 		private bool? _UploadedByUserIdEqualCurrent = null;
 		private string _StatusIn = null;
+		private bool? _IncludeResultsEqual = null;
 		private BulkUploadOrderBy _OrderBy = null;
 		#endregion
 
@@ -107,6 +109,19 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
+		/// Use IncludeResultsEqualAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public bool? IncludeResultsEqual
+		{
+			get { return _IncludeResultsEqual; }
+			set 
+			{ 
+				_IncludeResultsEqual = value;
+				OnPropertyChanged("IncludeResultsEqual");
+			}
+		}
+		/// <summary>
 		/// Use OrderByAsDouble property instead
 		/// </summary>
 		[JsonProperty]
@@ -144,6 +159,10 @@ namespace Kaltura.Types
 			{
 				this._StatusIn = node["statusIn"].Value<string>();
 			}
+			if(node["includeResultsEqual"] != null)
+			{
+				this._IncludeResultsEqual = ParseBool(node["includeResultsEqual"].Value<string>());
+			}
 			if(node["orderBy"] != null)
 			{
 				this._OrderBy = (BulkUploadOrderBy)StringEnum.Parse(typeof(BulkUploadOrderBy), node["orderBy"].Value<string>());
@@ -161,6 +180,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("createDateGreaterThanOrEqual", this._CreateDateGreaterThanOrEqual);
 			kparams.AddIfNotNull("uploadedByUserIdEqualCurrent", this._UploadedByUserIdEqualCurrent);
 			kparams.AddIfNotNull("statusIn", this._StatusIn);
+			kparams.AddIfNotNull("includeResultsEqual", this._IncludeResultsEqual);
 			kparams.AddIfNotNull("orderBy", this._OrderBy);
 			return kparams;
 		}
@@ -176,6 +196,8 @@ namespace Kaltura.Types
 					return "UploadedByUserIdEqualCurrent";
 				case STATUS_IN:
 					return "StatusIn";
+				case INCLUDE_RESULTS_EQUAL:
+					return "IncludeResultsEqual";
 				case ORDER_BY:
 					return "OrderBy";
 				default:
