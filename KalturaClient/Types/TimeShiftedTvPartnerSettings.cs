@@ -65,7 +65,7 @@ namespace Kaltura.Types
 		public const string MAX_RECORDING_CONCURRENCY = "maxRecordingConcurrency";
 		public const string MAX_CONCURRENCY_MARGIN = "maxConcurrencyMargin";
 		public const string SHOULD_ROUND_STOP_RECORDINGS_BY_SECONDS = "shouldRoundStopRecordingsBySeconds";
-		public const string RECORDINGS_V2ENABLED = "recordingsV2Enabled";
+		public const string IS_RECORDINGS_V2ENABLED = "isRecordingsV2Enabled";
 		#endregion
 
 		#region Private Fields
@@ -96,7 +96,7 @@ namespace Kaltura.Types
 		private int _MaxRecordingConcurrency = Int32.MinValue;
 		private int _MaxConcurrencyMargin = Int32.MinValue;
 		private bool? _ShouldRoundStopRecordingsBySeconds = null;
-		private bool? _RecordingsV2Enabled = null;
+		private bool? _IsRecordingsV2Enabled = null;
 		#endregion
 
 		#region Properties
@@ -452,16 +452,16 @@ namespace Kaltura.Types
 			}
 		}
 		/// <summary>
-		/// Use RecordingsV2EnabledAsDouble property instead
+		/// Use IsRecordingsV2EnabledAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public bool? RecordingsV2Enabled
+		public bool? IsRecordingsV2Enabled
 		{
-			get { return _RecordingsV2Enabled; }
+			get { return _IsRecordingsV2Enabled; }
 			set 
 			{ 
-				_RecordingsV2Enabled = value;
-				OnPropertyChanged("RecordingsV2Enabled");
+				_IsRecordingsV2Enabled = value;
+				OnPropertyChanged("IsRecordingsV2Enabled");
 			}
 		}
 		#endregion
@@ -581,9 +581,9 @@ namespace Kaltura.Types
 			{
 				this._ShouldRoundStopRecordingsBySeconds = ParseBool(node["shouldRoundStopRecordingsBySeconds"].Value<string>());
 			}
-			if(node["recordingsV2Enabled"] != null)
+			if(node["isRecordingsV2Enabled"] != null)
 			{
-				this._RecordingsV2Enabled = ParseBool(node["recordingsV2Enabled"].Value<string>());
+				this._IsRecordingsV2Enabled = ParseBool(node["isRecordingsV2Enabled"].Value<string>());
 			}
 		}
 		#endregion
@@ -621,7 +621,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("maxRecordingConcurrency", this._MaxRecordingConcurrency);
 			kparams.AddIfNotNull("maxConcurrencyMargin", this._MaxConcurrencyMargin);
 			kparams.AddIfNotNull("shouldRoundStopRecordingsBySeconds", this._ShouldRoundStopRecordingsBySeconds);
-			kparams.AddIfNotNull("recordingsV2Enabled", this._RecordingsV2Enabled);
+			kparams.AddIfNotNull("isRecordingsV2Enabled", this._IsRecordingsV2Enabled);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -682,8 +682,8 @@ namespace Kaltura.Types
 					return "MaxConcurrencyMargin";
 				case SHOULD_ROUND_STOP_RECORDINGS_BY_SECONDS:
 					return "ShouldRoundStopRecordingsBySeconds";
-				case RECORDINGS_V2ENABLED:
-					return "RecordingsV2Enabled";
+				case IS_RECORDINGS_V2ENABLED:
+					return "IsRecordingsV2Enabled";
 				default:
 					return base.getPropertyName(apiName);
 			}
