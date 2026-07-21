@@ -35,73 +35,61 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class WatchCountCondition : BaseWatchCondition
 	{
 		#region Constants
-		public const string ASSET_STRUCT_CONFIG_MAP = "assetStructConfigMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string MIN_COUNT = "minCount";
+		public const string MAX_COUNT = "maxCount";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetadataFieldConfigurationMap> _AssetStructConfigMap;
-		private IList<StringValue> _SupportedLanguages;
+		private int _MinCount = Int32.MinValue;
+		private int _MaxCount = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructConfigMapAsDouble property instead
+		/// Use MinCountAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetadataFieldConfigurationMap> AssetStructConfigMap
+		public int MinCount
 		{
-			get { return _AssetStructConfigMap; }
+			get { return _MinCount; }
 			set 
 			{ 
-				_AssetStructConfigMap = value;
-				OnPropertyChanged("AssetStructConfigMap");
+				_MinCount = value;
+				OnPropertyChanged("MinCount");
 			}
 		}
 		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
+		/// Use MaxCountAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
+		public int MaxCount
 		{
-			get { return _SupportedLanguages; }
-			private set 
+			get { return _MaxCount; }
+			set 
 			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_MaxCount = value;
+				OnPropertyChanged("MaxCount");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public WatchCountCondition()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public WatchCountCondition(JToken node) : base(node)
 		{
-			if(node["assetStructConfigMap"] != null)
+			if(node["minCount"] != null)
 			{
-				{
-					string key;
-					this._AssetStructConfigMap = new Dictionary<string, MetadataFieldConfigurationMap>();
-					foreach(var arrayNode in node["assetStructConfigMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructConfigMap[key] = ObjectFactory.Create<MetadataFieldConfigurationMap>(arrayNode.Value);
-					}
-				}
+				this._MinCount = ParseInt(node["minCount"].Value<string>());
 			}
-			if(node["supportedLanguages"] != null)
+			if(node["maxCount"] != null)
 			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._MaxCount = ParseInt(node["maxCount"].Value<string>());
 			}
 		}
 		#endregion
@@ -111,19 +99,19 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructConfigMap", this._AssetStructConfigMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaWatchCountCondition");
+			kparams.AddIfNotNull("minCount", this._MinCount);
+			kparams.AddIfNotNull("maxCount", this._MaxCount);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_CONFIG_MAP:
-					return "AssetStructConfigMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case MIN_COUNT:
+					return "MinCount";
+				case MAX_COUNT:
+					return "MaxCount";
 				default:
 					return base.getPropertyName(apiName);
 			}
