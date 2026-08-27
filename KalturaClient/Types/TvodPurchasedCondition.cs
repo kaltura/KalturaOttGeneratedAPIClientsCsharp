@@ -35,73 +35,80 @@ using Newtonsoft.Json.Linq;
 
 namespace Kaltura.Types
 {
-	public class AiMetadataGeneratorConfiguration : ObjectBase
+	public class TvodPurchasedCondition : BaseSegmentCondition
 	{
 		#region Constants
-		public const string ASSET_STRUCT_CONFIG_MAP = "assetStructConfigMap";
-		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
+		public const string PPV_ID_EQUALS = "ppvIdEquals";
+		public const string MEDIA_ID_EQUALS = "mediaIdEquals";
+		public const string DAYS = "days";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetadataFieldConfigurationMap> _AssetStructConfigMap;
-		private IList<StringValue> _SupportedLanguages;
+		private long _PpvIdEquals = long.MinValue;
+		private long _MediaIdEquals = long.MinValue;
+		private int _Days = Int32.MinValue;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructConfigMapAsDouble property instead
+		/// Use PpvIdEqualsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetadataFieldConfigurationMap> AssetStructConfigMap
+		public long PpvIdEquals
 		{
-			get { return _AssetStructConfigMap; }
+			get { return _PpvIdEquals; }
 			set 
 			{ 
-				_AssetStructConfigMap = value;
-				OnPropertyChanged("AssetStructConfigMap");
+				_PpvIdEquals = value;
+				OnPropertyChanged("PpvIdEquals");
 			}
 		}
 		/// <summary>
-		/// Use SupportedLanguagesAsDouble property instead
+		/// Use MediaIdEqualsAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IList<StringValue> SupportedLanguages
+		public long MediaIdEquals
 		{
-			get { return _SupportedLanguages; }
-			private set 
+			get { return _MediaIdEquals; }
+			set 
 			{ 
-				_SupportedLanguages = value;
-				OnPropertyChanged("SupportedLanguages");
+				_MediaIdEquals = value;
+				OnPropertyChanged("MediaIdEquals");
+			}
+		}
+		/// <summary>
+		/// Use DaysAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public int Days
+		{
+			get { return _Days; }
+			set 
+			{ 
+				_Days = value;
+				OnPropertyChanged("Days");
 			}
 		}
 		#endregion
 
 		#region CTor
-		public AiMetadataGeneratorConfiguration()
+		public TvodPurchasedCondition()
 		{
 		}
 
-		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
+		public TvodPurchasedCondition(JToken node) : base(node)
 		{
-			if(node["assetStructConfigMap"] != null)
+			if(node["ppvIdEquals"] != null)
 			{
-				{
-					string key;
-					this._AssetStructConfigMap = new Dictionary<string, MetadataFieldConfigurationMap>();
-					foreach(var arrayNode in node["assetStructConfigMap"].Children<JProperty>())
-					{
-						key = arrayNode.Name;
-						this._AssetStructConfigMap[key] = ObjectFactory.Create<MetadataFieldConfigurationMap>(arrayNode.Value);
-					}
-				}
+				this._PpvIdEquals = ParseLong(node["ppvIdEquals"].Value<string>());
 			}
-			if(node["supportedLanguages"] != null)
+			if(node["mediaIdEquals"] != null)
 			{
-				this._SupportedLanguages = new List<StringValue>();
-				foreach(var arrayNode in node["supportedLanguages"].Children())
-				{
-					this._SupportedLanguages.Add(ObjectFactory.Create<StringValue>(arrayNode));
-				}
+				this._MediaIdEquals = ParseLong(node["mediaIdEquals"].Value<string>());
+			}
+			if(node["days"] != null)
+			{
+				this._Days = ParseInt(node["days"].Value<string>());
 			}
 		}
 		#endregion
@@ -111,19 +118,22 @@ namespace Kaltura.Types
 		{
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
-				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructConfigMap", this._AssetStructConfigMap);
-			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
+				kparams.AddReplace("objectType", "KalturaTvodPurchasedCondition");
+			kparams.AddIfNotNull("ppvIdEquals", this._PpvIdEquals);
+			kparams.AddIfNotNull("mediaIdEquals", this._MediaIdEquals);
+			kparams.AddIfNotNull("days", this._Days);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_CONFIG_MAP:
-					return "AssetStructConfigMap";
-				case SUPPORTED_LANGUAGES:
-					return "SupportedLanguages";
+				case PPV_ID_EQUALS:
+					return "PpvIdEquals";
+				case MEDIA_ID_EQUALS:
+					return "MediaIdEquals";
+				case DAYS:
+					return "Days";
 				default:
 					return base.getPropertyName(apiName);
 			}
