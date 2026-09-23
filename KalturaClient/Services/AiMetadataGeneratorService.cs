@@ -114,6 +114,45 @@ namespace Kaltura.Services
 		}
 	}
 
+	public class AiMetadataGeneratorGenerateProgramMetadataByDescriptionRequestBuilder : RequestBuilder<GenerateMetadataJob>
+	{
+		#region Constants
+		public const string GENERATE_PROGRAM_METADATA_BY_DESCRIPTION = "generateProgramMetadataByDescription";
+		#endregion
+
+		public GenerateProgramMetadatasByDescription GenerateProgramMetadataByDescription { get; set; }
+
+		public AiMetadataGeneratorGenerateProgramMetadataByDescriptionRequestBuilder()
+			: base("aimetadatagenerator", "generateProgramMetadataByDescription")
+		{
+		}
+
+		public AiMetadataGeneratorGenerateProgramMetadataByDescriptionRequestBuilder(GenerateProgramMetadatasByDescription generateProgramMetadataByDescription)
+			: this()
+		{
+			this.GenerateProgramMetadataByDescription = generateProgramMetadataByDescription;
+		}
+
+		public override Params getParameters(bool includeServiceAndAction)
+		{
+			Params kparams = base.getParameters(includeServiceAndAction);
+			if (!isMapped("generateProgramMetadataByDescription"))
+				kparams.AddIfNotNull("generateProgramMetadataByDescription", GenerateProgramMetadataByDescription);
+			return kparams;
+		}
+
+		public override Files getFiles()
+		{
+			Files kfiles = base.getFiles();
+			return kfiles;
+		}
+
+		public override object Deserialize(JToken result)
+		{
+			return ObjectFactory.Create<GenerateMetadataJob>(result);
+		}
+	}
+
 	public class AiMetadataGeneratorGetGeneratedMetadataRequestBuilder : RequestBuilder<GenerateMetadataResult>
 	{
 		#region Constants
@@ -304,6 +343,11 @@ namespace Kaltura.Services
 		public static AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder GenerateMetadataBySubtitles(GenerateMetadataBySubtitles generateMetadataBySubtitles)
 		{
 			return new AiMetadataGeneratorGenerateMetadataBySubtitlesRequestBuilder(generateMetadataBySubtitles);
+		}
+
+		public static AiMetadataGeneratorGenerateProgramMetadataByDescriptionRequestBuilder GenerateProgramMetadataByDescription(GenerateProgramMetadatasByDescription generateProgramMetadataByDescription)
+		{
+			return new AiMetadataGeneratorGenerateProgramMetadataByDescriptionRequestBuilder(generateProgramMetadataByDescription);
 		}
 
 		public static AiMetadataGeneratorGetGeneratedMetadataRequestBuilder GetGeneratedMetadata(long jobId)

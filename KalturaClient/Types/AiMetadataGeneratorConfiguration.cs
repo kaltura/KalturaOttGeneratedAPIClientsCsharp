@@ -38,27 +38,27 @@ namespace Kaltura.Types
 	public class AiMetadataGeneratorConfiguration : ObjectBase
 	{
 		#region Constants
-		public const string ASSET_STRUCT_META_NAME_MAP = "assetStructMetaNameMap";
+		public const string ASSET_STRUCT_CONFIG_MAP = "assetStructConfigMap";
 		public const string SUPPORTED_LANGUAGES = "supportedLanguages";
 		#endregion
 
 		#region Private Fields
-		private IDictionary<string, MetaFieldNameMap> _AssetStructMetaNameMap;
+		private IDictionary<string, MetadataFieldConfigurationMap> _AssetStructConfigMap;
 		private IList<StringValue> _SupportedLanguages;
 		#endregion
 
 		#region Properties
 		/// <summary>
-		/// Use AssetStructMetaNameMapAsDouble property instead
+		/// Use AssetStructConfigMapAsDouble property instead
 		/// </summary>
 		[JsonProperty]
-		public IDictionary<string, MetaFieldNameMap> AssetStructMetaNameMap
+		public IDictionary<string, MetadataFieldConfigurationMap> AssetStructConfigMap
 		{
-			get { return _AssetStructMetaNameMap; }
+			get { return _AssetStructConfigMap; }
 			set 
 			{ 
-				_AssetStructMetaNameMap = value;
-				OnPropertyChanged("AssetStructMetaNameMap");
+				_AssetStructConfigMap = value;
+				OnPropertyChanged("AssetStructConfigMap");
 			}
 		}
 		/// <summary>
@@ -83,15 +83,15 @@ namespace Kaltura.Types
 
 		public AiMetadataGeneratorConfiguration(JToken node) : base(node)
 		{
-			if(node["assetStructMetaNameMap"] != null)
+			if(node["assetStructConfigMap"] != null)
 			{
 				{
 					string key;
-					this._AssetStructMetaNameMap = new Dictionary<string, MetaFieldNameMap>();
-					foreach(var arrayNode in node["assetStructMetaNameMap"].Children<JProperty>())
+					this._AssetStructConfigMap = new Dictionary<string, MetadataFieldConfigurationMap>();
+					foreach(var arrayNode in node["assetStructConfigMap"].Children<JProperty>())
 					{
 						key = arrayNode.Name;
-						this._AssetStructMetaNameMap[key] = ObjectFactory.Create<MetaFieldNameMap>(arrayNode.Value);
+						this._AssetStructConfigMap[key] = ObjectFactory.Create<MetadataFieldConfigurationMap>(arrayNode.Value);
 					}
 				}
 			}
@@ -112,7 +112,7 @@ namespace Kaltura.Types
 			Params kparams = base.ToParams(includeObjectType);
 			if (includeObjectType)
 				kparams.AddReplace("objectType", "KalturaAiMetadataGeneratorConfiguration");
-			kparams.AddIfNotNull("assetStructMetaNameMap", this._AssetStructMetaNameMap);
+			kparams.AddIfNotNull("assetStructConfigMap", this._AssetStructConfigMap);
 			kparams.AddIfNotNull("supportedLanguages", this._SupportedLanguages);
 			return kparams;
 		}
@@ -120,8 +120,8 @@ namespace Kaltura.Types
 		{
 			switch(apiName)
 			{
-				case ASSET_STRUCT_META_NAME_MAP:
-					return "AssetStructMetaNameMap";
+				case ASSET_STRUCT_CONFIG_MAP:
+					return "AssetStructConfigMap";
 				case SUPPORTED_LANGUAGES:
 					return "SupportedLanguages";
 				default:

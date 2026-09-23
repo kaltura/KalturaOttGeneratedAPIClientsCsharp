@@ -57,6 +57,7 @@ namespace Kaltura.Enums
 		public static readonly RuleActionType FILTERFILEBYLABELINPLAYBACK = new RuleActionType("FilterFileByLabelInPlayback");
 		public static readonly RuleActionType FILTERFILEBYDYNAMICDATAINDISCOVERY = new RuleActionType("FilterFileByDynamicDataInDiscovery");
 		public static readonly RuleActionType FILTERFILEBYDYNAMICDATAINPLAYBACK = new RuleActionType("FilterFileByDynamicDataInPlayback");
+		public static readonly RuleActionType SET_PLAYBACK_CONTEXT_URL_TYPE = new RuleActionType("SET_PLAYBACK_CONTEXT_URL_TYPE");
 
 		private RuleActionType(string name) : base(name) { }
 	}

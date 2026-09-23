@@ -44,6 +44,7 @@ namespace Kaltura.Types
 		public const string SOURCE_NAME = "sourceName";
 		public const string STATUS = "status";
 		public const string ERROR_MESSAGE = "errorMessage";
+		public const string TYPE = "type";
 		#endregion
 
 		#region Private Fields
@@ -53,6 +54,7 @@ namespace Kaltura.Types
 		private string _SourceName = null;
 		private GenerateMetadataStatus _Status = null;
 		private string _ErrorMessage = null;
+		private GenerateMetadataJobType _Type = null;
 		#endregion
 
 		#region Properties
@@ -134,6 +136,19 @@ namespace Kaltura.Types
 				OnPropertyChanged("ErrorMessage");
 			}
 		}
+		/// <summary>
+		/// Use TypeAsDouble property instead
+		/// </summary>
+		[JsonProperty]
+		public GenerateMetadataJobType Type
+		{
+			get { return _Type; }
+			private set 
+			{ 
+				_Type = value;
+				OnPropertyChanged("Type");
+			}
+		}
 		#endregion
 
 		#region CTor
@@ -167,6 +182,10 @@ namespace Kaltura.Types
 			{
 				this._ErrorMessage = node["errorMessage"].Value<string>();
 			}
+			if(node["type"] != null)
+			{
+				this._Type = (GenerateMetadataJobType)StringEnum.Parse(typeof(GenerateMetadataJobType), node["type"].Value<string>());
+			}
 		}
 		#endregion
 
@@ -182,6 +201,7 @@ namespace Kaltura.Types
 			kparams.AddIfNotNull("sourceName", this._SourceName);
 			kparams.AddIfNotNull("status", this._Status);
 			kparams.AddIfNotNull("errorMessage", this._ErrorMessage);
+			kparams.AddIfNotNull("type", this._Type);
 			return kparams;
 		}
 		protected override string getPropertyName(string apiName)
@@ -200,6 +220,8 @@ namespace Kaltura.Types
 					return "Status";
 				case ERROR_MESSAGE:
 					return "ErrorMessage";
+				case TYPE:
+					return "Type";
 				default:
 					return base.getPropertyName(apiName);
 			}
